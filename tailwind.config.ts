@@ -57,6 +57,16 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        terracotta: {
+          DEFAULT: "hsl(var(--terracotta))",
+          light: "hsl(var(--terracotta-light))",
+        },
+        sage: {
+          DEFAULT: "hsl(var(--sage))",
+          light: "hsl(var(--sage-light))",
+        },
+        sand: "hsl(var(--sand))",
+        anthracite: "hsl(var(--anthracite))",
       },
       borderRadius: {
         lg: "var(--radius)",
