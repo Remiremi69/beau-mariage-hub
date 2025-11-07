@@ -5,8 +5,12 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { Eye } from "lucide-react";
+import decoBohemeImage from "@/assets/deco-boheme.jpg";
+import decoRomantiqueImage from "@/assets/deco-romantique.jpg";
 
 const Configurateur = () => {
   const [guests, setGuests] = useState([80]);
@@ -112,6 +116,46 @@ const Configurateur = () => {
                     <span className="font-semibold text-primary">+300€</span>
                   </div>
                 </RadioGroup>
+                
+                <div className="mt-4 text-center">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm" className="gap-2">
+                        <Eye className="h-4 w-4" />
+                        Voir les photos des décorations
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl">Nos styles de décoration</DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-8">
+                        <div>
+                          <h3 className="text-xl font-bold mb-2">Bohème Chic</h3>
+                          <p className="text-muted-foreground mb-4">
+                            Matières naturelles, pampas, tons neutres et touches terracotta
+                          </p>
+                          <img
+                            src={decoBohemeImage}
+                            alt="Décoration Bohème Chic"
+                            className="w-full rounded-lg shadow-lg"
+                          />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold mb-2">Romantique Élégant</h3>
+                          <p className="text-muted-foreground mb-4">
+                            Roses blanches, chandelles, drapés de voilages et tons pastel
+                          </p>
+                          <img
+                            src={decoRomantiqueImage}
+                            alt="Décoration Romantique Élégant"
+                            className="w-full rounded-lg shadow-lg"
+                          />
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </div>
               </CardContent>
             </Card>
 
@@ -142,6 +186,80 @@ const Configurateur = () => {
                     <span className="font-semibold text-primary">+200€</span>
                   </div>
                 </RadioGroup>
+                
+                <div className="mt-4 text-center">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm" className="gap-2">
+                        <Eye className="h-4 w-4" />
+                        Voir le menu détaillé
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl">Menu "Saveurs du Terroir"</DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-6">
+                        <div>
+                          <h3 className="text-lg font-bold mb-2 text-primary">Cocktail de Bienvenue</h3>
+                          <ul className="space-y-1 text-muted-foreground">
+                            <li>• Mini-tartelettes aux légumes du soleil</li>
+                            <li>• Rillettes de canard sur toast</li>
+                            <li>• Verrines de saumon fumé et crème citronnée</li>
+                            <li>• Brochettes de tomates cerise et mozzarella</li>
+                            <li>• Macarons salés au chèvre frais</li>
+                            <li>• Mini-éclairs au foie gras</li>
+                          </ul>
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-lg font-bold mb-2 text-primary">Entrée</h3>
+                          <p className="text-muted-foreground">
+                            Velouté de saison aux champignons des bois, crème truffée et croûtons dorés
+                          </p>
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-lg font-bold mb-2 text-primary">Plat Principal</h3>
+                          <p className="text-muted-foreground">
+                            Suprême de volaille fermière rôtie au jus de thym
+                            <br />
+                            Accompagné de son gratin dauphinois et légumes de saison glacés
+                          </p>
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-lg font-bold mb-2 text-primary">Fromages</h3>
+                          <p className="text-muted-foreground">
+                            Plateau de fromages régionaux affinés
+                            <br />
+                            Servi avec salade, noix et confiture de figues
+                          </p>
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-lg font-bold mb-2 text-primary">Dessert</h3>
+                          <p className="text-muted-foreground">
+                            Pièce montée traditionnelle aux choux caramélisés
+                            <br />
+                            Buffet de mignardises et macarons
+                          </p>
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-lg font-bold mb-2 text-primary">Boissons</h3>
+                          <p className="text-muted-foreground">
+                            Vins AOC (blanc, rouge, rosé) en accord avec les mets
+                            <br />
+                            Eau minérale et gazeuse à volonté
+                            <br />
+                            Café et thé gourmands
+                          </p>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </div>
               </CardContent>
             </Card>
 
