@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const Configurateur = () => {
   const [guests, setGuests] = useState([80]);
+  const [decoration, setDecoration] = useState("boheme");
   const [mealType, setMealType] = useState("assis");
   const [photobooth, setPhotobooth] = useState(false);
   const [cocktailBar, setCocktailBar] = useState(false);
@@ -19,13 +20,14 @@ const Configurateur = () => {
 
   const basePrice = 10000;
   const guestPrice = guests[0] > 80 ? (guests[0] - 80) * 50 : 0;
+  const decorationPrice = decoration === "romantique" ? 300 : 0;
   const mealPrice = mealType === "buffet" ? 200 : 0;
   const photoboothPrice = photobooth ? 400 : 0;
   const cocktailBarPrice = cocktailBar ? 600 : 0;
   const brunchPrice = brunch ? 1200 : 0;
 
   const totalPrice =
-    basePrice + guestPrice + mealPrice + photoboothPrice + cocktailBarPrice + brunchPrice;
+    basePrice + guestPrice + decorationPrice + mealPrice + photoboothPrice + cocktailBarPrice + brunchPrice;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -81,10 +83,42 @@ const Configurateur = () => {
               </CardContent>
             </Card>
 
-            {/* Étape 2: Repas */}
+            {/* Étape 2: Décoration */}
             <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)]">
               <CardHeader>
-                <CardTitle className="text-2xl">Étape 2 : Le Repas</CardTitle>
+                <CardTitle className="text-2xl">Étape 2 : La Décoration</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <RadioGroup value={decoration} onValueChange={setDecoration}>
+                  <div className="flex items-center space-x-3 p-4 rounded-lg border-2 border-border hover:border-primary transition-colors">
+                    <RadioGroupItem value="boheme" id="boheme" />
+                    <Label htmlFor="boheme" className="flex-1 cursor-pointer">
+                      <div className="font-semibold">Bohème Chic</div>
+                      <div className="text-sm text-muted-foreground">
+                        Matières naturelles, pampas, tons neutres et touches terracotta
+                      </div>
+                    </Label>
+                    <span className="font-semibold text-secondary">Inclus</span>
+                  </div>
+
+                  <div className="flex items-center space-x-3 p-4 rounded-lg border-2 border-border hover:border-primary transition-colors">
+                    <RadioGroupItem value="romantique" id="romantique" />
+                    <Label htmlFor="romantique" className="flex-1 cursor-pointer">
+                      <div className="font-semibold">Romantique Élégant</div>
+                      <div className="text-sm text-muted-foreground">
+                        Roses blanches, chandelles, drapés de voilages et tons pastel
+                      </div>
+                    </Label>
+                    <span className="font-semibold text-primary">+300€</span>
+                  </div>
+                </RadioGroup>
+              </CardContent>
+            </Card>
+
+            {/* Étape 3: Repas */}
+            <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)]">
+              <CardHeader>
+                <CardTitle className="text-2xl">Étape 3 : Le Repas</CardTitle>
               </CardHeader>
               <CardContent>
                 <RadioGroup value={mealType} onValueChange={setMealType}>
@@ -111,10 +145,10 @@ const Configurateur = () => {
               </CardContent>
             </Card>
 
-            {/* Étape 3: Options */}
+            {/* Étape 4: Options */}
             <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)]">
               <CardHeader>
-                <CardTitle className="text-2xl">Étape 3 : Les Options</CardTitle>
+                <CardTitle className="text-2xl">Étape 4 : Les Options</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center space-x-3 p-4 rounded-lg border-2 border-border hover:border-primary transition-colors">
@@ -164,10 +198,10 @@ const Configurateur = () => {
               </CardContent>
             </Card>
 
-            {/* Étape 4: Devis */}
+            {/* Étape 5: Devis */}
             <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] bg-gradient-to-br from-primary/5 to-secondary/5">
               <CardHeader>
-                <CardTitle className="text-2xl">Étape 4 : Votre Devis Estimatif</CardTitle>
+                <CardTitle className="text-2xl">Étape 5 : Votre Devis Estimatif</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4 mb-6">
@@ -180,6 +214,13 @@ const Configurateur = () => {
                     <div className="flex justify-between items-center text-muted-foreground">
                       <span>Invités supplémentaires ({guests[0] - 80})</span>
                       <span>+{guestPrice} €</span>
+                    </div>
+                  )}
+
+                  {decorationPrice > 0 && (
+                    <div className="flex justify-between items-center text-muted-foreground">
+                      <span>Décoration Romantique Élégant</span>
+                      <span>+{decorationPrice} €</span>
                     </div>
                   )}
 

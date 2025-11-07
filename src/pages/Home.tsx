@@ -43,11 +43,18 @@ const Home = () => {
             Découvrez notre concept unique de mariages clé-en-main à 10 000 €, organisés dans des
             lieux d'exception.
           </p>
-          <Link to="/serie-ete-2027">
-            <Button size="xl" variant="hero" className="font-semibold">
-              Découvrir notre série Été 2027
-            </Button>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/serie-ete-2027">
+              <Button size="xl" variant="hero" className="font-semibold">
+                Découvrir notre série Été 2027
+              </Button>
+            </Link>
+            <Link to="/configurateur">
+              <Button size="xl" variant="elegant" className="font-semibold">
+                Créer un mariage
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -78,7 +85,7 @@ const Home = () => {
                 </div>
                 <h3 className="text-2xl font-bold mb-4">Une offre tout compris</h3>
                 <p className="text-muted-foreground">
-                  Traiteur, photographe, DJ, décoration... Tout est inclus pour 10 000 €.
+                  Traiteur, photographe, DJ, décoration... Tout est inclus pour 10 000 €, à personnaliser.
                 </p>
               </CardContent>
             </Card>
