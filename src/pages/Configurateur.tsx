@@ -23,7 +23,7 @@ const Configurateur = () => {
   const { toast } = useToast();
 
   const basePrice = 10000;
-  const guestPrice = guests[0] > 80 ? (guests[0] - 80) * 50 : 0;
+  const guestPrice = (guests[0] - 80) * 50;
   const decorationPrice = decoration === "romantique" ? 300 : 0;
   const mealPrice = mealType === "buffet" ? 200 : 0;
   const photoboothPrice = photobooth ? 400 : 0;
@@ -78,9 +78,12 @@ const Configurateur = () => {
                     <span>50 invités</span>
                     <span>120 invités</span>
                   </div>
-                  {guests[0] > 80 && (
+                  {guests[0] !== 80 && (
                     <p className="text-sm text-muted-foreground text-center">
-                      +{guestPrice}€ pour {guests[0] - 80} invités supplémentaires (50€/pers.)
+                      {guests[0] > 80 
+                        ? `+${guestPrice}€ pour ${guests[0] - 80} invités supplémentaires (50€/pers.)`
+                        : `${guestPrice}€ pour ${80 - guests[0]} invités en moins (50€/pers.)`
+                      }
                     </p>
                   )}
                 </div>
@@ -328,10 +331,15 @@ const Configurateur = () => {
                     <span className="font-semibold">10 000 €</span>
                   </div>
 
-                  {guestPrice > 0 && (
+                  {guestPrice !== 0 && (
                     <div className="flex justify-between items-center text-muted-foreground">
-                      <span>Invités supplémentaires ({guests[0] - 80})</span>
-                      <span>+{guestPrice} €</span>
+                      <span>
+                        {guestPrice > 0 
+                          ? `Invités supplémentaires (${guests[0] - 80})`
+                          : `Réduction pour moins d'invités (${80 - guests[0]})`
+                        }
+                      </span>
+                      <span>{guestPrice > 0 ? '+' : ''}{guestPrice} €</span>
                     </div>
                   )}
 
