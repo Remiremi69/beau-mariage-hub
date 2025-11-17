@@ -97,7 +97,7 @@ const SalonEphemere = () => {
               Un Moment <span className="text-primary">Rien Que Pour Vous</span>
             </h2>
             <p className="text-xl text-muted-foreground text-center mb-12">
-              Le Salon Éphémère, c'est notre concept révolutionnaire : un appartement haussmannien privatisé au cœur de Paris, transformé en écrin de luxe pour votre essayage. Chaque week-end, nous accueillons seulement quelques futures mariées dans une atmosphère intimiste et raffinée.
+              L'expérience essayage, c'est notre concept révolutionnaire : un appartement haussmannien privatisé au cœur de Paris, transformé en écrin de luxe pour votre essayage. Chaque week-end, nous accueillons seulement quelques futures mariées dans une atmosphère intimiste et raffinée.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
