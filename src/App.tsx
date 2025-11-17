@@ -10,7 +10,7 @@ import Concept from "./pages/Concept";
 import SerieEte2027 from "./pages/SerieEte2027";
 
 import SalonEphemere from "./pages/SalonEphemere";
-import Marketplace from "./pages/Marketplace";
+
 import Configurateur from "./pages/Configurateur";
 import Temoignages from "./pages/Temoignages";
 import FAQ from "./pages/FAQ";
@@ -31,7 +31,6 @@ const App = () => (
           <Route path="/concept" element={<Concept />} />
           <Route path="/serie-ete-2027" element={<SerieEte2027 />} />
           <Route path="/salon-ephemere" element={<SalonEphemere />} />
-          <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/configurateur" element={<Configurateur />} />
           <Route path="/temoignages" element={<Temoignages />} />
           <Route path="/faq" element={<FAQ />} />
