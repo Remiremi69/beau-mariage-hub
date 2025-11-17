@@ -10,7 +10,7 @@ export const Navigation = () => {
     { to: "/", label: "Accueil" },
     { to: "/concept", label: "Le Concept" },
     { to: "/serie-ete-2027", label: "Série Été 2027" },
-    { to: "/salon-ephemere", label: "Le Salon Éphémère" },
+    { to: "/experience-essayage", label: "Expérience essayage" },
     { to: "/contact", label: "Contact" },
   ];
 

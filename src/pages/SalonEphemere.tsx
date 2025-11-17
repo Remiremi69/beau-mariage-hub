@@ -81,7 +81,7 @@ const SalonEphemere = () => {
       >
         <div className="container mx-auto px-4 z-10">
           <h1 className="text-5xl md:text-7xl font-bold text-card mb-6 drop-shadow-lg">
-            Le Salon Éphémère
+            Expérience essayage
           </h1>
           <h2 className="text-2xl md:text-4xl text-card mb-8 drop-shadow-lg">
             L'Expérience d'Essayage la Plus Exclusive de France

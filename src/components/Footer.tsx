@@ -27,8 +27,8 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/salon-ephemere" className="hover:text-primary transition-colors">
-                  Le Salon Éphémère
+                <Link to="/experience-essayage" className="hover:text-primary transition-colors">
+                  Expérience essayage
                 </Link>
               </li>
               <li>
