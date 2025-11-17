@@ -8,7 +8,7 @@ import { Footer } from "./components/Footer";
 import Home from "./pages/Home";
 import Concept from "./pages/Concept";
 import SerieEte2027 from "./pages/SerieEte2027";
-import Collection from "./pages/Collection";
+
 import SalonEphemere from "./pages/SalonEphemere";
 import Marketplace from "./pages/Marketplace";
 import Configurateur from "./pages/Configurateur";
@@ -30,7 +30,6 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/concept" element={<Concept />} />
           <Route path="/serie-ete-2027" element={<SerieEte2027 />} />
-          <Route path="/collection" element={<Collection />} />
           <Route path="/salon-ephemere" element={<SalonEphemere />} />
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/configurateur" element={<Configurateur />} />
