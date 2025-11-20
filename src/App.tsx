@@ -14,6 +14,7 @@ import Temoignages from "./pages/Temoignages";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import Garantie from "./pages/Garantie";
+import Certification from "./pages/Certification";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/garantie" element={<Garantie />} />
+          <Route path="/certification" element={<Certification />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
