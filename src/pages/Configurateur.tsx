@@ -16,6 +16,10 @@ const Configurateur = () => {
   const [guests, setGuests] = useState([80]);
   const [decoration, setDecoration] = useState("boheme");
   const [mealType, setMealType] = useState("assis");
+  const [entree, setEntree] = useState("veloute");
+  const [platPrincipal, setPlatPrincipal] = useState("volaille");
+  const [fromages, setFromages] = useState("plateau");
+  const [dessert, setDessert] = useState("piece-montee");
   const [photobooth, setPhotobooth] = useState(false);
   const [cocktailBar, setCocktailBar] = useState(false);
   const [brunch, setBrunch] = useState(false);
@@ -165,103 +169,194 @@ const Configurateur = () => {
             {/* Étape 3: Repas */}
             <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)]">
               <CardHeader>
-                <CardTitle className="text-2xl">Étape 3 : Le Repas</CardTitle>
+                <CardTitle className="text-2xl">Étape 3 : Composez Votre Menu de Fête</CardTitle>
+                <p className="text-sm text-muted-foreground mt-2">
+                  Inclus dans votre forfait, choisissez une option pour chaque service. Tous nos plats sont élaborés avec des produits frais et locaux.
+                </p>
               </CardHeader>
-              <CardContent>
-                <RadioGroup value={mealType} onValueChange={setMealType}>
-                  <div className="flex items-center space-x-3 p-4 rounded-lg border-2 border-border hover:border-primary transition-colors">
-                    <RadioGroupItem value="assis" id="assis" />
-                    <Label htmlFor="assis" className="flex-1 cursor-pointer">
-                      <div className="font-semibold">Menu Assis</div>
-                      <div className="text-sm text-muted-foreground">Inclus dans le package</div>
-                    </Label>
-                    <span className="font-semibold text-secondary">Inclus</span>
-                  </div>
+              <CardContent className="space-y-8">
+                {/* Entrée */}
+                <div>
+                  <h3 className="text-xl font-semibold mb-4">L'Entrée : La première impression</h3>
+                  <RadioGroup value={entree} onValueChange={setEntree}>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <label
+                        htmlFor="veloute"
+                        className={`p-6 rounded-lg border-2 cursor-pointer transition-all ${
+                          entree === "veloute"
+                            ? "border-primary bg-primary/5 shadow-lg"
+                            : "border-border hover:border-primary/50"
+                        }`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <RadioGroupItem value="veloute" id="veloute" className="mt-1" />
+                          <div className="flex-1">
+                            <h4 className="font-bold text-lg mb-2">Velouté de saison aux champignons des bois</h4>
+                            <p className="text-sm text-muted-foreground">
+                              Crème truffée et croûtons dorés. Un classique réconfortant et élégant.
+                            </p>
+                          </div>
+                        </div>
+                      </label>
 
-                  <div className="flex items-center space-x-3 p-4 rounded-lg border-2 border-border hover:border-primary transition-colors">
-                    <RadioGroupItem value="buffet" id="buffet" />
-                    <Label htmlFor="buffet" className="flex-1 cursor-pointer">
-                      <div className="font-semibold">Buffet Dînatoire</div>
-                      <div className="text-sm text-muted-foreground">
-                        Plus de variété et de convivialité
-                      </div>
-                    </Label>
-                    <span className="font-semibold text-primary">+200€</span>
-                  </div>
-                </RadioGroup>
-                
-                <div className="mt-4 text-center">
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="outline" size="sm" className="gap-2">
-                        <Eye className="h-4 w-4" />
-                        Voir le menu détaillé
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-                      <DialogHeader>
-                        <DialogTitle className="text-2xl">Menu "Saveurs du Terroir"</DialogTitle>
-                      </DialogHeader>
-                      <div className="space-y-6">
-                        <div>
-                          <h3 className="text-lg font-bold mb-2 text-primary">Cocktail de Bienvenue</h3>
-                          <ul className="space-y-1 text-muted-foreground">
-                            <li>• Mini-tartelettes aux légumes du soleil</li>
-                            <li>• Rillettes de canard sur toast</li>
-                            <li>• Verrines de saumon fumé et crème citronnée</li>
-                            <li>• Brochettes de tomates cerise et mozzarella</li>
-                            <li>• Macarons salés au chèvre frais</li>
-                            <li>• Mini-éclairs au foie gras</li>
-                          </ul>
+                      <label
+                        htmlFor="saumon"
+                        className={`p-6 rounded-lg border-2 cursor-pointer transition-all ${
+                          entree === "saumon"
+                            ? "border-primary bg-primary/5 shadow-lg"
+                            : "border-border hover:border-primary/50"
+                        }`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <RadioGroupItem value="saumon" id="saumon" className="mt-1" />
+                          <div className="flex-1">
+                            <h4 className="font-bold text-lg mb-2">Verrine de saumon fumé et crème citronnée</h4>
+                            <p className="text-sm text-muted-foreground">
+                              Aneth frais et perles de citron. Une entrée légère et raffinée.
+                            </p>
+                          </div>
                         </div>
-                        
-                        <div>
-                          <h3 className="text-lg font-bold mb-2 text-primary">Entrée</h3>
-                          <p className="text-muted-foreground">
-                            Velouté de saison aux champignons des bois, crème truffée et croûtons dorés
-                          </p>
+                      </label>
+                    </div>
+                  </RadioGroup>
+                </div>
+
+                {/* Plat Principal */}
+                <div>
+                  <h3 className="text-xl font-semibold mb-4">Le Plat Principal : Le cœur du repas</h3>
+                  <RadioGroup value={platPrincipal} onValueChange={setPlatPrincipal}>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <label
+                        htmlFor="volaille"
+                        className={`p-6 rounded-lg border-2 cursor-pointer transition-all ${
+                          platPrincipal === "volaille"
+                            ? "border-primary bg-primary/5 shadow-lg"
+                            : "border-border hover:border-primary/50"
+                        }`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <RadioGroupItem value="volaille" id="volaille" className="mt-1" />
+                          <div className="flex-1">
+                            <h4 className="font-bold text-lg mb-2">Suprême de volaille fermière rôtie au jus de thym</h4>
+                            <p className="text-sm text-muted-foreground">
+                              Accompagné de son gratin dauphinois et légumes de saison glacés.
+                            </p>
+                          </div>
                         </div>
-                        
-                        <div>
-                          <h3 className="text-lg font-bold mb-2 text-primary">Plat Principal</h3>
-                          <p className="text-muted-foreground">
-                            Suprême de volaille fermière rôtie au jus de thym
-                            <br />
-                            Accompagné de son gratin dauphinois et légumes de saison glacés
-                          </p>
+                      </label>
+
+                      <label
+                        htmlFor="boeuf"
+                        className={`p-6 rounded-lg border-2 cursor-pointer transition-all ${
+                          platPrincipal === "boeuf"
+                            ? "border-primary bg-primary/5 shadow-lg"
+                            : "border-border hover:border-primary/50"
+                        }`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <RadioGroupItem value="boeuf" id="boeuf" className="mt-1" />
+                          <div className="flex-1">
+                            <h4 className="font-bold text-lg mb-2">Pavé de bœuf Angus, sauce au poivre vert</h4>
+                            <p className="text-sm text-muted-foreground">
+                              Écrasé de pommes de terre à l'huile de truffe et poêlée de légumes verts.
+                            </p>
+                          </div>
                         </div>
-                        
-                        <div>
-                          <h3 className="text-lg font-bold mb-2 text-primary">Fromages</h3>
-                          <p className="text-muted-foreground">
-                            Plateau de fromages régionaux affinés
-                            <br />
-                            Servi avec salade, noix et confiture de figues
-                          </p>
+                      </label>
+                    </div>
+                  </RadioGroup>
+                </div>
+
+                {/* Fromages */}
+                <div>
+                  <h3 className="text-xl font-semibold mb-4">Les Fromages : La tradition gourmande</h3>
+                  <RadioGroup value={fromages} onValueChange={setFromages}>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <label
+                        htmlFor="plateau"
+                        className={`p-6 rounded-lg border-2 cursor-pointer transition-all ${
+                          fromages === "plateau"
+                            ? "border-primary bg-primary/5 shadow-lg"
+                            : "border-border hover:border-primary/50"
+                        }`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <RadioGroupItem value="plateau" id="plateau" className="mt-1" />
+                          <div className="flex-1">
+                            <h4 className="font-bold text-lg mb-2">Plateau de fromages régionaux affinés</h4>
+                            <p className="text-sm text-muted-foreground">
+                              Une sélection de 4 fromages emblématiques de notre terroir.
+                            </p>
+                          </div>
                         </div>
-                        
-                        <div>
-                          <h3 className="text-lg font-bold mb-2 text-primary">Dessert</h3>
-                          <p className="text-muted-foreground">
-                            Pièce montée traditionnelle aux choux caramélisés
-                            <br />
-                            Buffet de mignardises et macarons
-                          </p>
+                      </label>
+
+                      <label
+                        htmlFor="chevre"
+                        className={`p-6 rounded-lg border-2 cursor-pointer transition-all ${
+                          fromages === "chevre"
+                            ? "border-primary bg-primary/5 shadow-lg"
+                            : "border-border hover:border-primary/50"
+                        }`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <RadioGroupItem value="chevre" id="chevre" className="mt-1" />
+                          <div className="flex-1">
+                            <h4 className="font-bold text-lg mb-2">Cœur de chèvre frais sur toast de pain d'épices</h4>
+                            <p className="text-sm text-muted-foreground">
+                              Accompagné d'une salade de jeunes pousses et noix.
+                            </p>
+                          </div>
                         </div>
-                        
-                        <div>
-                          <h3 className="text-lg font-bold mb-2 text-primary">Boissons</h3>
-                          <p className="text-muted-foreground">
-                            Vins AOC (blanc, rouge, rosé) en accord avec les mets
-                            <br />
-                            Eau minérale et gazeuse à volonté
-                            <br />
-                            Café et thé gourmands
-                          </p>
+                      </label>
+                    </div>
+                  </RadioGroup>
+                </div>
+
+                {/* Dessert */}
+                <div>
+                  <h3 className="text-xl font-semibold mb-4">Le Dessert : La touche sucrée</h3>
+                  <RadioGroup value={dessert} onValueChange={setDessert}>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <label
+                        htmlFor="piece-montee"
+                        className={`p-6 rounded-lg border-2 cursor-pointer transition-all ${
+                          dessert === "piece-montee"
+                            ? "border-primary bg-primary/5 shadow-lg"
+                            : "border-border hover:border-primary/50"
+                        }`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <RadioGroupItem value="piece-montee" id="piece-montee" className="mt-1" />
+                          <div className="flex-1">
+                            <h4 className="font-bold text-lg mb-2">Pièce montée traditionnelle (choux ou macarons)</h4>
+                            <p className="text-sm text-muted-foreground">
+                              Le classique indémodable pour un final spectaculaire.
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    </DialogContent>
-                  </Dialog>
+                      </label>
+
+                      <label
+                        htmlFor="mignardises"
+                        className={`p-6 rounded-lg border-2 cursor-pointer transition-all ${
+                          dessert === "mignardises"
+                            ? "border-primary bg-primary/5 shadow-lg"
+                            : "border-border hover:border-primary/50"
+                        }`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <RadioGroupItem value="mignardises" id="mignardises" className="mt-1" />
+                          <div className="flex-1">
+                            <h4 className="font-bold text-lg mb-2">Buffet de 5 mignardises par personne</h4>
+                            <p className="text-sm text-muted-foreground">
+                              Mini-éclairs, tartelettes aux fruits, macarons, verrines... Une farandole de saveurs pour tous les goûts.
+                            </p>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </RadioGroup>
                 </div>
               </CardContent>
             </Card>
