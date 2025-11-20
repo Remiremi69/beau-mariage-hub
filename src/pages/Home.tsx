@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Heart, Calendar, Star, Shield, Tag } from "lucide-react";
+import { MapPin, Heart, Calendar, Star, Shield, Tag, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-wedding.jpg";
 import venueImage from "@/assets/venue-exterior.jpg";
+import badgeCertifie from "@/assets/badge-certifie.png";
 
 const Home = () => {
   const testimonials = [
@@ -120,6 +121,51 @@ const Home = () => {
                 </Link>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Prestataires Certifiés Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+              L'Excellence n'est pas une option, c'est notre standard.
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+              Chacun de nos prestataires est rigoureusement sélectionné, testé et certifié selon notre charte d'excellence. Découvrez comment nous garantissons la perfection pour votre grand jour.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Colonne Gauche - Visuel */}
+            <div className="flex justify-center">
+              <img 
+                src={badgeCertifie} 
+                alt="Badge Prestataire Certifié Le Beau Mariage 2027" 
+                className="w-80 h-80 object-contain drop-shadow-2xl"
+              />
+            </div>
+
+            {/* Colonne Droite - Texte */}
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                  <Award className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-3xl md:text-4xl font-bold text-foreground">
+                  Notre Label d'Excellence : Votre Garantie Qualité.
+                </h3>
+              </div>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                Nous avons créé un référentiel unique en France pour garantir le professionnalisme, la fiabilité et la qualité de chaque intervenant. Du traiteur au DJ, en passant par le photographe, tous s'engagent à respecter plus de 50 points de contrôle pour vous offrir une expérience inoubliable.
+              </p>
+              <Link to="/certification">
+                <Button size="lg" variant="hero" className="font-semibold">
+                  Découvrir notre processus de certification
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
