@@ -11,6 +11,7 @@ export const Navigation = () => {
     { to: "/concept", label: "Le Concept" },
     { to: "/serie-ete-2027", label: "Série Été 2027" },
     { to: "/experience-essayage", label: "Expérience essayage" },
+    { to: "/garantie", label: "Notre Garantie" },
     { to: "/contact", label: "Contact" },
   ];
 

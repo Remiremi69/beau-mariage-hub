@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Heart, Calendar, Star } from "lucide-react";
+import { MapPin, Heart, Calendar, Star, Shield, Tag } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-wedding.jpg";
 import venueImage from "@/assets/venue-exterior.jpg";
@@ -53,6 +53,73 @@ const Home = () => {
                 Créer un mariage
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Garantie Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+              Se marier n'a jamais été aussi serein.
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Découvrez notre Triple Garantie Sérénité, unique en France, incluse dans tous nos forfaits.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="border-none shadow-[0_4px_20px_-4px_hsl(235_17%_25%/0.1)] hover:shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] transition-all duration-300">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 mx-auto mb-6 bg-primary/10 rounded-full flex items-center justify-center">
+                  <Calendar className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Garantie Anti-Imprévu</h3>
+                <p className="text-muted-foreground mb-6">
+                  Un imprévu vous oblige à annuler ou reporter ? Nous vous remboursons ou reportons sans frais, selon les conditions les plus flexibles du marché.
+                </p>
+                <Link to="/garantie">
+                  <Button variant="outline" className="w-full">
+                    En savoir plus
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-none shadow-[0_4px_20px_-4px_hsl(235_17%_25%/0.1)] hover:shadow-[0_10px_40px_-10px_hsl(149_29%_60%/0.2)] transition-all duration-300">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 mx-auto mb-6 bg-secondary/10 rounded-full flex items-center justify-center">
+                  <Shield className="h-8 w-8 text-secondary" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Garantie Qualité Certifiée</h3>
+                <p className="text-muted-foreground mb-6">
+                  Un prestataire majeur est défaillant ? Nous vous dédommageons à la hauteur du préjudice. Votre satisfaction n'est pas négociable.
+                </p>
+                <Link to="/garantie">
+                  <Button variant="outline" className="w-full">
+                    En savoir plus
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-none shadow-[0_4px_20px_-4px_hsl(235_17%_25%/0.1)] hover:shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] transition-all duration-300">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 mx-auto mb-6 bg-accent/10 rounded-full flex items-center justify-center">
+                  <Tag className="h-8 w-8 text-accent" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Garantie Zéro Coût Caché</h3>
+                <p className="text-muted-foreground mb-6">
+                  Le prix que vous signez est le prix que vous payez. Pas de surprise, pas d'astérisque. La transparence est notre ADN.
+                </p>
+                <Link to="/garantie">
+                  <Button variant="outline" className="w-full">
+                    En savoir plus
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
