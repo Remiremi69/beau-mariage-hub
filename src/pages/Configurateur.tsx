@@ -20,6 +20,7 @@ import sophieImage from "@/assets/sophie-serveuse.jpg";
 
 const Configurateur = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [selectedDate, setSelectedDate] = useState("2027-07-06"); // Par défaut : Mercredi 6 Juillet 2027
   const [guests, setGuests] = useState([80]);
   const [decoration, setDecoration] = useState("boheme");
   const [entree, setEntree] = useState("veloute");
@@ -34,7 +35,25 @@ const Configurateur = () => {
   const [email, setEmail] = useState("");
   const { toast } = useToast();
 
-  const basePrice = 10000;
+  // Liste des dates disponibles pour Juillet 2027
+  const availableDates = [
+    { id: "2027-07-01", label: "Vendredi 1er Juillet 2027", price: 8000, status: "reserve" },
+    { id: "2027-07-02", label: "Samedi 2 Juillet 2027", price: 8500, status: "reserve" },
+    { id: "2027-07-03", label: "Dimanche 3 Juillet 2027", price: 8000, status: "reserve" },
+    { id: "2027-07-06", label: "Mercredi 6 Juillet 2027", price: 6900, status: "disponible" },
+    { id: "2027-07-07", label: "Jeudi 7 Juillet 2027", price: 7500, status: "disponible" },
+    { id: "2027-07-08", label: "Vendredi 8 Juillet 2027", price: 8000, status: "option" },
+    { id: "2027-07-09", label: "Samedi 9 Juillet 2027", price: 8500, status: "reserve" },
+    { id: "2027-07-10", label: "Dimanche 10 Juillet 2027", price: 8000, status: "disponible" },
+    { id: "2027-07-13", label: "Mercredi 13 Juillet 2027", price: 6900, status: "disponible" },
+    { id: "2027-07-14", label: "Jeudi 14 Juillet 2027", price: 7500, status: "disponible" },
+    { id: "2027-07-15", label: "Vendredi 15 Juillet 2027", price: 8000, status: "disponible" },
+    { id: "2027-07-16", label: "Samedi 16 Juillet 2027", price: 8500, status: "disponible" },
+  ];
+
+  const selectedDateInfo = availableDates.find(d => d.id === selectedDate) || availableDates[3];
+
+  const basePrice = selectedDateInfo.price; // Prix dynamique selon la date
   const guestPrice = (guests[0] - 80) * 50;
   const decorationPrice = decoration === "romantique" ? 300 : 0;
   const photoboothPrice = photobooth ? 400 : 0;
@@ -47,12 +66,13 @@ const Configurateur = () => {
     basePrice + guestPrice + decorationPrice + photoboothPrice + cocktailBarPrice + serviceForfaitPrice;
 
   const steps = [
-    { id: 1, name: "Invités", short: "Invités" },
-    { id: 2, name: "Décoration", short: "Déco" },
-    { id: 3, name: "Menu", short: "Menu" },
-    { id: 4, name: "Options", short: "Options" },
-    { id: 5, name: "Tenue", short: "Tenue" },
-    { id: 6, name: "Devis", short: "Devis" },
+    { id: 1, name: "Date", short: "Date" },
+    { id: 2, name: "Invités", short: "Invités" },
+    { id: 3, name: "Décoration", short: "Déco" },
+    { id: 4, name: "Menu", short: "Menu" },
+    { id: 5, name: "Options", short: "Options" },
+    { id: 6, name: "Tenue", short: "Tenue" },
+    { id: 7, name: "Devis", short: "Devis" },
   ];
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -64,7 +84,7 @@ const Configurateur = () => {
   };
 
   const nextStep = () => {
-    if (currentStep < 6) {
+    if (currentStep < 7) {
       setCurrentStep(currentStep + 1);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -87,7 +107,7 @@ const Configurateur = () => {
         <CardContent className="space-y-4">
           <div className="space-y-3">
             <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">Forfait de base (80 pers.)</span>
+              <span className="text-muted-foreground">Forfait (80 pers.) - {selectedDateInfo.label.split(' ').slice(0, 4).join(' ')}</span>
               <span className="font-semibold">{basePrice.toLocaleString()}€</span>
             </div>
             {guestPrice !== 0 && (
@@ -245,8 +265,71 @@ const Configurateur = () => {
                 </div>
               </div>
 
-              {/* Étape 1: Invités */}
+              {/* Étape 1: Date */}
               {currentStep === 1 && (
+                <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
+                  <CardHeader>
+                    <CardTitle className="text-2xl md:text-3xl">Choisissez la date de votre mariage</CardTitle>
+                    <p className="text-sm md:text-base text-muted-foreground">
+                      Série Été 2027 - Profitez de nos tarifs dégressifs en semaine !
+                    </p>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-3">
+                      {availableDates.map((date) => {
+                        const isReserved = date.status === "reserve";
+                        const isSelected = selectedDate === date.id;
+                        const statusConfig = {
+                          disponible: { bg: "bg-green-100", text: "text-green-700", label: "Disponible" },
+                          option: { bg: "bg-orange-100", text: "text-orange-700", label: "En option" },
+                          reserve: { bg: "bg-red-100", text: "text-red-700", label: "Réservé" }
+                        };
+                        const config = statusConfig[date.status as keyof typeof statusConfig];
+
+                        return (
+                          <button
+                            key={date.id}
+                            onClick={() => !isReserved && setSelectedDate(date.id)}
+                            disabled={isReserved}
+                            className={`w-full p-4 md:p-5 rounded-xl border-2 transition-all text-left ${
+                              isSelected
+                                ? "border-primary bg-primary/5 shadow-lg"
+                                : isReserved
+                                ? "border-muted bg-muted/30 cursor-not-allowed opacity-60"
+                                : "border-border hover:border-primary/50 hover:shadow-md"
+                            }`}
+                          >
+                            <div className="flex items-center justify-between gap-4">
+                              <div className="flex-1">
+                                <h4 className={`font-bold text-base md:text-lg mb-1 ${isReserved ? "text-muted-foreground" : ""}`}>
+                                  {date.label}
+                                </h4>
+                                <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${config.bg} ${config.text}`}>
+                                  {config.label}
+                                </span>
+                              </div>
+                              <div className="text-right">
+                                <p className={`text-2xl md:text-3xl font-bold ${isReserved ? "text-muted-foreground" : "text-primary"}`}>
+                                  {date.price.toLocaleString()}€
+                                </p>
+                              </div>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div className="flex justify-end mt-6 md:mt-8">
+                      <Button onClick={nextStep} size="lg" className="gap-2 w-full md:w-auto">
+                        Étape suivante <ChevronRight className="w-5 h-5" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Étape 2: Invités */}
+              {currentStep === 2 && (
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
                     <CardTitle className="text-2xl md:text-3xl">Commencez par le nombre de vos invités</CardTitle>
@@ -287,8 +370,8 @@ const Configurateur = () => {
                 </Card>
               )}
 
-              {/* Étape 2: Décoration */}
-              {currentStep === 2 && (
+              {/* Étape 3: Décoration */}
+              {currentStep === 3 && (
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
                     <CardTitle className="text-2xl md:text-3xl">Choisissez l'ambiance de votre mariage</CardTitle>
@@ -370,8 +453,8 @@ const Configurateur = () => {
                 </Card>
               )}
 
-              {/* Étape 3: Menu */}
-              {currentStep === 3 && (
+              {/* Étape 4: Menu */}
+              {currentStep === 4 && (
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
                     <CardTitle className="text-2xl md:text-3xl">Composez votre menu de fête</CardTitle>
@@ -797,8 +880,8 @@ const Configurateur = () => {
                 </Card>
               )}
 
-              {/* Étape 4: Vos Artistes & Options */}
-              {currentStep === 4 && (
+              {/* Étape 5: Vos Artistes & Options */}
+              {currentStep === 5 && (
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
                     <CardTitle className="text-2xl md:text-3xl">Vos Artistes & Options</CardTitle>
@@ -961,8 +1044,8 @@ const Configurateur = () => {
                 </Card>
               )}
 
-              {/* Étape 5: La Tenue des Mariés */}
-              {currentStep === 5 && (
+              {/* Étape 6: La Tenue des Mariés */}
+              {currentStep === 6 && (
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
                     <CardTitle className="text-2xl md:text-3xl">La Tenue des Mariés</CardTitle>
@@ -1044,8 +1127,8 @@ const Configurateur = () => {
                 </Card>
               )}
 
-              {/* Étape 6: Devis */}
-              {currentStep === 6 && (
+              {/* Étape 7: Devis */}
+              {currentStep === 7 && (
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
                     <CardTitle className="text-2xl md:text-3xl">Votre mariage de rêve est prêt !</CardTitle>
@@ -1056,6 +1139,10 @@ const Configurateur = () => {
                       <div className="bg-muted/30 rounded-xl p-6 space-y-4">
                         <h3 className="text-xl font-bold mb-4">Récapitulatif de votre mariage</h3>
                         <div className="space-y-3">
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Date du mariage</span>
+                            <span className="font-semibold">{selectedDateInfo.label}</span>
+                          </div>
                           <div className="flex justify-between">
                             <span className="text-muted-foreground">Nombre d'invités</span>
                             <span className="font-semibold">{guests[0]} personnes</span>
