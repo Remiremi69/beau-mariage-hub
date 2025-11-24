@@ -5,9 +5,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { ChevronRight, ChevronLeft, Shield, Star, Tag, Check } from "lucide-react";
+import { ChevronRight, ChevronLeft, Shield, Star, Tag, Check, Receipt } from "lucide-react";
 import decoBohemeImage from "@/assets/deco-boheme.jpg";
 import decoRomantiqueImage from "@/assets/deco-romantique.jpg";
 
@@ -66,14 +67,126 @@ const Configurateur = () => {
     }
   };
 
+  const SummaryContent = () => (
+    <>
+      {/* Devis en temps réel */}
+      <Card className="border-none shadow-[var(--shadow-elegant)]">
+        <CardHeader>
+          <CardTitle className="text-xl">Votre Devis en Temps Réel</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-3">
+            <div className="flex justify-between text-sm">
+              <span className="text-muted-foreground">Forfait de base (80 pers.)</span>
+              <span className="font-semibold">{basePrice.toLocaleString()}€</span>
+            </div>
+            {guestPrice !== 0 && (
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">Ajustement invités</span>
+                <span className="font-semibold">{guestPrice > 0 ? "+" : ""}{guestPrice}€</span>
+              </div>
+            )}
+            {decorationPrice > 0 && (
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">Décoration Romantique</span>
+                <span className="font-semibold">+{decorationPrice}€</span>
+              </div>
+            )}
+            {photoboothPrice > 0 && (
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">Photobooth</span>
+                <span className="font-semibold">+{photoboothPrice}€</span>
+              </div>
+            )}
+            {cocktailBarPrice > 0 && (
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">Bar à Cocktails</span>
+                <span className="font-semibold">+{cocktailBarPrice}€</span>
+              </div>
+            )}
+            {brunchPrice > 0 && (
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">Brunch</span>
+                <span className="font-semibold">+{brunchPrice}€</span>
+              </div>
+            )}
+          </div>
+          <div className="border-t pt-4">
+            <div className="flex justify-between items-center">
+              <span className="text-lg font-bold">Total</span>
+              <span className="text-2xl font-bold text-primary">{totalPrice.toLocaleString()}€</span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Bloc de réassurance */}
+      <Card className="border-none shadow-[var(--shadow-elegant)] bg-primary/5">
+        <CardHeader>
+          <CardTitle className="text-lg">Inclus dans votre forfait :</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-start gap-3">
+            <Shield className="w-6 h-6 text-primary flex-shrink-0" />
+            <div>
+              <h4 className="font-semibold text-sm">Garantie Anti-Imprévu</h4>
+              <p className="text-xs text-muted-foreground">Annulation ou report flexible</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <Star className="w-6 h-6 text-primary flex-shrink-0" />
+            <div>
+              <h4 className="font-semibold text-sm">Garantie Qualité Certifiée</h4>
+              <p className="text-xs text-muted-foreground">Prestataires d'excellence</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <Tag className="w-6 h-6 text-primary flex-shrink-0" />
+            <div>
+              <h4 className="font-semibold text-sm">Garantie Zéro Coût Caché</h4>
+              <p className="text-xs text-muted-foreground">Prix transparent et définitif</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Témoignage */}
+      <Card className="border-none shadow-[var(--shadow-elegant)] bg-secondary/5">
+        <CardContent className="pt-6">
+          <div className="space-y-3">
+            <div className="flex gap-1">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+              ))}
+            </div>
+            <p className="text-sm italic">
+              "Une organisation parfaite, un prix imbattable. Le Beau Mariage a réalisé notre rêve."
+            </p>
+            <p className="text-xs font-semibold text-muted-foreground">— Laura & Tom</p>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* CTA Final */}
+      <Button
+        onClick={() => setCurrentStep(5)}
+        size="lg"
+        className="w-full"
+        disabled={currentStep === 5}
+      >
+        Finaliser et obtenir mon devis
+      </Button>
+    </>
+  );
+
   return (
-    <div className="min-h-screen pt-20 bg-background">
+    <div className="min-h-screen pt-20 bg-background pb-24 lg:pb-8">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-center mb-3 md:mb-4">
             Estimez le budget de votre Beau Mariage
           </h1>
-          <p className="text-center text-muted-foreground mb-8 text-lg">
+          <p className="text-center text-muted-foreground mb-6 md:mb-8 text-base md:text-lg">
             Personnalisez votre mariage en quelques clics
           </p>
 
@@ -81,13 +194,13 @@ const Configurateur = () => {
             {/* Colonne de gauche - Configurateur */}
             <div className="lg:w-[70%]">
               {/* Barre de progression */}
-              <div className="mb-8 bg-card rounded-lg p-6 shadow-[var(--shadow-elegant)]">
+              <div className="mb-6 md:mb-8 bg-card rounded-lg p-4 md:p-6 shadow-[var(--shadow-elegant)]">
                 <div className="flex items-center justify-between">
                   {steps.map((step, index) => (
                     <div key={step.id} className="flex items-center flex-1">
                       <button
                         onClick={() => setCurrentStep(step.id)}
-                        className={`flex flex-col items-center gap-2 transition-all ${
+                        className={`flex flex-col items-center gap-1 md:gap-2 transition-all ${
                           currentStep === step.id
                             ? "text-primary"
                             : currentStep > step.id
@@ -96,7 +209,7 @@ const Configurateur = () => {
                         }`}
                       >
                         <div
-                          className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all ${
+                          className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center font-bold transition-all ${
                             currentStep === step.id
                               ? "bg-primary text-primary-foreground scale-110"
                               : currentStep > step.id
@@ -104,14 +217,13 @@ const Configurateur = () => {
                               : "bg-muted text-muted-foreground"
                           }`}
                         >
-                          {currentStep > step.id ? <Check className="w-5 h-5" /> : step.id}
+                          {currentStep > step.id ? <Check className="w-4 h-4 md:w-5 md:h-5" /> : step.id}
                         </div>
-                        <span className="text-xs md:text-sm font-medium hidden md:block">{step.name}</span>
-                        <span className="text-xs font-medium md:hidden">{step.short}</span>
+                        <span className="text-[10px] md:text-sm font-medium">{step.short}</span>
                       </button>
                       {index < steps.length - 1 && (
                         <div
-                          className={`h-1 flex-1 mx-2 rounded transition-all ${
+                          className={`h-0.5 md:h-1 flex-1 mx-1 md:mx-2 rounded transition-all ${
                             currentStep > step.id ? "bg-secondary" : "bg-muted"
                           }`}
                         />
@@ -125,14 +237,14 @@ const Configurateur = () => {
               {currentStep === 1 && (
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
-                    <CardTitle className="text-3xl">Commencez par le nombre de vos invités</CardTitle>
-                    <p className="text-muted-foreground">De 50 à 120 personnes, notre formule s'adapte à vous.</p>
+                    <CardTitle className="text-2xl md:text-3xl">Commencez par le nombre de vos invités</CardTitle>
+                    <p className="text-sm md:text-base text-muted-foreground">De 50 à 120 personnes, notre formule s'adapte à vous.</p>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-8">
+                    <div className="space-y-6 md:space-y-8">
                       <div className="text-center">
-                        <span className="text-6xl font-bold text-primary">{guests[0]}</span>
-                        <span className="text-3xl text-muted-foreground ml-3">invités</span>
+                        <span className="text-5xl md:text-6xl font-bold text-primary">{guests[0]}</span>
+                        <span className="text-2xl md:text-3xl text-muted-foreground ml-2 md:ml-3">invités</span>
                       </div>
                       <Slider
                         value={guests}
@@ -140,21 +252,21 @@ const Configurateur = () => {
                         min={50}
                         max={120}
                         step={5}
-                        className="w-full h-3"
+                        className="w-full"
                       />
-                      <div className="flex justify-between text-sm text-muted-foreground">
+                      <div className="flex justify-between text-xs md:text-sm text-muted-foreground">
                         <span>50 invités</span>
                         <span>120 invités</span>
                       </div>
                       {guests[0] !== 80 && (
-                        <p className="text-center text-muted-foreground">
+                        <p className="text-center text-sm md:text-base text-muted-foreground">
                           {guests[0] > 80
                             ? `+${guestPrice}€ pour ${guests[0] - 80} invités supplémentaires (50€/pers.)`
                             : `${guestPrice}€ pour ${80 - guests[0]} invités en moins (50€/pers.)`}
                         </p>
                       )}
                       <div className="flex justify-end">
-                        <Button onClick={nextStep} size="lg" className="gap-2">
+                        <Button onClick={nextStep} size="lg" className="gap-2 w-full md:w-auto">
                           Étape suivante <ChevronRight className="w-5 h-5" />
                         </Button>
                       </div>
@@ -167,12 +279,12 @@ const Configurateur = () => {
               {currentStep === 2 && (
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
-                    <CardTitle className="text-3xl">Choisissez l'ambiance de votre mariage</CardTitle>
-                    <p className="text-muted-foreground">Deux styles uniques pour une atmosphère sur mesure.</p>
+                    <CardTitle className="text-2xl md:text-3xl">Choisissez l'ambiance de votre mariage</CardTitle>
+                    <p className="text-sm md:text-base text-muted-foreground">Deux styles uniques pour une atmosphère sur mesure.</p>
                   </CardHeader>
                   <CardContent>
                     <RadioGroup value={decoration} onValueChange={setDecoration}>
-                      <div className="grid md:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                         <label
                           htmlFor="boheme"
                           className={`group cursor-pointer rounded-xl overflow-hidden border-4 transition-all ${
@@ -181,22 +293,22 @@ const Configurateur = () => {
                               : "border-border hover:border-primary/50"
                           }`}
                         >
-                          <div className="relative h-64">
+                          <div className="relative h-48 md:h-64">
                             <img
                               src={decoBohemeImage}
                               alt="Bohème Chic"
                               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
                               <div className="flex items-center gap-2 mb-2">
                                 <RadioGroupItem value="boheme" id="boheme" className="border-white" />
-                                <h3 className="text-2xl font-bold">Bohème Chic</h3>
+                                <h3 className="text-xl md:text-2xl font-bold">Bohème Chic</h3>
                               </div>
-                              <p className="text-sm text-white/90 mb-2">
+                              <p className="text-xs md:text-sm text-white/90 mb-2">
                                 Matières naturelles, pampas, tons neutres et touches terracotta
                               </p>
-                              <span className="inline-block bg-secondary text-secondary-foreground px-4 py-1 rounded-full text-sm font-bold">
+                              <span className="inline-block bg-secondary text-secondary-foreground px-3 md:px-4 py-1 rounded-full text-xs md:text-sm font-bold">
                                 Inclus
                               </span>
                             </div>
@@ -211,22 +323,22 @@ const Configurateur = () => {
                               : "border-border hover:border-primary/50"
                           }`}
                         >
-                          <div className="relative h-64">
+                          <div className="relative h-48 md:h-64">
                             <img
                               src={decoRomantiqueImage}
                               alt="Romantique Élégant"
                               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
                               <div className="flex items-center gap-2 mb-2">
                                 <RadioGroupItem value="romantique" id="romantique" className="border-white" />
-                                <h3 className="text-2xl font-bold">Romantique Élégant</h3>
+                                <h3 className="text-xl md:text-2xl font-bold">Romantique Élégant</h3>
                               </div>
-                              <p className="text-sm text-white/90 mb-2">
+                              <p className="text-xs md:text-sm text-white/90 mb-2">
                                 Roses blanches, chandelles, drapés de voilages et tons pastel
                               </p>
-                              <span className="inline-block bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-bold">
+                              <span className="inline-block bg-primary text-primary-foreground px-3 md:px-4 py-1 rounded-full text-xs md:text-sm font-bold">
                                 +300€
                               </span>
                             </div>
@@ -234,11 +346,11 @@ const Configurateur = () => {
                         </label>
                       </div>
                     </RadioGroup>
-                    <div className="flex justify-between mt-8">
-                      <Button onClick={prevStep} variant="outline" size="lg" className="gap-2">
+                    <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-4 mt-6 md:mt-8">
+                      <Button onClick={prevStep} variant="outline" size="lg" className="gap-2 w-full md:w-auto order-2 md:order-1">
                         <ChevronLeft className="w-5 h-5" /> Étape précédente
                       </Button>
-                      <Button onClick={nextStep} size="lg" className="gap-2">
+                      <Button onClick={nextStep} size="lg" className="gap-2 w-full md:w-auto order-1 md:order-2">
                         Étape suivante <ChevronRight className="w-5 h-5" />
                       </Button>
                     </div>
@@ -250,8 +362,8 @@ const Configurateur = () => {
               {currentStep === 3 && (
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
-                    <CardTitle className="text-3xl">Composez votre menu de fête</CardTitle>
-                    <p className="text-muted-foreground">
+                    <CardTitle className="text-2xl md:text-3xl">Composez votre menu de fête</CardTitle>
+                    <p className="text-sm md:text-base text-muted-foreground">
                       Tous nos plats sont élaborés avec des produits frais et locaux.
                     </p>
                   </CardHeader>
@@ -440,11 +552,11 @@ const Configurateur = () => {
                       </RadioGroup>
                     </div>
 
-                    <div className="flex justify-between mt-8">
-                      <Button onClick={prevStep} variant="outline" size="lg" className="gap-2">
+                    <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-4 mt-6 md:mt-8">
+                      <Button onClick={prevStep} variant="outline" size="lg" className="gap-2 w-full md:w-auto order-2 md:order-1">
                         <ChevronLeft className="w-5 h-5" /> Étape précédente
                       </Button>
-                      <Button onClick={nextStep} size="lg" className="gap-2">
+                      <Button onClick={nextStep} size="lg" className="gap-2 w-full md:w-auto order-1 md:order-2">
                         Étape suivante <ChevronRight className="w-5 h-5" />
                       </Button>
                     </div>
@@ -456,11 +568,11 @@ const Configurateur = () => {
               {currentStep === 4 && (
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
-                    <CardTitle className="text-3xl">Personnalisez votre expérience</CardTitle>
-                    <p className="text-muted-foreground">Ajoutez des options premium pour rendre votre mariage encore plus unique.</p>
+                    <CardTitle className="text-2xl md:text-3xl">Personnalisez votre expérience</CardTitle>
+                    <p className="text-sm md:text-base text-muted-foreground">Ajoutez des options premium pour rendre votre mariage encore plus unique.</p>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                       <label
                         className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
                           photobooth
@@ -537,11 +649,11 @@ const Configurateur = () => {
                         </div>
                       </label>
                     </div>
-                    <div className="flex justify-between mt-8">
-                      <Button onClick={prevStep} variant="outline" size="lg" className="gap-2">
+                    <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-4 mt-6 md:mt-8">
+                      <Button onClick={prevStep} variant="outline" size="lg" className="gap-2 w-full md:w-auto order-2 md:order-1">
                         <ChevronLeft className="w-5 h-5" /> Étape précédente
                       </Button>
-                      <Button onClick={nextStep} size="lg" className="gap-2">
+                      <Button onClick={nextStep} size="lg" className="gap-2 w-full md:w-auto order-1 md:order-2">
                         Voir mon devis <ChevronRight className="w-5 h-5" />
                       </Button>
                     </div>
@@ -553,8 +665,8 @@ const Configurateur = () => {
               {currentStep === 5 && (
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
-                    <CardTitle className="text-3xl">Votre mariage de rêve est prêt !</CardTitle>
-                    <p className="text-muted-foreground">Recevez votre devis personnalisé par email.</p>
+                    <CardTitle className="text-2xl md:text-3xl">Votre mariage de rêve est prêt !</CardTitle>
+                    <p className="text-sm md:text-base text-muted-foreground">Recevez votre devis personnalisé par email.</p>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-6">
@@ -624,12 +736,12 @@ const Configurateur = () => {
                             required
                           />
                         </div>
-                        <div className="flex gap-4">
-                          <Button onClick={prevStep} type="button" variant="outline" size="lg" className="flex-1 gap-2">
+                        <div className="flex flex-col md:flex-row gap-3 md:gap-4">
+                          <Button onClick={prevStep} type="button" variant="outline" size="lg" className="flex-1 gap-2 order-2 md:order-1">
                             <ChevronLeft className="w-5 h-5" /> Modifier
                           </Button>
-                          <Button type="submit" size="lg" className="flex-1">
-                            Recevoir mon devis personnalisé
+                          <Button type="submit" size="lg" className="flex-1 order-1 md:order-2">
+                            Recevoir mon devis
                           </Button>
                         </div>
                       </form>
@@ -639,119 +751,36 @@ const Configurateur = () => {
               )}
             </div>
 
-            {/* Colonne de droite - Récapitulatif flottant */}
-            <div className="lg:w-[30%]">
+            {/* Colonne de droite - Récapitulatif flottant (desktop uniquement) */}
+            <div className="hidden lg:block lg:w-[30%]">
               <div className="lg:sticky lg:top-24 space-y-6">
-                {/* Devis en temps réel */}
-                <Card className="border-none shadow-[var(--shadow-elegant)]">
-                  <CardHeader>
-                    <CardTitle className="text-xl">Votre Devis en Temps Réel</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="space-y-3">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Forfait de base (80 pers.)</span>
-                        <span className="font-semibold">{basePrice.toLocaleString()}€</span>
-                      </div>
-                      {guestPrice !== 0 && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">Ajustement invités</span>
-                          <span className="font-semibold">{guestPrice > 0 ? "+" : ""}{guestPrice}€</span>
-                        </div>
-                      )}
-                      {decorationPrice > 0 && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">Décoration Romantique</span>
-                          <span className="font-semibold">+{decorationPrice}€</span>
-                        </div>
-                      )}
-                      {photoboothPrice > 0 && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">Photobooth</span>
-                          <span className="font-semibold">+{photoboothPrice}€</span>
-                        </div>
-                      )}
-                      {cocktailBarPrice > 0 && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">Bar à Cocktails</span>
-                          <span className="font-semibold">+{cocktailBarPrice}€</span>
-                        </div>
-                      )}
-                      {brunchPrice > 0 && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">Brunch</span>
-                          <span className="font-semibold">+{brunchPrice}€</span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="border-t pt-4">
-                      <div className="flex justify-between items-center">
-                        <span className="text-lg font-bold">Total</span>
-                        <span className="text-2xl font-bold text-primary">{totalPrice.toLocaleString()}€</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Bloc de réassurance */}
-                <Card className="border-none shadow-[var(--shadow-elegant)] bg-primary/5">
-                  <CardHeader>
-                    <CardTitle className="text-lg">Inclus dans votre forfait :</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <Shield className="w-6 h-6 text-primary flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-sm">Garantie Anti-Imprévu</h4>
-                        <p className="text-xs text-muted-foreground">Annulation ou report flexible</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <Star className="w-6 h-6 text-primary flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-sm">Garantie Qualité Certifiée</h4>
-                        <p className="text-xs text-muted-foreground">Prestataires d'excellence</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <Tag className="w-6 h-6 text-primary flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-sm">Garantie Zéro Coût Caché</h4>
-                        <p className="text-xs text-muted-foreground">Prix transparent et définitif</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Témoignage */}
-                <Card className="border-none shadow-[var(--shadow-elegant)] bg-secondary/5">
-                  <CardContent className="pt-6">
-                    <div className="space-y-3">
-                      <div className="flex gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-                        ))}
-                      </div>
-                      <p className="text-sm italic">
-                        "Une organisation parfaite, un prix imbattable. Le Beau Mariage a réalisé notre rêve."
-                      </p>
-                      <p className="text-xs font-semibold text-muted-foreground">— Laura & Tom</p>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* CTA Final */}
-                <Button
-                  onClick={() => setCurrentStep(5)}
-                  size="lg"
-                  className="w-full"
-                  disabled={currentStep === 5}
-                >
-                  Finaliser et obtenir mon devis
-                </Button>
+                <SummaryContent />
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Bouton flottant mobile pour voir le récapitulatif */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur-sm border-t border-border z-50">
+        <div className="flex gap-3 max-w-lg mx-auto">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="lg" className="flex-1 gap-2">
+                <Receipt className="w-5 h-5" />
+                Voir le devis
+                <span className="ml-auto font-bold text-primary">{totalPrice.toLocaleString()}€</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="h-[80vh] overflow-y-auto">
+              <SheetHeader className="mb-6">
+                <SheetTitle>Votre Devis en Temps Réel</SheetTitle>
+              </SheetHeader>
+              <div className="space-y-6">
+                <SummaryContent />
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </div>
