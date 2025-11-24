@@ -24,7 +24,6 @@ const Configurateur = () => {
   const [dessert, setDessert] = useState("piece-montee");
   const [photobooth, setPhotobooth] = useState(false);
   const [cocktailBar, setCocktailBar] = useState(false);
-  const [brunch, setBrunch] = useState(false);
   const [tenue, setTenue] = useState("partenaire");
   const [prenom, setPrenom] = useState("");
   const [email, setEmail] = useState("");
@@ -35,10 +34,9 @@ const Configurateur = () => {
   const decorationPrice = decoration === "romantique" ? 300 : 0;
   const photoboothPrice = photobooth ? 400 : 0;
   const cocktailBarPrice = cocktailBar ? 600 : 0;
-  const brunchPrice = brunch ? 1200 : 0;
 
   const totalPrice =
-    basePrice + guestPrice + decorationPrice + photoboothPrice + cocktailBarPrice + brunchPrice;
+    basePrice + guestPrice + decorationPrice + photoboothPrice + cocktailBarPrice;
 
   const steps = [
     { id: 1, name: "Invités", short: "Invités" },
@@ -106,12 +104,6 @@ const Configurateur = () => {
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Bar à Cocktails</span>
                 <span className="font-semibold">+{cocktailBarPrice}€</span>
-              </div>
-            )}
-            {brunchPrice > 0 && (
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Brunch</span>
-                <span className="font-semibold">+{brunchPrice}€</span>
               </div>
             )}
           </div>
@@ -717,36 +709,6 @@ const Configurateur = () => {
                           </div>
                         </label>
 
-                        <label
-                          className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
-                            brunch
-                              ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
-                              : "border-border hover:border-primary/50 hover:shadow-md"
-                          }`}
-                        >
-                          <div className="flex items-start gap-4">
-                            <Checkbox
-                              id="brunch"
-                              checked={brunch}
-                              onCheckedChange={(checked) => setBrunch(checked === true)}
-                              className="w-6 h-6 mt-1"
-                            />
-                            <div className="flex-1">
-                              <div className="flex items-center gap-2 mb-2">
-                                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                                  <Shield className="w-6 h-6 text-primary" />
-                                </div>
-                                <div>
-                                  <h4 className="font-bold text-base md:text-lg">Brunch du Lendemain</h4>
-                                  <p className="text-lg md:text-xl font-bold text-primary">+1200€</p>
-                                </div>
-                              </div>
-                              <p className="text-sm text-muted-foreground">
-                                Prolongez la fête avec un brunch convivial
-                              </p>
-                            </div>
-                          </div>
-                        </label>
                       </div>
                     </div>
 
@@ -881,12 +843,6 @@ const Configurateur = () => {
                             <div className="flex justify-between">
                               <span className="text-muted-foreground">Bar à Cocktails</span>
                               <span className="font-semibold">+600€</span>
-                            </div>
-                          )}
-                          {brunch && (
-                            <div className="flex justify-between">
-                              <span className="text-muted-foreground">Brunch du Lendemain</span>
-                              <span className="font-semibold">+1200€</span>
                             </div>
                           )}
                         </div>
