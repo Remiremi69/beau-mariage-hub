@@ -23,6 +23,7 @@ const Configurateur = () => {
   const [photobooth, setPhotobooth] = useState(false);
   const [cocktailBar, setCocktailBar] = useState(false);
   const [brunch, setBrunch] = useState(false);
+  const [tenue, setTenue] = useState("partenaire");
   const [prenom, setPrenom] = useState("");
   const [email, setEmail] = useState("");
   const { toast } = useToast();
@@ -42,7 +43,8 @@ const Configurateur = () => {
     { id: 2, name: "Décoration", short: "Déco" },
     { id: 3, name: "Menu", short: "Menu" },
     { id: 4, name: "Options", short: "Options" },
-    { id: 5, name: "Devis", short: "Devis" },
+    { id: 5, name: "Tenue", short: "Tenue" },
+    { id: 6, name: "Devis", short: "Devis" },
   ];
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -54,7 +56,7 @@ const Configurateur = () => {
   };
 
   const nextStep = () => {
-    if (currentStep < 5) {
+    if (currentStep < 6) {
       setCurrentStep(currentStep + 1);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -169,10 +171,10 @@ const Configurateur = () => {
 
       {/* CTA Final */}
       <Button
-        onClick={() => setCurrentStep(5)}
+        onClick={() => setCurrentStep(6)}
         size="lg"
         className="w-full"
-        disabled={currentStep === 5}
+        disabled={currentStep === 6}
       >
         Finaliser et obtenir mon devis
       </Button>
@@ -654,6 +656,89 @@ const Configurateur = () => {
                         <ChevronLeft className="w-5 h-5" /> Étape précédente
                       </Button>
                       <Button onClick={nextStep} size="lg" className="gap-2 w-full md:w-auto order-1 md:order-2">
+                        Étape suivante <ChevronRight className="w-5 h-5" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Étape 5: La Tenue des Mariés */}
+              {currentStep === 5 && (
+                <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
+                  <CardHeader>
+                    <CardTitle className="text-2xl md:text-3xl">La Tenue des Mariés</CardTitle>
+                    <p className="text-sm md:text-base text-muted-foreground">
+                      Profitez de notre réseau de partenaires exclusifs pour trouver la tenue de vos rêves, sans stress et avec des avantages uniques.
+                    </p>
+                  </CardHeader>
+                  <CardContent>
+                    <RadioGroup value={tenue} onValueChange={setTenue}>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                        <label
+                          htmlFor="partenaire"
+                          className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
+                            tenue === "partenaire"
+                              ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
+                              : "border-border hover:border-primary/50 hover:shadow-md"
+                          }`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <RadioGroupItem value="partenaire" id="partenaire" className="mt-1" />
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-2">
+                                <h3 className="font-bold text-lg">Oui, je veux l'expérience Le Beau Mariage</h3>
+                                <span className="inline-block bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-xs font-bold">
+                                  Inclus
+                                </span>
+                              </div>
+                              <ul className="space-y-2 text-sm text-muted-foreground">
+                                <li className="flex items-start gap-2">
+                                  <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                  <span>Accès à notre boutique partenaire exclusive</span>
+                                </li>
+                                <li className="flex items-start gap-2">
+                                  <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                  <span>10% de remise sur toute la collection</span>
+                                </li>
+                                <li className="flex items-start gap-2">
+                                  <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                  <span>Accueil VIP et essayages privés</span>
+                                </li>
+                                <li className="flex items-start gap-2">
+                                  <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                  <span>Conseils d'une styliste dédiée</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </label>
+
+                        <label
+                          htmlFor="autonome"
+                          className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
+                            tenue === "autonome"
+                              ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
+                              : "border-border hover:border-primary/50 hover:shadow-md"
+                          }`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <RadioGroupItem value="autonome" id="autonome" className="mt-1" />
+                            <div className="flex-1">
+                              <h3 className="font-bold text-lg mb-2">Non, je gère ma tenue moi-même</h3>
+                              <p className="text-sm text-muted-foreground">
+                                Vous préférez chercher votre robe et votre costume de manière indépendante.
+                              </p>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </RadioGroup>
+                    <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-4 mt-6 md:mt-8">
+                      <Button onClick={prevStep} variant="outline" size="lg" className="gap-2 w-full md:w-auto order-2 md:order-1">
+                        <ChevronLeft className="w-5 h-5" /> Étape précédente
+                      </Button>
+                      <Button onClick={nextStep} size="lg" className="gap-2 w-full md:w-auto order-1 md:order-2">
                         Voir mon devis <ChevronRight className="w-5 h-5" />
                       </Button>
                     </div>
@@ -661,8 +746,8 @@ const Configurateur = () => {
                 </Card>
               )}
 
-              {/* Étape 5: Devis */}
-              {currentStep === 5 && (
+              {/* Étape 6: Devis */}
+              {currentStep === 6 && (
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
                     <CardTitle className="text-2xl md:text-3xl">Votre mariage de rêve est prêt !</CardTitle>
