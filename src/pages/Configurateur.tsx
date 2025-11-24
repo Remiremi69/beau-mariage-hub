@@ -11,6 +11,8 @@ import { useToast } from "@/hooks/use-toast";
 import { ChevronRight, ChevronLeft, Shield, Star, Tag, Check, Receipt } from "lucide-react";
 import decoBohemeImage from "@/assets/deco-boheme.jpg";
 import decoRomantiqueImage from "@/assets/deco-romantique.jpg";
+import photographeImage from "@/assets/photographe-alexandre.jpg";
+import djImage from "@/assets/dj-clara.jpg";
 
 const Configurateur = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -566,92 +568,189 @@ const Configurateur = () => {
                 </Card>
               )}
 
-              {/* Étape 4: Options */}
+              {/* Étape 4: Vos Artistes & Options */}
               {currentStep === 4 && (
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
-                    <CardTitle className="text-2xl md:text-3xl">Personnalisez votre expérience</CardTitle>
-                    <p className="text-sm md:text-base text-muted-foreground">Ajoutez des options premium pour rendre votre mariage encore plus unique.</p>
+                    <CardTitle className="text-2xl md:text-3xl">Vos Artistes & Options</CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                      <label
-                        className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
-                          photobooth
-                            ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
-                            : "border-border hover:border-primary/50 hover:shadow-md"
-                        }`}
-                      >
-                        <div className="flex flex-col items-center text-center space-y-4">
-                          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                            <Star className="w-8 h-8 text-primary" />
+                  <CardContent className="space-y-8 md:space-y-10">
+                    {/* Section 1 : Vos Artistes Inclus */}
+                    <div className="space-y-4">
+                      <div>
+                        <h3 className="text-xl md:text-2xl font-bold mb-2">Vos Artistes Inclus</h3>
+                        <p className="text-sm md:text-base text-muted-foreground">
+                          Découvrez les professionnels talentueux qui vous accompagneront
+                        </p>
+                      </div>
+                      
+                      <div className="space-y-4 md:space-y-6">
+                        {/* Carte Photographe */}
+                        <div className="rounded-xl border-2 border-border overflow-hidden shadow-md">
+                          <div className="flex flex-col md:flex-row">
+                            <div className="md:w-1/3 h-48 md:h-64">
+                              <img
+                                src={photographeImage}
+                                alt="Alexandre Dubois - Photographe"
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div className="md:w-2/3 p-4 md:p-6 flex flex-col justify-center">
+                              <div className="flex items-center gap-2 mb-3">
+                                <h4 className="text-lg md:text-xl font-bold">Alexandre Dubois - Votre Photographe</h4>
+                                <span className="inline-block bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">
+                                  Inclus
+                                </span>
+                              </div>
+                              <p className="text-sm md:text-base text-muted-foreground mb-4">
+                                Spécialiste du mariage, Alexandre capture avec poésie et discrétion les émotions de votre journée. 
+                                Son style lumineux et naturel vous garantit des souvenirs inoubliables.
+                              </p>
+                              <div className="flex items-center gap-2 text-primary text-sm font-semibold">
+                                <Check className="w-4 h-4" />
+                                <span>Certifié Le Beau Mariage - Excellence</span>
+                              </div>
+                            </div>
                           </div>
-                          <div>
-                            <h3 className="font-bold text-lg mb-2">Photobooth Premium</h3>
-                            <p className="text-sm text-muted-foreground mb-4">
-                              Des souvenirs instantanés et amusants pour vos invités
-                            </p>
-                            <p className="text-xl font-bold text-primary">+400€</p>
-                          </div>
-                          <Checkbox
-                            id="photobooth"
-                            checked={photobooth}
-                            onCheckedChange={(checked) => setPhotobooth(checked === true)}
-                            className="w-6 h-6"
-                          />
                         </div>
-                      </label>
 
-                      <label
-                        className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
-                          cocktailBar
-                            ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
-                            : "border-border hover:border-primary/50 hover:shadow-md"
-                        }`}
-                      >
-                        <div className="flex flex-col items-center text-center space-y-4">
-                          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                            <Tag className="w-8 h-8 text-primary" />
+                        {/* Carte DJ */}
+                        <div className="rounded-xl border-2 border-border overflow-hidden shadow-md">
+                          <div className="flex flex-col md:flex-row">
+                            <div className="md:w-1/3 h-48 md:h-64">
+                              <img
+                                src={djImage}
+                                alt="Clara Martin - DJ"
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div className="md:w-2/3 p-4 md:p-6 flex flex-col justify-center">
+                              <div className="flex items-center gap-2 mb-3">
+                                <h4 className="text-lg md:text-xl font-bold">Clara Martin - Votre DJ</h4>
+                                <span className="inline-block bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">
+                                  Inclus
+                                </span>
+                              </div>
+                              <p className="text-sm md:text-base text-muted-foreground mb-4">
+                                Passionnée de musique, Clara sait créer l'ambiance parfaite pour chaque moment de votre soirée. 
+                                Son répertoire éclectique et son énergie communicative feront danser toutes les générations.
+                              </p>
+                              <div className="flex items-center gap-2 text-primary text-sm font-semibold">
+                                <Check className="w-4 h-4" />
+                                <span>Certifié Le Beau Mariage - Excellence</span>
+                              </div>
+                            </div>
                           </div>
-                          <div>
-                            <h3 className="font-bold text-lg mb-2">Bar à Cocktails</h3>
-                            <p className="text-sm text-muted-foreground mb-4">
-                              Un mixologue professionnel pour des créations uniques
-                            </p>
-                            <p className="text-xl font-bold text-primary">+600€</p>
-                          </div>
-                          <Checkbox
-                            id="cocktailBar"
-                            checked={cocktailBar}
-                            onCheckedChange={(checked) => setCocktailBar(checked === true)}
-                            className="w-6 h-6"
-                          />
                         </div>
-                      </label>
-
-                      <label
-                        className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
-                          brunch
-                            ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
-                            : "border-border hover:border-primary/50 hover:shadow-md"
-                        }`}
-                      >
-                        <div className="flex flex-col items-center text-center space-y-4">
-                          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                            <Shield className="w-8 h-8 text-primary" />
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-lg mb-2">Brunch du Lendemain</h3>
-                            <p className="text-sm text-muted-foreground mb-4">
-                              Prolongez la fête avec un brunch convivial
-                            </p>
-                            <p className="text-xl font-bold text-primary">+1200€</p>
-                          </div>
-                          <Checkbox id="brunch" checked={brunch} onCheckedChange={(checked) => setBrunch(checked === true)} className="w-6 h-6" />
-                        </div>
-                      </label>
+                      </div>
                     </div>
-                    <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-4 mt-6 md:mt-8">
+
+                    {/* Section 2 : Personnalisez Votre Expérience */}
+                    <div className="space-y-4">
+                      <div>
+                        <h3 className="text-xl md:text-2xl font-bold mb-2">Personnalisez Votre Expérience</h3>
+                        <p className="text-sm md:text-base text-muted-foreground">
+                          Ajoutez des options premium pour rendre votre mariage encore plus unique.
+                        </p>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                        <label
+                          className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
+                            photobooth
+                              ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
+                              : "border-border hover:border-primary/50 hover:shadow-md"
+                          }`}
+                        >
+                          <div className="flex items-start gap-4">
+                            <Checkbox
+                              id="photobooth"
+                              checked={photobooth}
+                              onCheckedChange={(checked) => setPhotobooth(checked === true)}
+                              className="w-6 h-6 mt-1"
+                            />
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-2">
+                                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                  <Star className="w-6 h-6 text-primary" />
+                                </div>
+                                <div>
+                                  <h4 className="font-bold text-base md:text-lg">Photobooth Premium</h4>
+                                  <p className="text-lg md:text-xl font-bold text-primary">+400€</p>
+                                </div>
+                              </div>
+                              <p className="text-sm text-muted-foreground">
+                                Des souvenirs instantanés et amusants pour vos invités
+                              </p>
+                            </div>
+                          </div>
+                        </label>
+
+                        <label
+                          className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
+                            cocktailBar
+                              ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
+                              : "border-border hover:border-primary/50 hover:shadow-md"
+                          }`}
+                        >
+                          <div className="flex items-start gap-4">
+                            <Checkbox
+                              id="cocktailBar"
+                              checked={cocktailBar}
+                              onCheckedChange={(checked) => setCocktailBar(checked === true)}
+                              className="w-6 h-6 mt-1"
+                            />
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-2">
+                                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                  <Tag className="w-6 h-6 text-primary" />
+                                </div>
+                                <div>
+                                  <h4 className="font-bold text-base md:text-lg">Bar à Cocktails</h4>
+                                  <p className="text-lg md:text-xl font-bold text-primary">+600€</p>
+                                </div>
+                              </div>
+                              <p className="text-sm text-muted-foreground">
+                                Un mixologue professionnel pour des créations uniques
+                              </p>
+                            </div>
+                          </div>
+                        </label>
+
+                        <label
+                          className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
+                            brunch
+                              ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
+                              : "border-border hover:border-primary/50 hover:shadow-md"
+                          }`}
+                        >
+                          <div className="flex items-start gap-4">
+                            <Checkbox
+                              id="brunch"
+                              checked={brunch}
+                              onCheckedChange={(checked) => setBrunch(checked === true)}
+                              className="w-6 h-6 mt-1"
+                            />
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-2">
+                                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                  <Shield className="w-6 h-6 text-primary" />
+                                </div>
+                                <div>
+                                  <h4 className="font-bold text-base md:text-lg">Brunch du Lendemain</h4>
+                                  <p className="text-lg md:text-xl font-bold text-primary">+1200€</p>
+                                </div>
+                              </div>
+                              <p className="text-sm text-muted-foreground">
+                                Prolongez la fête avec un brunch convivial
+                              </p>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-4">
                       <Button onClick={prevStep} variant="outline" size="lg" className="gap-2 w-full md:w-auto order-2 md:order-1">
                         <ChevronLeft className="w-5 h-5" /> Étape précédente
                       </Button>
