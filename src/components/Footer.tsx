@@ -27,11 +27,6 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/experience-essayage" className="hover:text-primary transition-colors">
-                  Expérience essayage
-                </Link>
-              </li>
-              <li>
                 <Link to="/garantie" className="hover:text-primary transition-colors">
                   Notre Garantie
                 </Link>
