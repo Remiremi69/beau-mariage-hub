@@ -28,7 +28,7 @@ const Configurateur = () => {
   const [dessert, setDessert] = useState("piece-montee");
   const [photobooth, setPhotobooth] = useState(false);
   const [cocktailBar, setCocktailBar] = useState(false);
-  const [drinkPackage, setDrinkPackage] = useState("classique");
+  const [serviceForfait, setServiceForfait] = useState("essentiel");
   const [tenue, setTenue] = useState("partenaire");
   const [prenom, setPrenom] = useState("");
   const [email, setEmail] = useState("");
@@ -40,12 +40,11 @@ const Configurateur = () => {
   const photoboothPrice = photobooth ? 400 : 0;
   const cocktailBarPrice = cocktailBar ? 600 : 0;
   
-  // Prix des packs boissons (adaptatifs selon le nombre d'invités)
-  const drinkPackageBasePrice = drinkPackage === "essentiel" ? 15 : drinkPackage === "classique" ? 25 : 35;
-  const drinkPackagePrice = drinkPackageBasePrice * guests[0];
+  // Prix des forfaits service boissons (droit de bouchon)
+  const serviceForfaitPrice = serviceForfait === "festif" ? 250 : serviceForfait === "premium" ? 450 : 0;
 
   const totalPrice =
-    basePrice + guestPrice + decorationPrice + photoboothPrice + cocktailBarPrice + drinkPackagePrice;
+    basePrice + guestPrice + decorationPrice + photoboothPrice + cocktailBarPrice + serviceForfaitPrice;
 
   const steps = [
     { id: 1, name: "Invités", short: "Invités" },
@@ -115,10 +114,12 @@ const Configurateur = () => {
                 <span className="font-semibold">+{cocktailBarPrice}€</span>
               </div>
             )}
-            {drinkPackagePrice > 0 && (
+            {serviceForfaitPrice > 0 && (
               <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Pack Boissons</span>
-                <span className="font-semibold">+{drinkPackagePrice}€</span>
+                <span className="text-muted-foreground">
+                  Forfait Service {serviceForfait === "festif" ? "Festif" : "Premium"}
+                </span>
+                <span className="font-semibold">+{serviceForfaitPrice}€</span>
               </div>
             )}
           </div>
@@ -653,108 +654,129 @@ const Configurateur = () => {
                       </div>
                     </div>
 
-                    {/* Section 3 : Packs de Boissons Adaptatifs */}
+                    {/* Section 3 : Forfaits Service Boissons (Droit de Bouchon) */}
                     <div className="space-y-6">
                       <div>
-                        <h3 className="text-xl md:text-2xl font-bold mb-2">Choisissez Votre Pack Boissons</h3>
+                        <h3 className="text-xl md:text-2xl font-bold mb-2">Choisissez Votre Forfait Service Boissons</h3>
                         <p className="text-sm md:text-base text-muted-foreground">
-                          Prix adaptatif selon le nombre d'invités ({guests[0]} personnes)
+                          Apportez votre propre alcool, nous nous occupons de tout le reste !
                         </p>
                       </div>
 
-                      <RadioGroup value={drinkPackage} onValueChange={setDrinkPackage}>
+                      <RadioGroup value={serviceForfait} onValueChange={setServiceForfait}>
                         <div className="grid md:grid-cols-3 gap-4 md:gap-6">
-                          {/* Pack Essentiel */}
+                          {/* Forfait Essentiel */}
                           <label
-                            htmlFor="essentiel"
+                            htmlFor="service-essentiel"
                             className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
-                              drinkPackage === "essentiel"
+                              serviceForfait === "essentiel"
                                 ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
                                 : "border-border hover:border-primary/50 hover:shadow-md"
                             }`}
                           >
                             <div className="flex items-start gap-3">
-                              <RadioGroupItem value="essentiel" id="essentiel" className="mt-1" />
+                              <RadioGroupItem value="essentiel" id="service-essentiel" className="mt-1" />
                               <div className="flex-1">
-                                <h4 className="font-bold text-lg mb-2">Pack Essentiel</h4>
-                                <p className="text-2xl font-bold text-primary mb-3">
-                                  15€<span className="text-sm font-normal text-muted-foreground">/pers.</span>
+                                <div className="flex items-center gap-2 mb-2">
+                                  <h4 className="font-bold text-lg">Forfait Essentiel</h4>
+                                  <span className="inline-block bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full text-xs font-bold whitespace-nowrap">
+                                    Inclus
+                                  </span>
+                                </div>
+                                <p className="text-sm text-muted-foreground mb-4">
+                                  Le service de vos boissons pendant le repas.
                                 </p>
-                                <p className="text-sm text-muted-foreground mb-3">
-                                  L'essentiel pour accompagner votre repas
-                                </p>
-                                <ul className="text-sm space-y-1 text-muted-foreground">
-                                  <li>• Apéritif maison</li>
-                                  <li>• 2 vins (blanc & rouge)</li>
-                                  <li>• Eau minérale</li>
-                                  <li>• Café & thé</li>
+                                <ul className="text-sm space-y-2 text-muted-foreground mb-4">
+                                  <li className="flex items-start gap-2">
+                                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                    <span>Service du vin et du champagne (apportés par vous)</span>
+                                  </li>
+                                  <li className="flex items-start gap-2">
+                                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                    <span>Softs & Eaux à volonté</span>
+                                  </li>
                                 </ul>
-                                <p className="text-xs font-bold text-primary mt-4">
-                                  Total : {(15 * guests[0]).toLocaleString()}€
+                                <p className="text-xl font-bold text-primary">
+                                  Inclus
                                 </p>
                               </div>
                             </div>
                           </label>
 
-                          {/* Pack Classique */}
+                          {/* Forfait Festif */}
                           <label
-                            htmlFor="classique"
+                            htmlFor="service-festif"
                             className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
-                              drinkPackage === "classique"
+                              serviceForfait === "festif"
                                 ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
                                 : "border-border hover:border-primary/50 hover:shadow-md"
                             }`}
                           >
                             <div className="flex items-start gap-3">
-                              <RadioGroupItem value="classique" id="classique" className="mt-1" />
+                              <RadioGroupItem value="festif" id="service-festif" className="mt-1" />
                               <div className="flex-1">
-                                <h4 className="font-bold text-lg mb-2">Pack Classique</h4>
-                                <p className="text-2xl font-bold text-primary mb-3">
-                                  25€<span className="text-sm font-normal text-muted-foreground">/pers.</span>
+                                <div className="flex items-center gap-2 mb-2">
+                                  <h4 className="font-bold text-lg">Forfait Festif</h4>
+                                  <span className="inline-block bg-primary text-primary-foreground px-2 py-0.5 rounded-full text-xs font-bold whitespace-nowrap">
+                                    Le plus choisi
+                                  </span>
+                                </div>
+                                <p className="text-sm text-muted-foreground mb-4">
+                                  Pour un cocktail réussi.
                                 </p>
-                                <p className="text-sm text-muted-foreground mb-3">
-                                  L'équilibre parfait pour votre réception
-                                </p>
-                                <ul className="text-sm space-y-1 text-muted-foreground">
-                                  <li>• Cocktail & amuse-bouches</li>
-                                  <li>• 3 vins sélectionnés</li>
-                                  <li>• Champagne toast</li>
-                                  <li>• Softs & digestifs</li>
+                                <ul className="text-sm space-y-2 text-muted-foreground mb-4">
+                                  <li className="flex items-start gap-2">
+                                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                    <span>Forfait Essentiel</span>
+                                  </li>
+                                  <li className="flex items-start gap-2">
+                                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                    <span>Service du cocktail (vous apportez l'alcool)</span>
+                                  </li>
+                                  <li className="flex items-start gap-2">
+                                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                    <span>Fourniture des jus, sirops, glaçons</span>
+                                  </li>
                                 </ul>
-                                <p className="text-xs font-bold text-primary mt-4">
-                                  Total : {(25 * guests[0]).toLocaleString()}€
+                                <p className="text-xl font-bold text-primary">
+                                  +250€
                                 </p>
                               </div>
                             </div>
                           </label>
 
-                          {/* Pack Premium */}
+                          {/* Forfait Premium */}
                           <label
-                            htmlFor="premium"
+                            htmlFor="service-premium"
                             className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
-                              drinkPackage === "premium"
+                              serviceForfait === "premium"
                                 ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
                                 : "border-border hover:border-primary/50 hover:shadow-md"
                             }`}
                           >
                             <div className="flex items-start gap-3">
-                              <RadioGroupItem value="premium" id="premium" className="mt-1" />
+                              <RadioGroupItem value="premium" id="service-premium" className="mt-1" />
                               <div className="flex-1">
-                                <h4 className="font-bold text-lg mb-2">Pack Premium</h4>
-                                <p className="text-2xl font-bold text-primary mb-3">
-                                  35€<span className="text-sm font-normal text-muted-foreground">/pers.</span>
+                                <h4 className="font-bold text-lg mb-2">Forfait Premium</h4>
+                                <p className="text-sm text-muted-foreground mb-4">
+                                  L'expérience barman pour votre soirée.
                                 </p>
-                                <p className="text-sm text-muted-foreground mb-3">
-                                  L'excellence pour les moments d'exception
-                                </p>
-                                <ul className="text-sm space-y-1 text-muted-foreground">
-                                  <li>• Bar à cocktails signature</li>
-                                  <li>• Vins & champagnes premium</li>
-                                  <li>• Open bar soirée</li>
-                                  <li>• Conseil sommelier inclus</li>
+                                <ul className="text-sm space-y-2 text-muted-foreground mb-4">
+                                  <li className="flex items-start gap-2">
+                                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                    <span>Forfait Festif</span>
+                                  </li>
+                                  <li className="flex items-start gap-2">
+                                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                    <span>Barman professionnel pour la soirée</span>
+                                  </li>
+                                  <li className="flex items-start gap-2">
+                                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                    <span>Service des alcools forts (apportés par vous)</span>
+                                  </li>
                                 </ul>
-                                <p className="text-xs font-bold text-primary mt-4">
-                                  Total : {(35 * guests[0]).toLocaleString()}€
+                                <p className="text-xl font-bold text-primary">
+                                  +450€
                                 </p>
                               </div>
                             </div>
@@ -1049,9 +1071,9 @@ const Configurateur = () => {
                             <span className="font-semibold">Menu gastronomique complet</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-muted-foreground">Pack Boissons</span>
+                            <span className="text-muted-foreground">Forfait Service Boissons</span>
                             <span className="font-semibold">
-                              {drinkPackage === "essentiel" ? "Essentiel" : drinkPackage === "classique" ? "Classique" : "Premium"} (+{drinkPackagePrice.toLocaleString()}€)
+                              {serviceForfait === "essentiel" ? "Essentiel (Inclus)" : serviceForfait === "festif" ? "Festif (+250€)" : "Premium (+450€)"}
                             </span>
                           </div>
                           {photobooth && (
