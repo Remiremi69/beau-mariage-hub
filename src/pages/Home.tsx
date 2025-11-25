@@ -51,7 +51,7 @@ const Home = () => {
             </Link>
             <Link to="/configurateur">
               <Button size="xl" variant="elegant" className="font-semibold">
-                Créer un mariage
+                Créer votre mariage
               </Button>
             </Link>
           </div>
