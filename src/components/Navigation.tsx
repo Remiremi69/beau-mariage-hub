@@ -12,6 +12,7 @@ export const Navigation = () => {
     { to: "/serie-ete-2027", label: "Série Été 2027" },
     { to: "/garantie", label: "Notre Garantie" },
     { to: "/contact", label: "Contact" },
+    { to: "/configurateur", label: "Créer votre mariage" },
   ];
 
   return (
