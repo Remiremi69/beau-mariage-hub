@@ -38,10 +38,10 @@ const Home = () => {
             Le Beau Mariage
           </h1>
           <h2 className="text-2xl md:text-4xl text-card mb-8 drop-shadow-lg">
-            Votre mariage de rêve, à partir de 499€/mois.
+            Votre Mariage d'Exception. Sans Compromis.
           </h2>
           <p className="text-lg md:text-xl text-card mb-10 max-w-2xl mx-auto drop-shadow-lg">
-            Découvrez notre concept révolutionnaire : un mariage de luxe accessible, financé en douceur, avec une expérience d'essayage VIP unique en France.
+            Oubliez le stress et les budgets à rallonge. Vivez une journée parfaite, orchestrée par nos soins, dans un cadre exclusif. Configurez le mariage qui vous ressemble.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/serie-ete-2027">
