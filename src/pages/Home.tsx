@@ -1,10 +1,59 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Heart, Calendar, Star, Shield, Tag, Award, Globe, ExternalLink } from "lucide-react";
+import { MapPin, Heart, Calendar, Star, Shield, Tag, Award, Globe, ExternalLink, Sparkles, CheckCircle2, Play } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import heroImage from "@/assets/hero-wedding.jpg";
 import venueImage from "@/assets/venue-exterior.jpg";
 import badgeCertifie from "@/assets/badge-certifie.png";
+
+// Hook for intersection observer animations
+const useInView = (threshold = 0.1) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return { ref, isInView };
+};
+
+// Animated counter component
+const AnimatedCounter = ({ end, duration = 2000, suffix = "" }: { end: number; duration?: number; suffix?: string }) => {
+  const [count, setCount] = useState(0);
+  const { ref, isInView } = useInView();
+
+  useEffect(() => {
+    if (!isInView) return;
+    
+    let startTime: number;
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      setCount(Math.floor(progress * end));
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    requestAnimationFrame(animate);
+  }, [isInView, end, duration]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+};
 
 const Home = () => {
   const testimonials = [
@@ -58,139 +107,43 @@ const Home = () => {
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section className="py-20 bg-background">
+      {/* How It Works Section - Revolution */}
+      <PillarsSection />
+
+      {/* Stats Section */}
+      <section className="py-12 md:py-16 bg-foreground text-card">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-foreground">
-            La Révolution du Mariage en 4 Piliers
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="border-none shadow-[0_4px_20px_-4px_hsl(235_17%_25%/0.1)] hover:shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] transition-all duration-300">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-6 bg-primary/10 rounded-full flex items-center justify-center">
-                  <MapPin className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Un Lieu d'Exception</h3>
-                <p className="text-muted-foreground">
-                  Nous sélectionnons pour vous un domaine de charme, privatisé pour votre journée.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-[0_4px_20px_-4px_hsl(235_17%_25%/0.1)] hover:shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] transition-all duration-300">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-6 bg-secondary/10 rounded-full flex items-center justify-center">
-                  <Heart className="h-8 w-8 text-secondary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Un Prix Jamais Vu</h3>
-                <p className="text-muted-foreground">
-                  Un mariage tout compris à partir de 7 500 €, ou 499€/mois. Qualité premium, prix imbattable.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-[0_4px_20px_-4px_hsl(235_17%_25%/0.1)] hover:shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] transition-all duration-300">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-6 bg-accent/10 rounded-full flex items-center justify-center">
-                  <Globe className="h-8 w-8 text-accent" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Votre Wedding Site</h3>
-                <p className="text-muted-foreground mb-4">
-                  Un site web personnalisé pour votre mariage, inclus dans l'offre. Partagez votre histoire avec vos invités.
-                </p>
-                <a 
-                  href="https://beau-mariage-template.lovable.app/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"
-                >
-                  Voir un exemple <ExternalLink className="h-4 w-4" />
-                </a>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-[0_4px_20px_-4px_hsl(235_17%_25%/0.1)] hover:shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] transition-all duration-300">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-6 bg-primary/10 rounded-full flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Votre Mariage sur Mesure</h3>
-                <p className="text-muted-foreground">
-                  Personnalisez votre journée avec notre marketplace d'options : vidéaste, photobooth, brunch...
-                </p>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
+            <div className="space-y-1 md:space-y-2">
+              <div className="text-3xl md:text-5xl font-bold text-primary">
+                <AnimatedCounter end={500} suffix="+" />
+              </div>
+              <p className="text-xs md:text-sm text-card/70">Mariages célébrés</p>
+            </div>
+            <div className="space-y-1 md:space-y-2">
+              <div className="text-3xl md:text-5xl font-bold text-secondary">
+                <AnimatedCounter end={98} suffix="%" />
+              </div>
+              <p className="text-xs md:text-sm text-card/70">Satisfaction client</p>
+            </div>
+            <div className="space-y-1 md:space-y-2">
+              <div className="text-3xl md:text-5xl font-bold text-primary">
+                <AnimatedCounter end={50} suffix="+" />
+              </div>
+              <p className="text-xs md:text-sm text-card/70">Prestataires certifiés</p>
+            </div>
+            <div className="space-y-1 md:space-y-2">
+              <div className="text-3xl md:text-5xl font-bold text-secondary">
+                <AnimatedCounter end={7500} suffix="€" />
+              </div>
+              <p className="text-xs md:text-sm text-card/70">À partir de</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Garantie Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-              Se marier n'a jamais été aussi serein.
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Découvrez notre Triple Garantie Sérénité, unique en France, incluse dans tous nos forfaits.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="border-none shadow-[0_4px_20px_-4px_hsl(235_17%_25%/0.1)] hover:shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] transition-all duration-300">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-6 bg-primary/10 rounded-full flex items-center justify-center">
-                  <Calendar className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Garantie Anti-Imprévu</h3>
-                <p className="text-muted-foreground mb-6">
-                  Un imprévu vous oblige à annuler ou reporter ? Nous vous remboursons ou reportons sans frais, selon les conditions les plus flexibles du marché.
-                </p>
-                <Link to="/garantie">
-                  <Button variant="outline" className="w-full">
-                    En savoir plus
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-[0_4px_20px_-4px_hsl(235_17%_25%/0.1)] hover:shadow-[0_10px_40px_-10px_hsl(149_29%_60%/0.2)] transition-all duration-300">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-6 bg-secondary/10 rounded-full flex items-center justify-center">
-                  <Shield className="h-8 w-8 text-secondary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Garantie Qualité Certifiée</h3>
-                <p className="text-muted-foreground mb-6">
-                  Un prestataire majeur est défaillant ? Nous vous dédommageons à la hauteur du préjudice. Votre satisfaction n'est pas négociable.
-                </p>
-                <Link to="/garantie">
-                  <Button variant="outline" className="w-full">
-                    En savoir plus
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-[0_4px_20px_-4px_hsl(235_17%_25%/0.1)] hover:shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] transition-all duration-300">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-6 bg-accent/10 rounded-full flex items-center justify-center">
-                  <Tag className="h-8 w-8 text-accent" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Garantie Zéro Coût Caché</h3>
-                <p className="text-muted-foreground mb-6">
-                  Le prix que vous signez est le prix que vous payez. Pas de surprise, pas d'astérisque. La transparence est notre ADN.
-                </p>
-                <Link to="/garantie">
-                  <Button variant="outline" className="w-full">
-                    En savoir plus
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      {/* Garantie Section - Serenity */}
+      <SerenitySection />
 
       {/* Prestataires Certifiés Section */}
       <section className="py-20 bg-background">
@@ -330,6 +283,341 @@ const Home = () => {
         </div>
       </section>
     </div>
+  );
+};
+
+// Pillars Section Component
+const PillarsSection = () => {
+  const { ref, isInView } = useInView(0.1);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const pillars = [
+    {
+      icon: MapPin,
+      title: "Un Lieu d'Exception",
+      description: "Nous sélectionnons pour vous un domaine de charme, privatisé pour votre journée.",
+      color: "primary",
+      gradient: "from-primary/20 to-primary/5",
+      number: "01"
+    },
+    {
+      icon: Heart,
+      title: "Un Prix Jamais Vu",
+      description: "Un mariage tout compris à partir de 7 500 €, ou 499€/mois. Qualité premium, prix imbattable.",
+      color: "secondary",
+      gradient: "from-secondary/20 to-secondary/5",
+      number: "02"
+    },
+    {
+      icon: Globe,
+      title: "Votre Wedding Site",
+      description: "Un site web personnalisé pour votre mariage, inclus dans l'offre.",
+      color: "primary",
+      gradient: "from-primary/20 to-primary/5",
+      number: "03",
+      link: "https://beau-mariage-template.lovable.app/"
+    },
+    {
+      icon: Sparkles,
+      title: "Mariage sur Mesure",
+      description: "Personnalisez votre journée avec notre marketplace d'options premium.",
+      color: "secondary",
+      gradient: "from-secondary/20 to-secondary/5",
+      number: "04"
+    }
+  ];
+
+  return (
+    <section className="py-16 md:py-24 bg-background overflow-hidden" ref={ref}>
+      <div className="container mx-auto px-4">
+        {/* Header with animated badge */}
+        <div className={`text-center mb-12 md:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+            <Sparkles className="h-4 w-4" />
+            <span>La Méthode Le Beau Mariage</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+            La Révolution du Mariage
+            <span className="block text-primary">en 4 Piliers</span>
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Une approche unique qui réinvente l'organisation de votre jour J
+          </p>
+        </div>
+
+        {/* Mobile: Stacked cards with swipe effect */}
+        <div className="md:hidden space-y-4">
+          {pillars.map((pillar, index) => {
+            const Icon = pillar.icon;
+            return (
+              <div
+                key={index}
+                className={`relative transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
+                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+              >
+                <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${pillar.gradient} border border-border/50 backdrop-blur-sm`}>
+                  {/* Number badge */}
+                  <div className="absolute top-4 right-4 text-6xl font-bold text-foreground/5">
+                    {pillar.number}
+                  </div>
+                  
+                  <div className="p-6 relative z-10">
+                    <div className="flex items-start gap-4">
+                      <div className={`w-14 h-14 rounded-2xl bg-${pillar.color}/20 flex items-center justify-center shrink-0 shadow-lg`}>
+                        <Icon className={`h-7 w-7 text-${pillar.color}`} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-xl font-bold text-foreground mb-2">{pillar.title}</h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">{pillar.description}</p>
+                        {pillar.link && (
+                          <a 
+                            href={pillar.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-primary text-sm font-medium mt-3 hover:gap-3 transition-all"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            Voir un exemple <ExternalLink className="h-3.5 w-3.5" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Animated glow effect */}
+                  <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-card/10 to-transparent -translate-x-full ${activeIndex === index ? 'animate-[shimmer_2s_infinite]' : ''}`} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop: Interactive grid with hover effects */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {pillars.map((pillar, index) => {
+            const Icon = pillar.icon;
+            return (
+              <div
+                key={index}
+                className={`group relative transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+                onMouseEnter={() => setActiveIndex(index)}
+                onMouseLeave={() => setActiveIndex(null)}
+              >
+                <div className={`relative h-full overflow-hidden rounded-3xl bg-card border border-border/50 p-8 transition-all duration-500 group-hover:shadow-[0_20px_60px_-15px_hsl(14_71%_67%/0.3)] group-hover:-translate-y-2 group-hover:border-primary/30`}>
+                  {/* Floating number */}
+                  <div className="absolute -top-4 -right-4 text-[120px] font-bold text-foreground/[0.03] group-hover:text-primary/10 transition-colors duration-500 leading-none">
+                    {pillar.number}
+                  </div>
+                  
+                  {/* Icon with glow */}
+                  <div className="relative mb-6">
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${pillar.gradient} flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+                      <Icon className={`h-8 w-8 text-${pillar.color}`} />
+                    </div>
+                    <div className={`absolute inset-0 rounded-2xl bg-${pillar.color}/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {pillar.description}
+                  </p>
+                  
+                  {pillar.link && (
+                    <a 
+                      href={pillar.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-primary font-medium mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 hover:gap-3"
+                    >
+                      Voir un exemple <ExternalLink className="h-4 w-4" />
+                    </a>
+                  )}
+                  
+                  {/* Bottom accent line */}
+                  <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-${pillar.color} to-${pillar.color}/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Serenity Section Component
+const SerenitySection = () => {
+  const { ref, isInView } = useInView(0.1);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  const guarantees = [
+    {
+      icon: Calendar,
+      title: "Garantie Anti-Imprévu",
+      description: "Un imprévu vous oblige à annuler ou reporter ? Nous vous remboursons ou reportons sans frais.",
+      features: ["Report gratuit", "Remboursement flexible", "Conditions les plus souples"],
+      color: "primary"
+    },
+    {
+      icon: Shield,
+      title: "Garantie Qualité Certifiée",
+      description: "Un prestataire majeur est défaillant ? Nous vous dédommageons à la hauteur du préjudice.",
+      features: ["Prestataires audités", "Dédommagement garanti", "Satisfaction obligatoire"],
+      color: "secondary"
+    },
+    {
+      icon: Tag,
+      title: "Garantie Zéro Coût Caché",
+      description: "Le prix que vous signez est le prix que vous payez. Pas de surprise, pas d'astérisque.",
+      features: ["Prix tout compris", "Transparence totale", "Engagement écrit"],
+      color: "primary"
+    }
+  ];
+
+  return (
+    <section className="py-16 md:py-24 relative overflow-hidden" ref={ref}>
+      {/* Background with animated gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Header */}
+        <div className={`text-center mb-12 md:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-6">
+            <Shield className="h-4 w-4" />
+            <span>Triple Garantie Sérénité</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+            Se marier n'a jamais été
+            <span className="block text-secondary">aussi serein.</span>
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Notre engagement unique en France, inclus dans tous nos forfaits
+          </p>
+        </div>
+
+        {/* Mobile: Expandable cards */}
+        <div className="md:hidden space-y-4">
+          {guarantees.map((guarantee, index) => {
+            const Icon = guarantee.icon;
+            const isExpanded = hoveredCard === index;
+            
+            return (
+              <div
+                key={index}
+                className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
+                onClick={() => setHoveredCard(isExpanded ? null : index)}
+              >
+                <div className={`relative overflow-hidden rounded-2xl bg-card border transition-all duration-500 ${isExpanded ? `border-${guarantee.color}/50 shadow-lg` : 'border-border/50'}`}>
+                  <div className="p-6">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className={`w-12 h-12 rounded-xl bg-${guarantee.color}/10 flex items-center justify-center`}>
+                        <Icon className={`h-6 w-6 text-${guarantee.color}`} />
+                      </div>
+                      <h3 className="text-lg font-bold text-foreground flex-1">{guarantee.title}</h3>
+                      <div className={`w-8 h-8 rounded-full bg-muted flex items-center justify-center transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
+                        <svg className="w-4 h-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </div>
+                    
+                    <div className={`overflow-hidden transition-all duration-500 ${isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                      <p className="text-muted-foreground text-sm mb-4">{guarantee.description}</p>
+                      <ul className="space-y-2 mb-4">
+                        {guarantee.features.map((feature, i) => (
+                          <li key={i} className="flex items-center gap-2 text-sm">
+                            <CheckCircle2 className={`h-4 w-4 text-${guarantee.color}`} />
+                            <span className="text-foreground">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Link to="/garantie">
+                        <Button variant="outline" size="sm" className="w-full">
+                          En savoir plus
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop: 3D hover cards */}
+        <div className="hidden md:grid md:grid-cols-3 gap-8">
+          {guarantees.map((guarantee, index) => {
+            const Icon = guarantee.icon;
+            
+            return (
+              <div
+                key={index}
+                className={`group perspective-1000 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
+                onMouseEnter={() => setHoveredCard(index)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                <div className="relative h-full overflow-hidden rounded-3xl bg-card border border-border/50 p-8 transition-all duration-500 group-hover:shadow-[0_30px_60px_-15px_hsl(14_71%_67%/0.25)] group-hover:-translate-y-3 group-hover:border-primary/20">
+                  {/* Glowing orb background */}
+                  <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full bg-${guarantee.color}/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
+                  
+                  {/* Icon */}
+                  <div className="relative mb-8">
+                    <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br from-${guarantee.color}/20 to-${guarantee.color}/5 flex items-center justify-center transition-all duration-500 group-hover:scale-110`}>
+                      <Icon className={`h-10 w-10 text-${guarantee.color}`} />
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-foreground mb-4">{guarantee.title}</h3>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">{guarantee.description}</p>
+                  
+                  {/* Features list */}
+                  <ul className="space-y-3 mb-8">
+                    {guarantee.features.map((feature, i) => (
+                      <li 
+                        key={i} 
+                        className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500"
+                        style={{ transitionDelay: `${i * 100}ms` }}
+                      >
+                        <div className={`w-5 h-5 rounded-full bg-${guarantee.color}/10 flex items-center justify-center`}>
+                          <CheckCircle2 className={`h-3 w-3 text-${guarantee.color}`} />
+                        </div>
+                        <span className="text-sm text-foreground">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Link to="/garantie" className="block">
+                    <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300">
+                      En savoir plus
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        
+        {/* CTA */}
+        <div className={`text-center mt-12 md:mt-16 transition-all duration-1000 delay-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <Link to="/configurateur">
+            <Button size="xl" variant="hero" className="group">
+              <span>Commencer votre projet</span>
+              <Play className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 };
 
