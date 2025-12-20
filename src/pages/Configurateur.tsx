@@ -9,8 +9,10 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { ChevronRight, ChevronLeft, Shield, Star, Tag, Check, Receipt } from "lucide-react";
-import decoBohemeImage from "@/assets/deco-boheme.jpg";
-import decoRomantiqueImage from "@/assets/deco-romantique.jpg";
+import decoChampetrTable from "@/assets/deco-champetre-1.jpg";
+import decoChampetreCeremony from "@/assets/deco-champetre-2.jpg";
+import decoBohemeModerneTable from "@/assets/deco-boheme-moderne-1.jpg";
+import decoBohemeModerneCeremony from "@/assets/deco-boheme-moderne-2.jpg";
 import photographeImage from "@/assets/photographe-alexandre.jpg";
 import djImage from "@/assets/dj-clara.jpg";
 import chefImage from "@/assets/chef-sebastien.jpg";
@@ -22,7 +24,7 @@ const Configurateur = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedDate, setSelectedDate] = useState("2027-07-06"); // Par défaut : Mercredi 6 Juillet 2027
   const [guests, setGuests] = useState([80]);
-  const [decoration, setDecoration] = useState("boheme");
+  const [decoration, setDecoration] = useState("champetre");
   const [entree, setEntree] = useState("veloute");
   const [platPrincipal, setPlatPrincipal] = useState("volaille");
   const [fromages, setFromages] = useState("plateau");
@@ -55,7 +57,7 @@ const Configurateur = () => {
 
   const basePrice = selectedDateInfo.price; // Prix dynamique selon la date
   const guestPrice = (guests[0] - 80) * 50;
-  const decorationPrice = decoration === "romantique" ? 300 : 0;
+  const decorationPrice = decoration === "boheme-moderne" ? 300 : 0;
   const photoboothPrice = photobooth ? 400 : 0;
   const cocktailBarPrice = cocktailBar ? 600 : 0;
   
@@ -118,7 +120,7 @@ const Configurateur = () => {
             )}
             {decorationPrice > 0 && (
               <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Décoration Romantique</span>
+                <span className="text-muted-foreground">Décoration Bohème Moderne</span>
                 <span className="font-semibold">+{decorationPrice}€</span>
               </div>
             )}
@@ -375,72 +377,256 @@ const Configurateur = () => {
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
                     <CardTitle className="text-2xl md:text-3xl">Choisissez l'ambiance de votre mariage</CardTitle>
-                    <p className="text-sm md:text-base text-muted-foreground">Deux styles uniques pour une atmosphère sur mesure.</p>
+                    <p className="text-sm md:text-base text-muted-foreground">
+                      Deux univers uniques, soigneusement conçus pour créer l'atmosphère parfaite.
+                    </p>
                   </CardHeader>
                   <CardContent>
                     <RadioGroup value={decoration} onValueChange={setDecoration}>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                        <label
-                          htmlFor="boheme"
-                          className={`group cursor-pointer rounded-xl overflow-hidden border-4 transition-all ${
-                            decoration === "boheme"
-                              ? "border-primary shadow-[0_0_30px_rgba(14,71,67,0.3)] scale-[1.02]"
+                      <div className="space-y-8">
+                        {/* Thème 1: Champêtre Romantique */}
+                        <div
+                          className={`rounded-2xl overflow-hidden border-4 transition-all cursor-pointer ${
+                            decoration === "champetre"
+                              ? "border-primary shadow-[0_0_40px_rgba(14,71,67,0.3)] scale-[1.01]"
                               : "border-border hover:border-primary/50"
                           }`}
+                          onClick={() => setDecoration("champetre")}
                         >
-                          <div className="relative h-48 md:h-64">
-                            <img
-                              src={decoBohemeImage}
-                              alt="Bohème Chic"
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
-                              <div className="flex items-center gap-2 mb-2">
-                                <RadioGroupItem value="boheme" id="boheme" className="border-white" />
-                                <h3 className="text-xl md:text-2xl font-bold">Bohème Chic</h3>
+                          {/* Header du thème */}
+                          <div className="bg-gradient-to-r from-[#C4A484]/20 to-[#A7C4A0]/20 p-4 md:p-6">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-3">
+                                <RadioGroupItem value="champetre" id="champetre" />
+                                <div>
+                                  <h3 className="text-xl md:text-2xl font-bold">Champêtre Romantique</h3>
+                                  <p className="text-sm text-muted-foreground">Nature • Authenticité • Retour aux sources</p>
+                                </div>
                               </div>
-                              <p className="text-xs md:text-sm text-white/90 mb-2">
-                                Matières naturelles, pampas, tons neutres et touches terracotta
-                              </p>
-                              <span className="inline-block bg-secondary text-secondary-foreground px-3 md:px-4 py-1 rounded-full text-xs md:text-sm font-bold">
+                              <span className="bg-secondary text-secondary-foreground px-4 py-2 rounded-full text-sm font-bold">
                                 Inclus
                               </span>
                             </div>
                           </div>
-                        </label>
 
-                        <label
-                          htmlFor="romantique"
-                          className={`group cursor-pointer rounded-xl overflow-hidden border-4 transition-all ${
-                            decoration === "romantique"
-                              ? "border-primary shadow-[0_0_30px_rgba(14,71,67,0.3)] scale-[1.02]"
+                          {/* Galerie d'images */}
+                          <div className="grid grid-cols-2 gap-1">
+                            <div className="relative h-48 md:h-64">
+                              <img
+                                src={decoChampetrTable}
+                                alt="Table champêtre"
+                                className="w-full h-full object-cover"
+                              />
+                              <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
+                                Table de réception
+                              </div>
+                            </div>
+                            <div className="relative h-48 md:h-64">
+                              <img
+                                src={decoChampetreCeremony}
+                                alt="Cérémonie champêtre"
+                                className="w-full h-full object-cover"
+                              />
+                              <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
+                                Arche de cérémonie
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Détails du thème */}
+                          <div className="p-4 md:p-6 bg-card">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              {/* Caractéristiques */}
+                              <div>
+                                <h4 className="font-bold mb-3 text-sm uppercase tracking-wide text-muted-foreground">Caractéristiques</h4>
+                                <ul className="space-y-2 text-sm">
+                                  <li className="flex items-center gap-2">
+                                    <span className="text-primary">✓</span>
+                                    <span>Tables en bois brut, mobilier rustique</span>
+                                  </li>
+                                  <li className="flex items-center gap-2">
+                                    <span className="text-primary">✓</span>
+                                    <span>Matériaux naturels : bois, osier, lin, pierre</span>
+                                  </li>
+                                  <li className="flex items-center gap-2">
+                                    <span className="text-primary">✓</span>
+                                    <span>Fleurs champêtres et délicates</span>
+                                  </li>
+                                  <li className="flex items-center gap-2">
+                                    <span className="text-primary">✓</span>
+                                    <span>Éclairage : bougies, lanternes, guirlandes guinguette</span>
+                                  </li>
+                                  <li className="flex items-center gap-2">
+                                    <span className="text-primary">✓</span>
+                                    <span>Ambiance romantique et intime</span>
+                                  </li>
+                                </ul>
+                              </div>
+
+                              {/* Palette de couleurs */}
+                              <div>
+                                <h4 className="font-bold mb-3 text-sm uppercase tracking-wide text-muted-foreground">Palette de couleurs</h4>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-6 h-6 rounded-full bg-[#C4A484] border border-border"></div>
+                                    <span className="text-xs">Terre de Sienne</span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-6 h-6 rounded-full bg-[#E2725B] border border-border"></div>
+                                    <span className="text-xs">Terracotta</span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-6 h-6 rounded-full bg-[#E8DFD0] border border-border"></div>
+                                    <span className="text-xs">Lin naturel</span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-6 h-6 rounded-full bg-[#A7C4A0] border border-border"></div>
+                                    <span className="text-xs">Vert sauge</span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-6 h-6 rounded-full bg-[#E8B4B8] border border-border"></div>
+                                    <span className="text-xs">Rose poudré</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Thème 2: Bohème Moderne */}
+                        <div
+                          className={`rounded-2xl overflow-hidden border-4 transition-all cursor-pointer ${
+                            decoration === "boheme-moderne"
+                              ? "border-primary shadow-[0_0_40px_rgba(14,71,67,0.3)] scale-[1.01]"
                               : "border-border hover:border-primary/50"
                           }`}
+                          onClick={() => setDecoration("boheme-moderne")}
                         >
-                          <div className="relative h-48 md:h-64">
-                            <img
-                              src={decoRomantiqueImage}
-                              alt="Romantique Élégant"
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
-                              <div className="flex items-center gap-2 mb-2">
-                                <RadioGroupItem value="romantique" id="romantique" className="border-white" />
-                                <h3 className="text-xl md:text-2xl font-bold">Romantique Élégant</h3>
+                          {/* Header du thème */}
+                          <div className="bg-gradient-to-r from-[#A67B5B]/20 to-[#0047AB]/20 p-4 md:p-6">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-3">
+                                <RadioGroupItem value="boheme-moderne" id="boheme-moderne" />
+                                <div>
+                                  <h3 className="text-xl md:text-2xl font-bold">Bohème Moderne</h3>
+                                  <p className="text-sm text-muted-foreground">Élégance • Audace • Sophistication</p>
+                                </div>
                               </div>
-                              <p className="text-xs md:text-sm text-white/90 mb-2">
-                                Roses blanches, chandelles, drapés de voilages et tons pastel
-                              </p>
-                              <span className="inline-block bg-primary text-primary-foreground px-3 md:px-4 py-1 rounded-full text-xs md:text-sm font-bold">
+                              <span className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-bold">
                                 +300€
                               </span>
                             </div>
                           </div>
-                        </label>
+
+                          {/* Galerie d'images */}
+                          <div className="grid grid-cols-2 gap-1">
+                            <div className="relative h-48 md:h-64">
+                              <img
+                                src={decoBohemeModerneTable}
+                                alt="Table bohème moderne"
+                                className="w-full h-full object-cover"
+                              />
+                              <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
+                                Table de réception
+                              </div>
+                            </div>
+                            <div className="relative h-48 md:h-64">
+                              <img
+                                src={decoBohemeModerneCeremony}
+                                alt="Arche bohème moderne"
+                                className="w-full h-full object-cover"
+                              />
+                              <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
+                                Arche de cérémonie
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Détails du thème */}
+                          <div className="p-4 md:p-6 bg-card">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              {/* Caractéristiques */}
+                              <div>
+                                <h4 className="font-bold mb-3 text-sm uppercase tracking-wide text-muted-foreground">Caractéristiques</h4>
+                                <ul className="space-y-2 text-sm">
+                                  <li className="flex items-center gap-2">
+                                    <span className="text-primary">✓</span>
+                                    <span>Mobilier design, touches dorées et argentées</span>
+                                  </li>
+                                  <li className="flex items-center gap-2">
+                                    <span className="text-primary">✓</span>
+                                    <span>Matériaux : métal, velours, tissus fluides</span>
+                                  </li>
+                                  <li className="flex items-center gap-2">
+                                    <span className="text-primary">✓</span>
+                                    <span>Arrangements floraux architecturaux</span>
+                                  </li>
+                                  <li className="flex items-center gap-2">
+                                    <span className="text-primary">✓</span>
+                                    <span>Éclairage : néons personnalisés, LED cascade</span>
+                                  </li>
+                                  <li className="flex items-center gap-2">
+                                    <span className="text-primary">✓</span>
+                                    <span>Ambiance festive et moderne</span>
+                                  </li>
+                                </ul>
+                              </div>
+
+                              {/* Palette de couleurs */}
+                              <div>
+                                <h4 className="font-bold mb-3 text-sm uppercase tracking-wide text-muted-foreground">Palette de couleurs</h4>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-6 h-6 rounded-full bg-[#A67B5B] border border-border"></div>
+                                    <span className="text-xs">Mocha Mousse</span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-6 h-6 rounded-full bg-[#0047AB] border border-border"></div>
+                                    <span className="text-xs">Bleu Cobalt</span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-6 h-6 rounded-full bg-[#FF6B35] border border-border"></div>
+                                    <span className="text-xs">Orange vif</span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-6 h-6 rounded-full bg-[#93C572] border border-border"></div>
+                                    <span className="text-xs">Vert pistache</span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-6 h-6 rounded-full bg-[#FFD700] border border-border"></div>
+                                    <span className="text-xs">Doré</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </RadioGroup>
+
+                    {/* Éléments communs */}
+                    <div className="mt-8 p-4 md:p-6 bg-primary/5 rounded-xl">
+                      <h4 className="font-bold mb-4 text-center">Inclus dans les deux thèmes</h4>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+                        <div className="flex flex-col items-center gap-2">
+                          <span className="text-2xl">✨</span>
+                          <span>Guirlandes LED</span>
+                        </div>
+                        <div className="flex flex-col items-center gap-2">
+                          <span className="text-2xl">🌸</span>
+                          <span>Arche florale</span>
+                        </div>
+                        <div className="flex flex-col items-center gap-2">
+                          <span className="text-2xl">📸</span>
+                          <span>Photobooth décoré</span>
+                        </div>
+                        <div className="flex flex-col items-center gap-2">
+                          <span className="text-2xl">🕯️</span>
+                          <span>Bougies & lanternes</span>
+                        </div>
+                      </div>
+                    </div>
+
                     <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-4 mt-6 md:mt-8">
                       <Button onClick={prevStep} variant="outline" size="lg" className="gap-2 w-full md:w-auto order-2 md:order-1">
                         <ChevronLeft className="w-5 h-5" /> Étape précédente
