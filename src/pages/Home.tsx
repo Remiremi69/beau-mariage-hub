@@ -46,7 +46,7 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/serie-ete-2027">
               <Button size="xl" variant="hero" className="font-semibold">
-                Découvrir notre série Été 2027
+                Découvrir notre série Octobre 2027
               </Button>
             </Link>
             <Link to="/configurateur">

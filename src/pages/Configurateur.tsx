@@ -271,7 +271,7 @@ const Configurateur = () => {
                   <CardHeader>
                     <CardTitle className="text-2xl md:text-3xl">Choisissez la date de votre mariage</CardTitle>
                     <p className="text-sm md:text-base text-muted-foreground">
-                      Série Été 2027 - Profitez de nos tarifs dégressifs en semaine !
+                      Série Octobre 2027 - Profitez de nos tarifs dégressifs en semaine !
                     </p>
                   </CardHeader>
                   <CardContent className="space-y-4">

@@ -16,7 +16,7 @@ const FAQ = () => {
     {
       question: "Peut-on personnaliser la décoration ?",
       answer:
-        "Le thème et la décoration sont définis pour chaque série (ex: 'Bohème Chic' pour l'Été 2027). Cependant, vous pouvez personnaliser certains détails comme les couleurs des nappes, les menus individuels, et ajouter des touches personnelles (photos, petits objets). Notre coordinatrice vous guidera pour que la décoration vous ressemble tout en respectant le thème général.",
+        "Le thème et la décoration sont définis pour chaque série (ex: 'Bohème Chic' pour Octobre 2027). Cependant, vous pouvez personnaliser certains détails comme les couleurs des nappes, les menus individuels, et ajouter des touches personnelles (photos, petits objets). Notre coordinatrice vous guidera pour que la décoration vous ressemble tout en respectant le thème général.",
     },
     {
       question: "Comment se passe le mariage à la mairie ?",
