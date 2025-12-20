@@ -362,69 +362,6 @@ const SerieEte2027 = () => {
         </div>
       </section>
 
-      {/* WaaS Section */}
-      <section className="py-20 bg-gradient-to-b from-secondary/5 to-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ou Optez pour la Sérénité : <span className="text-secondary">499€/mois</span>
-            </h2>
-            <h3 className="text-2xl font-bold mb-8">La tranquillité d'esprit, mois après mois.</h3>
-            <p className="text-lg text-muted-foreground mb-8">
-              Pourquoi payer en une fois ? Avec notre formule <strong>Wedding as a Service (WaaS)</strong>, 
-              financez votre mariage en douceur pour <strong>499€/mois pendant 15 mois</strong>. 
-              Ce forfait inclut le mariage complet, l'accès à notre plateforme premium et notre 
-              <strong> Bridal Box mensuelle</strong> remplie de surprises !
-            </p>
-            
-            <div className="my-12">
-              <img
-                src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=800&h=600&fit=crop"
-                alt="Bridal Box"
-                className="w-full max-w-2xl mx-auto h-96 object-cover rounded-lg shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)]"
-              />
-            </div>
-
-            <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] mb-8">
-              <CardContent className="p-8">
-                <h4 className="text-2xl font-bold mb-6">Ce que comprend le WaaS :</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-                  <div className="flex items-start gap-3">
-                    <span className="text-secondary text-2xl">✓</span>
-                    <span>Votre mariage complet (7 500 €)</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-secondary text-2xl">✓</span>
-                    <span>Bridal Box mensuelle surprise</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-secondary text-2xl">✓</span>
-                    <span>Accès plateforme de préparation</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-secondary text-2xl">✓</span>
-                    <span>Accompagnement personnalisé</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-secondary text-2xl">✓</span>
-                    <span>Aucun frais de dossier</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-secondary text-2xl">✓</span>
-                    <span>Total : 7 485€ sur 15 mois</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Link to="/contact">
-              <Button size="xl" variant="elegant" className="font-semibold">
-                En savoir plus sur le WaaS
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
