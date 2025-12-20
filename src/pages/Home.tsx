@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Heart, Calendar, Star, Shield, Tag, Award } from "lucide-react";
+import { MapPin, Heart, Calendar, Star, Shield, Tag, Award, Globe, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-wedding.jpg";
 import venueImage from "@/assets/venue-exterior.jpg";
@@ -93,12 +93,20 @@ const Home = () => {
             <Card className="border-none shadow-[0_4px_20px_-4px_hsl(235_17%_25%/0.1)] hover:shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] transition-all duration-300">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 mx-auto mb-6 bg-accent/10 rounded-full flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
+                  <Globe className="h-8 w-8 text-accent" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4">Votre Robe, Votre Moment</h3>
-                <p className="text-muted-foreground">
-                  Vivez une expérience d'essayage VIP dans notre Salon Éphémère et accédez à notre collection exclusive.
+                <h3 className="text-2xl font-bold mb-4">Votre Wedding Site</h3>
+                <p className="text-muted-foreground mb-4">
+                  Un site web personnalisé pour votre mariage, inclus dans l'offre. Partagez votre histoire avec vos invités.
                 </p>
+                <a 
+                  href="https://beau-mariage-template.lovable.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"
+                >
+                  Voir un exemple <ExternalLink className="h-4 w-4" />
+                </a>
               </CardContent>
             </Card>
 
