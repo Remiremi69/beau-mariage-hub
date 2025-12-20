@@ -81,7 +81,7 @@ const Temoignages = () => {
               <CardContent className="p-12">
                 <h3 className="text-3xl font-bold mb-4">Vous aussi, rejoignez l'aventure</h3>
                 <p className="text-lg text-muted-foreground mb-6">
-                  Découvrez notre série Été 2027 et réservez votre date
+                  Découvrez notre série Octobre 2027 et réservez votre date
                 </p>
                 <a
                   href="/serie-ete-2027"

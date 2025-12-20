@@ -22,9 +22,9 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/serie-ete-2027" className="hover:text-primary transition-colors">
-                  Série Été 2027
-                </Link>
+              <Link to="/serie-ete-2027" className="hover:text-primary transition-colors">
+                Série Octobre 2027
+              </Link>
               </li>
               <li>
                 <Link to="/garantie" className="hover:text-primary transition-colors">

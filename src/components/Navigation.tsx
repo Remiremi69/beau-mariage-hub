@@ -9,7 +9,7 @@ export const Navigation = () => {
   const navLinks = [
     { to: "/", label: "Accueil" },
     { to: "/concept", label: "Le Concept" },
-    { to: "/serie-ete-2027", label: "Série Été 2027" },
+    { to: "/serie-ete-2027", label: "Série Octobre 2027" },
     { to: "/garantie", label: "Notre Garantie" },
     { to: "/contact", label: "Contact" },
     { to: "/configurateur", label: "Créer votre mariage" },

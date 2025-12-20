@@ -60,7 +60,7 @@ const SerieEte2027 = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Série Été 2027
+              Série Octobre 2027
               <br />
               <span className="text-primary">"Bohème Chic en Beaujolais"</span>
             </h1>
@@ -315,7 +315,7 @@ const SerieEte2027 = () => {
             <h2 className="text-4xl font-bold mb-4 text-center">
               Choisissez Votre Date et Votre Prix
             </h2>
-            <p className="text-center text-muted-foreground mb-12">Dates disponibles - Été 2027 - Prix dynamique selon la demande</p>
+            <p className="text-center text-muted-foreground mb-12">Dates disponibles - Octobre 2027 - Prix dynamique selon la demande</p>
 
             <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)]">
               <CardContent className="p-6">
