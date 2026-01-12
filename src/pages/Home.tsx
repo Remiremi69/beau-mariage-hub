@@ -431,7 +431,7 @@ const PillarsSection = () => {
                       href={pillar.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-primary font-medium mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 hover:gap-3"
+                      className="inline-flex items-center gap-2 text-primary font-medium mt-4 transition-all duration-300 hover:gap-3 hover:text-primary/80"
                     >
                       Voir un exemple <ExternalLink className="h-4 w-4" />
                     </a>
