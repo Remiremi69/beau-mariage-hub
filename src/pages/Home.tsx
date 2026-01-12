@@ -134,7 +134,7 @@ const Home = () => {
             </div>
             <div className="space-y-1 md:space-y-2">
               <div className="text-3xl md:text-5xl font-bold text-secondary">
-                <AnimatedCounter end={7500} suffix="€" />
+                <AnimatedCounter end={12990} suffix="€" />
               </div>
               <p className="text-xs md:text-sm text-card/70">À partir de</p>
             </div>
@@ -303,7 +303,7 @@ const PillarsSection = () => {
     {
       icon: Heart,
       title: "Un Prix Jamais Vu",
-      description: "Un mariage tout compris à partir de 7 500 €, ou 499€/mois. Qualité premium, prix imbattable.",
+      description: "Votre Mariage d'Exception à partir de 12 990 €. Qualité premium, prix imbattable.",
       color: "secondary",
       gradient: "from-secondary/20 to-secondary/5",
       number: "02"
