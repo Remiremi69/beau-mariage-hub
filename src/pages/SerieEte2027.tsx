@@ -308,6 +308,49 @@ const SerieEte2027 = () => {
         </div>
       </section>
 
+      {/* Engagement Éco-responsable Section */}
+      <section className="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
+                <span className="text-3xl">🌿</span>
+              </div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium">
+                <span>Mariage Responsable</span>
+              </div>
+            </div>
+            <h2 className="text-4xl font-bold mb-6 text-center text-green-800">
+              Notre Engagement Éco-responsable
+            </h2>
+            <Card className="border-none shadow-[0_10px_40px_-10px_hsl(142_71%_45%/0.2)] bg-white/80 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  Pour notre série "Bohème Chic en Beaujolais", nous nous engageons à travailler avec des traiteurs utilisant des <strong className="text-green-700">produits locaux et de saison</strong>. Notre décoration est <strong className="text-green-700">100% réutilisable</strong> et nos prestataires sont sélectionnés pour leur engagement environnemental.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="text-center p-4 rounded-xl bg-green-50">
+                    <div className="text-3xl mb-2">🥗</div>
+                    <h4 className="font-semibold text-green-800 mb-1">Produits Locaux</h4>
+                    <p className="text-sm text-muted-foreground">Circuit court à moins de 50km</p>
+                  </div>
+                  <div className="text-center p-4 rounded-xl bg-green-50">
+                    <div className="text-3xl mb-2">♻️</div>
+                    <h4 className="font-semibold text-green-800 mb-1">Décoration Durable</h4>
+                    <p className="text-sm text-muted-foreground">100% réutilisable</p>
+                  </div>
+                  <div className="text-center p-4 rounded-xl bg-green-50">
+                    <div className="text-3xl mb-2">🌍</div>
+                    <h4 className="font-semibold text-green-800 mb-1">-80% Empreinte</h4>
+                    <p className="text-sm text-muted-foreground">Carbone réduit</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Dates Section */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
