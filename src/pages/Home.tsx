@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Heart, Calendar, Star, Shield, Tag, Award, Globe, ExternalLink, Sparkles, CheckCircle2, Play } from "lucide-react";
+import { MapPin, Heart, Calendar, Star, Shield, Tag, Award, Globe, ExternalLink, Sparkles, CheckCircle2, Play, Leaf } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import heroImage from "@/assets/hero-wedding.jpg";
@@ -324,6 +324,15 @@ const PillarsSection = () => {
       color: "secondary",
       gradient: "from-secondary/20 to-secondary/5",
       number: "04"
+    },
+    {
+      icon: Leaf,
+      title: "Un Mariage Responsable",
+      description: "Décoration réutilisable et partenaires locaux : réduisez votre empreinte carbone sans sacrifier l'élégance.",
+      color: "primary",
+      gradient: "from-primary/20 to-primary/5",
+      number: "05",
+      badge: "Éco"
     }
   ];
 
@@ -338,7 +347,7 @@ const PillarsSection = () => {
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
             La Révolution du Mariage
-            <span className="block text-primary">en 4 Piliers</span>
+            <span className="block text-primary">en 5 Piliers</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Une approche unique qui réinvente l'organisation de votre jour J
@@ -368,7 +377,14 @@ const PillarsSection = () => {
                         <Icon className={`h-7 w-7 text-${pillar.color}`} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-xl font-bold text-foreground mb-2">{pillar.title}</h3>
+                        <div className="flex items-center gap-2 mb-2">
+                          <h3 className="text-xl font-bold text-foreground">{pillar.title}</h3>
+                          {pillar.badge && (
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-xs font-medium">
+                              🌿 {pillar.badge}
+                            </span>
+                          )}
+                        </div>
                         <p className="text-muted-foreground text-sm leading-relaxed">{pillar.description}</p>
                         {pillar.link && (
                           <a 
@@ -394,7 +410,7 @@ const PillarsSection = () => {
         </div>
 
         {/* Desktop: Interactive grid with hover effects */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-5 gap-6">
           {pillars.map((pillar, index) => {
             const Icon = pillar.icon;
             return (
@@ -419,10 +435,17 @@ const PillarsSection = () => {
                     <div className={`absolute inset-0 rounded-2xl bg-${pillar.color}/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <div className="flex items-center gap-2 mb-3">
+                    <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                      {pillar.title}
+                    </h3>
+                    {pillar.badge && (
+                      <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs font-medium">
+                        🌿 {pillar.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed text-sm">
                     {pillar.description}
                   </p>
                   

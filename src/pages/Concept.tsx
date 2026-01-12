@@ -137,12 +137,17 @@ const Concept = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-none shadow-md">
+              <Card className="border-none shadow-md relative overflow-hidden">
+                <div className="absolute top-2 right-2">
+                  <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs font-medium">
+                    🌿 Éco
+                  </span>
+                </div>
                 <CardContent className="p-6">
                   <div className="text-4xl font-bold text-sand mb-2">3</div>
-                  <h4 className="font-semibold mb-2">Optimisation</h4>
+                  <h4 className="font-semibold mb-2">Optimisation Écologique</h4>
                   <p className="text-sm text-muted-foreground">
-                    Décoration réutilisable entre les mariages
+                    Notre système de "Décoration Responsable Premium" nous permet de créer des ambiances magnifiques tout en minimisant les déchets. Chaque élément est réutilisé pour plusieurs mariages, réduisant ainsi l'impact environnemental de 80%.
                   </p>
                 </CardContent>
               </Card>
