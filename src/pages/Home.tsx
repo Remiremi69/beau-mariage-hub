@@ -56,20 +56,11 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = "" }: { end: number; d
 };
 
 const Home = () => {
-  const testimonials = [
-    {
-      name: "Laura & Tom",
-      date: "15 Juillet 2027",
-      text: "Incroyable ! Un mariage magnifique sans aucun stress. Le concept est génial et l'équipe a été parfaite.",
-      rating: 5,
-    },
-    {
-      name: "Chloé & Maxime",
-      date: "22 Juillet 2027",
-      text: "La décoration était sublime, le lieu magique. Nos invités ont été bluffés. On recommande à 1000% !",
-      rating: 5,
-    },
-  ];
+  const founderQuote = {
+    text: "J'ai créé Le Beau Mariage avec une conviction : rendre le mariage de rêve accessible à tous, sans le stress et sans les compromis. C'est cette promesse que nous tenons à chaque cérémonie.",
+    author: "Rémi",
+    role: "Fondateur"
+  };
 
   return (
     <div className="min-h-screen">
@@ -116,25 +107,25 @@ const Home = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
             <div className="space-y-1 md:space-y-2">
               <div className="text-3xl md:text-5xl font-bold text-primary">
-                <AnimatedCounter end={500} suffix="+" />
+                20
               </div>
-              <p className="text-xs md:text-sm text-card/70">Mariages célébrés</p>
+              <p className="text-xs md:text-sm text-card/70">Objectif 2027: Mariages d'Exception</p>
             </div>
             <div className="space-y-1 md:space-y-2">
               <div className="text-3xl md:text-5xl font-bold text-secondary">
-                <AnimatedCounter end={98} suffix="%" />
+                100%
               </div>
-              <p className="text-xs md:text-sm text-card/70">Satisfaction client</p>
+              <p className="text-xs md:text-sm text-card/70">Notre Engagement: Satisfaction Garantie</p>
             </div>
             <div className="space-y-1 md:space-y-2">
-              <div className="text-3xl md:text-5xl font-bold text-primary">
-                <AnimatedCounter end={50} suffix="+" />
+              <div className="text-3xl md:text-5xl font-bold text-primary flex items-center justify-center gap-2">
+                <Award className="h-8 w-8 md:h-10 md:w-10" />
               </div>
-              <p className="text-xs md:text-sm text-card/70">Prestataires certifiés</p>
+              <p className="text-xs md:text-sm text-card/70">Un Réseau de Partenaires d'Excellence</p>
             </div>
             <div className="space-y-1 md:space-y-2">
               <div className="text-3xl md:text-5xl font-bold text-secondary">
-                <AnimatedCounter end={12990} suffix="€" />
+                12 990€
               </div>
               <p className="text-xs md:text-sm text-card/70">À partir de</p>
             </div>
@@ -248,35 +239,32 @@ const Home = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-            Ils nous ont fait confiance
+            Le Mot du Fondateur
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <Card
-                key={index}
-                className="border-none shadow-[0_4px_20px_-4px_hsl(235_17%_25%/0.1)] hover:shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] transition-all duration-300"
-              >
-                <CardContent className="p-8">
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-primary text-primary" />
-                    ))}
+          <div className="max-w-3xl mx-auto">
+            <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] bg-gradient-to-br from-card to-primary/5">
+              <CardContent className="p-8 md:p-12">
+                <div className="flex justify-center mb-6">
+                  <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Heart className="h-10 w-10 text-primary" />
                   </div>
-                  <p className="text-lg mb-6 italic">"{testimonial.text}"</p>
-                  <div>
-                    <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">Mariés le {testimonial.date}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+                <blockquote className="text-xl md:text-2xl text-center mb-8 italic text-foreground leading-relaxed">
+                  "{founderQuote.text}"
+                </blockquote>
+                <div className="text-center">
+                  <p className="font-bold text-lg text-primary">{founderQuote.author}</p>
+                  <p className="text-muted-foreground">{founderQuote.role}</p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           <div className="text-center mt-12">
-            <Link to="/temoignages">
-              <Button variant="outline" size="lg">
-                Voir tous les témoignages
+            <Link to="/contact">
+              <Button variant="elegant" size="lg">
+                Échanger avec notre équipe
               </Button>
             </Link>
           </div>
