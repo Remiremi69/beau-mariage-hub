@@ -89,9 +89,9 @@ const Home = () => {
                 Découvrir notre série Octobre 2027
               </Button>
             </Link>
-            <Link to="/contact">
+            <Link to="/configurateur">
               <Button size="xl" variant="elegant" className="font-semibold">
-                Obtenir mon devis gratuit
+                Créer votre mariage
               </Button>
             </Link>
           </div>
