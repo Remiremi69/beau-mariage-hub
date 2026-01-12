@@ -31,7 +31,7 @@ const Concept = () => {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Chez Le Beau Mariage, nous avons réinventé le modèle. En mutualisant les coûts sur
                 une série de mariages dans un même lieu, nous vous donnons accès à des prestataires
-                et une décoration haut de gamme pour un prix fixe et transparent de 10 000 €.
+                et une décoration haut de gamme pour un prix fixe et transparent de 12 990 €.
               </p>
             </CardContent>
           </Card>
@@ -53,7 +53,7 @@ const Concept = () => {
                 <TableRow>
                   <TableCell className="font-semibold">Prix moyen</TableCell>
                   <TableCell className="text-destructive">15 000 € - 20 000 €</TableCell>
-                  <TableCell className="text-secondary font-bold">10 000 €</TableCell>
+                  <TableCell className="text-secondary font-bold">12 990 €</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="font-semibold">Niveau de stress</TableCell>

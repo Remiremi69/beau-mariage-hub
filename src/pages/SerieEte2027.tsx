@@ -12,26 +12,26 @@ const SerieEte2027 = () => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
   const dates = [
-    { date: "Vendredi 1er Juillet 2027", status: "reserved", price: "8 000 €" },
-    { date: "Samedi 2 Juillet 2027", status: "reserved", price: "8 500 €" },
-    { date: "Dimanche 3 Juillet 2027", status: "reserved", price: "8 000 €" },
-    { date: "Mercredi 6 Juillet 2027", status: "available", price: "6 900 €" },
-    { date: "Jeudi 7 Juillet 2027", status: "available", price: "7 500 €" },
-    { date: "Vendredi 8 Juillet 2027", status: "option", price: "8 000 €" },
-    { date: "Samedi 9 Juillet 2027", status: "reserved", price: "8 500 €" },
-    { date: "Dimanche 10 Juillet 2027", status: "reserved", price: "8 000 €" },
-    { date: "Mercredi 13 Juillet 2027", status: "option", price: "6 900 €" },
-    { date: "Jeudi 14 Juillet 2027", status: "available", price: "7 500 €" },
-    { date: "Vendredi 15 Juillet 2027", status: "available", price: "8 000 €" },
-    { date: "Samedi 16 Juillet 2027", status: "reserved", price: "8 500 €" },
-    { date: "Dimanche 17 Juillet 2027", status: "option", price: "8 000 €" },
-    { date: "Mercredi 20 Juillet 2027", status: "available", price: "6 900 €" },
-    { date: "Jeudi 21 Juillet 2027", status: "available", price: "7 500 €" },
-    { date: "Vendredi 22 Juillet 2027", status: "reserved", price: "8 000 €" },
-    { date: "Samedi 23 Juillet 2027", status: "reserved", price: "8 500 €" },
-    { date: "Dimanche 24 Juillet 2027", status: "available", price: "8 000 €" },
-    { date: "Mercredi 27 Juillet 2027", status: "available", price: "6 900 €" },
-    { date: "Jeudi 28 Juillet 2027", status: "available", price: "7 500 €" },
+    { date: "Vendredi 1er Juillet 2027", status: "reserved", price: "14 490 €" },
+    { date: "Samedi 2 Juillet 2027", status: "reserved", price: "14 990 €" },
+    { date: "Dimanche 3 Juillet 2027", status: "reserved", price: "13 990 €" },
+    { date: "Mercredi 6 Juillet 2027", status: "available", price: "11 990 €" },
+    { date: "Jeudi 7 Juillet 2027", status: "available", price: "12 990 €" },
+    { date: "Vendredi 8 Juillet 2027", status: "option", price: "14 490 €" },
+    { date: "Samedi 9 Juillet 2027", status: "reserved", price: "14 990 €" },
+    { date: "Dimanche 10 Juillet 2027", status: "reserved", price: "13 990 €" },
+    { date: "Mercredi 13 Juillet 2027", status: "option", price: "11 990 €" },
+    { date: "Jeudi 14 Juillet 2027", status: "available", price: "12 990 €" },
+    { date: "Vendredi 15 Juillet 2027", status: "available", price: "14 490 €" },
+    { date: "Samedi 16 Juillet 2027", status: "reserved", price: "14 990 €" },
+    { date: "Dimanche 17 Juillet 2027", status: "option", price: "13 990 €" },
+    { date: "Mercredi 20 Juillet 2027", status: "available", price: "11 990 €" },
+    { date: "Jeudi 21 Juillet 2027", status: "available", price: "12 990 €" },
+    { date: "Vendredi 22 Juillet 2027", status: "reserved", price: "14 490 €" },
+    { date: "Samedi 23 Juillet 2027", status: "reserved", price: "14 990 €" },
+    { date: "Dimanche 24 Juillet 2027", status: "available", price: "13 990 €" },
+    { date: "Mercredi 27 Juillet 2027", status: "available", price: "11 990 €" },
+    { date: "Jeudi 28 Juillet 2027", status: "available", price: "12 990 €" },
   ];
 
   const getStatusBadge = (status: string) => {
@@ -65,7 +65,7 @@ const SerieEte2027 = () => {
               <span className="text-primary">"Bohème Chic en Beaujolais"</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Vivez un mariage bohème chic au cœur des vignes, pour 10 000 € tout compris
+              Vivez un mariage bohème chic au cœur des vignes, à partir de 12 990 €
             </p>
           </div>
         </div>
@@ -142,7 +142,7 @@ const SerieEte2027 = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold mb-4 text-center">
-              Le Forfait Essentiel à 7 500 €
+              Le Forfait Premium à 12 990 €
             </h2>
             <p className="text-center text-muted-foreground mb-4">Pour 80 invités</p>
             <p className="text-center text-lg mb-12">
