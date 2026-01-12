@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -113,6 +115,15 @@ const Concept = () => {
               </TableBody>
             </Table>
           </Card>
+
+          {/* CTA après tableau comparatif */}
+          <div className="mt-12 text-center">
+            <Link to="/serie-ete-2027">
+              <Button size="lg" variant="hero" className="font-semibold">
+                Voir nos séries disponibles
+              </Button>
+            </Link>
+          </div>
 
           <div className="mt-16 text-center">
             <h3 className="text-3xl font-bold mb-6">Le secret de notre modèle</h3>

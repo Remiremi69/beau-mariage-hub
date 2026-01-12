@@ -358,6 +358,11 @@ const SerieEte2027 = () => {
             <h2 className="text-4xl font-bold mb-4 text-center">
               Choisissez Votre Date et Votre Prix
             </h2>
+            <div className="flex justify-center mb-4">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm">
+                ⚡ Places limitées : seulement 7 mariages par série
+              </span>
+            </div>
             <p className="text-center text-muted-foreground mb-12">Dates disponibles - Octobre 2027 - Prix dynamique selon la demande</p>
 
             <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)]">

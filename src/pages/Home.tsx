@@ -89,9 +89,9 @@ const Home = () => {
                 Découvrir notre série Octobre 2027
               </Button>
             </Link>
-            <Link to="/configurateur">
+            <Link to="/contact">
               <Button size="xl" variant="elegant" className="font-semibold">
-                Créer votre mariage
+                Obtenir mon devis gratuit
               </Button>
             </Link>
           </div>
@@ -299,11 +299,12 @@ const PillarsSection = () => {
     {
       icon: Globe,
       title: "Votre Wedding Site",
-      description: "Un site web personnalisé pour votre mariage, inclus dans l'offre.",
+      description: "Un site web personnalisé pour votre mariage (valeur 600€), inclus dans l'offre.",
       color: "primary",
       gradient: "from-primary/20 to-primary/5",
       number: "03",
-      link: "https://beau-mariage-template.lovable.app/"
+      link: "https://beau-mariage-template.lovable.app/",
+      hasGallery: true
     },
     {
       icon: Sparkles,
