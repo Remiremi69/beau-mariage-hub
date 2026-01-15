@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Instagram, Mail, Phone } from "lucide-react";
+import { Instagram, Mail } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -51,12 +51,6 @@ export const Footer = () => {
                 <Mail className="h-4 w-4" />
                 <a href="mailto:contact@lebeaumariage.fr" className="hover:text-primary transition-colors">
                   contact@lebeaumariage.fr
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
-                <a href="tel:+33612345678" className="hover:text-primary transition-colors">
-                  06 12 34 56 78
                 </a>
               </li>
               <li className="flex items-center gap-2">
