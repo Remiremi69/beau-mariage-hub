@@ -64,6 +64,13 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
+      {/* Launch Banner */}
+      <div className="bg-primary text-primary-foreground py-3 px-4 text-center text-sm md:text-base">
+        <span className="font-medium">🚀 Le Beau Mariage est en phase de lancement !</span>
+        <span className="hidden sm:inline"> — Ce site vous permet de découvrir notre concept avant l'ouverture officielle.</span>
+        <span className="sm:hidden"> Découvrez notre concept.</span>
+      </div>
+
       {/* Hero Section */}
       <section
         className="relative h-screen flex items-center justify-center text-center"
