@@ -49,8 +49,8 @@ export const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                <a href="mailto:contact@lebeaumariage.fr" className="hover:text-primary transition-colors">
-                  contact@lebeaumariage.fr
+                <a href="mailto:remi@lebeaumariage.fr" className="hover:text-primary transition-colors">
+                  remi@lebeaumariage.fr
                 </a>
               </li>
               <li className="flex items-center gap-2">
