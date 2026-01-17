@@ -4,10 +4,15 @@ import { BookOpen, ClipboardCheck, Star, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import badgeCertifie from "@/assets/badge-certifie.png";
 import badgeExcellence from "@/assets/badge-excellence.png";
+import SEO from "@/components/SEO";
 
 const Certification = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="Label d'Excellence | Certification Prestataires Le Beau Mariage"
+        description="Découvrez notre processus de certification des prestataires. Qualité garantie et excellence pour votre mariage de rêve."
+      />
       {/* Header Section */}
       <section className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="container mx-auto px-4 text-center">
@@ -95,9 +100,9 @@ const Certification = () => {
             {/* Label Certifié */}
             <div className="text-center">
               <div className="mb-6 flex justify-center">
-                <img 
+              <img 
                   src={badgeCertifie} 
-                  alt="Badge Certifié Le Beau Mariage" 
+                  alt="Badge Prestataire Certifié Le Beau Mariage - Garantie de professionnalisme et qualité" 
                   className="w-48 h-48 object-contain"
                 />
               </div>
@@ -115,9 +120,9 @@ const Certification = () => {
             {/* Label Excellence */}
             <div className="text-center">
               <div className="mb-6 flex justify-center">
-                <img 
+              <img 
                   src={badgeExcellence} 
-                  alt="Badge Excellence Le Beau Mariage" 
+                  alt="Badge Excellence Le Beau Mariage - Distinction pour les meilleurs prestataires" 
                   className="w-48 h-48 object-contain"
                 />
               </div>

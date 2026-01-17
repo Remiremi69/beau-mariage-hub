@@ -15,6 +15,7 @@ import chefImage from "@/assets/chef-sebastien.jpg";
 import manonImage from "@/assets/manon-maitresse-hotel.jpg";
 import julienImage from "@/assets/julien-sommelier.jpg";
 import sophieImage from "@/assets/sophie-serveuse.jpg";
+import SEO from "@/components/SEO";
 
 const DecoVisualizer = lazy(() => import("@/components/configurateur/DecoVisualizer"));
 const MenuDegustationVirtuel = lazy(() => import("@/components/configurateur/menu/MenuDegustationVirtuel"));
@@ -214,6 +215,10 @@ const Configurateur = () => {
 
   return (
     <div className="min-h-screen pt-20 bg-background pb-24 lg:pb-8">
+      <SEO 
+        title="Configurateur de Mariage | Créez Votre Devis en 10 Minutes"
+        description="Personnalisez votre mariage en quelques clics. Obtenez un devis instantané et transparent pour votre mariage de rêve."
+      />
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-3xl md:text-5xl font-bold text-center mb-3 md:mb-4">

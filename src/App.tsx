@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { Navigation } from "./components/Navigation";
 import { Footer } from "./components/Footer";
 import Home from "./pages/Home";
@@ -19,29 +20,31 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/concept" element={<Concept />} />
-          <Route path="/serie-ete-2027" element={<SerieEte2027 />} />
-          <Route path="/configurateur" element={<Configurateur />} />
-          <Route path="/temoignages" element={<Temoignages />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/garantie" element={<Garantie />} />
-          <Route path="/certification" element={<Certification />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/concept" element={<Concept />} />
+            <Route path="/serie-ete-2027" element={<SerieEte2027 />} />
+            <Route path="/configurateur" element={<Configurateur />} />
+            <Route path="/temoignages" element={<Temoignages />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/garantie" element={<Garantie />} />
+            <Route path="/certification" element={<Certification />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;

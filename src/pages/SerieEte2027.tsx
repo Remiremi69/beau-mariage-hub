@@ -7,6 +7,7 @@ import tableImage from "@/assets/table-setup.jpg";
 import ceremonyImage from "@/assets/ceremony-arch.jpg";
 import heroImage from "@/assets/hero-wedding.jpg";
 import { useState } from "react";
+import SEO from "@/components/SEO";
 
 const SerieEte2027 = () => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
@@ -55,6 +56,10 @@ const SerieEte2027 = () => {
 
   return (
     <div className="min-h-screen pt-20">
+      <SEO 
+        title="Série Été 2027 Bohème Chic en Beaujolais | Le Beau Mariage"
+        description="Découvrez notre série de mariages Bohème Chic au Domaine de la Vigne d'Or. Mariage tout inclus à partir de 12 990€ au cœur du Beaujolais."
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-primary/5 to-background py-20">
         <div className="container mx-auto px-4">
@@ -77,22 +82,22 @@ const SerieEte2027 = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <img
               src={heroImage}
-              alt="Cérémonie en plein air"
+              alt="Cérémonie de mariage en plein air dans les vignes du Beaujolais - Le Beau Mariage"
               className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
             />
             <img
               src={venueImage}
-              alt="Domaine de la Vigne d'Or"
+              alt="Vue extérieure du Domaine de la Vigne d'Or dans les Pierres Dorées - Le Beau Mariage"
               className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
             />
             <img
               src={tableImage}
-              alt="Décoration de table"
+              alt="Décoration de table bohème chic avec fleurs et bougies - Le Beau Mariage"
               className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
             />
             <img
               src={ceremonyImage}
-              alt="Arche de cérémonie"
+              alt="Arche de cérémonie fleurie style bohème pour mariage - Le Beau Mariage"
               className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
             />
           </div>

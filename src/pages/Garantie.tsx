@@ -2,10 +2,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, Shield, Tag } from "lucide-react";
 import { Link } from "react-router-dom";
+import SEO from "@/components/SEO";
 
 const Garantie = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="Nos Garanties | Le Beau Mariage, la Sérénité Assurée"
+        description="Avec nos garanties zéro coût caché, qualité et flexibilité, organisez votre mariage en toute tranquillité d'esprit."
+      />
       {/* Header Section */}
       <section className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="container mx-auto px-4 text-center">

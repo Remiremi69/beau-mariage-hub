@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const Temoignages = () => {
   const testimonials = [
@@ -43,6 +44,10 @@ const Temoignages = () => {
 
   return (
     <div className="min-h-screen pt-20 bg-background">
+      <SEO 
+        title="Témoignages | Avis de Nos Couples Mariés"
+        description="Découvrez les témoignages de nos couples mariés. Ils ont choisi Le Beau Mariage pour un mariage de rêve sans stress."
+      />
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-center mb-8">

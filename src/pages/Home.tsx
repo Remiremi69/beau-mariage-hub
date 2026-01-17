@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Clock, Diamond, Star, Palette, Coins, CheckCircle, PartyPopper, UtensilsCrossed, Camera, Flower2, Music, RefreshCw, ArrowRight, Users, Handshake } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import SEO from "@/components/SEO";
 import heroImage from "@/assets/hero-image-realiste.png";
 import venueImage from "@/assets/venue-exterior.jpg";
 import chefImage from "@/assets/chef-sebastien.jpg";
@@ -44,6 +45,12 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Votre Mariage de Rêve en 10 min, Prix Transparent"
+        description="Organisez votre mariage d'exception sans stress. Le Beau Mariage vous propose un mariage de rêve en 10 minutes, avec un prix fixe et transparent et des prestataires de qualité."
+        canonical="https://lebeaumariage.fr/"
+      />
+      
       {/* Launch Banner */}
       <div className="bg-primary text-primary-foreground py-3 px-4 text-center text-sm md:text-base">
         <span className="font-medium">🚀 Le Beau Mariage est en phase de lancement !</span>
@@ -126,10 +133,10 @@ const Home = () => {
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1">
+          <div className="order-2 lg:order-1">
               <img
                 src={venueImage}
-                alt="Domaine de la Vigne d'Or"
+                alt="Vue extérieure du Domaine de la Vigne d'Or au cœur du Beaujolais - Le Beau Mariage"
                 className="rounded-lg shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] w-full"
               />
             </div>
@@ -492,28 +499,32 @@ const PartnersSection = () => {
       title: "L'Émotion dans l'Assiette",
       category: "Traiteurs Gastronomiques",
       description: "Nos chefs racontent une histoire avec des produits frais et locaux. Une expérience culinaire qui marque les esprits.",
-      icon: UtensilsCrossed
+      icon: UtensilsCrossed,
+      alt: "Chef traiteur partenaire Le Beau Mariage préparant un plat gastronomique"
     },
     {
       image: photographeImage,
       title: "Les Chasseurs de Souvenirs",
       category: "Photographes & Vidéastes",
       description: "Plus que des techniciens, ce sont des artistes qui savent capturer l'étincelle, le rire volé et la larme de joie.",
-      icon: Camera
+      icon: Camera,
+      alt: "Photographe professionnel capturant les moments précieux d'un mariage"
     },
     {
       image: decoImage,
       title: "Les Architectes de l'Ambiance",
       category: "Décorateurs & Fleuristes",
       description: "Ils ont le talent de transformer un lieu en un décor de rêve, créant une atmosphère unique qui vous ressemble.",
-      icon: Flower2
+      icon: Flower2,
+      alt: "Décoration florale bohème pour mariage par nos fleuristes partenaires"
     },
     {
       image: djImage,
       title: "Les Maîtres du Rythme",
       category: "DJ & Musiciens",
       description: "Du vin d'honneur à la piste de danse, nos artistes créent la bande-son parfaite pour une ambiance inoubliable.",
-      icon: Music
+      icon: Music,
+      alt: "DJ professionnelle animant la soirée de mariage"
     }
   ];
 
@@ -550,7 +561,7 @@ const PartnersSection = () => {
                   <div className="relative h-48 overflow-hidden">
                     <img 
                       src={cat.image} 
-                      alt={cat.category}
+                      alt={cat.alt}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
