@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Clock, Diamond, Star, Palette, Coins, CheckCircle, PartyPopper, UtensilsCrossed, Camera, Flower2, Music, RefreshCw, ArrowRight, Users, Handshake } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import heroImage from "@/assets/hero-wedding.jpg";
+import heroImage from "@/assets/hero-image-realiste.png";
 import venueImage from "@/assets/venue-exterior.jpg";
 import chefImage from "@/assets/chef-sebastien.jpg";
 import photographeImage from "@/assets/photographe-alexandre.jpg";
