@@ -10,10 +10,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Check, X } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const Concept = () => {
   return (
     <div className="min-h-screen pt-20">
+      <SEO 
+        title="Le Concept Le Beau Mariage | Des Mariages d'Exception Simplifiés"
+        description="Découvrez notre concept innovant de mariages en séries qui rend le luxe accessible. Qualité, simplicité et transparence."
+      />
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-center mb-8">

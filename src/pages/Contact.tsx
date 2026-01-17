@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, Instagram, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import SEO from "@/components/SEO";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -19,6 +20,10 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen pt-20 bg-background">
+      <SEO 
+        title="Contactez-nous | Le Beau Mariage"
+        description="Une question sur nos mariages clé-en-main ? Contactez l'équipe Le Beau Mariage pour organiser votre mariage de rêve."
+      />
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-center mb-8">Contactez-nous</h1>

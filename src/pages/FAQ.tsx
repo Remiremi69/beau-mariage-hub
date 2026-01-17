@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
+import SEO from "@/components/SEO";
 
 const FAQ = () => {
   const faqs = [
@@ -62,6 +63,10 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen pt-20 bg-background">
+      <SEO 
+        title="FAQ | Questions Fréquentes sur Le Beau Mariage"
+        description="Retrouvez toutes les réponses à vos questions sur notre concept de mariages clé-en-main à prix fixe et transparent."
+      />
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-center mb-8">
