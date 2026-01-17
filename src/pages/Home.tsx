@@ -1,11 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Heart, Calendar, Star, Shield, Tag, Award, Globe, ExternalLink, Sparkles, CheckCircle2, Play, Leaf } from "lucide-react";
+import { Heart, Clock, Diamond, Star, Palette, Coins, CheckCircle, PartyPopper, UtensilsCrossed, Camera, Flower2, Music, RefreshCw, ArrowRight, Users, Handshake } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import heroImage from "@/assets/hero-wedding.jpg";
 import venueImage from "@/assets/venue-exterior.jpg";
-import badgeCertifie from "@/assets/badge-certifie.png";
+import chefImage from "@/assets/chef-sebastien.jpg";
+import photographeImage from "@/assets/photographe-alexandre.jpg";
+import decoImage from "@/assets/deco-boheme.jpg";
+import djImage from "@/assets/dj-clara.jpg";
 
 // Hook for intersection observer animations
 const useInView = (threshold = 0.1) => {
@@ -32,29 +35,6 @@ const useInView = (threshold = 0.1) => {
   return { ref, isInView };
 };
 
-// Animated counter component
-const AnimatedCounter = ({ end, duration = 2000, suffix = "" }: { end: number; duration?: number; suffix?: string }) => {
-  const [count, setCount] = useState(0);
-  const { ref, isInView } = useInView();
-
-  useEffect(() => {
-    if (!isInView) return;
-    
-    let startTime: number;
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      setCount(Math.floor(progress * end));
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
-    requestAnimationFrame(animate);
-  }, [isInView, end, duration]);
-
-  return <span ref={ref}>{count}{suffix}</span>;
-};
-
 const Home = () => {
   const founderQuote = {
     text: "J'ai créé Le Beau Mariage avec une conviction : rendre le mariage de rêve accessible à tous, sans le stress et sans les compromis. C'est cette promesse que nous tenons à chaque cérémonie.",
@@ -71,122 +51,69 @@ const Home = () => {
         <span className="sm:hidden"> Découvrez notre concept.</span>
       </div>
 
-      {/* Hero Section */}
+      {/* Hero Section - ACTION 1 */}
       <section
-        className="relative h-screen flex items-center justify-center text-center"
+        className="relative min-h-screen flex items-center justify-center text-center py-20"
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%), url(${heroImage})`,
+          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%), url(${heroImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         <div className="container mx-auto px-4 z-10">
-          <h1 className="text-5xl md:text-7xl font-bold text-card mb-6 drop-shadow-lg">
-            Le Beau Mariage
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-card mb-6 drop-shadow-lg leading-tight">
+            Votre Mariage de Rêve.<br />
+            <span className="text-primary">Organisé en 10 Minutes.</span><br />
+            Prix Connu Immédiatement.
           </h1>
-          <h2 className="text-2xl md:text-4xl text-card mb-8 drop-shadow-lg">
-            Votre Mariage d'Exception. Sans Compromis.
-          </h2>
-          <p className="text-lg md:text-xl text-card mb-10 max-w-2xl mx-auto drop-shadow-lg">
-            Oubliez le stress et les budgets à rallonge. Vivez une journée parfaite, orchestrée par nos soins, dans un cadre exclusif. Configurez le mariage qui vous ressemble.
+          <p className="text-xl md:text-2xl text-card/90 mb-10 max-w-3xl mx-auto drop-shadow-lg">
+            Qualité premium, transparence totale, sans stress. C'est ça, Le Beau Mariage.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/serie-ete-2027">
-              <Button size="xl" variant="hero" className="font-semibold">
-                Découvrir notre série Octobre 2027
-              </Button>
-            </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link to="/configurateur">
-              <Button size="xl" variant="elegant" className="font-semibold">
-                Créer votre mariage
+              <Button size="xl" variant="hero" className="font-semibold text-lg px-8">
+                Créer Mon Mariage en 10 Min
+              </Button>
+            </Link>
+            <Link to="/serie-ete-2027">
+              <Button size="xl" variant="elegant" className="font-semibold text-lg px-8">
+                Voir la Série Actuelle
               </Button>
             </Link>
           </div>
-        </div>
-      </section>
 
-      {/* How It Works Section - Revolution */}
-      <PillarsSection />
-
-      {/* Stats Section */}
-      <section className="py-12 md:py-16 bg-foreground text-card">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
-            <div className="space-y-1 md:space-y-2">
-              <div className="text-3xl md:text-5xl font-bold text-primary">
-                20
-              </div>
-              <p className="text-xs md:text-sm text-card/70">Objectif 2027: Mariages d'Exception</p>
+          {/* 3 Promises - Sub-section */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="bg-card/10 backdrop-blur-md rounded-2xl p-6 border border-card/20">
+              <div className="text-4xl mb-4">⏱️</div>
+              <h3 className="text-xl font-bold text-card mb-2">Organisé en 10 minutes</h3>
+              <p className="text-card/80 text-sm">Notre configurateur intelligent vous guide pas à pas. Fini les mois de préparation.</p>
             </div>
-            <div className="space-y-1 md:space-y-2">
-              <div className="text-3xl md:text-5xl font-bold text-secondary">
-                100%
-              </div>
-              <p className="text-xs md:text-sm text-card/70">Notre Engagement: Satisfaction Garantie</p>
+            <div className="bg-card/10 backdrop-blur-md rounded-2xl p-6 border border-card/20">
+              <div className="text-4xl mb-4">💎</div>
+              <h3 className="text-xl font-bold text-card mb-2">Prix connu immédiatement</h3>
+              <p className="text-card/80 text-sm">Le prix s'affiche en temps réel. Pas de devis à attendre, pas de frais cachés.</p>
             </div>
-            <div className="space-y-1 md:space-y-2">
-              <div className="text-3xl md:text-5xl font-bold text-primary flex items-center justify-center gap-2">
-                <Award className="h-8 w-8 md:h-10 md:w-10" />
-              </div>
-              <p className="text-xs md:text-sm text-card/70">Un Réseau de Partenaires d'Excellence</p>
-            </div>
-            <div className="space-y-1 md:space-y-2">
-              <div className="text-3xl md:text-5xl font-bold text-secondary">
-                12 990€
-              </div>
-              <p className="text-xs md:text-sm text-card/70">À partir de</p>
+            <div className="bg-card/10 backdrop-blur-md rounded-2xl p-6 border border-card/20">
+              <div className="text-4xl mb-4">⭐</div>
+              <h3 className="text-xl font-bold text-card mb-2">Prestataires d'exception</h3>
+              <p className="text-card/80 text-sm">Nous avons déjà sélectionné et validé les meilleurs talents pour votre grand jour.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Garantie Section - Serenity */}
+      {/* How It Works Section - ACTION 2 */}
+      <TimelineSection />
+
+      {/* Garantie Section - ACTION 4 */}
       <SerenitySection />
 
-      {/* Prestataires Certifiés Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-              L'Excellence n'est pas une option, c'est notre standard.
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-              Chacun de nos prestataires est rigoureusement sélectionné, testé et certifié selon notre charte d'excellence. Découvrez comment nous garantissons la perfection pour votre grand jour.
-            </p>
-          </div>
+      {/* Business Model Section - ACTION 5 */}
+      <BusinessModelSection />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            {/* Colonne Gauche - Visuel */}
-            <div className="flex justify-center">
-              <img 
-                src={badgeCertifie} 
-                alt="Badge Prestataire Certifié Le Beau Mariage 2027" 
-                className="w-80 h-80 object-contain drop-shadow-2xl"
-              />
-            </div>
-
-            {/* Colonne Droite - Texte */}
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                  <Award className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-3xl md:text-4xl font-bold text-foreground">
-                  Notre Label d'Excellence : Votre Garantie Qualité.
-                </h3>
-              </div>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Nous avons créé un référentiel unique en France pour garantir le professionnalisme, la fiabilité et la qualité de chaque intervenant. Du traiteur au DJ, en passant par le photographe, tous s'engagent à respecter plus de 50 points de contrôle pour vous offrir une expérience inoubliable.
-              </p>
-              <Link to="/certification">
-                <Button size="lg" variant="hero" className="font-semibold">
-                  Découvrir notre processus de certification
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Prestataires d'Exception Section - ACTION 3 */}
+      <PartnersSection />
 
       {/* Current Series Section */}
       <section className="py-20 bg-card">
@@ -281,183 +208,207 @@ const Home = () => {
   );
 };
 
-// Pillars Section Component
-const PillarsSection = () => {
+// Timeline Section Component - ACTION 2
+const TimelineSection = () => {
   const { ref, isInView } = useInView(0.1);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const pillars = [
+  const steps = [
     {
-      icon: MapPin,
-      title: "Un Lieu d'Exception",
-      description: "Nous sélectionnons pour vous un domaine de charme, privatisé pour votre journée.",
-      color: "primary",
-      gradient: "from-primary/20 to-primary/5",
-      number: "01"
+      icon: Palette,
+      title: "1. Configurez",
+      time: "2 min",
+      description: "Personnalisez votre journée en choisissant votre ambiance, votre lieu et vos options.",
+      emoji: "🎨"
     },
     {
-      icon: Heart,
-      title: "Un Prix Jamais Vu",
-      description: "Votre Mariage d'Exception à partir de 12 990 €. Qualité premium, prix imbattable.",
-      color: "secondary",
-      gradient: "from-secondary/20 to-secondary/5",
-      number: "02"
+      icon: Coins,
+      title: "2. Découvrez",
+      time: "Instantané",
+      description: "Votre prix final, clair et net, s'affiche à l'écran. Maîtrisez votre budget à 100%.",
+      emoji: "💰"
     },
     {
-      icon: Globe,
-      title: "Votre Wedding Site",
-      description: "Un site web personnalisé pour votre mariage (valeur 600€), inclus dans l'offre.",
-      color: "primary",
-      gradient: "from-primary/20 to-primary/5",
-      number: "03",
-      link: "https://beau-mariage-template.lovable.app/",
-      hasGallery: true
+      icon: CheckCircle,
+      title: "3. Réservez",
+      time: "1 min",
+      description: "Validez votre configuration en un clic et bloquez votre date en toute sécurité.",
+      emoji: "✅"
     },
     {
-      icon: Sparkles,
-      title: "Mariage sur Mesure",
-      description: "Personnalisez votre journée avec notre marketplace d'options premium.",
-      color: "secondary",
-      gradient: "from-secondary/20 to-secondary/5",
-      number: "04"
-    },
-    {
-      icon: Leaf,
-      title: "Un Mariage Responsable",
-      description: "Décoration réutilisable et partenaires locaux : réduisez votre empreinte carbone sans sacrifier l'élégance.",
-      color: "primary",
-      gradient: "from-primary/20 to-primary/5",
-      number: "05",
-      badge: "Éco"
+      icon: PartyPopper,
+      title: "4. Célébrez",
+      time: "Le Jour J",
+      description: "Profitez de chaque instant. Notre équipe s'occupe de tout orchestrer pour vous.",
+      emoji: "🎉"
     }
   ];
 
   return (
     <section className="py-16 md:py-24 bg-background overflow-hidden" ref={ref}>
       <div className="container mx-auto px-4">
-        {/* Header with animated badge */}
+        {/* Header */}
         <div className={`text-center mb-12 md:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-            <Sparkles className="h-4 w-4" />
-            <span>La Méthode Le Beau Mariage</span>
-          </div>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            La Révolution du Mariage
-            <span className="block text-primary">en 5 Piliers</span>
+            Incroyablement simple.
+            <span className="block text-primary">Révolutionnairement rapide.</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Une approche unique qui réinvente l'organisation de votre jour J
+          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+            Oubliez les tableurs et les centaines d'e-mails. Voici comment nous organisons votre mariage en 4 étapes claires.
           </p>
         </div>
 
-        {/* Mobile: Stacked cards with swipe effect */}
-        <div className="md:hidden space-y-4">
-          {pillars.map((pillar, index) => {
-            const Icon = pillar.icon;
+        {/* Timeline - Desktop */}
+        <div className="hidden md:block relative max-w-6xl mx-auto">
+          {/* Progress line */}
+          <div className="absolute top-24 left-0 right-0 h-1 bg-muted">
+            <div 
+              className={`h-full bg-gradient-to-r from-primary to-secondary transition-all duration-2000 ease-out ${isInView ? 'w-full' : 'w-0'}`}
+            />
+          </div>
+
+          <div className="grid grid-cols-4 gap-8">
+            {steps.map((step, index) => {
+              const Icon = step.icon;
+              return (
+                <div
+                  key={index}
+                  className={`relative text-center transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                  style={{ transitionDelay: `${index * 200}ms` }}
+                >
+                  {/* Circle with emoji */}
+                  <div className="relative z-10 mb-6">
+                    <div className="w-20 h-20 mx-auto rounded-full bg-card border-4 border-primary shadow-lg flex items-center justify-center text-4xl">
+                      {step.emoji}
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="bg-card rounded-2xl p-6 shadow-md border border-border/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-3">
+                      {step.time}
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-2">{step.title}</h3>
+                    <p className="text-muted-foreground text-sm">{step.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Timeline - Mobile */}
+        <div className="md:hidden space-y-6">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
             return (
               <div
                 key={index}
-                className={`relative transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'}`}
+                className={`relative flex gap-4 transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
                 style={{ transitionDelay: `${index * 150}ms` }}
-                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
               >
-                <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${pillar.gradient} border border-border/50 backdrop-blur-sm`}>
-                  {/* Number badge */}
-                  <div className="absolute top-4 right-4 text-6xl font-bold text-foreground/5">
-                    {pillar.number}
+                {/* Timeline line */}
+                <div className="flex flex-col items-center">
+                  <div className="w-14 h-14 rounded-full bg-card border-4 border-primary shadow-lg flex items-center justify-center text-2xl shrink-0">
+                    {step.emoji}
                   </div>
-                  
-                  <div className="p-6 relative z-10">
-                    <div className="flex items-start gap-4">
-                      <div className={`w-14 h-14 rounded-2xl bg-${pillar.color}/20 flex items-center justify-center shrink-0 shadow-lg`}>
-                        <Icon className={`h-7 w-7 text-${pillar.color}`} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-2">
-                          <h3 className="text-xl font-bold text-foreground">{pillar.title}</h3>
-                          {pillar.badge && (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-xs font-medium">
-                              🌿 {pillar.badge}
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-muted-foreground text-sm leading-relaxed">{pillar.description}</p>
-                        {pillar.link && (
-                          <a 
-                            href={pillar.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-primary text-sm font-medium mt-3 hover:gap-3 transition-all"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            Voir un exemple <ExternalLink className="h-3.5 w-3.5" />
-                          </a>
-                        )}
-                      </div>
+                  {index < steps.length - 1 && (
+                    <div className="w-1 flex-1 bg-gradient-to-b from-primary to-secondary my-2" />
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 pb-6">
+                  <div className="bg-card rounded-xl p-4 shadow-md border border-border/50">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                        {step.time}
+                      </span>
                     </div>
+                    <h3 className="text-lg font-bold text-foreground mb-1">{step.title}</h3>
+                    <p className="text-muted-foreground text-sm">{step.description}</p>
                   </div>
-                  
-                  {/* Animated glow effect */}
-                  <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-card/10 to-transparent -translate-x-full ${activeIndex === index ? 'animate-[shimmer_2s_infinite]' : ''}`} />
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Desktop: Interactive grid with hover effects */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-          {pillars.map((pillar, index) => {
-            const Icon = pillar.icon;
+        {/* CTA */}
+        <div className={`text-center mt-12 md:mt-16 transition-all duration-1000 delay-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <Link to="/configurateur">
+            <Button size="xl" variant="hero" className="group">
+              <span>Commencer la configuration</span>
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Serenity Section Component - ACTION 4
+const SerenitySection = () => {
+  const { ref, isInView } = useInView(0.1);
+
+  const guarantees = [
+    {
+      icon: Diamond,
+      title: "Garantie Zéro Coût Caché",
+      description: "Le prix affiché est le prix payé. Point final. Fini les mauvaises surprises et les lignes en petits caractères. Votre devis est 100% transparent et tout est inclus.",
+      emoji: "💎",
+      color: "primary"
+    },
+    {
+      icon: Star,
+      title: "Garantie Qualité Inébranlable",
+      description: "La perfection, ou rien. Si un de nos partenaires ne pouvait assurer sa prestation, nous le remplaçons par un talent de qualité égale ou supérieure, sans aucun impact pour vous.",
+      emoji: "⭐",
+      color: "secondary"
+    },
+    {
+      icon: RefreshCw,
+      title: "Garantie Flexibilité Absolue",
+      description: "La vie est pleine d'imprévus. Si un événement majeur vous oblige à changer vos plans, vous pouvez reporter votre mariage sans frais jusqu'à 6 mois avant la date.",
+      emoji: "🔄",
+      color: "primary"
+    }
+  ];
+
+  return (
+    <section className="py-16 md:py-24 relative overflow-hidden" ref={ref}>
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Header */}
+        <div className={`text-center mb-12 md:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+            Se marier n'a jamais été
+            <span className="block text-secondary">aussi serein.</span>
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+            Nous avons créé trois garanties uniques, incluses dans chaque forfait, pour que vous puissiez vous concentrer sur l'essentiel : votre bonheur.
+          </p>
+        </div>
+
+        {/* Guarantee Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {guarantees.map((guarantee, index) => {
+            const Icon = guarantee.icon;
+            
             return (
               <div
                 key={index}
-                className={`group relative transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-                onMouseEnter={() => setActiveIndex(index)}
-                onMouseLeave={() => setActiveIndex(null)}
+                className={`group transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <div className={`relative h-full overflow-hidden rounded-3xl bg-card border border-border/50 p-8 transition-all duration-500 group-hover:shadow-[0_20px_60px_-15px_hsl(14_71%_67%/0.3)] group-hover:-translate-y-2 group-hover:border-primary/30`}>
-                  {/* Floating number */}
-                  <div className="absolute -top-4 -right-4 text-[120px] font-bold text-foreground/[0.03] group-hover:text-primary/10 transition-colors duration-500 leading-none">
-                    {pillar.number}
-                  </div>
+                <div className="relative h-full overflow-hidden rounded-3xl bg-card border border-border/50 p-8 transition-all duration-500 hover:shadow-[0_30px_60px_-15px_hsl(14_71%_67%/0.25)] hover:-translate-y-3 hover:border-primary/20">
+                  {/* Emoji */}
+                  <div className="text-5xl mb-6">{guarantee.emoji}</div>
                   
-                  {/* Icon with glow */}
-                  <div className="relative mb-6">
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${pillar.gradient} flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
-                      <Icon className={`h-8 w-8 text-${pillar.color}`} />
-                    </div>
-                    <div className={`absolute inset-0 rounded-2xl bg-${pillar.color}/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                  </div>
-                  
-                  <div className="flex items-center gap-2 mb-3">
-                    <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                      {pillar.title}
-                    </h3>
-                    {pillar.badge && (
-                      <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs font-medium">
-                        🌿 {pillar.badge}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed text-sm">
-                    {pillar.description}
-                  </p>
-                  
-                  {pillar.link && (
-                    <a 
-                      href={pillar.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-primary font-medium mt-4 transition-all duration-300 hover:gap-3 hover:text-primary/80"
-                    >
-                      Voir un exemple <ExternalLink className="h-4 w-4" />
-                    </a>
-                  )}
-                  
-                  {/* Bottom accent line */}
-                  <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-${pillar.color} to-${pillar.color}/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
+                  <h3 className="text-2xl font-bold text-foreground mb-4">{guarantee.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{guarantee.description}</p>
                 </div>
               </div>
             );
@@ -468,103 +419,153 @@ const PillarsSection = () => {
   );
 };
 
-// Serenity Section Component
-const SerenitySection = () => {
+// Business Model Section - ACTION 5
+const BusinessModelSection = () => {
   const { ref, isInView } = useInView(0.1);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  const guarantees = [
+  const points = [
     {
-      icon: Calendar,
-      title: "Garantie Anti-Imprévu",
-      description: "Un imprévu vous oblige à annuler ou reporter ? Nous vous remboursons ou reportons sans frais.",
-      features: ["Report gratuit", "Remboursement flexible", "Conditions les plus souples"],
-      color: "primary"
+      icon: Users,
+      title: 'Le Principe des "Séries"',
+      description: 'Nous n\'organisons pas des mariages à l\'unité, mais des "séries" de mariages consécutifs dans un même lieu, avec la même équipe de partenaires. Cette optimisation profite à tout le monde.'
     },
     {
-      icon: Shield,
-      title: "Garantie Qualité Certifiée",
-      description: "Un prestataire majeur est défaillant ? Nous vous dédommageons à la hauteur du préjudice.",
-      features: ["Prestataires audités", "Dédommagement garanti", "Satisfaction obligatoire"],
-      color: "secondary"
+      icon: Coins,
+      title: "Des Coûts Optimisés pour Tous",
+      description: "Pour nos prestataires, cela signifie moins de frais de prospection et de logistique. Ces économies, nous vous les répercutons directement sur le prix final."
     },
     {
-      icon: Tag,
-      title: "Garantie Zéro Coût Caché",
-      description: "Le prix que vous signez est le prix que vous payez. Pas de surprise, pas d'astérisque.",
-      features: ["Prix tout compris", "Transparence totale", "Engagement écrit"],
-      color: "primary"
+      icon: Handshake,
+      title: "Un Partenariat Gagnant-Gagnant",
+      description: "En garantissant un volume d'affaires important à nos partenaires, nous négocions des tarifs préférentiels sans jamais sacrifier la qualité. C'est ainsi que nous rendons le mariage de luxe enfin accessible."
     }
   ];
 
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden" ref={ref}>
-      {/* Background with animated gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-      </div>
-      
-      <div className="container mx-auto px-4 relative z-10">
+    <section className="py-16 md:py-24 bg-foreground text-card" ref={ref}>
+      <div className="container mx-auto px-4">
         {/* Header */}
-        <div className={`text-center mb-12 md:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-6">
-            <Shield className="h-4 w-4" />
-            <span>Triple Garantie Sérénité</span>
-          </div>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            Se marier n'a jamais été
-            <span className="block text-secondary">aussi serein.</span>
+        <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
+            30% moins cher. 100% qualité.
+            <span className="block text-primary">Voici notre secret.</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Notre engagement unique en France, inclus dans tous nos forfaits
+          <p className="text-card/70 text-lg max-w-3xl mx-auto">
+            Notre innovation ne réside pas seulement dans la technologie, mais dans notre modèle économique unique en France.
           </p>
         </div>
 
-        {/* Mobile: Expandable cards */}
-        <div className="md:hidden space-y-4">
-          {guarantees.map((guarantee, index) => {
-            const Icon = guarantee.icon;
-            const isExpanded = hoveredCard === index;
+        {/* Points */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {points.map((point, index) => {
+            const Icon = point.icon;
             
             return (
               <div
                 key={index}
-                className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
                 style={{ transitionDelay: `${index * 150}ms` }}
-                onClick={() => setHoveredCard(isExpanded ? null : index)}
               >
-                <div className={`relative overflow-hidden rounded-2xl bg-card border transition-all duration-500 ${isExpanded ? `border-${guarantee.color}/50 shadow-lg` : 'border-border/50'}`}>
+                <div className="relative h-full bg-card/5 backdrop-blur-sm rounded-2xl p-8 border border-card/10 hover:border-primary/30 transition-all duration-300">
+                  <div className="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center mb-6">
+                    <Icon className="h-7 w-7 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-card mb-4">{point.title}</h3>
+                  <p className="text-card/70 leading-relaxed">{point.description}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Partners Section - ACTION 3
+const PartnersSection = () => {
+  const { ref, isInView } = useInView(0.1);
+
+  const categories = [
+    {
+      image: chefImage,
+      title: "L'Émotion dans l'Assiette",
+      category: "Traiteurs Gastronomiques",
+      description: "Nos chefs racontent une histoire avec des produits frais et locaux. Une expérience culinaire qui marque les esprits.",
+      icon: UtensilsCrossed
+    },
+    {
+      image: photographeImage,
+      title: "Les Chasseurs de Souvenirs",
+      category: "Photographes & Vidéastes",
+      description: "Plus que des techniciens, ce sont des artistes qui savent capturer l'étincelle, le rire volé et la larme de joie.",
+      icon: Camera
+    },
+    {
+      image: decoImage,
+      title: "Les Architectes de l'Ambiance",
+      category: "Décorateurs & Fleuristes",
+      description: "Ils ont le talent de transformer un lieu en un décor de rêve, créant une atmosphère unique qui vous ressemble.",
+      icon: Flower2
+    },
+    {
+      image: djImage,
+      title: "Les Maîtres du Rythme",
+      category: "DJ & Musiciens",
+      description: "Du vin d'honneur à la piste de danse, nos artistes créent la bande-son parfaite pour une ambiance inoubliable.",
+      icon: Music
+    }
+  ];
+
+  return (
+    <section className="py-16 md:py-24 bg-background" ref={ref}>
+      <div className="container mx-auto px-4">
+        {/* Header */}
+        <div className={`text-center mb-6 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+            La Qualité n'est pas un Label,
+            <span className="block text-primary">c'est un Partenariat.</span>
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-3xl mx-auto mb-8">
+            Nous ne recrutons pas de simples fournisseurs. Nous nous associons avec des artisans passionnés qui partagent notre obsession pour l'excellence.
+          </p>
+          <p className="text-foreground max-w-4xl mx-auto leading-relaxed mb-12">
+            Oubliez les processus de certification froids. Chez Le Beau Mariage, la confiance se bâtit sur le terrain. Chaque traiteur, photographe ou décorateur est un partenaire que nous avons personnellement rencontré, dont nous avons testé le travail et avec qui nous avons tissé une relation durable. Ils sont le cœur de notre promesse : un mariage parfait, sans compromis.
+          </p>
+        </div>
+
+        {/* Categories Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {categories.map((cat, index) => {
+            const Icon = cat.icon;
+            
+            return (
+              <div
+                key={index}
+                className={`group transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <div className="relative h-full overflow-hidden rounded-2xl bg-card border border-border/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                  {/* Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={cat.image} 
+                      alt={cat.category}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className="flex items-center gap-2 text-card">
+                        <Icon className="h-4 w-4" />
+                        <span className="text-xs font-medium uppercase tracking-wider">{cat.category}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
                   <div className="p-6">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className={`w-12 h-12 rounded-xl bg-${guarantee.color}/10 flex items-center justify-center`}>
-                        <Icon className={`h-6 w-6 text-${guarantee.color}`} />
-                      </div>
-                      <h3 className="text-lg font-bold text-foreground flex-1">{guarantee.title}</h3>
-                      <div className={`w-8 h-8 rounded-full bg-muted flex items-center justify-center transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
-                        <svg className="w-4 h-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    </div>
-                    
-                    <div className={`overflow-hidden transition-all duration-500 ${isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                      <p className="text-muted-foreground text-sm mb-4">{guarantee.description}</p>
-                      <ul className="space-y-2 mb-4">
-                        {guarantee.features.map((feature, i) => (
-                          <li key={i} className="flex items-center gap-2 text-sm">
-                            <CheckCircle2 className={`h-4 w-4 text-${guarantee.color}`} />
-                            <span className="text-foreground">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <Link to="/garantie">
-                        <Button variant="outline" size="sm" className="w-full">
-                          En savoir plus
-                        </Button>
-                      </Link>
-                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-3">{cat.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{cat.description}</p>
                   </div>
                 </div>
               </div>
@@ -572,68 +573,19 @@ const SerenitySection = () => {
           })}
         </div>
 
-        {/* Desktop: 3D hover cards */}
-        <div className="hidden md:grid md:grid-cols-3 gap-8">
-          {guarantees.map((guarantee, index) => {
-            const Icon = guarantee.icon;
-            
-            return (
-              <div
-                key={index}
-                className={`group perspective-1000 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
-                style={{ transitionDelay: `${index * 150}ms` }}
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
-                <div className="relative h-full overflow-hidden rounded-3xl bg-card border border-border/50 p-8 transition-all duration-500 group-hover:shadow-[0_30px_60px_-15px_hsl(14_71%_67%/0.25)] group-hover:-translate-y-3 group-hover:border-primary/20">
-                  {/* Glowing orb background */}
-                  <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full bg-${guarantee.color}/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
-                  
-                  {/* Icon */}
-                  <div className="relative mb-8">
-                    <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br from-${guarantee.color}/20 to-${guarantee.color}/5 flex items-center justify-center transition-all duration-500 group-hover:scale-110`}>
-                      <Icon className={`h-10 w-10 text-${guarantee.color}`} />
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-foreground mb-4">{guarantee.title}</h3>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">{guarantee.description}</p>
-                  
-                  {/* Features list */}
-                  <ul className="space-y-3 mb-8">
-                    {guarantee.features.map((feature, i) => (
-                      <li 
-                        key={i} 
-                        className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500"
-                        style={{ transitionDelay: `${i * 100}ms` }}
-                      >
-                        <div className={`w-5 h-5 rounded-full bg-${guarantee.color}/10 flex items-center justify-center`}>
-                          <CheckCircle2 className={`h-3 w-3 text-${guarantee.color}`} />
-                        </div>
-                        <span className="text-sm text-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <Link to="/garantie" className="block">
-                    <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300">
-                      En savoir plus
-                    </Button>
-                  </Link>
-                </div>
+        {/* Quote */}
+        <div className={`max-w-4xl mx-auto transition-all duration-1000 delay-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <Card className="border-none shadow-lg bg-gradient-to-br from-primary/5 to-secondary/5">
+            <CardContent className="p-8 md:p-10">
+              <blockquote className="text-lg md:text-xl text-center italic text-foreground leading-relaxed mb-6">
+                "Collaborer avec Le Beau Mariage, c'est plus qu'un contrat. C'est la garantie de pouvoir se concentrer sur notre art pour des couples qui nous font confiance."
+              </blockquote>
+              <div className="text-center">
+                <p className="font-bold text-primary">Alexandre</p>
+                <p className="text-muted-foreground text-sm">Chef Traiteur Partenaire</p>
               </div>
-            );
-          })}
-        </div>
-        
-        {/* CTA */}
-        <div className={`text-center mt-12 md:mt-16 transition-all duration-1000 delay-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <Link to="/configurateur">
-            <Button size="xl" variant="hero" className="group">
-              <span>Commencer votre projet</span>
-              <Play className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </Link>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
