@@ -391,8 +391,8 @@ const SerenitySection = () => {
         {/* Header */}
         <div className={`text-center mb-12 md:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            Se marier n'a jamais été
-            <span className="block text-secondary">aussi serein.</span>
+            Se marier sans stress,
+            <span className="block text-secondary">c'est maintenant possible.</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
             Nous avons créé trois garanties uniques, incluses dans chaque forfait, pour que vous puissiez vous concentrer sur l'essentiel : votre bonheur.
