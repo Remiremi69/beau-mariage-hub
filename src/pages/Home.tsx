@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, Clock, Diamond, Star, Palette, Coins, CheckCircle, PartyPopper, UtensilsCrossed, Camera, Flower2, Music, RefreshCw, ArrowRight, Users, Handshake } from "lucide-react";
+import { Heart, Clock, Diamond, Star, Palette, Coins, CheckCircle, PartyPopper, UtensilsCrossed, Camera, Flower2, Music, RefreshCw, ArrowRight, Users, Handshake, Check, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import SEO from "@/components/SEO";
@@ -115,6 +115,9 @@ const Home = () => {
 
       {/* Garantie Section - ACTION 4 */}
       <SerenitySection />
+
+      {/* Personalized Wedding Website Section */}
+      <WeddingSiteSection />
 
       {/* Business Model Section - ACTION 5 */}
       <BusinessModelSection />
@@ -420,6 +423,106 @@ const SerenitySection = () => {
               </div>
             );
           })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Wedding Site Section - Personalized Wedding Website
+const WeddingSiteSection = () => {
+  const { ref, isInView } = useInView(0.1);
+
+  const benefits = [
+    {
+      title: "Partagez votre histoire",
+      description: "Racontez votre rencontre, vos moments forts, et présentez vos témoins."
+    },
+    {
+      title: "Toutes les infos au même endroit",
+      description: "Horaires, adresses, plans d'accès, suggestions d'hôtels... Simplifiez la vie de vos invités."
+    },
+    {
+      title: "Gérez les confirmations de présence (RSVP)",
+      description: "Vos invités confirment leur venue en un clic, directement sur le site."
+    },
+    {
+      title: "Votre liste de mariage intégrée",
+      description: "Connectez facilement votre liste de mariage pour un accès simplifié."
+    }
+  ];
+
+  return (
+    <section className="py-16 md:py-24 bg-card" ref={ref}>
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
+          {/* Left Column - Image */}
+          <div 
+            className={`relative transition-all duration-1000 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
+          >
+            <a 
+              href="https://beau-mariage-template.lovable.app" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group relative block overflow-hidden rounded-2xl shadow-[0_20px_60px_-15px_hsl(14_71%_67%/0.3)] transition-all duration-500 hover:shadow-[0_30px_80px_-15px_hsl(14_71%_67%/0.4)] hover:-translate-y-2"
+            >
+              <img
+                src="https://i.imgur.com/ZV8WHQC.png"
+                alt="Exemple de site de mariage personnalisé - Le Beau Mariage"
+                className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
+              />
+              {/* Overlay with CTA */}
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-8">
+                <span className="inline-flex items-center gap-2 bg-card text-foreground px-6 py-3 rounded-full font-semibold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <ExternalLink className="h-4 w-4" />
+                  Voir un exemple
+                </span>
+              </div>
+              {/* Always visible badge */}
+              <div className="absolute bottom-4 right-4 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-2 group-hover:opacity-0 transition-opacity duration-300">
+                <ExternalLink className="h-4 w-4" />
+                Voir un exemple
+              </div>
+            </a>
+          </div>
+
+          {/* Right Column - Text */}
+          <div 
+            className={`transition-all duration-1000 delay-200 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+              Inclus : Votre Site de Mariage
+              <span className="block text-primary">Personnalisé</span>
+            </h2>
+            
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              Parce que votre histoire est unique, nous vous offrons un site web élégant et personnalisé pour partager tous les détails de votre grand jour avec vos invités. C'est votre espace, inclus dans votre forfait.
+            </p>
+
+            {/* Benefits List */}
+            <ul className="space-y-4 mb-8">
+              {benefits.map((benefit, index) => (
+                <li 
+                  key={index}
+                  className={`flex items-start gap-3 transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}
+                  style={{ transitionDelay: `${300 + index * 100}ms` }}
+                >
+                  <div className="shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                    <Check className="h-4 w-4 text-primary" />
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground">{benefit.title} :</span>
+                    <span className="text-muted-foreground"> {benefit.description}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            {/* Conclusion */}
+            <p className="text-lg font-semibold text-primary border-l-4 border-primary pl-4 bg-primary/5 py-3 pr-4 rounded-r-lg">
+              Le petit plus qui fait toute la différence, offert par Le Beau Mariage.
+            </p>
+          </div>
         </div>
       </div>
     </section>
