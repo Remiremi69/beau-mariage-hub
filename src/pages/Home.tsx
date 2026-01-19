@@ -467,7 +467,7 @@ const WeddingSiteSection = () => {
               className="group relative block overflow-hidden rounded-2xl shadow-[0_20px_60px_-15px_hsl(14_71%_67%/0.3)] transition-all duration-500 hover:shadow-[0_30px_80px_-15px_hsl(14_71%_67%/0.4)] hover:-translate-y-2"
             >
               <img
-                src="https://i.imgur.com/ZV8WHQC.png"
+                src="https://i.postimg.cc/Bn6MwGJf/exemple-site-mariage-capture.webp"
                 alt="Exemple de site de mariage personnalisé - Le Beau Mariage"
                 className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
               />
