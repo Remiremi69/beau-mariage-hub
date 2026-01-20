@@ -54,8 +54,8 @@ const Home = () => {
       {/* Launch Banner */}
       <div className="bg-primary text-primary-foreground py-3 px-4 text-center text-sm md:text-base">
         <span className="font-medium">🚀 Le Beau Mariage est en phase de lancement !</span>
-        <span className="hidden sm:inline"> — Ce site vous permet de découvrir notre concept avant l'ouverture officielle.</span>
-        <span className="sm:hidden"> Découvrez notre concept.</span>
+        <span className="hidden sm:inline"> — Ce site vous permet de découvrir notre concept. La série de mariage présentée est fictive et sert d'exemple.</span>
+        <span className="sm:hidden"> La série présentée est un exemple.</span>
       </div>
 
       {/* Hero Section - ACTION 1 */}
@@ -131,9 +131,14 @@ const Home = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             En ce moment : La Série "Bohème Chic en Beaujolais"
           </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+          <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
             Plongez dans une ambiance bohème et romantique au cœur des vignes du Beaujolais
           </p>
+          <div className="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 mb-12 max-w-2xl mx-auto">
+            <p className="text-amber-800 text-sm text-center">
+              <span className="font-semibold">📋 Note :</span> Cette série de mariage est fictive et sert d'exemple pour vous permettre de découvrir notre concept. Le projet Le Beau Mariage est actuellement en cours de création.
+            </p>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1">
