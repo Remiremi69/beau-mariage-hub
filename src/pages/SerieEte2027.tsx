@@ -1,420 +1,92 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import venueImage from "@/assets/venue-exterior.jpg";
-import tableImage from "@/assets/table-setup.jpg";
-import ceremonyImage from "@/assets/ceremony-arch.jpg";
-import heroImage from "@/assets/hero-wedding.jpg";
-import { useState } from "react";
 import SEO from "@/components/SEO";
+import { Construction, Heart, ArrowLeft } from "lucide-react";
 
 const SerieEte2027 = () => {
-  const [selectedDate, setSelectedDate] = useState<string | null>(null);
-
-  const dates = [
-    { date: "Vendredi 1er Juillet 2027", status: "reserved", price: "14 490 €" },
-    { date: "Samedi 2 Juillet 2027", status: "reserved", price: "14 990 €" },
-    { date: "Dimanche 3 Juillet 2027", status: "reserved", price: "13 990 €" },
-    { date: "Mercredi 6 Juillet 2027", status: "available", price: "11 990 €" },
-    { date: "Jeudi 7 Juillet 2027", status: "available", price: "12 990 €" },
-    { date: "Vendredi 8 Juillet 2027", status: "option", price: "14 490 €" },
-    { date: "Samedi 9 Juillet 2027", status: "reserved", price: "14 990 €" },
-    { date: "Dimanche 10 Juillet 2027", status: "reserved", price: "13 990 €" },
-    { date: "Mercredi 13 Juillet 2027", status: "option", price: "11 990 €" },
-    { date: "Jeudi 14 Juillet 2027", status: "available", price: "12 990 €" },
-    { date: "Vendredi 15 Juillet 2027", status: "available", price: "14 490 €" },
-    { date: "Samedi 16 Juillet 2027", status: "reserved", price: "14 990 €" },
-    { date: "Dimanche 17 Juillet 2027", status: "option", price: "13 990 €" },
-    { date: "Mercredi 20 Juillet 2027", status: "available", price: "11 990 €" },
-    { date: "Jeudi 21 Juillet 2027", status: "available", price: "12 990 €" },
-    { date: "Vendredi 22 Juillet 2027", status: "reserved", price: "14 490 €" },
-    { date: "Samedi 23 Juillet 2027", status: "reserved", price: "14 990 €" },
-    { date: "Dimanche 24 Juillet 2027", status: "available", price: "13 990 €" },
-    { date: "Mercredi 27 Juillet 2027", status: "available", price: "11 990 €" },
-    { date: "Jeudi 28 Juillet 2027", status: "available", price: "12 990 €" },
-  ];
-
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case "available":
-        return (
-          <Badge className="bg-secondary text-secondary-foreground">Disponible</Badge>
-        );
-      case "reserved":
-        return (
-          <Badge variant="destructive">Réservé</Badge>
-        );
-      case "option":
-        return (
-          <Badge className="bg-sand text-anthracite">En option</Badge>
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
     <div className="min-h-screen pt-20">
       <SEO 
-        title="Série Été 2027 Bohème Chic en Beaujolais | Le Beau Mariage"
-        description="Découvrez notre série de mariages Bohème Chic au Domaine de la Vigne d'Or. Mariage tout inclus à partir de 12 990€ au cœur du Beaujolais."
+        title="Série en cours de création | Le Beau Mariage"
+        description="Notre prochaine série de mariages est en cours de préparation. Inscrivez-vous pour être informé dès son lancement !"
       />
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-primary/5 to-background py-20">
+      
+      {/* Main Content */}
+      <section className="min-h-[80vh] flex items-center justify-center bg-gradient-to-b from-primary/5 to-background py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Série Octobre 2027
-              <br />
-              <span className="text-primary">"Bohème Chic en Beaujolais"</span>
+          <div className="max-w-2xl mx-auto text-center">
+            {/* Icon */}
+            <div className="mb-8 flex justify-center">
+              <div className="relative">
+                <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center animate-pulse">
+                  <Construction className="w-12 h-12 text-primary" />
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+                  <Heart className="w-4 h-4 text-secondary-foreground" />
+                </div>
+              </div>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Notre Série est en cours de création
+              <span className="block text-primary mt-2">✨</span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Vivez un mariage bohème chic au cœur des vignes, à partir de 12 990 €
-            </p>
-          </div>
-        </div>
-      </section>
 
-      {/* Gallery Section */}
-      <section className="py-16 bg-card">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <img
-              src={heroImage}
-              alt="Cérémonie de mariage en plein air dans les vignes du Beaujolais - Le Beau Mariage"
-              className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
-            />
-            <img
-              src={venueImage}
-              alt="Vue extérieure du Domaine de la Vigne d'Or dans les Pierres Dorées - Le Beau Mariage"
-              className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
-            />
-            <img
-              src={tableImage}
-              alt="Décoration de table bohème chic avec fleurs et bougies - Le Beau Mariage"
-              className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
-            />
-            <img
-              src={ceremonyImage}
-              alt="Arche de cérémonie fleurie style bohème pour mariage - Le Beau Mariage"
-              className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Venue Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center">
-              Le Lieu - Le Domaine de la Vigne d'Or
-            </h2>
-            <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)]">
-              <CardContent className="p-8">
-                <p className="text-lg mb-6 text-muted-foreground">
-                  Niché dans les Pierres Dorées, le Domaine de la Vigne d'Or offre un panorama
-                  exceptionnel sur le Beaujolais. Sa grange rénovée et son parc arboré seront le
-                  théâtre de votre journée de rêve.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary text-xl">✓</span>
-                    <span>Capacité : jusqu'à 120 invités</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary text-xl">✓</span>
-                    <span>Vue panoramique sur les vignes</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary text-xl">✓</span>
-                    <span>Grange rénovée avec climatisation</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary text-xl">✓</span>
-                    <span>Parc arboré de 3 hectares</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Package Section */}
-      <section className="py-16 bg-card">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-4 text-center">
-              Le Forfait Premium à 12 990 €
-            </h2>
-            <p className="text-center text-muted-foreground mb-4">Pour 80 invités</p>
-            <p className="text-center text-lg mb-12">
-              Notre forfait de base est conçu pour vous offrir l'essentiel d'un mariage de rêve. 
-              Personnalisez-le ensuite à votre image grâce à notre marketplace.
+            {/* Description */}
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+              Nous travaillons dur pour vous préparer une série de mariages exceptionnelle ! 
+              Le concept <strong>Le Beau Mariage</strong> est actuellement en développement, 
+              et cette page vous permettra bientôt de découvrir tous les détails de notre première série.
             </p>
 
-            <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)]">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary text-2xl">✅</span>
-                    <div>
-                      <h4 className="font-semibold mb-1">Privatisation du Domaine</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Domaine exclusif pour votre journée
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary text-2xl">✅</span>
-                    <div>
-                      <h4 className="font-semibold mb-1">Cérémonie Laïque</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Décorée dans le parc avec arche bohème
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary text-2xl">✅</span>
-                    <div>
-                      <h4 className="font-semibold mb-1">Cocktail & Dîner</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Menu "Saveurs du Terroir" avec 6 pièces cocktail
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary text-2xl">✅</span>
-                    <div>
-                      <h4 className="font-semibold mb-1">Photographe Pro</h4>
-                      <p className="text-sm text-muted-foreground">8 heures de présence</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary text-2xl">✅</span>
-                    <div>
-                      <h4 className="font-semibold mb-1">DJ & Animation</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Matériel son & lumière inclus
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary text-2xl">✅</span>
-                    <div>
-                      <h4 className="font-semibold mb-1">Décoration "Bohème Chic"</h4>
-                      <p className="text-sm text-muted-foreground">Florale et thématique complète</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary text-2xl">✅</span>
-                    <div>
-                      <h4 className="font-semibold mb-1">Coordination Jour J</h4>
-                      <p className="text-sm text-muted-foreground">Wedding planner dédiée</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary text-2xl">✅</span>
-                    <div>
-                      <h4 className="font-semibold mb-1">Vin & Champagne</h4>
-                      <p className="text-sm text-muted-foreground">Sélection du Beaujolais</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Menu Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center">
-              Le Menu "Saveurs du Terroir"
-            </h2>
-            <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)]">
-              <CardContent className="p-8">
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="font-semibold text-lg mb-2 text-primary">Cocktail (6 pièces)</h4>
-                    <p className="text-muted-foreground">
-                      Mini-burgers, verrines fraîcheur, feuilletés chauds, blinis saumon
-                    </p>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold text-lg mb-2 text-primary">Entrée</h4>
-                    <p className="text-muted-foreground">Velouté de saison aux saveurs locales</p>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold text-lg mb-2 text-primary">Plat</h4>
-                    <p className="text-muted-foreground">
-                      Suprême de volaille fermière et son gratin dauphinois, légumes de saison rôtis
-                    </p>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold text-lg mb-2 text-primary">Fromages</h4>
-                    <p className="text-muted-foreground">Buffet de fromages régionaux</p>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold text-lg mb-2 text-primary">Dessert</h4>
-                    <p className="text-muted-foreground">Pièce montée & buffet de mignardises</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Theme Section */}
-      <section className="py-16 bg-card">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6">Le Thème "Bohème Chic"</h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Une ambiance naturelle et chaleureuse. Pensez matières brutes (bois, lin), touches
-              végétales (eucalyptus, pampas), et lumière tamisée (guirlandes, bougies).
-            </p>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="text-4xl mb-2">🌿</div>
-                <p className="text-sm font-semibold">Eucalyptus</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl mb-2">🌾</div>
-                <p className="text-sm font-semibold">Pampas</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl mb-2">✨</div>
-                <p className="text-sm font-semibold">Guirlandes</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl mb-2">🕯️</div>
-                <p className="text-sm font-semibold">Bougies</p>
-              </div>
+            {/* Info Card */}
+            <div className="bg-card rounded-2xl p-8 shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] mb-8">
+              <h2 className="text-2xl font-semibold mb-4">Ce qui arrive bientôt :</h2>
+              <ul className="text-left space-y-3 text-muted-foreground">
+                <li className="flex items-start gap-3">
+                  <span className="text-primary text-xl">🏛️</span>
+                  <span>Un lieu d'exception soigneusement sélectionné</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary text-xl">🎨</span>
+                  <span>Un thème décoratif unique et élégant</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary text-xl">👨‍🍳</span>
+                  <span>Des prestataires d'exception triés sur le volet</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary text-xl">📅</span>
+                  <span>Des dates exclusives avec des prix transparents</span>
+                </li>
+              </ul>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Engagement Éco-responsable Section */}
-      <section className="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
-                <span className="text-3xl">🌿</span>
-              </div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium">
-                <span>Mariage Responsable</span>
-              </div>
-            </div>
-            <h2 className="text-4xl font-bold mb-6 text-center text-green-800">
-              Notre Engagement Éco-responsable
-            </h2>
-            <Card className="border-none shadow-[0_10px_40px_-10px_hsl(142_71%_45%/0.2)] bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-8">
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Pour notre série "Bohème Chic en Beaujolais", nous nous engageons à travailler avec des traiteurs utilisant des <strong className="text-green-700">produits locaux et de saison</strong>. Notre décoration est <strong className="text-green-700">100% réutilisable</strong> et nos prestataires sont sélectionnés pour leur engagement environnemental.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="text-center p-4 rounded-xl bg-green-50">
-                    <div className="text-3xl mb-2">🥗</div>
-                    <h4 className="font-semibold text-green-800 mb-1">Produits Locaux</h4>
-                    <p className="text-sm text-muted-foreground">Circuit court à moins de 50km</p>
-                  </div>
-                  <div className="text-center p-4 rounded-xl bg-green-50">
-                    <div className="text-3xl mb-2">♻️</div>
-                    <h4 className="font-semibold text-green-800 mb-1">Décoration Durable</h4>
-                    <p className="text-sm text-muted-foreground">100% réutilisable</p>
-                  </div>
-                  <div className="text-center p-4 rounded-xl bg-green-50">
-                    <div className="text-3xl mb-2">🌍</div>
-                    <h4 className="font-semibold text-green-800 mb-1">-80% Empreinte</h4>
-                    <p className="text-sm text-muted-foreground">Carbone réduit</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Dates Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-4 text-center">
-              Choisissez Votre Date et Votre Prix
-            </h2>
-            <div className="flex justify-center mb-4">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm">
-                ⚡ Places limitées : seulement 7 mariages par série
-              </span>
-            </div>
-            <p className="text-center text-muted-foreground mb-12">Dates disponibles - Octobre 2027 - Prix dynamique selon la demande</p>
-
-            <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)]">
-              <CardContent className="p-6">
-                <div className="space-y-3">
-                  {dates.map((item, index) => (
-                    <div
-                      key={index}
-                      className={`flex items-center justify-between p-4 rounded-lg border-2 transition-all ${
-                        selectedDate === item.date
-                          ? "border-primary bg-primary/5"
-                          : "border-border hover:border-primary/50"
-                      } ${item.status === "available" ? "cursor-pointer" : "cursor-not-allowed opacity-75"}`}
-                      onClick={() => item.status === "available" && setSelectedDate(item.date)}
-                    >
-                      <div className="flex-1">
-                        <span className="font-medium">{item.date}</span>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <span className="text-lg font-bold text-primary">{item.price}</span>
-                        {getStatusBadge(item.status)}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <div className="mt-12 text-center">
-              <h3 className="text-3xl font-bold mb-4">
-                {selectedDate ? "Réserver cette date ?" : "Une de ces dates est la vôtre ?"}
-              </h3>
-              <p className="text-muted-foreground mb-6">
-                {selectedDate
-                  ? `Vous avez sélectionné : ${selectedDate}`
-                  : "Contactez-nous pour poser une option ou pour planifier une visite."}
-              </p>
+            {/* CTA */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/">
+                <Button size="lg" variant="outline" className="gap-2">
+                  <ArrowLeft className="w-4 h-4" />
+                  Retour à l'accueil
+                </Button>
+              </Link>
               <Link to="/contact">
-                <Button size="lg" variant="elegant" className="font-semibold">
-                  Je réserve ma date
+                <Button size="lg" variant="default" className="gap-2">
+                  <Heart className="w-4 h-4" />
+                  Être informé du lancement
                 </Button>
               </Link>
             </div>
+
+            {/* Footer note */}
+            <p className="mt-12 text-sm text-muted-foreground">
+              💡 En attendant, explorez notre concept sur la page d'accueil pour comprendre comment 
+              <strong> Le Beau Mariage</strong> révolutionne l'organisation de mariage.
+            </p>
           </div>
         </div>
       </section>
-
     </div>
   );
 };
