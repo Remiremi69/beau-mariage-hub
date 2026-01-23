@@ -125,64 +125,6 @@ const Home = () => {
       {/* Prestataires d'Exception Section - ACTION 3 */}
       <PartnersSection />
 
-      {/* Current Series Section */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-            En ce moment : La Série "Bohème Chic en Beaujolais"
-          </h2>
-          <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Plongez dans une ambiance bohème et romantique au cœur des vignes du Beaujolais
-          </p>
-          <div className="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 mb-12 max-w-2xl mx-auto">
-            <p className="text-amber-800 text-sm text-center">
-              <span className="font-semibold">📋 Note :</span> Cette série de mariage est fictive et sert d'exemple pour vous permettre de découvrir notre concept. Le projet Le Beau Mariage est actuellement en cours de création.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="order-2 lg:order-1">
-              <img
-                src={venueImage}
-                alt="Vue extérieure du Domaine de la Vigne d'Or au cœur du Beaujolais - Le Beau Mariage"
-                className="rounded-lg shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] w-full"
-              />
-            </div>
-
-            <div className="order-1 lg:order-2">
-              <h3 className="text-3xl font-bold mb-6">Le Domaine de la Vigne d'Or</h3>
-              <p className="text-lg mb-8 text-muted-foreground">
-                Niché dans les Pierres Dorées, ce domaine offre un panorama exceptionnel sur le
-                Beaujolais. Sa grange rénovée et son parc arboré seront le théâtre de votre journée
-                de rêve.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Cérémonie laïque en extérieur avec vue sur les vignes</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Décoration "Bohème Chic" complète</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Menu gastronomique avec produits du terroir</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Prestations haut de gamme incluses</span>
-                </li>
-              </ul>
-              <Link to="/serie-ete-2027">
-                <Button size="lg" variant="elegant" className="font-semibold">
-                  Voir les dates disponibles
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Testimonials Section */}
       <section className="py-20 bg-background">
