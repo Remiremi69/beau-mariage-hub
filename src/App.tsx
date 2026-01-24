@@ -16,6 +16,15 @@ import Contact from "./pages/Contact";
 import Garantie from "./pages/Garantie";
 import Certification from "./pages/Certification";
 import NotFound from "./pages/NotFound";
+// Série Octobre 2027 pages
+import SerieOctobre2027Hub from "./pages/serie-octobre-2027/SerieOctobre2027Hub";
+import DomaineDetail from "./pages/serie-octobre-2027/DomaineDetail";
+import Traiteur from "./pages/serie-octobre-2027/prestataires/Traiteur";
+import Photographe from "./pages/serie-octobre-2027/prestataires/Photographe";
+import DJ from "./pages/serie-octobre-2027/prestataires/DJ";
+import Decorateur from "./pages/serie-octobre-2027/prestataires/Decorateur";
+import Fleuriste from "./pages/serie-octobre-2027/prestataires/Fleuriste";
+import Musicien from "./pages/serie-octobre-2027/prestataires/Musicien";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +40,14 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/concept" element={<Concept />} />
             <Route path="/serie-ete-2027" element={<SerieEte2027 />} />
+            <Route path="/serie-octobre-2027" element={<SerieOctobre2027Hub />} />
+            <Route path="/serie-octobre-2027/domaine" element={<DomaineDetail />} />
+            <Route path="/serie-octobre-2027/prestataires/traiteur" element={<Traiteur />} />
+            <Route path="/serie-octobre-2027/prestataires/photographe" element={<Photographe />} />
+            <Route path="/serie-octobre-2027/prestataires/dj" element={<DJ />} />
+            <Route path="/serie-octobre-2027/prestataires/decorateur" element={<Decorateur />} />
+            <Route path="/serie-octobre-2027/prestataires/fleuriste" element={<Fleuriste />} />
+            <Route path="/serie-octobre-2027/prestataires/musicien" element={<Musicien />} />
             <Route path="/configurateur" element={<Configurateur />} />
             <Route path="/temoignages" element={<Temoignages />} />
             <Route path="/faq" element={<FAQ />} />

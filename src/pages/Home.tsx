@@ -82,7 +82,7 @@ const Home = () => {
                 Créer Mon Mariage en 10 Min
               </Button>
             </Link>
-            <Link to="/serie-ete-2027">
+            <Link to="/serie-octobre-2027">
               <Button size="xl" variant="elegant" className="font-semibold text-lg px-8">
                 Voir la Série Actuelle
               </Button>
