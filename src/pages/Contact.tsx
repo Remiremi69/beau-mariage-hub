@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, Instagram, MapPin } from "lucide-react";
+import { Mail, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import SEO from "@/components/SEO";
 
@@ -46,29 +46,11 @@ const Contact = () => {
                       <div>
                         <h4 className="font-semibold mb-1">Email</h4>
                         <a
-                          href="mailto:contact@lebeaumariage.fr"
+                          href="mailto:remi@lebeaumariage.fr"
                           className="text-muted-foreground hover:text-primary transition-colors"
                         >
-                          contact@lebeaumariage.fr
+                          remi@lebeaumariage.fr
                         </a>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Phone className="h-6 w-6 text-secondary" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1">Téléphone</h4>
-                        <a
-                          href="tel:+33612345678"
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                        >
-                          06 12 34 56 78
-                        </a>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          Du lundi au samedi, 10h-19h
-                        </p>
                       </div>
                     </div>
 
@@ -88,22 +70,6 @@ const Contact = () => {
                         </a>
                         <p className="text-sm text-muted-foreground mt-1">
                           Suivez nos dernières réalisations
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <MapPin className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1">Adresse</h4>
-                        <p className="text-muted-foreground">
-                          Domaine de la Vigne d'Or
-                          <br />
-                          Theizé, Beaujolais
-                          <br />
-                          69620 France
                         </p>
                       </div>
                     </div>
