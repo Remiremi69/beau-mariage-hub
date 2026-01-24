@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
-import { MapPin, Users, Heart, Home, Calendar, Star, ArrowRight, Settings, Construction, Image } from "lucide-react";
+import { MapPin, Users, Heart, Calendar, Star, ArrowRight, Settings, Construction, Train, Plane, Grape, Car, Building, Navigation } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 // Hook for intersection observer animations
@@ -32,9 +32,49 @@ const useInView = (threshold = 0.1) => {
 
 const SerieEte2027 = () => {
   const galleryRef = useInView(0.1);
+  const locationRef = useInView(0.1);
   const datesRef = useInView(0.1);
   const whyRef = useInView(0.1);
   const stepsRef = useInView(0.1);
+
+  const distanceCards = [
+    {
+      icon: Train,
+      title: "Gare TGV de Mâcon-Loché",
+      time: "34 minutes en voiture",
+      description: "Idéal pour les invités venant de Paris ou du nord"
+    },
+    {
+      icon: Plane,
+      title: "Aéroport & Ville de Lyon",
+      time: "55 minutes en voiture",
+      description: "Parfait pour les invités internationaux"
+    },
+    {
+      icon: Grape,
+      title: "Au Cœur du Beaujolais",
+      time: "Région viticole emblématique",
+      description: "Une destination en soi pour vos invités"
+    }
+  ];
+
+  const practicalInfo = [
+    {
+      icon: Car,
+      title: "Parking",
+      description: "Parking gratuit sur place pour tous vos invités"
+    },
+    {
+      icon: Building,
+      title: "Hébergement à Proximité",
+      description: "Plusieurs options d'hôtels et gîtes dans les environs"
+    },
+    {
+      icon: Navigation,
+      title: "Accès",
+      description: "Accessible en voiture. Possibilité de navettes depuis les gares pour les invités sans véhicule"
+    }
+  ];
 
   const dates = [
     { day: "Lundi", date: "4 oct.", status: "available" },
@@ -226,6 +266,129 @@ const SerieEte2027 = () => {
                 alt="Détail décoration et ambiance au Domaine de la Croix Rochefort"
                 className="w-full h-auto object-cover aspect-[3/2]"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Localisation & Accès Section */}
+      <section className="py-16 md:py-24 bg-card" ref={locationRef.ref}>
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Localisation & Accès Facile
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Le Domaine de la Croix Rochefort est idéalement situé, accessible depuis les principales villes de la région.
+            </p>
+          </div>
+
+          {/* Adresse et Carte */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
+            {/* Adresse */}
+            <div className={`transition-all duration-700 ${locationRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <Card className="h-full">
+                <CardContent className="p-8">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <MapPin className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground">Adresse du Lieu</h3>
+                  </div>
+                  <div className="space-y-2 text-muted-foreground mb-6">
+                    <p className="font-semibold text-foreground">Les Caves de la Croix Rochefort</p>
+                    <p>401 rue des dépôts</p>
+                    <p>69430 SAINT-DIDIER-SUR-BEAUJEU</p>
+                  </div>
+                  <a 
+                    href="https://www.google.com/maps/dir//Les+Caves+de+la+Croix+Rochefort,+401+Rue+des+D%C3%A9p%C3%B4ts,+69430+Saint-Didier-sur-Beaujeu" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="outline" className="w-full group">
+                      <Navigation className="mr-2 h-4 w-4" />
+                      Voir l'itinéraire
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </a>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Carte Google Maps */}
+            <div 
+              className={`transition-all duration-700 ${locationRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ transitionDelay: '100ms' }}
+            >
+              <div className="rounded-xl overflow-hidden shadow-lg h-full min-h-[350px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2767.8456789!2d4.5897!3d46.2456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4a8b8b8b8b8b8%3A0x1234567890abcdef!2s401%20Rue%20des%20D%C3%A9p%C3%B4ts%2C%2069430%20Saint-Didier-sur-Beaujeu!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, minHeight: '350px' }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Localisation du Domaine de la Croix Rochefort"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Accessibilité & Distances */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-foreground text-center mb-8">
+              Facilement Accessible
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {distanceCards.map((card, index) => {
+                const Icon = card.icon;
+                return (
+                  <Card
+                    key={index}
+                    className={`border-none shadow-lg hover:shadow-xl transition-all duration-500 ${locationRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                    style={{ transitionDelay: `${(index + 2) * 100}ms` }}
+                  >
+                    <CardContent className="p-6 text-center">
+                      <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 mb-4">
+                        <Icon className="h-7 w-7 text-primary" />
+                      </div>
+                      <h4 className="font-bold text-foreground mb-2">{card.title}</h4>
+                      <p className="text-primary font-semibold mb-2">{card.time}</p>
+                      <p className="text-sm text-muted-foreground">{card.description}</p>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Informations Pratiques */}
+          <div>
+            <h3 className="text-2xl font-bold text-foreground text-center mb-8">
+              Tout Ce Qu'il Faut Savoir
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {practicalInfo.map((info, index) => {
+                const Icon = info.icon;
+                return (
+                  <div
+                    key={index}
+                    className={`bg-background rounded-xl p-6 border border-border transition-all duration-500 ${locationRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                    style={{ transitionDelay: `${(index + 5) * 100}ms` }}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
+                        <Icon className="h-5 w-5 text-secondary" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-foreground mb-1">{info.title}</h4>
+                        <p className="text-sm text-muted-foreground">{info.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
