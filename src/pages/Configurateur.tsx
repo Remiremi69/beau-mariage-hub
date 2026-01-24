@@ -8,7 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useState, lazy, Suspense } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { ChevronRight, ChevronLeft, Shield, Star, Tag, Check, Receipt } from "lucide-react";
+import { ChevronRight, ChevronLeft, Shield, Star, Tag, Check, Receipt, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 import photographeImage from "@/assets/photographe-alexandre.jpg";
 import djImage from "@/assets/dj-clara.jpg";
 import chefImage from "@/assets/chef-sebastien.jpg";
@@ -22,7 +23,7 @@ const MenuDegustationVirtuel = lazy(() => import("@/components/configurateur/men
 
 const Configurateur = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedDate, setSelectedDate] = useState("2027-07-06"); // Par défaut : Mercredi 6 Juillet 2027
+  const [selectedDate, setSelectedDate] = useState("2027-10-04"); // Par défaut : Lundi 4 Octobre 2027
   const [guests, setGuests] = useState([80]);
   const [decoration, setDecoration] = useState("champetre");
   const [entree, setEntree] = useState("veloute");
@@ -37,25 +38,18 @@ const Configurateur = () => {
   const [email, setEmail] = useState("");
   const { toast } = useToast();
 
-  // Liste des dates disponibles pour Juillet 2027
+  // Liste des dates disponibles pour Octobre 2027 - Série Domaine de la Croix Rochefort
   const availableDates = [
-    { id: "2027-07-01", label: "Vendredi 1er Juillet 2027", price: 8000, status: "reserve" },
-    { id: "2027-07-02", label: "Samedi 2 Juillet 2027", price: 8500, status: "reserve" },
-    { id: "2027-07-03", label: "Dimanche 3 Juillet 2027", price: 8000, status: "reserve" },
-    { id: "2027-07-06", label: "Mercredi 6 Juillet 2027", price: 6900, status: "disponible" },
-    { id: "2027-07-07", label: "Jeudi 7 Juillet 2027", price: 7500, status: "disponible" },
-    { id: "2027-07-08", label: "Vendredi 8 Juillet 2027", price: 8000, status: "option" },
-    { id: "2027-07-09", label: "Samedi 9 Juillet 2027", price: 8500, status: "reserve" },
-    { id: "2027-07-10", label: "Dimanche 10 Juillet 2027", price: 8000, status: "disponible" },
-    { id: "2027-07-13", label: "Mercredi 13 Juillet 2027", price: 6900, status: "disponible" },
-    { id: "2027-07-14", label: "Jeudi 14 Juillet 2027", price: 7500, status: "disponible" },
-    { id: "2027-07-15", label: "Vendredi 15 Juillet 2027", price: 8000, status: "disponible" },
-    { id: "2027-07-16", label: "Samedi 16 Juillet 2027", price: 8500, status: "disponible" },
+    { id: "2027-10-04", label: "Lundi 4 Octobre 2027", status: "disponible" },
+    { id: "2027-10-05", label: "Mardi 5 Octobre 2027", status: "disponible" },
+    { id: "2027-10-06", label: "Mercredi 6 Octobre 2027", status: "disponible" },
+    { id: "2027-10-07", label: "Jeudi 7 Octobre 2027", status: "disponible" },
+    { id: "2027-10-08", label: "Vendredi 8 Octobre 2027", status: "disponible" },
   ];
 
-  const selectedDateInfo = availableDates.find(d => d.id === selectedDate) || availableDates[3];
+  const selectedDateInfo = availableDates.find(d => d.id === selectedDate) || availableDates[0];
 
-  const basePrice = selectedDateInfo.price; // Prix dynamique selon la date
+  // Prix à définir - pour l'instant on affiche "À calculer"
   const guestPrice = (guests[0] - 80) * 50;
   const decorationPrice = decoration === "boheme-moderne" ? 300 : 0;
   const photoboothPrice = photobooth ? 400 : 0;
@@ -64,8 +58,8 @@ const Configurateur = () => {
   // Prix des forfaits service boissons (droit de bouchon)
   const serviceForfaitPrice = serviceForfait === "festif" ? 250 : serviceForfait === "premium" ? 450 : 0;
 
-  const totalPrice =
-    basePrice + guestPrice + decorationPrice + photoboothPrice + cocktailBarPrice + serviceForfaitPrice;
+  // Prix total sera calculé une fois les tarifs définis
+  const hasSelections = guestPrice !== 0 || decorationPrice > 0 || photoboothPrice > 0 || cocktailBarPrice > 0 || serviceForfaitPrice > 0;
 
   const steps = [
     { id: 1, name: "Date", short: "Date" },
@@ -109,12 +103,12 @@ const Configurateur = () => {
         <CardContent className="space-y-4">
           <div className="space-y-3">
             <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">Forfait (80 pers.) - {selectedDateInfo.label.split(' ').slice(0, 4).join(' ')}</span>
-              <span className="font-semibold">{basePrice.toLocaleString()}€</span>
+              <span className="text-muted-foreground">Forfait - {selectedDateInfo.label}</span>
+              <span className="font-semibold text-muted-foreground">À définir</span>
             </div>
             {guestPrice !== 0 && (
               <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Ajustement invités</span>
+                <span className="text-muted-foreground">Ajustement invités ({guests[0]} pers.)</span>
                 <span className="font-semibold">{guestPrice > 0 ? "+" : ""}{guestPrice}€</span>
               </div>
             )}
@@ -148,8 +142,13 @@ const Configurateur = () => {
           <div className="border-t pt-4">
             <div className="flex justify-between items-center">
               <span className="text-lg font-bold">Total</span>
-              <span className="text-2xl font-bold text-primary">{totalPrice.toLocaleString()}€</span>
+              <span className="text-xl font-bold text-primary">
+                {hasSelections ? "Options sélectionnées" : "À calculer"}
+              </span>
             </div>
+            <p className="text-xs text-muted-foreground mt-2">
+              Le prix final sera affiché à l'étape Devis
+            </p>
           </div>
         </CardContent>
       </Card>
@@ -184,29 +183,12 @@ const Configurateur = () => {
         </CardContent>
       </Card>
 
-      {/* Témoignage */}
-      <Card className="border-none shadow-[var(--shadow-elegant)] bg-secondary/5">
-        <CardContent className="pt-6">
-          <div className="space-y-3">
-            <div className="flex gap-1">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-              ))}
-            </div>
-            <p className="text-sm italic">
-              "Une organisation parfaite, un prix imbattable. Le Beau Mariage a réalisé notre rêve."
-            </p>
-            <p className="text-xs font-semibold text-muted-foreground">— Laura & Tom</p>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* CTA Final */}
       <Button
-        onClick={() => setCurrentStep(6)}
+        onClick={() => setCurrentStep(7)}
         size="lg"
         className="w-full"
-        disabled={currentStep === 6}
+        disabled={currentStep === 7}
       >
         Finaliser et obtenir mon devis
       </Button>
@@ -276,14 +258,32 @@ const Configurateur = () => {
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in">
                   <CardHeader>
                     <CardTitle className="text-2xl md:text-3xl">Choisissez la date de votre mariage</CardTitle>
-                    <p className="text-sm md:text-base text-muted-foreground">
-                      Série Octobre 2027 - Profitez de nos tarifs dégressifs en semaine !
-                    </p>
+                    <p className="text-xs text-muted-foreground mt-2">Étape 1 sur 7</p>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="space-y-3">
+                  <CardContent className="space-y-6">
+                    {/* Contexte du lieu */}
+                    <div className="bg-secondary/10 rounded-xl p-4 md:p-6 border border-secondary/20">
+                      <div className="flex items-start gap-3">
+                        <MapPin className="w-6 h-6 text-secondary flex-shrink-0 mt-0.5" />
+                        <div className="space-y-2">
+                          <h3 className="font-bold text-lg">Le Domaine de la Croix Rochefort — Octobre 2027</h3>
+                          <p className="text-sm text-muted-foreground">
+                            Notre première série se déroule du lundi 4 au vendredi 8 octobre 2027. 
+                            Chaque jour, un mariage unique avec la même équipe de prestataires d'excellence.
+                          </p>
+                          <Link 
+                            to="/serie-octobre-2027/domaine" 
+                            className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+                          >
+                            Découvrir le Domaine <ChevronRight className="w-4 h-4" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Grille de dates */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
                       {availableDates.map((date) => {
-                        const isReserved = date.status === "reserve";
                         const isSelected = selectedDate === date.id;
                         const statusConfig = {
                           disponible: { bg: "bg-green-100", text: "text-green-700", label: "Disponible" },
@@ -295,30 +295,28 @@ const Configurateur = () => {
                         return (
                           <button
                             key={date.id}
-                            onClick={() => !isReserved && setSelectedDate(date.id)}
-                            disabled={isReserved}
-                            className={`w-full p-4 md:p-5 rounded-xl border-2 transition-all text-left ${
+                            onClick={() => setSelectedDate(date.id)}
+                            className={`p-4 rounded-xl border-2 transition-all text-center ${
                               isSelected
-                                ? "border-primary bg-primary/5 shadow-lg"
-                                : isReserved
-                                ? "border-muted bg-muted/30 cursor-not-allowed opacity-60"
-                                : "border-border hover:border-primary/50 hover:shadow-md"
+                                ? "border-primary bg-primary/5 shadow-lg ring-2 ring-primary/20"
+                                : "border-border hover:border-primary/50 hover:shadow-md hover:bg-muted/30"
                             }`}
                           >
-                            <div className="flex items-center justify-between gap-4">
-                              <div className="flex-1">
-                                <h4 className={`font-bold text-base md:text-lg mb-1 ${isReserved ? "text-muted-foreground" : ""}`}>
-                                  {date.label}
-                                </h4>
-                                <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${config.bg} ${config.text}`}>
-                                  {config.label}
-                                </span>
-                              </div>
-                              <div className="text-right">
-                                <p className={`text-2xl md:text-3xl font-bold ${isReserved ? "text-muted-foreground" : "text-primary"}`}>
-                                  {date.price.toLocaleString()}€
-                                </p>
-                              </div>
+                            <div className="space-y-2">
+                              <h4 className="font-bold text-sm md:text-base">
+                                {date.label.split(' ').slice(0, 2).join(' ')}
+                              </h4>
+                              <p className="text-xs text-muted-foreground">
+                                {date.label.split(' ').slice(2).join(' ')}
+                              </p>
+                              <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${config.bg} ${config.text}`}>
+                                {config.label}
+                              </span>
+                              {isSelected && (
+                                <div className="flex justify-center">
+                                  <Check className="w-5 h-5 text-primary" />
+                                </div>
+                              )}
                             </div>
                           </button>
                         );
@@ -761,8 +759,11 @@ const Configurateur = () => {
                         <div className="border-t pt-4 mt-4">
                           <div className="flex justify-between items-center">
                             <span className="text-2xl font-bold">Total</span>
-                            <span className="text-3xl font-bold text-primary">{totalPrice.toLocaleString()}€</span>
+                            <span className="text-2xl font-bold text-primary">Sur devis</span>
                           </div>
+                          <p className="text-sm text-muted-foreground mt-2">
+                            Un conseiller vous contactera avec le tarif personnalisé
+                          </p>
                         </div>
                       </div>
 
@@ -821,7 +822,6 @@ const Configurateur = () => {
               <Button variant="outline" size="lg" className="flex-1 gap-2">
                 <Receipt className="w-5 h-5" />
                 Voir le devis
-                <span className="ml-auto font-bold text-primary">{totalPrice.toLocaleString()}€</span>
               </Button>
             </SheetTrigger>
             <SheetContent side="bottom" className="h-[80vh] overflow-y-auto">
