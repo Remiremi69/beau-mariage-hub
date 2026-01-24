@@ -216,16 +216,16 @@ const SerieEte2027 = () => {
               />
             </div>
 
-            {/* Placeholder restant */}
+            {/* Détail décoration / ambiance - avec image */}
             <div
-              className={`relative rounded-xl overflow-hidden bg-muted border-2 border-dashed border-border aspect-[3/2] flex items-center justify-center transition-all duration-700 ${galleryRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              className={`relative rounded-xl overflow-hidden shadow-lg transition-all duration-700 ${galleryRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: '300ms' }}
             >
-              <div className="text-center p-6">
-                <Image className="h-12 w-12 text-muted-foreground/50 mx-auto mb-3" />
-                <p className="text-muted-foreground font-medium">Détail décoration / ambiance</p>
-                <p className="text-sm text-muted-foreground/70">600x400px</p>
-              </div>
+              <img 
+                src="https://i.postimg.cc/W3MGqSc5/1627386795-60fff3ab3f816.jpg" 
+                alt="Détail décoration et ambiance au Domaine de la Croix Rochefort"
+                className="w-full h-auto object-cover aspect-[3/2]"
+              />
             </div>
           </div>
         </div>
