@@ -326,14 +326,14 @@ const SerieEte2027 = () => {
             >
               <div className="rounded-xl overflow-hidden shadow-lg h-full min-h-[350px]">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2767.8456789!2d4.5897!3d46.2456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4a8b8b8b8b8b8%3A0x1234567890abcdef!2s401%20Rue%20des%20D%C3%A9p%C3%B4ts%2C%2069430%20Saint-Didier-sur-Beaujeu!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2767.5!2d4.5833!3d46.2333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4e8e8e8e8e8e8%3A0x0!2s401%20Rue%20des%20D%C3%A9p%C3%B4ts%2C%2069430%20Saint-Didier-sur-Beaujeu%2C%20France!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr"
                   width="100%"
                   height="100%"
                   style={{ border: 0, minHeight: '350px' }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Localisation du Domaine de la Croix Rochefort"
+                  title="Localisation du Domaine de la Croix Rochefort - 401 rue des dépôts, Saint-Didier-sur-Beaujeu"
                 />
               </div>
             </div>
