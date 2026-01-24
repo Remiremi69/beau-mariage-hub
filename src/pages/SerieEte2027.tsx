@@ -192,16 +192,27 @@ const SerieEte2027 = () => {
               />
             </div>
 
+            {/* Salle de réception - avec image */}
+            <div
+              className={`relative rounded-xl overflow-hidden shadow-lg transition-all duration-700 ${galleryRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ transitionDelay: '100ms' }}
+            >
+              <img 
+                src="https://i.postimg.cc/4xJSf7VZ/420-katleenetcharly-01juin2024-3-127973-172232023480734.jpg" 
+                alt="Salle de réception du Domaine de la Croix Rochefort"
+                className="w-full h-auto object-cover aspect-[3/2]"
+              />
+            </div>
+
             {/* Placeholders restants */}
             {[
-              { title: "Salle de réception", desc: "600x400px" },
               { title: "Vue extérieure / parc", desc: "600x400px" },
               { title: "Détail décoration / ambiance", desc: "600x400px" }
             ].map((item, index) => (
               <div
                 key={index}
                 className={`relative rounded-xl overflow-hidden bg-muted border-2 border-dashed border-border aspect-[3/2] flex items-center justify-center transition-all duration-700 ${galleryRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                style={{ transitionDelay: `${(index + 1) * 100}ms` }}
+                style={{ transitionDelay: `${(index + 2) * 100}ms` }}
               >
                 <div className="text-center p-6">
                   <Image className="h-12 w-12 text-muted-foreground/50 mx-auto mb-3" />
