@@ -156,13 +156,13 @@ const SerieEte2027 = () => {
               </ul>
             </div>
 
-            {/* Image Placeholder */}
-            <div className="relative rounded-2xl overflow-hidden bg-muted border-2 border-dashed border-border aspect-[4/3] flex items-center justify-center">
-              <div className="text-center p-8">
-                <Home className="h-16 w-16 text-muted-foreground/50 mx-auto mb-4" />
-                <p className="text-muted-foreground font-medium">Photo principale du domaine</p>
-                <p className="text-sm text-muted-foreground/70">Format recommandé : 600x450px</p>
-              </div>
+            {/* Image principale du domaine */}
+            <div className="relative rounded-2xl overflow-hidden shadow-xl">
+              <img 
+                src="https://i.postimg.cc/Y05dBj78/Domaine-de-la-Croix-Rochefort-mariage-saint-didier-sur-Beaujeu.jpg" 
+                alt="Domaine de la Croix Rochefort - Salle de réception pour mariage à Saint-Didier-sur-Beaujeu"
+                className="w-full h-auto object-cover aspect-[4/3] rounded-2xl"
+              />
             </div>
           </div>
         </div>
