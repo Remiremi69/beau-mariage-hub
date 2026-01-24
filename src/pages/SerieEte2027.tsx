@@ -172,26 +172,30 @@ const SerieEte2027 = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
                 Le Domaine de la Croix Rochefort
               </h2>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Niché à Saint-Didier-sur-Beaujeu, le Domaine de la Croix Rochefort est bien plus qu'un simple lieu : c'est une promesse d'authenticité et de caractère. Avec sa salle de réception pouvant accueillir jusqu'à 300 convives et son magnifique caveau voûté, ce domaine familial offre un cadre inoubliable pour célébrer votre union. L'équipe du domaine, passionnée et à votre écoute, saura vous accompagner pour faire de ce jour un moment qui vous ressemble.
+              <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+                Imaginez votre cérémonie dans un caveau voûté chargé d'histoire, la lumière tamisée qui crée une intimité magique. Puis, la réception dans une salle de caractère où l'authenticité prime sur l'artificiel. C'est ici, à Saint-Didier-sur-Beaujeu, au cœur du Beaujolais, que nous organisons votre mariage.
+              </p>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                Un lieu qui respire l'authenticité. Une équipe locale qui vous accueille comme des amis. Des espaces qui se prêtent à tous les rêves.
               </p>
               
+              <p className="font-semibold text-foreground mb-4">Ce que vous allez aimer :</p>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <span className="text-primary text-xl mt-0.5">✓</span>
-                  <span className="text-foreground">Cérémonie dans un caveau voûté historique</span>
+                  <span className="text-foreground">Un caveau voûté pour une cérémonie intime et mémorable</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary text-xl mt-0.5">✓</span>
-                  <span className="text-foreground">Une salle de réception de caractère</span>
+                  <span className="text-foreground">Une salle de réception pleine de caractère</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary text-xl mt-0.5">✓</span>
-                  <span className="text-foreground">Un cadre authentique au cœur du Beaujolais</span>
+                  <span className="text-foreground">Un cadre authentique, loin du standardisé</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary text-xl mt-0.5">✓</span>
-                  <span className="text-foreground">Une équipe familiale dédiée à votre mariage</span>
+                  <span className="text-foreground">L'atmosphère chaleureuse du Beaujolais</span>
                 </li>
               </ul>
             </div>
