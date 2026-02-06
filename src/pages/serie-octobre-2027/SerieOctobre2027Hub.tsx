@@ -172,7 +172,7 @@ const SerieOctobre2027Hub = () => {
       <section
         className="relative min-h-[60vh] flex items-center justify-center text-center py-20"
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%), url(/images/venue-exterior.jpg)`,
+          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://i.postimg.cc/5NHccFBF/54-domaine-de-lanbspcroixnbsprochefort.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -215,7 +215,7 @@ const SerieOctobre2027Hub = () => {
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src="/images/venue-exterior.jpg"
+                src="https://i.postimg.cc/Y05dBj78/Domaine-de-la-Croix-Rochefort-mariage-saint-didier-sur-Beaujeu.jpg"
                 alt="Le Domaine de la Croix Rochefort"
                 className="w-full h-[400px] object-cover"
               />
