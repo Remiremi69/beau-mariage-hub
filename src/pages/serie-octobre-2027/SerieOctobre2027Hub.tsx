@@ -172,7 +172,7 @@ const SerieOctobre2027Hub = () => {
       <section
         className="relative min-h-[60vh] flex items-center justify-center text-center py-20"
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://i.postimg.cc/5NHccFBF/54-domaine-de-lanbspcroixnbsprochefort.jpg)`,
+          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%), url(/images/venue-exterior.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -204,24 +204,24 @@ const SerieOctobre2027Hub = () => {
       {/* Section Le Lieu - Teaser */}
       <section className="py-16 md:py-24 bg-background" ref={lieuRef.ref}>
         <div className="container mx-auto px-4">
-          <div className={`text-center mb-12 transition-all duration-1000 ${lieuRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-              Votre Cadre
-            </h2>
+          <div
+            className={`text-center mb-12 transition-all duration-1000 ${lieuRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+          >
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">Votre Cadre</h2>
           </div>
 
-          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto transition-all duration-1000 delay-200 ${lieuRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div
+            className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto transition-all duration-1000 delay-200 ${lieuRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+          >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <img 
-                src="https://i.postimg.cc/Y05dBj78/Domaine-de-la-Croix-Rochefort-mariage-saint-didier-sur-Beaujeu.jpg"
+              <img
+                src="/images/venue-exterior.jpg"
                 alt="Le Domaine de la Croix Rochefort"
                 className="w-full h-[400px] object-cover"
               />
             </div>
             <div className="space-y-6">
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-                Le Domaine de la Croix Rochefort
-              </h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground">Le Domaine de la Croix Rochefort</h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Un caveau voûté pour votre cérémonie. Une salle de caractère pour votre fête. L'atmosphère du Beaujolais pour votre histoire.
               </p>
@@ -239,10 +239,10 @@ const SerieOctobre2027Hub = () => {
       {/* Section Les Prestataires */}
       <section className="py-16 md:py-24 bg-card" ref={prestatairesRef.ref}>
         <div className="container mx-auto px-4">
-          <div className={`text-center mb-12 transition-all duration-1000 ${prestatairesRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-              Vos Partenaires d'Excellence
-            </h2>
+          <div
+            className={`text-center mb-12 transition-all duration-1000 ${prestatairesRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+          >
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">Vos Partenaires d'Excellence</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Chaque détail de votre mariage est confié à des artisans passionnés, sélectionnés avec soin.
             </p>
@@ -258,15 +258,9 @@ const SerieOctobre2027Hub = () => {
                 <Card className="h-full hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border/50">
                   <CardContent className="p-6">
                     <div className="text-4xl mb-4">{prestataire.icon}</div>
-                    <p className="text-xs font-semibold text-primary tracking-wider mb-2">
-                      {prestataire.category}
-                    </p>
-                    <h3 className="text-xl font-bold text-foreground mb-2">
-                      {prestataire.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-4">
-                      {prestataire.description}
-                    </p>
+                    <p className="text-xs font-semibold text-primary tracking-wider mb-2">{prestataire.category}</p>
+                    <h3 className="text-xl font-bold text-foreground mb-2">{prestataire.title}</h3>
+                    <p className="text-muted-foreground mb-4">{prestataire.description}</p>
                     <Link to={prestataire.link}>
                       <Button variant="outline" size="sm" className="w-full group">
                         En savoir plus
