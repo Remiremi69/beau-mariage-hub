@@ -58,23 +58,23 @@ const pointsForts = [
 
 const galleryImages = [
   {
-    src: "https://i.postimg.cc/x1YWXFrv/9-accueil-le-caveau.jpg",
+    src: "/images/ceremony-arch.jpg",
     alt: "Caveau voûté du Domaine de la Croix Rochefort",
     title: "Le Caveau Voûté"
   },
   {
-    src: "https://i.postimg.cc/4xJSf7VZ/420-katleenetcharly-01juin2024-3-127973-172232023480734.jpg",
-    alt: "Salle de réception du Domaine",
+    src: "/images/table-setup.jpg",
+    alt: "Salle de réception du Domaine de la Croix Rochefort",
     title: "Salle de Réception"
   },
   {
-    src: "https://i.postimg.cc/5yVmsTSP/876-domaine-de-lanbspcroixnbsprochefort.jpg",
-    alt: "Vue extérieure du Domaine",
+    src: "/images/venue-exterior.jpg",
+    alt: "Vue extérieure du Domaine de la Croix Rochefort",
     title: "Vue Extérieure"
   },
   {
-    src: "https://i.postimg.cc/W3MGqSc5/1627386795-60fff3ab3f816.jpg",
-    alt: "Décoration et ambiance du Domaine",
+    src: "/images/hero-wedding.jpg",
+    alt: "Ambiance & décor au Domaine de la Croix Rochefort",
     title: "Ambiance & Décor"
   }
 ];
@@ -126,7 +126,7 @@ const DomaineDetail = () => {
       <section
         className="relative min-h-[50vh] flex items-center justify-center text-center py-20"
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://i.postimg.cc/Y05dBj78/Domaine-de-la-Croix-Rochefort-mariage-saint-didier-sur-Beaujeu.jpg)`,
+          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%), url(/images/venue-exterior.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
