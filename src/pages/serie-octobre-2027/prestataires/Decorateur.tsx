@@ -1,7 +1,8 @@
 import PrestataireTemplate, { PrestataireData } from "./PrestataireTemplate";
+import { Sparkles } from "lucide-react";
 
 const decorateurData: PrestataireData = {
-  icon: "✨",
+  icon: Sparkles,
   category: "DÉCORATEUR",
   title: "Les Architectes de l'Ambiance",
   tagline: "Transformer le lieu en décor de rêve",

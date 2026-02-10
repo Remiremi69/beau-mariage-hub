@@ -1,7 +1,8 @@
 import PrestataireTemplate, { PrestataireData } from "./PrestataireTemplate";
+import { MicVocal } from "lucide-react";
 
 const musicienData: PrestataireData = {
-  icon: "🎼",
+  icon: MicVocal,
   category: "MUSICIEN",
   title: "La Bande-Sonore de Votre Amour",
   tagline: "Musique live pour vos moments clés",

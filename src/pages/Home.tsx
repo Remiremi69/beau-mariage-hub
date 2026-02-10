@@ -175,28 +175,24 @@ const TimelineSection = () => {
       title: "1. Configurez",
       time: "2 min",
       description: "Personnalisez votre journée en choisissant votre ambiance, votre lieu et vos options.",
-      emoji: "🎨"
     },
     {
       icon: Coins,
       title: "2. Découvrez",
       time: "Instantané",
       description: "Votre prix final, clair et net, s'affiche à l'écran. Maîtrisez votre budget à 100%.",
-      emoji: "💰"
     },
     {
       icon: CheckCircle,
       title: "3. Réservez",
       time: "1 min",
       description: "Validez votre configuration en un clic et bloquez votre date en toute sécurité.",
-      emoji: "✅"
     },
     {
       icon: PartyPopper,
       title: "4. Célébrez",
       time: "Le Jour J",
       description: "Profitez de chaque instant. Notre équipe s'occupe de tout orchestrer pour vous.",
-      emoji: "🎉"
     }
   ];
 
@@ -232,10 +228,10 @@ const TimelineSection = () => {
                   className={`relative text-center transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                   style={{ transitionDelay: `${index * 200}ms` }}
                 >
-                  {/* Circle with emoji */}
+                  {/* Circle with icon */}
                   <div className="relative z-10 mb-6">
-                    <div className="w-20 h-20 mx-auto rounded-full bg-card border-4 border-primary shadow-lg flex items-center justify-center text-4xl">
-                      {step.emoji}
+                    <div className="w-20 h-20 mx-auto rounded-full bg-card border-4 border-primary shadow-lg flex items-center justify-center">
+                      <Icon className="h-9 w-9 text-primary" />
                     </div>
                   </div>
 
@@ -265,8 +261,8 @@ const TimelineSection = () => {
               >
                 {/* Timeline line */}
                 <div className="flex flex-col items-center">
-                  <div className="w-14 h-14 rounded-full bg-card border-4 border-primary shadow-lg flex items-center justify-center text-2xl shrink-0">
-                    {step.emoji}
+                  <div className="w-14 h-14 rounded-full bg-card border-4 border-primary shadow-lg flex items-center justify-center shrink-0">
+                    <Icon className="h-6 w-6 text-primary" />
                   </div>
                   {index < steps.length - 1 && (
                     <div className="w-1 flex-1 bg-gradient-to-b from-primary to-secondary my-2" />
@@ -313,21 +309,18 @@ const SerenitySection = () => {
       icon: Diamond,
       title: "Garantie Zéro Coût Caché",
       description: "Le prix affiché est le prix payé. Point final. Fini les mauvaises surprises et les lignes en petits caractères. Votre devis est 100% transparent et tout est inclus.",
-      emoji: "💎",
       color: "primary"
     },
     {
       icon: Star,
       title: "Garantie Qualité Inébranlable",
       description: "La perfection, ou rien. Si un de nos partenaires ne pouvait assurer sa prestation, nous le remplaçons par un talent de qualité égale ou supérieure, sans aucun impact pour vous.",
-      emoji: "⭐",
       color: "secondary"
     },
     {
       icon: RefreshCw,
       title: "Garantie Flexibilité Absolue",
       description: "La vie est pleine d'imprévus. Si un événement majeur vous oblige à changer vos plans, vous pouvez reporter votre mariage sans frais jusqu'à 6 mois avant la date.",
-      emoji: "🔄",
       color: "primary"
     }
   ];
@@ -361,8 +354,10 @@ const SerenitySection = () => {
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <div className="relative h-full overflow-hidden rounded-3xl bg-card border border-border/50 p-8 transition-all duration-500 hover:shadow-[0_30px_60px_-15px_hsl(14_71%_67%/0.25)] hover:-translate-y-3 hover:border-primary/20">
-                  {/* Emoji */}
-                  <div className="text-5xl mb-6">{guarantee.emoji}</div>
+                  {/* Icon */}
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                    <Icon className={`h-7 w-7 ${guarantee.color === 'secondary' ? 'text-secondary' : 'text-primary'}`} />
+                  </div>
                   
                   <h3 className="text-2xl font-bold text-foreground mb-4">{guarantee.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{guarantee.description}</p>

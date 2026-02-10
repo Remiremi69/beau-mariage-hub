@@ -16,7 +16,9 @@ import {
   ArrowRight,
   Construction,
   Clock,
-  CheckCircle
+  CheckCircle,
+  Search,
+  Settings
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
@@ -119,19 +121,19 @@ const steps = [
     number: "1",
     title: "Explorez",
     description: "Découvrez le lieu et les prestataires",
-    icon: "🔍"
+    lucideIcon: Search
   },
   {
     number: "2",
     title: "Configurez",
     description: "Personnalisez votre forfait en 10 minutes",
-    icon: "⚙️"
+    lucideIcon: Settings
   },
   {
     number: "3",
     title: "Confirmez",
     description: "Sécurisez votre date et commencez la préparation",
-    icon: "✅"
+    lucideIcon: CheckCircle
   }
 ];
 
@@ -257,8 +259,10 @@ const SerieOctobre2027Hub = () => {
               >
                 <Card className="h-full hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border/50">
                   <CardContent className="p-6">
-                    <div className="text-4xl mb-4">{prestataire.icon}</div>
-                    <p className="text-xs font-semibold text-primary tracking-wider mb-2">{prestataire.category}</p>
+    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                       <prestataire.lucideIcon className="h-6 w-6 text-primary" />
+                     </div>
+                     <p className="text-xs font-semibold text-primary tracking-wider mb-2">{prestataire.category}</p>
                     <h3 className="text-xl font-bold text-foreground mb-2">{prestataire.title}</h3>
                     <p className="text-muted-foreground mb-4">{prestataire.description}</p>
                     <Link to={prestataire.link}>
@@ -431,7 +435,9 @@ const SerieOctobre2027Hub = () => {
                 className="text-center"
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <div className="text-5xl mb-4">{step.icon}</div>
+                <div className="w-14 h-14 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                  <step.lucideIcon className="h-7 w-7 text-primary" />
+                </div>
                 <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold mb-4">
                   {step.number}
                 </div>

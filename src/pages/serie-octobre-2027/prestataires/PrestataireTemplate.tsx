@@ -3,7 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { 
   ChevronRight,
   ArrowRight,
-  Quote
+  Quote,
+  type LucideIcon
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
@@ -43,7 +44,7 @@ const useInView = (threshold = 0.1) => {
 };
 
 export interface PrestataireData {
-  icon: string;
+  icon: LucideIcon;
   category: string;
   title: string;
   tagline: string;
@@ -109,7 +110,7 @@ const PrestataireTemplate = ({ data, slug }: PrestataireTemplateProps) => {
       >
         <div className="container mx-auto px-4 z-10">
           <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-sm text-card px-4 py-2 rounded-full mb-6">
-            <span className="text-2xl">{data.icon}</span>
+            <data.icon className="h-5 w-5" />
             <span className="text-sm font-medium tracking-wider">{data.category}</span>
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-card mb-4 drop-shadow-lg">
