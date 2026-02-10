@@ -1,7 +1,8 @@
 import PrestataireTemplate, { PrestataireData } from "./PrestataireTemplate";
+import { Camera } from "lucide-react";
 
 const photographeData: PrestataireData = {
-  icon: "📸",
+  icon: Camera,
   category: "PHOTOGRAPHE & VIDÉASTE",
   title: "Les Chasseurs de Souvenirs",
   tagline: "Capturer chaque moment, chaque émotion",

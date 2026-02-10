@@ -1,7 +1,8 @@
 import PrestataireTemplate, { PrestataireData } from "./PrestataireTemplate";
+import { Music } from "lucide-react";
 
 const djData: PrestataireData = {
-  icon: "🎵",
+  icon: Music,
   category: "DJ",
   title: "Les Maîtres du Rythme",
   tagline: "Créer l'ambiance parfaite du début à la fin",

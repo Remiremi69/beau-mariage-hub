@@ -1,7 +1,8 @@
 import PrestataireTemplate, { PrestataireData } from "./PrestataireTemplate";
+import { Utensils } from "lucide-react";
 
 const traiteurData: PrestataireData = {
-  icon: "🍽️",
+  icon: Utensils,
   category: "TRAITEUR",
   title: "Gastronomie d'Exception",
   tagline: "Des saveurs qui racontent votre histoire",

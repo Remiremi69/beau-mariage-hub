@@ -1,7 +1,8 @@
 import PrestataireTemplate, { PrestataireData } from "./PrestataireTemplate";
+import { Flower2 } from "lucide-react";
 
 const fleuristeData: PrestataireData = {
-  icon: "🌸",
+  icon: Flower2,
   category: "FLEURISTE",
   title: "L'Art de la Fleur",
   tagline: "Créer des compositions florales uniques",
