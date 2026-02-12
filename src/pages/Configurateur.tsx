@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useState, lazy, Suspense } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { ChevronRight, ChevronLeft, Shield, Star, Tag, Check, Receipt, MapPin } from "lucide-react";
+import { ChevronRight, ChevronLeft, Shield, Star, Tag, Check, Receipt, MapPin, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 import photographeImage from "@/assets/photographe-alexandre.jpg";
 import djImage from "@/assets/dj-clara.jpg";
@@ -32,6 +32,7 @@ const Configurateur = () => {
   const [dessert, setDessert] = useState("piece-montee");
   const [photobooth, setPhotobooth] = useState(false);
   const [cocktailBar, setCocktailBar] = useState(false);
+  const [ceremonieLaique, setCeremonieLaique] = useState(false);
   const [serviceForfait, setServiceForfait] = useState("essentiel");
   const [prenom, setPrenom] = useState("");
   const [email, setEmail] = useState("");
@@ -53,12 +54,13 @@ const Configurateur = () => {
   const decorationPrice = decoration === "boheme-moderne" ? 300 : 0;
   const photoboothPrice = photobooth ? 400 : 0;
   const cocktailBarPrice = cocktailBar ? 600 : 0;
+  const ceremonieLaiquePrice = ceremonieLaique ? 800 : 0;
   
   // Prix des forfaits service boissons (droit de bouchon)
   const serviceForfaitPrice = serviceForfait === "festif" ? 250 : serviceForfait === "premium" ? 450 : 0;
 
   // Prix total sera calculé une fois les tarifs définis
-  const hasSelections = guestPrice !== 0 || decorationPrice > 0 || photoboothPrice > 0 || cocktailBarPrice > 0 || serviceForfaitPrice > 0;
+  const hasSelections = guestPrice !== 0 || decorationPrice > 0 || photoboothPrice > 0 || cocktailBarPrice > 0 || serviceForfaitPrice > 0 || ceremonieLaiquePrice > 0;
 
   const steps = [
     { id: 1, name: "Date", short: "Date" },
@@ -134,6 +136,12 @@ const Configurateur = () => {
                   Forfait Service {serviceForfait === "festif" ? "Festif" : "Premium"}
                 </span>
                 <span className="font-semibold">+{serviceForfaitPrice}€</span>
+              </div>
+            )}
+            {ceremonieLaiquePrice > 0 && (
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">Cérémonie Laïque</span>
+                <span className="font-semibold">+{ceremonieLaiquePrice}€</span>
               </div>
             )}
           </div>
@@ -607,6 +615,37 @@ const Configurateur = () => {
                           </div>
                         </label>
 
+                        <label
+                          className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
+                            ceremonieLaique
+                              ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
+                              : "border-border hover:border-primary/50 hover:shadow-md"
+                          }`}
+                        >
+                          <div className="flex items-start gap-4">
+                            <Checkbox
+                              id="ceremonieLaique"
+                              checked={ceremonieLaique}
+                              onCheckedChange={(checked) => setCeremonieLaique(checked === true)}
+                              className="w-6 h-6 mt-1"
+                            />
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-2">
+                                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                  <Heart className="w-6 h-6 text-primary" />
+                                </div>
+                                <div>
+                                  <h4 className="font-bold text-base md:text-lg">Cérémonie Laïque</h4>
+                                  <p className="text-lg md:text-xl font-bold text-primary">+800€</p>
+                                </div>
+                              </div>
+                              <p className="text-sm text-muted-foreground">
+                                Une cérémonie personnalisée et émouvante, animée par un officiant professionnel
+                              </p>
+                            </div>
+                          </div>
+                        </label>
+
                       </div>
                     </div>
 
@@ -668,6 +707,12 @@ const Configurateur = () => {
                             <div className="flex justify-between">
                               <span className="text-muted-foreground">Bar à Cocktails</span>
                               <span className="font-semibold">+600€</span>
+                            </div>
+                          )}
+                          {ceremonieLaique && (
+                            <div className="flex justify-between">
+                              <span className="text-muted-foreground">Cérémonie Laïque</span>
+                              <span className="font-semibold">+800€</span>
                             </div>
                           )}
                         </div>
