@@ -420,37 +420,35 @@ const Configurateur = () => {
 
               {/* Étape 4: Voyage Culinaire */}
               {currentStep === 4 && (
-                <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in overflow-visible">
-                  <CardContent className="p-4 md:p-8">
-                    <Suspense fallback={
-                      <div className="h-96 flex items-center justify-center bg-muted rounded-xl">
-                        <div className="flex flex-col items-center gap-3">
-                          <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-                          <span className="text-sm text-muted-foreground">Chargement du menu...</span>
-                        </div>
+                <div className="animate-fade-in">
+                  <Suspense fallback={
+                    <div className="h-96 flex items-center justify-center bg-muted rounded-xl">
+                      <div className="flex flex-col items-center gap-3">
+                        <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+                        <span className="text-sm text-muted-foreground">Chargement du menu...</span>
                       </div>
-                    }>
-                      <VoyageCulinaire
-                        selections={voyageSelections}
-                        onSelect={(categoryId, stationId) => {
-                          setVoyageSelections((prev) => ({
-                            ...prev,
-                            [categoryId]: stationId,
-                          }));
-                        }}
-                      />
-                    </Suspense>
-
-                    <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-4 mt-8">
-                      <Button onClick={prevStep} variant="outline" size="lg" className="gap-2 w-full md:w-auto order-2 md:order-1">
-                        <ChevronLeft className="w-5 h-5" /> Étape précédente
-                      </Button>
-                      <Button onClick={nextStep} size="lg" className="gap-2 w-full md:w-auto order-1 md:order-2">
-                        Valider mon Voyage Culinaire <ChevronRight className="w-5 h-5" />
-                      </Button>
                     </div>
-                  </CardContent>
-                </Card>
+                  }>
+                    <VoyageCulinaire
+                      selections={voyageSelections}
+                      onSelect={(categoryId, stationId) => {
+                        setVoyageSelections((prev) => ({
+                          ...prev,
+                          [categoryId]: stationId,
+                        }));
+                      }}
+                    />
+                  </Suspense>
+
+                  <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-4 mt-8 px-4">
+                    <Button onClick={prevStep} variant="outline" size="lg" className="gap-2 w-full md:w-auto order-2 md:order-1">
+                      <ChevronLeft className="w-5 h-5" /> Étape précédente
+                    </Button>
+                    <Button onClick={nextStep} size="lg" className="gap-2 w-full md:w-auto order-1 md:order-2">
+                      Valider mon Voyage Culinaire <ChevronRight className="w-5 h-5" />
+                    </Button>
+                  </div>
+                </div>
               )}
 
               {/* Étape 5: Vos Artistes & Options */}
