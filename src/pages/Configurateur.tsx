@@ -19,17 +19,19 @@ import sophieImage from "@/assets/sophie-serveuse.jpg";
 import SEO from "@/components/SEO";
 
 const DecoVisualizer = lazy(() => import("@/components/configurateur/DecoVisualizer"));
-const MenuDegustationVirtuel = lazy(() => import("@/components/configurateur/menu/MenuDegustationVirtuel"));
+const VoyageCulinaire = lazy(() => import("@/components/configurateur/menu/VoyageCulinaire"));
 
 const Configurateur = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedDate, setSelectedDate] = useState("2027-10-04"); // Par défaut : Lundi 4 Octobre 2027
   const [guests, setGuests] = useState([80]);
   const [decoration, setDecoration] = useState("champetre");
-  const [entree, setEntree] = useState("veloute");
-  const [platPrincipal, setPlatPrincipal] = useState("volaille");
-  const [fromages, setFromages] = useState("plateau");
-  const [dessert, setDessert] = useState("piece-montee");
+  const [voyageSelections, setVoyageSelections] = useState<{ [key: string]: string | null }>({
+    aperitif: null,
+    atelier: null,
+    plat: null,
+    dessert: null,
+  });
   const [photobooth, setPhotobooth] = useState(false);
   const [cocktailBar, setCocktailBar] = useState(false);
   const [ceremonieLaique, setCeremonieLaique] = useState(false);
@@ -416,7 +418,7 @@ const Configurateur = () => {
                 </Card>
               )}
 
-              {/* Étape 4: Menu - Le Menu Dégustation Virtuel */}
+              {/* Étape 4: Voyage Culinaire */}
               {currentStep === 4 && (
                 <Card className="border-none shadow-[var(--shadow-elegant)] animate-fade-in overflow-visible">
                   <CardContent className="p-4 md:p-8">
@@ -428,38 +430,23 @@ const Configurateur = () => {
                         </div>
                       </div>
                     }>
-                      <MenuDegustationVirtuel
-                        selectedDishes={{
-                          entree: entree,
-                          plat: platPrincipal,
-                          fromage: fromages,
-                          dessert: dessert,
-                        }}
-                        onDishSelect={(categoryId, dishId) => {
-                          switch (categoryId) {
-                            case "entree":
-                              setEntree(dishId);
-                              break;
-                            case "plat":
-                              setPlatPrincipal(dishId);
-                              break;
-                            case "fromage":
-                              setFromages(dishId);
-                              break;
-                            case "dessert":
-                              setDessert(dishId);
-                              break;
-                          }
+                      <VoyageCulinaire
+                        selections={voyageSelections}
+                        onSelect={(categoryId, stationId) => {
+                          setVoyageSelections((prev) => ({
+                            ...prev,
+                            [categoryId]: stationId,
+                          }));
                         }}
                       />
                     </Suspense>
 
-                    <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-4 mt-8 lg:pr-80">
+                    <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-4 mt-8">
                       <Button onClick={prevStep} variant="outline" size="lg" className="gap-2 w-full md:w-auto order-2 md:order-1">
                         <ChevronLeft className="w-5 h-5" /> Étape précédente
                       </Button>
                       <Button onClick={nextStep} size="lg" className="gap-2 w-full md:w-auto order-1 md:order-2">
-                        Valider mon menu <ChevronRight className="w-5 h-5" />
+                        Valider mon Voyage Culinaire <ChevronRight className="w-5 h-5" />
                       </Button>
                     </div>
                   </CardContent>
@@ -689,7 +676,7 @@ const Configurateur = () => {
                           </div>
                           <div className="flex justify-between">
                             <span className="text-muted-foreground">Menu</span>
-                            <span className="font-semibold">Menu gastronomique complet</span>
+                            <span className="font-semibold">Voyage Culinaire</span>
                           </div>
                           <div className="flex justify-between">
                             <span className="text-muted-foreground">Forfait Service Boissons</span>
