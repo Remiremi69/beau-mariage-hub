@@ -4,6 +4,7 @@ import { Heart, Clock, Diamond, Star, Palette, Coins, CheckCircle, PartyPopper, 
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import SEO from "@/components/SEO";
+import LeadCaptureSection from "@/components/LeadCaptureSection";
 import heroImage from "@/assets/hero-image-realiste.png";
 import venueImage from "@/assets/venue-exterior.jpg";
 import chefImage from "@/assets/chef-sebastien.jpg";
@@ -163,6 +164,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Lead Capture Section */}
+      <LeadCaptureSection />
     </div>
   );
 };
