@@ -81,7 +81,7 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link to="/configurateur">
               <Button size="xl" variant="hero" className="font-semibold text-lg px-8">
-                Créer Mon Mariage en 10 Min
+                Voir les dates disponibles
               </Button>
             </Link>
             <Link to="/serie-octobre-2027">
