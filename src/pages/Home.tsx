@@ -70,11 +70,13 @@ const Home = () => {
         <div className="container mx-auto px-4 z-10">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-card mb-6 drop-shadow-lg leading-tight">
             Votre Mariage de Rêve.<br />
-            <span className="text-primary">Organisé en 10 Minutes.</span><br />
-            Prix Connu Immédiatement.
+            <span className="text-primary">Tout est déjà prêt pour vous.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-card/90 mb-10 max-w-3xl mx-auto drop-shadow-lg">
-            Qualité premium, transparence totale, sans stress. C'est ça, Le Beau Mariage.
+          <p className="text-xl md:text-2xl text-primary mb-4 max-w-3xl mx-auto drop-shadow-lg font-semibold">
+            Il ne reste qu'à choisir votre date.
+          </p>
+          <p className="text-lg md:text-xl text-card/90 mb-10 max-w-3xl mx-auto drop-shadow-lg">
+            Domaine sélectionné. Prestataires validés. Prix transparent. C'est ça, Le Beau Mariage.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link to="/configurateur">
