@@ -95,8 +95,8 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             <div className="bg-card/10 backdrop-blur-md rounded-2xl p-6 border border-card/20">
               <div className="text-4xl mb-4">⏱️</div>
-              <h3 className="text-xl font-bold text-card mb-2">Organisé en 10 minutes</h3>
-              <p className="text-card/80 text-sm">Notre configurateur intelligent vous guide pas à pas. Fini les mois de préparation.</p>
+              <h3 className="text-xl font-bold text-card mb-2">Tout est déjà sélectionné</h3>
+              <p className="text-card/80 text-sm">Domaine, traiteur, photographe, DJ — nous avons fait le travail à votre place. Vous choisissez, on orchestre.</p>
             </div>
             <div className="bg-card/10 backdrop-blur-md rounded-2xl p-6 border border-card/20">
               <div className="text-4xl mb-4">💎</div>
