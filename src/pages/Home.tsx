@@ -164,6 +164,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Lead Capture Section */}
+      <LeadCaptureSection />
     </div>
   );
 };
