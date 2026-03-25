@@ -501,7 +501,7 @@ const BusinessModelSection = () => {
         {/* Header */}
         <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
-            30% moins cher. 100% qualité.
+            La qualité d'un grand mariage. Le prix de la raison.
             <span className="block text-primary">Voici notre secret.</span>
           </h2>
           <p className="text-card/70 text-lg max-w-3xl mx-auto">
