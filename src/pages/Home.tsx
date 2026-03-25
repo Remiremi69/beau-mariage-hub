@@ -70,16 +70,18 @@ const Home = () => {
         <div className="container mx-auto px-4 z-10">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-card mb-6 drop-shadow-lg leading-tight">
             Votre Mariage de Rêve.<br />
-            <span className="text-primary">Organisé en 10 Minutes.</span><br />
-            Prix Connu Immédiatement.
+            <span className="text-primary">Tout est déjà prêt pour vous.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-card/90 mb-10 max-w-3xl mx-auto drop-shadow-lg">
-            Qualité premium, transparence totale, sans stress. C'est ça, Le Beau Mariage.
+          <p className="text-xl md:text-2xl text-primary mb-4 max-w-3xl mx-auto drop-shadow-lg font-semibold">
+            Il ne reste qu'à choisir votre date.
+          </p>
+          <p className="text-lg md:text-xl text-card/90 mb-10 max-w-3xl mx-auto drop-shadow-lg">
+            Domaine sélectionné. Prestataires validés. Prix transparent. C'est ça, Le Beau Mariage.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link to="/configurateur">
               <Button size="xl" variant="hero" className="font-semibold text-lg px-8">
-                Créer Mon Mariage en 10 Min
+                Voir les dates disponibles
               </Button>
             </Link>
             <Link to="/serie-octobre-2027">
@@ -93,8 +95,8 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             <div className="bg-card/10 backdrop-blur-md rounded-2xl p-6 border border-card/20">
               <div className="text-4xl mb-4">⏱️</div>
-              <h3 className="text-xl font-bold text-card mb-2">Organisé en 10 minutes</h3>
-              <p className="text-card/80 text-sm">Notre configurateur intelligent vous guide pas à pas. Fini les mois de préparation.</p>
+              <h3 className="text-xl font-bold text-card mb-2">Tout est déjà sélectionné</h3>
+              <p className="text-card/80 text-sm">Domaine, traiteur, photographe, DJ — nous avons fait le travail à votre place. Vous choisissez, on orchestre.</p>
             </div>
             <div className="bg-card/10 backdrop-blur-md rounded-2xl p-6 border border-card/20">
               <div className="text-4xl mb-4">💎</div>
@@ -202,11 +204,11 @@ const TimelineSection = () => {
         {/* Header */}
         <div className={`text-center mb-12 md:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            Incroyablement simple.
-            <span className="block text-primary">Révolutionnairement rapide.</span>
+            Enfin, un mariage sans l'organisation.
+            <span className="block text-primary">Révolutionnairement simple.</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Oubliez les tableurs et les centaines d'e-mails. Voici comment nous organisons votre mariage en 4 étapes claires.
+            Oubliez les tableurs et les centaines d'e-mails. Voici comment votre mariage prend forme en 4 étapes.
           </p>
         </div>
 
