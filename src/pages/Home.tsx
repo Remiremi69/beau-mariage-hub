@@ -204,11 +204,11 @@ const TimelineSection = () => {
         {/* Header */}
         <div className={`text-center mb-12 md:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            Incroyablement simple.
-            <span className="block text-primary">Révolutionnairement rapide.</span>
+            Enfin, un mariage sans l'organisation.
+            <span className="block text-primary">Révolutionnairement simple.</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Oubliez les tableurs et les centaines d'e-mails. Voici comment nous organisons votre mariage en 4 étapes claires.
+            Oubliez les tableurs et les centaines d'e-mails. Voici comment votre mariage prend forme en 4 étapes.
           </p>
         </div>
 
