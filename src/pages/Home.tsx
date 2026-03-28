@@ -144,17 +144,6 @@ const TimelineSection = () => {
         {/* Header */}
         <ScrollReveal>
           <div className="text-center mb-16 md:mb-24">
-            {/* Pill badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm mb-8"
-            >
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-sm font-medium text-primary tracking-wide uppercase">Comment ça marche</span>
-            </motion.div>
 
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-2 tracking-tight leading-[1.1]">
               Enfin, un mariage
