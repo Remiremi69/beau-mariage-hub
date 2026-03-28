@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Clock, Diamond, Star, Palette, Coins, CheckCircle, PartyPopper, UtensilsCrossed, Camera, Flower2, Music, RefreshCw, ArrowRight, Users, Handshake, Check, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+
 import SEO from "@/components/SEO";
 import LeadCaptureSection from "@/components/LeadCaptureSection";
 import CinematicHero from "@/components/CinematicHero";
