@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Clock, Diamond, Star } from "lucide-react";
 
-import heroImg1 from "@/assets/domaine-hero-1.png";
-import heroImg2 from "@/assets/domaine-hero-2.png";
-import heroImg3 from "@/assets/domaine-hero-3.png";
-import heroImg4 from "@/assets/domaine-hero-4.png";
-
-const images = [heroImg1, heroImg2, heroImg3, heroImg4];
+const images = [
+  "https://i.postimg.cc/5NHccFBF/54-domaine-de-lanbspcroixnbsprochefort.jpg",
+  "https://i.postimg.cc/Y05dBj78/Domaine-de-la-Croix-Rochefort-mariage-saint-didier-sur-Beaujeu.jpg",
+  "https://i.postimg.cc/5yVmsTSP/876-domaine-de-lanbspcroixnbsprochefort.jpg",
+  "https://i.postimg.cc/x1YWXFrv/9-accueil-le-caveau.jpg",
+];
 
 const AnimatedText = ({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) => {
   return (
