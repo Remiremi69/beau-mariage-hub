@@ -153,16 +153,22 @@ export const ImageReveal = ({
     <motion.div
       ref={ref}
       className={`overflow-hidden ${className}`}
-      initial={{ clipPath: clipPaths[direction].hidden }}
-      animate={isInView ? { clipPath: clipPaths[direction].visible } : { clipPath: clipPaths[direction].hidden }}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={{
+        hidden: { clipPath: clipPaths[direction].hidden },
+        visible: { clipPath: clipPaths[direction].visible },
+      }}
       transition={{ duration: 1, delay, ease: [0.25, 0.1, 0.25, 1] }}
     >
       <motion.img
         src={src}
         alt={alt}
         className="w-full h-full object-cover"
-        initial={{ scale: 1.2 }}
-        animate={isInView ? { scale: 1 } : { scale: 1.2 }}
+        variants={{
+          hidden: { scale: 1.2 },
+          visible: { scale: 1 },
+        }}
         transition={{ duration: 1.4, delay, ease: [0.25, 0.1, 0.25, 1] }}
       />
     </motion.div>
