@@ -129,8 +129,6 @@ const Home = () => {
 
 // Timeline Section Component - ACTION 2
 const TimelineSection = () => {
-  const { ref, isInView } = useInView(0.1);
-
   const steps = [
     {
       icon: Palette,
@@ -159,45 +157,33 @@ const TimelineSection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-background overflow-hidden" ref={ref}>
+    <section className="py-16 md:py-24 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className={`text-center mb-12 md:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            Enfin, un mariage sans l'organisation.
-            <span className="block text-primary">Révolutionnairement simple.</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Oubliez les tableurs et les centaines d'e-mails. Voici comment votre mariage prend forme en 4 étapes.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+              Enfin, un mariage sans l'organisation.
+              <span className="block text-primary">Révolutionnairement simple.</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+              Oubliez les tableurs et les centaines d'e-mails. Voici comment votre mariage prend forme en 4 étapes.
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* Timeline - Desktop */}
         <div className="hidden md:block relative max-w-6xl mx-auto">
-          {/* Progress line */}
-          <div className="absolute top-24 left-0 right-0 h-1 bg-muted">
-            <div 
-              className={`h-full bg-gradient-to-r from-primary to-secondary transition-all duration-2000 ease-out ${isInView ? 'w-full' : 'w-0'}`}
-            />
-          </div>
-
-          <div className="grid grid-cols-4 gap-8">
+          <StaggerContainer className="grid grid-cols-4 gap-8" staggerDelay={0.15}>
             {steps.map((step, index) => {
               const Icon = step.icon;
               return (
-                <div
-                  key={index}
-                  className={`relative text-center transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                  style={{ transitionDelay: `${index * 200}ms` }}
-                >
-                  {/* Circle with icon */}
+                <div key={index} className="relative text-center">
                   <div className="relative z-10 mb-6">
                     <div className="w-20 h-20 mx-auto rounded-full bg-card border-4 border-primary shadow-lg flex items-center justify-center">
                       <Icon className="h-9 w-9 text-primary" />
                     </div>
                   </div>
-
-                  {/* Content */}
                   <div className="bg-card rounded-2xl p-6 shadow-md border border-border/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-3">
                       {step.time}
@@ -208,7 +194,7 @@ const TimelineSection = () => {
                 </div>
               );
             })}
-          </div>
+          </StaggerContainer>
         </div>
 
         {/* Timeline - Mobile */}
@@ -216,47 +202,44 @@ const TimelineSection = () => {
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
-              <div
-                key={index}
-                className={`relative flex gap-4 transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
-                style={{ transitionDelay: `${index * 150}ms` }}
-              >
-                {/* Timeline line */}
-                <div className="flex flex-col items-center">
-                  <div className="w-14 h-14 rounded-full bg-card border-4 border-primary shadow-lg flex items-center justify-center shrink-0">
-                    <Icon className="h-6 w-6 text-primary" />
-                  </div>
-                  {index < steps.length - 1 && (
-                    <div className="w-1 flex-1 bg-gradient-to-b from-primary to-secondary my-2" />
-                  )}
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 pb-6">
-                  <div className="bg-card rounded-xl p-4 shadow-md border border-border/50">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
-                        {step.time}
-                      </span>
+              <ScrollReveal key={index} direction="left" delay={index * 0.1}>
+                <div className="relative flex gap-4">
+                  <div className="flex flex-col items-center">
+                    <div className="w-14 h-14 rounded-full bg-card border-4 border-primary shadow-lg flex items-center justify-center shrink-0">
+                      <Icon className="h-6 w-6 text-primary" />
                     </div>
-                    <h3 className="text-lg font-bold text-foreground mb-1">{step.title}</h3>
-                    <p className="text-muted-foreground text-sm">{step.description}</p>
+                    {index < steps.length - 1 && (
+                      <div className="w-1 flex-1 bg-gradient-to-b from-primary to-secondary my-2" />
+                    )}
+                  </div>
+                  <div className="flex-1 pb-6">
+                    <div className="bg-card rounded-xl p-4 shadow-md border border-border/50">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                          {step.time}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold text-foreground mb-1">{step.title}</h3>
+                      <p className="text-muted-foreground text-sm">{step.description}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>
 
         {/* CTA */}
-        <div className={`text-center mt-12 md:mt-16 transition-all duration-1000 delay-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <Link to="/configurateur">
-            <Button size="xl" variant="hero" className="group">
-              <span>Commencer la configuration</span>
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </Link>
-        </div>
+        <ScrollReveal delay={0.5}>
+          <div className="text-center mt-12 md:mt-16">
+            <Link to="/configurateur">
+              <Button size="xl" variant="hero" className="group">
+                <span>Commencer la configuration</span>
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
