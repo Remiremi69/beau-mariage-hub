@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Clock, Diamond, Star, Palette, Coins, CheckCircle, PartyPopper, UtensilsCrossed, Camera, Flower2, Music, RefreshCw, ArrowRight, Users, Handshake, Check, ExternalLink } from "lucide-react";
@@ -133,18 +134,68 @@ const TimelineSection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-background overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="py-20 md:py-32 bg-background overflow-hidden relative">
+      {/* Background glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,hsl(14_71%_67%/0.08)_0%,transparent_70%)]" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-12 md:mb-20">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-              Enfin, un mariage sans l'organisation.
-              <span className="block text-primary">Simple.</span>
+          <div className="text-center mb-16 md:mb-24">
+            {/* Pill badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm mb-8"
+            >
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span className="text-sm font-medium text-primary tracking-wide uppercase">Comment ça marche</span>
+            </motion.div>
+
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-2 tracking-tight leading-[1.1]">
+              Enfin, un mariage
+              <br className="hidden md:block" />
+              <span className="relative inline-block">
+                sans l'organisation.
+                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <motion.path
+                    d="M2 8C50 2 100 2 150 6C200 10 250 4 298 7"
+                    stroke="hsl(14 71% 67%)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.2, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                  />
+                </svg>
+              </span>
             </h2>
-            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Oubliez les tableurs et les centaines d'e-mails. Voici comment votre mariage prend forme en 4 étapes.
-            </p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              className="text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-primary via-[hsl(30_80%_65%)] to-secondary bg-clip-text text-transparent mt-2 mb-8 tracking-tight"
+            >
+              Simple.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+              className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+            >
+              Oubliez les tableurs et les centaines d'e-mails.
+              <span className="block mt-1 text-foreground/70 font-medium">Voici comment votre mariage prend forme en 4 étapes.</span>
+            </motion.p>
           </div>
         </ScrollReveal>
 
