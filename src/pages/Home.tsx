@@ -12,7 +12,7 @@ import photographeImage from "@/assets/photographe-alexandre.jpg";
 import decoImage from "@/assets/deco-boheme.jpg";
 import djImage from "@/assets/dj-clara.jpg";
 
-// Hook for intersection observer animations
+// Hook for intersection observer animations 
 const useInView = (threshold = 0.1) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
