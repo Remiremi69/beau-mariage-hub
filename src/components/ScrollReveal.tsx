@@ -15,7 +15,7 @@ interface ScrollRevealProps {
   scale?: boolean;
 }
 
-const getInitial = (direction: Direction, scale: boolean): Variant => {
+const getInitial = (direction: Direction, scale: boolean): TargetAndTransition => {
   const base: Record<string, number> = { opacity: 0 };
   if (scale) base.scale = 0.95;
   switch (direction) {
@@ -27,7 +27,7 @@ const getInitial = (direction: Direction, scale: boolean): Variant => {
   }
 };
 
-const getAnimate = (scale: boolean): Variant => ({
+const getAnimate = (scale: boolean): TargetAndTransition => ({
   opacity: 1,
   y: 0,
   x: 0,
