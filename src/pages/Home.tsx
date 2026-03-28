@@ -247,8 +247,6 @@ const TimelineSection = () => {
 
 // Serenity Section Component - ACTION 4
 const SerenitySection = () => {
-  const { ref, isInView } = useInView(0.1);
-
   const guarantees = [
     {
       icon: Diamond,
@@ -271,46 +269,38 @@ const SerenitySection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden" ref={ref}>
-      {/* Background */}
+    <section className="py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
       
       <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
-        <div className={`text-center mb-12 md:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            Se marier sans stress,
-            <span className="block text-secondary">c'est maintenant possible.</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Nous avons créé trois garanties uniques, incluses dans chaque forfait, pour que vous puissiez vous concentrer sur l'essentiel : votre bonheur.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+              Se marier sans stress,
+              <span className="block text-secondary">c'est maintenant possible.</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+              Nous avons créé trois garanties uniques, incluses dans chaque forfait, pour que vous puissiez vous concentrer sur l'essentiel : votre bonheur.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        {/* Guarantee Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto" staggerDelay={0.15}>
           {guarantees.map((guarantee, index) => {
             const Icon = guarantee.icon;
-            
             return (
-              <div
-                key={index}
-                className={`group transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
-                style={{ transitionDelay: `${index * 150}ms` }}
-              >
+              <div key={index} className="group">
                 <div className="relative h-full overflow-hidden rounded-3xl bg-card border border-border/50 p-8 transition-all duration-500 hover:shadow-[0_30px_60px_-15px_hsl(14_71%_67%/0.25)] hover:-translate-y-3 hover:border-primary/20">
-                  {/* Icon */}
                   <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
                     <Icon className={`h-7 w-7 ${guarantee.color === 'secondary' ? 'text-secondary' : 'text-primary'}`} />
                   </div>
-                  
                   <h3 className="text-2xl font-bold text-foreground mb-4">{guarantee.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{guarantee.description}</p>
                 </div>
               </div>
             );
           })}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
