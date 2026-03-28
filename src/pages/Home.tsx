@@ -59,59 +59,8 @@ const Home = () => {
         <span className="sm:hidden"> La série présentée est un exemple.</span>
       </div>
 
-      {/* Hero Section - ACTION 1 */}
-      <section
-        className="relative min-h-screen flex items-center justify-center text-center py-20"
-        style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%), url(${heroImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="container mx-auto px-4 z-10">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-card mb-6 drop-shadow-lg leading-tight">
-            Votre Mariage de Rêve.<br />
-            <span className="text-primary">Tout est déjà prêt pour vous.</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-primary mb-4 max-w-3xl mx-auto drop-shadow-lg font-semibold">
-            Il ne reste qu'à choisir votre date.
-          </p>
-          <p className="text-lg md:text-xl text-card/90 mb-10 max-w-3xl mx-auto drop-shadow-lg">
-            Domaine sélectionné. Prestataires validés. Prix transparent. C'est ça, Le Beau Mariage.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Link to="/configurateur">
-              <Button size="xl" variant="hero" className="font-semibold text-lg px-8">
-                Voir les dates disponibles
-              </Button>
-            </Link>
-            <Link to="/serie-octobre-2027">
-              <Button size="xl" variant="elegant" className="font-semibold text-lg px-8">
-                Voir la Série Actuelle
-              </Button>
-            </Link>
-          </div>
-
-          {/* 3 Promises - Sub-section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <div className="bg-card/10 backdrop-blur-md rounded-2xl p-6 border border-card/20">
-              <div className="text-4xl mb-4">⏱️</div>
-              <h3 className="text-xl font-bold text-card mb-2">Tout est déjà sélectionné</h3>
-              <p className="text-card/80 text-sm">Domaine, traiteur, photographe, DJ — nous avons fait le travail à votre place. Vous choisissez, on orchestre.</p>
-            </div>
-            <div className="bg-card/10 backdrop-blur-md rounded-2xl p-6 border border-card/20">
-              <div className="text-4xl mb-4">💎</div>
-              <h3 className="text-xl font-bold text-card mb-2">Prix connu immédiatement</h3>
-              <p className="text-card/80 text-sm">Le prix s'affiche en temps réel. Pas de devis à attendre, pas de frais cachés.</p>
-            </div>
-            <div className="bg-card/10 backdrop-blur-md rounded-2xl p-6 border border-card/20">
-              <div className="text-4xl mb-4">⭐</div>
-              <h3 className="text-xl font-bold text-card mb-2">Prestataires d'exception</h3>
-              <p className="text-card/80 text-sm">Nous avons déjà sélectionné et validé les meilleurs talents pour votre grand jour.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section - Cinematic */}
+      <CinematicHero />
 
       {/* How It Works Section - ACTION 2 */}
       <TimelineSection />
