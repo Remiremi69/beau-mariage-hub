@@ -52,23 +52,24 @@ const CinematicHero = () => {
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
-      {/* Parallax Background with Ken Burns */}
-      <AnimatePresence mode="wait">
+      {/* Crossfade Background with Ken Burns */}
+      {images.map((img, index) => (
         <motion.div
-          key={currentImage}
+          key={index}
           className="absolute inset-0 z-0"
           style={{ y, scale }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
+          animate={{ opacity: index === currentImage ? 1 : 0 }}
+          transition={{ duration: 2, ease: [0.4, 0, 0.2, 1] }}
         >
           <div
-            className="absolute inset-0 bg-cover bg-center animate-kenburns"
-            style={{ backgroundImage: `url(${images[currentImage]})` }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${img})`,
+              animation: index === currentImage ? "kenburns 8s ease-out forwards" : "none",
+            }}
           />
         </motion.div>
-      </AnimatePresence>
+      ))}
 
       {/* Gradient Overlay */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-anthracite/50 via-anthracite/40 to-anthracite/70" />
