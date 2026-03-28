@@ -140,7 +140,7 @@ const TimelineSection = () => {
           <div className="text-center mb-12 md:mb-20">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
               Enfin, un mariage sans l'organisation.
-              <span className="block text-primary">Révolutionnairement simple.</span>
+              <span className="block text-primary">Simple.</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
               Oubliez les tableurs et les centaines d'e-mails. Voici comment votre mariage prend forme en 4 étapes.
