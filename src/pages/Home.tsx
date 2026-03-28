@@ -82,36 +82,42 @@ const Home = () => {
       {/* Testimonials Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-            Le Mot du Fondateur
-          </h2>
+          <ScrollReveal>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+              Le Mot du Fondateur
+            </h2>
+          </ScrollReveal>
 
-          <div className="max-w-3xl mx-auto">
-            <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] bg-gradient-to-br from-card to-primary/5">
-              <CardContent className="p-8 md:p-12">
-                <div className="flex justify-center mb-6">
-                  <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Heart className="h-10 w-10 text-primary" />
+          <ScrollReveal delay={0.2} scale>
+            <div className="max-w-3xl mx-auto">
+              <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] bg-gradient-to-br from-card to-primary/5">
+                <CardContent className="p-8 md:p-12">
+                  <div className="flex justify-center mb-6">
+                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Heart className="h-10 w-10 text-primary" />
+                    </div>
                   </div>
-                </div>
-                <blockquote className="text-xl md:text-2xl text-center mb-8 italic text-foreground leading-relaxed">
-                  "{founderQuote.text}"
-                </blockquote>
-                <div className="text-center">
-                  <p className="font-bold text-lg text-primary">{founderQuote.author}</p>
-                  <p className="text-muted-foreground">{founderQuote.role}</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+                  <blockquote className="text-xl md:text-2xl text-center mb-8 italic text-foreground leading-relaxed">
+                    "{founderQuote.text}"
+                  </blockquote>
+                  <div className="text-center">
+                    <p className="font-bold text-lg text-primary">{founderQuote.author}</p>
+                    <p className="text-muted-foreground">{founderQuote.role}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </ScrollReveal>
 
-          <div className="text-center mt-12">
-            <Link to="/contact">
-              <Button variant="elegant" size="lg">
-                Échanger avec notre équipe
-              </Button>
-            </Link>
-          </div>
+          <ScrollReveal delay={0.4}>
+            <div className="text-center mt-12">
+              <Link to="/contact">
+                <Button variant="elegant" size="lg">
+                  Échanger avec notre équipe
+                </Button>
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
