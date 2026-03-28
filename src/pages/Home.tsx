@@ -306,37 +306,21 @@ const SerenitySection = () => {
   );
 };
 
-// Wedding Site Section - Personalized Wedding Website
+// Wedding Site Section
 const WeddingSiteSection = () => {
-  const { ref, isInView } = useInView(0.1);
-
   const benefits = [
-    {
-      title: "Partagez votre histoire",
-      description: "Racontez votre rencontre, vos moments forts, et présentez vos témoins."
-    },
-    {
-      title: "Toutes les infos au même endroit",
-      description: "Horaires, adresses, plans d'accès, suggestions d'hôtels... Simplifiez la vie de vos invités."
-    },
-    {
-      title: "Gérez les confirmations de présence (RSVP)",
-      description: "Vos invités confirment leur venue en un clic, directement sur le site."
-    },
-    {
-      title: "Votre liste de mariage intégrée",
-      description: "Connectez facilement votre liste de mariage pour un accès simplifié."
-    }
+    { title: "Partagez votre histoire", description: "Racontez votre rencontre, vos moments forts, et présentez vos témoins." },
+    { title: "Toutes les infos au même endroit", description: "Horaires, adresses, plans d'accès, suggestions d'hôtels... Simplifiez la vie de vos invités." },
+    { title: "Gérez les confirmations de présence (RSVP)", description: "Vos invités confirment leur venue en un clic, directement sur le site." },
+    { title: "Votre liste de mariage intégrée", description: "Connectez facilement votre liste de mariage pour un accès simplifié." }
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-card" ref={ref}>
+    <section className="py-16 md:py-24 bg-card">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
-          {/* Left Column - Image */}
-          <div 
-            className={`relative transition-all duration-1000 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
-          >
+          {/* Left Column - Image with reveal */}
+          <ScrollReveal direction="left">
             <a 
               href="https://beau-mariage-template.lovable.app" 
               target="_blank" 
@@ -348,25 +332,21 @@ const WeddingSiteSection = () => {
                 alt="Exemple de site de mariage personnalisé - Le Beau Mariage"
                 className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
               />
-              {/* Overlay with CTA */}
               <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-8">
                 <span className="inline-flex items-center gap-2 bg-card text-foreground px-6 py-3 rounded-full font-semibold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                   <ExternalLink className="h-4 w-4" />
                   Voir un exemple
                 </span>
               </div>
-              {/* Always visible badge */}
               <div className="absolute bottom-4 right-4 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-2 group-hover:opacity-0 transition-opacity duration-300">
                 <ExternalLink className="h-4 w-4" />
                 Voir un exemple
               </div>
             </a>
-          </div>
+          </ScrollReveal>
 
           {/* Right Column - Text */}
-          <div 
-            className={`transition-all duration-1000 delay-200 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}
-          >
+          <ScrollReveal direction="right" delay={0.2}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
               Inclus : Votre Site de Mariage
               <span className="block text-primary">Personnalisé</span>
@@ -376,14 +356,9 @@ const WeddingSiteSection = () => {
               Parce que votre histoire est unique, nous vous offrons un site web élégant et personnalisé pour partager tous les détails de votre grand jour avec vos invités. C'est votre espace, inclus dans votre forfait.
             </p>
 
-            {/* Benefits List */}
-            <ul className="space-y-4 mb-8">
+            <StaggerContainer className="space-y-4 mb-8" staggerDelay={0.1} direction="right">
               {benefits.map((benefit, index) => (
-                <li 
-                  key={index}
-                  className={`flex items-start gap-3 transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}
-                  style={{ transitionDelay: `${300 + index * 100}ms` }}
-                >
+                <li key={index} className="flex items-start gap-3 list-none">
                   <div className="shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
                     <Check className="h-4 w-4 text-primary" />
                   </div>
@@ -393,13 +368,12 @@ const WeddingSiteSection = () => {
                   </div>
                 </li>
               ))}
-            </ul>
+            </StaggerContainer>
 
-            {/* Conclusion */}
             <p className="text-lg font-semibold text-primary border-l-4 border-primary pl-4 bg-primary/5 py-3 pr-4 rounded-r-lg">
               Le petit plus qui fait toute la différence, offert par Le Beau Mariage.
             </p>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
@@ -408,8 +382,6 @@ const WeddingSiteSection = () => {
 
 // Business Model Section - ACTION 5
 const BusinessModelSection = () => {
-  const { ref, isInView } = useInView(0.1);
-
   const points = [
     {
       icon: Users,
@@ -429,30 +401,25 @@ const BusinessModelSection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-foreground text-card" ref={ref}>
+    <section className="py-16 md:py-24 bg-foreground text-card">
       <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
-            La qualité d'un grand mariage. Le prix de la raison.
-            <span className="block text-primary">Voici notre secret.</span>
-          </h2>
-          <p className="text-card/70 text-lg max-w-3xl mx-auto">
-            Notre innovation ne réside pas seulement dans la technologie, mais dans notre modèle économique unique en France.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
+              La qualité d'un grand mariage. Le prix de la raison.
+              <span className="block text-primary">Voici notre secret.</span>
+            </h2>
+            <p className="text-card/70 text-lg max-w-3xl mx-auto">
+              Notre innovation ne réside pas seulement dans la technologie, mais dans notre modèle économique unique en France.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        {/* Points */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto" staggerDelay={0.15}>
           {points.map((point, index) => {
             const Icon = point.icon;
-            
             return (
-              <div
-                key={index}
-                className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
-                style={{ transitionDelay: `${index * 150}ms` }}
-              >
+              <div key={index}>
                 <div className="relative h-full bg-card/5 backdrop-blur-sm rounded-2xl p-8 border border-card/10 hover:border-primary/30 transition-all duration-300">
                   <div className="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center mb-6">
                     <Icon className="h-7 w-7 text-primary" />
@@ -463,7 +430,7 @@ const BusinessModelSection = () => {
               </div>
             );
           })}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
@@ -471,8 +438,6 @@ const BusinessModelSection = () => {
 
 // Partners Section - ACTION 3
 const PartnersSection = () => {
-  const { ref, isInView } = useInView(0.1);
-
   const categories = [
     {
       image: chefImage,
@@ -509,35 +474,30 @@ const PartnersSection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-background" ref={ref}>
+    <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className={`text-center mb-6 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            La Qualité n'est pas un Label,
-            <span className="block text-primary">c'est un Partenariat.</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto mb-8">
-            Nous ne recrutons pas de simples fournisseurs. Nous nous associons avec des artisans passionnés qui partagent notre obsession pour l'excellence.
-          </p>
-          <p className="text-foreground max-w-4xl mx-auto leading-relaxed mb-12">
-            Oubliez les processus de certification froids. Chez Le Beau Mariage, la confiance se bâtit sur le terrain. Chaque traiteur, photographe ou décorateur est un partenaire que nous avons personnellement rencontré, dont nous avons testé le travail et avec qui nous avons tissé une relation durable. Ils sont le cœur de notre promesse : un mariage parfait, sans compromis.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="text-center mb-6">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+              La Qualité n'est pas un Label,
+              <span className="block text-primary">c'est un Partenariat.</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-3xl mx-auto mb-8">
+              Nous ne recrutons pas de simples fournisseurs. Nous nous associons avec des artisans passionnés qui partagent notre obsession pour l'excellence.
+            </p>
+            <p className="text-foreground max-w-4xl mx-auto leading-relaxed mb-12">
+              Oubliez les processus de certification froids. Chez Le Beau Mariage, la confiance se bâtit sur le terrain. Chaque traiteur, photographe ou décorateur est un partenaire que nous avons personnellement rencontré, dont nous avons testé le travail et avec qui nous avons tissé une relation durable. Ils sont le cœur de notre promesse : un mariage parfait, sans compromis.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        {/* Categories Grid with image reveal */}
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16" staggerDelay={0.12}>
           {categories.map((cat, index) => {
             const Icon = cat.icon;
-            
             return (
-              <div
-                key={index}
-                className={`group transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
+              <div key={index} className="group">
                 <div className="relative h-full overflow-hidden rounded-2xl bg-card border border-border/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-                  {/* Image */}
                   <div className="relative h-48 overflow-hidden">
                     <img 
                       src={cat.image} 
@@ -552,8 +512,6 @@ const PartnersSection = () => {
                       </div>
                     </div>
                   </div>
-                  
-                  {/* Content */}
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-foreground mb-3">{cat.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">{cat.description}</p>
@@ -562,22 +520,24 @@ const PartnersSection = () => {
               </div>
             );
           })}
-        </div>
+        </StaggerContainer>
 
         {/* Quote */}
-        <div className={`max-w-4xl mx-auto transition-all duration-1000 delay-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <Card className="border-none shadow-lg bg-gradient-to-br from-primary/5 to-secondary/5">
-            <CardContent className="p-8 md:p-10">
-              <blockquote className="text-lg md:text-xl text-center italic text-foreground leading-relaxed mb-6">
-                "Collaborer avec Le Beau Mariage, c'est plus qu'un contrat. C'est la garantie de pouvoir se concentrer sur notre art pour des couples qui nous font confiance."
-              </blockquote>
-              <div className="text-center">
-                <p className="font-bold text-primary">Alexandre</p>
-                <p className="text-muted-foreground text-sm">Chef Traiteur Partenaire</p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+        <ScrollReveal delay={0.3} scale>
+          <div className="max-w-4xl mx-auto">
+            <Card className="border-none shadow-lg bg-gradient-to-br from-primary/5 to-secondary/5">
+              <CardContent className="p-8 md:p-10">
+                <blockquote className="text-lg md:text-xl text-center italic text-foreground leading-relaxed mb-6">
+                  "Collaborer avec Le Beau Mariage, c'est plus qu'un contrat. C'est la garantie de pouvoir se concentrer sur notre art pour des couples qui nous font confiance."
+                </blockquote>
+                <div className="text-center">
+                  <p className="font-bold text-primary">Alexandre</p>
+                  <p className="text-muted-foreground text-sm">Chef Traiteur Partenaire</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
