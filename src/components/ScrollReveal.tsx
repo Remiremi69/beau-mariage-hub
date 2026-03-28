@@ -47,11 +47,18 @@ export const ScrollReveal = ({
   const ref = useRef(null);
   const isInView = useInView(ref, { once, amount });
 
+  const initial = getInitial(direction, scale);
+  const animate = isInView ? getAnimate(scale) : initial;
+
   return (
     <motion.div
       ref={ref}
-      initial={getInitial(direction, scale)}
-      animate={isInView ? getAnimate(scale) : getInitial(direction, scale)}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={{
+        hidden: initial,
+        visible: getAnimate(scale),
+      }}
       transition={{
         duration,
         delay,
