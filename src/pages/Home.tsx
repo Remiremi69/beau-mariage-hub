@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import SEO from "@/components/SEO";
 import LeadCaptureSection from "@/components/LeadCaptureSection";
-import heroImage from "@/assets/hero-image-realiste.png";
+import CinematicHero from "@/components/CinematicHero";
 import venueImage from "@/assets/venue-exterior.jpg";
 import chefImage from "@/assets/chef-sebastien.jpg";
 import photographeImage from "@/assets/photographe-alexandre.jpg";
