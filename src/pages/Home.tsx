@@ -134,18 +134,18 @@ const TimelineSection = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-background overflow-hidden relative">
+    <section className="py-12 sm:py-20 md:py-32 bg-background overflow-hidden relative">
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,hsl(14_71%_67%/0.08)_0%,transparent_70%)]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[800px] h-[200px] sm:h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,hsl(14_71%_67%/0.08)_0%,transparent_70%)]" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-16 md:mb-24">
+          <div className="text-center mb-10 sm:mb-16 md:mb-24">
 
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-2 tracking-tight leading-[1.1]">
+            <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-2 tracking-tight leading-[1.1]">
               Enfin, un mariage
               <br className="hidden md:block" />
               <span className="relative inline-block">
@@ -170,7 +170,7 @@ const TimelineSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-primary via-[hsl(30_80%_65%)] to-secondary bg-clip-text text-transparent mt-2 mb-8 tracking-tight"
+              className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-primary via-[hsl(30_80%_65%)] to-secondary bg-clip-text text-transparent mt-2 mb-6 sm:mb-8 tracking-tight"
             >
               Simple.
             </motion.p>
@@ -180,7 +180,7 @@ const TimelineSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+              className="text-muted-foreground text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed px-2"
             >
               Oubliez les tableurs et les centaines d'e-mails.
               <span className="block mt-1 text-foreground/70 font-medium">Voici comment votre mariage prend forme en 4 étapes.</span>
