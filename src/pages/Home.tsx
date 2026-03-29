@@ -247,9 +247,9 @@ const TimelineSection = () => {
 
         {/* CTA */}
         <ScrollReveal delay={0.5}>
-          <div className="text-center mt-12 md:mt-16">
-            <Link to="/configurateur">
-              <Button size="xl" variant="hero" className="group">
+          <div className="text-center mt-8 sm:mt-12 md:mt-16 px-4 sm:px-0">
+            <Link to="/configurateur" className="block sm:inline-block">
+              <Button size="xl" variant="hero" className="group w-full sm:w-auto">
                 <span>Commencer la configuration</span>
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
