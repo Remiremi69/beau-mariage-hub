@@ -31,7 +31,7 @@ const Home = () => {
       />
       
       {/* Launch Banner */}
-      <div className="bg-primary text-primary-foreground py-3 px-4 text-center text-sm md:text-base">
+      <div className="bg-primary text-primary-foreground py-2.5 sm:py-3 px-3 sm:px-4 text-center text-xs sm:text-sm md:text-base">
         <span className="font-medium">🚀 Le Beau Mariage est en phase de lancement !</span>
         <span className="hidden sm:inline"> — Ce site vous permet de découvrir notre concept. La série de mariage présentée est fictive et sert d'exemple.</span>
         <span className="sm:hidden"> La série présentée est un exemple.</span>
@@ -57,10 +57,10 @@ const Home = () => {
 
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-background">
+      <section className="py-12 sm:py-20 bg-background">
         <div className="container mx-auto px-4">
           <ScrollReveal>
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-16">
               Le Mot du Fondateur
             </h2>
           </ScrollReveal>
@@ -68,13 +68,13 @@ const Home = () => {
           <ScrollReveal delay={0.2} scale>
             <div className="max-w-3xl mx-auto">
               <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] bg-gradient-to-br from-card to-primary/5">
-                <CardContent className="p-8 md:p-12">
-                  <div className="flex justify-center mb-6">
-                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Heart className="h-10 w-10 text-primary" />
+                <CardContent className="p-5 sm:p-8 md:p-12">
+                  <div className="flex justify-center mb-4 sm:mb-6">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Heart className="h-8 w-8 sm:h-10 sm:w-10 text-primary" />
                     </div>
                   </div>
-                  <blockquote className="text-xl md:text-2xl text-center mb-8 italic text-foreground leading-relaxed">
+                  <blockquote className="text-base sm:text-xl md:text-2xl text-center mb-6 sm:mb-8 italic text-foreground leading-relaxed">
                     "{founderQuote.text}"
                   </blockquote>
                   <div className="text-center">
@@ -134,18 +134,18 @@ const TimelineSection = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-background overflow-hidden relative">
+    <section className="py-12 sm:py-20 md:py-32 bg-background overflow-hidden relative">
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,hsl(14_71%_67%/0.08)_0%,transparent_70%)]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[800px] h-[200px] sm:h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,hsl(14_71%_67%/0.08)_0%,transparent_70%)]" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-16 md:mb-24">
+          <div className="text-center mb-10 sm:mb-16 md:mb-24">
 
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-2 tracking-tight leading-[1.1]">
+            <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-2 tracking-tight leading-[1.1]">
               Enfin, un mariage
               <br className="hidden md:block" />
               <span className="relative inline-block">
@@ -170,7 +170,7 @@ const TimelineSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-primary via-[hsl(30_80%_65%)] to-secondary bg-clip-text text-transparent mt-2 mb-8 tracking-tight"
+              className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-primary via-[hsl(30_80%_65%)] to-secondary bg-clip-text text-transparent mt-2 mb-6 sm:mb-8 tracking-tight"
             >
               Simple.
             </motion.p>
@@ -180,7 +180,7 @@ const TimelineSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+              className="text-muted-foreground text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed px-2"
             >
               Oubliez les tableurs et les centaines d'e-mails.
               <span className="block mt-1 text-foreground/70 font-medium">Voici comment votre mariage prend forme en 4 étapes.</span>
@@ -247,9 +247,9 @@ const TimelineSection = () => {
 
         {/* CTA */}
         <ScrollReveal delay={0.5}>
-          <div className="text-center mt-12 md:mt-16">
-            <Link to="/configurateur">
-              <Button size="xl" variant="hero" className="group">
+          <div className="text-center mt-8 sm:mt-12 md:mt-16 px-4 sm:px-0">
+            <Link to="/configurateur" className="block sm:inline-block">
+              <Button size="xl" variant="hero" className="group w-full sm:w-auto">
                 <span>Commencer la configuration</span>
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -285,33 +285,33 @@ const SerenitySection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
       
       <div className="container mx-auto px-4 relative z-10">
         <ScrollReveal>
-          <div className="text-center mb-12 md:mb-20">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+          <div className="text-center mb-8 sm:mb-12 md:mb-20">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
               Se marier sans stress,
               <span className="block text-secondary">c'est maintenant possible.</span>
             </h2>
-            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+            <p className="text-muted-foreground text-sm sm:text-lg max-w-3xl mx-auto px-2">
               Nous avons créé trois garanties uniques, incluses dans chaque forfait, pour que vous puissiez vous concentrer sur l'essentiel : votre bonheur.
             </p>
           </div>
         </ScrollReveal>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto" staggerDelay={0.15}>
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto" staggerDelay={0.15}>
           {guarantees.map((guarantee, index) => {
             const Icon = guarantee.icon;
             return (
               <div key={index} className="group">
-                <div className="relative h-full overflow-hidden rounded-3xl bg-card border border-border/50 p-8 transition-all duration-500 hover:shadow-[0_30px_60px_-15px_hsl(14_71%_67%/0.25)] hover:-translate-y-3 hover:border-primary/20">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                    <Icon className={`h-7 w-7 ${guarantee.color === 'secondary' ? 'text-secondary' : 'text-primary'}`} />
+                <div className="relative h-full overflow-hidden rounded-2xl sm:rounded-3xl bg-card border border-border/50 p-5 sm:p-8 transition-all duration-500 hover:shadow-[0_30px_60px_-15px_hsl(14_71%_67%/0.25)] hover:-translate-y-3 hover:border-primary/20">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-primary/10 flex items-center justify-center mb-4 sm:mb-6">
+                    <Icon className={`h-6 w-6 sm:h-7 sm:w-7 ${guarantee.color === 'secondary' ? 'text-secondary' : 'text-primary'}`} />
                   </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4">{guarantee.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{guarantee.description}</p>
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-4">{guarantee.title}</h3>
+                  <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">{guarantee.description}</p>
                 </div>
               </div>
             );
@@ -332,9 +332,9 @@ const WeddingSiteSection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-card">
+    <section className="py-12 sm:py-16 md:py-24 bg-card">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
           {/* Left Column - Image with reveal */}
           <ScrollReveal direction="left">
             <a 
@@ -363,12 +363,12 @@ const WeddingSiteSection = () => {
 
           {/* Right Column - Text */}
           <ScrollReveal direction="right" delay={0.2}>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
               Inclus : Votre Site de Mariage
               <span className="block text-primary">Personnalisé</span>
             </h2>
             
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
               Parce que votre histoire est unique, nous vous offrons un site web élégant et personnalisé pour partager tous les détails de votre grand jour avec vos invités. C'est votre espace, inclus dans votre forfait.
             </p>
 
@@ -417,31 +417,31 @@ const BusinessModelSection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-foreground text-card">
+    <section className="py-12 sm:py-16 md:py-24 bg-foreground text-card">
       <div className="container mx-auto px-4">
         <ScrollReveal>
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
               La qualité d'un grand mariage. Le prix de la raison.
               <span className="block text-primary">Voici notre secret.</span>
             </h2>
-            <p className="text-card/70 text-lg max-w-3xl mx-auto">
+            <p className="text-card/70 text-sm sm:text-lg max-w-3xl mx-auto px-2">
               Notre innovation ne réside pas seulement dans la technologie, mais dans notre modèle économique unique en France.
             </p>
           </div>
         </ScrollReveal>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto" staggerDelay={0.15}>
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto" staggerDelay={0.15}>
           {points.map((point, index) => {
             const Icon = point.icon;
             return (
               <div key={index}>
-                <div className="relative h-full bg-card/5 backdrop-blur-sm rounded-2xl p-8 border border-card/10 hover:border-primary/30 transition-all duration-300">
-                  <div className="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center mb-6">
-                    <Icon className="h-7 w-7 text-primary" />
+                <div className="relative h-full bg-card/5 backdrop-blur-sm rounded-2xl p-5 sm:p-8 border border-card/10 hover:border-primary/30 transition-all duration-300">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-primary/20 flex items-center justify-center mb-4 sm:mb-6">
+                    <Icon className="h-6 w-6 sm:h-7 sm:w-7 text-primary" />
                   </div>
-                  <h3 className="text-xl font-bold text-card mb-4">{point.title}</h3>
-                  <p className="text-card/70 leading-relaxed">{point.description}</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-card mb-2 sm:mb-4">{point.title}</h3>
+                  <p className="text-card/70 text-sm sm:text-base leading-relaxed">{point.description}</p>
                 </div>
               </div>
             );
@@ -490,25 +490,25 @@ const PartnersSection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-background">
+    <section className="py-12 sm:py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <div className="text-center mb-6">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
               La Qualité n'est pas un Label,
               <span className="block text-primary">c'est un Partenariat.</span>
             </h2>
-            <p className="text-muted-foreground text-lg max-w-3xl mx-auto mb-8">
+            <p className="text-muted-foreground text-sm sm:text-lg max-w-3xl mx-auto mb-6 sm:mb-8 px-2">
               Nous ne recrutons pas de simples fournisseurs. Nous nous associons avec des artisans passionnés qui partagent notre obsession pour l'excellence.
             </p>
-            <p className="text-foreground max-w-4xl mx-auto leading-relaxed mb-12">
+            <p className="text-foreground text-sm sm:text-base max-w-4xl mx-auto leading-relaxed mb-8 sm:mb-12 px-2">
               Oubliez les processus de certification froids. Chez Le Beau Mariage, la confiance se bâtit sur le terrain. Chaque traiteur, photographe ou décorateur est un partenaire que nous avons personnellement rencontré, dont nous avons testé le travail et avec qui nous avons tissé une relation durable. Ils sont le cœur de notre promesse : un mariage parfait, sans compromis.
             </p>
           </div>
         </ScrollReveal>
 
         {/* Categories Grid with image reveal */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16" staggerDelay={0.12}>
+        <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-10 sm:mb-16" staggerDelay={0.12}>
           {categories.map((cat, index) => {
             const Icon = cat.icon;
             return (

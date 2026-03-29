@@ -91,15 +91,15 @@ const CinematicHero = () => {
       </div>
 
       {/* Content */}
-      <motion.div className="container mx-auto px-4 z-10 pt-20" style={{ opacity }}>
+      <motion.div className="container mx-auto px-4 z-10 pt-16 md:pt-20" style={{ opacity }}>
         {/* Main Title with letter animation */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="mb-6"
+          className="mb-4 md:mb-6"
         >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-card drop-shadow-lg leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-card drop-shadow-lg leading-tight">
             <AnimatedText text="Votre Mariage de Rêve." delay={0.3} />
             <br />
             <span className="text-primary">
@@ -110,7 +110,7 @@ const CinematicHero = () => {
 
         {/* Subtitle */}
         <motion.p
-          className="text-xl md:text-2xl text-primary mb-4 max-w-3xl mx-auto drop-shadow-lg font-semibold"
+          className="text-lg sm:text-xl md:text-2xl text-primary mb-3 md:mb-4 max-w-3xl mx-auto drop-shadow-lg font-semibold"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 2.5 }}
@@ -119,7 +119,7 @@ const CinematicHero = () => {
         </motion.p>
 
         <motion.p
-          className="text-lg md:text-xl text-card/90 mb-10 max-w-3xl mx-auto drop-shadow-lg"
+          className="text-base sm:text-lg md:text-xl text-card/90 mb-8 md:mb-10 max-w-3xl mx-auto drop-shadow-lg px-2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 2.8 }}
@@ -129,40 +129,44 @@ const CinematicHero = () => {
 
         {/* CTAs */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-10 md:mb-16 px-4 sm:px-0"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 3.2 }}
         >
-          <Link to="/configurateur">
-            <Button size="xl" variant="hero" className="font-semibold text-lg px-8">
+          <Link to="/configurateur" className="w-full sm:w-auto">
+            <Button size="xl" variant="hero" className="font-semibold text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto">
               Voir les dates disponibles
             </Button>
           </Link>
-          <Link to="/serie-octobre-2027">
-            <Button size="xl" variant="elegant" className="font-semibold text-lg px-8">
+          <Link to="/serie-octobre-2027" className="w-full sm:w-auto">
+            <Button size="xl" variant="elegant" className="font-semibold text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto">
               Voir la Série Actuelle
             </Button>
           </Link>
         </motion.div>
 
         {/* 3 Promises */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-5xl mx-auto px-2 sm:px-0">
           {promises.map((item, index) => {
             const Icon = item.icon;
             return (
               <motion.div
                 key={index}
-                className="bg-card/10 backdrop-blur-md rounded-2xl p-6 border border-card/20 hover:bg-card/20 transition-colors duration-300"
+                className="bg-card/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-card/20 hover:bg-card/20 transition-colors duration-300"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 3.5 + index * 0.15 }}
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-4 mx-auto">
-                  <Icon className="h-6 w-6 text-primary" />
+                <div className="flex sm:flex-col items-center sm:items-center gap-3 sm:gap-0">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/20 flex items-center justify-center shrink-0 sm:mb-4">
+                    <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                  </div>
+                  <div className="text-left sm:text-center">
+                    <h3 className="text-base sm:text-xl font-bold text-card mb-0.5 sm:mb-2">{item.title}</h3>
+                    <p className="text-card/80 text-xs sm:text-sm">{item.desc}</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-card mb-2">{item.title}</h3>
-                <p className="text-card/80 text-sm">{item.desc}</p>
               </motion.div>
             );
           })}
