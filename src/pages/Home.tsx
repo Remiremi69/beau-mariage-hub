@@ -417,15 +417,15 @@ const BusinessModelSection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-foreground text-card">
+    <section className="py-12 sm:py-16 md:py-24 bg-foreground text-card">
       <div className="container mx-auto px-4">
         <ScrollReveal>
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
               La qualité d'un grand mariage. Le prix de la raison.
               <span className="block text-primary">Voici notre secret.</span>
             </h2>
-            <p className="text-card/70 text-lg max-w-3xl mx-auto">
+            <p className="text-card/70 text-sm sm:text-lg max-w-3xl mx-auto px-2">
               Notre innovation ne réside pas seulement dans la technologie, mais dans notre modèle économique unique en France.
             </p>
           </div>
