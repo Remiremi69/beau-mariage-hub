@@ -490,18 +490,18 @@ const PartnersSection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-background">
+    <section className="py-12 sm:py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <div className="text-center mb-6">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
               La Qualité n'est pas un Label,
               <span className="block text-primary">c'est un Partenariat.</span>
             </h2>
-            <p className="text-muted-foreground text-lg max-w-3xl mx-auto mb-8">
+            <p className="text-muted-foreground text-sm sm:text-lg max-w-3xl mx-auto mb-6 sm:mb-8 px-2">
               Nous ne recrutons pas de simples fournisseurs. Nous nous associons avec des artisans passionnés qui partagent notre obsession pour l'excellence.
             </p>
-            <p className="text-foreground max-w-4xl mx-auto leading-relaxed mb-12">
+            <p className="text-foreground text-sm sm:text-base max-w-4xl mx-auto leading-relaxed mb-8 sm:mb-12 px-2">
               Oubliez les processus de certification froids. Chez Le Beau Mariage, la confiance se bâtit sur le terrain. Chaque traiteur, photographe ou décorateur est un partenaire que nous avons personnellement rencontré, dont nous avons testé le travail et avec qui nous avons tissé une relation durable. Ils sont le cœur de notre promesse : un mariage parfait, sans compromis.
             </p>
           </div>
