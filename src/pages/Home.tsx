@@ -508,7 +508,7 @@ const PartnersSection = () => {
         </ScrollReveal>
 
         {/* Categories Grid with image reveal */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16" staggerDelay={0.12}>
+        <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-10 sm:mb-16" staggerDelay={0.12}>
           {categories.map((cat, index) => {
             const Icon = cat.icon;
             return (
