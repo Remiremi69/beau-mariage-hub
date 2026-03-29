@@ -57,10 +57,10 @@ const Home = () => {
 
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-background">
+      <section className="py-12 sm:py-20 bg-background">
         <div className="container mx-auto px-4">
           <ScrollReveal>
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-16">
               Le Mot du Fondateur
             </h2>
           </ScrollReveal>
