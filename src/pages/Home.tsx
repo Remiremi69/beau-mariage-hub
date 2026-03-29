@@ -301,17 +301,17 @@ const SerenitySection = () => {
           </div>
         </ScrollReveal>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto" staggerDelay={0.15}>
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto" staggerDelay={0.15}>
           {guarantees.map((guarantee, index) => {
             const Icon = guarantee.icon;
             return (
               <div key={index} className="group">
-                <div className="relative h-full overflow-hidden rounded-3xl bg-card border border-border/50 p-8 transition-all duration-500 hover:shadow-[0_30px_60px_-15px_hsl(14_71%_67%/0.25)] hover:-translate-y-3 hover:border-primary/20">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                    <Icon className={`h-7 w-7 ${guarantee.color === 'secondary' ? 'text-secondary' : 'text-primary'}`} />
+                <div className="relative h-full overflow-hidden rounded-2xl sm:rounded-3xl bg-card border border-border/50 p-5 sm:p-8 transition-all duration-500 hover:shadow-[0_30px_60px_-15px_hsl(14_71%_67%/0.25)] hover:-translate-y-3 hover:border-primary/20">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-primary/10 flex items-center justify-center mb-4 sm:mb-6">
+                    <Icon className={`h-6 w-6 sm:h-7 sm:w-7 ${guarantee.color === 'secondary' ? 'text-secondary' : 'text-primary'}`} />
                   </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4">{guarantee.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{guarantee.description}</p>
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-4">{guarantee.title}</h3>
+                  <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">{guarantee.description}</p>
                 </div>
               </div>
             );
