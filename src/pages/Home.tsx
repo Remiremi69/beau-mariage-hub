@@ -285,17 +285,17 @@ const SerenitySection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
       
       <div className="container mx-auto px-4 relative z-10">
         <ScrollReveal>
-          <div className="text-center mb-12 md:mb-20">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+          <div className="text-center mb-8 sm:mb-12 md:mb-20">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
               Se marier sans stress,
               <span className="block text-secondary">c'est maintenant possible.</span>
             </h2>
-            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+            <p className="text-muted-foreground text-sm sm:text-lg max-w-3xl mx-auto px-2">
               Nous avons créé trois garanties uniques, incluses dans chaque forfait, pour que vous puissiez vous concentrer sur l'essentiel : votre bonheur.
             </p>
           </div>
