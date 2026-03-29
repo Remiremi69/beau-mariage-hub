@@ -31,7 +31,7 @@ const Home = () => {
       />
       
       {/* Launch Banner */}
-      <div className="bg-primary text-primary-foreground py-3 px-4 text-center text-sm md:text-base">
+      <div className="bg-primary text-primary-foreground py-2.5 sm:py-3 px-3 sm:px-4 text-center text-xs sm:text-sm md:text-base">
         <span className="font-medium">🚀 Le Beau Mariage est en phase de lancement !</span>
         <span className="hidden sm:inline"> — Ce site vous permet de découvrir notre concept. La série de mariage présentée est fictive et sert d'exemple.</span>
         <span className="sm:hidden"> La série présentée est un exemple.</span>
