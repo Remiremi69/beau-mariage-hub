@@ -431,17 +431,17 @@ const BusinessModelSection = () => {
           </div>
         </ScrollReveal>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto" staggerDelay={0.15}>
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto" staggerDelay={0.15}>
           {points.map((point, index) => {
             const Icon = point.icon;
             return (
               <div key={index}>
-                <div className="relative h-full bg-card/5 backdrop-blur-sm rounded-2xl p-8 border border-card/10 hover:border-primary/30 transition-all duration-300">
-                  <div className="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center mb-6">
-                    <Icon className="h-7 w-7 text-primary" />
+                <div className="relative h-full bg-card/5 backdrop-blur-sm rounded-2xl p-5 sm:p-8 border border-card/10 hover:border-primary/30 transition-all duration-300">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-primary/20 flex items-center justify-center mb-4 sm:mb-6">
+                    <Icon className="h-6 w-6 sm:h-7 sm:w-7 text-primary" />
                   </div>
-                  <h3 className="text-xl font-bold text-card mb-4">{point.title}</h3>
-                  <p className="text-card/70 leading-relaxed">{point.description}</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-card mb-2 sm:mb-4">{point.title}</h3>
+                  <p className="text-card/70 text-sm sm:text-base leading-relaxed">{point.description}</p>
                 </div>
               </div>
             );
