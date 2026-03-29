@@ -68,13 +68,13 @@ const Home = () => {
           <ScrollReveal delay={0.2} scale>
             <div className="max-w-3xl mx-auto">
               <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] bg-gradient-to-br from-card to-primary/5">
-                <CardContent className="p-8 md:p-12">
-                  <div className="flex justify-center mb-6">
-                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Heart className="h-10 w-10 text-primary" />
+                <CardContent className="p-5 sm:p-8 md:p-12">
+                  <div className="flex justify-center mb-4 sm:mb-6">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Heart className="h-8 w-8 sm:h-10 sm:w-10 text-primary" />
                     </div>
                   </div>
-                  <blockquote className="text-xl md:text-2xl text-center mb-8 italic text-foreground leading-relaxed">
+                  <blockquote className="text-base sm:text-xl md:text-2xl text-center mb-6 sm:mb-8 italic text-foreground leading-relaxed">
                     "{founderQuote.text}"
                   </blockquote>
                   <div className="text-center">
