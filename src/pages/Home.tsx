@@ -332,9 +332,9 @@ const WeddingSiteSection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-card">
+    <section className="py-12 sm:py-16 md:py-24 bg-card">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
           {/* Left Column - Image with reveal */}
           <ScrollReveal direction="left">
             <a 
