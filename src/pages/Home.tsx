@@ -28,7 +28,6 @@ const Home = () => {
         title="Votre Mariage de Rêve — Tout est déjà prêt"
         description="Votre mariage de rêve au cœur du Beaujolais. Lieu, traiteur, photographe, DJ — tout est déjà prêt. Il ne reste qu'à dire oui."
         canonical="https://lebeaumariage.fr/"
-        canonical="https://lebeaumariage.fr/"
       />
       
       {/* Launch Banner */}
