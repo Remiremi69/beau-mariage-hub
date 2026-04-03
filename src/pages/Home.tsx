@@ -25,8 +25,9 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Votre Mariage de Rêve en 10 min, Prix Transparent"
-        description="Organisez votre mariage d'exception sans stress. Le Beau Mariage vous propose un mariage de rêve en 10 minutes, avec un prix fixe et transparent et des prestataires de qualité."
+        title="Votre Mariage de Rêve — Tout est déjà prêt"
+        description="Votre mariage de rêve au cœur du Beaujolais. Lieu, traiteur, photographe, DJ — tout est déjà prêt. Il ne reste qu'à dire oui."
+        canonical="https://lebeaumariage.fr/"
         canonical="https://lebeaumariage.fr/"
       />
       

@@ -9,7 +9,7 @@ interface SEOProps {
 
 const SEO = ({ title, description, canonical, ogImage = 'https://lebeaumariage.fr/og-image.png' }: SEOProps) => {
   const fullTitle = `${title} | Le Beau Mariage`;
-  const canonicalUrl = canonical || `https://lebeaumariage.fr${window.location.pathname}`;
+  const canonicalUrl = canonical ?? `https://lebeaumariage.fr${typeof window !== 'undefined' ? window.location.pathname : '/'}`;
 
   return (
     <Helmet>
