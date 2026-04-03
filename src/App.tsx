@@ -2,13 +2,12 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Navigation } from "./components/Navigation";
 import { Footer } from "./components/Footer";
 import Home from "./pages/Home";
 import Concept from "./pages/Concept";
-import SerieEte2027 from "./pages/SerieEte2027";
 import Configurateur from "./pages/Configurateur";
 import Temoignages from "./pages/Temoignages";
 import FAQ from "./pages/FAQ";
@@ -39,7 +38,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/concept" element={<Concept />} />
-            <Route path="/serie-ete-2027" element={<SerieEte2027 />} />
+            <Route path="/serie-ete-2027" element={<Navigate to="/serie-octobre-2027" replace />} />
             <Route path="/serie-octobre-2027" element={<SerieOctobre2027Hub />} />
             <Route path="/serie-octobre-2027/domaine" element={<DomaineDetail />} />
             <Route path="/serie-octobre-2027/prestataires/traiteur" element={<Traiteur />} />
