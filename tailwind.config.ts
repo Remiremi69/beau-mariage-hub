@@ -57,15 +57,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        terracotta: {
-          DEFAULT: "hsl(var(--terracotta))",
-          light: "hsl(var(--terracotta-light))",
+        nuit: "hsl(var(--nuit))",
+        lin: "hsl(var(--lin))",
+        or: {
+          DEFAULT: "hsl(var(--or))",
+          light: "hsl(var(--or-light))",
         },
-        sage: {
-          DEFAULT: "hsl(var(--sage))",
-          light: "hsl(var(--sage-light))",
-        },
-        sand: "hsl(var(--sand))",
+        anthracite: "hsl(var(--anthracite))",
         anthracite: "hsl(var(--anthracite))",
       },
       borderRadius: {
