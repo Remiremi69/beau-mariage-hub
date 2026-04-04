@@ -42,6 +42,7 @@ const ambiancePeriodes = [
 const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
   const selected = state.dj;
   const [musicTags, setMusicTags] = useState<string[]>(state.ambianceMusique || []);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const select = (v: DJ) => onUpdate({ dj: v });
 
