@@ -114,6 +114,10 @@ const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
           La décoration n'est pas un décor. C'est la première chose que vos invités ressentent en entrant. Choisissez votre langage visuel.
         </motion.p>
 
+        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
+          <InfoButton label="Voir les réalisations déco" onClick={() => setDrawerOpen(true)} />
+        </motion.div>
+
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
           style={{ width: 60, height: 1, background: "#c9a96e", margin: "0 auto 52px" }} />
 
