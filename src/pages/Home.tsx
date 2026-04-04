@@ -538,22 +538,6 @@ const PartnersSection = () => {
           })}
         </StaggerContainer>
 
-        {/* Quote */}
-        <ScrollReveal delay={0.3} scale>
-          <div className="max-w-4xl mx-auto">
-            <Card className="border-none shadow-lg bg-gradient-to-br from-primary/5 to-secondary/5">
-              <CardContent className="p-8 md:p-10">
-                <blockquote className="text-lg md:text-xl text-center italic text-foreground leading-relaxed mb-6">
-                  "Collaborer avec Le Beau Mariage, c'est plus qu'un contrat. C'est la garantie de pouvoir se concentrer sur notre art pour des couples qui nous font confiance."
-                </blockquote>
-                <div className="text-center">
-                  <p className="font-bold text-primary">Alexandre</p>
-                  <p className="text-muted-foreground text-sm">Chef Traiteur Partenaire</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   );
