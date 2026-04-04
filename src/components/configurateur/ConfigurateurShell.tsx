@@ -14,6 +14,16 @@ import Step08_Deco from "./steps/Step08_Deco";
 import Step09_Options from "./steps/Step09_Options";
 import Step10_Recap from "./steps/Step10_Recap";
 
+import hero2 from "@/assets/domaine-hero-2.png";
+import hero3 from "@/assets/domaine-hero-3.png";
+import hero4 from "@/assets/domaine-hero-4.png";
+import hero1 from "@/assets/domaine-hero-1.png";
+import venueExterior from "@/assets/venue-exterior.jpg";
+import heroWedding from "@/assets/hero-wedding.jpg";
+
+const heroImages = [hero2, hero3, hero4, hero1];
+const allImages = [hero1, hero2, hero3, hero4, venueExterior, heroWedding];
+
 /* ─── Constants ───────────────────────────────────────── */
 
 const STEP_BACKGROUNDS = [
