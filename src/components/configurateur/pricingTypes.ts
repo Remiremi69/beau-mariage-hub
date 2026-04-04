@@ -45,3 +45,25 @@ export const defaultState: ConfigurateurState = {
   contact: { prenom: '', email: '', telephone: '' },
   totalEstimate: 0,
 }
+
+export const OPTION_PRICES: Record<string, number> = {
+  photobooth: 400,
+  cocktail_bar: 600,
+  feu_artifice: 1800,
+  voiture_collection: 550,
+  livre_or: 280,
+  candy_bar: 350,
+  caricaturiste: 480,
+  lanternes: 220,
+}
+
+export const OPTION_LABELS: Record<string, string> = {
+  photobooth: 'Photobooth Premium',
+  cocktail_bar: 'Bar à cocktails',
+  feu_artifice: 'Feu d\'artifice',
+  voiture_collection: 'Voiture de collection',
+  livre_or: 'Livre d\'or Limen',
+  candy_bar: 'Sweet Table',
+  caricaturiste: 'Caricaturiste',
+  lanternes: 'Lâcher de lanternes',
+}
