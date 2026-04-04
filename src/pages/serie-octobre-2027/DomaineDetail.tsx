@@ -4,7 +4,6 @@ import {
   MapPin, 
   Train, 
   Plane, 
-  Grape, 
   ChevronRight,
   ArrowRight,
   Check,
