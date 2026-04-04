@@ -345,7 +345,7 @@ const ConfigurateurShell = () => {
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `url(${domaine2})`,
+              backgroundImage: `url(${hero2})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               zIndex: 0,
