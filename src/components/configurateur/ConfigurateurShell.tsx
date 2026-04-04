@@ -201,7 +201,7 @@ const ConfigurateurShell = () => {
               fontWeight: 500,
             }}
           >
-            {state.totalEstimate > 0 ? `${state.totalEstimate.toLocaleString("fr-FR")} €` : "—"}
+            {breakdown.totalEstimate > 0 ? `${breakdown.totalEstimate.toLocaleString("fr-FR")} €` : "—"}
           </div>
         </div>
       )}
