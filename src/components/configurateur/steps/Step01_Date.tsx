@@ -32,6 +32,7 @@ const dates = [
 
 const Step01_Date = ({ state, onUpdate, onNext }: Step01Props) => {
   const selected = state.date;
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleSelect = (id: string) => {
     onUpdate({ date: id });
