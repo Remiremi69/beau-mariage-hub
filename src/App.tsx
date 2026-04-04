@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Navigation } from "./components/Navigation";
 import { Footer } from "./components/Footer";
@@ -27,6 +27,38 @@ import Musicien from "./pages/serie-octobre-2027/prestataires/Musicien";
 
 const queryClient = new QueryClient();
 
+const AppLayout = () => {
+  const location = useLocation();
+  const isConfigurateur = location.pathname === "/configurateur";
+
+  return (
+    <>
+      {!isConfigurateur && <Navigation />}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/concept" element={<Concept />} />
+        <Route path="/serie-ete-2027" element={<Navigate to="/serie-octobre-2027" replace />} />
+        <Route path="/serie-octobre-2027" element={<SerieOctobre2027Hub />} />
+        <Route path="/serie-octobre-2027/domaine" element={<DomaineDetail />} />
+        <Route path="/serie-octobre-2027/prestataires/traiteur" element={<Traiteur />} />
+        <Route path="/serie-octobre-2027/prestataires/photographe" element={<Photographe />} />
+        <Route path="/serie-octobre-2027/prestataires/dj" element={<DJ />} />
+        <Route path="/serie-octobre-2027/prestataires/decorateur" element={<Decorateur />} />
+        <Route path="/serie-octobre-2027/prestataires/fleuriste" element={<Fleuriste />} />
+        <Route path="/serie-octobre-2027/prestataires/musicien" element={<Musicien />} />
+        <Route path="/configurateur" element={<Configurateur />} />
+        <Route path="/temoignages" element={<Temoignages />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/garantie" element={<Garantie />} />
+        <Route path="/certification" element={<Certification />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      {!isConfigurateur && <Footer />}
+    </>
+  );
+};
+
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
@@ -34,29 +66,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Navigation />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/concept" element={<Concept />} />
-            <Route path="/serie-ete-2027" element={<Navigate to="/serie-octobre-2027" replace />} />
-            <Route path="/serie-octobre-2027" element={<SerieOctobre2027Hub />} />
-            <Route path="/serie-octobre-2027/domaine" element={<DomaineDetail />} />
-            <Route path="/serie-octobre-2027/prestataires/traiteur" element={<Traiteur />} />
-            <Route path="/serie-octobre-2027/prestataires/photographe" element={<Photographe />} />
-            <Route path="/serie-octobre-2027/prestataires/dj" element={<DJ />} />
-            <Route path="/serie-octobre-2027/prestataires/decorateur" element={<Decorateur />} />
-            <Route path="/serie-octobre-2027/prestataires/fleuriste" element={<Fleuriste />} />
-            <Route path="/serie-octobre-2027/prestataires/musicien" element={<Musicien />} />
-            <Route path="/configurateur" element={<Configurateur />} />
-            <Route path="/temoignages" element={<Temoignages />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/garantie" element={<Garantie />} />
-            <Route path="/certification" element={<Certification />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer />
+          <AppLayout />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
