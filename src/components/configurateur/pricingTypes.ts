@@ -15,6 +15,9 @@ export type ConfigurateurState = {
   ceremonieLaique: boolean
   vinDhonneur: VinDhonneur
   repas: Repas
+  repasEntree: string | null
+  repasPlat: string | null
+  repasDessert: string | null
   photographe: Photographe
   dj: DJ
   deco: Deco
@@ -30,6 +33,9 @@ export const defaultState: ConfigurateurState = {
   ceremonieLaique: false,
   vinDhonneur: 'decouverte',
   repas: 'essentiel',
+  repasEntree: null,
+  repasPlat: null,
+  repasDessert: null,
   photographe: 'none',
   dj: 'none',
   deco: 'champetre',
