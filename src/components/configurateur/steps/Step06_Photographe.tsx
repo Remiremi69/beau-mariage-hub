@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { User } from "lucide-react";
 import { ConfigurateurState, Photographe } from "../pricingTypes";
+import InfoButton from "../InfoButton";
+import PresentationDrawer from "../PresentationDrawer";
+import { drawerPhotographe } from "../drawerContents";
 
 interface Step06Props {
   state: ConfigurateurState;
