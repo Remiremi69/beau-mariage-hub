@@ -160,6 +160,8 @@ const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) =>
           </motion.button>
         </motion.div>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerVin} />
     </div>
   );
 };

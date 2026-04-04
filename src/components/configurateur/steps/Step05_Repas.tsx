@@ -301,6 +301,8 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
           )}
         </div>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerRepas} />
     </div>
   );
 };

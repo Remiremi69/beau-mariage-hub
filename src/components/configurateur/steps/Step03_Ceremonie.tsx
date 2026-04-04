@@ -152,6 +152,8 @@ const Step03_Ceremonie = ({ state, onUpdate, onNext, onPrev }: Step03Props) => {
           </motion.button>
         </motion.div>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerCeremonie} />
     </div>
   );
 };
