@@ -2,6 +2,8 @@ import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ConfigurateurState, defaultState } from "./pricingTypes";
 import Step00_Domaine from "./steps/Step00_Domaine";
+import Step01_Date from "./steps/Step01_Date";
+import Step02_Invites from "./steps/Step02_Invites";
 
 const STEP_BACKGROUNDS = [
   // Step 0 — Domaine
