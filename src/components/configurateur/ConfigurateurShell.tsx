@@ -6,6 +6,7 @@ import Step01_Date from "./steps/Step01_Date";
 import Step02_Invites from "./steps/Step02_Invites";
 import Step03_Ceremonie from "./steps/Step03_Ceremonie";
 import Step04_VinDhonneur from "./steps/Step04_VinDhonneur";
+import Step05_Repas from "./steps/Step05_Repas";
 
 const STEP_BACKGROUNDS = [
   // Step 0 — Domaine
