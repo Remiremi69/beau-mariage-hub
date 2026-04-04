@@ -22,6 +22,7 @@ const fadeUp = {
 
 const Step03_Ceremonie = ({ state, onUpdate, onNext, onPrev }: Step03Props) => {
   const withCeremonie = state.ceremonieLaique;
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const cardBase: React.CSSProperties = {
     minHeight: 260, borderRadius: 2, padding: "32px 28px",
