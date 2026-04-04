@@ -59,6 +59,10 @@ const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) =>
           Le vin d'honneur donne le ton de la soirée. Cocktail, bulles, mignardises — tout est soigné, tout vient du territoire.
         </motion.p>
 
+        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
+          <InfoButton label="Rencontrer notre sommelier" onClick={() => setDrawerOpen(true)} />
+        </motion.div>
+
         {/* Séparateur */}
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
           style={{ width: 60, height: 1, background: "#c9a96e", margin: "0 auto 48px" }} />
