@@ -1,5 +1,9 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ConfigurateurState, VinDhonneur } from "../pricingTypes";
+import InfoButton from "../InfoButton";
+import PresentationDrawer from "../PresentationDrawer";
+import { drawerVin } from "../drawerContents";
 
 interface Step04Props {
   state: ConfigurateurState;
