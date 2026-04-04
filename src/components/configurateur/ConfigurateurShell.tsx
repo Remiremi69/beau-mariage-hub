@@ -138,8 +138,28 @@ const ConfigurateurShell = () => {
   const [transitionClass, setTransitionClass] = useState("");
   const [overlayActive, setOverlayActive] = useState(false);
   const isTransitioning = useRef(false);
+  const [heroIndex, setHeroIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const breakdown = useMemo(() => calculateBreakdown(state), [state]);
+
+  // Preload all images
+  useEffect(() => {
+    allImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+    setIsMobile(window.innerWidth < 640);
+  }, []);
+
+  // Hero slideshow (step 0 only, desktop only)
+  useEffect(() => {
+    if (isMobile) return;
+    const interval = setInterval(() => {
+      setHeroIndex((i) => (i + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isMobile]);
 
   const updateState = useCallback(
     (partial: Partial<ConfigurateurState>) =>
