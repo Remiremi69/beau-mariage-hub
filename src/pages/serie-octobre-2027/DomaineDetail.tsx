@@ -315,23 +315,24 @@ const DomaineDetail = () => {
                   <Train className="h-6 w-6 text-primary" />
                 </div>
                 <h4 className="font-bold text-foreground mb-1">Gare TGV Mâcon-Loché</h4>
-                <p className="text-2xl font-bold text-primary mb-1">34 min</p>
+                <p className="text-2xl font-bold text-primary mb-1">40 min</p>
                 <p className="text-sm text-muted-foreground">en voiture</p>
               </div>
               <div className="bg-background rounded-xl p-6 shadow-md border border-border/50 text-center">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <Plane className="h-6 w-6 text-primary" />
                 </div>
-                <h4 className="font-bold text-foreground mb-1">Aéroport & Ville de Lyon</h4>
-                <p className="text-2xl font-bold text-primary mb-1">55 min</p>
+                <h4 className="font-bold text-foreground mb-1">Aéroport Lyon Saint-Exupéry</h4>
+                <p className="text-2xl font-bold text-primary mb-1">1h</p>
                 <p className="text-sm text-muted-foreground">en voiture</p>
               </div>
               <div className="bg-background rounded-xl p-6 shadow-md border border-border/50 text-center">
-                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4">
-                  <Grape className="h-6 w-6 text-secondary" />
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <Car className="h-6 w-6 text-primary" />
                 </div>
-                <h4 className="font-bold text-foreground mb-1">Au Cœur du Beaujolais</h4>
-                <p className="text-lg text-muted-foreground">Une destination en soi</p>
+                <h4 className="font-bold text-foreground mb-1">Villefranche-sur-Saône</h4>
+                <p className="text-2xl font-bold text-primary mb-1">20 min</p>
+                <p className="text-sm text-muted-foreground">en voiture</p>
               </div>
             </div>
 
