@@ -85,9 +85,7 @@ const Step00_Domaine = ({ onNext }: Step00Props) => {
             lineHeight: 1.8,
           }}
         >
-          Cinq dates. Cinq mariages. Un seul domaine.
-          <br />
-          Octobre 2027, au cœur du Beaujolais — un cadre unique pour le jour le plus important de votre vie.
+          Certains lieux ont été faits pour un seul jour. Le vôtre.
         </motion.p>
 
         {/* Bloc "Ce qui vous attend" */}
