@@ -66,6 +66,10 @@ const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) =>
           Un photographe de mariage ne capture pas des poses. Il capture ce qui se passe entre les poses. Les larmes retenues. Le rire qui déborde.
         </motion.p>
 
+        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
+          <InfoButton label="Voir le travail d'Alexandre" onClick={() => setDrawerOpen(true)} />
+        </motion.div>
+
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
           style={{ width: 60, height: 1, background: "#c9a96e", margin: "0 auto 48px" }} />
 
