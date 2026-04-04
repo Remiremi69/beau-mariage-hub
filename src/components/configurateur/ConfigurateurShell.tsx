@@ -103,16 +103,17 @@ const ConfigurateurShell = () => {
           >
             {currentStep === 0 && <Step00_Domaine onNext={nextStep} />}
 
-            {currentStep >= 1 && currentStep <= 10 && (
+            {currentStep === 1 && (
+              <Step01_Date state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
+            )}
+
+            {currentStep === 2 && (
+              <Step02_Invites state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
+            )}
+
+            {currentStep >= 3 && currentStep <= 10 && (
               <div className="flex items-center justify-center min-h-screen px-6">
-                <p
-                  style={{
-                    fontFamily: "'Jost', sans-serif",
-                    fontWeight: 300,
-                    fontSize: "18px",
-                    color: "rgba(232,221,208,0.5)",
-                  }}
-                >
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 18, color: "rgba(232,221,208,0.5)" }}>
                   Étape {currentStep} — à venir
                 </p>
               </div>

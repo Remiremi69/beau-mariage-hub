@@ -40,17 +40,7 @@ const Step02_Invites = ({ state, onUpdate, onNext, onPrev }: Step02Props) => {
 
   const startHold = useCallback(
     (delta: number) => {
-      // immediate first tick
       setGuests(guests + delta);
-      intervalRef.current = setInterval(() => {
-        onUpdate((prev: Partial<ConfigurateurState>) => {
-          // We need current value; use functional pattern via wrapper
-          return {};
-        });
-        // Because onUpdate merges partials, we use a different approach:
-        // We'll increment via setState-like pattern by reading from DOM
-      }, 80);
-      // Simpler: just use setInterval that calls setGuests
       if (intervalRef.current) clearInterval(intervalRef.current);
       let current = guests + delta;
       intervalRef.current = setInterval(() => {
