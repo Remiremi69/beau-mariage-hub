@@ -1,6 +1,7 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ConfigurateurState, defaultState } from "./pricingTypes";
+import { calculateBreakdown } from "./pricing/pricingEngine";
 import Step00_Domaine from "./steps/Step00_Domaine";
 import Step01_Date from "./steps/Step01_Date";
 import Step02_Invites from "./steps/Step02_Invites";
@@ -11,6 +12,7 @@ import Step06_Photographe from "./steps/Step06_Photographe";
 import Step07_DJ from "./steps/Step07_DJ";
 import Step08_Deco from "./steps/Step08_Deco";
 import Step09_Options from "./steps/Step09_Options";
+import Step10_Recap from "./steps/Step10_Recap";
 
 const STEP_BACKGROUNDS = [
   // Step 0 — Domaine
