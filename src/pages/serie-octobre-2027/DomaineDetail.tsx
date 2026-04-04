@@ -95,11 +95,40 @@ const DomaineDetail = () => {
 
   return (
     <div className="min-h-screen pt-20">
-      <SEO 
-        title="Le Domaine de la Croix Rochefort - Série Octobre 2027"
-        description="Découvrez le Domaine de la Croix Rochefort, votre cadre de rêve pour un mariage authentique en Beaujolais. Caveau voûté historique et salle de caractère."
+      <SEO
+        title="Domaine de la Croix Rochefort — Salle de Mariage Beaujolais | Le Beau Mariage"
+        description="Mariez-vous au Domaine de la Croix Rochefort à Saint-Didier-sur-Beaujeu. Cave voûtée 600m², salle 500m², 300 convives. À 40 min de Lyon, 20 min de Villefranche. Prix fixe tout compris."
         canonical="https://lebeaumariage.fr/serie-octobre-2027/domaine"
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Place",
+        "name": "Domaine de la Croix Rochefort",
+        "alternateName": "Les Caves de la Croix Rochefort",
+        "description": "Domaine viticole historique depuis 1921 pour mariages en Beaujolais. Cave voûtée 600m² et salle de réception 500m² jusqu'à 300 convives. Saint-Didier-sur-Beaujeu, Rhône.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "401 rue des dépôts",
+          "addressLocality": "Saint-Didier-sur-Beaujeu",
+          "postalCode": "69430",
+          "addressRegion": "Auvergne-Rhône-Alpes",
+          "addressCountry": "FR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 46.1522,
+          "longitude": 4.5791
+        },
+        "hasMap": "https://www.google.com/maps/search/?api=1&query=401+rue+des+dépôts+69430+Saint-Didier-sur-Beaujeu",
+        "maximumAttendeeCapacity": 300,
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Parking gratuit 71 places couvert", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Gîte sur place 20 personnes", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Cave voûtée historique 600m²", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Piste de danse", "value": true }
+        ],
+        "tourBookingPage": "https://lebeaumariage.fr/configurateur"
+      })}} />
 
       {/* Breadcrumb */}
       <div className="container mx-auto px-4 py-4">
