@@ -1,4 +1,8 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
+import InfoButton from "../InfoButton";
+import PresentationDrawer from "../PresentationDrawer";
+import { drawerDomaine } from "../drawerContents";
 
 interface Step00Props {
   onNext: () => void;
@@ -14,6 +18,8 @@ const fadeUp = {
 };
 
 const Step00_Domaine = ({ onNext }: Step00Props) => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   return (
     <div className="flex items-center justify-center min-h-screen px-6">
       <div className="flex flex-col items-center text-center max-w-xl">
@@ -45,15 +51,17 @@ const Step00_Domaine = ({ onNext }: Step00Props) => {
             fontFamily: "'Cormorant Garamond', serif",
             fontWeight: 300,
             fontStyle: "italic",
-            fontSize: "clamp(48px, 6vw, 64px)",
+            fontSize: "clamp(42px, 5.5vw, 58px)",
             color: "#faf8f4",
-            lineHeight: 1.1,
+            lineHeight: 1.15,
             marginTop: "32px",
           }}
         >
-          Votre mariage
+          Certains lieux
           <br />
-          prend forme ici.
+          ont été faits pour un seul jour.
+          <br />
+          Le vôtre.
         </motion.h1>
 
         {/* Séparateur */}
@@ -85,8 +93,19 @@ const Step00_Domaine = ({ onNext }: Step00Props) => {
             lineHeight: 1.8,
           }}
         >
-          Certains lieux ont été faits pour un seul jour. Le vôtre.
+          Au cœur du Beaujolais,
+          le Domaine de la Croix Rochefort vous attend.
+          Composez votre journée, exactement comme vous
+          l'imaginez.
         </motion.p>
+
+        {/* Info button */}
+        <motion.div custom={3.5} initial="hidden" animate="visible" variants={fadeUp}>
+          <InfoButton
+            label="En savoir plus sur le domaine"
+            onClick={() => setDrawerOpen(true)}
+          />
+        </motion.div>
 
         {/* Bloc "Ce qui vous attend" */}
         <motion.div
@@ -164,6 +183,12 @@ const Step00_Domaine = ({ onNext }: Step00Props) => {
           10 à 15 minutes · Sans engagement
         </motion.p>
       </div>
+
+      <PresentationDrawer
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        content={drawerDomaine}
+      />
     </div>
   );
 };

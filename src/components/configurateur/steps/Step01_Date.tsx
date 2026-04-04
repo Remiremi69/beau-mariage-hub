@@ -157,6 +157,8 @@ const Step01_Date = ({ state, onUpdate, onNext }: Step01Props) => {
           Date choisie — Continuer
         </motion.button>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerDomaine} />
     </div>
   );
 };
