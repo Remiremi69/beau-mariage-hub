@@ -182,20 +182,16 @@ const DomaineDetail = () => {
             </h2>
             <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
               <p className="text-lg leading-relaxed">
-                Nous avons cherché longtemps le lieu parfait pour notre première série. 
-                Pas un simple bâtiment, mais un partenaire qui partage notre philosophie : 
-                l'authenticité, la qualité, et l'humain avant tout.
+                Le Domaine de la Croix Rochefort est un domaine viticole familial implanté depuis 1921 au hameau des Dépôts, à Saint-Didier-sur-Beaujeu — capitale historique du Beaujolais, dans le Rhône (69). Entouré de vignes et de collines, ce lieu d'exception offre un cadre authentique et préservé, loin des salles de mariage standardisées.
               </p>
               <p className="text-lg leading-relaxed">
-                Le Domaine de la Croix Rochefort, à Saint-Didier-sur-Beaujeu, c'est ce lieu. 
-                Avec son caveau voûté chargé d'histoire, sa salle de réception intemporelle 
-                et son équipe familiale, il offre le cadre idéal pour que Le Beau Mariage 
-                crée votre mariage sur mesure.
+                Pour votre mariage, le domaine met à disposition deux espaces complémentaires : une cave voûtée de 600m² pour une cérémonie laïque intime sous les pierres apparentes et un ancien pressoir de chêne, et une salle de réception de 500m² avec piste de danse et estrade pouvant accueillir jusqu'à 300 convives assis. L'alliance de ces deux espaces crée une expérience unique où cérémonie et fête se déroulent dans un même lieu, sans transfert.
               </p>
               <p className="text-lg leading-relaxed">
-                Ici, nous ne louons pas juste une salle. Nous nous associons avec une équipe 
-                qui comprend notre vision. Ensemble, nous transformons ce domaine en le 
-                théâtre de votre histoire d'amour.
+                Idéalement situé pour vos invités, le domaine est accessible en 40 minutes depuis Lyon via l'autoroute A6 (sortie Belleville-en-Beaujolais), en 20 minutes depuis Villefranche-sur-Saône, en 40 minutes depuis la gare TGV de Mâcon-Loché, et en 1 heure depuis l'aéroport Lyon Saint-Exupéry. Un parking couvert de 71 places et un parking extérieur sont disponibles gratuitement sur place.
+              </p>
+              <p className="text-lg leading-relaxed">
+                Le domaine propose également un gîte de 20 personnes (7 chambres doubles + dortoir) ainsi qu'un second gîte de 15 personnes en face du domaine — un confort appréciable pour vos invités venant de loin. C'est ici que Le Beau Mariage organise sa première série de 5 mariages en octobre 2027.
               </p>
             </div>
           </div>
