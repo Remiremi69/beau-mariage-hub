@@ -310,8 +310,10 @@ const Step10_Recap = ({ state, onPrev }: Step10Props) => {
     if (!contact.email.trim() || !contact.prenom.trim()) return;
     setIsLoading(true);
     try {
-      const { error } = await supabase
-        .from("configurateur_leads" as "leads")
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const client = supabase as any;
+      const { error } = await client
+        .from("configurateur_leads")
         .insert({
           prenom: contact.prenom,
           nom: contact.nom,
@@ -330,10 +332,10 @@ const Step10_Recap = ({ state, onPrev }: Step10Props) => {
           dj: state.dj,
           deco: state.deco,
           options: state.options,
-          ambiance_musique: state.ambianceMusique,
+          ambiance_musique: state.ambianceMusique ?? [],
           total_estimate: breakdown.totalEstimate,
           status: "new",
-        } as Record<string, unknown>);
+        });
       if (error) {
         console.error("Erreur envoi Supabase:", error, { state, contact });
       }
