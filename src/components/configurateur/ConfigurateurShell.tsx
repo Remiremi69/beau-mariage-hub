@@ -4,6 +4,8 @@ import { ConfigurateurState, defaultState } from "./pricingTypes";
 import Step00_Domaine from "./steps/Step00_Domaine";
 import Step01_Date from "./steps/Step01_Date";
 import Step02_Invites from "./steps/Step02_Invites";
+import Step03_Ceremonie from "./steps/Step03_Ceremonie";
+import Step04_VinDhonneur from "./steps/Step04_VinDhonneur";
 
 const STEP_BACKGROUNDS = [
   // Step 0 — Domaine
