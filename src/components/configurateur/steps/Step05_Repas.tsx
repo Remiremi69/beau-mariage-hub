@@ -209,6 +209,10 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
         Notre chef compose un menu de saison, ancré dans le terroir beaujolais. Choisissez un plat par service — votre menu sera unique.
       </motion.p>
 
+      <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp} className="mb-2">
+        <InfoButton label="Rencontrer le chef Sébastien" onClick={() => setDrawerOpen(true)} />
+      </motion.div>
+
       <motion.p custom={3} initial="hidden" animate="visible" variants={fadeUp}
         className="text-center"
         style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(201,169,110,0.60)", letterSpacing: "0.15em" }}>
