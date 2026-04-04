@@ -94,6 +94,7 @@ const decoCards: DecoCardData[] = [
 
 const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
   const selected = state.deco;
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <div className="flex items-center justify-center min-h-screen px-6" style={{ paddingTop: 60, paddingBottom: 100 }}>
