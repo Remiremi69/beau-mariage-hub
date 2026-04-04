@@ -29,6 +29,7 @@ const formules: { id: VinDhonneur; num: string; nom: string; desc: string; prix:
 const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) => {
   const selected = state.vinDhonneur;
   const guests = state.guests;
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const selectedFormule = formules.find((f) => f.id === selected);
   const liveTotal = selectedFormule && selectedFormule.perPerson > 0
