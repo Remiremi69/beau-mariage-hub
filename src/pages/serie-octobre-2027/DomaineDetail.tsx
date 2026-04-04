@@ -50,10 +50,12 @@ const useInView = (threshold = 0.1) => {
 };
 
 const pointsForts = [
-  { icon: Check, text: "Cérémonie dans un caveau voûté historique" },
-  { icon: Check, text: "Salle de réception de caractère" },
-  { icon: Check, text: "Cadre authentique au cœur du Beaujolais" },
-  { icon: Check, text: "Équipe locale partenaire de Le Beau Mariage" }
+  { icon: Check, text: "Cave voûtée 600m² — cérémonie laïque sous les pierres, bar dans un pressoir de chêne" },
+  { icon: Check, text: "Salle de réception 500m² — jusqu'à 300 convives assis, piste de danse, estrade" },
+  { icon: Check, text: "Domaine familial depuis 1921 au cœur du Beaujolais Vert, Rhône (69)" },
+  { icon: Check, text: "Parking couvert 71 places + parking extérieur — gratuits sur place" },
+  { icon: Check, text: "Gîte 20 personnes sur place + gîte 15 personnes en face du domaine" },
+  { icon: Check, text: "À 40 min de Lyon (A6), 20 min de Villefranche-sur-Saône, 40 min gare TGV Mâcon-Loché" }
 ];
 
 const galleryImages = [
