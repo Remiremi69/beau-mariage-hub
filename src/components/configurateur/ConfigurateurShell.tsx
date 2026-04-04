@@ -14,6 +14,16 @@ import Step08_Deco from "./steps/Step08_Deco";
 import Step09_Options from "./steps/Step09_Options";
 import Step10_Recap from "./steps/Step10_Recap";
 
+import hero2 from "@/assets/domaine-hero-2.png";
+import hero3 from "@/assets/domaine-hero-3.png";
+import hero4 from "@/assets/domaine-hero-4.png";
+import hero1 from "@/assets/domaine-hero-1.png";
+import venueExterior from "@/assets/venue-exterior.jpg";
+import heroWedding from "@/assets/hero-wedding.jpg";
+
+const heroImages = [hero2, hero3, hero4, hero1];
+const allImages = [hero1, hero2, hero3, hero4, venueExterior, heroWedding];
+
 /* ─── Constants ───────────────────────────────────────── */
 
 const STEP_BACKGROUNDS = [
@@ -128,8 +138,28 @@ const ConfigurateurShell = () => {
   const [transitionClass, setTransitionClass] = useState("");
   const [overlayActive, setOverlayActive] = useState(false);
   const isTransitioning = useRef(false);
+  const [heroIndex, setHeroIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const breakdown = useMemo(() => calculateBreakdown(state), [state]);
+
+  // Preload all images
+  useEffect(() => {
+    allImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+    setIsMobile(window.innerWidth < 640);
+  }, []);
+
+  // Hero slideshow (step 0 only, desktop only)
+  useEffect(() => {
+    if (isMobile) return;
+    const interval = setInterval(() => {
+      setHeroIndex((i) => (i + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isMobile]);
 
   const updateState = useCallback(
     (partial: Partial<ConfigurateurState>) =>
@@ -260,7 +290,7 @@ const ConfigurateurShell = () => {
       {/* Background layers — crossfade */}
       {STEP_BACKGROUNDS.map((bg, i) => (
         <div
-          key={i}
+          key={`bg-${i}`}
           className="fixed inset-0 transition-opacity duration-[1200ms]"
           style={{
             background: bg,
@@ -270,6 +300,73 @@ const ConfigurateurShell = () => {
           }}
         />
       ))}
+
+      {/* Step 0 — Hero photo slideshow */}
+      {currentStep === 0 && (
+        <div className="fixed inset-0" style={{ zIndex: 0, pointerEvents: "none" }}>
+          {isMobile ? (
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${hero2})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                opacity: 0.35,
+              }}
+            />
+          ) : (
+            heroImages.map((img, i) => (
+              <div
+                key={`hero-${i}`}
+                className="absolute inset-0 transition-opacity duration-[1500ms]"
+                style={{
+                  backgroundImage: `url(${img})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  opacity: heroIndex === i ? 0.40 : 0,
+                }}
+              />
+            ))
+          )}
+          {/* Dark overlay for text legibility */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(180deg, rgba(13,11,8,0.50) 0%, rgba(13,11,8,0.70) 50%, rgba(13,11,8,0.85) 100%)",
+            }}
+          />
+        </div>
+      )}
+
+      {/* Step 1 — Venue exterior ambient */}
+      {currentStep === 1 && (
+        <div className="fixed inset-0" style={{ zIndex: 0, pointerEvents: "none" }}>
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url(${venueExterior})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: 0.12,
+            }}
+          />
+        </div>
+      )}
+
+      {/* Step 10 — Wedding hero ambient */}
+      {currentStep === 10 && (
+        <div className="fixed inset-0" style={{ zIndex: 0, pointerEvents: "none" }}>
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url(${heroWedding})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: 0.10,
+            }}
+          />
+        </div>
+      )}
 
       {/* Step content with cinematic transitions */}
       <div className={`relative z-10 ${transitionClass}`}>
