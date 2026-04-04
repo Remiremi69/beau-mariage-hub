@@ -165,6 +165,8 @@ const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) =>
           </motion.button>
         </motion.div>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerPhotographe} />
     </div>
   );
 };

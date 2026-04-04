@@ -162,6 +162,8 @@ const Step09_Options = ({ state, onUpdate, onNext, onPrev }: Step09Props) => {
           </motion.button>
         </motion.div>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerOptions} />
     </div>
   );
 };

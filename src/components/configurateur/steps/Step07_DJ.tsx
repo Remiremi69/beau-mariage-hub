@@ -222,6 +222,8 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
           </motion.button>
         </motion.div>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerDJ} />
     </div>
   );
 };

@@ -214,6 +214,8 @@ const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
           </motion.button>
         </motion.div>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerDeco} />
     </div>
   );
 };
