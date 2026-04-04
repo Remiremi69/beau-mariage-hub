@@ -122,7 +122,11 @@ const ConfigurateurShell = () => {
               <Step04_VinDhonneur state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
             )}
 
-            {currentStep >= 5 && currentStep <= 10 && (
+            {currentStep === 5 && (
+              <Step05_Repas state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
+            )}
+
+            {currentStep >= 6 && currentStep <= 10 && (
               <div className="flex items-center justify-center min-h-screen px-6">
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 18, color: "rgba(232,221,208,0.5)" }}>
                   Étape {currentStep} — à venir
