@@ -65,6 +65,10 @@ const Step01_Date = ({ state, onUpdate, onNext }: Step01Props) => {
           Cinq dates sont disponibles pour la série Octobre 2027 au Domaine de la Croix Rochefort.
         </motion.p>
 
+        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
+          <InfoButton label="En savoir plus sur le domaine" onClick={() => setDrawerOpen(true)} />
+        </motion.div>
+
         {/* Séparateur */}
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
           style={{ width: 60, height: 1, background: "#c9a96e", margin: "36px auto" }} />
