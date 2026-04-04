@@ -1,5 +1,9 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ConfigurateurState, Deco } from "../pricingTypes";
+import InfoButton from "../InfoButton";
+import PresentationDrawer from "../PresentationDrawer";
+import { drawerDeco } from "../drawerContents";
 
 interface Step08Props {
   state: ConfigurateurState;
