@@ -82,9 +82,9 @@ const galleryImages = [
 ];
 
 const infoPratiques = [
-  { icon: Car, title: "Parking", description: "Parking gratuit sur place" },
-  { icon: Home, title: "Hébergement", description: "Gîtes et hôtels à proximité" },
-  { icon: Navigation, title: "Accès", description: "Accès en voiture recommandé" }
+  { icon: Car, title: "Parking", description: "Parking couvert 71 places + parking extérieur gratuits, accès direct à la salle" },
+  { icon: Home, title: "Hébergement sur place", description: "Gîte 20 personnes (7 chambres doubles) + gîte 15 personnes en face — réservation directe au domaine" },
+  { icon: Navigation, title: "Accès A6", description: "Sortie Belleville-en-Beaujolais (sortie 30), puis D37 direction Beaujeu — fléchage facile" }
 ];
 
 const DomaineDetail = () => {
