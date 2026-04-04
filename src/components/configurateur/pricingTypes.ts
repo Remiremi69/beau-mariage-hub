@@ -15,6 +15,9 @@ export type ConfigurateurState = {
   ceremonieLaique: boolean
   vinDhonneur: VinDhonneur
   repas: Repas
+  repasEntree: string | null
+  repasPlat: string | null
+  repasDessert: string | null
   photographe: Photographe
   dj: DJ
   deco: Deco
