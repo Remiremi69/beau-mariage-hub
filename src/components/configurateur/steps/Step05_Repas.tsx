@@ -173,6 +173,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
   const [selectedEntree, setSelectedEntree] = useState<string | null>(state.repasEntree);
   const [selectedPlat, setSelectedPlat] = useState<string | null>(state.repasPlat);
   const [selectedDessert, setSelectedDessert] = useState<string | null>(state.repasDessert);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const chosenCount = [selectedEntree, selectedPlat, selectedDessert].filter(Boolean).length;
   const allChosen = chosenCount === 3;
