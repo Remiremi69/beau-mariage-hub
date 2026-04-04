@@ -46,6 +46,7 @@ const IncludedItem = ({ text }: { text: string }) => (
 const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) => {
   const selected = state.photographe;
   const select = (v: Photographe) => onUpdate({ photographe: v });
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <div className="flex items-center justify-center min-h-screen px-6" style={{ paddingTop: 60, paddingBottom: 60 }}>
