@@ -1,6 +1,7 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ConfigurateurState, defaultState } from "./pricingTypes";
+import { calculateBreakdown } from "./pricing/pricingEngine";
 import Step00_Domaine from "./steps/Step00_Domaine";
 import Step01_Date from "./steps/Step01_Date";
 import Step02_Invites from "./steps/Step02_Invites";
@@ -11,6 +12,7 @@ import Step06_Photographe from "./steps/Step06_Photographe";
 import Step07_DJ from "./steps/Step07_DJ";
 import Step08_Deco from "./steps/Step08_Deco";
 import Step09_Options from "./steps/Step09_Options";
+import Step10_Recap from "./steps/Step10_Recap";
 
 const STEP_BACKGROUNDS = [
   // Step 0 — Domaine
@@ -81,6 +83,7 @@ const ConfigurateurShell = () => {
   );
 
   const { currentStep } = state;
+  const breakdown = useMemo(() => calculateBreakdown(state), [state]);
 
   return (
     <div className="relative w-full" style={{ minHeight: "100vh" }}>
@@ -147,11 +150,7 @@ const ConfigurateurShell = () => {
             )}
 
             {currentStep === 10 && (
-              <div className="flex items-center justify-center min-h-screen px-6">
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 18, color: "rgba(232,221,208,0.5)" }}>
-                  Étape 10 — Récapitulatif à venir
-                </p>
-              </div>
+              <Step10_Recap state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
             )}
           </motion.div>
         </AnimatePresence>
@@ -202,7 +201,7 @@ const ConfigurateurShell = () => {
               fontWeight: 500,
             }}
           >
-            {state.totalEstimate > 0 ? `${state.totalEstimate.toLocaleString("fr-FR")} €` : "—"}
+            {breakdown.totalEstimate > 0 ? `${breakdown.totalEstimate.toLocaleString("fr-FR")} €` : "—"}
           </div>
         </div>
       )}
