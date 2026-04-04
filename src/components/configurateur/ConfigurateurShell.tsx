@@ -83,6 +83,7 @@ const ConfigurateurShell = () => {
   );
 
   const { currentStep } = state;
+  const breakdown = useMemo(() => calculateBreakdown(state), [state]);
 
   return (
     <div className="relative w-full" style={{ minHeight: "100vh" }}>
