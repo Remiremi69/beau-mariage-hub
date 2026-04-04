@@ -83,6 +83,10 @@ const Step09_Options = ({ state, onUpdate, onNext, onPrev }: Step09Props) => {
           Chaque option est indépendante. Prenez tout, prenez rien — composez exactement ce dont vous avez besoin.
         </motion.p>
 
+        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
+          <InfoButton label="Pourquoi ces options ?" onClick={() => setDrawerOpen(true)} />
+        </motion.div>
+
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
           style={{ width: 60, height: 1, background: "#c9a96e", margin: "0 auto 48px" }} />
 
