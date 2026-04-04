@@ -61,38 +61,31 @@ const vinLabelMap: Record<string, string> = {
   prestige: 'Prestige',
   'grand-cru': 'Grand Cru',
 }
-
 const repasLabelMap: Record<string, string> = {
   essentiel: 'Essentiel',
   gastronomique: 'Gastronomique',
   prestige: 'Prestige',
 }
-
 const decoLabelMap: Record<string, string> = {
   champetre: 'Champêtre',
   boheme: 'Bohème Moderne',
   elegance: 'Élégance Intemporelle',
 }
-
 const photoLabelMap: Record<string, string> = {
   none: '',
   reportage: 'Reportage',
   premium: 'Premium Duo',
 }
-
 const djLabelMap: Record<string, string> = {
   none: '',
   standard: 'Standard',
   premium: 'Premium',
 }
 
-export function calculateBreakdown(
-  state: ConfigurateurState
-): PriceBreakdown {
+export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
   const lines: PriceLine[] = []
   const g = state.guests
 
-  // 1. Forfait de base
   lines.push({
     label: 'Forfait Domaine',
     sublabel: 'Salle, cuisine, coordination, ménage',
@@ -100,7 +93,6 @@ export function calculateBreakdown(
     isIncluded: false,
   })
 
-  // 2. Cérémonie laïque
   if (state.ceremonieLaique) {
     lines.push({
       label: 'Cérémonie laïque',
@@ -110,7 +102,6 @@ export function calculateBreakdown(
     })
   }
 
-  // 3. Vin d'honneur
   const vinPrixUnit = VIN_PRIX[state.vinDhonneur] ?? 0
   if (vinPrixUnit > 0) {
     lines.push({
@@ -129,7 +120,6 @@ export function calculateBreakdown(
     })
   }
 
-  // 4. Repas
   const repasPrixUnit = REPAS_PRIX[state.repas] ?? 65
   lines.push({
     label: 'Repas — ' + (repasLabelMap[state.repas] ?? ''),
@@ -139,7 +129,6 @@ export function calculateBreakdown(
     isEstimate: true,
   })
 
-  // 5. Déco
   const decoPrix = DECO_PRIX[state.deco] ?? 0
   if (decoPrix > 0) {
     lines.push({
@@ -156,7 +145,6 @@ export function calculateBreakdown(
     })
   }
 
-  // 6. Photographe
   const photoPrix = PHOTO_PRIX[state.photographe] ?? 0
   if (photoPrix > 0) {
     lines.push({
@@ -166,7 +154,6 @@ export function calculateBreakdown(
     })
   }
 
-  // 7. DJ
   const djPrix = DJ_PRIX[state.dj] ?? 0
   if (djPrix > 0) {
     lines.push({
@@ -176,7 +163,6 @@ export function calculateBreakdown(
     })
   }
 
-  // 8. Options
   const safeOptions = state.options ?? []
   for (const optionId of safeOptions) {
     const prix = OPTION_PRICES[optionId]
@@ -189,7 +175,6 @@ export function calculateBreakdown(
     }
   }
 
-  // Calculs
   const vinAmount = vinPrixUnit * g
   const repasAmount = repasPrixUnit * g
   const subtotalFixe = lines

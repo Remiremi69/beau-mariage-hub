@@ -1,6 +1,6 @@
-import { useState, useCallback, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ConfigurateurState, defaultState } from "./pricingTypes";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ConfigurateurState, defaultState, OPTION_LABELS } from "./pricingTypes";
 import { calculateBreakdown } from "./pricing/pricingEngine";
 import Step00_Domaine from "./steps/Step00_Domaine";
 import Step01_Date from "./steps/Step01_Date";
@@ -14,32 +14,29 @@ import Step08_Deco from "./steps/Step08_Deco";
 import Step09_Options from "./steps/Step09_Options";
 import Step10_Recap from "./steps/Step10_Recap";
 
+/* ─── Constants ───────────────────────────────────────── */
+
 const STEP_BACKGROUNDS = [
-  // Step 0 — Domaine
   "radial-gradient(ellipse at 30% 60%, rgba(201,169,110,0.20) 0%, transparent 55%), radial-gradient(ellipse at 75% 20%, rgba(201,169,110,0.08) 0%, transparent 40%), linear-gradient(160deg, #0d0b08 0%, #1a1612 45%, #231e17 70%, #1a1612 100%)",
-  // Step 1 — Date
   "radial-gradient(ellipse at 50% 100%, rgba(100,120,200,0.25) 0%, transparent 55%), linear-gradient(180deg, #060810 0%, #0d1228 55%, #080e1e 100%)",
-  // Step 2 — Invités
   "radial-gradient(circle at 60% 40%, rgba(201,169,110,0.12) 0%, transparent 50%), linear-gradient(135deg, #0e0c09 0%, #1c1812 60%, #130f09 100%)",
-  // Step 3 — Cérémonie
   "radial-gradient(ellipse at 50% 0%, rgba(80,120,60,0.30) 0%, transparent 55%), linear-gradient(180deg, #080e06 0%, #101806 50%, #080e06 100%)",
-  // Step 4 — Vin d'honneur
   "radial-gradient(ellipse at 40% 55%, rgba(120,20,30,0.35) 0%, transparent 50%), linear-gradient(160deg, #0c0606 0%, #1a0808 55%, #0e0606 100%)",
-  // Step 5 — Repas
   "radial-gradient(ellipse at 55% 35%, rgba(201,169,110,0.18) 0%, transparent 45%), linear-gradient(150deg, #0c0b08 0%, #1a1710 60%, #110e08 100%)",
-  // Step 6 — Photographe
   "radial-gradient(circle at 50% 50%, rgba(40,60,100,0.35) 0%, transparent 55%), linear-gradient(160deg, #060608 0%, #0c0e18 60%, #060810 100%)",
-  // Step 7 — DJ
   "radial-gradient(circle at 30% 50%, rgba(100,20,120,0.40) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(20,60,140,0.25) 0%, transparent 45%), linear-gradient(135deg, #08040e 0%, #100616 100%)",
-  // Step 8 — Déco
   "radial-gradient(ellipse at 50% 65%, rgba(150,130,100,0.18) 0%, transparent 55%), linear-gradient(150deg, #0e0c09 0%, #1c1812 60%, #0e0c09 100%)",
-  // Step 9 — Options
   "radial-gradient(circle at 35% 35%, rgba(201,169,110,0.15) 0%, transparent 45%), linear-gradient(160deg, #0a0908 0%, #161410 100%)",
-  // Step 10 — Récap
   "radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.25) 0%, transparent 60%), linear-gradient(160deg, #0d0b08 0%, #1a1612 50%, #231e17 100%)",
 ];
 
 const TOTAL_STEPS = 11;
+
+const STEP_LABELS = [
+  "Accueil", "Date", "Invités", "Cérémonie",
+  "Vin d'honneur", "Repas", "Photographe",
+  "DJ", "Déco", "Options", "Récap",
+];
 
 const availableDates: Record<string, string> = {
   "2027-10-04": "Lun 4 Oct",
@@ -49,8 +46,90 @@ const availableDates: Record<string, string> = {
   "2027-10-08": "Ven 8 Oct",
 };
 
+const vinLabels: Record<string, string> = {
+  decouverte: "Découverte", prestige: "Prestige", "grand-cru": "Grand Cru",
+};
+const photoLabels: Record<string, string> = {
+  none: "", reportage: "Reportage", premium: "Premium Duo",
+};
+const djLabels: Record<string, string> = {
+  none: "", standard: "Standard", premium: "Premium",
+};
+
+/* ─── Haptic helper ───────────────────────────────────── */
+const haptic = (type: "light" | "medium" = "light") => {
+  if ("vibrate" in navigator) {
+    navigator.vibrate(type === "light" ? 10 : 25);
+  }
+};
+
+/* ─── Custom Cursor ───────────────────────────────────── */
+const CustomCursor = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    if (!mq.matches) return;
+
+    setVisible(true);
+    const el = ref.current;
+    if (!el) return;
+
+    const move = (e: MouseEvent) => {
+      el.style.left = e.clientX + "px";
+      el.style.top = e.clientY + "px";
+    };
+
+    const enter = () => el.classList.add("hovering");
+    const leave = () => el.classList.remove("hovering");
+
+    document.addEventListener("mousemove", move);
+
+    const observe = () => {
+      document.querySelectorAll("button, a, input, textarea, [role='button'], [data-cursor-hover]")
+        .forEach((node) => {
+          node.addEventListener("mouseenter", enter);
+          node.addEventListener("mouseleave", leave);
+        });
+    };
+
+    observe();
+    const observer = new MutationObserver(observe);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      document.removeEventListener("mousemove", move);
+      observer.disconnect();
+    };
+  }, []);
+
+  if (!visible) return null;
+  return <div ref={ref} className="custom-cursor" />;
+};
+
+/* ─── Mini-recap line ─────────────────────────────────── */
+const RecapLine = ({ label, value }: { label: string; value: string }) => (
+  <motion.div
+    initial={{ opacity: 0, height: 0 }}
+    animate={{ opacity: 1, height: "auto" }}
+    transition={{ duration: 0.4 }}
+    className="flex justify-between gap-6"
+  >
+    <span style={{ color: "rgba(232,221,208,0.5)" }}>{label}</span>
+    <span className="text-right">{value}</span>
+  </motion.div>
+);
+
+/* ═══════════════════════════════════════════════════════ */
 const ConfigurateurShell = () => {
   const [state, setState] = useState<ConfigurateurState>(defaultState);
+  const [displayStep, setDisplayStep] = useState(0);
+  const [transitionClass, setTransitionClass] = useState("");
+  const [overlayActive, setOverlayActive] = useState(false);
+  const isTransitioning = useRef(false);
+
+  const breakdown = useMemo(() => calculateBreakdown(state), [state]);
 
   const updateState = useCallback(
     (partial: Partial<ConfigurateurState>) =>
@@ -58,36 +137,127 @@ const ConfigurateurShell = () => {
     []
   );
 
+  /* ── Step navigation with cinematic transition ─────── */
+  const goToStepAnimated = useCallback(
+    (newStep: number) => {
+      if (isTransitioning.current || newStep === displayStep) return;
+      if (newStep < 0 || newStep >= TOTAL_STEPS) return;
+      isTransitioning.current = true;
+      haptic("medium");
+
+      const dir = newStep > displayStep ? "forward" : "backward";
+      setTransitionClass(`step-exit-${dir}`);
+
+      // Update actual state step immediately for background crossfade
+      setState((prev) => ({ ...prev, currentStep: newStep }));
+
+      setTimeout(() => {
+        setOverlayActive(true);
+        setTimeout(() => {
+          setDisplayStep(newStep);
+          setTransitionClass(`step-enter-${dir}`);
+          setOverlayActive(false);
+          window.scrollTo({ top: 0 });
+
+          setTimeout(() => {
+            setTransitionClass("");
+            isTransitioning.current = false;
+          }, 600);
+        }, 120);
+      }, 350);
+    },
+    [displayStep]
+  );
+
   const nextStep = useCallback(
-    () =>
-      setState((prev) => ({
-        ...prev,
-        currentStep: Math.min(prev.currentStep + 1, TOTAL_STEPS - 1),
-      })),
-    []
+    () => goToStepAnimated(displayStep + 1),
+    [displayStep, goToStepAnimated]
   );
-
   const prevStep = useCallback(
-    () =>
-      setState((prev) => ({
-        ...prev,
-        currentStep: Math.max(prev.currentStep - 1, 0),
-      })),
-    []
+    () => goToStepAnimated(displayStep - 1),
+    [displayStep, goToStepAnimated]
   );
 
-  const goToStep = useCallback(
-    (step: number) =>
-      setState((prev) => ({ ...prev, currentStep: step })),
-    []
-  );
+  /* ── Browser back/forward ──────────────────────────── */
+  useEffect(() => {
+    const url = `/configurateur${displayStep > 0 ? `?step=${displayStep}` : ""}`;
+    window.history.pushState({ step: displayStep }, "", url);
+  }, [displayStep]);
+
+  useEffect(() => {
+    const handler = (e: PopStateEvent) => {
+      const step = e.state?.step;
+      if (typeof step === "number") {
+        goToStepAnimated(step);
+      } else if (displayStep > 0) {
+        goToStepAnimated(displayStep - 1);
+      }
+    };
+    window.addEventListener("popstate", handler);
+    return () => window.removeEventListener("popstate", handler);
+  }, [displayStep, goToStepAnimated]);
+
+  /* ── Render step content ───────────────────────────── */
+  const renderStep = () => {
+    const props = { state, onUpdate: updateState, onNext: nextStep, onPrev: prevStep };
+    switch (displayStep) {
+      case 0: return <Step00_Domaine onNext={nextStep} />;
+      case 1: return <Step01_Date {...props} />;
+      case 2: return <Step02_Invites {...props} />;
+      case 3: return <Step03_Ceremonie {...props} />;
+      case 4: return <Step04_VinDhonneur {...props} />;
+      case 5: return <Step05_Repas {...props} />;
+      case 6: return <Step06_Photographe {...props} />;
+      case 7: return <Step07_DJ {...props} />;
+      case 8: return <Step08_Deco {...props} />;
+      case 9: return <Step09_Options {...props} />;
+      case 10: return <Step10_Recap {...props} />;
+      default: return null;
+    }
+  };
+
+  /* ── Mini-recap contextual lines ────────────────────── */
+  const miniRecapLines = useMemo(() => {
+    const lines: { label: string; value: string }[] = [];
+    lines.push({
+      label: "Date",
+      value: state.date ? availableDates[state.date] || state.date : "—",
+    });
+    lines.push({ label: "Invités", value: String(state.guests) });
+
+    if (state.currentStep >= 3 && state.ceremonieLaique) {
+      lines.push({ label: "Cérémonie", value: "Laïque" });
+    }
+    if (state.currentStep >= 4 && state.vinDhonneur !== "decouverte") {
+      lines.push({ label: "Vin", value: vinLabels[state.vinDhonneur] || "" });
+    }
+    if (state.currentStep === 5) {
+      const count = [state.repasEntree, state.repasPlat, state.repasDessert].filter(Boolean).length;
+      lines.push({ label: "Menu", value: count === 3 ? "Complet" : `${count}/3 plats` });
+    }
+    if (state.currentStep >= 6 && state.photographe !== "none") {
+      lines.push({ label: "Photo", value: photoLabels[state.photographe] || "" });
+    }
+    if (state.currentStep >= 7 && state.dj !== "none") {
+      lines.push({ label: "DJ", value: djLabels[state.dj] || "" });
+    }
+    if (state.currentStep >= 9 && (state.options?.length ?? 0) > 0) {
+      lines.push({ label: "Options", value: `${state.options.length}` });
+    }
+    return lines;
+  }, [state]);
 
   const { currentStep } = state;
-  const breakdown = useMemo(() => calculateBreakdown(state), [state]);
 
   return (
-    <div className="relative w-full" style={{ minHeight: "100vh" }}>
-      {/* Background layers */}
+    <div className="relative w-full configurateur-root configurateur-grain configurateur-scroll-hide" style={{ minHeight: "100vh" }}>
+      {/* Custom cursor — desktop */}
+      <CustomCursor />
+
+      {/* Transition overlay */}
+      <div className={`transition-overlay ${overlayActive ? "active" : ""}`} />
+
+      {/* Background layers — crossfade */}
       {STEP_BACKGROUNDS.map((bg, i) => (
         <div
           key={i}
@@ -101,130 +271,178 @@ const ConfigurateurShell = () => {
         />
       ))}
 
-      {/* Step content */}
-      <div className="relative z-10">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentStep}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {currentStep === 0 && <Step00_Domaine onNext={nextStep} />}
-
-            {currentStep === 1 && (
-              <Step01_Date state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
-            )}
-
-            {currentStep === 2 && (
-              <Step02_Invites state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
-            )}
-
-            {currentStep === 3 && (
-              <Step03_Ceremonie state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
-            )}
-
-            {currentStep === 4 && (
-              <Step04_VinDhonneur state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
-            )}
-
-            {currentStep === 5 && (
-              <Step05_Repas state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
-            )}
-
-            {currentStep === 6 && (
-              <Step06_Photographe state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
-            )}
-
-            {currentStep === 7 && (
-              <Step07_DJ state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
-            )}
-
-            {currentStep === 8 && (
-              <Step08_Deco state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
-            )}
-
-            {currentStep === 9 && (
-              <Step09_Options state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
-            )}
-
-            {currentStep === 10 && (
-              <Step10_Recap state={state} onUpdate={updateState} onNext={nextStep} onPrev={prevStep} />
-            )}
-          </motion.div>
-        </AnimatePresence>
+      {/* Step content with cinematic transitions */}
+      <div className={`relative z-10 ${transitionClass}`}>
+        {renderStep()}
       </div>
 
-      {/* Mini-récap flottant desktop (step >= 1) */}
-      {currentStep >= 1 && (
+      {/* ─── Mini-récap flottant (desktop, hidden on step 10) ─── */}
+      <AnimatePresence>
+        {currentStep >= 1 && currentStep < 10 && (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="fixed top-6 right-6 z-50 hidden lg:block mini-recap-glass cfg-no-select"
+            style={{
+              background: "rgba(26,22,18,0.85)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              border: "1px solid rgba(201,169,110,0.25)",
+              padding: "20px 24px",
+              minWidth: "200px",
+              borderRadius: 2,
+            }}
+          >
+            <div
+              style={{
+                fontFamily: "'Jost', sans-serif",
+                fontSize: "11px",
+                letterSpacing: "0.3em",
+                textTransform: "uppercase",
+                color: "rgba(201,169,110,0.6)",
+                marginBottom: "12px",
+              }}
+            >
+              Votre mariage
+            </div>
+            <div className="space-y-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "13px", color: "#e8ddd0" }}>
+              {miniRecapLines.map((l) => (
+                <RecapLine key={l.label} label={l.label} value={l.value} />
+              ))}
+            </div>
+            <div
+              style={{
+                borderTop: "1px solid rgba(201,169,110,0.15)",
+                marginTop: "14px",
+                paddingTop: "14px",
+                fontFamily: "'Jost', sans-serif",
+                fontSize: "13px",
+                color: "#c9a96e",
+                fontWeight: 500,
+              }}
+            >
+              {breakdown.totalEstimate > 0
+                ? `${breakdown.totalEstimate.toLocaleString("fr-FR")} €`
+                : "—"}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ─── Progress bar + navigation dots ─────────── */}
+      <div
+        className="fixed bottom-0 left-0 right-0 z-50 cfg-no-select"
+        style={{
+          background: "linear-gradient(transparent, rgba(13,11,8,0.95))",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+          padding: "16px 24px 20px",
+        }}
+      >
+        {/* Progress line */}
         <div
-          className="fixed top-6 right-6 z-50 hidden lg:block"
+          className="mx-auto"
           style={{
-            background: "rgba(26,22,18,0.85)",
-            backdropFilter: "blur(12px)",
-            border: "1px solid rgba(201,169,110,0.25)",
-            padding: "20px 24px",
-            minWidth: "200px",
+            maxWidth: 800,
+            height: 1,
+            background: "rgba(201,169,110,0.12)",
+            marginBottom: 14,
+            position: "relative",
+            overflow: "hidden",
           }}
         >
           <div
             style={{
-              fontFamily: "'Jost', sans-serif",
-              fontSize: "11px",
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
-              color: "rgba(201,169,110,0.6)",
-              marginBottom: "12px",
-            }}
-          >
-            Votre mariage
-          </div>
-          <div className="space-y-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "13px", color: "#e8ddd0" }}>
-            <div className="flex justify-between gap-6">
-              <span style={{ color: "rgba(232,221,208,0.5)" }}>Date</span>
-              <span>{state.date ? availableDates[state.date] || state.date : "—"}</span>
-            </div>
-            <div className="flex justify-between gap-6">
-              <span style={{ color: "rgba(232,221,208,0.5)" }}>Invités</span>
-              <span>{state.guests}</span>
-            </div>
-          </div>
-          <div
-            style={{
-              borderTop: "1px solid rgba(201,169,110,0.15)",
-              marginTop: "14px",
-              paddingTop: "14px",
-              fontFamily: "'Jost', sans-serif",
-              fontSize: "13px",
-              color: "#c9a96e",
-              fontWeight: 500,
-            }}
-          >
-            {breakdown.totalEstimate > 0 ? `${breakdown.totalEstimate.toLocaleString("fr-FR")} €` : "—"}
-          </div>
-        </div>
-      )}
-
-      {/* Navigation dots */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2">
-        {Array.from({ length: TOTAL_STEPS }, (_, i) => (
-          <button
-            key={i}
-            onClick={() => goToStep(i)}
-            aria-label={`Étape ${i}`}
-            className="transition-all duration-300"
-            style={{
-              width: i === 0 ? "10px" : "7px",
-              height: i === 0 ? "10px" : "7px",
-              borderRadius: "50%",
-              background: currentStep === i ? "#c9a96e" : "rgba(255,255,255,0.3)",
-              border: "none",
-              cursor: "pointer",
-              padding: 0,
+              position: "absolute",
+              top: 0,
+              left: 0,
+              height: 1,
+              width: `${(currentStep / (TOTAL_STEPS - 1)) * 100}%`,
+              background: "linear-gradient(90deg, rgba(201,169,110,0.30), rgba(201,169,110,0.80))",
+              transition: "width 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           />
-        ))}
+        </div>
+
+        {/* Dots */}
+        <div className="flex items-center justify-center mx-auto" style={{ maxWidth: 800 }}>
+          {Array.from({ length: TOTAL_STEPS }, (_, i) => {
+            const isActive = currentStep === i;
+            const isCompleted = i < currentStep;
+            const isFuture = i > currentStep;
+            return (
+              <div key={i} className="flex items-center">
+                {i > 0 && (
+                  <div
+                    className="hidden sm:block"
+                    style={{
+                      width: 20,
+                      height: 1,
+                      background: isCompleted
+                        ? "rgba(201,169,110,0.45)"
+                        : "rgba(201,169,110,0.12)",
+                      transition: "background 0.5s ease",
+                    }}
+                  />
+                )}
+                {i > 0 && (
+                  <div
+                    className="sm:hidden"
+                    style={{
+                      width: 8,
+                      height: 1,
+                      background: isCompleted
+                        ? "rgba(201,169,110,0.45)"
+                        : "rgba(201,169,110,0.12)",
+                    }}
+                  />
+                )}
+                <button
+                  onClick={() => goToStepAnimated(i)}
+                  aria-label={`Étape ${i} — ${STEP_LABELS[i]}`}
+                  className="flex items-center gap-2 transition-all duration-300"
+                  style={{
+                    background: "none",
+                    border: "none",
+                    padding: "4px",
+                  }}
+                  data-cursor-hover
+                >
+                  <div
+                    className="rounded-full transition-all duration-300"
+                    style={{
+                      width: isActive ? 8 : isCompleted ? 6 : 4,
+                      height: isActive ? 8 : isCompleted ? 6 : 4,
+                      background: isActive
+                        ? "#c9a96e"
+                        : isCompleted
+                        ? "rgba(201,169,110,0.50)"
+                        : "rgba(232,221,208,0.15)",
+                    }}
+                  />
+                  {isActive && (
+                    <span
+                      className="hidden lg:inline-block"
+                      style={{
+                        fontFamily: "'Jost', sans-serif",
+                        fontWeight: 300,
+                        fontSize: 11,
+                        letterSpacing: "0.15em",
+                        textTransform: "uppercase",
+                        color: "rgba(201,169,110,0.90)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {STEP_LABELS[i]}
+                    </span>
+                  )}
+                </button>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
