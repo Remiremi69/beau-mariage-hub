@@ -2,6 +2,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User } from "lucide-react";
 import { ConfigurateurState, DJ } from "../pricingTypes";
+import InfoButton from "../InfoButton";
+import PresentationDrawer from "../PresentationDrawer";
+import { drawerDJ } from "../drawerContents";
 
 interface Step07Props {
   state: ConfigurateurState;
