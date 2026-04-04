@@ -52,6 +52,7 @@ const options: OptionDef[] = [
 
 const Step09_Options = ({ state, onUpdate, onNext, onPrev }: Step09Props) => {
   const [selected, setSelected] = useState<string[]>(state.options);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const toggle = (id: string) => {
     setSelected((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
