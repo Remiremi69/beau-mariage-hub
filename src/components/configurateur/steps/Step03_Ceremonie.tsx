@@ -65,6 +65,10 @@ const Step03_Ceremonie = ({ state, onUpdate, onNext, onPrev }: Step03Props) => {
           La cérémonie laïque est le cœur battant du mariage. Un officiant vous accompagne pour écrire et célébrer un moment sur-mesure, à votre image.
         </motion.p>
 
+        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
+          <InfoButton label="Découvrir la cérémonie laïque" onClick={() => setDrawerOpen(true)} />
+        </motion.div>
+
         {/* Séparateur */}
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
           style={{ width: 60, height: 1, background: "#c9a96e", margin: "0 auto 44px" }} />
