@@ -22,6 +22,7 @@ export type ConfigurateurState = {
   dj: DJ
   deco: Deco
   options: string[]
+  ambianceMusique: string[]
   contact: { prenom: string; email: string; telephone: string }
   totalEstimate: number
 }
@@ -40,6 +41,7 @@ export const defaultState: ConfigurateurState = {
   dj: 'none',
   deco: 'champetre',
   options: [],
+  ambianceMusique: [],
   contact: { prenom: '', email: '', telephone: '' },
   totalEstimate: 0,
 }
