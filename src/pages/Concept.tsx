@@ -160,7 +160,7 @@ const Concept = () => {
                   </span>
                 </div>
                 <CardContent className="p-6">
-                  <div className="text-4xl font-bold text-sand mb-2">3</div>
+                  <div className="text-4xl font-bold text-or mb-2">3</div>
                   <h4 className="font-semibold mb-2">Optimisation Écologique</h4>
                   <p className="text-sm text-muted-foreground">
                     Notre système de "Décoration Responsable Premium" nous permet de créer des ambiances magnifiques tout en minimisant les déchets. Chaque élément est réutilisé pour plusieurs mariages, réduisant ainsi l'impact environnemental de 80%.

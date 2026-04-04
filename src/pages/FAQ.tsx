@@ -102,7 +102,7 @@ const FAQ = () => {
                 </p>
                 <a
                   href="/contact"
-                  className="inline-flex items-center justify-center h-12 rounded-md px-10 text-base font-semibold bg-gradient-to-r from-terracotta to-primary text-primary-foreground shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.3)] hover:shadow-[0_20px_60px_-10px_hsl(14_71%_67%/0.5)] hover:scale-105 transition-all duration-300"
+                  className="inline-flex items-center justify-center h-12 rounded-md px-10 text-base font-semibold bg-gradient-to-r from-or to-primary text-primary-foreground shadow-elegant hover:shadow-glow hover:scale-105 transition-all duration-300"
                 >
                   Contactez-nous
                 </a>

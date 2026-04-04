@@ -55,7 +55,7 @@ const Contact = () => {
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-sand/50 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 bg-or-light/50 rounded-full flex items-center justify-center flex-shrink-0">
                         <Instagram className="h-6 w-6 text-anthracite" />
                       </div>
                       <div>
