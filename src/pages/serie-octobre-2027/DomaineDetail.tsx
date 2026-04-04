@@ -4,7 +4,6 @@ import {
   MapPin, 
   Train, 
   Plane, 
-  Grape, 
   ChevronRight,
   ArrowRight,
   Check,
@@ -50,10 +49,12 @@ const useInView = (threshold = 0.1) => {
 };
 
 const pointsForts = [
-  { icon: Check, text: "Cérémonie dans un caveau voûté historique" },
-  { icon: Check, text: "Salle de réception de caractère" },
-  { icon: Check, text: "Cadre authentique au cœur du Beaujolais" },
-  { icon: Check, text: "Équipe locale partenaire de Le Beau Mariage" }
+  { icon: Check, text: "Cave voûtée 600m² — cérémonie laïque sous les pierres, bar dans un pressoir de chêne" },
+  { icon: Check, text: "Salle de réception 500m² — jusqu'à 300 convives assis, piste de danse, estrade" },
+  { icon: Check, text: "Domaine familial depuis 1921 au cœur du Beaujolais Vert, Rhône (69)" },
+  { icon: Check, text: "Parking couvert 71 places + parking extérieur — gratuits sur place" },
+  { icon: Check, text: "Gîte 20 personnes sur place + gîte 15 personnes en face du domaine" },
+  { icon: Check, text: "À 40 min de Lyon (A6), 20 min de Villefranche-sur-Saône, 40 min gare TGV Mâcon-Loché" }
 ];
 
 const galleryImages = [
@@ -80,9 +81,9 @@ const galleryImages = [
 ];
 
 const infoPratiques = [
-  { icon: Car, title: "Parking", description: "Parking gratuit sur place" },
-  { icon: Home, title: "Hébergement", description: "Gîtes et hôtels à proximité" },
-  { icon: Navigation, title: "Accès", description: "Accès en voiture recommandé" }
+  { icon: Car, title: "Parking", description: "Parking couvert 71 places + parking extérieur gratuits, accès direct à la salle" },
+  { icon: Home, title: "Hébergement sur place", description: "Gîte 20 personnes (7 chambres doubles) + gîte 15 personnes en face — réservation directe au domaine" },
+  { icon: Navigation, title: "Accès A6", description: "Sortie Belleville-en-Beaujolais (sortie 30), puis D37 direction Beaujeu — fléchage facile" }
 ];
 
 const DomaineDetail = () => {
@@ -93,11 +94,40 @@ const DomaineDetail = () => {
 
   return (
     <div className="min-h-screen pt-20">
-      <SEO 
-        title="Le Domaine de la Croix Rochefort - Série Octobre 2027"
-        description="Découvrez le Domaine de la Croix Rochefort, votre cadre de rêve pour un mariage authentique en Beaujolais. Caveau voûté historique et salle de caractère."
+      <SEO
+        title="Domaine de la Croix Rochefort — Salle de Mariage Beaujolais | Le Beau Mariage"
+        description="Mariez-vous au Domaine de la Croix Rochefort à Saint-Didier-sur-Beaujeu. Cave voûtée 600m², salle 500m², 300 convives. À 40 min de Lyon, 20 min de Villefranche. Prix fixe tout compris."
         canonical="https://lebeaumariage.fr/serie-octobre-2027/domaine"
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Place",
+        "name": "Domaine de la Croix Rochefort",
+        "alternateName": "Les Caves de la Croix Rochefort",
+        "description": "Domaine viticole historique depuis 1921 pour mariages en Beaujolais. Cave voûtée 600m² et salle de réception 500m² jusqu'à 300 convives. Saint-Didier-sur-Beaujeu, Rhône.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "401 rue des dépôts",
+          "addressLocality": "Saint-Didier-sur-Beaujeu",
+          "postalCode": "69430",
+          "addressRegion": "Auvergne-Rhône-Alpes",
+          "addressCountry": "FR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 46.1522,
+          "longitude": 4.5791
+        },
+        "hasMap": "https://www.google.com/maps/search/?api=1&query=401+rue+des+dépôts+69430+Saint-Didier-sur-Beaujeu",
+        "maximumAttendeeCapacity": 300,
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Parking gratuit 71 places couvert", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Gîte sur place 20 personnes", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Cave voûtée historique 600m²", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Piste de danse", "value": true }
+        ],
+        "tourBookingPage": "https://lebeaumariage.fr/configurateur"
+      })}} />
 
       {/* Breadcrumb */}
       <div className="container mx-auto px-4 py-4">
@@ -151,20 +181,16 @@ const DomaineDetail = () => {
             </h2>
             <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
               <p className="text-lg leading-relaxed">
-                Nous avons cherché longtemps le lieu parfait pour notre première série. 
-                Pas un simple bâtiment, mais un partenaire qui partage notre philosophie : 
-                l'authenticité, la qualité, et l'humain avant tout.
+                Le Domaine de la Croix Rochefort est un domaine viticole familial implanté depuis 1921 au hameau des Dépôts, à Saint-Didier-sur-Beaujeu — capitale historique du Beaujolais, dans le Rhône (69). Entouré de vignes et de collines, ce lieu d'exception offre un cadre authentique et préservé, loin des salles de mariage standardisées.
               </p>
               <p className="text-lg leading-relaxed">
-                Le Domaine de la Croix Rochefort, à Saint-Didier-sur-Beaujeu, c'est ce lieu. 
-                Avec son caveau voûté chargé d'histoire, sa salle de réception intemporelle 
-                et son équipe familiale, il offre le cadre idéal pour que Le Beau Mariage 
-                crée votre mariage sur mesure.
+                Pour votre mariage, le domaine met à disposition deux espaces complémentaires : une cave voûtée de 600m² pour une cérémonie laïque intime sous les pierres apparentes et un ancien pressoir de chêne, et une salle de réception de 500m² avec piste de danse et estrade pouvant accueillir jusqu'à 300 convives assis. L'alliance de ces deux espaces crée une expérience unique où cérémonie et fête se déroulent dans un même lieu, sans transfert.
               </p>
               <p className="text-lg leading-relaxed">
-                Ici, nous ne louons pas juste une salle. Nous nous associons avec une équipe 
-                qui comprend notre vision. Ensemble, nous transformons ce domaine en le 
-                théâtre de votre histoire d'amour.
+                Idéalement situé pour vos invités, le domaine est accessible en 40 minutes depuis Lyon via l'autoroute A6 (sortie Belleville-en-Beaujolais), en 20 minutes depuis Villefranche-sur-Saône, en 40 minutes depuis la gare TGV de Mâcon-Loché, et en 1 heure depuis l'aéroport Lyon Saint-Exupéry. Un parking couvert de 71 places et un parking extérieur sont disponibles gratuitement sur place.
+              </p>
+              <p className="text-lg leading-relaxed">
+                Le domaine propose également un gîte de 20 personnes (7 chambres doubles + dortoir) ainsi qu'un second gîte de 15 personnes en face du domaine — un confort appréciable pour vos invités venant de loin. C'est ici que Le Beau Mariage organise sa première série de 5 mariages en octobre 2027.
               </p>
             </div>
           </div>
@@ -289,23 +315,24 @@ const DomaineDetail = () => {
                   <Train className="h-6 w-6 text-primary" />
                 </div>
                 <h4 className="font-bold text-foreground mb-1">Gare TGV Mâcon-Loché</h4>
-                <p className="text-2xl font-bold text-primary mb-1">34 min</p>
+                <p className="text-2xl font-bold text-primary mb-1">40 min</p>
                 <p className="text-sm text-muted-foreground">en voiture</p>
               </div>
               <div className="bg-background rounded-xl p-6 shadow-md border border-border/50 text-center">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <Plane className="h-6 w-6 text-primary" />
                 </div>
-                <h4 className="font-bold text-foreground mb-1">Aéroport & Ville de Lyon</h4>
-                <p className="text-2xl font-bold text-primary mb-1">55 min</p>
+                <h4 className="font-bold text-foreground mb-1">Aéroport Lyon Saint-Exupéry</h4>
+                <p className="text-2xl font-bold text-primary mb-1">1h</p>
                 <p className="text-sm text-muted-foreground">en voiture</p>
               </div>
               <div className="bg-background rounded-xl p-6 shadow-md border border-border/50 text-center">
-                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4">
-                  <Grape className="h-6 w-6 text-secondary" />
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <Car className="h-6 w-6 text-primary" />
                 </div>
-                <h4 className="font-bold text-foreground mb-1">Au Cœur du Beaujolais</h4>
-                <p className="text-lg text-muted-foreground">Une destination en soi</p>
+                <h4 className="font-bold text-foreground mb-1">Villefranche-sur-Saône</h4>
+                <p className="text-2xl font-bold text-primary mb-1">20 min</p>
+                <p className="text-sm text-muted-foreground">en voiture</p>
               </div>
             </div>
 
