@@ -338,16 +338,34 @@ const ConfigurateurShell = () => {
         </div>
       )}
 
-      {/* Step 1 — Venue exterior ambient */}
+      {/* Step 1 — Domaine photo + overlay + gradient */}
       {currentStep === 1 && (
         <div className="fixed inset-0" style={{ zIndex: 0, pointerEvents: "none" }}>
+          {/* Couche 1 — photo */}
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `url(${venueExterior})`,
+              backgroundImage: `url(${domaine2})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              opacity: 0.12,
+              zIndex: 0,
+            }}
+          />
+          {/* Couche 2 — overlay sombre */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(180deg, rgba(13,11,8,0.60) 0%, rgba(13,11,8,0.80) 100%)",
+              zIndex: 1,
+            }}
+          />
+          {/* Couche 3 — gradient bleu-nuit atténué */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: STEP_BACKGROUNDS[1],
+              opacity: 0.55,
+              zIndex: 2,
             }}
           />
         </div>
