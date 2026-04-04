@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { ConfigurateurState } from "../pricingTypes";
+import InfoButton from "../InfoButton";
+import PresentationDrawer from "../PresentationDrawer";
+import { drawerDomaine } from "../drawerContents";
 
 interface Step01Props {
   state: ConfigurateurState;
@@ -28,6 +32,7 @@ const dates = [
 
 const Step01_Date = ({ state, onUpdate, onNext }: Step01Props) => {
   const selected = state.date;
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleSelect = (id: string) => {
     onUpdate({ date: id });
@@ -59,6 +64,10 @@ const Step01_Date = ({ state, onUpdate, onNext }: Step01Props) => {
           style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 15, color: "rgba(232,221,208,0.65)", lineHeight: 1.7, maxWidth: 440 }}>
           Cinq dates sont disponibles pour la série Octobre 2027 au Domaine de la Croix Rochefort.
         </motion.p>
+
+        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
+          <InfoButton label="En savoir plus sur le domaine" onClick={() => setDrawerOpen(true)} />
+        </motion.div>
 
         {/* Séparateur */}
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
@@ -148,6 +157,8 @@ const Step01_Date = ({ state, onUpdate, onNext }: Step01Props) => {
           Date choisie — Continuer
         </motion.button>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerDomaine} />
     </div>
   );
 };

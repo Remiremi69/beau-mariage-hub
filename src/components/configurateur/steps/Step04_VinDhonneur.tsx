@@ -1,5 +1,9 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ConfigurateurState, VinDhonneur } from "../pricingTypes";
+import InfoButton from "../InfoButton";
+import PresentationDrawer from "../PresentationDrawer";
+import { drawerVin } from "../drawerContents";
 
 interface Step04Props {
   state: ConfigurateurState;
@@ -25,6 +29,7 @@ const formules: { id: VinDhonneur; num: string; nom: string; desc: string; prix:
 const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) => {
   const selected = state.vinDhonneur;
   const guests = state.guests;
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const selectedFormule = formules.find((f) => f.id === selected);
   const liveTotal = selectedFormule && selectedFormule.perPerson > 0
@@ -53,6 +58,10 @@ const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) =>
           style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 15, color: "rgba(232,221,208,0.65)", lineHeight: 1.8, maxWidth: 480, marginBottom: 44 }}>
           Le vin d'honneur donne le ton de la soirée. Cocktail, bulles, mignardises — tout est soigné, tout vient du territoire.
         </motion.p>
+
+        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
+          <InfoButton label="Rencontrer notre sommelier" onClick={() => setDrawerOpen(true)} />
+        </motion.div>
 
         {/* Séparateur */}
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
@@ -151,6 +160,8 @@ const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) =>
           </motion.button>
         </motion.div>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerVin} />
     </div>
   );
 };

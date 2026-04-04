@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ConfigurateurState, OPTION_PRICES } from "../pricingTypes";
+import InfoButton from "../InfoButton";
+import PresentationDrawer from "../PresentationDrawer";
+import { drawerOptions } from "../drawerContents";
 
 interface Step09Props {
   state: ConfigurateurState;
@@ -49,6 +52,7 @@ const options: OptionDef[] = [
 
 const Step09_Options = ({ state, onUpdate, onNext, onPrev }: Step09Props) => {
   const [selected, setSelected] = useState<string[]>(state.options);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const toggle = (id: string) => {
     setSelected((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
@@ -78,6 +82,10 @@ const Step09_Options = ({ state, onUpdate, onNext, onPrev }: Step09Props) => {
           style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 15, color: "rgba(232,221,208,0.65)", lineHeight: 1.8, maxWidth: 480, marginBottom: 44 }}>
           Chaque option est indépendante. Prenez tout, prenez rien — composez exactement ce dont vous avez besoin.
         </motion.p>
+
+        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
+          <InfoButton label="Pourquoi ces options ?" onClick={() => setDrawerOpen(true)} />
+        </motion.div>
 
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
           style={{ width: 60, height: 1, background: "#c9a96e", margin: "0 auto 48px" }} />
@@ -154,6 +162,8 @@ const Step09_Options = ({ state, onUpdate, onNext, onPrev }: Step09Props) => {
           </motion.button>
         </motion.div>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerOptions} />
     </div>
   );
 };

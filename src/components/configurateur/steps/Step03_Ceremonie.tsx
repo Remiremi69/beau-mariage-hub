@@ -1,5 +1,9 @@
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ConfigurateurState } from "../pricingTypes";
+import InfoButton from "../InfoButton";
+import PresentationDrawer from "../PresentationDrawer";
+import { drawerCeremonie } from "../drawerContents";
 
 interface Step03Props {
   state: ConfigurateurState;
@@ -18,6 +22,7 @@ const fadeUp = {
 
 const Step03_Ceremonie = ({ state, onUpdate, onNext, onPrev }: Step03Props) => {
   const withCeremonie = state.ceremonieLaique;
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const cardBase: React.CSSProperties = {
     minHeight: 260, borderRadius: 2, padding: "32px 28px",
@@ -59,6 +64,10 @@ const Step03_Ceremonie = ({ state, onUpdate, onNext, onPrev }: Step03Props) => {
           style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 15, color: "rgba(232,221,208,0.65)", lineHeight: 1.8, maxWidth: 460, marginBottom: 40 }}>
           La cérémonie laïque est le cœur battant du mariage. Un officiant vous accompagne pour écrire et célébrer un moment sur-mesure, à votre image.
         </motion.p>
+
+        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
+          <InfoButton label="Découvrir la cérémonie laïque" onClick={() => setDrawerOpen(true)} />
+        </motion.div>
 
         {/* Séparateur */}
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
@@ -143,6 +152,8 @@ const Step03_Ceremonie = ({ state, onUpdate, onNext, onPrev }: Step03Props) => {
           </motion.button>
         </motion.div>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerCeremonie} />
     </div>
   );
 };

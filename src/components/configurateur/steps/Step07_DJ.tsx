@@ -2,6 +2,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User } from "lucide-react";
 import { ConfigurateurState, DJ } from "../pricingTypes";
+import InfoButton from "../InfoButton";
+import PresentationDrawer from "../PresentationDrawer";
+import { drawerDJ } from "../drawerContents";
 
 interface Step07Props {
   state: ConfigurateurState;
@@ -39,6 +42,7 @@ const ambiancePeriodes = [
 const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
   const selected = state.dj;
   const [musicTags, setMusicTags] = useState<string[]>(state.ambianceMusique || []);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const select = (v: DJ) => onUpdate({ dj: v });
 
@@ -70,6 +74,10 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
           style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 15, color: "rgba(232,221,208,0.65)", lineHeight: 1.8, maxWidth: 480, marginBottom: 44 }}>
           Du jazz pendant le dîner à l'électro à 2h du matin. Notre DJ lit la salle et adapte chaque set à l'énergie unique de votre soirée.
         </motion.p>
+
+        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
+          <InfoButton label="Découvrir l'univers de Marcus" onClick={() => setDrawerOpen(true)} />
+        </motion.div>
 
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
           style={{ width: 60, height: 1, background: "#c9a96e", margin: "0 auto 48px" }} />
@@ -214,6 +222,8 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
           </motion.button>
         </motion.div>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerDJ} />
     </div>
   );
 };

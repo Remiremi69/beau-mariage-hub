@@ -1,5 +1,9 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ConfigurateurState, Deco } from "../pricingTypes";
+import InfoButton from "../InfoButton";
+import PresentationDrawer from "../PresentationDrawer";
+import { drawerDeco } from "../drawerContents";
 
 interface Step08Props {
   state: ConfigurateurState;
@@ -90,6 +94,7 @@ const decoCards: DecoCardData[] = [
 
 const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
   const selected = state.deco;
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <div className="flex items-center justify-center min-h-screen px-6" style={{ paddingTop: 60, paddingBottom: 100 }}>
@@ -108,6 +113,10 @@ const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
           style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 15, color: "rgba(232,221,208,0.65)", lineHeight: 1.8, maxWidth: 500, marginBottom: 44 }}>
           La décoration n'est pas un décor. C'est la première chose que vos invités ressentent en entrant. Choisissez votre langage visuel.
         </motion.p>
+
+        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
+          <InfoButton label="Voir les réalisations déco" onClick={() => setDrawerOpen(true)} />
+        </motion.div>
 
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
           style={{ width: 60, height: 1, background: "#c9a96e", margin: "0 auto 52px" }} />
@@ -205,6 +214,8 @@ const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
           </motion.button>
         </motion.div>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerDeco} />
     </div>
   );
 };

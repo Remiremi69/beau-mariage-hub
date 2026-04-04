@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ConfigurateurState } from "../pricingTypes";
+import InfoButton from "../InfoButton";
+import PresentationDrawer from "../PresentationDrawer";
+import { drawerRepas } from "../drawerContents";
 
 interface Step05Props {
   state: ConfigurateurState;
@@ -170,6 +173,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
   const [selectedEntree, setSelectedEntree] = useState<string | null>(state.repasEntree);
   const [selectedPlat, setSelectedPlat] = useState<string | null>(state.repasPlat);
   const [selectedDessert, setSelectedDessert] = useState<string | null>(state.repasDessert);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const chosenCount = [selectedEntree, selectedPlat, selectedDessert].filter(Boolean).length;
   const allChosen = chosenCount === 3;
@@ -204,6 +208,10 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
         style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 15, color: "rgba(232,221,208,0.65)", lineHeight: 1.8, maxWidth: 500, marginBottom: 16 }}>
         Notre chef compose un menu de saison, ancré dans le terroir beaujolais. Choisissez un plat par service — votre menu sera unique.
       </motion.p>
+
+      <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp} className="mb-2">
+        <InfoButton label="Rencontrer le chef Sébastien" onClick={() => setDrawerOpen(true)} />
+      </motion.div>
 
       <motion.p custom={3} initial="hidden" animate="visible" variants={fadeUp}
         className="text-center"
@@ -293,6 +301,8 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
           )}
         </div>
       </div>
+
+      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerRepas} />
     </div>
   );
 };
