@@ -290,7 +290,7 @@ const ConfigurateurShell = () => {
       {/* Background layers — crossfade */}
       {STEP_BACKGROUNDS.map((bg, i) => (
         <div
-          key={i}
+          key={`bg-${i}`}
           className="fixed inset-0 transition-opacity duration-[1200ms]"
           style={{
             background: bg,
@@ -300,6 +300,73 @@ const ConfigurateurShell = () => {
           }}
         />
       ))}
+
+      {/* Step 0 — Hero photo slideshow */}
+      {currentStep === 0 && (
+        <div className="fixed inset-0" style={{ zIndex: 0, pointerEvents: "none" }}>
+          {isMobile ? (
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${hero2})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                opacity: 0.35,
+              }}
+            />
+          ) : (
+            heroImages.map((img, i) => (
+              <div
+                key={`hero-${i}`}
+                className="absolute inset-0 transition-opacity duration-[1500ms]"
+                style={{
+                  backgroundImage: `url(${img})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  opacity: heroIndex === i ? 0.40 : 0,
+                }}
+              />
+            ))
+          )}
+          {/* Dark overlay for text legibility */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(180deg, rgba(13,11,8,0.50) 0%, rgba(13,11,8,0.70) 50%, rgba(13,11,8,0.85) 100%)",
+            }}
+          />
+        </div>
+      )}
+
+      {/* Step 1 — Venue exterior ambient */}
+      {currentStep === 1 && (
+        <div className="fixed inset-0" style={{ zIndex: 0, pointerEvents: "none" }}>
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url(${venueExterior})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: 0.12,
+            }}
+          />
+        </div>
+      )}
+
+      {/* Step 10 — Wedding hero ambient */}
+      {currentStep === 10 && (
+        <div className="fixed inset-0" style={{ zIndex: 0, pointerEvents: "none" }}>
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url(${heroWedding})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: 0.10,
+            }}
+          />
+        </div>
+      )}
 
       {/* Step content with cinematic transitions */}
       <div className={`relative z-10 ${transitionClass}`}>
