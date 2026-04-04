@@ -14,6 +14,81 @@ export type Database = {
   }
   public: {
     Tables: {
+      configurateur_leads: {
+        Row: {
+          ambiance_musique: string[] | null
+          ceremonie_laique: boolean | null
+          created_at: string
+          date_mariage: string | null
+          deco: string | null
+          dj: string | null
+          email: string
+          guests_estimate: number | null
+          id: string
+          message: string | null
+          nom: string | null
+          options: string[] | null
+          photographe: string | null
+          prenom: string | null
+          repas_dessert: string | null
+          repas_entree: string | null
+          repas_formule: string | null
+          repas_plat: string | null
+          status: string | null
+          telephone: string | null
+          total_estimate: number | null
+          vin_dhonneur: string | null
+        }
+        Insert: {
+          ambiance_musique?: string[] | null
+          ceremonie_laique?: boolean | null
+          created_at?: string
+          date_mariage?: string | null
+          deco?: string | null
+          dj?: string | null
+          email: string
+          guests_estimate?: number | null
+          id?: string
+          message?: string | null
+          nom?: string | null
+          options?: string[] | null
+          photographe?: string | null
+          prenom?: string | null
+          repas_dessert?: string | null
+          repas_entree?: string | null
+          repas_formule?: string | null
+          repas_plat?: string | null
+          status?: string | null
+          telephone?: string | null
+          total_estimate?: number | null
+          vin_dhonneur?: string | null
+        }
+        Update: {
+          ambiance_musique?: string[] | null
+          ceremonie_laique?: boolean | null
+          created_at?: string
+          date_mariage?: string | null
+          deco?: string | null
+          dj?: string | null
+          email?: string
+          guests_estimate?: number | null
+          id?: string
+          message?: string | null
+          nom?: string | null
+          options?: string[] | null
+          photographe?: string | null
+          prenom?: string | null
+          repas_dessert?: string | null
+          repas_entree?: string | null
+          repas_formule?: string | null
+          repas_plat?: string | null
+          status?: string | null
+          telephone?: string | null
+          total_estimate?: number | null
+          vin_dhonneur?: string | null
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           created_at: string
