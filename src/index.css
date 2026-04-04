@@ -118,3 +118,128 @@ All colors MUST be HSL.
 .animate-kenburns {
   animation: kenburns 8s ease-out forwards;
 }
+
+/* ═══ Configurateur — Cinematic Transitions ═══ */
+
+@keyframes stepExitForward {
+  from { opacity: 1; transform: translateX(0) scale(1); }
+  to { opacity: 0; transform: translateX(-40px) scale(0.98); }
+}
+@keyframes stepExitBackward {
+  from { opacity: 1; transform: translateX(0) scale(1); }
+  to { opacity: 0; transform: translateX(40px) scale(0.98); }
+}
+@keyframes stepEnterForward {
+  from { opacity: 0; transform: translateX(40px) scale(0.98); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes stepEnterBackward {
+  from { opacity: 0; transform: translateX(-40px) scale(0.98); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.step-exit-forward {
+  animation: stepExitForward 0.4s ease-in forwards;
+}
+.step-exit-backward {
+  animation: stepExitBackward 0.4s ease-in forwards;
+}
+.step-enter-forward {
+  animation: stepEnterForward 0.6s ease-out forwards;
+}
+.step-enter-backward {
+  animation: stepEnterBackward 0.6s ease-out forwards;
+}
+
+/* Transition overlay */
+.transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: #0d0b08;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.transition-overlay.active {
+  opacity: 0.6;
+}
+
+/* Mini-recap entrance */
+@keyframes miniRecapEnter {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.mini-recap-enter {
+  animation: miniRecapEnter 0.5s ease-out forwards;
+}
+
+/* Grain texture overlay */
+.configurateur-grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 1;
+}
+@media (max-width: 640px) {
+  .configurateur-grain::after {
+    display: none;
+  }
+}
+
+/* Hide scrollbar in configurateur */
+.configurateur-scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+.configurateur-scroll-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* User select none for decorative elements */
+.cfg-no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Custom cursor — desktop only */
+@media (min-width: 1024px) {
+  .configurateur-root {
+    cursor: none !important;
+  }
+  .configurateur-root button,
+  .configurateur-root input,
+  .configurateur-root textarea,
+  .configurateur-root [role="button"],
+  .configurateur-root a {
+    cursor: none !important;
+  }
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: #c9a96e;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+.custom-cursor.hovering {
+  transform: translate(-50%, -50%) scale(4);
+  opacity: 0.4;
+  background: rgba(201, 169, 110, 0.60);
+}
+
+/* iOS backdrop-filter fallback */
+@supports not (backdrop-filter: blur(12px)) {
+  .mini-recap-glass {
+    background: rgba(26, 22, 18, 0.95) !important;
+  }
+}
