@@ -9,6 +9,8 @@ import Step04_VinDhonneur from "./steps/Step04_VinDhonneur";
 import Step05_Repas from "./steps/Step05_Repas";
 import Step06_Photographe from "./steps/Step06_Photographe";
 import Step07_DJ from "./steps/Step07_DJ";
+import Step08_Deco from "./steps/Step08_Deco";
+import Step09_Options from "./steps/Step09_Options";
 
 const STEP_BACKGROUNDS = [
   // Step 0 — Domaine
