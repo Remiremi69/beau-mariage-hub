@@ -320,10 +320,25 @@ const SerieOctobre2027Hub = () => {
                 <p className="text-sm text-muted-foreground mb-1">{date.day}</p>
                 <p className="text-4xl font-bold text-primary mb-1">{date.date}</p>
                 <p className="text-sm text-foreground mb-3">{date.month} {date.year}</p>
-                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-secondary/20 text-secondary text-xs font-medium">
-                  <Clock className="h-3 w-3" />
-                  {date.status}
-                </span>
+                {reservedDates.has(date.dateId) ? (
+                  <span style={{
+                    fontSize: 12, fontWeight: 600,
+                    color: "rgba(200,80,80,0.80)", background: "rgba(200,80,80,0.08)",
+                    border: "1px solid rgba(200,80,80,0.25)", padding: "3px 10px",
+                    borderRadius: 2, letterSpacing: "0.10em", display: "inline-block",
+                  }}>
+                    Réservée
+                  </span>
+                ) : (
+                  <span style={{
+                    fontSize: 12, fontWeight: 400,
+                    color: "rgba(80,180,100,0.85)", background: "rgba(80,180,100,0.08)",
+                    border: "1px solid rgba(80,180,100,0.25)", padding: "3px 10px",
+                    borderRadius: 2, letterSpacing: "0.10em", display: "inline-block",
+                  }}>
+                    Disponible
+                  </span>
+                )}
               </div>
             ))}
           </div>
