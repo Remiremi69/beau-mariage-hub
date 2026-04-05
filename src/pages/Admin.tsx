@@ -43,6 +43,8 @@ const Admin = () => {
   const navigate = useNavigate();
   const [leads, setLeads] = useState<LeadRow[]>([]);
   const [loadingLeads, setLoadingLeads] = useState(true);
+  const [devisLead, setDevisLead] = useState<LeadRow | null>(null);
+  const [devisMode, setDevisMode] = useState<"devis" | "facture">("devis");
 
   useEffect(() => {
     if (!authLoading && (!user || !isAdmin)) {
