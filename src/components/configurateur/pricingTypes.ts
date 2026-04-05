@@ -88,4 +88,5 @@ export const OPTION_LABELS: Record<string, string> = {
   candy_bar: 'Sweet Table',
   caricaturiste: 'Caricaturiste',
   lanternes: 'Lâcher de lanternes',
+  nuit_nuptiale: 'Nuit nuptiale',
 }
