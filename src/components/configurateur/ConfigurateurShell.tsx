@@ -392,9 +392,9 @@ const ConfigurateurShell = () => {
         {renderStep()}
       </div>
 
-      {/* ─── Mini-récap flottant (desktop, hidden on step 10) ─── */}
+      {/* ─── Mini-récap flottant (desktop, hidden on step 11) ─── */}
       <AnimatePresence>
-        {currentStep >= 1 && currentStep < 10 && (
+        {currentStep >= 1 && currentStep < 11 && (
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
