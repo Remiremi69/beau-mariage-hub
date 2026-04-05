@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
+import DevisGenerator from "@/components/admin/DevisGenerator";
 
 type LeadRow = {
   id: string;
@@ -19,6 +20,12 @@ type LeadRow = {
   rdv_semaine: string | null;
   rdv_jour: string | null;
   rdv_creneau: string | null;
+  ceremonie_laique: boolean | null;
+  repas_formule: string | null;
+  deco: string | null;
+  photographe: string | null;
+  dj: string | null;
+  options: string[] | null;
 };
 
 const STATUS_COLORS: Record<string, string> = {
@@ -42,6 +49,8 @@ const Admin = () => {
   const navigate = useNavigate();
   const [leads, setLeads] = useState<LeadRow[]>([]);
   const [loadingLeads, setLoadingLeads] = useState(true);
+  const [devisLead, setDevisLead] = useState<LeadRow | null>(null);
+  const [devisMode, setDevisMode] = useState<"devis" | "facture">("devis");
 
   useEffect(() => {
     if (!authLoading && (!user || !isAdmin)) {
@@ -242,6 +251,12 @@ const Admin = () => {
                       Lien acompte
                     </button>
                   )}
+                  <button onClick={() => { setDevisLead(lead); setDevisMode("devis"); }} style={btnStyle("rgba(232,221,208,0.08)")}>
+                    📄 Devis
+                  </button>
+                  <button onClick={() => { setDevisLead(lead); setDevisMode("facture"); }} style={btnStyle("#c9a96e")}>
+                    🧾 Facture
+                  </button>
                   <a href={`tel:${lead.telephone}`} style={{ ...btnStyle("rgba(232,221,208,0.08)"), textDecoration: "none", display: "inline-block", textAlign: "center" }}>
                     Appeler
                   </a>
@@ -255,6 +270,15 @@ const Admin = () => {
           ))
         )}
       </div>
+
+      {devisLead && (
+        <DevisGenerator
+          lead={devisLead}
+          isOpen={!!devisLead}
+          onClose={() => setDevisLead(null)}
+          mode={devisMode}
+        />
+      )}
     </div>
   );
 };
