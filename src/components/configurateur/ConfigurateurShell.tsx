@@ -56,9 +56,6 @@ const availableDates: Record<string, string> = {
   "2027-10-08": "Ven 8 Oct",
 };
 
-const vinLabels: Record<string, string> = {
-  decouverte: "Découverte", prestige: "Prestige", "grand-cru": "Grand Cru",
-};
 const photoLabels: Record<string, string> = {
   none: "", reportage: "Reportage", premium: "Premium Duo",
 };
