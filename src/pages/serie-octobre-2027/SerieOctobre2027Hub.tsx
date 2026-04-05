@@ -109,12 +109,14 @@ const prestataires = [
   }
 ];
 
+const DATE_IDS = ["2027-10-04", "2027-10-05", "2027-10-06", "2027-10-07", "2027-10-08"];
+
 const dates = [
-  { day: "Lundi", date: "4", month: "Octobre", year: "2027", status: "Places disponibles" },
-  { day: "Mardi", date: "5", month: "Octobre", year: "2027", status: "Places disponibles" },
-  { day: "Mercredi", date: "6", month: "Octobre", year: "2027", status: "Places disponibles" },
-  { day: "Jeudi", date: "7", month: "Octobre", year: "2027", status: "Places disponibles" },
-  { day: "Vendredi", date: "8", month: "Octobre", year: "2027", status: "Places disponibles" }
+  { day: "Lundi", date: "4", month: "Octobre", year: "2027", dateId: "2027-10-04" },
+  { day: "Mardi", date: "5", month: "Octobre", year: "2027", dateId: "2027-10-05" },
+  { day: "Mercredi", date: "6", month: "Octobre", year: "2027", dateId: "2027-10-06" },
+  { day: "Jeudi", date: "7", month: "Octobre", year: "2027", dateId: "2027-10-07" },
+  { day: "Vendredi", date: "8", month: "Octobre", year: "2027", dateId: "2027-10-08" },
 ];
 
 const steps = [
