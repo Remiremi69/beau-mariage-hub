@@ -264,7 +264,6 @@ const Admin = () => {
           ))
         )}
       </div>
-      </div>
 
       {devisLead && (
         <DevisGenerator
