@@ -20,6 +20,12 @@ type LeadRow = {
   rdv_semaine: string | null;
   rdv_jour: string | null;
   rdv_creneau: string | null;
+  ceremonie_laique: boolean | null;
+  repas_formule: string | null;
+  deco: string | null;
+  photographe: string | null;
+  dj: string | null;
+  options: string[] | null;
 };
 
 const STATUS_COLORS: Record<string, string> = {
