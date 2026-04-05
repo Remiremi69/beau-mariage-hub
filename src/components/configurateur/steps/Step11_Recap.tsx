@@ -295,7 +295,7 @@ const RDVSelector = ({
 };
 
 /* ════════════════════════════════════════════════════════ */
-const Step10_Recap = ({ state, onPrev }: Step10Props) => {
+const Step11_Recap = ({ state, onPrev }: Step10Props) => {
   const breakdown = useMemo(() => calculateBreakdown(state), [state]);
 
   const [contact, setContact] = useState({ prenom: state.contact?.prenom || "", nom: "", email: state.contact?.email || "", telephone: state.contact?.telephone || "", message: "" });
