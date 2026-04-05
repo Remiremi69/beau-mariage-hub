@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
-import { SEO } from "@/components/SEO";
+import SEO from "@/components/SEO";
 
 const formatDate = (dateStr: string | null): string => {
   if (!dateStr) return "Date à confirmer";
