@@ -331,6 +331,7 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
         rdv_creneau: rdvCreneau || null,
         adresse_livraison: localisation === "distance" ? { rue: adresse.rue, cp: adresse.cp, ville: adresse.ville, pays: adresse.pays } : null,
         coffret_demande: localisation === "distance",
+        site_mariage: state.siteMariage,
       });
       if (error) console.error("Erreur envoi:", error);
       setIsSuccess(true);
