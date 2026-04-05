@@ -388,6 +388,7 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
             <div className="sm:col-span-2">
               <ChoiceLine category="Options" value={optionsList || "Aucune option"} price={breakdown.subtotalOptions > 0 ? `+ ${formatPrice(breakdown.subtotalOptions)}` : undefined} />
             </div>
+            <ChoiceLine category="Site de mariage" value={state.siteMariage ? "Site personnalisé inclus" : "Sans site"} price={state.siteMariage ? "Inclus" : "—"} />
           </div>
         </motion.div>
 
