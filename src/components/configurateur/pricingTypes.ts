@@ -64,6 +64,7 @@ export const defaultState: ConfigurateurState = {
   rdvCreneau: null,
   adresseLivraison: null,
   coffretDemande: false,
+  siteMariage: true,
 }
 
 export const OPTION_PRICES: Record<string, number> = {
