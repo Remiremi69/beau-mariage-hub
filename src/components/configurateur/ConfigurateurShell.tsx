@@ -38,6 +38,7 @@ const STEP_BACKGROUNDS = [
   "radial-gradient(circle at 30% 50%, rgba(100,20,120,0.40) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(20,60,140,0.25) 0%, transparent 45%), linear-gradient(135deg, #08040e 0%, #100616 100%)",
   "radial-gradient(ellipse at 50% 65%, rgba(150,130,100,0.18) 0%, transparent 55%), linear-gradient(150deg, #0e0c09 0%, #1c1812 60%, #0e0c09 100%)",
   "radial-gradient(circle at 35% 35%, rgba(201,169,110,0.15) 0%, transparent 45%), linear-gradient(160deg, #0a0908 0%, #161410 100%)",
+  "radial-gradient(ellipse at 40% 40%, rgba(40,80,160,0.25) 0%, transparent 55%), radial-gradient(ellipse at 70% 70%, rgba(201,169,110,0.12) 0%, transparent 45%), linear-gradient(150deg, #08080e 0%, #100c18 60%, #0a0a0e 100%)",
   "radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.25) 0%, transparent 60%), linear-gradient(160deg, #0d0b08 0%, #1a1612 50%, #231e17 100%)",
 ];
 
