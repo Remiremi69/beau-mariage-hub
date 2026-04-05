@@ -42,12 +42,12 @@ const STEP_BACKGROUNDS = [
   "radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.25) 0%, transparent 60%), linear-gradient(160deg, #0d0b08 0%, #1a1612 50%, #231e17 100%)",
 ];
 
-const TOTAL_STEPS = 11;
+const TOTAL_STEPS = 12;
 
 const STEP_LABELS = [
   "Accueil", "Date", "Invités", "Cérémonie",
   "Vin d'honneur", "Repas", "Photographe",
-  "DJ", "Déco", "Options", "Récap",
+  "DJ", "Déco", "Options", "Site mariage", "Récap",
 ];
 
 const availableDates: Record<string, string> = {
