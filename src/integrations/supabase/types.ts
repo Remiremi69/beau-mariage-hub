@@ -16,8 +16,10 @@ export type Database = {
     Tables: {
       configurateur_leads: {
         Row: {
+          adresse_livraison: Json | null
           ambiance_musique: string[] | null
           ceremonie_laique: boolean | null
+          coffret_demande: boolean | null
           created_at: string
           date_mariage: string | null
           deco: string | null
@@ -25,11 +27,15 @@ export type Database = {
           email: string
           guests_estimate: number | null
           id: string
+          localisation: string | null
           message: string | null
           nom: string | null
           options: string[] | null
           photographe: string | null
           prenom: string | null
+          rdv_creneau: string | null
+          rdv_jour: string | null
+          rdv_semaine: string | null
           repas_dessert: string | null
           repas_entree: string | null
           repas_formule: string | null
@@ -40,8 +46,10 @@ export type Database = {
           vin_dhonneur: string | null
         }
         Insert: {
+          adresse_livraison?: Json | null
           ambiance_musique?: string[] | null
           ceremonie_laique?: boolean | null
+          coffret_demande?: boolean | null
           created_at?: string
           date_mariage?: string | null
           deco?: string | null
@@ -49,11 +57,15 @@ export type Database = {
           email: string
           guests_estimate?: number | null
           id?: string
+          localisation?: string | null
           message?: string | null
           nom?: string | null
           options?: string[] | null
           photographe?: string | null
           prenom?: string | null
+          rdv_creneau?: string | null
+          rdv_jour?: string | null
+          rdv_semaine?: string | null
           repas_dessert?: string | null
           repas_entree?: string | null
           repas_formule?: string | null
@@ -64,8 +76,10 @@ export type Database = {
           vin_dhonneur?: string | null
         }
         Update: {
+          adresse_livraison?: Json | null
           ambiance_musique?: string[] | null
           ceremonie_laique?: boolean | null
+          coffret_demande?: boolean | null
           created_at?: string
           date_mariage?: string | null
           deco?: string | null
@@ -73,11 +87,15 @@ export type Database = {
           email?: string
           guests_estimate?: number | null
           id?: string
+          localisation?: string | null
           message?: string | null
           nom?: string | null
           options?: string[] | null
           photographe?: string | null
           prenom?: string | null
+          rdv_creneau?: string | null
+          rdv_jour?: string | null
+          rdv_semaine?: string | null
           repas_dessert?: string | null
           repas_entree?: string | null
           repas_formule?: string | null
