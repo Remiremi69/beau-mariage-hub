@@ -25,6 +25,17 @@ export type ConfigurateurState = {
   ambianceMusique: string[]
   contact: { prenom: string; email: string; telephone: string }
   totalEstimate: number
+  localisation: 'local' | 'distance' | null
+  rdvSemaine: string | null
+  rdvJour: string | null
+  rdvCreneau: string | null
+  adresseLivraison: {
+    rue: string
+    cp: string
+    ville: string
+    pays: string
+  } | null
+  coffretDemande: boolean
 }
 
 export const defaultState: ConfigurateurState = {
