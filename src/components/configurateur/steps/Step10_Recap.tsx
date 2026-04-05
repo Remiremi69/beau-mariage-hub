@@ -120,7 +120,11 @@ const menuNames: Record<string, string> = {
   "dessert-1": "Pièce montée choux revisitée", "dessert-2": "Entremets Beaujolais", "dessert-3": "Vacherin glacé aux fruits rouges",
 };
 
-const vinLabels: Record<string, string> = { decouverte: "Découverte", prestige: "Prestige", "grand-cru": "Grand Cru" };
+const vhNames: Record<string, string> = {
+  "vh-salé-1": "Classique Terroir", "vh-salé-2": "Mer & Jardin", "vh-salé-3": "Prestige Beaujolais",
+  "vh-anim-1": "Jambon Ibérique", "vh-anim-2": "Bar à Huîtres", "vh-anim-3": "Plancha Méditerranéenne",
+  "vh-sucré-1": "Classique Français", "vh-sucré-2": "Terroir Beaujolais", "vh-sucré-3": "Gourmandise Libre",
+};
 const repasLabels: Record<string, string> = { essentiel: "Essentiel", gastronomique: "Gastronomique", prestige: "Prestige" };
 const decoLabels: Record<string, string> = { champetre: "Champêtre Authentique", boheme: "Bohème Moderne", elegance: "Élégance Intemporelle" };
 const photoLabels: Record<string, string> = { none: "Non sélectionné", reportage: "Reportage", premium: "Premium Duo" };
