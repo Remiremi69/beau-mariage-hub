@@ -12,7 +12,8 @@ import Step06_Photographe from "./steps/Step06_Photographe";
 import Step07_DJ from "./steps/Step07_DJ";
 import Step08_Deco from "./steps/Step08_Deco";
 import Step09_Options from "./steps/Step09_Options";
-import Step10_Recap from "./steps/Step10_Recap";
+import Step10_SiteMariage from "./steps/Step10_SiteMariage";
+import Step11_Recap from "./steps/Step11_Recap";
 
 import hero2 from "@/assets/domaine-hero-2.png";
 import hero3 from "@/assets/domaine-hero-3.png";
