@@ -147,6 +147,22 @@ const SerieOctobre2027Hub = () => {
   const statutRef = useInView(0.1);
   const localisationRef = useInView(0.1);
   const stepsRef = useInView(0.1);
+  const [reservedDates, setReservedDates] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    const fetchStatuses = async () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const client = supabase as any;
+      const { data } = await client
+        .from("configurateur_leads")
+        .select("date_mariage, status")
+        .in("status", ["signed", "paid"]);
+      if (data) {
+        setReservedDates(new Set(data.map((r: { date_mariage: string }) => r.date_mariage)));
+      }
+    };
+    fetchStatuses();
+  }, []);
 
   return (
     <div className="min-h-screen pt-20">
