@@ -240,7 +240,8 @@ const ConfigurateurShell = () => {
       case 7: return <Step07_DJ {...props} />;
       case 8: return <Step08_Deco {...props} />;
       case 9: return <Step09_Options {...props} />;
-      case 10: return <Step10_Recap {...props} />;
+      case 10: return <Step10_SiteMariage {...props} />;
+      case 11: return <Step11_Recap {...props} />;
       default: return null;
     }
   };
