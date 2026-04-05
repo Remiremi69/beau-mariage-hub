@@ -149,7 +149,7 @@ const Step10_Recap = ({ state, onPrev }: Step10Props) => {
       const { error } = await client.from("configurateur_leads").insert({
         prenom: contact.prenom, nom: contact.nom, email: contact.email, telephone: contact.telephone,
         message: contact.message, date_mariage: state.date, guests_estimate: state.guests,
-        ceremonie_laique: state.ceremonieLaique, vin_dhonneur: state.vinDhonneur, repas_formule: state.repas,
+        ceremonie_laique: state.ceremonieLaique, vin_dhonneur: [state.vhBouchee, state.vhAnimation, state.vhMignardise].filter(Boolean).join(' · '), repas_formule: state.repas,
         repas_entree: state.repasEntree, repas_plat: state.repasPlat, repas_dessert: state.repasDessert,
         photographe: state.photographe, dj: state.dj, deco: state.deco,
         options: state.options, ambiance_musique: state.ambianceMusique ?? [],
