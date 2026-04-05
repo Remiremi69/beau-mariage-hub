@@ -1,22 +1,20 @@
 
 
-# Mise à jour SEO — 3 correctifs
+## Création du compte admin
 
-Trois modifications ciblées pour améliorer le référencement du site.
+**Objectif** : Créer le compte `remi@lebeaumariage.fr` avec le mot de passe fourni et lui attribuer le rôle admin.
 
-## Fichiers modifiés
+### Étapes
 
-### 1. `src/pages/Home.tsx`
-Remplacer les props du composant `<SEO>` existant par le nouveau title, description et canonical explicite vers `https://lebeaumariage.fr/`.
+1. **Créer l'utilisateur** via l'API Auth Supabase (service role) avec email `remi@lebeaumariage.fr` et le mot de passe fourni, en confirmant l'email automatiquement.
 
-### 2. `src/components/SEO.tsx`
-Corriger la ligne du `canonicalUrl` pour éviter l'erreur SSR avec `window` — utiliser `canonical ??` avec un check `typeof window !== 'undefined'`.
+2. **Insérer le rôle admin** dans la table `user_roles` avec l'UUID du nouvel utilisateur et le rôle `admin`.
 
-### 3. `index.html`
-- Mettre à jour la description dans le bloc JSON-LD Organization existant.
-- Ajouter un second bloc `<script type="application/ld+json">` avec le schema `EventSeries` pour la Série Octobre 2027.
+3. **Vérifier** que la connexion fonctionne sur `/admin/login`.
 
-## Détails techniques
+### Détails techniques
 
-Aucune nouvelle dépendance. Aucun changement de structure. Modifications purement déclaratives (meta tags et structured data).
+- Appel `POST /auth/v1/admin/users` avec `email_confirm: true` pour bypasser la vérification email
+- Insertion dans `user_roles(user_id, role)` avec le rôle `'admin'`
+- Aucune modification de code nécessaire
 
