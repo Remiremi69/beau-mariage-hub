@@ -372,8 +372,8 @@ const ConfigurateurShell = () => {
         </div>
       )}
 
-      {/* Step 10 — Wedding hero ambient */}
-      {currentStep === 10 && (
+      {/* Step 11 — Wedding hero ambient */}
+      {currentStep === 11 && (
         <div className="fixed inset-0" style={{ zIndex: 0, pointerEvents: "none" }}>
           <div
             className="absolute inset-0"
