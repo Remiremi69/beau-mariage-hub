@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { AuthProvider } from "./hooks/useAuth";
 import { Navigation } from "./components/Navigation";
 import { Footer } from "./components/Footer";
 import Home from "./pages/Home";
@@ -15,6 +16,8 @@ import Contact from "./pages/Contact";
 import Garantie from "./pages/Garantie";
 import Certification from "./pages/Certification";
 import NotFound from "./pages/NotFound";
+import Admin from "./pages/Admin";
+import AdminLogin from "./pages/AdminLogin";
 // Série Octobre 2027 pages
 import SerieOctobre2027Hub from "./pages/serie-octobre-2027/SerieOctobre2027Hub";
 import DomaineDetail from "./pages/serie-octobre-2027/DomaineDetail";
@@ -30,10 +33,11 @@ const queryClient = new QueryClient();
 const AppLayout = () => {
   const location = useLocation();
   const isConfigurateur = location.pathname === "/configurateur";
+  const isAdmin = location.pathname.startsWith("/admin");
 
   return (
     <>
-      {!isConfigurateur && <Navigation />}
+      {!isConfigurateur && !isAdmin && <Navigation />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/concept" element={<Concept />} />
@@ -52,9 +56,11 @@ const AppLayout = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/garantie" element={<Garantie />} />
         <Route path="/certification" element={<Certification />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {!isConfigurateur && <Footer />}
+      {!isConfigurateur && !isAdmin && <Footer />}
     </>
   );
 };
@@ -63,11 +69,13 @@ const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AppLayout />
-        </BrowserRouter>
+        <AuthProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <AppLayout />
+          </BrowserRouter>
+        </AuthProvider>
       </TooltipProvider>
     </QueryClientProvider>
   </HelmetProvider>
