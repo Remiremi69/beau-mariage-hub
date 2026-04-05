@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import SEO from "@/components/SEO";
 import {
   Breadcrumb,
