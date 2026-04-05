@@ -43,6 +43,9 @@ export type Database = {
           status: string | null
           telephone: string | null
           total_estimate: number | null
+          vh_animation: string | null
+          vh_bouchee: string | null
+          vh_mignardise: string | null
           vin_dhonneur: string | null
         }
         Insert: {
@@ -73,6 +76,9 @@ export type Database = {
           status?: string | null
           telephone?: string | null
           total_estimate?: number | null
+          vh_animation?: string | null
+          vh_bouchee?: string | null
+          vh_mignardise?: string | null
           vin_dhonneur?: string | null
         }
         Update: {
@@ -103,6 +109,9 @@ export type Database = {
           status?: string | null
           telephone?: string | null
           total_estimate?: number | null
+          vh_animation?: string | null
+          vh_bouchee?: string | null
+          vh_mignardise?: string | null
           vin_dhonneur?: string | null
         }
         Relationships: []
