@@ -34,8 +34,25 @@ const dates = [
 const Step01_Date = ({ state, onUpdate, onNext }: Step01Props) => {
   const selected = state.date;
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [reservedDates, setReservedDates] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    const fetchReserved = async () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const client = supabase as any;
+      const { data } = await client
+        .from("configurateur_leads")
+        .select("date_mariage, status")
+        .in("status", ["signed", "paid"]);
+      if (data) {
+        setReservedDates(new Set(data.map((r: { date_mariage: string }) => r.date_mariage)));
+      }
+    };
+    fetchReserved();
+  }, []);
 
   const handleSelect = (id: string) => {
+    if (reservedDates.has(id)) return;
     onUpdate({ date: id });
   };
 
