@@ -95,6 +95,7 @@ const Step01_Date = ({ state, onUpdate, onNext }: Step01Props) => {
         <div className="flex flex-col items-center gap-[10px] w-full" style={{ maxWidth: 480 }}>
           {dates.map((d, i) => {
             const isSelected = selected === d.id;
+            const isReserved = reservedDates.has(d.id);
             return (
               <motion.button
                 key={d.id}
@@ -103,6 +104,7 @@ const Step01_Date = ({ state, onUpdate, onNext }: Step01Props) => {
                 animate="visible"
                 variants={fadeUp}
                 onClick={() => handleSelect(d.id)}
+                disabled={isReserved}
                 className="w-full flex items-center justify-between transition-all duration-[250ms]"
                 style={{
                   height: 72,
@@ -110,14 +112,15 @@ const Step01_Date = ({ state, onUpdate, onNext }: Step01Props) => {
                   borderRadius: 2,
                   border: isSelected ? "1px solid #c9a96e" : "1px solid rgba(201,169,110,0.20)",
                   background: isSelected ? "rgba(201,169,110,0.08)" : "rgba(26,22,18,0.40)",
-                  cursor: "pointer",
+                  cursor: isReserved ? "not-allowed" : "pointer",
+                  opacity: isReserved ? 0.50 : 1,
                 }}
-                whileHover={!isSelected ? { borderColor: "rgba(201,169,110,0.45)", background: "rgba(201,169,110,0.04)" } : {}}
+                whileHover={!isSelected && !isReserved ? { borderColor: "rgba(201,169,110,0.45)", background: "rgba(201,169,110,0.04)" } : {}}
               >
                 <div className="flex flex-col items-start">
                   <span style={{
                     fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 15,
-                    color: isSelected ? "#c9a96e" : "#faf8f4",
+                    color: isReserved ? "rgba(232,221,208,0.40)" : isSelected ? "#c9a96e" : "#faf8f4",
                     transition: "color 0.25s ease",
                   }}>
                     {d.jour}
@@ -130,13 +133,23 @@ const Step01_Date = ({ state, onUpdate, onNext }: Step01Props) => {
                   </span>
                 </div>
 
-                {isSelected ? (
+                {isReserved ? (
+                  <span style={{
+                    fontSize: 12, fontWeight: 600, fontFamily: "'Jost', sans-serif",
+                    color: "rgba(200,80,80,0.80)", background: "rgba(200,80,80,0.08)",
+                    border: "1px solid rgba(200,80,80,0.25)", padding: "4px 12px",
+                    borderRadius: 2, letterSpacing: "0.10em",
+                  }}>
+                    Réservée
+                  </span>
+                ) : isSelected ? (
                   <Check size={16} color="#c9a96e" />
                 ) : (
                   <span style={{
-                    fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 11,
-                    letterSpacing: "0.15em", color: "rgba(201,169,110,0.70)",
-                    border: "1px solid rgba(201,169,110,0.35)", padding: "4px 12px",
+                    fontSize: 12, fontWeight: 400, fontFamily: "'Jost', sans-serif",
+                    color: "rgba(80,180,100,0.85)", background: "rgba(80,180,100,0.08)",
+                    border: "1px solid rgba(80,180,100,0.25)", padding: "4px 12px",
+                    borderRadius: 2, letterSpacing: "0.10em",
                   }}>
                     Disponible
                   </span>
