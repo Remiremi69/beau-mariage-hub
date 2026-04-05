@@ -36,6 +36,7 @@ export type ConfigurateurState = {
     pays: string
   } | null
   coffretDemande: boolean
+  siteMariage: boolean
 }
 
 export const defaultState: ConfigurateurState = {
