@@ -57,6 +57,12 @@ export const defaultState: ConfigurateurState = {
   ambianceMusique: [],
   contact: { prenom: '', email: '', telephone: '' },
   totalEstimate: 0,
+  localisation: null,
+  rdvSemaine: null,
+  rdvJour: null,
+  rdvCreneau: null,
+  adresseLivraison: null,
+  coffretDemande: false,
 }
 
 export const OPTION_PRICES: Record<string, number> = {
