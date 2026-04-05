@@ -76,6 +76,7 @@ export const OPTION_PRICES: Record<string, number> = {
   candy_bar: 350,
   caricaturiste: 480,
   lanternes: 220,
+  nuit_nuptiale: 350,
 }
 
 export const OPTION_LABELS: Record<string, string> = {
