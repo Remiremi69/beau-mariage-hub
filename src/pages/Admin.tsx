@@ -245,6 +245,12 @@ const Admin = () => {
                       Lien acompte
                     </button>
                   )}
+                  <button onClick={() => { setDevisLead(lead); setDevisMode("devis"); }} style={btnStyle("rgba(232,221,208,0.08)")}>
+                    📄 Devis
+                  </button>
+                  <button onClick={() => { setDevisLead(lead); setDevisMode("facture"); }} style={btnStyle("#c9a96e")}>
+                    🧾 Facture
+                  </button>
                   <a href={`tel:${lead.telephone}`} style={{ ...btnStyle("rgba(232,221,208,0.08)"), textDecoration: "none", display: "inline-block", textAlign: "center" }}>
                     Appeler
                   </a>
