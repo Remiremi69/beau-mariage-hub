@@ -264,6 +264,16 @@ const Admin = () => {
           ))
         )}
       </div>
+      </div>
+
+      {devisLead && (
+        <DevisGenerator
+          lead={devisLead}
+          isOpen={!!devisLead}
+          onClose={() => setDevisLead(null)}
+          mode={devisMode}
+        />
+      )}
     </div>
   );
 };
