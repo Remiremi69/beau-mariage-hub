@@ -1,5 +1,3 @@
-export type VinDhonneur = 'decouverte' | 'prestige' | 'grand-cru'
-
 export type Repas = 'essentiel' | 'gastronomique' | 'prestige'
 
 export type Photographe = 'none' | 'reportage' | 'premium'
@@ -13,7 +11,9 @@ export type ConfigurateurState = {
   date: string | null
   guests: number
   ceremonieLaique: boolean
-  vinDhonneur: VinDhonneur
+  vhBouchee: string | null
+  vhAnimation: string | null
+  vhMignardise: string | null
   repas: Repas
   repasEntree: string | null
   repasPlat: string | null
@@ -32,7 +32,9 @@ export const defaultState: ConfigurateurState = {
   date: null,
   guests: 80,
   ceremonieLaique: false,
-  vinDhonneur: 'decouverte',
+  vhBouchee: null,
+  vhAnimation: null,
+  vhMignardise: null,
   repas: 'essentiel',
   repasEntree: null,
   repasPlat: null,

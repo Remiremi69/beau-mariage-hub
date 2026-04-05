@@ -195,7 +195,7 @@ const Step10_Recap = ({ state, onPrev }: Step10Props) => {
             <ChoiceLine category="Date" value={formatDate(state.date)} />
             <ChoiceLine category="Invités" value={`${state.guests} personnes (estimation)`} />
             <ChoiceLine category="Cérémonie" value={state.ceremonieLaique ? "Laïque" : "Mariage civil uniquement"} price={state.ceremonieLaique ? "+ 800 €" : "Inclus"} />
-            <ChoiceLine category="Vin d'honneur" value={vinLabels[state.vinDhonneur] || state.vinDhonneur} price={state.vinDhonneur === "decouverte" ? "Inclus" : `≈ ${formatPrice((state.vinDhonneur === "prestige" ? 18 : 38) * state.guests)}`} />
+            <ChoiceLine category="Vin d'honneur" value={[state.vhBouchee, state.vhAnimation, state.vhMignardise].filter(Boolean).map(id => vhNames[id!] || id).join(" · ") || "À composer"} price="Inclus" />
             <ChoiceLine category="Repas" value={repasLabels[state.repas] || state.repas} price={`≈ ${formatPrice((state.repas === "essentiel" ? 65 : state.repas === "gastronomique" ? 90 : 130) * state.guests)}`} subtext={menuSubtext || undefined} />
             <ChoiceLine category="Décoration" value={decoLabels[state.deco] || state.deco} price={state.deco === "champetre" ? "Inclus" : state.deco === "boheme" ? "+ 600 €" : "+ 1 200 €"} />
             <ChoiceLine category="Photographe" value={photoLabels[state.photographe] || "Non sélectionné"} price={state.photographe === "none" ? undefined : state.photographe === "reportage" ? "+ 1 800 €" : "+ 3 200 €"} />
