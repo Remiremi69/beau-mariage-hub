@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import SEO from "@/components/SEO";
 import {
   Breadcrumb,
@@ -108,12 +109,14 @@ const prestataires = [
   }
 ];
 
+const DATE_IDS = ["2027-10-04", "2027-10-05", "2027-10-06", "2027-10-07", "2027-10-08"];
+
 const dates = [
-  { day: "Lundi", date: "4", month: "Octobre", year: "2027", status: "Places disponibles" },
-  { day: "Mardi", date: "5", month: "Octobre", year: "2027", status: "Places disponibles" },
-  { day: "Mercredi", date: "6", month: "Octobre", year: "2027", status: "Places disponibles" },
-  { day: "Jeudi", date: "7", month: "Octobre", year: "2027", status: "Places disponibles" },
-  { day: "Vendredi", date: "8", month: "Octobre", year: "2027", status: "Places disponibles" }
+  { day: "Lundi", date: "4", month: "Octobre", year: "2027", dateId: "2027-10-04" },
+  { day: "Mardi", date: "5", month: "Octobre", year: "2027", dateId: "2027-10-05" },
+  { day: "Mercredi", date: "6", month: "Octobre", year: "2027", dateId: "2027-10-06" },
+  { day: "Jeudi", date: "7", month: "Octobre", year: "2027", dateId: "2027-10-07" },
+  { day: "Vendredi", date: "8", month: "Octobre", year: "2027", dateId: "2027-10-08" },
 ];
 
 const steps = [
@@ -144,6 +147,22 @@ const SerieOctobre2027Hub = () => {
   const statutRef = useInView(0.1);
   const localisationRef = useInView(0.1);
   const stepsRef = useInView(0.1);
+  const [reservedDates, setReservedDates] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    const fetchStatuses = async () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const client = supabase as any;
+      const { data } = await client
+        .from("configurateur_leads")
+        .select("date_mariage, status")
+        .in("status", ["signed", "paid"]);
+      if (data) {
+        setReservedDates(new Set(data.map((r: { date_mariage: string }) => r.date_mariage)));
+      }
+    };
+    fetchStatuses();
+  }, []);
 
   return (
     <div className="min-h-screen pt-20">
@@ -301,10 +320,25 @@ const SerieOctobre2027Hub = () => {
                 <p className="text-sm text-muted-foreground mb-1">{date.day}</p>
                 <p className="text-4xl font-bold text-primary mb-1">{date.date}</p>
                 <p className="text-sm text-foreground mb-3">{date.month} {date.year}</p>
-                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-secondary/20 text-secondary text-xs font-medium">
-                  <Clock className="h-3 w-3" />
-                  {date.status}
-                </span>
+                {reservedDates.has(date.dateId) ? (
+                  <span style={{
+                    fontSize: 12, fontWeight: 600,
+                    color: "rgba(200,80,80,0.80)", background: "rgba(200,80,80,0.08)",
+                    border: "1px solid rgba(200,80,80,0.25)", padding: "3px 10px",
+                    borderRadius: 2, letterSpacing: "0.10em", display: "inline-block",
+                  }}>
+                    Réservée
+                  </span>
+                ) : (
+                  <span style={{
+                    fontSize: 12, fontWeight: 400,
+                    color: "rgba(80,180,100,0.85)", background: "rgba(80,180,100,0.08)",
+                    border: "1px solid rgba(80,180,100,0.25)", padding: "3px 10px",
+                    borderRadius: 2, letterSpacing: "0.10em", display: "inline-block",
+                  }}>
+                    Disponible
+                  </span>
+                )}
               </div>
             ))}
           </div>

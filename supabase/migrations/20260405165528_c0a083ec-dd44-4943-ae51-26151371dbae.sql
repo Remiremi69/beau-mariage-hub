@@ -1,0 +1,1 @@
+ALTER TABLE public.configurateur_leads ADD COLUMN IF NOT EXISTS site_mariage boolean DEFAULT true;

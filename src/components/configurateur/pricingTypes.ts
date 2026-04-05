@@ -36,6 +36,7 @@ export type ConfigurateurState = {
     pays: string
   } | null
   coffretDemande: boolean
+  siteMariage: boolean
 }
 
 export const defaultState: ConfigurateurState = {
@@ -63,6 +64,7 @@ export const defaultState: ConfigurateurState = {
   rdvCreneau: null,
   adresseLivraison: null,
   coffretDemande: false,
+  siteMariage: true,
 }
 
 export const OPTION_PRICES: Record<string, number> = {
@@ -74,6 +76,7 @@ export const OPTION_PRICES: Record<string, number> = {
   candy_bar: 350,
   caricaturiste: 480,
   lanternes: 220,
+  nuit_nuptiale: 350,
 }
 
 export const OPTION_LABELS: Record<string, string> = {
@@ -85,4 +88,5 @@ export const OPTION_LABELS: Record<string, string> = {
   candy_bar: 'Sweet Table',
   caricaturiste: 'Caricaturiste',
   lanternes: 'Lâcher de lanternes',
+  nuit_nuptiale: 'Nuit nuptiale',
 }

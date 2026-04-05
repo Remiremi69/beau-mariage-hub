@@ -12,7 +12,8 @@ import Step06_Photographe from "./steps/Step06_Photographe";
 import Step07_DJ from "./steps/Step07_DJ";
 import Step08_Deco from "./steps/Step08_Deco";
 import Step09_Options from "./steps/Step09_Options";
-import Step10_Recap from "./steps/Step10_Recap";
+import Step10_SiteMariage from "./steps/Step10_SiteMariage";
+import Step11_Recap from "./steps/Step11_Recap";
 
 import hero2 from "@/assets/domaine-hero-2.png";
 import hero3 from "@/assets/domaine-hero-3.png";
@@ -37,15 +38,16 @@ const STEP_BACKGROUNDS = [
   "radial-gradient(circle at 30% 50%, rgba(100,20,120,0.40) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(20,60,140,0.25) 0%, transparent 45%), linear-gradient(135deg, #08040e 0%, #100616 100%)",
   "radial-gradient(ellipse at 50% 65%, rgba(150,130,100,0.18) 0%, transparent 55%), linear-gradient(150deg, #0e0c09 0%, #1c1812 60%, #0e0c09 100%)",
   "radial-gradient(circle at 35% 35%, rgba(201,169,110,0.15) 0%, transparent 45%), linear-gradient(160deg, #0a0908 0%, #161410 100%)",
+  "radial-gradient(ellipse at 40% 40%, rgba(40,80,160,0.25) 0%, transparent 55%), radial-gradient(ellipse at 70% 70%, rgba(201,169,110,0.12) 0%, transparent 45%), linear-gradient(150deg, #08080e 0%, #100c18 60%, #0a0a0e 100%)",
   "radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.25) 0%, transparent 60%), linear-gradient(160deg, #0d0b08 0%, #1a1612 50%, #231e17 100%)",
 ];
 
-const TOTAL_STEPS = 11;
+const TOTAL_STEPS = 12;
 
 const STEP_LABELS = [
   "Accueil", "Date", "Invités", "Cérémonie",
   "Vin d'honneur", "Repas", "Photographe",
-  "DJ", "Déco", "Options", "Récap",
+  "DJ", "Déco", "Options", "Site mariage", "Récap",
 ];
 
 const availableDates: Record<string, string> = {
@@ -238,7 +240,8 @@ const ConfigurateurShell = () => {
       case 7: return <Step07_DJ {...props} />;
       case 8: return <Step08_Deco {...props} />;
       case 9: return <Step09_Options {...props} />;
-      case 10: return <Step10_Recap {...props} />;
+      case 10: return <Step10_SiteMariage {...props} />;
+      case 11: return <Step11_Recap {...props} />;
       default: return null;
     }
   };
@@ -369,8 +372,8 @@ const ConfigurateurShell = () => {
         </div>
       )}
 
-      {/* Step 10 — Wedding hero ambient */}
-      {currentStep === 10 && (
+      {/* Step 11 — Wedding hero ambient */}
+      {currentStep === 11 && (
         <div className="fixed inset-0" style={{ zIndex: 0, pointerEvents: "none" }}>
           <div
             className="absolute inset-0"
@@ -389,9 +392,9 @@ const ConfigurateurShell = () => {
         {renderStep()}
       </div>
 
-      {/* ─── Mini-récap flottant (desktop, hidden on step 10) ─── */}
+      {/* ─── Mini-récap flottant (desktop, hidden on step 11) ─── */}
       <AnimatePresence>
-        {currentStep >= 1 && currentStep < 10 && (
+        {currentStep >= 1 && currentStep < 11 && (
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}

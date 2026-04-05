@@ -48,6 +48,8 @@ const options: OptionDef[] = [
     icon: mkIcon(<><line x1="4" y1="20" x2="10" y2="4" /><line x1="10" y1="4" x2="11" y2="3" /><line x1="11" y1="3" x2="12" y2="4" /></>) },
   { id: "lanternes", name: "LÂCHER DE LANTERNES", description: "50 lanternes biodégradables, moment collectif au coucher du soleil", prix: "+ 220 €",
     icon: mkIcon(<><rect x="8" y="6" width="8" height="12" rx="1" /><path d="M10 18L12 22L14 18" /><line x1="12" y1="6" x2="12" y2="3" /></>) },
+  { id: "nuit_nuptiale", name: "NUIT NUPTIALE", description: "Chambre d'hôte de charme à 5 min du domaine, décorée aux couleurs de votre mariage, petit-déjeuner inclus le lendemain matin", prix: "+ 350 €",
+    icon: mkIcon(<><path d="M3 22V12a2 2 0 012-2h14a2 2 0 012 2v10" /><path d="M2 22h20" /><path d="M7 10V6a5 5 0 0110 0v4" /><rect x="9" y="14" width="6" height="5" rx="1" /></>) },
 ];
 
 const Step09_Options = ({ state, onUpdate, onNext, onPrev }: Step09Props) => {

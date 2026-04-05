@@ -295,7 +295,7 @@ const RDVSelector = ({
 };
 
 /* ════════════════════════════════════════════════════════ */
-const Step10_Recap = ({ state, onPrev }: Step10Props) => {
+const Step11_Recap = ({ state, onPrev }: Step10Props) => {
   const breakdown = useMemo(() => calculateBreakdown(state), [state]);
 
   const [contact, setContact] = useState({ prenom: state.contact?.prenom || "", nom: "", email: state.contact?.email || "", telephone: state.contact?.telephone || "", message: "" });
@@ -331,6 +331,7 @@ const Step10_Recap = ({ state, onPrev }: Step10Props) => {
         rdv_creneau: rdvCreneau || null,
         adresse_livraison: localisation === "distance" ? { rue: adresse.rue, cp: adresse.cp, ville: adresse.ville, pays: adresse.pays } : null,
         coffret_demande: localisation === "distance",
+        site_mariage: state.siteMariage,
       });
       if (error) console.error("Erreur envoi:", error);
       setIsSuccess(true);
@@ -387,6 +388,7 @@ const Step10_Recap = ({ state, onPrev }: Step10Props) => {
             <div className="sm:col-span-2">
               <ChoiceLine category="Options" value={optionsList || "Aucune option"} price={breakdown.subtotalOptions > 0 ? `+ ${formatPrice(breakdown.subtotalOptions)}` : undefined} />
             </div>
+            <ChoiceLine category="Site de mariage" value={state.siteMariage ? "Site personnalisé inclus" : "Sans site"} price={state.siteMariage ? "Inclus" : "—"} />
           </div>
         </motion.div>
 
@@ -693,4 +695,4 @@ const Step10_Recap = ({ state, onPrev }: Step10Props) => {
   );
 };
 
-export default Step10_Recap;
+export default Step11_Recap;
