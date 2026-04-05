@@ -120,7 +120,11 @@ const menuNames: Record<string, string> = {
   "dessert-1": "Pièce montée choux revisitée", "dessert-2": "Entremets Beaujolais", "dessert-3": "Vacherin glacé aux fruits rouges",
 };
 
-const vinLabels: Record<string, string> = { decouverte: "Découverte", prestige: "Prestige", "grand-cru": "Grand Cru" };
+const vhNames: Record<string, string> = {
+  "vh-salé-1": "Classique Terroir", "vh-salé-2": "Mer & Jardin", "vh-salé-3": "Prestige Beaujolais",
+  "vh-anim-1": "Jambon Ibérique", "vh-anim-2": "Bar à Huîtres", "vh-anim-3": "Plancha Méditerranéenne",
+  "vh-sucré-1": "Classique Français", "vh-sucré-2": "Terroir Beaujolais", "vh-sucré-3": "Gourmandise Libre",
+};
 const repasLabels: Record<string, string> = { essentiel: "Essentiel", gastronomique: "Gastronomique", prestige: "Prestige" };
 const decoLabels: Record<string, string> = { champetre: "Champêtre Authentique", boheme: "Bohème Moderne", elegance: "Élégance Intemporelle" };
 const photoLabels: Record<string, string> = { none: "Non sélectionné", reportage: "Reportage", premium: "Premium Duo" };
@@ -145,7 +149,7 @@ const Step10_Recap = ({ state, onPrev }: Step10Props) => {
       const { error } = await client.from("configurateur_leads").insert({
         prenom: contact.prenom, nom: contact.nom, email: contact.email, telephone: contact.telephone,
         message: contact.message, date_mariage: state.date, guests_estimate: state.guests,
-        ceremonie_laique: state.ceremonieLaique, vin_dhonneur: state.vinDhonneur, repas_formule: state.repas,
+        ceremonie_laique: state.ceremonieLaique, vin_dhonneur: [state.vhBouchee, state.vhAnimation, state.vhMignardise].filter(Boolean).join(' · '), repas_formule: state.repas,
         repas_entree: state.repasEntree, repas_plat: state.repasPlat, repas_dessert: state.repasDessert,
         photographe: state.photographe, dj: state.dj, deco: state.deco,
         options: state.options, ambiance_musique: state.ambianceMusique ?? [],
@@ -191,7 +195,7 @@ const Step10_Recap = ({ state, onPrev }: Step10Props) => {
             <ChoiceLine category="Date" value={formatDate(state.date)} />
             <ChoiceLine category="Invités" value={`${state.guests} personnes (estimation)`} />
             <ChoiceLine category="Cérémonie" value={state.ceremonieLaique ? "Laïque" : "Mariage civil uniquement"} price={state.ceremonieLaique ? "+ 800 €" : "Inclus"} />
-            <ChoiceLine category="Vin d'honneur" value={vinLabels[state.vinDhonneur] || state.vinDhonneur} price={state.vinDhonneur === "decouverte" ? "Inclus" : `≈ ${formatPrice((state.vinDhonneur === "prestige" ? 18 : 38) * state.guests)}`} />
+            <ChoiceLine category="Vin d'honneur" value={[state.vhBouchee, state.vhAnimation, state.vhMignardise].filter(Boolean).map(id => vhNames[id!] || id).join(" · ") || "À composer"} price="Inclus" />
             <ChoiceLine category="Repas" value={repasLabels[state.repas] || state.repas} price={`≈ ${formatPrice((state.repas === "essentiel" ? 65 : state.repas === "gastronomique" ? 90 : 130) * state.guests)}`} subtext={menuSubtext || undefined} />
             <ChoiceLine category="Décoration" value={decoLabels[state.deco] || state.deco} price={state.deco === "champetre" ? "Inclus" : state.deco === "boheme" ? "+ 600 €" : "+ 1 200 €"} />
             <ChoiceLine category="Photographe" value={photoLabels[state.photographe] || "Non sélectionné"} price={state.photographe === "none" ? undefined : state.photographe === "reportage" ? "+ 1 800 €" : "+ 3 200 €"} />

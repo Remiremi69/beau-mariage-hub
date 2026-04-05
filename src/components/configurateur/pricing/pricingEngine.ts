@@ -30,12 +30,6 @@ const REPAS_PRIX: Record<string, number> = {
   prestige: 130,
 }
 
-const VIN_PRIX: Record<string, number> = {
-  decouverte: 0,
-  prestige: 18,
-  'grand-cru': 38,
-}
-
 const DECO_PRIX: Record<string, number> = {
   champetre: 0,
   boheme: 600,
@@ -56,11 +50,6 @@ const DJ_PRIX: Record<string, number> = {
   premium: 2100,
 }
 
-const vinLabelMap: Record<string, string> = {
-  decouverte: 'Découverte',
-  prestige: 'Prestige',
-  'grand-cru': 'Grand Cru',
-}
 const repasLabelMap: Record<string, string> = {
   essentiel: 'Essentiel',
   gastronomique: 'Gastronomique',
@@ -102,23 +91,13 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
     })
   }
 
-  const vinPrixUnit = VIN_PRIX[state.vinDhonneur] ?? 0
-  if (vinPrixUnit > 0) {
-    lines.push({
-      label: 'Vin d\'honneur — ' + (vinLabelMap[state.vinDhonneur] ?? ''),
-      sublabel: `${vinPrixUnit} € × ${g} invités (estimation)`,
-      amount: vinPrixUnit * g,
-      isIncluded: false,
-      isEstimate: true,
-    })
-  } else {
-    lines.push({
-      label: 'Vin d\'honneur — Découverte',
-      sublabel: 'Vins beaujolais & jus artisanaux',
-      amount: 0,
-      isIncluded: true,
-    })
-  }
+  // Vin d'honneur — entièrement inclus dans le forfait
+  lines.push({
+    label: 'Vin d\'honneur',
+    sublabel: 'Champagne, vins beaujolais, bouchées & mignardises',
+    amount: 0,
+    isIncluded: true,
+  })
 
   const repasPrixUnit = REPAS_PRIX[state.repas] ?? 65
   lines.push({
@@ -175,12 +154,11 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
     }
   }
 
-  const vinAmount = vinPrixUnit * g
   const repasAmount = repasPrixUnit * g
   const subtotalFixe = lines
     .filter((l) => !l.isEstimate && !l.isIncluded)
     .reduce((sum, l) => sum + l.amount, 0)
-  const subtotalRepas = repasAmount + vinAmount
+  const subtotalRepas = repasAmount
   const subtotalOptions = safeOptions.reduce(
     (sum, id) => sum + (OPTION_PRICES[id] || 0),
     0

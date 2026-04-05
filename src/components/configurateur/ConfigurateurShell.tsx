@@ -56,9 +56,6 @@ const availableDates: Record<string, string> = {
   "2027-10-08": "Ven 8 Oct",
 };
 
-const vinLabels: Record<string, string> = {
-  decouverte: "Découverte", prestige: "Prestige", "grand-cru": "Grand Cru",
-};
 const photoLabels: Record<string, string> = {
   none: "", reportage: "Reportage", premium: "Premium Duo",
 };
@@ -258,8 +255,9 @@ const ConfigurateurShell = () => {
     if (state.currentStep >= 3 && state.ceremonieLaique) {
       lines.push({ label: "Cérémonie", value: "Laïque" });
     }
-    if (state.currentStep >= 4 && state.vinDhonneur !== "decouverte") {
-      lines.push({ label: "Vin", value: vinLabels[state.vinDhonneur] || "" });
+    if (state.currentStep >= 4) {
+      const vhCount = [state.vhBouchee, state.vhAnimation, state.vhMignardise].filter(Boolean).length;
+      if (vhCount > 0) lines.push({ label: "VH", value: `${vhCount}/3` });
     }
     if (state.currentStep === 5) {
       const count = [state.repasEntree, state.repasPlat, state.repasDessert].filter(Boolean).length;
