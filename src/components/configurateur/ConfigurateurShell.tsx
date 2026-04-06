@@ -185,28 +185,60 @@ const ConfigurateurShell = () => {
       haptic("medium");
 
       const dir = newStep > displayStep ? "forward" : "backward";
-      setTransitionClass(`step-exit-${dir}`);
 
-      // Update actual state step immediately for background crossfade
+      // Check for scene (forward only)
+      const scene = dir === "forward" ? SCENE_CONFIGS[newStep] ?? null : null;
+
+      setTransitionClass(`step-exit-${dir}`);
       setState((prev) => ({ ...prev, currentStep: newStep }));
 
       setTimeout(() => {
         setOverlayActive(true);
-        setTimeout(() => {
-          setDisplayStep(newStep);
-          setTransitionClass(`step-enter-${dir}`);
-          setOverlayActive(false);
-          window.scrollTo({ top: 0 });
 
+        if (scene) {
+          // Show immersive scene
+          pendingStep.current = newStep;
+          setActiveScene(scene);
+          setSceneVisible(true);
+          setOverlayActive(false);
+          // isTransitioning stays true until scene completes
+        } else {
+          // Direct transition (no scene)
           setTimeout(() => {
-            setTransitionClass("");
-            isTransitioning.current = false;
-          }, 600);
-        }, 120);
+            setDisplayStep(newStep);
+            setTransitionClass(`step-enter-${dir}`);
+            setOverlayActive(false);
+            window.scrollTo({ top: 0 });
+
+            setTimeout(() => {
+              setTransitionClass("");
+              isTransitioning.current = false;
+            }, 600);
+          }, 120);
+        }
       }, 350);
     },
     [displayStep]
   );
+
+  const handleSceneComplete = useCallback(() => {
+    setSceneVisible(false);
+
+    const step = pendingStep.current;
+    if (step === null) return;
+
+    setTimeout(() => {
+      setActiveScene(null);
+      setDisplayStep(step);
+      setTransitionClass("step-enter-forward");
+      window.scrollTo({ top: 0 });
+      setTimeout(() => {
+        setTransitionClass("");
+        isTransitioning.current = false;
+        pendingStep.current = null;
+      }, 600);
+    }, 400);
+  }, []);
 
   const nextStep = useCallback(
     () => goToStepAnimated(displayStep + 1),
