@@ -236,6 +236,59 @@ All colors MUST be HSL.
   background: rgba(201, 169, 110, 0.60);
 }
 
+/* ═══ Transition Scene — Ken Burns ═══ */
+
+@keyframes kenBurns1 {
+  from {
+    transform: scale(1.08) translate(-1%, -1%);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  to {
+    transform: scale(1.00) translate(1%, 1%);
+    opacity: 0;
+  }
+}
+
+@keyframes kenBurns2 {
+  from {
+    transform: scale(1.00) translate(1%, 0%);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  to {
+    transform: scale(1.08) translate(-1%, -1%);
+    opacity: 0;
+  }
+}
+
+@keyframes kenBurns3 {
+  from {
+    transform: scale(1.06) translate(0%, -1%);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  to {
+    transform: scale(1.00) translate(1%, 1%);
+    opacity: 0;
+  }
+}
+
+@keyframes sceneMobileFade {
+  from { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes sceneFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* iOS backdrop-filter fallback */
 @supports not (backdrop-filter: blur(12px)) {
   .mini-recap-glass {

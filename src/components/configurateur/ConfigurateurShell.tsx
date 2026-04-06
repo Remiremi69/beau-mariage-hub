@@ -1,5 +1,7 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import TransitionScene from "./TransitionScene";
+import { SCENE_CONFIGS } from "./sceneConfigs";
 import { ConfigurateurState, defaultState, OPTION_LABELS } from "./pricingTypes";
 import { calculateBreakdown } from "./pricing/pricingEngine";
 import Step00_Domaine from "./steps/Step00_Domaine";
@@ -140,11 +142,19 @@ const ConfigurateurShell = () => {
   const [heroIndex, setHeroIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
+  // Scene transition state
+  const [activeScene, setActiveScene] = useState<import("./TransitionScene").SceneConfig | null>(null);
+  const [sceneVisible, setSceneVisible] = useState(false);
+  const pendingStep = useRef<number | null>(null);
+
   const breakdown = useMemo(() => calculateBreakdown(state), [state]);
 
   // Preload all images
   useEffect(() => {
-    allImages.forEach((src) => {
+    // Preload hero + scene images
+    const sceneImages = Object.values(SCENE_CONFIGS).flatMap((s) => s.images);
+    const allToPreload = [...new Set([...allImages, ...sceneImages])];
+    allToPreload.forEach((src) => {
       const img = new Image();
       img.src = src;
     });
@@ -175,28 +185,60 @@ const ConfigurateurShell = () => {
       haptic("medium");
 
       const dir = newStep > displayStep ? "forward" : "backward";
-      setTransitionClass(`step-exit-${dir}`);
 
-      // Update actual state step immediately for background crossfade
+      // Check for scene (forward only)
+      const scene = dir === "forward" ? SCENE_CONFIGS[newStep] ?? null : null;
+
+      setTransitionClass(`step-exit-${dir}`);
       setState((prev) => ({ ...prev, currentStep: newStep }));
 
       setTimeout(() => {
         setOverlayActive(true);
-        setTimeout(() => {
-          setDisplayStep(newStep);
-          setTransitionClass(`step-enter-${dir}`);
-          setOverlayActive(false);
-          window.scrollTo({ top: 0 });
 
+        if (scene) {
+          // Show immersive scene
+          pendingStep.current = newStep;
+          setActiveScene(scene);
+          setSceneVisible(true);
+          setOverlayActive(false);
+          // isTransitioning stays true until scene completes
+        } else {
+          // Direct transition (no scene)
           setTimeout(() => {
-            setTransitionClass("");
-            isTransitioning.current = false;
-          }, 600);
-        }, 120);
+            setDisplayStep(newStep);
+            setTransitionClass(`step-enter-${dir}`);
+            setOverlayActive(false);
+            window.scrollTo({ top: 0 });
+
+            setTimeout(() => {
+              setTransitionClass("");
+              isTransitioning.current = false;
+            }, 600);
+          }, 120);
+        }
       }, 350);
     },
     [displayStep]
   );
+
+  const handleSceneComplete = useCallback(() => {
+    setSceneVisible(false);
+
+    const step = pendingStep.current;
+    if (step === null) return;
+
+    setTimeout(() => {
+      setActiveScene(null);
+      setDisplayStep(step);
+      setTransitionClass("step-enter-forward");
+      window.scrollTo({ top: 0 });
+      setTimeout(() => {
+        setTransitionClass("");
+        isTransitioning.current = false;
+        pendingStep.current = null;
+      }, 600);
+    }, 400);
+  }, []);
 
   const nextStep = useCallback(
     () => goToStepAnimated(displayStep + 1),
@@ -386,6 +428,13 @@ const ConfigurateurShell = () => {
           />
         </div>
       )}
+
+      {/* Transition scenes */}
+      <TransitionScene
+        isVisible={sceneVisible}
+        scene={activeScene}
+        onComplete={handleSceneComplete}
+      />
 
       {/* Step content with cinematic transitions */}
       <div className={`relative z-10 ${transitionClass}`}>
