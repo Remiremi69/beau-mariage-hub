@@ -429,6 +429,13 @@ const ConfigurateurShell = () => {
         </div>
       )}
 
+      {/* Transition scenes */}
+      <TransitionScene
+        isVisible={sceneVisible}
+        scene={activeScene}
+        onComplete={handleSceneComplete}
+      />
+
       {/* Step content with cinematic transitions */}
       <div className={`relative z-10 ${transitionClass}`}>
         {renderStep()}
