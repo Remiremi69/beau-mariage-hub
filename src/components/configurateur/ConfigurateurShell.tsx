@@ -1,5 +1,7 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import TransitionScene from "./TransitionScene";
+import { SCENE_CONFIGS } from "./sceneConfigs";
 import { ConfigurateurState, defaultState, OPTION_LABELS } from "./pricingTypes";
 import { calculateBreakdown } from "./pricing/pricingEngine";
 import Step00_Domaine from "./steps/Step00_Domaine";
