@@ -142,6 +142,11 @@ const ConfigurateurShell = () => {
   const [heroIndex, setHeroIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
+  // Scene transition state
+  const [activeScene, setActiveScene] = useState<import("./TransitionScene").SceneConfig | null>(null);
+  const [sceneVisible, setSceneVisible] = useState(false);
+  const pendingStep = useRef<number | null>(null);
+
   const breakdown = useMemo(() => calculateBreakdown(state), [state]);
 
   // Preload all images
