@@ -151,7 +151,10 @@ const ConfigurateurShell = () => {
 
   // Preload all images
   useEffect(() => {
-    allImages.forEach((src) => {
+    // Preload hero + scene images
+    const sceneImages = Object.values(SCENE_CONFIGS).flatMap((s) => s.images);
+    const allToPreload = [...new Set([...allImages, ...sceneImages])];
+    allToPreload.forEach((src) => {
       const img = new Image();
       img.src = src;
     });
