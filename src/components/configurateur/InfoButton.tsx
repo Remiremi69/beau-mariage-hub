@@ -15,33 +15,43 @@ const InfoButton = ({ label, onClick }: InfoButtonProps) => {
   return (
     <button
       onClick={onClick}
-      className="inline-flex items-center transition-colors duration-200"
+      data-cursor-hover
       style={{
-        gap: 8,
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 10,
         fontFamily: "'Jost', sans-serif",
         fontWeight: 300,
-        fontSize: 12,
-        letterSpacing: "0.15em",
-        color: "rgba(201,169,110,0.55)",
-        cursor: "pointer",
-        border: "none",
-        background: "transparent",
-        padding: "8px 0",
-        textDecoration: "none",
+        fontSize: 11,
+        letterSpacing: '0.20em',
+        textTransform: 'uppercase',
+        color: 'rgba(201,169,110,0.85)',
+        cursor: 'pointer',
+        border: '1px solid rgba(201,169,110,0.35)',
+        background: 'rgba(201,169,110,0.06)',
+        padding: '10px 20px',
+        borderRadius: 1,
+        transition: 'all 0.25s ease',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.color = "rgba(201,169,110,0.90)";
-        e.currentTarget.style.textDecoration = "underline";
-        e.currentTarget.style.textUnderlineOffset = "3px";
+        e.currentTarget.style.background = 'rgba(201,169,110,0.12)';
+        e.currentTarget.style.borderColor = 'rgba(201,169,110,0.65)';
+        e.currentTarget.style.color = 'rgba(201,169,110,1)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.color = "rgba(201,169,110,0.55)";
-        e.currentTarget.style.textDecoration = "none";
+        e.currentTarget.style.background = 'rgba(201,169,110,0.06)';
+        e.currentTarget.style.borderColor = 'rgba(201,169,110,0.35)';
+        e.currentTarget.style.color = 'rgba(201,169,110,0.85)';
       }}
     >
       <InfoIcon />
       <span>{label}</span>
-      <span style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: 14 }}>→</span>
+      <span style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        fontStyle: 'italic',
+        fontSize: 14,
+        opacity: 0.70,
+      }}>→</span>
     </button>
   );
 };
