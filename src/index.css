@@ -204,19 +204,7 @@ All colors MUST be HSL.
   -webkit-user-select: none;
 }
 
-/* Custom cursor — desktop only */
-@media (min-width: 1024px) {
-  .configurateur-root {
-    cursor: none !important;
-  }
-  .configurateur-root button,
-  .configurateur-root input,
-  .configurateur-root textarea,
-  .configurateur-root [role="button"],
-  .configurateur-root a {
-    cursor: none !important;
-  }
-}
+/* Custom cursor — desktop only (dot accent, native cursor preserved) */
 
 .custom-cursor {
   position: fixed;
