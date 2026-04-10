@@ -17,36 +17,35 @@ const fadeUp = {
   visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.7, ease: "easeOut" } }),
 };
 
-const SvgChampetre = () => (
+const SvgSeve = () => (
   <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
-    <line x1="40" y1="75" x2="40" y2="25" stroke="rgba(201,169,110,0.40)" strokeWidth="1" />
-    <line x1="60" y1="75" x2="60" y2="15" stroke="rgba(201,169,110,0.40)" strokeWidth="1" />
-    <line x1="80" y1="75" x2="80" y2="30" stroke="rgba(201,169,110,0.40)" strokeWidth="1" />
-    <circle cx="40" cy="20" r="8" stroke="rgba(201,169,110,0.35)" fill="none" strokeWidth="1" />
-    <circle cx="80" cy="26" r="6" stroke="rgba(201,169,110,0.35)" fill="none" strokeWidth="1" />
-    <path d="M55 35 Q60 25 65 35" fill="rgba(80,120,60,0.30)" />
-    <path d="M35 40 Q40 30 45 40" fill="rgba(80,120,60,0.30)" />
+    <line x1="35" y1="75" x2="35" y2="20" stroke="rgba(201,169,110,0.40)" strokeWidth="1" />
+    <line x1="60" y1="75" x2="60" y2="10" stroke="rgba(201,169,110,0.40)" strokeWidth="1" />
+    <line x1="85" y1="75" x2="85" y2="25" stroke="rgba(201,169,110,0.40)" strokeWidth="1" />
+    <path d="M60 10 Q50 20 55 30" stroke="rgba(201,169,110,0.30)" fill="none" strokeWidth="0.8" />
+    <path d="M60 10 Q70 20 65 30" stroke="rgba(201,169,110,0.30)" fill="none" strokeWidth="0.8" />
+    <path d="M60 10 Q55 25 60 35" stroke="rgba(201,169,110,0.25)" fill="none" strokeWidth="0.8" />
+    <path d="M35 20 Q28 28 32 36" stroke="rgba(201,169,110,0.25)" fill="none" strokeWidth="0.8" />
+    <path d="M35 20 Q42 28 38 36" stroke="rgba(201,169,110,0.25)" fill="none" strokeWidth="0.8" />
+    <path d="M85 25 Q78 33 82 40" stroke="rgba(201,169,110,0.25)" fill="none" strokeWidth="0.8" />
+    <path d="M85 25 Q92 33 88 40" stroke="rgba(201,169,110,0.25)" fill="none" strokeWidth="0.8" />
+    <ellipse cx="48" cy="55" rx="5" ry="8" transform="rotate(-20 48 55)" fill="rgba(100,130,80,0.25)" />
+    <ellipse cx="72" cy="58" rx="4" ry="7" transform="rotate(15 72 58)" fill="rgba(100,130,80,0.20)" />
   </svg>
 );
 
-const SvgBoheme = () => (
+const SvgPierre = () => (
   <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
-    <rect x="35" y="15" width="20" height="20" transform="rotate(45 45 25)" stroke="rgba(201,169,110,0.35)" fill="none" strokeWidth="1" />
-    <rect x="60" y="30" width="16" height="16" transform="rotate(45 68 38)" stroke="rgba(201,169,110,0.35)" fill="none" strokeWidth="1" />
-    <circle cx="50" cy="55" r="12" stroke="rgba(201,169,110,0.25)" fill="none" strokeWidth="1" />
-    <circle cx="30" cy="20" r="2" fill="rgba(201,169,110,0.40)" />
-    <circle cx="90" cy="35" r="2" fill="rgba(201,169,110,0.40)" />
-    <circle cx="75" cy="60" r="2" fill="rgba(201,169,110,0.40)" />
-    <circle cx="45" cy="70" r="2" fill="rgba(201,169,110,0.40)" />
-  </svg>
-);
-
-const SvgElegance = () => (
-  <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
-    <rect x="20" y="10" width="80" height="53" stroke="rgba(201,169,110,0.30)" fill="none" strokeWidth="1" />
-    <line x1="20" y1="10" x2="100" y2="63" stroke="rgba(201,169,110,0.15)" strokeWidth="0.5" />
-    <line x1="100" y1="10" x2="20" y2="63" stroke="rgba(201,169,110,0.15)" strokeWidth="0.5" />
-    <line x1="20" y1="70" x2="100" y2="70" stroke="rgba(201,169,110,0.20)" strokeWidth="1" />
+    <line x1="15" y1="65" x2="105" y2="65" stroke="rgba(201,169,110,0.20)" strokeWidth="1" />
+    <rect x="38" y="35" width="8" height="30" stroke="rgba(201,169,110,0.30)" fill="none" strokeWidth="0.8" />
+    <rect x="56" y="25" width="8" height="40" stroke="rgba(201,169,110,0.35)" fill="none" strokeWidth="0.8" />
+    <rect x="74" y="40" width="8" height="25" stroke="rgba(201,169,110,0.30)" fill="none" strokeWidth="0.8" />
+    <path d="M42 35 Q42 28 42 32 Q44 27 42 35" fill="rgba(201,169,110,0.40)" />
+    <path d="M60 25 Q60 17 60 21 Q62 16 60 25" fill="rgba(201,169,110,0.50)" />
+    <path d="M78 40 Q78 33 78 37 Q80 32 78 40" fill="rgba(201,169,110,0.40)" />
+    <circle cx="42" cy="70" r="5" stroke="rgba(232,221,208,0.20)" fill="none" strokeWidth="0.8" />
+    <circle cx="60" cy="70" r="5" stroke="rgba(232,221,208,0.20)" fill="none" strokeWidth="0.8" />
+    <circle cx="78" cy="70" r="5" stroke="rgba(232,221,208,0.20)" fill="none" strokeWidth="0.8" />
   </svg>
 );
 
@@ -67,34 +66,75 @@ interface DecoCardData {
 
 const decoCards: DecoCardData[] = [
   {
-    id: "champetre", svg: <SvgChampetre />, bgColor: "rgba(80,70,50,0.35)", slot: "deco-champetre",
-    name: "CHAMPÊTRE AUTHENTIQUE", accroche: ["La nature", "invitée à table"],
-    description: "Fleurs sauvages, bois flotté, herbes folles. Une décoration qui sent bon la campagne et la lumière d'été.",
-    palette: [{ color: "#8B7355", label: "Lin" }, { color: "#5C7A4E", label: "Vert sauge" }, { color: "#C4A882", label: "Paille" }],
-    includes: ["Centres de table fleuris (fleurs locales)", "Bougies piliers & photophores", "Chemin de table en lin brut", "Arche florale pour cérémonie (si option)"],
+    id: "seve", svg: <SvgSeve />, bgColor: "rgba(80,65,45,0.40)", slot: "deco-seve",
+    name: "SÈVE", accroche: ["Végétal, terracotta,", "lin brut"],
+    description: "Compositions de pampa blanc naturel, eucalyptus et gypsophile sur pieds dorés fins. Vaisselle en grès beige, lin brut, bougies pilier ivoire.",
+    palette: [{ color: "#C4A882", label: "Lin brut" }, { color: "#B87B5A", label: "Terracotta" }, { color: "#8B9E78", label: "Végétal" }],
+    includes: [
+      "Nappage lin brut beige — table impériale + rondes",
+      "Vaisselle grès beige/ivoire (assiette plate + creuse)",
+      "Bougies pilier ivoire H.20cm — 2/table ronde",
+      "Chemin de table jute — table impériale",
+      "Photophores verre naturel — 2/table ronde",
+      "Compositions pampa/eucalyptus sur pieds dorés",
+    ],
     prix: "Inclus dans le forfait", prixGold: false,
   },
   {
-    id: "boheme", svg: <SvgBoheme />, bgColor: "rgba(60,55,70,0.35)", slot: "deco-boheme",
-    name: "BOHÈME MODERNE", accroche: ["Brut, doux", "et lumineux"], badge: "TENDANCE 2027",
-    description: "Macramé, pampa, velours et cuivre. Un mélange de textures organiques et de détails métalliques fins.",
-    palette: [{ color: "#B8860B", label: "Or cuivré" }, { color: "#9E8E7E", label: "Grège" }, { color: "#D4C5B0", label: "Nude" }],
-    includes: ["Suspension macramé & pampa", "Mobilier en bois brut (bancs, tables têtes)", "Vaisselle grès artisanal (surclassement)", "Éclairage guirlandes & lanternes cuivrées"],
-    prix: "+ 600 €", prixGold: true,
-  },
-  {
-    id: "elegance", svg: <SvgElegance />, bgColor: "rgba(30,28,24,0.60)", slot: "deco-elegance",
-    name: "ÉLÉGANCE INTEMPORELLE", accroche: ["Blanc, or", "et silence"],
-    description: "Nappes immaculées, orfèvrerie, roses blanches et bougies hautes. La grande tradition de la réception.",
-    palette: [{ color: "#F5F0E8", label: "Blanc ivoire" }, { color: "#C9A96E", label: "Or" }, { color: "#1A1612", label: "Nuit" }],
-    includes: ["Nappes en lin blanc (coupe sur-mesure)", "Chandeliers et roses blanches", "Vaisselle porcelaine fine", "Drapés plafond & éclairage architectural"],
-    prix: "+ 1 200 €", prixGold: true,
+    id: "pierre", svg: <SvgPierre />, bgColor: "rgba(28,28,28,0.60)", slot: "deco-pierre",
+    name: "PIERRE & LUMIÈRE", accroche: ["Blanc pur,", "minimalisme absolu"], badge: "ÉPURÉ",
+    description: "Nappes damassé blanc épais, porcelaine blanche premium, cristallin. Aucun chemin de table — juste la lumière des bougies pilier blanc.",
+    palette: [{ color: "#F5F0E8", label: "Blanc ivoire" }, { color: "#D4CFC8", label: "Damassé" }, { color: "#C9A96E", label: "Or" }],
+    includes: [
+      "Nappage blanc damassé épais — 10 tables rondes",
+      "Vaisselle porcelaine blanche premium",
+      "Bougies pilier blanc H.25cm — 2/table",
+      "Verres cristallin — vin + eau",
+      "Compositions pampa/eucalyptus sur pieds dorés",
+      "Arche cérémonie métal doré + floraux séchés",
+    ],
+    prix: "Inclus dans le forfait", prixGold: false,
   },
 ];
+
+interface DecoOption {
+  id: string;
+  name: string;
+  description: string;
+  prix: string;
+}
+
+const decoOptions: DecoOption[] = [
+  { id: "couverts-dores", name: "COUVERTS DORÉS MAT", description: "Remplace l'inox brossé — finition mat luxueuse", prix: "+ 110 €" },
+  { id: "verres-fumes", name: "VERRES FUMÉS", description: "Remplace cristallin/transparent — ambiance intimiste", prix: "+ 180 €" },
+  { id: "bougies-tapers-noires", name: "BOUGIES TAPERS NOIRES ×60", description: "Effet dramatique — remplacement des bougies pilier", prix: "+ 225 €" },
+  { id: "chemin-velours", name: "CHEMIN DE TABLE VELOURS", description: "Sur la table impériale — matière noble et texturée", prix: "+ 100 €" },
+  { id: "photophores-fumes", name: "PHOTOPHORES FUMÉS ×50", description: "Remplace verre naturel — ambiance tamisée profonde", prix: "+ 60 €" },
+];
+
+const DECO_OPTION_IDS = decoOptions.map(o => o.id);
 
 const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
   const selected = state.deco;
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [decoOptionsSelected, setDecoOptionsSelected] = useState<string[]>(
+    state.options.filter(id => DECO_OPTION_IDS.includes(id))
+  );
+
+  const toggleDecoOption = (id: string) => {
+    setDecoOptionsSelected(prev =>
+      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+    );
+  };
+
+  const handleContinue = () => {
+    const otherOptions = state.options.filter(id => !DECO_OPTION_IDS.includes(id));
+    onUpdate({
+      deco: selected,
+      options: [...otherOptions, ...decoOptionsSelected],
+    });
+    onNext();
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen px-6" style={{ paddingTop: 60, paddingBottom: 100 }}>
@@ -121,9 +161,9 @@ const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
           style={{ width: 60, height: 1, background: "#c9a96e", margin: "0 auto 52px" }} />
 
-        {/* Cards */}
+        {/* Cards — 2 columns */}
         <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp}
-          className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full">
+          className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
           {decoCards.map((card) => {
             const isSelected = selected === card.id;
             return (
@@ -179,7 +219,7 @@ const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
                   </div>
 
                   {/* Prix */}
-                  <p style={{ borderTop: "1px solid rgba(201,169,110,0.10)", paddingTop: 16, marginTop: "auto", fontFamily: "'Jost', sans-serif", fontWeight: card.prixGold ? 500 : 400, fontSize: 14, color: card.prixGold ? "#c9a96e" : "rgba(232,221,208,0.60)" }}>
+                  <p style={{ borderTop: "1px solid rgba(201,169,110,0.10)", paddingTop: 16, marginTop: "auto", fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 14, color: "rgba(232,221,208,0.60)" }}>
                     {card.prix}
                   </p>
 
@@ -190,16 +230,58 @@ const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
           })}
         </motion.div>
 
+        {/* Options upgrades */}
+        <motion.div custom={5} initial="hidden" animate="visible" variants={fadeUp} className="w-full">
+          <p style={{
+            fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.30em",
+            textTransform: "uppercase", color: "rgba(201,169,110,0.55)", marginTop: 44, marginBottom: 20,
+          }}>
+            OPTIONS — APPLICABLES AUX DEUX FORMULES
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
+            {decoOptions.map((opt) => {
+              const isActive = decoOptionsSelected.includes(opt.id);
+              return (
+                <div
+                  key={opt.id}
+                  onClick={() => toggleDecoOption(opt.id)}
+                  className="relative flex items-center gap-3 transition-all duration-200"
+                  style={{
+                    padding: "16px 18px", cursor: "pointer", borderRadius: 2,
+                    border: isActive ? "1px solid rgba(201,169,110,0.60)" : "1px solid rgba(201,169,110,0.15)",
+                    background: isActive ? "rgba(201,169,110,0.07)" : "rgba(26,22,18,0.40)",
+                  }}
+                >
+                  {isActive && (
+                    <div className="absolute top-2 right-2" style={{ width: 8, height: 8, background: "#c9a96e" }} />
+                  )}
+                  <div style={{ flex: 1 }}>
+                    <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(232,221,208,0.80)" }}>
+                      {opt.name}
+                    </p>
+                    <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 4 }}>
+                      {opt.description}
+                    </p>
+                  </div>
+                  <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 500, fontSize: 13, color: "#c9a96e", flexShrink: 0 }}>
+                    {opt.prix}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </motion.div>
+
         {/* Note */}
-        <motion.div custom={5} initial="hidden" animate="visible" variants={fadeUp}
+        <motion.div custom={6} initial="hidden" animate="visible" variants={fadeUp}
           className="w-full" style={{ marginTop: 40, padding: "18px 22px", background: "rgba(201,169,110,0.04)", borderLeft: "2px solid rgba(201,169,110,0.40)", borderRadius: "0 2px 2px 0" }}>
           <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.60)", lineHeight: 1.75 }}>
-            La décoration est installée la veille du mariage par notre équipe. Vous pouvez apporter vos propres éléments personnels — photos, objets de famille, signalétique — qui s'intègreront à l'univers choisi.
+            La décoration est installée la veille du mariage. Les deux formules sont incluses dans le forfait. Les options upgrades s'appliquent à la formule choisie.
           </p>
         </motion.div>
 
         {/* Nav */}
-        <motion.div custom={6} initial="hidden" animate="visible" variants={fadeUp}
+        <motion.div custom={7} initial="hidden" animate="visible" variants={fadeUp}
           className="flex items-center justify-between w-full mt-12" style={{ maxWidth: 480 }}>
           <button onClick={onPrev} className="transition-colors duration-200"
             style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, letterSpacing: "0.2em", color: "rgba(232,221,208,0.40)", background: "transparent", border: "none", cursor: "pointer" }}
@@ -207,7 +289,7 @@ const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
             onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(232,221,208,0.40)"; }}>
             ← RETOUR
           </button>
-          <motion.button onClick={() => { onNext(); }} className="transition-colors duration-300"
+          <motion.button onClick={handleContinue} className="transition-colors duration-300"
             style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.25em", textTransform: "uppercase", border: "1px solid #c9a96e", background: "transparent", color: "#c9a96e", padding: "18px 56px", borderRadius: 0, cursor: "pointer" }}
             whileHover={{ backgroundColor: "#c9a96e", color: "#1a1612" }}>
             Continuer

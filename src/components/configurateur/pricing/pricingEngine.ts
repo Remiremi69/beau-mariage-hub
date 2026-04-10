@@ -31,9 +31,8 @@ const REPAS_PRIX: Record<string, number> = {
 }
 
 const DECO_PRIX: Record<string, number> = {
-  champetre: 0,
-  boheme: 600,
-  elegance: 1200,
+  seve: 0,
+  pierre: 0,
 }
 
 const CEREMONIE_PRIX = 800
@@ -56,9 +55,8 @@ const repasLabelMap: Record<string, string> = {
   prestige: 'Prestige',
 }
 const decoLabelMap: Record<string, string> = {
-  champetre: 'Champêtre',
-  boheme: 'Bohème Moderne',
-  elegance: 'Élégance Intemporelle',
+  seve: 'Sève',
+  pierre: 'Pierre & Lumière',
 }
 const photoLabelMap: Record<string, string> = {
   none: '',

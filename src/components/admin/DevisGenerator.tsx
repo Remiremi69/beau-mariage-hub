@@ -37,9 +37,8 @@ const repasLabels: Record<string, string> = {
   prestige: "Prestige",
 };
 const decoLabels: Record<string, string> = {
-  champetre: "Champêtre Authentique",
-  boheme: "Bohème Moderne",
-  elegance: "Élégance Intemporelle",
+  seve: "Sève",
+  pierre: "Pierre & Lumière",
 };
 const photoLabels: Record<string, string> = {
   none: "",
@@ -63,7 +62,7 @@ const OPTION_LABELS: Record<string, string> = {
 };
 
 const BASE_FORFAIT = 8500;
-const DECO_PRIX: Record<string, number> = { champetre: 0, boheme: 600, elegance: 1200 };
+const DECO_PRIX: Record<string, number> = { seve: 0, pierre: 0 };
 const PHOTO_PRIX: Record<string, number> = { none: 0, reportage: 1800, premium: 3200 };
 const DJ_PRIX: Record<string, number> = { none: 0, standard: 1200, premium: 2100 };
 const OPTION_PRICES: Record<string, number> = {
