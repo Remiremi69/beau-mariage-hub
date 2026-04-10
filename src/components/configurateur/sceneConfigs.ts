@@ -19,7 +19,11 @@ export const SCENE_CONFIGS: Record<number, SceneConfig> = {
   1: {
     title: "Votre domaine",
     subtitle: "Domaine de la Croix Rochefort · Beaujolais",
-    images: [domaine2, domaine4, domaine3],
+    images: [
+      "https://i.postimg.cc/x1YWXFrv/9-accueil-le-caveau.jpg",
+      "https://i.postimg.cc/5yVmsTSP/876-domaine-de-lanbspcroixnbsprochefort.jpg",
+      "https://i.postimg.cc/4xJSf7VZ/420-katleenetcharly-01juin2024-3-127973-172232023480734.jpg",
+    ],
     duration: 3500,
   },
 
