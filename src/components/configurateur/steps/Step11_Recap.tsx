@@ -132,7 +132,7 @@ const vhNames: Record<string, string> = {
   "vh-sucré-1": "Classique Français", "vh-sucré-2": "Terroir Beaujolais", "vh-sucré-3": "Gourmandise Libre",
 };
 const repasLabels: Record<string, string> = { essentiel: "Essentiel", gastronomique: "Gastronomique", prestige: "Prestige" };
-const decoLabels: Record<string, string> = { champetre: "Champêtre Authentique", boheme: "Bohème Moderne", elegance: "Élégance Intemporelle" };
+const decoLabels: Record<string, string> = { seve: "Sève", pierre: "Pierre & Lumière" };
 const photoLabels: Record<string, string> = { none: "Non sélectionné", reportage: "Reportage", premium: "Premium Duo" };
 const djLabels: Record<string, string> = { none: "Non sélectionné", standard: "Standard", premium: "Premium" };
 
@@ -382,7 +382,7 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
               subtext={menuSubtext || undefined}
               badge="DÉGUSTATION INCLUSE"
             />
-            <ChoiceLine category="Décoration" value={decoLabels[state.deco] || state.deco} price={state.deco === "champetre" ? "Inclus" : state.deco === "boheme" ? "+ 600 €" : "+ 1 200 €"} />
+            <ChoiceLine category="Décoration" value={decoLabels[state.deco] || state.deco} price="Inclus" />
             <ChoiceLine category="Photographe" value={photoLabels[state.photographe] || "Non sélectionné"} price={state.photographe === "none" ? undefined : state.photographe === "reportage" ? "+ 1 800 €" : "+ 3 200 €"} />
             <ChoiceLine category="DJ" value={djLabels[state.dj] || "Non sélectionné"} price={state.dj === "none" ? undefined : state.dj === "standard" ? "+ 1 200 €" : "+ 2 100 €"} />
             <div className="sm:col-span-2">

@@ -26,7 +26,7 @@ const OPTION_LABELS: Record<string, string> = {
 };
 
 const repasLabels: Record<string, string> = { essentiel: "Essentiel", gastronomique: "Gastronomique", prestige: "Prestige" };
-const decoLabels: Record<string, string> = { champetre: "Champêtre Authentique", boheme: "Bohème Moderne", elegance: "Élégance Intemporelle" };
+const decoLabels: Record<string, string> = { seve: "Sève", pierre: "Pierre & Lumière" };
 const photoLabels: Record<string, string> = { none: "Non sélectionné", reportage: "Reportage", premium: "Premium Duo" };
 const djLabels: Record<string, string> = { none: "Non sélectionné", standard: "Standard", premium: "Premium" };
 

@@ -286,44 +286,64 @@ export const drawerDJ: DrawerContent = {
 
 export const drawerDeco: DrawerContent = {
   label: 'L\'ATMOSPHÈRE',
-  title: 'L\'équipe décoration',
-  subtitle: 'Installation & scénographie',
+  title: 'Les formules décoration',
+  subtitle: 'Sève · Pierre & Lumière',
   sections: [
     {
       type: 'highlight',
       content: {
-        text: '« La décoration est installée la veille. Le jour J, vous n\'avez rien à gérer. »',
+        text: '« Même formule = 30 min de retouches. Changement de formule = 2h max. Tout est prévu pour les 5 mariages. »',
+      },
+    },
+    {
+      type: 'list',
+      content: {
+        title: 'KIT FIXE LIMEN — INSTALLÉ UNE FOIS',
+        items: [
+          'Compositions florales séchées ×13 sur pieds dorés fins H.80-90cm',
+          'Pampa blanc naturel + eucalyptus + gypsophile',
+          'Compositions bar pressoir caveau — grands vases verre',
+          'Arche cérémonie métal doré habillée de floraux séchés',
+          'Tapis allée cérémonie lin brut',
+          'Guirlandes salle — déjà installées sur poutres (inclus domaine)',
+        ],
+      },
+    },
+    {
+      type: 'list',
+      content: {
+        title: 'FORMULE SÈVE — VÉGÉTAL, TERRACOTTA, LIN BRUT',
+        items: [
+          'Nappage lin brut beige — table impériale + tables rondes',
+          'Serviettes lin beige — pliage simple',
+          'Vaisselle grès beige/ivoire — assiette plate + creuse',
+          'Couverts inox brossé 5 pièces',
+          'Verres transparents — vin + eau',
+          'Chemin de table jute sur table impériale',
+          'Bougies pilier ivoire H.20cm — 2/table ronde, 6/table impériale',
+          'Photophores verre naturel — 2/table ronde',
+        ],
+      },
+    },
+    {
+      type: 'list',
+      content: {
+        title: 'FORMULE PIERRE & LUMIÈRE — BLANC PUR, MINIMALISME',
+        items: [
+          'Nappage blanc damassé épais — 10 tables rondes',
+          'Serviettes blanc coton épais — pliage sobre',
+          'Vaisselle porcelaine blanche premium',
+          'Couverts inox brossé 5 pièces',
+          'Verres cristallin — vin + eau',
+          'Aucun chemin de table — épure totale',
+          'Bougies pilier blanc H.25cm — 2/table',
+        ],
       },
     },
     {
       type: 'text',
       content: {
-        body: 'Notre équipe déco travaille en étroite collaboration avec les fleuristes locaux du Beaujolais. Toutes les fleurs sont coupées au maximum 48h avant le mariage pour garantir leur fraîcheur le jour J. L\'installation commence la veille à 14h et se termine le matin même si besoin.',
-      },
-    },
-    {
-      type: 'list',
-      content: {
-        title: 'CE QUI EST TOUJOURS INCLUS',
-        items: [
-          'Centres de table (fleurs de saison locales)',
-          'Bougies & photophores sur toutes les tables',
-          'Signalétique & plan de table',
-          'Éclairage d\'ambiance tamisé',
-          'Installation & démontage complets',
-        ],
-      },
-    },
-    {
-      type: 'list',
-      content: {
-        title: 'VOS ÉLÉMENTS PERSONNELS',
-        items: [
-          'Photos de famille intégrées sur demande',
-          'Objets personnels incorporés au décor',
-          'Couleurs personnalisables sur devis',
-          'Fleurs spécifiques sur commande anticipée',
-        ],
+        body: 'La décoration est installée la veille du mariage par notre équipe. Vous pouvez apporter vos propres éléments personnels — photos, objets de famille, signalétique — qui s\'intègreront à l\'univers choisi.',
       },
     },
   ],
