@@ -24,6 +24,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import SEO from "@/components/SEO";
+import { schemaSerie } from '@/lib/schemas';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -166,10 +167,11 @@ const SerieOctobre2027Hub = () => {
 
   return (
     <div className="min-h-screen pt-20">
-      <SEO 
-        title="Série Octobre 2027 - Mariage d'Exception en Beaujolais"
-        description="Découvrez notre première série de mariages au Domaine de la Croix Rochefort. 5 dates exceptionnelles du 4 au 8 octobre 2027 en Beaujolais."
+      <SEO
+        title="Mariage Beaujolais Octobre 2027 — 5 Dates au Domaine de la Croix Rochefort"
+        description="5 mariages d'exception du 4 au 8 octobre 2027 au cœur du Beaujolais. Formule tout compris : lieu, traiteur, photographe, DJ. À 40 min de Lyon. Places limitées."
         canonical="https://lebeaumariage.fr/serie-octobre-2027"
+        jsonLd={schemaSerie}
       />
 
       {/* Breadcrumb */}

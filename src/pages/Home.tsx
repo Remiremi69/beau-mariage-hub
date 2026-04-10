@@ -5,6 +5,7 @@ import { Heart, Clock, Diamond, Star, Palette, Coins, CheckCircle, PartyPopper, 
 import { Link } from "react-router-dom";
 
 import SEO from "@/components/SEO";
+import { schemaHome } from '@/lib/schemas';
 import LeadCaptureSection from "@/components/LeadCaptureSection";
 import CinematicHero from "@/components/CinematicHero";
 import { ScrollReveal, StaggerContainer, ImageReveal } from "@/components/ScrollReveal";
@@ -24,10 +25,11 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO 
-        title="Votre Mariage de Rêve — Tout est déjà prêt"
-        description="Votre mariage de rêve au cœur du Beaujolais. Lieu, traiteur, photographe, DJ — tout est déjà prêt. Il ne reste qu'à dire oui."
+      <SEO
+        title="Mariage Clé en Main Beaujolais — Prix Fixe Tout Compris"
+        description="Votre mariage de rêve au cœur du Beaujolais à 40 min de Lyon. Lieu privatisé, traiteur, photographe, DJ — tout inclus. Devis en 10 min."
         canonical="https://lebeaumariage.fr/"
+        jsonLd={schemaHome}
       />
       
       {/* Launch Banner */}
