@@ -11,13 +11,16 @@ import {
 } from "@/components/ui/table";
 import { Check, X } from "lucide-react";
 import SEO from "@/components/SEO";
+import { schemaConcept } from '@/lib/schemas';
 
 const Concept = () => {
   return (
     <div className="min-h-screen pt-20">
-      <SEO 
-        title="Le Concept Le Beau Mariage | Des Mariages d'Exception Simplifiés"
-        description="Découvrez notre concept innovant de mariages en séries qui rend le luxe accessible. Qualité, simplicité et transparence."
+      <SEO
+        title="Comment ça marche — Mariage Tout Compris Beaujolais sans Stress"
+        description="Le concept Le Beau Mariage : un lieu d'exception en Beaujolais, des prestataires certifiés, un prix fixe transparent. Zéro organisation, 100% présence."
+        canonical="https://lebeaumariage.fr/concept"
+        jsonLd={schemaConcept}
       />
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
