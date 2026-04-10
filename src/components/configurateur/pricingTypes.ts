@@ -4,7 +4,7 @@ export type Photographe = 'none' | 'reportage' | 'premium'
 
 export type DJ = 'none' | 'standard' | 'premium'
 
-export type Deco = 'champetre' | 'boheme' | 'elegance'
+export type Deco = 'seve' | 'pierre'
 
 export type ConfigurateurState = {
   currentStep: number
@@ -53,7 +53,7 @@ export const defaultState: ConfigurateurState = {
   repasDessert: null,
   photographe: 'none',
   dj: 'none',
-  deco: 'champetre',
+  deco: 'seve',
   options: [],
   ambianceMusique: [],
   contact: { prenom: '', email: '', telephone: '' },
@@ -77,6 +77,11 @@ export const OPTION_PRICES: Record<string, number> = {
   caricaturiste: 480,
   lanternes: 220,
   nuit_nuptiale: 350,
+  'couverts-dores': 110,
+  'verres-fumes': 180,
+  'bougies-tapers-noires': 225,
+  'chemin-velours': 100,
+  'photophores-fumes': 60,
 }
 
 export const OPTION_LABELS: Record<string, string> = {
@@ -89,4 +94,9 @@ export const OPTION_LABELS: Record<string, string> = {
   caricaturiste: 'Caricaturiste',
   lanternes: 'Lâcher de lanternes',
   nuit_nuptiale: 'Nuit nuptiale',
+  'couverts-dores': 'Couverts dorés mat',
+  'verres-fumes': 'Verres fumés',
+  'bougies-tapers-noires': 'Bougies tapers noires ×60',
+  'chemin-velours': 'Chemin de table velours',
+  'photophores-fumes': 'Photophores fumés ×50',
 }
