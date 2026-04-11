@@ -68,7 +68,10 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-card/20 text-center text-sm opacity-75">
+        <p className="mt-8 pt-8 border-t border-card/20 text-center text-sm italic font-['Cormorant_Garamond',serif]" style={{ color: '#C9A96E', letterSpacing: '0.05em' }}>
+          Le seuil, pas le spectacle.
+        </p>
+        <div className="mt-4 text-center text-sm opacity-75">
           <p>© {new Date().getFullYear()} Le Beau Mariage. Tous droits réservés.</p>
         </div>
       </div>
