@@ -18,7 +18,7 @@ import djImage from "@/assets/dj-clara.jpg";
 
 const Home = () => {
   const founderQuote = {
-    text: "J'ai créé Le Beau Mariage avec une conviction : rendre le mariage de rêve accessible à tous, sans le stress et sans les compromis. C'est cette promesse que nous tenons à chaque cérémonie.",
+    text: "Le Beau Mariage repose sur une idée simple : un rite de passage ne se gère pas. Il se traverse. Tout est déjà prêt.",
     author: "Rémi",
     role: "Fondateur"
   };
@@ -73,7 +73,16 @@ const Home = () => {
                 <CardContent className="p-5 sm:p-8 md:p-12">
                   <div className="flex justify-center mb-4 sm:mb-6">
                     <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Heart className="h-8 w-8 sm:h-10 sm:w-10 text-primary" />
+                      <svg
+                        viewBox="0 0 40 64"
+                        fill="none"
+                        className="h-8 w-5 sm:h-10 sm:w-[25px]"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <line x1="4" y1="64" x2="4" y2="8" stroke="#C9A96E" strokeWidth="3" strokeLinecap="square" />
+                        <line x1="36" y1="64" x2="36" y2="8" stroke="#C9A96E" strokeWidth="3" strokeLinecap="square" />
+                        <line x1="4" y1="8" x2="36" y2="8" stroke="#C9A96E" strokeWidth="3" strokeLinecap="square" />
+                      </svg>
                     </div>
                   </div>
                   <blockquote className="text-base sm:text-xl md:text-2xl text-center mb-6 sm:mb-8 italic text-foreground leading-relaxed">
