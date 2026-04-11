@@ -29,6 +29,7 @@ import Decorateur from "./pages/serie-octobre-2027/prestataires/Decorateur";
 import Fleuriste from "./pages/serie-octobre-2027/prestataires/Fleuriste";
 import Musicien from "./pages/serie-octobre-2027/prestataires/Musicien";
 import Signature from "./pages/Signature";
+import Acompte from "./pages/Acompte";
 import SiteDeMariage from "./pages/SiteDeMariage";
 
 const queryClient = new QueryClient();
