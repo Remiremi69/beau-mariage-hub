@@ -117,156 +117,198 @@ const Home = () => {
 const TimelineSection = () => {
   const steps = [
     {
-      icon: Palette,
-      title: "1. Configurez",
-      time: "2 min",
+      badge: "2 MIN",
+      title: "Configurez",
       description: "Choisissez votre ambiance, vos options, votre date. Le domaine est déjà là.",
+      isPortique: false,
     },
     {
-      icon: Coins,
-      title: "2. Découvrez",
-      time: "Instantané",
+      badge: "INSTANTANÉ",
+      title: "Découvrez",
       description: "Votre prix final, clair et net, s'affiche à l'écran. Maîtrisez votre budget à 100%.",
+      isPortique: false,
     },
     {
-      icon: CheckCircle,
-      title: "3. Réservez",
-      time: "1 min",
+      badge: "1 MIN",
+      title: "Réservez",
       description: "Validez votre configuration en un clic et bloquez votre date en toute sécurité.",
+      isPortique: false,
     },
     {
-      icon: PartyPopper,
-      title: "4. Célébrez",
-      time: "Le Jour J",
-      description: "Profitez de chaque instant. Notre équipe s'occupe de tout. Vous traversez.",
-    }
+      badge: "LE JOUR J",
+      title: "Célébrez",
+      description: "Notre équipe s'occupe de tout. Vous traversez.",
+      isPortique: true,
+    },
   ];
 
   return (
-    <section className="py-12 sm:py-20 md:py-32 bg-background overflow-hidden relative">
-      {/* Background glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[800px] h-[200px] sm:h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,hsl(14_71%_67%/0.08)_0%,transparent_70%)]" />
-      </div>
-
+    <section className="relative overflow-hidden" style={{ backgroundColor: '#0D0E12', paddingTop: 120, paddingBottom: 120 }}>
       <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
+        {/* Title */}
         <ScrollReveal>
-          <div className="text-center mb-10 sm:mb-16 md:mb-24">
-
-            <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-2 tracking-tight leading-[1.1]">
-              Un rite de passage
-              <br className="hidden md:block" />
-              <span className="relative inline-block">
-                ne se gère pas.
-                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <motion.path
-                    d="M2 8C50 2 100 2 150 6C200 10 250 4 298 7"
-                    stroke="hsl(14 71% 67%)"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0 }}
-                    whileInView={{ pathLength: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.2, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-                  />
-                </svg>
-              </span>
-            </h2>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-primary via-[hsl(30_80%_65%)] to-secondary bg-clip-text text-transparent mt-2 mb-6 sm:mb-8 tracking-tight"
-            >
-              Il se traverse.
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-muted-foreground text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed px-2"
-            >
-              Tout est déjà prêt avant que vous arriviez.
-            </motion.p>
-          </div>
+          <h2
+            className="text-center mb-16 sm:mb-20 md:mb-28"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: 'italic',
+              color: '#F5F0E8',
+              fontSize: 'clamp(1.75rem, 4vw, 3.5rem)',
+              lineHeight: 1.2,
+            }}
+          >
+            De la première décision au dernier instant.
+          </h2>
         </ScrollReveal>
 
-        {/* Timeline - Desktop */}
-        <div className="hidden md:block relative max-w-6xl mx-auto">
-          <StaggerContainer className="grid grid-cols-4 gap-8" staggerDelay={0.15}>
-            {steps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <div key={index} className="relative text-center">
-                  <div className="relative z-10 mb-6 flex items-center justify-center">
-                    <svg width="36" height="58" viewBox="0 0 36 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <line x1="4" y1="8" x2="4" y2="58" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="square" />
-                      <line x1="32" y1="8" x2="32" y2="58" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="square" />
-                      <line x1="4" y1="8" x2="32" y2="8" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="square" />
-                    </svg>
-                  </div>
-                  <div className="bg-card rounded-2xl p-6 shadow-md border border-border/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                    <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-3">
-                      {step.time}
+        {/* Desktop Timeline */}
+        <div className="hidden md:block max-w-5xl mx-auto">
+          <div className="relative">
+            {/* Horizontal line */}
+            <div className="absolute top-[20px] left-[12.5%] right-[12.5%] h-px" style={{ backgroundColor: '#C9A96E' }} />
+
+            <div className="grid grid-cols-4 gap-8">
+              {steps.map((step, index) => (
+                <ScrollReveal key={index} delay={index * 0.15}>
+                  <div className="relative flex flex-col items-center text-center">
+                    {/* Marker */}
+                    <div className="relative z-10 mb-8 flex items-center justify-center" style={{ height: 40 }}>
+                      {step.isPortique ? (
+                        <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <line x1="2" y1="6" x2="2" y2="40" stroke="#C9A96E" strokeWidth="2" strokeLinecap="square" />
+                          <line x1="30" y1="6" x2="30" y2="40" stroke="#C9A96E" strokeWidth="2" strokeLinecap="square" />
+                          <line x1="2" y1="6" x2="30" y2="6" stroke="#C9A96E" strokeWidth="2" strokeLinecap="square" />
+                        </svg>
+                      ) : (
+                        <div style={{ width: 20, height: 2, backgroundColor: '#C9A96E' }} />
+                      )}
                     </div>
-                    <h3 className="text-xl font-bold text-foreground mb-2">{step.title}</h3>
-                    <p className="text-muted-foreground text-sm">{step.description}</p>
+
+                    {/* Content */}
+                    <span
+                      className="block mb-3"
+                      style={{
+                        fontFamily: "'Jost', sans-serif",
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.15em',
+                        color: '#C9A96E',
+                        fontSize: '0.65rem',
+                      }}
+                    >
+                      {step.badge}
+                    </span>
+                    <h3
+                      className="mb-2"
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: '#F5F0E8',
+                        fontSize: '1.5rem',
+                        fontWeight: 600,
+                      }}
+                    >
+                      {step.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "'Jost', sans-serif",
+                        color: '#A0998A',
+                        fontSize: '0.85rem',
+                        lineHeight: 1.6,
+                        maxWidth: 220,
+                      }}
+                    >
+                      {step.description}
+                    </p>
                   </div>
-                </div>
-              );
-            })}
-          </StaggerContainer>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Timeline - Mobile */}
-        <div className="md:hidden space-y-6">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-            return (
+        {/* Mobile Timeline */}
+        <div className="md:hidden relative pl-8">
+          {/* Vertical line */}
+          <div className="absolute left-[9px] top-0 bottom-0 w-px" style={{ backgroundColor: '#C9A96E' }} />
+
+          <div className="space-y-10">
+            {steps.map((step, index) => (
               <ScrollReveal key={index} direction="left" delay={index * 0.1}>
-                <div className="relative flex gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 flex items-center justify-center shrink-0">
-                      <svg width="28" height="45" viewBox="0 0 36 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="4" y1="8" x2="4" y2="58" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="square" />
-                        <line x1="32" y1="8" x2="32" y2="58" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="square" />
-                        <line x1="4" y1="8" x2="32" y2="8" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="square" />
+                <div className="relative">
+                  {/* Marker */}
+                  <div className="absolute -left-8 top-0 flex items-center justify-center" style={{ width: 20 }}>
+                    {step.isPortique ? (
+                      <svg width="20" height="28" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="2" y1="6" x2="2" y2="40" stroke="#C9A96E" strokeWidth="2" strokeLinecap="square" />
+                        <line x1="30" y1="6" x2="30" y2="40" stroke="#C9A96E" strokeWidth="2" strokeLinecap="square" />
+                        <line x1="2" y1="6" x2="30" y2="6" stroke="#C9A96E" strokeWidth="2" strokeLinecap="square" />
                       </svg>
-                    </div>
-                    {index < steps.length - 1 && (
-                      <div className="w-1 flex-1 bg-gradient-to-b from-primary to-secondary my-2" />
+                    ) : (
+                      <div style={{ width: 20, height: 2, backgroundColor: '#C9A96E' }} />
                     )}
                   </div>
-                  <div className="flex-1 pb-6">
-                    <div className="bg-card rounded-xl p-4 shadow-md border border-border/50">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
-                          {step.time}
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-bold text-foreground mb-1">{step.title}</h3>
-                      <p className="text-muted-foreground text-sm">{step.description}</p>
-                    </div>
-                  </div>
+
+                  {/* Content */}
+                  <span
+                    className="block mb-1"
+                    style={{
+                      fontFamily: "'Jost', sans-serif",
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.15em',
+                      color: '#C9A96E',
+                      fontSize: '0.6rem',
+                    }}
+                  >
+                    {step.badge}
+                  </span>
+                  <h3
+                    className="mb-1"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: '#F5F0E8',
+                      fontSize: '1.25rem',
+                      fontWeight: 600,
+                    }}
+                  >
+                    {step.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "'Jost', sans-serif",
+                      color: '#A0998A',
+                      fontSize: '0.8rem',
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {step.description}
+                  </p>
                 </div>
               </ScrollReveal>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
         {/* CTA */}
         <ScrollReveal delay={0.5}>
-          <div className="text-center mt-8 sm:mt-12 md:mt-16 px-4 sm:px-0">
-            <Link to="/configurateur" className="block sm:inline-block">
-              <Button size="xl" variant="hero" className="group w-full sm:w-auto">
-                <span>Commencer la configuration</span>
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+          <div className="text-center mt-16 sm:mt-20">
+            <Link to="/configurateur">
+              <button
+                style={{
+                  backgroundColor: '#C9A96E',
+                  color: '#0D0E12',
+                  borderRadius: 0,
+                  fontFamily: "'Jost', sans-serif",
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  fontSize: '0.85rem',
+                  padding: '14px 40px',
+                  border: 'none',
+                  cursor: 'pointer',
+                }}
+                className="hover:opacity-90 transition-opacity"
+              >
+                Commencer la configuration →
+              </button>
             </Link>
           </div>
         </ScrollReveal>
