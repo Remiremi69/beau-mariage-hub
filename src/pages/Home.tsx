@@ -515,10 +515,10 @@ const PartnersSection = () => {
               <span className="block text-primary">c'est un Partenariat.</span>
             </h2>
             <p className="text-muted-foreground text-sm sm:text-lg max-w-3xl mx-auto mb-6 sm:mb-8 px-2">
-              Nous ne recrutons pas de simples fournisseurs. Nous nous associons avec des artisans passionnés qui partagent notre obsession pour l'excellence.
+              Nous ne recrutons pas de prestataires. Nous choisissons des artisans qui partagent une exigence : que le couple soit entièrement présent.
             </p>
             <p className="text-foreground text-sm sm:text-base max-w-4xl mx-auto leading-relaxed mb-8 sm:mb-12 px-2">
-              Oubliez les processus de certification froids. Chez Le Beau Mariage, la confiance se bâtit sur le terrain. Chaque traiteur, photographe ou décorateur est un partenaire que nous avons personnellement rencontré, dont nous avons testé le travail et avec qui nous avons tissé une relation durable. Ils sont le cœur de notre promesse : un mariage parfait, sans compromis.
+              Chaque partenaire a été rencontré en personne. Chaque prestation a été évaluée sur le terrain. Aucun n'est là par défaut.
             </p>
           </div>
         </ScrollReveal>
