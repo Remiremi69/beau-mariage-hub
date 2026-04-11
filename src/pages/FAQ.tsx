@@ -11,9 +11,9 @@ import { schemaFAQ } from '@/lib/schemas';
 const FAQ = () => {
   const faqs = [
     {
-      question: "Le prix de 10 000 € est-il vraiment fixe ?",
+      question: "Le prix de 15 000 € est-il vraiment fixe ?",
       answer:
-        "Oui ! Le prix de 10 000 € est garanti et tout compris pour 80 invités. Il inclut la privatisation du lieu, le traiteur, le photographe, le DJ, la décoration complète et la coordination du jour J. Des frais supplémentaires s'appliquent uniquement si vous souhaitez plus de 80 invités (50€/personne supplémentaire) ou des options comme le photobooth ou le bar à cocktails.",
+        "Oui ! Le prix de 15 000 € est garanti et tout compris pour 80 invités. Il inclut la privatisation du lieu, le traiteur, le photographe, le DJ, la décoration complète et la coordination du jour J. Des frais supplémentaires s'appliquent uniquement si vous souhaitez plus de 80 invités (50€/personne supplémentaire) ou des options comme le photobooth ou le bar à cocktails.",
     },
     {
       question: "Peut-on personnaliser la décoration ?",
