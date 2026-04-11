@@ -30,6 +30,7 @@ import Fleuriste from "./pages/serie-octobre-2027/prestataires/Fleuriste";
 import Musicien from "./pages/serie-octobre-2027/prestataires/Musicien";
 import Signature from "./pages/Signature";
 import Acompte from "./pages/Acompte";
+import SiteDeMariage from "./pages/SiteDeMariage";
 
 const queryClient = new QueryClient();
 
@@ -37,10 +38,11 @@ const AppLayout = () => {
   const location = useLocation();
   const isConfigurateur = location.pathname === "/configurateur";
   const isAdmin = location.pathname.startsWith("/admin");
+  const isSiteDeMariage = location.pathname === "/site-de-mariage";
 
   return (
     <>
-      {!isConfigurateur && !isAdmin && <Navigation />}
+      {!isConfigurateur && !isAdmin && !isSiteDeMariage && <Navigation />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/concept" element={<Concept />} />
@@ -55,6 +57,7 @@ const AppLayout = () => {
         <Route path="/serie-octobre-2027/prestataires/fleuriste" element={<Fleuriste />} />
         <Route path="/serie-octobre-2027/prestataires/musicien" element={<Musicien />} />
         <Route path="/configurateur" element={<Configurateur />} />
+        <Route path="/site-de-mariage" element={<SiteDeMariage />} />
         <Route path="/signature/:token" element={<Signature />} />
         <Route path="/acompte/:token" element={<Acompte />} />
         <Route path="/acompte/success" element={<Acompte />} />
@@ -67,7 +70,7 @@ const AppLayout = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {!isConfigurateur && !isAdmin && <Footer />}
+      {!isConfigurateur && !isAdmin && !isSiteDeMariage && <Footer />}
     </>
   );
 };
