@@ -289,13 +289,13 @@ const SerenitySection = () => {
     {
       icon: Star,
       title: "Garantie Qualité Inébranlable",
-      description: "La perfection, ou rien. Si un de nos partenaires ne pouvait assurer sa prestation, nous le remplaçons par un talent de qualité égale ou supérieure, sans aucun impact pour vous.",
+      description: "Si l'un de nos partenaires ne peut assurer sa prestation, nous le remplaçons par un talent de niveau égal ou supérieur. Vous ne gérez rien. Nous gérons tout.",
       color: "secondary"
     },
     {
       icon: RefreshCw,
       title: "Garantie Flexibilité Absolue",
-      description: "La vie est pleine d'imprévus. Si un événement majeur vous oblige à changer vos plans, vous pouvez reporter votre mariage sans frais jusqu'à 6 mois avant la date.",
+      description: "Un imprévu majeur vous oblige à changer vos plans : vous reportez votre mariage sans frais jusqu'à 6 mois avant la date. Le seuil attend.",
       color: "primary"
     }
   ];
@@ -308,11 +308,11 @@ const SerenitySection = () => {
         <ScrollReveal>
           <div className="text-center mb-8 sm:mb-12 md:mb-20">
             <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-              Se marier sans stress,
-              <span className="block text-secondary">c'est maintenant possible.</span>
+              Trois engagements.
+              <span className="block text-secondary">Aucune réserve.</span>
             </h2>
             <p className="text-muted-foreground text-sm sm:text-lg max-w-3xl mx-auto px-2">
-              Nous avons créé trois garanties uniques, incluses dans chaque forfait, pour que vous puissiez vous concentrer sur l'essentiel : votre bonheur.
+              Inclus dans chaque mariage. Sans exception.
             </p>
           </div>
         </ScrollReveal>
