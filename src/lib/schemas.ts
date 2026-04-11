@@ -52,8 +52,8 @@ export const schemaHome = [
     offers: {
       '@type': 'Offer',
       priceCurrency: 'EUR',
-      price: '10000',
-      description: 'Forfait mariage tout compris pour 80 invités',
+      price: '15000',
+      description: 'Forfait mariage tout compris à partir de 15 000€',
       availability: 'https://schema.org/LimitedAvailability',
     },
   },
@@ -99,7 +99,7 @@ export const schemaSerie = [
     offers: {
       '@type': 'Offer',
       priceCurrency: 'EUR',
-      price: '10000',
+      price: '15000',
       availability: 'https://schema.org/LimitedAvailability',
     },
     description: "Cinq mariages d'exception au Domaine de la Croix Rochefort, Beaujolais. Formule tout compris : lieu, traiteur, photographe, DJ, décoration, coordination.",
@@ -143,6 +143,6 @@ export const schemaConfigurateur = {
   offers: {
     '@type': 'Offer',
     priceCurrency: 'EUR',
-    price: '10000',
+    price: '15000',
   },
 };
