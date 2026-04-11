@@ -42,7 +42,7 @@ const AppLayout = () => {
 
   return (
     <>
-      {!isConfigurateur && !isAdmin && <Navigation />}
+      {!isConfigurateur && !isAdmin && !isSiteDeMariage && <Navigation />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/concept" element={<Concept />} />
@@ -70,7 +70,7 @@ const AppLayout = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {!isConfigurateur && !isAdmin && <Footer />}
+      {!isConfigurateur && !isAdmin && !isSiteDeMariage && <Footer />}
     </>
   );
 };
