@@ -38,6 +38,7 @@ const AppLayout = () => {
   const location = useLocation();
   const isConfigurateur = location.pathname === "/configurateur";
   const isAdmin = location.pathname.startsWith("/admin");
+  const isSiteDeMariage = location.pathname === "/site-de-mariage";
 
   return (
     <>
