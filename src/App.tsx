@@ -29,7 +29,7 @@ import Decorateur from "./pages/serie-octobre-2027/prestataires/Decorateur";
 import Fleuriste from "./pages/serie-octobre-2027/prestataires/Fleuriste";
 import Musicien from "./pages/serie-octobre-2027/prestataires/Musicien";
 import Signature from "./pages/Signature";
-import Acompte from "./pages/Acompte";
+import SiteDeMariage from "./pages/SiteDeMariage";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +55,7 @@ const AppLayout = () => {
         <Route path="/serie-octobre-2027/prestataires/fleuriste" element={<Fleuriste />} />
         <Route path="/serie-octobre-2027/prestataires/musicien" element={<Musicien />} />
         <Route path="/configurateur" element={<Configurateur />} />
+        <Route path="/site-de-mariage" element={<SiteDeMariage />} />
         <Route path="/signature/:token" element={<Signature />} />
         <Route path="/acompte/:token" element={<Acompte />} />
         <Route path="/acompte/success" element={<Acompte />} />
