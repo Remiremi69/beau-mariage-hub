@@ -157,10 +157,10 @@ const TimelineSection = () => {
           <div className="text-center mb-10 sm:mb-16 md:mb-24">
 
             <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-2 tracking-tight leading-[1.1]">
-              Enfin, un mariage
+              Un rite de passage
               <br className="hidden md:block" />
               <span className="relative inline-block">
-                sans l'organisation.
+                ne se gère pas.
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <motion.path
                     d="M2 8C50 2 100 2 150 6C200 10 250 4 298 7"
@@ -183,7 +183,7 @@ const TimelineSection = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-primary via-[hsl(30_80%_65%)] to-secondary bg-clip-text text-transparent mt-2 mb-6 sm:mb-8 tracking-tight"
             >
-              Simple.
+              Il se traverse.
             </motion.p>
 
             <motion.p
@@ -193,8 +193,7 @@ const TimelineSection = () => {
               transition={{ duration: 0.7, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
               className="text-muted-foreground text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed px-2"
             >
-              Oubliez les tableurs et les centaines d'e-mails.
-              <span className="block mt-1 text-foreground/70 font-medium">Voici comment votre mariage prend forme en 4 étapes.</span>
+              Tout est déjà prêt avant que vous arriviez.
             </motion.p>
           </div>
         </ScrollReveal>
