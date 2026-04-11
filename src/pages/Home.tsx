@@ -48,14 +48,14 @@ const Home = () => {
       {/* Garantie Section - ACTION 4 */}
       <SerenitySection />
 
-      {/* Personalized Wedding Website Section */}
-      <WeddingSiteSection />
-
       {/* Business Model Section - ACTION 5 */}
       <BusinessModelSection />
 
       {/* Prestataires d'Exception Section - ACTION 3 */}
       <PartnersSection />
+
+      {/* Personalized Wedding Website Section */}
+      <WeddingSiteSection />
 
 
       {/* Testimonials Section */}
@@ -397,7 +397,7 @@ const WeddingSiteSection = () => {
             </StaggerContainer>
 
             <p className="text-lg font-semibold text-primary border-l-4 border-primary pl-4 bg-primary/5 py-3 pr-4 rounded-r-lg">
-              Le petit plus qui fait toute la différence, offert par Le Beau Mariage.
+              Compris dans votre forfait. Sans démarche supplémentaire.
             </p>
           </ScrollReveal>
         </div>
