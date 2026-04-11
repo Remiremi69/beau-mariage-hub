@@ -148,7 +148,7 @@ const TimelineSection = () => {
         {/* Title */}
         <ScrollReveal>
           <h2
-            className="text-center mb-16 sm:mb-20 md:mb-28"
+            className="text-center mb-8 sm:mb-10 md:mb-14"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontStyle: 'italic',
@@ -301,7 +301,7 @@ const TimelineSection = () => {
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
                   fontSize: '0.85rem',
-                  padding: '14px 40px',
+                  padding: '18px 48px',
                   border: 'none',
                   cursor: 'pointer',
                 }}
