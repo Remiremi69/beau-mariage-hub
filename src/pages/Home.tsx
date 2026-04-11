@@ -140,7 +140,7 @@ const TimelineSection = () => {
       icon: PartyPopper,
       title: "4. Célébrez",
       time: "Le Jour J",
-      description: "Profitez de chaque instant. Notre équipe s'occupe de tout orchestrer pour vous.",
+      description: "Profitez de chaque instant. Notre équipe s'occupe de tout. Vous traversez.",
     }
   ];
 
@@ -205,10 +205,12 @@ const TimelineSection = () => {
               const Icon = step.icon;
               return (
                 <div key={index} className="relative text-center">
-                  <div className="relative z-10 mb-6">
-                    <div className="w-20 h-20 mx-auto rounded-full bg-card border-4 border-primary shadow-lg flex items-center justify-center">
-                      <Icon className="h-9 w-9 text-primary" />
-                    </div>
+                  <div className="relative z-10 mb-6 flex items-center justify-center">
+                    <svg width="36" height="58" viewBox="0 0 36 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <line x1="4" y1="8" x2="4" y2="58" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="square" />
+                      <line x1="32" y1="8" x2="32" y2="58" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="square" />
+                      <line x1="4" y1="8" x2="32" y2="8" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="square" />
+                    </svg>
                   </div>
                   <div className="bg-card rounded-2xl p-6 shadow-md border border-border/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-3">
@@ -231,8 +233,12 @@ const TimelineSection = () => {
               <ScrollReveal key={index} direction="left" delay={index * 0.1}>
                 <div className="relative flex gap-4">
                   <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 rounded-full bg-card border-4 border-primary shadow-lg flex items-center justify-center shrink-0">
-                      <Icon className="h-6 w-6 text-primary" />
+                    <div className="w-14 h-14 flex items-center justify-center shrink-0">
+                      <svg width="28" height="45" viewBox="0 0 36 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="4" y1="8" x2="4" y2="58" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="square" />
+                        <line x1="32" y1="8" x2="32" y2="58" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="square" />
+                        <line x1="4" y1="8" x2="32" y2="8" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="square" />
+                      </svg>
                     </div>
                     {index < steps.length - 1 && (
                       <div className="w-1 flex-1 bg-gradient-to-b from-primary to-secondary my-2" />
