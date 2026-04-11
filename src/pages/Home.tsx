@@ -120,7 +120,7 @@ const TimelineSection = () => {
       icon: Palette,
       title: "1. Configurez",
       time: "2 min",
-      description: "Personnalisez votre journée en choisissant votre ambiance, votre lieu et vos options.",
+      description: "Choisissez votre ambiance, vos options, votre date. Le domaine est déjà là.",
     },
     {
       icon: Coins,
