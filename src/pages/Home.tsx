@@ -417,18 +417,18 @@ const BusinessModelSection = () => {
   const points = [
     {
       icon: Users,
-      title: 'Le Principe des "Séries"',
-      description: 'Nous n\'organisons pas des mariages à l\'unité, mais des "séries" de mariages consécutifs dans un même lieu, avec la même équipe de partenaires. Cette optimisation profite à tout le monde.'
+      title: 'Le principe de la série',
+      description: 'Cinq mariages consécutifs. Un lieu. Une équipe. Chaque répétition affine l\'exécution — sans jamais répéter votre mariage.'
     },
     {
       icon: Coins,
-      title: "Des Coûts Optimisés pour Tous",
-      description: "Pour nos prestataires, cela signifie moins de frais de prospection et de logistique. Ces économies, nous vous les répercutons directement sur le prix final."
+      title: "Un modèle qui profite au couple",
+      description: "Moins de prospection pour nos partenaires, moins de logistique dispersée. Ces économies structurelles se répercutent directement sur votre forfait."
     },
     {
       icon: Handshake,
-      title: "Un Partenariat Gagnant-Gagnant",
-      description: "En garantissant un volume d'affaires important à nos partenaires, nous négocions des tarifs préférentiels sans jamais sacrifier la qualité. C'est ainsi que nous rendons le mariage de luxe enfin accessible."
+      title: "Des partenaires choisis, pas référencés",
+      description: "Nous ne travaillons pas avec des annuaires. Chaque artisan a été rencontré, testé, choisi. Leur engagement est le nôtre."
     }
   ];
 
@@ -438,11 +438,11 @@ const BusinessModelSection = () => {
         <ScrollReveal>
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
-              La qualité d'un grand mariage. Le prix de la raison.
-              <span className="block text-primary">Voici notre secret.</span>
+              Cinq mariages par an. Pas un de plus.
+              <span className="block text-primary">Ce n'est pas une contrainte. C'est le modèle.</span>
             </h2>
             <p className="text-card/70 text-sm sm:text-lg max-w-3xl mx-auto px-2">
-              Notre innovation ne réside pas seulement dans la technologie, mais dans notre modèle économique unique en France.
+              La rareté n'est pas un argument marketing. C'est ce qui garantit que chaque mariage reçoit une attention totale — de la première réunion au dernier instant.
             </p>
           </div>
         </ScrollReveal>
