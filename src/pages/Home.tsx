@@ -54,8 +54,6 @@ const Home = () => {
       {/* Prestataires d'Exception Section - ACTION 3 */}
       <PartnersSection />
 
-      {/* Personalized Wedding Website Section */}
-      <WeddingSiteSection />
 
 
       {/* Testimonials Section */}
