@@ -9,6 +9,7 @@ import { Navigation } from "./components/Navigation";
 import { Footer } from "./components/Footer";
 import Home from "./pages/Home";
 import Concept from "./pages/Concept";
+import GuideBeaujolais from "./pages/GuideBeaujolais";
 import Configurateur from "./pages/Configurateur";
 import Temoignages from "./pages/Temoignages";
 import FAQ from "./pages/FAQ";
@@ -43,6 +44,7 @@ const AppLayout = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/concept" element={<Concept />} />
+        <Route path="/guide-mariage-beaujolais" element={<GuideBeaujolais />} />
         <Route path="/serie-ete-2027" element={<Navigate to="/serie-octobre-2027" replace />} />
         <Route path="/serie-octobre-2027" element={<SerieOctobre2027Hub />} />
         <Route path="/serie-octobre-2027/domaine" element={<DomaineDetail />} />
