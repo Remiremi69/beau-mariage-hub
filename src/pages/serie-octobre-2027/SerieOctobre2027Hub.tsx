@@ -130,7 +130,7 @@ const steps = [
   {
     number: "2",
     title: "Configurez",
-    description: "Personnalisez votre forfait en 10 minutes",
+    description: "Choisissez votre ambiance et vos options.",
     lucideIcon: Settings
   },
   {
@@ -501,8 +501,8 @@ const SerieOctobre2027Hub = () => {
       <section className="py-16 md:py-24 bg-card" ref={stepsRef.ref}>
         <div className="container mx-auto px-4">
           <div className={`text-center mb-12 transition-all duration-1000 ${stepsRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-              Prêt à Commencer ?
+            <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1A1814' }}>
+              Une décision. Trois minutes.
             </h2>
           </div>
 
@@ -513,12 +513,9 @@ const SerieOctobre2027Hub = () => {
                 className="text-center"
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <div className="w-14 h-14 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                  <step.lucideIcon className="h-7 w-7 text-primary" />
-                </div>
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold mb-4">
-                  {step.number}
-                </div>
+                <p className="mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#C9A96E', fontSize: '2.5rem', fontWeight: 700, lineHeight: 1 }}>
+                  0{step.number}
+                </p>
                 <h3 className="text-xl font-bold text-foreground mb-2">{step.title}</h3>
                 <p className="text-muted-foreground">{step.description}</p>
               </div>
@@ -527,10 +524,23 @@ const SerieOctobre2027Hub = () => {
 
           <div className={`text-center transition-all duration-1000 delay-500 ${stepsRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <Link to="/configurateur">
-              <Button size="xl" variant="elegant" className="font-semibold text-lg px-10">
-                Commencer la Configuration
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              <button
+                style={{
+                  backgroundColor: '#C9A96E',
+                  color: '#0D0E12',
+                  borderRadius: 0,
+                  fontFamily: "'Jost', sans-serif",
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  padding: '18px 48px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                }}
+              >
+                Commencer la Configuration →
+              </button>
             </Link>
           </div>
         </div>
