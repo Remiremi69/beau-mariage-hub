@@ -417,21 +417,21 @@ const SerieOctobre2027Hub = () => {
       <section className="py-16 md:py-24 bg-background" ref={localisationRef.ref}>
         <div className="container mx-auto px-4">
           <div className={`text-center mb-12 transition-all duration-1000 ${localisationRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-              Où Nous Trouver ?
+            <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1A1814' }}>
+              Le domaine
             </h2>
           </div>
 
           <div className={`max-w-6xl mx-auto transition-all duration-1000 delay-200 ${localisationRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
               {/* Adresse */}
-              <div className="bg-card rounded-2xl p-8 shadow-md border border-border/50">
+              <div className="bg-card p-8 shadow-md border border-border/50" style={{ borderRadius: 0 }}>
                 <div className="flex items-start gap-4 mb-6">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-foreground mb-2">Les Caves de la Croix Rochefort</h3>
+                    <h3 className="text-xl font-bold text-foreground mb-2">Domaine de la Croix Rochefort</h3>
                     <p className="text-muted-foreground">
                       401 rue des dépôts<br />
                       69430 SAINT-DIDIER-SUR-BEAUJEU
@@ -451,7 +451,7 @@ const SerieOctobre2027Hub = () => {
               </div>
 
               {/* Carte */}
-              <div className="rounded-2xl overflow-hidden shadow-md h-[300px]">
+              <div className="overflow-hidden shadow-md h-[300px]" style={{ borderRadius: 0 }}>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2767.5!2d4.5833!3d46.2333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4e8e8e8e8e8e8%3A0x0!2s401%20Rue%20des%20D%C3%A9p%C3%B4ts%2C%2069430%20Saint-Didier-sur-Beaujeu%2C%20France!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr"
                   width="100%"
@@ -467,23 +467,27 @@ const SerieOctobre2027Hub = () => {
 
             {/* Distances */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-card rounded-xl p-6 shadow-md border border-border/50 text-center">
+              <div className="bg-card p-6 shadow-md border border-border/50 text-center" style={{ borderRadius: 0 }}>
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <Train className="h-6 w-6 text-primary" />
                 </div>
                 <h4 className="font-bold text-foreground mb-1">Gare TGV Mâcon-Loché</h4>
                 <p className="text-2xl font-bold text-primary">34 min</p>
               </div>
-              <div className="bg-card rounded-xl p-6 shadow-md border border-border/50 text-center">
+              <div className="bg-card p-6 shadow-md border border-border/50 text-center" style={{ borderRadius: 0 }}>
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <Plane className="h-6 w-6 text-primary" />
                 </div>
                 <h4 className="font-bold text-foreground mb-1">Aéroport & Ville de Lyon</h4>
                 <p className="text-2xl font-bold text-primary">55 min</p>
               </div>
-              <div className="bg-card rounded-xl p-6 shadow-md border border-border/50 text-center">
-                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4">
-                  <Grape className="h-6 w-6 text-secondary" />
+              <div className="bg-card p-6 shadow-md border border-border/50 text-center" style={{ borderRadius: 0 }}>
+                <div className="flex items-center justify-center mx-auto mb-4" style={{ width: 32, height: 32 }}>
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="6" y1="8" x2="6" y2="28" stroke="#C9A96E" strokeWidth="2" strokeLinecap="square" />
+                    <line x1="26" y1="8" x2="26" y2="28" stroke="#C9A96E" strokeWidth="2" strokeLinecap="square" />
+                    <line x1="5" y1="8" x2="27" y2="8" stroke="#C9A96E" strokeWidth="2" strokeLinecap="square" />
+                  </svg>
                 </div>
                 <h4 className="font-bold text-foreground mb-1">Au Cœur du Beaujolais</h4>
                 <p className="text-lg text-muted-foreground">Une destination en soi</p>
