@@ -1,17 +1,21 @@
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Check, X } from "lucide-react";
 import SEO from "@/components/SEO";
 import { schemaConcept } from '@/lib/schemas';
+
+const pillars = [
+  { number: "5", title: "Mariages par an", text: "Pas un de plus. La rareté n'est pas un argument — c'est ce qui garantit une attention totale à chaque couple." },
+  { number: "1", title: "Domaine. Une équipe.", text: "Chaque prestataire connaît le lieu par cœur. Chaque répétition affine l'exécution — sans jamais répéter votre mariage." },
+  { number: "0", title: "Décision à prendre le jour J.", text: "Tout est réglé avant que vous arriviez. Vous n'avez qu'une chose à faire : être là." },
+];
+
+const inclusions = [
+  { title: "Le domaine", text: "Domaine de la Croix Rochefort, Beaujolais. Cadre, hébergement, espaces cérémonie et réception." },
+  { title: "La gastronomie", text: "Traiteur sélectionné, menus conçus pour le domaine. Aucune coordination de votre part." },
+  { title: "La photographie", text: "Photographe et vidéaste partenaires. Présents du début à la fin." },
+  { title: "La musique", text: "DJ ou groupe selon votre ambiance. Briefé bien avant votre jour J." },
+  { title: "La décoration", text: "Ambiance choisie lors de la configuration. Installée, retirée — sans vous." },
+  { title: "La coordination", text: "Un Gardien Limen dédié, présent de la première heure au dernier instant." },
+];
 
 const Concept = () => {
   return (
@@ -22,6 +26,7 @@ const Concept = () => {
         canonical="https://lebeaumariage.fr/concept"
         jsonLd={schemaConcept}
       />
+
       {/* Section d'ouverture */}
       <section className="flex flex-col items-center justify-center text-center" style={{ backgroundColor: '#0D0E12', paddingTop: '100px', paddingBottom: '100px' }}>
         <div className="max-w-3xl mx-auto px-4">
@@ -37,137 +42,84 @@ const Concept = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto">
-
-          <h2 className="text-4xl font-bold text-center mb-8">
-            Le Beau Mariage vs Mariage Traditionnel
+      {/* Section piliers */}
+      <section className="text-center" style={{ backgroundColor: '#0D0E12', paddingTop: '100px', paddingBottom: '100px' }}>
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#F5F0E8' }}>
+            Cinq mariages. Un lieu. Une équipe.
           </h2>
+          <p className="text-xl md:text-2xl italic mb-16" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#C9A96E' }}>
+            Ce n'est pas une contrainte. C'est ce qui rend tout possible.
+          </p>
 
-          <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] overflow-hidden">
-            <Table>
-              <TableHeader>
-                <TableRow className="bg-primary/10 hover:bg-primary/10">
-                  <TableHead className="font-bold text-foreground">Critère</TableHead>
-                  <TableHead className="font-bold text-foreground">Mariage Traditionnel</TableHead>
-                  <TableHead className="font-bold text-foreground">Le Beau Mariage</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell className="font-semibold">Prix moyen</TableCell>
-                  <TableCell className="text-destructive">15 000 € - 20 000 €</TableCell>
-                  <TableCell className="text-secondary font-bold">12 990 €</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-semibold">Niveau de stress</TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <X className="h-5 w-5 text-destructive" />
-                      <span className="text-destructive">Élevé</span>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Check className="h-5 w-5 text-secondary" />
-                      <span className="text-secondary font-semibold">Zéro</span>
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-semibold">Qualité</TableCell>
-                  <TableCell>Variable</TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Check className="h-5 w-5 text-secondary" />
-                      <span className="text-secondary font-semibold">Garantie</span>
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-semibold">Organisation</TableCell>
-                  <TableCell className="text-destructive">12-18 mois</TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Check className="h-5 w-5 text-secondary" />
-                      <span className="text-secondary font-semibold">Clé-en-main</span>
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-semibold">Coordination</TableCell>
-                  <TableCell>À votre charge</TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Check className="h-5 w-5 text-secondary" />
-                      <span className="text-secondary font-semibold">Incluse</span>
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="font-semibold">Prestataires</TableCell>
-                  <TableCell>À rechercher vous-même</TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Check className="h-5 w-5 text-secondary" />
-                      <span className="text-secondary font-semibold">Déjà sélectionnés</span>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </Card>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+            {pillars.map((p, i) => (
+              <div key={i} className="flex flex-col items-center px-8">
+                <span className="block mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '80px', lineHeight: 1, color: '#C9A96E' }}>
+                  {p.number}
+                </span>
+                <h3 className="text-lg md:text-xl font-semibold mb-3" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#F5F0E8' }}>
+                  {p.title}
+                </h3>
+                <p className="text-sm leading-relaxed max-w-xs" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
+                  {p.text}
+                </p>
 
-          {/* CTA après tableau comparatif */}
-          <div className="mt-12 text-center">
-            <Link to="/serie-ete-2027">
-              <Button size="lg" variant="hero" className="font-semibold">
-                Voir nos séries disponibles
-              </Button>
-            </Link>
-          </div>
-
-          <div className="mt-16 text-center">
-            <h3 className="text-3xl font-bold mb-6">Le secret de notre modèle</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="border-none shadow-md">
-                <CardContent className="p-6">
-                  <div className="text-4xl font-bold text-primary mb-2">1</div>
-                  <h4 className="font-semibold mb-2">Mutualisation</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Plusieurs mariages au même endroit = coûts partagés
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-none shadow-md">
-                <CardContent className="p-6">
-                  <div className="text-4xl font-bold text-secondary mb-2">2</div>
-                  <h4 className="font-semibold mb-2">Négociation</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Partenariats exclusifs avec les meilleurs prestataires
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-none shadow-md relative overflow-hidden">
-                <div className="absolute top-2 right-2">
-                  <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs font-medium">
-                    🌿 Éco
-                  </span>
-                </div>
-                <CardContent className="p-6">
-                  <div className="text-4xl font-bold text-or mb-2">3</div>
-                  <h4 className="font-semibold mb-2">Optimisation Écologique</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Notre système de "Décoration Responsable Premium" nous permet de créer des ambiances magnifiques tout en minimisant les déchets. Chaque élément est réutilisé pour plusieurs mariages, réduisant ainsi l'impact environnemental de 80%.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
+                {/* Séparateur mobile */}
+                {i < pillars.length - 1 && (
+                  <div className="md:hidden mx-auto mt-8 mb-8 w-px h-10" style={{ backgroundColor: '#C9A96E' }} />
+                )}
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Section inclusions */}
+      <section className="bg-background" style={{ paddingTop: '100px', paddingBottom: '100px' }}>
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1A1814' }}>
+            Tout est déjà prêt.
+          </h2>
+          <p className="text-lg md:text-xl mb-16 max-w-2xl mx-auto" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
+            Chaque forfait Le Beau Mariage inclut, sans exception et sans supplément&nbsp;:
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-12 text-left">
+            {inclusions.map((item, i) => (
+              <div key={i}>
+                <div className="w-full h-0.5 mb-6" style={{ backgroundColor: '#C9A96E' }} />
+                <h3 className="text-xl font-semibold mb-2" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1A1814' }}>
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
+                  {item.text}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16">
+            <Link to="/configurateur">
+              <button
+                className="uppercase tracking-widest font-medium"
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  backgroundColor: '#C9A96E',
+                  color: '#0D0E12',
+                  borderRadius: 0,
+                  padding: '18px 48px',
+                  letterSpacing: '0.1em',
+                  border: 'none',
+                  cursor: 'pointer',
+                }}
+              >
+                Configurer mon mariage →
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
