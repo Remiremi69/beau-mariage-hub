@@ -331,11 +331,12 @@ const SerieOctobre2027Hub = () => {
       <section className="py-16 md:py-24 bg-background" ref={datesRef.ref}>
         <div className="container mx-auto px-4">
           <div className={`text-center mb-12 transition-all duration-1000 ${datesRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-              Quand Se Marier ?
+            <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1A1814' }}>
+              Cinq dates. Pas une de plus.
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Chaque jour, un mariage unique. Chaque couple choisit sa date et personnalise son forfait.
+            <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
+              Chaque date est un mariage unique.<br />
+              Choisissez la vôtre.
             </p>
           </div>
 
@@ -343,29 +344,31 @@ const SerieOctobre2027Hub = () => {
             {dates.map((date, index) => (
               <div
                 key={date.date}
-                className="bg-card rounded-xl p-6 shadow-md border border-border/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto sm:min-w-[160px] text-center"
-                style={{ transitionDelay: `${index * 100}ms` }}
+                className="p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto sm:min-w-[160px] text-center"
+                style={{ backgroundColor: '#0D0E12', borderRadius: 0, transitionDelay: `${index * 100}ms` }}
               >
-                <p className="text-sm text-muted-foreground mb-1">{date.day}</p>
-                <p className="text-4xl font-bold text-primary mb-1">{date.date}</p>
-                <p className="text-sm text-foreground mb-3">{date.month} {date.year}</p>
+                <p className="mb-1" style={{ fontFamily: "'Jost', sans-serif", textTransform: 'uppercase', color: '#A0998A', letterSpacing: '0.15em', fontSize: '0.75rem' }}>{date.day}</p>
+                <p className="mb-1" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#F5F0E8', fontSize: '3rem', fontWeight: 700, lineHeight: 1.1 }}>{date.date}</p>
+                <p className="mb-3" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A', fontSize: '0.8rem' }}>{date.month} {date.year}</p>
                 {reservedDates.has(date.dateId) ? (
                   <span style={{
-                    fontSize: 12, fontWeight: 600,
-                    color: "rgba(200,80,80,0.80)", background: "rgba(200,80,80,0.08)",
-                    border: "1px solid rgba(200,80,80,0.25)", padding: "3px 10px",
-                    borderRadius: 2, letterSpacing: "0.10em", display: "inline-block",
+                    fontSize: '0.7rem', fontWeight: 600,
+                    fontFamily: "'Jost', sans-serif",
+                    color: 'rgba(200,80,80,0.80)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.15em',
                   }}>
-                    Réservée
+                    · Réservée ·
                   </span>
                 ) : (
                   <span style={{
-                    fontSize: 12, fontWeight: 400,
-                    color: "rgba(80,180,100,0.85)", background: "rgba(80,180,100,0.08)",
-                    border: "1px solid rgba(80,180,100,0.25)", padding: "3px 10px",
-                    borderRadius: 2, letterSpacing: "0.10em", display: "inline-block",
+                    fontSize: '0.7rem', fontWeight: 500,
+                    fontFamily: "'Jost', sans-serif",
+                    color: '#C9A96E',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.15em',
                   }}>
-                    Disponible
+                    · Disponible ·
                   </span>
                 )}
               </div>
