@@ -50,7 +50,30 @@ const Home = () => {
       {/* Prestataires d'Exception Section - ACTION 3 */}
       <PartnersSection />
 
-
+      {/* CTA after Partners */}
+      <section style={{ backgroundColor: '#0D0E12', paddingTop: 60, paddingBottom: 60 }}>
+        <div className="text-center">
+          <Link to="/configurateur">
+            <button
+              style={{
+                backgroundColor: '#C9A96E',
+                color: '#0D0E12',
+                borderRadius: 0,
+                fontFamily: "'Jost', sans-serif",
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                fontSize: '0.85rem',
+                padding: '18px 48px',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+              className="hover:opacity-90 transition-opacity"
+            >
+              Configurer mon mariage →
+            </button>
+          </Link>
+        </div>
+      </section>
 
       {/* Testimonials Section */}
       <section className="py-12 sm:py-20 bg-background">
