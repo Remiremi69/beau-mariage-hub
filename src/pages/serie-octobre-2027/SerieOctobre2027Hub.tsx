@@ -294,37 +294,35 @@ const SerieOctobre2027Hub = () => {
           <div
             className={`text-center mb-12 transition-all duration-1000 ${prestatairesRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">Vos Partenaires d'Excellence</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Chaque détail de votre mariage est confié à des artisans passionnés, sélectionnés avec soin.
+            <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1A1814' }}>Les artisans de votre jour J.</h2>
+            <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
+              Chaque prestataire est sélectionné en personne.<br />
+              Aucun n'est là par défaut.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {prestataires.map((prestataire, index) => (
-              <div
-                key={prestataire.category}
-                className={`transition-all duration-700 ${prestatairesRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
-                <Card className="h-full hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border/50">
-                  <CardContent className="p-6">
-    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                       <prestataire.lucideIcon className="h-6 w-6 text-primary" />
-                     </div>
-                     <p className="text-xs font-semibold text-primary tracking-wider mb-2">{prestataire.category}</p>
-                    <h3 className="text-xl font-bold text-foreground mb-2">{prestataire.title}</h3>
-                    <p className="text-muted-foreground mb-4">{prestataire.description}</p>
-                    <Link to={prestataire.link}>
-                      <Button variant="outline" size="sm" className="w-full group">
-                        En savoir plus
-                        <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
+            {prestataires.map((prestataire, index) => {
+              const categoryName = prestataire.category.charAt(0) + prestataire.category.slice(1).toLowerCase().replace(/ & .*/, '');
+              const categoryLower = prestataire.category.toLowerCase().split(' ')[0];
+              return (
+                <div
+                  key={prestataire.category}
+                  className={`transition-all duration-700 ${prestatairesRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <div className="h-full bg-white p-6 hover:shadow-lg transition-all duration-300" style={{ borderRadius: '4px' }}>
+                    <div className="w-full h-0.5 mb-6" style={{ backgroundColor: '#C9A96E' }} />
+                    <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1A1814' }}>
+                      {categoryName} — Sélection en cours
+                    </h3>
+                    <p className="text-sm leading-relaxed" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
+                      Notre {categoryLower} pour la Série Octobre 2027 sera annoncé prochainement. Sélection sur critères stricts.
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
