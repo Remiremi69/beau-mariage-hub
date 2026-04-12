@@ -360,29 +360,37 @@ const SerieOctobre2027Hub = () => {
       </section>
 
       {/* Section Statut de la Série */}
-      <section className="py-16 md:py-24 bg-primary/5" ref={statutRef.ref}>
+      <section className="py-16 md:py-24 bg-background" ref={statutRef.ref}>
         <div className="container mx-auto px-4">
           <div className={`max-w-3xl mx-auto transition-all duration-1000 ${statutRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <Card className="border-2 border-primary/20 bg-card">
-              <CardContent className="p-8 md:p-12 text-center">
-                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
-                  <Construction className="h-5 w-5" />
-                  <span className="font-semibold">Cette Série est en Construction</span>
-                </div>
-                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  Nous finalisons les derniers détails pour vous offrir une expérience parfaite. 
-                  Les places sont limitées et les premières confirmations arrivent bientôt. 
-                  Si vous êtes intéressé par cette première série, n'hésitez pas à nous contacter 
-                  pour être parmi les premiers à rejoindre cette aventure.
-                </p>
-                <Link to="/contact">
-                  <Button variant="elegant" size="lg">
-                    Exprimer mon Intérêt
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
+            <div className="p-8 md:p-12 text-center" style={{ backgroundColor: 'transparent', border: '1px solid #C9A96E' }}>
+              <p className="text-lg mb-8 leading-relaxed" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
+                Les prestataires sont en cours de finalisation.<br />
+                Les cinq dates sont disponibles.<br /><br />
+                Si vous souhaitez être informé en priorité<br />
+                à l'ouverture des réservations, laissez-nous<br />
+                vos coordonnées.
+              </p>
+              <Link to="/contact">
+                <button
+                  style={{
+                    backgroundColor: '#C9A96E',
+                    color: '#0D0E12',
+                    borderRadius: 0,
+                    fontFamily: "'Jost', sans-serif",
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    padding: '18px 48px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontSize: '0.875rem',
+                    fontWeight: 500,
+                  }}
+                >
+                  Être informé en priorité →
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
