@@ -242,13 +242,13 @@ const SerieOctobre2027Hub = () => {
           <div
             className={`text-center mb-12 transition-all duration-1000 ${lieuRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">Votre Cadre</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1A1814' }}>Domaine de la Croix Rochefort</h2>
           </div>
 
           <div
             className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto transition-all duration-1000 delay-200 ${lieuRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative overflow-hidden shadow-2xl">
               <img
                 src="https://i.postimg.cc/Y05dBj78/Domaine-de-la-Croix-Rochefort-mariage-saint-didier-sur-Beaujeu.jpg"
                 alt="Le Domaine de la Croix Rochefort"
@@ -257,14 +257,31 @@ const SerieOctobre2027Hub = () => {
             </div>
             <div className="space-y-6">
               <h3 className="text-2xl md:text-3xl font-bold text-foreground">Le Domaine de la Croix Rochefort</h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Un caveau voûté pour votre cérémonie. Une salle de caractère pour votre fête. L'atmosphère du Beaujolais pour votre histoire.
+              <p className="text-lg leading-relaxed" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
+                Une cave voûtée du XIXe siècle au cœur du Beaujolais.<br /><br />
+                Cérémonie, réception, hébergement —<br />
+                tout se passe dans le même lieu.<br /><br />
+                Vous n'avez nulle part où aller.<br />
+                Vous êtes déjà là.
               </p>
               <Link to="/serie-octobre-2027/domaine">
-                <Button variant="elegant" size="lg" className="group">
-                  Découvrir le Domaine
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <button
+                  style={{
+                    backgroundColor: 'transparent',
+                    color: '#C9A96E',
+                    border: '1px solid #C9A96E',
+                    borderRadius: 0,
+                    fontFamily: "'Jost', sans-serif",
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    padding: '14px 36px',
+                    cursor: 'pointer',
+                    fontSize: '0.875rem',
+                    fontWeight: 500,
+                  }}
+                >
+                  Découvrir le domaine →
+                </button>
               </Link>
             </div>
           </div>
