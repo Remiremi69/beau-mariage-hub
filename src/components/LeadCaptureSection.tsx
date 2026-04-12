@@ -49,10 +49,10 @@ const LeadCaptureSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            La prochaine série : 4 – 8 octobre en Beaujolais
+            5 dates. Octobre 2027. Soyez informé en avant-première.
           </h2>
           <p className="text-muted-foreground text-lg mb-10">
-            Places limitées — laissez-nous vos coordonnées et nous vous recontactons sous 24h.
+            La Série Octobre 2027 est en cours de finalisation. Les couples inscrits aujourd'hui seront notifiés en exclusivité à l'ouverture des réservations — avant toute communication publique.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4 text-left">
