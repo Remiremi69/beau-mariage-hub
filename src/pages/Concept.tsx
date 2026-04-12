@@ -22,29 +22,23 @@ const Concept = () => {
         canonical="https://lebeaumariage.fr/concept"
         jsonLd={schemaConcept}
       />
+      {/* Section d'ouverture */}
+      <section className="flex flex-col items-center justify-center text-center" style={{ backgroundColor: '#0D0E12', paddingTop: '100px', paddingBottom: '100px' }}>
+        <div className="max-w-3xl mx-auto px-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#F5F0E8' }}>
+            Un rite de passage ne se gère pas.
+          </h1>
+          <p className="text-3xl md:text-5xl italic mb-10" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#C9A96E' }}>
+            Il se traverse.
+          </p>
+          <p className="text-base md:text-lg leading-relaxed max-w-xl mx-auto" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
+            Le Beau Mariage existe pour une raison précise : que vous soyez entièrement présents à votre propre mariage. Pas en train de surveiller, vérifier, coordonner.<br /><br />Traverser — c'est tout.
+          </p>
+        </div>
+      </section>
+
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold text-center mb-8">
-            Plus qu'un mariage, une révolution.
-          </h1>
-
-          <Card className="mb-12 border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)]">
-            <CardContent className="p-8 md:p-12">
-              <h2 className="text-3xl font-bold mb-6 text-primary">Le Problème</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Organiser un mariage est devenu un parcours du combattant : budget qui explose,
-                stress des préparatifs, complexité logistique... Le coût moyen d'un mariage en
-                France dépasse souvent les 15 000 €, sans garantie de qualité.
-              </p>
-
-              <h2 className="text-3xl font-bold mb-6 text-secondary">Notre Solution</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Chez Le Beau Mariage, nous avons réinventé le modèle. En mutualisant les coûts sur
-                une série de mariages dans un même lieu, nous vous donnons accès à des prestataires
-                et une décoration haut de gamme pour un prix fixe et transparent de 12 990 €.
-              </p>
-            </CardContent>
-          </Card>
 
           <h2 className="text-4xl font-bold text-center mb-8">
             Le Beau Mariage vs Mariage Traditionnel
