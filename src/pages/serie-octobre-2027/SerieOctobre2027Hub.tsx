@@ -201,25 +201,37 @@ const SerieOctobre2027Hub = () => {
         }}
       >
         <div className="container mx-auto px-4 z-10">
-          <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-sm text-card px-4 py-2 rounded-full mb-6">
-            <Calendar className="h-4 w-4" />
-            <span className="text-sm font-medium">Lundi 4 au Vendredi 8 Octobre 2027</span>
-          </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-card mb-4 drop-shadow-lg">
-            Notre Première Série :<br />
-            <span className="text-primary">Octobre 2027</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-card/90 mb-4 drop-shadow-lg">
-            Élégance & Caractère en Beaujolais
+          <p className="mb-6" style={{ fontFamily: "'Jost', sans-serif", textTransform: 'uppercase', letterSpacing: '0.2em', color: '#C9A96E', fontSize: '0.875rem' }}>
+            OCTOBRE 2027 · BEAUJOLAIS
           </p>
-          <p className="text-lg text-card/80 mb-10 max-w-2xl mx-auto">
-            Découvrez le lieu et les prestataires d'exception qui rendront votre mariage inoubliable.
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 drop-shadow-lg" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#F5F0E8' }}>
+            Cinq seuils à franchir.
+          </h1>
+          <p className="text-xl md:text-2xl mb-4 drop-shadow-lg italic" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#C9A96E' }}>
+            Une semaine. Un domaine. Cinq mariages.
+          </p>
+          <p className="text-sm mb-10 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
+            Domaine de la Croix Rochefort · Saint-Didier-sur-Beaujeu<br />
+            Du 4 au 8 octobre 2027 · 5 dates disponibles
           </p>
           <Link to="/configurateur">
-            <Button size="xl" variant="hero" className="font-semibold text-lg px-8">
-              Commencer la Configuration
-              <ChevronRight className="ml-2 h-5 w-5" />
-            </Button>
+            <button
+              style={{
+                backgroundColor: '#C9A96E',
+                color: '#0D0E12',
+                borderRadius: 0,
+                fontFamily: "'Jost', sans-serif",
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                padding: '18px 48px',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+              }}
+            >
+              Configurer mon mariage →
+            </button>
           </Link>
         </div>
       </section>
