@@ -10,10 +10,6 @@ import LeadCaptureSection from "@/components/LeadCaptureSection";
 import CinematicHero from "@/components/CinematicHero";
 import { ScrollReveal, StaggerContainer, ImageReveal } from "@/components/ScrollReveal";
 import venueImage from "@/assets/venue-exterior.jpg";
-import chefImage from "@/assets/chef-sebastien.jpg";
-import photographeImage from "@/assets/photographe-alexandre.jpg";
-import decoImage from "@/assets/deco-boheme.jpg";
-import djImage from "@/assets/dj-clara.jpg";
 
 
 const Home = () => {
