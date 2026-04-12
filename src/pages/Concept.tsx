@@ -1,17 +1,11 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Check, X } from "lucide-react";
 import SEO from "@/components/SEO";
 import { schemaConcept } from '@/lib/schemas';
+
+const pillars = [
+  { number: "5", title: "Mariages par an", text: "Pas un de plus. La rareté n'est pas un argument — c'est ce qui garantit une attention totale à chaque couple." },
+  { number: "1", title: "Domaine. Une équipe.", text: "Chaque prestataire connaît le lieu par cœur. Chaque répétition affine l'exécution — sans jamais répéter votre mariage." },
+  { number: "0", title: "Décision à prendre le jour J.", text: "Tout est réglé avant que vous arriviez. Vous n'avez qu'une chose à faire : être là." },
+];
 
 const Concept = () => {
   return (
@@ -37,51 +31,44 @@ const Concept = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto">
+      {/* Section piliers */}
+      <section className="text-center" style={{ backgroundColor: '#0D0E12', paddingTop: '100px', paddingBottom: '100px' }}>
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#F5F0E8' }}>
+            Cinq mariages. Un lieu. Une équipe.
+          </h2>
+          <p className="text-xl md:text-2xl italic mb-16" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#C9A96E' }}>
+            Ce n'est pas une contrainte. C'est ce qui rend tout possible.
+          </p>
 
-
-          <div className="mt-16 text-center">
-            <h3 className="text-3xl font-bold mb-6">Le secret de notre modèle</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="border-none shadow-md">
-                <CardContent className="p-6">
-                  <div className="text-4xl font-bold text-primary mb-2">1</div>
-                  <h4 className="font-semibold mb-2">Mutualisation</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Plusieurs mariages au même endroit = coûts partagés
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-none shadow-md">
-                <CardContent className="p-6">
-                  <div className="text-4xl font-bold text-secondary mb-2">2</div>
-                  <h4 className="font-semibold mb-2">Négociation</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Partenariats exclusifs avec les meilleurs prestataires
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-none shadow-md relative overflow-hidden">
-                <div className="absolute top-2 right-2">
-                  <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs font-medium">
-                    🌿 Éco
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+            {pillars.map((p, i) => (
+              <div key={i} className="flex flex-col items-center px-8">
+                {/* Séparateur vertical entre blocs (visible uniquement entre les blocs) */}
+                {i > 0 && (
+                  <div className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-10" style={{ backgroundColor: '#C9A96E' }} />
+                )}
+                <div className="relative flex flex-col items-center">
+                  <span className="block mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '80px', lineHeight: 1, color: '#C9A96E' }}>
+                    {p.number}
                   </span>
-                </div>
-                <CardContent className="p-6">
-                  <div className="text-4xl font-bold text-or mb-2">3</div>
-                  <h4 className="font-semibold mb-2">Optimisation Écologique</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Notre système de "Décoration Responsable Premium" nous permet de créer des ambiances magnifiques tout en minimisant les déchets. Chaque élément est réutilisé pour plusieurs mariages, réduisant ainsi l'impact environnemental de 80%.
+                  <h3 className="text-lg md:text-xl font-semibold mb-3" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#F5F0E8' }}>
+                    {p.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed max-w-xs" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
+                    {p.text}
                   </p>
-                </CardContent>
-              </Card>
-            </div>
+                </div>
+
+                {/* Ligne séparatrice mobile entre blocs */}
+                {i < pillars.length - 1 && (
+                  <div className="md:hidden mx-auto mt-8 mb-8 w-px h-10" style={{ backgroundColor: '#C9A96E' }} />
+                )}
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
