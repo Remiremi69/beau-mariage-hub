@@ -10,10 +10,6 @@ import LeadCaptureSection from "@/components/LeadCaptureSection";
 import CinematicHero from "@/components/CinematicHero";
 import { ScrollReveal, StaggerContainer, ImageReveal } from "@/components/ScrollReveal";
 import venueImage from "@/assets/venue-exterior.jpg";
-import chefImage from "@/assets/chef-sebastien.jpg";
-import photographeImage from "@/assets/photographe-alexandre.jpg";
-import decoImage from "@/assets/deco-boheme.jpg";
-import djImage from "@/assets/dj-clara.jpg";
 
 
 const Home = () => {
@@ -512,36 +508,28 @@ const BusinessModelSection = () => {
 const PartnersSection = () => {
   const categories = [
     {
-      image: chefImage,
-      title: "L'Émotion dans l'Assiette",
-      category: "Traiteurs Gastronomiques",
-      description: "Nos chefs racontent une histoire avec des produits frais et locaux. Une expérience culinaire qui marque les esprits.",
+      title: "Traiteur — Sélection en cours",
+      category: "TRAITEURS GASTRONOMIQUES",
+      description: "Notre traiteur pour la Série Octobre 2027 sera annoncé prochainement. Sélection en cours sur critères stricts.",
       icon: UtensilsCrossed,
-      alt: "Chef traiteur partenaire Le Beau Mariage préparant un plat gastronomique"
     },
     {
-      image: photographeImage,
-      title: "Les Chasseurs de Souvenirs",
-      category: "Photographes & Vidéastes",
-      description: "Plus que des techniciens, ce sont des artistes qui savent capturer l'étincelle, le rire volé et la larme de joie.",
+      title: "Photographe — Sélection en cours",
+      category: "PHOTOGRAPHES & VIDÉASTES",
+      description: "Notre photographe pour la Série Octobre 2027 sera annoncé prochainement. Sélection en cours sur critères stricts.",
       icon: Camera,
-      alt: "Photographe professionnel capturant les moments précieux d'un mariage"
     },
     {
-      image: decoImage,
-      title: "Les Architectes de l'Ambiance",
-      category: "Décorateurs & Fleuristes",
-      description: "Ils ont le talent de transformer un lieu en un décor de rêve, créant une atmosphère unique qui vous ressemble.",
+      title: "Décorateur & Fleuriste — Sélection en cours",
+      category: "DÉCORATEURS & FLEURISTES",
+      description: "Notre décorateur et fleuriste pour la Série Octobre 2027 seront annoncés prochainement. Sélection en cours sur critères stricts.",
       icon: Flower2,
-      alt: "Décoration florale bohème pour mariage par nos fleuristes partenaires"
     },
     {
-      image: djImage,
-      title: "Les Maîtres du Rythme",
-      category: "DJ & Musiciens",
-      description: "Du vin d'honneur à la piste de danse, nos artistes créent la bande-son parfaite pour une ambiance inoubliable.",
+      title: "DJ & Musicien — Sélection en cours",
+      category: "DJ & MUSICIENS",
+      description: "Notre DJ et musicien pour la Série Octobre 2027 seront annoncés prochainement. Sélection en cours sur critères stricts.",
       icon: Music,
-      alt: "DJ professionnelle animant la soirée de mariage"
     }
   ];
 
@@ -563,23 +551,16 @@ const PartnersSection = () => {
           </div>
         </ScrollReveal>
 
-        {/* Categories Grid with image reveal */}
         <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-10 sm:mb-16" staggerDelay={0.12}>
           {categories.map((cat, index) => {
             const Icon = cat.icon;
             return (
               <div key={index} className="group">
                 <div className="relative h-full overflow-hidden rounded-2xl bg-card border border-border/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={cat.image} 
-                      alt={cat.alt}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
+                  <div className="relative h-48 flex flex-col items-center justify-center" style={{ backgroundColor: '#1A1814' }}>
+                    <Icon className="h-10 w-10 mb-4" style={{ color: '#C8A96E' }} />
                     <div className="absolute bottom-4 left-4 right-4">
-                      <div className="flex items-center gap-2 text-card">
-                        <Icon className="h-4 w-4" />
+                      <div className="flex items-center justify-center gap-2" style={{ color: '#C8A96E' }}>
                         <span className="text-xs font-medium uppercase tracking-wider">{cat.category}</span>
                       </div>
                     </div>
