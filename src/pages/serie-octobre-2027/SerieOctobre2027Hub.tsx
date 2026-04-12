@@ -374,6 +374,7 @@ const SerieOctobre2027Hub = () => {
               </div>
             ))}
           </div>
+        </div>
       </section>
 
       {/* Section Statut de la Série */}
