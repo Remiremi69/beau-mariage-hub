@@ -1,7 +1,7 @@
 import type { DrawerContent } from './PresentationDrawer';
 
 import chefSebastien from '@/assets/chef-sebastien.jpg';
-import julienSommelier from '@/assets/julien-sommelier.jpg';
+
 import photographeAlexandre from '@/assets/photographe-alexandre.jpg';
 
 import domaineHero2 from '@/assets/domaine-hero-2.png';
@@ -112,42 +112,43 @@ export const drawerCeremonie: DrawerContent = {
 
 export const drawerVin: DrawerContent = {
   label: 'LE VIN D\'HONNEUR',
-  title: 'Le sommelier',
-  subtitle: 'Sélection Beaujolais',
+  title: 'Ce qui est servi',
+  subtitle: 'Beaujolais · Tout inclus',
   sections: [
-    {
-      type: 'profile',
-      content: {
-        imageSlot: 'julien-sommelier',
-        imageUrl: julienSommelier,
-        name: 'Julien M.',
-        role: 'Sommelier · 14 ans d\'expérience',
-        bio: 'Julien sélectionne chaque année les domaines viticoles du Beaujolais qui composent notre cave. Natif de la région, il connaît chaque vigneron personnellement et choisit des cuvées introuvables en grande distribution.',
-        details: [
-          'Sélection 100% Beaujolais & Bourgogne',
-          'Domaines à moins de 15 km du lieu',
-          'Vins bio et biodynamiques privilégiés',
-          'Accords mets-vins personnalisés',
-        ],
-      },
-    },
     {
       type: 'highlight',
       content: {
-        text: '« Chaque bouteille a une histoire. Nous vous la racontons. »',
+        text: '« Pas de liste de vins à choisir. Le cocktail est là, les bières aussi. »',
       },
     },
     {
       type: 'list',
       content: {
-        title: 'NOS DOMAINES PARTENAIRES',
+        title: 'INCLUS — SELON VOTRE FORMULE',
         items: [
-          'Domaine de la Madone — Fleurie',
-          'Château Thivin — Côte de Brouilly',
-          'Domaine Vissoux — Moulin-à-Vent',
-          'Jean-Paul Brun — Terres Dorées',
-          'Marcel Lapierre — Morgon nature',
+          'Crémant de Bourgogne à l\'arrivée (formule Terroir Vivant)',
+          'Bélini crème de pêche blanche, prosecco (formule Le Seuil Signature)',
+          'Eau plate et gazeuse (Evian, Perrier)',
+          'Citronnade maison et jus de fruits artisanaux',
         ],
+      },
+    },
+    {
+      type: 'list',
+      content: {
+        title: 'OPTION — BIÈRE ARTISANALE KACHMAR',
+        items: [
+          'Brassée à Villefranche-sur-Saône — Beaujolais',
+          'Trois styles : Blonde · Dorée · Blanche',
+          'Service en fût, tireuse livrée, gobelets inclus',
+          'En complément du cocktail — add-on disponible',
+        ],
+      },
+    },
+    {
+      type: 'text',
+      content: {
+        body: 'Service assuré par J&J Traiteur. Aucun prestataire boissons à gérer de votre côté.',
       },
     },
   ],
