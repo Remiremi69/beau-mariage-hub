@@ -6,6 +6,13 @@ import PresentationDrawer from "../PresentationDrawer";
 import { drawerRepas } from "../drawerContents";
 import menuAutomneCharolaisImg from "@/assets/menu-automne-charolais.jpg";
 import menuCoconLyonnaisImg from "@/assets/menu-cocon-lyonnais.jpg";
+import menuNocturneRoyalImg from "@/assets/menu-nocturne-royal.jpg";
+
+const MENU_IMAGES: Record<string, string> = {
+  'menu-automne-charolais': menuAutomneCharolaisImg,
+  'menu-cocon-lyonnais': menuCoconLyonnaisImg,
+  'menu-nocturne-royal': menuNocturneRoyalImg,
+};
 
 interface Step05Props {
   state: ConfigurateurState;
@@ -169,25 +176,20 @@ const MenuCard = ({
     {/* Photo zone */}
     <div
       data-photo-slot={menu.id}
-      className="relative flex flex-col items-center justify-center"
+      className="relative flex flex-col items-center justify-center overflow-hidden"
       style={{
         height: 200,
-        background: isSelected ? "rgba(201,169,110,0.10)" : "rgba(201,169,110,0.06)",
+        background: "rgba(15,12,10,0.95)",
         borderBottom: "1px solid rgba(201,169,110,0.10)",
         transition: "background 0.25s",
       }}
     >
-      {menu.id === 'menu-automne-charolais' ? (
+      {MENU_IMAGES[menu.id] ? (
         <img
-          src={menuAutomneCharolaisImg}
+          src={MENU_IMAGES[menu.id]}
           alt={menu.name}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      ) : menu.id === 'menu-cocon-lyonnais' ? (
-        <img
-          src={menuCoconLyonnaisImg}
-          alt={menu.name}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full"
+          style={{ objectFit: 'cover', objectPosition: 'center 60%' }}
         />
       ) : (
         <>
