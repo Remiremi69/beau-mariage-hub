@@ -25,9 +25,9 @@ export type PriceBreakdown = {
 const BASE_FORFAIT = 8500
 
 const REPAS_PRIX: Record<string, number> = {
-  essentiel: 65,
-  gastronomique: 90,
-  prestige: 130,
+  essentiel: 85,
+  gastronomique: 85,
+  prestige: 88,
 }
 
 const DECO_PRIX: Record<string, number> = {
