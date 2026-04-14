@@ -162,23 +162,23 @@ export const drawerVin: DrawerContent = {
 
 export const drawerRepas: DrawerContent = {
   label: 'LA CUISINE',
-  title: 'Le chef',
-  subtitle: 'Cuisine de terroir & création',
+  title: 'Jessica & Jérôme',
+  subtitle: 'Cuisine maison & ancrage beaujolais',
   sections: [
     {
       type: 'profile',
       content: {
         imageSlot: 'chef-sebastien',
         imageUrl: chefSebastien,
-        name: 'Sébastien R.',
-        role: 'Chef · Ancien second étoilé',
-        bio: 'Sébastien a quitté la gastronomie parisienne pour revenir à ses racines beaujolaises. Sa cuisine puise dans le terroir local — producteurs du village, herbes du jardin, gibier de saison — pour créer des assiettes qui racontent un territoire.',
+        name: 'Jessica & Jérôme T.',
+        role: 'Traiteurs · Villefranche-sur-Saône',
+        bio: 'Jessica et Jérôme ont bâti leur cuisine autour d\'un principe simple : tout est fait maison, avec des produits frais sélectionnés au marché. Basés à Villefranche-sur-Saône, ils travaillent depuis des années les mariages en Beaujolais — et connaissent le territoire aussi bien que ses saisons.',
         details: [
-          'Menu composé selon la saison & le marché',
-          'Producteurs locaux référencés & visités',
-          'Option végétarienne sur chaque service',
-          'Allergènes gérés individuellement',
-          'Rencontre possible avec les mariés sur demande',
+          'Cuisine entièrement maison, produits frais du marché',
+          'Ancrage local : bières Kachmar, crème de Bresse, cervelles de canut',
+          'Options végétariennes & sans gluten sur chaque service',
+          'Allergènes gérés individuellement sur demande',
+          'Dégustation possible avant le jour J',
         ],
       },
     },
@@ -186,18 +186,6 @@ export const drawerRepas: DrawerContent = {
       type: 'highlight',
       content: {
         text: '« Un repas de mariage doit être le meilleur repas que vos invités aient jamais eu. »',
-      },
-    },
-    {
-      type: 'list',
-      content: {
-        title: 'LA BRIGADE LE JOUR J',
-        items: [
-          '1 chef de cuisine + 2 commis',
-          '1 chef pâtissier dédié',
-          'Service assuré par Manon & son équipe',
-          'Ratio 1 serveur pour 12 invités',
-        ],
       },
     },
   ],
