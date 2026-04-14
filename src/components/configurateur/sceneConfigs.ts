@@ -7,6 +7,8 @@ import ceremonyArch from "@/assets/ceremony-arch.jpg";
 import chefSebastien from "@/assets/chef-sebastien.jpg";
 import tableSetup from "@/assets/table-setup.jpg";
 import julienSommelier from "@/assets/julien-sommelier.jpg";
+import vhBeaujolaisVivant from "@/assets/vh-beaujolais-vivant.jpg";
+import vhSeuilSignature from "@/assets/vh-seuil-signature.jpg";
 import venueExterior from "@/assets/venue-exterior.jpg";
 import decoBoheme1 from "@/assets/deco-boheme-moderne-1.jpg";
 import decoChampetre1 from "@/assets/deco-champetre-1.jpg";
@@ -39,7 +41,7 @@ export const SCENE_CONFIGS: Record<number, SceneConfig> = {
   4: {
     title: "Votre vin d'honneur",
     subtitle: "Dans les jardins du domaine",
-    images: [venueExterior, domaine4, julienSommelier],
+    images: ["https://i.postimg.cc/x1YWXFrv/9-accueil-le-caveau.jpg", vhBeaujolaisVivant, vhSeuilSignature],
     duration: 3000,
   },
 
