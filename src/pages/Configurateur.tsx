@@ -6,8 +6,8 @@ const Configurateur = () => {
   return (
     <>
       <SEO
-        title="Devis Mariage Beaujolais en 10 Minutes — Prix Fixe Tout Compris"
-        description="Configurez votre mariage en Beaujolais et obtenez un devis instantané. Lieu, traiteur, photographe, DJ inclus. Prix transparent, sans surprise."
+        title="Configurateur Mariage Beaujolais — Devis Instantané et Personnalisé"
+        description="Configurez votre mariage en Beaujolais et obtenez un devis instantané. Nombre d'invités, formule repas, photographe, DJ — prix calculé en temps réel, sans surprise."
         canonical="https://lebeaumariage.fr/configurateur"
         jsonLd={schemaConfigurateur}
       />

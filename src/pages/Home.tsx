@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Mariage Clé en Main Beaujolais — Prix Fixe Tout Compris"
+        title="Mariage All-Inclusive Beaujolais — Devis Personnalisé en 10 min"
         description="Votre mariage de rêve au cœur du Beaujolais à 40 min de Lyon. Lieu privatisé, traiteur, photographe, DJ — tout inclus. Devis en 10 min."
         canonical="https://lebeaumariage.fr/"
         jsonLd={schemaHome}
