@@ -13,23 +13,18 @@ interface Step05Props {
 }
 
 type TagColor = "or" | "vert" | "blanc";
+type RepasFiltre = "terroir" | "mer" | "les-deux" | null;
 
 interface Menu {
   id: string;
   name: string;
-  tagline: string;
   tag: string;
   tagColor: TagColor;
   formule: "essentiel" | "gastronomique" | "prestige";
-  prixTTC: string;
-  prixNote: string;
-  plat: string;
+  accroche: string;
+  description: string;
   vegetarien: string;
-  accompagnements: string;
-  fromage: string;
-  dessert: string;
-  mignardise: string;
-  detail: string[];
+  option_add_on?: string;
   imagePlaceholder: string;
 }
 
@@ -37,83 +32,91 @@ const menus: Menu[] = [
   {
     id: "menu-automne-charolais",
     name: "Automne Charolais",
-    tagline: "Bœuf Charolais AOP ou saumon laqué,\ntatin aux pommes crème de Bresse",
-    tag: "Essentiel",
+    tag: "Terroir & viande",
     tagColor: "or",
     formule: "essentiel",
-    prixTTC: "85 € / pers.",
-    prixNote: "88 € avec le bœuf (+3 €)",
-    plat: "Pavé de bœuf Charolais sauce marchand de vin\nOU Saumon laqué japonais",
+    accroche:
+      "Bœuf Charolais ou saumon laqué. " +
+      "Gratin dauphinois. " +
+      "Tarte tatin aux pommes, crème de Bresse.",
+    description:
+      "En octobre en Beaujolais, il y a des tables qui " +
+      "ont un goût précis. Bœuf Charolais rôti sauce " +
+      "marchand de vin — ou saumon laqué à la japonaise, " +
+      "si vous préférez la mer.\n\n" +
+      "Gratin dauphinois. Trilogie de fromages du marché : " +
+      "saint-marcellin, chèvre frais, comté, avec une " +
+      "confiture maison que J&J préparent eux-mêmes.\n\n" +
+      "Tarte tatin caramélisée aux pommes, crème de Bresse. " +
+      "Puis une tarte praline — la mignardise lyonnaise " +
+      "qui n'est pas là par hasard.\n\n" +
+      "C'est la table que vous voudrez retrouver " +
+      "dans dix ans en vous souvenant de ce soir.",
     vegetarien: "Risotto aux légumes de saison et œuf",
-    accompagnements: "Gratin dauphinois · Wok légumes de saison",
-    fromage: "Trilogie marché (st marcellin, chèvre, comté) + confiture maison",
-    dessert: "Tatin caramélisée aux pommes, crème de Bresse",
-    mignardise: "Tarte praline",
-    detail: [
-      "Plat : Bœuf Charolais AOP sauce marchand de vin",
-      "        OU Saumon laqué japonais",
-      "Végétarien : Risotto légumes de saison & œuf",
-      "Fromage : Trilogie marché + confiture maison",
-      "Dessert : Tatin caramélisée · Crème de Bresse",
-      "Mignardise : Tarte praline",
-      "Café, thé & mignardises maison inclus",
-    ],
     imagePlaceholder: "PHOTO À VENIR",
   },
   {
     id: "menu-cocon-lyonnais",
     name: "Cocon Lyonnais",
-    tagline: "Quenelle saint-jacques façon lyonnaise\nou poulet aux morilles",
-    tag: "Essentiel",
+    tag: "Mer & terroir",
     tagColor: "or",
     formule: "essentiel",
-    prixTTC: "85 € / pers.",
-    prixNote: "88 € avec le poulet aux morilles (+3 €)",
-    plat: "Quenelle cabillaud & saint-jacques sauce américaine\nOU Poulet fermier aux morilles",
-    vegetarien: "Curry de légumes riz gourmand et tofu artisanal",
-    accompagnements: "Moelleux de pomme de terre · Flan de légumes",
-    fromage: "Fromage blanc coulis + trilogie fromage sec",
-    dessert: "Charlotte Poire chocolat, crème anglaise, tuile à l'orange",
-    mignardise: "Cannelé bordelais",
-    detail: [
-      "Plat : Quenelle cabillaud & saint-jacques sauce américaine",
-      "        OU Poulet fermier aux morilles",
-      "Végétarien : Curry légumes · riz · tofu artisanal",
-      "Fromage : Fromage blanc coulis + trilogie secs",
-      "Dessert : Charlotte poire chocolat · Tuile orange",
-      "Mignardise : Cannelé bordelais",
-      "Café, thé & mignardises maison inclus",
-    ],
+    accroche:
+      "Quenelle saint-jacques façon lyonnaise " +
+      "ou poulet aux morilles. " +
+      "Charlotte poire chocolat. La table de Lyon.",
+    description:
+      "La quenelle de cabillaud et saint-jacques sauce " +
+      "américaine — c'est le plat de Lyon. Pas la version " +
+      "modernisée, pas réinterprétée : faite comme elle " +
+      "doit être faite.\n\n" +
+      "Ou le poulet fermier aux morilles — champignons " +
+      "cueillis en automne, le plat de saison par " +
+      "excellence.\n\n" +
+      "Moelleux de pomme de terre. Charlotte poire chocolat " +
+      "avec une crème anglaise et une tuile à l'orange. " +
+      "Cannelé bordelais en fin de repas.\n\n" +
+      "La cuisine de Lyon n'est pas un concept. " +
+      "C'est une façon d'être à table — présente, " +
+      "généreuse, sans esbroufe.",
+    vegetarien: "Curry de légumes, riz gourmand et tofu artisanal",
     imagePlaceholder: "PHOTO À VENIR",
   },
   {
     id: "menu-nocturne-royal",
     name: "Nocturne Royal",
-    tagline: "Royal chocolat feuillantine,\nmacarons caramel-chocolat",
     tag: "Signature",
     tagColor: "blanc",
     formule: "prestige",
-    prixTTC: "88 € / pers.",
-    prixNote: "90 € avec pièce montée macarons (+2 €/pers)",
-    plat: "Pavé de bœuf Charolais sauce marchand de vin\nOU Quenelle saint-jacques sauce américaine",
-    vegetarien: "Lentilles aux légumes, tofu, œuf mollet",
-    accompagnements: "Gratin dauphinois · Wok légumes de saison",
-    fromage: "Trilogie marché + fromage blanc coulis",
-    dessert: "Royal chocolat Feuillantine, crème anglaise, tuile à l'orange",
-    mignardise: "Verrine vanille framboise façon charlotte\n+ Option pièce montée macarons (+2 €/pers)",
-    detail: [
-      "Plat : Bœuf Charolais AOP sauce marchand de vin",
-      "        OU Quenelle saint-jacques sauce américaine",
-      "Végétarien : Lentilles · légumes · tofu · œuf mollet",
-      "Fromage : Trilogie marché + fromage blanc coulis",
-      "Dessert : Royal chocolat Feuillantine",
-      "Mignardise : Verrine vanille framboise",
-      "Option : Pièce montée macarons (+2 €/pers)",
-      "Café, thé & mignardises maison inclus",
-    ],
+    accroche:
+      "Royal chocolat feuillantine. " +
+      "Macarons caramel beurre salé et chocolat. " +
+      "Le menu conçu pour être la dernière image.",
+    description:
+      "Bœuf Charolais sauce marchand de vin — ou quenelle " +
+      "de cabillaud et saint-jacques. " +
+      "Le plat n'est pas le sujet de ce menu.\n\n" +
+      "Le sujet, c'est la fin.\n\n" +
+      "Royal chocolat feuillantine, crème anglaise, " +
+      "tuile à l'orange. Le dessert qui clôture une " +
+      "soirée comme on ferme un livre qu'on ne voulait " +
+      "pas finir. Suivi d'une verrine vanille framboise " +
+      "posée devant chaque convive sans cérémonie.\n\n" +
+      "En option : une pièce montée de macarons — " +
+      "caramel beurre salé et chocolat — posée sur les " +
+      "tables sans annonce préalable, au moment où " +
+      "les conversations ralentissent.",
+    vegetarien: "Lentilles aux légumes, tofu et œuf mollet",
+    option_add_on: "Pièce montée macarons — caramel beurre salé & chocolat",
     imagePlaceholder: "PHOTO À VENIR",
   },
 ];
+
+const FILTRE_TO_MENU: Record<NonNullable<RepasFiltre>, string> = {
+  terroir: "menu-automne-charolais",
+  mer: "menu-cocon-lyonnais",
+  "les-deux": "menu-nocturne-royal",
+};
 
 const tagStyles: Record<TagColor, React.CSSProperties> = {
   or: { border: "1px solid rgba(201,169,110,0.50)", color: "rgba(201,169,110,0.85)", background: "rgba(201,169,110,0.08)" },
@@ -128,21 +131,15 @@ const PlaceholderIcon = () => (
   </svg>
 );
 
-const menuGridRows: { label: string; key: keyof Menu }[] = [
-  { label: "PLAT", key: "plat" },
-  { label: "VÉGÉTARIEN", key: "vegetarien" },
-  { label: "FROMAGE", key: "fromage" },
-  { label: "DESSERT", key: "dessert" },
-  { label: "MIGNARDISE", key: "mignardise" },
-];
-
 const MenuCard = ({
   menu,
   isSelected,
+  isRecommended,
   onSelect,
 }: {
   menu: Menu;
   isSelected: boolean;
+  isRecommended: boolean;
   onSelect: () => void;
 }) => (
   <div
@@ -153,9 +150,6 @@ const MenuCard = ({
       border: isSelected ? "1px solid #c9a96e" : "1px solid rgba(201,169,110,0.15)",
       background: isSelected ? "rgba(201,169,110,0.06)" : "rgba(26,22,18,0.40)",
       cursor: "pointer",
-      width: "100%",
-      maxWidth: 680,
-      margin: "0 auto",
     }}
     onMouseEnter={(e) => {
       if (!isSelected) {
@@ -175,7 +169,7 @@ const MenuCard = ({
       data-photo-slot={menu.id}
       className="relative flex flex-col items-center justify-center"
       style={{
-        height: window.innerWidth >= 768 ? 200 : 150,
+        height: 200,
         background: isSelected ? "rgba(201,169,110,0.10)" : "rgba(201,169,110,0.06)",
         borderBottom: "1px solid rgba(201,169,110,0.10)",
         transition: "background 0.25s",
@@ -196,6 +190,24 @@ const MenuCard = ({
         {menu.imagePlaceholder}
       </span>
 
+      {/* Recommandé badge */}
+      {isRecommended && (
+        <span
+          className="absolute top-0 left-1/2 -translate-x-1/2"
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontWeight: 300,
+            fontSize: 10,
+            letterSpacing: "0.20em",
+            padding: "4px 14px",
+            background: "rgba(201,169,110,0.85)",
+            color: "#1a1612",
+          }}
+        >
+          RECOMMANDÉ POUR VOUS
+        </span>
+      )}
+
       {/* Tag */}
       <span
         className="absolute top-3 right-3"
@@ -211,23 +223,6 @@ const MenuCard = ({
       >
         {menu.tag}
       </span>
-
-      {/* Prix badge */}
-      <span
-        className="absolute bottom-3 left-3"
-        style={{
-          fontFamily: "'Jost', sans-serif",
-          fontWeight: 500,
-          fontSize: 13,
-          color: "#c9a96e",
-          background: "rgba(13,11,8,0.80)",
-          border: "1px solid rgba(201,169,110,0.30)",
-          padding: "6px 14px",
-          borderRadius: 1,
-        }}
-      >
-        {menu.prixTTC}
-      </span>
     </div>
 
     {/* Text zone */}
@@ -240,83 +235,125 @@ const MenuCard = ({
           letterSpacing: "0.30em",
           textTransform: "uppercase",
           color: "rgba(232,221,208,0.80)",
-          marginBottom: 6,
+          marginBottom: 8,
         }}
       >
         {menu.name}
       </p>
 
-      <h4
-        className="whitespace-pre-line"
+      <p
         style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Jost', sans-serif",
           fontWeight: 300,
+          fontSize: 13,
           fontStyle: "italic",
-          fontSize: 22,
-          color: "#faf8f4",
-          lineHeight: 1.3,
-          marginBottom: 20,
+          color: "rgba(232,221,208,0.65)",
+          lineHeight: 1.6,
+          marginBottom: 16,
         }}
       >
-        {menu.tagline}
-      </h4>
+        {menu.accroche}
+      </p>
 
-      {/* Content grid */}
-      <div className="flex flex-col">
-        {menuGridRows.map((row, i) => (
-          <div
-            key={row.key}
-            className="grid grid-cols-[100px_1fr] md:grid-cols-[120px_1fr] gap-x-3"
-            style={{
-              padding: "8px 0",
-              borderBottom: i < menuGridRows.length - 1 ? "1px solid rgba(201,169,110,0.06)" : "none",
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "'Jost', sans-serif",
-                fontWeight: 300,
-                fontSize: 11,
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                color: "rgba(232,221,208,0.40)",
-              }}
-            >
-              {row.label}
-            </span>
-            <span
-              className="whitespace-pre-line"
-              style={{
-                fontFamily: "'Jost', sans-serif",
-                fontWeight: 300,
-                fontSize: 13,
-                color: "rgba(232,221,208,0.70)",
-              }}
-            >
-              {String(menu[row.key])}
-            </span>
-          </div>
-        ))}
-      </div>
+      {/* Separator */}
+      <div style={{ height: 0.5, background: "rgba(201,169,110,0.15)", marginBottom: 16 }} />
 
-      {/* Prix note */}
-      {menu.prixNote && (
-        <p
+      <p
+        style={{
+          fontFamily: "'Jost', sans-serif",
+          fontWeight: 300,
+          fontSize: 13,
+          color: "rgba(232,221,208,0.60)",
+          lineHeight: 1.75,
+          whiteSpace: "pre-line",
+          marginBottom: 12,
+        }}
+      >
+        {menu.description}
+      </p>
+
+      {/* Option add-on */}
+      {menu.option_add_on && (
+        <div
           style={{
-            fontFamily: "'Jost', sans-serif",
-            fontWeight: 200,
-            fontSize: 11,
-            color: "rgba(201,169,110,0.55)",
-            fontStyle: "italic",
+            background: "rgba(201,169,110,0.05)",
+            borderLeft: "2px solid rgba(201,169,110,0.35)",
+            padding: "10px 14px",
             marginTop: 12,
           }}
         >
-          {menu.prixNote}
-        </p>
+          <p
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontWeight: 400,
+              fontSize: 10,
+              letterSpacing: "0.20em",
+              textTransform: "uppercase",
+              color: "rgba(201,169,110,0.55)",
+              marginBottom: 4,
+            }}
+          >
+            OPTION
+          </p>
+          <p
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontWeight: 300,
+              fontSize: 12,
+              color: "rgba(201,169,110,0.75)",
+            }}
+          >
+            {menu.option_add_on}
+          </p>
+        </div>
       )}
 
-      {/* Prix bottom */}
-      <div style={{ borderTop: "1px solid rgba(201,169,110,0.10)", paddingTop: 16, marginTop: 16 }} />
+      {/* Végétarien */}
+      <div
+        style={{
+          borderTop: "1px solid rgba(201,169,110,0.08)",
+          paddingTop: 12,
+          marginTop: 12,
+        }}
+      >
+        <p
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontWeight: 400,
+            fontSize: 10,
+            letterSpacing: "0.20em",
+            textTransform: "uppercase",
+            color: "rgba(232,221,208,0.35)",
+            marginBottom: 4,
+          }}
+        >
+          VÉGÉTARIEN
+        </p>
+        <p
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontWeight: 300,
+            fontSize: 12,
+            color: "rgba(232,221,208,0.50)",
+          }}
+        >
+          {menu.vegetarien}
+        </p>
+      </div>
+
+      {/* Mention basse */}
+      <p
+        style={{
+          fontFamily: "'Jost', sans-serif",
+          fontWeight: 200,
+          fontSize: 11,
+          fontStyle: "italic",
+          color: "rgba(232,221,208,0.30)",
+          marginTop: 16,
+        }}
+      >
+        Café, thé & mignardises maison · Inclus
+      </p>
 
       {/* Selected dot */}
       {isSelected && (
@@ -334,13 +371,94 @@ const fadeUp = {
   visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.7, ease: "easeOut" } }),
 };
 
+interface FiltreButtonProps {
+  letter: string;
+  title: string;
+  desc: string;
+  isActive: boolean;
+  onClick: () => void;
+}
+
+const FiltreButton = ({ letter, title, desc, isActive, onClick }: FiltreButtonProps) => (
+  <button
+    onClick={onClick}
+    className="text-left transition-all duration-[250ms]"
+    style={{
+      padding: "20px 24px",
+      border: isActive ? "1px solid #c9a96e" : "1px solid rgba(201,169,110,0.20)",
+      background: isActive ? "rgba(201,169,110,0.08)" : "rgba(26,22,18,0.40)",
+      borderRadius: 2,
+      cursor: "pointer",
+    }}
+    onMouseEnter={(e) => {
+      if (!isActive) {
+        e.currentTarget.style.border = "1px solid rgba(201,169,110,0.40)";
+        e.currentTarget.style.background = "rgba(201,169,110,0.03)";
+      }
+    }}
+    onMouseLeave={(e) => {
+      if (!isActive) {
+        e.currentTarget.style.border = "1px solid rgba(201,169,110,0.20)";
+        e.currentTarget.style.background = "rgba(26,22,18,0.40)";
+      }
+    }}
+  >
+    <div className="flex items-baseline">
+      <span
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontWeight: 300,
+          fontStyle: "italic",
+          fontSize: 28,
+          color: "rgba(201,169,110,0.30)",
+          marginRight: 12,
+        }}
+      >
+        {letter}
+      </span>
+      <span
+        style={{
+          fontFamily: "'Jost', sans-serif",
+          fontWeight: 400,
+          fontSize: 12,
+          letterSpacing: "0.20em",
+          textTransform: "uppercase",
+          color: "rgba(232,221,208,0.80)",
+        }}
+      >
+        {title}
+      </span>
+    </div>
+    <p
+      style={{
+        fontFamily: "'Jost', sans-serif",
+        fontWeight: 300,
+        fontSize: 13,
+        color: "rgba(232,221,208,0.50)",
+        marginTop: 6,
+        lineHeight: 1.6,
+      }}
+    >
+      {desc}
+    </p>
+  </button>
+);
+
 const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
   const [selectedMenu, setSelectedMenu] = useState<string | null>(state.repasEntree);
+  const [filtre, setFiltre] = useState<RepasFiltre>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const selectedMenuData = menus.find((m) => m.id === selectedMenu) ?? null;
+  const selected = menus.find((m) => m.id === selectedMenu) ?? null;
+  const recommendedId = filtre ? FILTRE_TO_MENU[filtre] : null;
+
+  const handleFiltre = (f: NonNullable<RepasFiltre>) => {
+    setFiltre(f);
+    setSelectedMenu(FILTRE_TO_MENU[f]);
+  };
 
   const handleContinue = () => {
+    const selectedMenuData = menus.find((m) => m.id === selectedMenu);
     onUpdate({
       repasEntree: selectedMenu,
       repasPlat: null,
@@ -390,7 +508,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
       >
         La table
         <br />
-        que vous méritez.
+        du soir.
       </motion.h2>
 
       <motion.p
@@ -405,16 +523,19 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
           fontSize: 15,
           color: "rgba(232,221,208,0.65)",
           lineHeight: 1.8,
-          maxWidth: 500,
+          maxWidth: 520,
           marginBottom: 16,
         }}
       >
-        J&J Traiteur compose trois menus de saison, ancrés dans le terroir beaujolais et lyonnais. Chaque menu propose
-        une option végétarienne. Choisissez celui qui vous ressemble.
+        J&J Traiteur. Trois menus de saison,
+        <br />
+        ancrés dans le terroir beaujolais et lyonnais.
+        <br />
+        Un choix. Une direction.
       </motion.p>
 
       <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp} className="mb-2">
-        <InfoButton label="Rencontrer le chef Sébastien" onClick={() => setDrawerOpen(true)} />
+        <InfoButton label="Découvrir le chef" onClick={() => setDrawerOpen(true)} />
       </motion.div>
 
       <motion.p
@@ -439,8 +560,57 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        style={{ width: 60, height: 1, background: "#c9a96e", margin: "36px auto 52px" }}
+        style={{ width: 60, height: 1, background: "#c9a96e", margin: "36px auto 40px" }}
       />
+
+      {/* Filtre question */}
+      <motion.div
+        custom={4.5}
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+        className="w-full flex flex-col items-center"
+        style={{ maxWidth: 520, marginBottom: 40 }}
+      >
+        <p
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontWeight: 400,
+            fontSize: 11,
+            letterSpacing: "0.30em",
+            textTransform: "uppercase",
+            color: "rgba(201,169,110,0.55)",
+            textAlign: "center",
+            marginBottom: 20,
+          }}
+        >
+          À TABLE, VOUS ÊTES PLUTÔT…
+        </p>
+
+        <div className="w-full flex flex-col" style={{ gap: 12 }}>
+          <FiltreButton
+            letter="A"
+            title="TERROIR & VIANDE"
+            desc="Beaujolais, Charolais, lyonnais. Ce que la région a de meilleur en octobre."
+            isActive={filtre === "terroir"}
+            onClick={() => handleFiltre("terroir")}
+          />
+          <FiltreButton
+            letter="B"
+            title="MER & LÉGÈRETÉ"
+            desc="Poissons, quenelle, produits du littoral revisités à la lyonnaise."
+            isActive={filtre === "mer"}
+            onClick={() => handleFiltre("mer")}
+          />
+          <FiltreButton
+            letter="C"
+            title="LES DEUX"
+            desc="Selon l'envie des convives — les deux options restent disponibles à la commande."
+            isActive={filtre === "les-deux"}
+            onClick={() => handleFiltre("les-deux")}
+          />
+        </div>
+      </motion.div>
 
       {/* Menu cards */}
       <motion.div
@@ -448,13 +618,15 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        className="w-full flex flex-col items-center gap-4"
+        className="w-full flex flex-col items-center"
+        style={{ gap: 16, maxWidth: 680 }}
       >
         {menus.map((menu) => (
           <MenuCard
             key={menu.id}
             menu={menu}
             isSelected={selectedMenu === menu.id}
+            isRecommended={recommendedId === menu.id}
             onSelect={() => setSelectedMenu(menu.id)}
           />
         ))}
@@ -462,7 +634,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
 
       {/* Récap */}
       <AnimatePresence>
-        {selectedMenuData && (
+        {selected && (
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -499,51 +671,59 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
                 fontStyle: "italic",
                 fontSize: 24,
                 color: "#faf8f4",
-                marginBottom: 8,
+                marginBottom: 12,
               }}
             >
-              {selectedMenuData.name}
+              {selected.name}
             </p>
 
             <p
-              className="whitespace-pre-line"
               style={{
                 fontFamily: "'Jost', sans-serif",
                 fontWeight: 300,
-                fontSize: 14,
-                color: "rgba(232,221,208,0.55)",
+                fontSize: 13,
+                fontStyle: "italic",
+                color: "rgba(232,221,208,0.50)",
                 lineHeight: 1.6,
                 marginBottom: 12,
               }}
             >
-              {selectedMenuData.tagline}
+              {selected.accroche}
             </p>
 
-            <p
+            <div
               style={{
-                fontFamily: "'Jost', sans-serif",
-                fontWeight: 400,
-                fontSize: 14,
-                color: "#c9a96e",
-                marginBottom: 12,
+                borderTop: "1px solid rgba(201,169,110,0.08)",
+                paddingTop: 10,
+                marginTop: 4,
               }}
             >
-              {selectedMenuData.prixTTC}
-            </p>
+              <p
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontWeight: 300,
+                  fontSize: 12,
+                  color: "rgba(232,221,208,0.40)",
+                }}
+              >
+                Végétarien disponible : {selected.vegetarien}
+              </p>
+            </div>
 
-            <p
-              className="text-center"
-              style={{
-                fontFamily: "'Jost', sans-serif",
-                fontWeight: 300,
-                fontSize: 12,
-                color: "rgba(232,221,208,0.35)",
-                fontStyle: "italic",
-                marginTop: 8,
-              }}
-            >
-              + Café, thé & mignardises maison
-            </p>
+            {selected.option_add_on && (
+              <p
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontWeight: 300,
+                  fontSize: 12,
+                  fontStyle: "italic",
+                  color: "rgba(201,169,110,0.55)",
+                  marginTop: 8,
+                }}
+              >
+                Option : {selected.option_add_on}
+              </p>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -591,7 +771,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
           }}
           whileHover={{ backgroundColor: "#c9a96e", color: "#1a1612" }}
         >
-          {selectedMenuData ? "Mon menu est prêt — Continuer" : "Continuer"}
+          {selected ? "Mon menu est prêt — Continuer" : "Continuer"}
         </motion.button>
       </div>
 
