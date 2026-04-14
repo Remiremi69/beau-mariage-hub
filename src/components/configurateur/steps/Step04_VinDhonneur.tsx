@@ -13,20 +13,16 @@ interface Step04Props {
 }
 
 type TagColor = "or" | "vert" | "blanc";
+type VHFiltre = "terroir" | "signature" | null;
 
 interface VHFormule {
   id: string;
   name: string;
-  tagline: string;
   tag: string;
   tagColor: TagColor;
+  accroche: string;
+  description: string;
   duree: string;
-  prix: string;
-  prixNote: string;
-  cocktail: string;
-  pieces: string;
-  plancha: string;
-  boissons: string;
   inclus: string[];
   imagePlaceholder: string;
 }
@@ -35,48 +31,80 @@ const vhFormules: VHFormule[] = [
   {
     id: "vh-beaujolais-vivant",
     name: "Beaujolais Vivant",
-    tagline: "Le terroir lyonnais en 7 pièces",
-    tag: "Essentiel",
+    tag: "Terroir",
     tagColor: "or",
+    accroche:
+      "Crémant de Bourgogne, escargots en persillade, " +
+      "plancha volaille de Bresse. " +
+      "Le Beaujolais comme premier mot.",
+    description:
+      "Crémant de Bourgogne à l'arrivée — pas de champagne " +
+      "importé, pas de compromis. Un verre qui dit " +
+      "immédiatement où vous êtes.\n\n" +
+      "Sept pièces lyonnaises et beaujolaises : escargots " +
+      "en persillade, crêpe vonnassienne à la truite fumée, " +
+      "cervelles de canut sur pain croustillant, foie gras " +
+      "en panna cotta, brochette de canard à la mangue, " +
+      "pruneaux au lard fumé.\n\n" +
+      "Une plancha de volaille à la crème de Bresse — " +
+      "ouverte, visible, le genre de cuisine qu'on entend " +
+      "avant de la voir.\n\n" +
+      "Ce n'est pas un cocktail amuse-bouche. " +
+      "C'est une déclaration de lieu.",
     duree: "1h30",
-    prix: "Inclus dans le forfait",
-    prixNote: "",
-    cocktail: "Soupe champenoise au Crémant de Bourgogne",
-    pieces: "7 pièces cocktail · terroir lyonnais & Beaujolais · assortiment feuilletés maison",
-    plancha: "Volaille grillée à la crème de Bresse bleu",
-    boissons: "Citronnade maison · Jus artisanaux pomme/poire/coing · Eau",
     inclus: [
-      "Soupe champenoise au Crémant de Bourgogne à l'arrivée",
-      "7 pièces cocktail sélectionnées (terroir lyonnais)",
-      "Assortiment feuilletés maison",
-      "Plancha : Volaille grillée crème de Bresse bleu",
-      "Citronnade maison & jus artisanaux",
+      "Crémant de Bourgogne à l'arrivée",
+      "Escargots en persillade",
+      "Crêpe vonnassienne à la truite fumée",
+      "Cervelles de canut sur pain croustillant",
+      "Foie gras en panna cotta",
+      "Brochette de canard à la mangue",
+      "Pruneaux au lard fumé",
+      "Plancha : Volaille à la crème de Bresse",
     ],
     imagePlaceholder: "PHOTO À VENIR",
   },
   {
     id: "vh-seuil-signature",
     name: "Le Seuil Signature",
-    tagline: "Saint Jacques, foie gras, saumon tataki",
     tag: "Signature",
     tagColor: "or",
+    accroche:
+      "Bélini, saint-jacques snackée, foie gras " +
+      "et fondue d'oignons. Deux planchas. " +
+      "Le vin d'honneur le plus long.",
+    description:
+      "Bélini d'ouverture — crème de pêche blanche, " +
+      "prosecco. Doux, précis, une entrée en matière.\n\n" +
+      "Sept pièces pensées pour ce qu'elles font dans " +
+      "la bouche : saumon tataki sauce soja, poulpes " +
+      "marinés, avocat crevette pamplemousse, foie gras, " +
+      "roulade d'aubergine, chouquette au comté, " +
+      "cannelé chorizo-parmesan.\n\n" +
+      "Deux planchas en simultané : saint-jacques snackée, " +
+      "foie gras et fondue d'oignons. Le genre d'animation " +
+      "qui crée une conversation sans qu'on ait eu besoin " +
+      "de la provoquer.",
     duree: "2h",
-    prix: "Inclus dans le forfait",
-    prixNote: "Formule premium · durée étendue",
-    cocktail: "Bélini (crème de pêche, prosecco)",
-    pieces: "7 pièces cocktail · mer + terroir · assortiment feuilletés maison",
-    plancha: "Plancha DOUBLE : Saint Jacques + Foie gras fondue d'oignons",
-    boissons: "Citronnade maison · Jus artisanaux · Eau",
     inclus: [
-      "Bélini (crème de pêche, prosecco) à l'arrivée",
-      "7 pièces cocktail sélectionnées (mer + terroir)",
-      "Assortiment feuilletés maison",
-      "Plancha double : Saint Jacques + Foie gras fondue d'oignons",
-      "Citronnade maison & jus artisanaux",
+      "Bélini (crème de pêche blanche, prosecco)",
+      "Saumon tataki sauce soja",
+      "Poulpes marinés",
+      "Avocat crevette pamplemousse",
+      "Foie gras",
+      "Roulade d'aubergine",
+      "Chouquette au comté",
+      "Cannelé chorizo-parmesan",
+      "Plancha double : Saint-Jacques + Foie gras fondue d'oignons",
     ],
     imagePlaceholder: "PHOTO À VENIR",
   },
 ];
+
+const FILTRE_TO_FORMULE: Record<NonNullable<VHFiltre>, string> = {
+  terroir: "vh-beaujolais-vivant",
+  signature: "vh-seuil-signature",
+};
 
 const tagStyles: Record<TagColor, React.CSSProperties> = {
   or: { border: "1px solid rgba(201,169,110,0.50)", color: "rgba(201,169,110,0.85)", background: "rgba(201,169,110,0.08)" },
@@ -94,10 +122,12 @@ const PlaceholderIcon = () => (
 const VHFormuleCard = ({
   formule,
   isSelected,
+  isRecommended,
   onSelect,
 }: {
   formule: VHFormule;
   isSelected: boolean;
+  isRecommended: boolean;
   onSelect: () => void;
 }) => (
   <div
@@ -108,7 +138,6 @@ const VHFormuleCard = ({
       border: isSelected ? "1px solid #c9a96e" : "1px solid rgba(201,169,110,0.15)",
       background: isSelected ? "rgba(201,169,110,0.06)" : "rgba(26,22,18,0.40)",
       cursor: "pointer",
-      minHeight: window.innerWidth >= 768 ? 420 : "auto",
     }}
     onMouseEnter={(e) => {
       if (!isSelected) {
@@ -148,6 +177,24 @@ const VHFormuleCard = ({
       >
         {formule.imagePlaceholder}
       </span>
+
+      {/* Recommandé badge */}
+      {isRecommended && (
+        <span
+          className="absolute top-0 left-1/2 -translate-x-1/2"
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontWeight: 300,
+            fontSize: 10,
+            letterSpacing: "0.20em",
+            padding: "4px 14px",
+            background: "rgba(201,169,110,0.85)",
+            color: "#1a1612",
+          }}
+        >
+          RECOMMANDÉ POUR VOUS
+        </span>
+      )}
 
       {/* Tag */}
       <span
@@ -194,40 +241,54 @@ const VHFormuleCard = ({
           letterSpacing: "0.30em",
           textTransform: "uppercase",
           color: "rgba(232,221,208,0.80)",
-          marginBottom: 6,
+          marginBottom: 8,
         }}
       >
         {formule.name}
       </p>
 
-      <h4
+      <p
         style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Jost', sans-serif",
           fontWeight: 300,
+          fontSize: 13,
           fontStyle: "italic",
-          fontSize: 22,
-          color: "#faf8f4",
-          lineHeight: 1.3,
+          color: "rgba(232,221,208,0.65)",
+          lineHeight: 1.6,
           marginBottom: 16,
         }}
       >
-        {formule.tagline}
-      </h4>
+        {formule.accroche}
+      </p>
+
+      <p
+        style={{
+          fontFamily: "'Jost', sans-serif",
+          fontWeight: 300,
+          fontSize: 13,
+          color: "rgba(232,221,208,0.60)",
+          lineHeight: 1.75,
+          whiteSpace: "pre-line",
+          marginBottom: 16,
+        }}
+      >
+        {formule.description}
+      </p>
 
       {/* Separator */}
-      <div style={{ height: 0.5, background: "rgba(201,169,110,0.15)", marginBottom: 16 }} />
+      <div style={{ height: 0.5, background: "rgba(201,169,110,0.15)", marginBottom: 14 }} />
 
       {/* Inclus list */}
-      <div className="flex flex-col" style={{ gap: 8 }}>
+      <div className="flex flex-col" style={{ gap: 6 }}>
         {formule.inclus.map((item, i) => (
           <div key={i} className="flex items-start" style={{ gap: 10 }}>
-            <span style={{ color: "#c9a96e", fontFamily: "'Jost', sans-serif", fontSize: 13, lineHeight: 1.6 }}>—</span>
+            <span style={{ color: "#c9a96e", fontFamily: "'Jost', sans-serif", fontSize: 12, lineHeight: 1.6 }}>—</span>
             <span
               style={{
                 fontFamily: "'Jost', sans-serif",
                 fontWeight: 300,
-                fontSize: 13,
-                color: "rgba(232,221,208,0.65)",
+                fontSize: 12,
+                color: "rgba(232,221,208,0.50)",
                 lineHeight: 1.6,
               }}
             >
@@ -237,33 +298,19 @@ const VHFormuleCard = ({
         ))}
       </div>
 
-      {/* Prix */}
-      <div style={{ borderTop: "1px solid rgba(201,169,110,0.10)", paddingTop: 16, marginTop: "auto" }}>
-        <p
-          style={{
-            fontFamily: "'Jost', sans-serif",
-            fontWeight: 400,
-            fontSize: 14,
-            color: "rgba(232,221,208,0.60)",
-          }}
-        >
-          {formule.prix}
-        </p>
-        {formule.prixNote && (
-          <p
-            style={{
-              fontFamily: "'Jost', sans-serif",
-              fontWeight: 200,
-              fontSize: 11,
-              color: "rgba(201,169,110,0.55)",
-              fontStyle: "italic",
-              marginTop: 4,
-            }}
-          >
-            {formule.prixNote}
-          </p>
-        )}
-      </div>
+      {/* Mention basse */}
+      <p
+        style={{
+          fontFamily: "'Jost', sans-serif",
+          fontWeight: 200,
+          fontSize: 11,
+          fontStyle: "italic",
+          color: "rgba(232,221,208,0.30)",
+          marginTop: 16,
+        }}
+      >
+        Inclus dans votre forfait Limen
+      </p>
 
       {/* Selected dot */}
       {isSelected && (
@@ -283,9 +330,16 @@ const fadeUp = {
 
 const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) => {
   const [selectedFormule, setSelectedFormule] = useState<string | null>(state.vhBouchee);
+  const [filtre, setFiltre] = useState<VHFiltre>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const selected = vhFormules.find((f) => f.id === selectedFormule) ?? null;
+  const recommendedId = filtre ? FILTRE_TO_FORMULE[filtre] : null;
+
+  const handleFiltre = (f: NonNullable<VHFiltre>) => {
+    setFiltre(f);
+    setSelectedFormule(FILTRE_TO_FORMULE[f]);
+  };
 
   const handleContinue = () => {
     onUpdate({
@@ -355,8 +409,9 @@ const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) =>
           marginBottom: 16,
         }}
       >
-        Le vin d'honneur, c'est le moment où tout le monde se retrouve après la cérémonie. 1h30 dans les jardins du
-        domaine, debout, coupe en main — avant de passer à table. Composez-le comme vous l'imaginez.
+        1h30 dans les jardins du domaine.
+        <br />
+        Deux directions — une déclaration.
       </motion.p>
 
       <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp} className="mb-2">
@@ -377,7 +432,7 @@ const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) =>
           letterSpacing: "0.15em",
         }}
       >
-        DEUX FORMULES CLÉS EN MAIN · TOUT INCLUS
+        UNE FORMULE · TOUT INCLUS · SANS COMPROMIS
       </motion.p>
 
       <motion.div
@@ -385,8 +440,163 @@ const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) =>
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        style={{ width: 60, height: 1, background: "#c9a96e", margin: "36px auto 52px" }}
+        style={{ width: 60, height: 1, background: "#c9a96e", margin: "36px auto 40px" }}
       />
+
+      {/* Filtre question */}
+      <motion.div
+        custom={4.5}
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+        className="w-full flex flex-col items-center"
+        style={{ maxWidth: 520, marginBottom: 40 }}
+      >
+        <p
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontWeight: 400,
+            fontSize: 11,
+            letterSpacing: "0.30em",
+            textTransform: "uppercase",
+            color: "rgba(201,169,110,0.55)",
+            textAlign: "center",
+            marginBottom: 20,
+          }}
+        >
+          VOTRE VIN D'HONNEUR, C'EST PLUTÔT…
+        </p>
+
+        <div className="w-full grid grid-cols-1 md:grid-cols-2" style={{ gap: 12 }}>
+          {/* Bouton A — Terroir */}
+          <button
+            onClick={() => handleFiltre("terroir")}
+            className="text-left transition-all duration-[250ms]"
+            style={{
+              padding: "20px 24px",
+              border: filtre === "terroir" ? "1px solid #c9a96e" : "1px solid rgba(201,169,110,0.20)",
+              background: filtre === "terroir" ? "rgba(201,169,110,0.08)" : "rgba(26,22,18,0.40)",
+              borderRadius: 2,
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              if (filtre !== "terroir") {
+                e.currentTarget.style.border = "1px solid rgba(201,169,110,0.40)";
+                e.currentTarget.style.background = "rgba(201,169,110,0.03)";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (filtre !== "terroir") {
+                e.currentTarget.style.border = "1px solid rgba(201,169,110,0.20)";
+                e.currentTarget.style.background = "rgba(26,22,18,0.40)";
+              }
+            }}
+          >
+            <div className="flex items-baseline">
+              <span
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 300,
+                  fontStyle: "italic",
+                  fontSize: 28,
+                  color: "rgba(201,169,110,0.30)",
+                  marginRight: 12,
+                }}
+              >
+                A
+              </span>
+              <span
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontWeight: 400,
+                  fontSize: 12,
+                  letterSpacing: "0.20em",
+                  textTransform: "uppercase",
+                  color: "rgba(232,221,208,0.80)",
+                }}
+              >
+                TERROIR VIVANT
+              </span>
+            </div>
+            <p
+              style={{
+                fontFamily: "'Jost', sans-serif",
+                fontWeight: 300,
+                fontSize: 13,
+                color: "rgba(232,221,208,0.50)",
+                marginTop: 6,
+                lineHeight: 1.6,
+              }}
+            >
+              Pièces locales, plancha volaille, crémant de Bourgogne
+            </p>
+          </button>
+
+          {/* Bouton B — Signature */}
+          <button
+            onClick={() => handleFiltre("signature")}
+            className="text-left transition-all duration-[250ms]"
+            style={{
+              padding: "20px 24px",
+              border: filtre === "signature" ? "1px solid #c9a96e" : "1px solid rgba(201,169,110,0.20)",
+              background: filtre === "signature" ? "rgba(201,169,110,0.08)" : "rgba(26,22,18,0.40)",
+              borderRadius: 2,
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              if (filtre !== "signature") {
+                e.currentTarget.style.border = "1px solid rgba(201,169,110,0.40)";
+                e.currentTarget.style.background = "rgba(201,169,110,0.03)";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (filtre !== "signature") {
+                e.currentTarget.style.border = "1px solid rgba(201,169,110,0.20)";
+                e.currentTarget.style.background = "rgba(26,22,18,0.40)";
+              }
+            }}
+          >
+            <div className="flex items-baseline">
+              <span
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 300,
+                  fontStyle: "italic",
+                  fontSize: 28,
+                  color: "rgba(201,169,110,0.30)",
+                  marginRight: 12,
+                }}
+              >
+                B
+              </span>
+              <span
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontWeight: 400,
+                  fontSize: 12,
+                  letterSpacing: "0.20em",
+                  textTransform: "uppercase",
+                  color: "rgba(232,221,208,0.80)",
+                }}
+              >
+                SIGNATURE
+              </span>
+            </div>
+            <p
+              style={{
+                fontFamily: "'Jost', sans-serif",
+                fontWeight: 300,
+                fontSize: 13,
+                color: "rgba(232,221,208,0.50)",
+                marginTop: 6,
+                lineHeight: 1.6,
+              }}
+            >
+              Pièces premium, plancha Saint-Jacques + foie gras
+            </p>
+          </button>
+        </div>
+      </motion.div>
 
       {/* Formules */}
       <motion.div
@@ -402,6 +612,7 @@ const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) =>
             key={formule.id}
             formule={formule}
             isSelected={selectedFormule === formule.id}
+            isRecommended={recommendedId === formule.id}
             onSelect={() => setSelectedFormule(formule.id)}
           />
         ))}
@@ -468,7 +679,10 @@ const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) =>
               </span>
             </div>
 
-            <div className="flex items-center justify-between" style={{ padding: "8px 0" }}>
+            <div
+              className="flex items-center justify-between"
+              style={{ padding: "8px 0", borderBottom: "1px solid rgba(201,169,110,0.08)" }}
+            >
               <span
                 style={{
                   fontFamily: "'Jost', sans-serif",
@@ -495,17 +709,17 @@ const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) =>
             </div>
 
             <p
-              className="text-center"
               style={{
                 fontFamily: "'Jost', sans-serif",
                 fontWeight: 300,
-                fontSize: 12,
-                color: "rgba(232,221,208,0.35)",
+                fontSize: 13,
                 fontStyle: "italic",
+                color: "rgba(232,221,208,0.50)",
+                lineHeight: 1.6,
                 marginTop: 16,
               }}
             >
-              + Champagne & vins beaujolais servis à volonté
+              {selected.accroche}
             </p>
           </motion.div>
         )}
