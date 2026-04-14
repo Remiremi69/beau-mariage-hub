@@ -4,6 +4,7 @@ import { ConfigurateurState } from "../pricingTypes";
 import InfoButton from "../InfoButton";
 import PresentationDrawer from "../PresentationDrawer";
 import { drawerRepas } from "../drawerContents";
+import menuAutomneCharolaisImg from "@/assets/menu-automne-charolais.jpg";
 
 interface Step05Props {
   state: ConfigurateurState;
@@ -175,20 +176,30 @@ const MenuCard = ({
         transition: "background 0.25s",
       }}
     >
-      <PlaceholderIcon />
-      <span
-        style={{
-          fontFamily: "'Jost', sans-serif",
-          fontWeight: 200,
-          fontSize: 11,
-          letterSpacing: "0.25em",
-          textTransform: "uppercase",
-          color: "rgba(201,169,110,0.25)",
-          marginTop: 8,
-        }}
-      >
-        {menu.imagePlaceholder}
-      </span>
+      {menu.id === 'menu-automne-charolais' ? (
+        <img
+          src={menuAutomneCharolaisImg}
+          alt={menu.name}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      ) : (
+        <>
+          <PlaceholderIcon />
+          <span
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontWeight: 200,
+              fontSize: 11,
+              letterSpacing: "0.25em",
+              textTransform: "uppercase",
+              color: "rgba(201,169,110,0.25)",
+              marginTop: 8,
+            }}
+          >
+            {menu.imagePlaceholder}
+          </span>
+        </>
+      )}
 
       {/* Recommandé badge */}
       {isRecommended && (
