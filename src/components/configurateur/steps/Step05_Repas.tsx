@@ -5,6 +5,7 @@ import InfoButton from "../InfoButton";
 import PresentationDrawer from "../PresentationDrawer";
 import { drawerRepas } from "../drawerContents";
 import menuAutomneCharolaisImg from "@/assets/menu-automne-charolais.jpg";
+import menuCoconLyonnaisImg from "@/assets/menu-cocon-lyonnais.jpg";
 
 interface Step05Props {
   state: ConfigurateurState;
@@ -179,6 +180,12 @@ const MenuCard = ({
       {menu.id === 'menu-automne-charolais' ? (
         <img
           src={menuAutomneCharolaisImg}
+          alt={menu.name}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      ) : menu.id === 'menu-cocon-lyonnais' ? (
+        <img
+          src={menuCoconLyonnaisImg}
           alt={menu.name}
           className="absolute inset-0 w-full h-full object-cover"
         />
