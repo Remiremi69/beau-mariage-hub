@@ -125,15 +125,10 @@ export const schemaSerie = [
       url: BASE_URL,
     },
     offers: {
-      '@type': 'Offer',
+      '@type': 'AggregateOffer',
       priceCurrency: 'EUR',
-      price: '15000',
-      priceSpecification: {
-        '@type': 'PriceSpecification',
-        price: '15000',
-        priceCurrency: 'EUR',
-        description: 'À partir de 15 000€ tout compris',
-      },
+      lowPrice: '12000',
+      highPrice: '34000',
       availability: 'https://schema.org/LimitedAvailability',
       validFrom: '2026-01-01',
       url: `${BASE_URL}/configurateur`,
