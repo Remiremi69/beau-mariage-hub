@@ -5,6 +5,7 @@ import InfoButton from "../InfoButton";
 import PresentationDrawer from "../PresentationDrawer";
 import { drawerVin } from "../drawerContents";
 import vhBeaujolaisVivantImg from "@/assets/vh-beaujolais-vivant.jpg";
+import vhSeuilSignatureImg from "@/assets/vh-seuil-signature.jpg";
 
 interface Step04Props {
   state: ConfigurateurState;
@@ -164,30 +165,11 @@ const VHFormuleCard = ({
         transition: "background 0.25s",
       }}
     >
-      {formule.id === 'vh-beaujolais-vivant' ? (
-        <img
-          src={vhBeaujolaisVivantImg}
-          alt={formule.name}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      ) : (
-        <>
-          <PlaceholderIcon />
-          <span
-            style={{
-              fontFamily: "'Jost', sans-serif",
-              fontWeight: 200,
-              fontSize: 11,
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-              color: "rgba(201,169,110,0.25)",
-              marginTop: 8,
-            }}
-          >
-            {formule.imagePlaceholder}
-          </span>
-        </>
-      )}
+      <img
+        src={formule.id === 'vh-beaujolais-vivant' ? vhBeaujolaisVivantImg : vhSeuilSignatureImg}
+        alt={formule.name}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
 
       {/* Recommandé badge */}
       {isRecommended && (
