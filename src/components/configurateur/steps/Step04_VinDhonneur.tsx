@@ -409,13 +409,13 @@ const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) =>
           marginBottom: 16,
         }}
       >
-        1h30 dans les jardins du domaine.
+        Crémant ou bélini. Pièces lyonnaises, planchas ouvertes.
         <br />
-        Deux directions — une déclaration.
+        Le premier moment de la journée — dans les jardins du domaine.
       </motion.p>
 
       <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp} className="mb-2">
-        <InfoButton label="Rencontrer notre sommelier" onClick={() => setDrawerOpen(true)} />
+        <InfoButton label="Ce qui est servi" onClick={() => setDrawerOpen(true)} />
       </motion.div>
 
       <motion.p
@@ -432,7 +432,7 @@ const Step04_VinDhonneur = ({ state, onUpdate, onNext, onPrev }: Step04Props) =>
           letterSpacing: "0.15em",
         }}
       >
-        UNE FORMULE · TOUT INCLUS · SANS COMPROMIS
+        COCKTAIL · BIÈRE ARTISANALE · TOUT INCLUS
       </motion.p>
 
       <motion.div
