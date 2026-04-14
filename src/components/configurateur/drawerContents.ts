@@ -16,8 +16,14 @@ export const drawerDomaine: DrawerContent = {
     {
       type: 'gallery',
       content: {
-        images: [domaineHero2, domaineHero3, domaineHero4],
-        caption: 'Le domaine au fil des saisons',
+        images: [
+          domaineHero2,
+          domaineHero3,
+          'https://i.postimg.cc/x1YWXFrv/9-accueil-le-caveau.jpg',
+          'https://i.postimg.cc/W3MGqSc5/1627386795-60fff3ab3f816.jpg',
+          domaineHero4,
+        ],
+        caption: 'Le domaine, le caveau & la grande salle',
       },
     },
     {
