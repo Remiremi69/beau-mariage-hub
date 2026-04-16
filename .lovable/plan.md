@@ -1,44 +1,54 @@
 
-## Diagnostic
 
-Le domaine `notify.lebeaumariage.fr` est bloqué en statut **Pending** depuis 2 semaines. Le délai normal est de quelques minutes à 72h maximum. Cela indique un problème de configuration DNS qui ne se résoudra pas tout seul.
+## Clarification importante
 
-### Cause probable
-Les enregistrements NS qui doivent être ajoutés chez le registrar du domaine `lebeaumariage.fr` (pour déléguer le sous-domaine `notify` aux serveurs de noms de Lovable Cloud) :
-- soit n'ont jamais été ajoutés
-- soit ont été ajoutés incorrectement
-- soit pointent vers d'anciens serveurs de noms
+L'écran « Manage DNS records » dans **Lovable** (capture d'écran) sert à gérer les DNS d'un domaine **acheté via Lovable**. Mais `lebeaumariage.fr` est acheté chez **Hostinger** — donc cet écran Lovable n'est PAS le bon endroit.
 
-## Plan d'action
+### Où ajouter les NS records ?
 
-### Étape 1 — Supprimer le domaine actuel
-Aller dans **Nuage → Courriels → Gérer les domaines** et supprimer `notify.lebeaumariage.fr` pour repartir d'une base propre.
+Les NS records doivent être ajoutés **chez Hostinger** (registrar du domaine), PAS dans Lovable.
 
-### Étape 2 — Re-créer le domaine
-Relancer la configuration via le dialogue de setup email. Cela va régénérer de nouveaux enregistrements NS frais à ajouter chez le registrar.
+## Plan d'action corrigé
 
-### Étape 3 — Ajouter les NS records chez le registrar
-Une fois les nouveaux NS affichés, il faudra les ajouter chez le registrar du domaine `lebeaumariage.fr` (OVH, Gandi, IONOS, Cloudflare, etc. — selon ton hébergeur de domaine).
+### Étape 1 — Quitter l'écran Lovable « Manage DNS records »
+Cet écran ne sert pas pour ce cas. Ferme-le.
 
-Les enregistrements ressembleront à :
-```text
-notify.lebeaumariage.fr   NS   ns3.lovable.cloud
-notify.lebeaumariage.fr   NS   ns4.lovable.cloud
-```
+### Étape 2 — Aller dans Cloud → Emails
+Dans Lovable, va dans **Cloud → Emails → Manage Domains**. Là, tu verras le domaine `notify.lebeaumariage.fr` avec ses **2 NS records à copier** (du type `ns3.lovable.cloud`, `ns4.lovable.cloud`).
 
-### Étape 4 — Vérifier la propagation
-Une fois les NS ajoutés, la vérification se fait normalement en quelques minutes (max 72h, mais 99% du temps < 1h).
+**📋 Copie ces 2 valeurs.**
 
-### Étape 5 — Suite automatique
-Une fois le domaine vérifié, l'infrastructure email continuera automatiquement, et l'envoi des emails de l'agent commercial Limen reprendra.
+### Étape 3 — Aller chez Hostinger
+1. Connecte-toi à [hpanel.hostinger.com](https://hpanel.hostinger.com)
+2. **Domains** → clique sur `lebeaumariage.fr`
+3. **DNS / Nameservers** → **DNS Records**
+4. Clique **Add Record**
+
+### Étape 4 — Vérifier que Hostinger propose bien le type NS
+Dans le menu déroulant **Type** chez Hostinger, tu devrais voir : A, AAAA, CNAME, MX, TXT, **NS**, SRV, CAA…
+
+Si **NS n'apparaît pas** chez Hostinger non plus, c'est une limitation de leur interface DNS de base. Dans ce cas → voir Plan B ci-dessous.
+
+### Étape 5 — Si NS est disponible chez Hostinger
+Crée 2 enregistrements :
+- **Type** : NS
+- **Name** : `notify`
+- **Points to / Nameserver** : la valeur copiée depuis Lovable
+- **TTL** : 14400
+
+Répéter pour la 2ème valeur NS.
 
 ---
 
-## Questions importantes à clarifier avant de procéder
+## Plan B — Si Hostinger ne permet PAS les NS records sur sous-domaine
 
-1. **Chez quel registrar est hébergé `lebeaumariage.fr` ?** (OVH, Gandi, Cloudflare, IONOS, autre ?) — ça m'aidera à te donner les instructions précises pour ajouter les NS records.
+Certains plans Hostinger limitent les types DNS. Solutions possibles :
+1. **Changer les nameservers du domaine entier** vers Lovable (mais ça casserait le site web actuel)
+2. **Utiliser Cloudflare comme DNS intermédiaire** (gratuit) : transférer les nameservers de `lebeaumariage.fr` vers Cloudflare, puis ajouter les NS records depuis Cloudflare qui supporte tous les types
+3. **Contacter le support Hostinger** pour qu'ils ajoutent les NS records manuellement
 
-2. **As-tu bien ajouté les NS records lors de la première configuration il y a 2 semaines ?** Si oui, peux-tu vérifier qu'ils sont toujours présents et corrects dans l'interface DNS de ton registrar ? Si non, c'est très probablement la cause du blocage.
+## Questions à clarifier
 
-3. **Veux-tu que je supprime le domaine actuel et relance la procédure dès maintenant ?** (Action irréversible — il faudra reconfigurer les NS records ensuite.)
+1. **Es-tu actuellement dans Lovable (Manage DNS records) ou chez Hostinger ?** La capture montre Lovable — il faut basculer vers Hostinger.
+2. **Une fois chez Hostinger dans la zone DNS, peux-tu me dire quels types sont proposés dans le menu Type ?** (capture d'écran utile)
 
