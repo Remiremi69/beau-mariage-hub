@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -64,8 +65,29 @@ function formatLeadAsMessage(lead: LeadPayload): string {
     "",
     `Statut actuel : ${lead.status ?? "—"}`,
     `Créé le : ${lead.created_at ?? "—"}`,
+    "",
+    "Génère un email personnalisé, chaleureux et professionnel à envoyer directement à ce client. Ne mets pas de salutation type 'Bonjour [Prénom]' ni de signature, juste le corps du message.",
   ];
   return lines.join("\n");
+}
+
+function extractTextFromAnthropicResponse(data: unknown): string {
+  if (!data || typeof data !== "object") return "";
+  const obj = data as Record<string, unknown>;
+  const content = obj.content;
+  if (Array.isArray(content)) {
+    return content
+      .map((block: unknown) => {
+        if (block && typeof block === "object") {
+          const b = block as Record<string, unknown>;
+          if (b.type === "text" && typeof b.text === "string") return b.text;
+        }
+        return "";
+      })
+      .filter(Boolean)
+      .join("\n\n");
+  }
+  return "";
 }
 
 serve(async (req) => {
@@ -85,6 +107,9 @@ serve(async (req) => {
         },
       );
     }
+
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
+    const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 
     // Le webhook Supabase envoie soit le record directement, soit { type, table, record, ... }
     const raw = await req.json();
@@ -151,11 +176,62 @@ serve(async (req) => {
 
     console.log("Agent commercial Limen exécuté avec succès pour", lead.email);
 
+    // Extraction du texte généré par l'agent
+    const generatedText = extractTextFromAnthropicResponse(anthropicData);
+
+    let emailDispatch: Record<string, unknown> = {
+      attempted: false,
+      reason: "no_recipient_or_text",
+    };
+
+    if (lead.email && generatedText && SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY) {
+      try {
+        const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+        const { data: emailRes, error: emailErr } =
+          await supabase.functions.invoke("send-transactional-email", {
+            body: {
+              templateName: "agent-commercial-message",
+              recipientEmail: lead.email,
+              idempotencyKey: `agent-commercial-${lead.id ?? crypto.randomUUID()}`,
+              templateData: {
+                prenom: lead.prenom ?? null,
+                bodyText: generatedText,
+              },
+            },
+          });
+
+        if (emailErr) {
+          console.error("Erreur envoi email transactionnel:", emailErr);
+          emailDispatch = { attempted: true, success: false, error: String(emailErr) };
+        } else {
+          console.log("Email transactionnel envoyé pour", lead.email);
+          emailDispatch = { attempted: true, success: true, response: emailRes };
+        }
+      } catch (sendErr) {
+        console.error("Exception envoi email:", sendErr);
+        emailDispatch = {
+          attempted: true,
+          success: false,
+          error: sendErr instanceof Error ? sendErr.message : String(sendErr),
+        };
+      }
+    } else {
+      console.warn(
+        "Email non envoyé — email du lead ou texte généré manquant, ou config Supabase absente",
+        {
+          hasEmail: !!lead.email,
+          hasText: !!generatedText,
+          hasSupabaseConfig: !!(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY),
+        },
+      );
+    }
+
     return new Response(
       JSON.stringify({
         success: true,
         lead_id: lead.id ?? null,
         agent_response: anthropicData,
+        email_dispatch: emailDispatch,
       }),
       {
         status: 200,
