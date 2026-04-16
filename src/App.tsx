@@ -31,6 +31,7 @@ import Musicien from "./pages/serie-octobre-2027/prestataires/Musicien";
 import Signature from "./pages/Signature";
 import Acompte from "./pages/Acompte";
 import SiteDeMariage from "./pages/SiteDeMariage";
+import Unsubscribe from "./pages/Unsubscribe";
 
 const queryClient = new QueryClient();
 
@@ -68,6 +69,7 @@ const AppLayout = () => {
         <Route path="/certification" element={<Certification />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/unsubscribe" element={<Unsubscribe />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!isConfigurateur && !isAdmin && !isSiteDeMariage && <Footer />}
