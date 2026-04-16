@@ -2,3 +2,6 @@ project_id = "fwsqtjkydzetwcqidclw"
 
 [functions.process-email-queue]
 verify_jwt = true
+
+[functions.agent-commercial-limen]
+verify_jwt = false
