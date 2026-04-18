@@ -287,6 +287,7 @@ serve(async (req) => {
         lead_id: lead.id ?? null,
         agent_response: anthropicData,
         email_dispatch: emailDispatch,
+        telegram_dispatch: telegramDispatch,
       }),
       {
         status: 200,
