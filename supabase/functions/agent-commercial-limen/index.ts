@@ -179,6 +179,61 @@ serve(async (req) => {
     // Extraction du texte généré par l'agent
     const generatedText = extractTextFromAnthropicResponse(anthropicData);
 
+    // Envoi notification Telegram
+    let telegramDispatch: Record<string, unknown> = { attempted: false };
+    const TELEGRAM_BOT_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN");
+    const TELEGRAM_CHAT_ID = Deno.env.get("TELEGRAM_CHAT_ID");
+
+    if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
+      try {
+        const telegramText = [
+          "🔔 Nouveau lead Limen",
+          "",
+          `Prénom : ${lead.prenom ?? "—"}`,
+          `Date : ${lead.date_mariage ?? "—"}`,
+          `Invités : ${lead.guests_estimate ?? "—"}`,
+          `Budget : ${lead.total_estimate ?? "—"}€`,
+          `Localisation : ${lead.localisation ?? "—"}`,
+          "",
+          "---",
+          "EMAIL SUGGÉRÉ :",
+          generatedText || "(aucun texte généré)",
+        ].join("\n");
+
+        const tgResp = await fetch(
+          `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              chat_id: TELEGRAM_CHAT_ID,
+              text: telegramText,
+              parse_mode: "HTML",
+            }),
+          },
+        );
+
+        const tgData = await tgResp.json().catch(() => ({}));
+        if (!tgResp.ok) {
+          console.error("Erreur envoi Telegram:", tgResp.status, tgData);
+          telegramDispatch = { attempted: true, success: false, status: tgResp.status, response: tgData };
+        } else {
+          console.log("Notification Telegram envoyée pour lead", lead.id);
+          telegramDispatch = { attempted: true, success: true };
+        }
+      } catch (tgErr) {
+        console.error("Exception envoi Telegram:", tgErr);
+        telegramDispatch = {
+          attempted: true,
+          success: false,
+          error: tgErr instanceof Error ? tgErr.message : String(tgErr),
+        };
+      }
+    } else {
+      console.warn("Telegram non configuré (TELEGRAM_BOT_TOKEN ou TELEGRAM_CHAT_ID manquant)");
+      telegramDispatch = { attempted: false, reason: "missing_telegram_config" };
+    }
+
     let emailDispatch: Record<string, unknown> = {
       attempted: false,
       reason: "no_recipient_or_text",
