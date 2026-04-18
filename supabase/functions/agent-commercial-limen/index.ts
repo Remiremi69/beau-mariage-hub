@@ -139,10 +139,6 @@ serve(async (req) => {
             content: userMessage,
           },
         ],
-        metadata: {
-          lead_id: lead.id ?? null,
-          source: "configurateur_leads_webhook",
-        },
       }),
     });
 
