@@ -9,8 +9,20 @@ const corsHeaders = {
 };
 
 const ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages";
-const MODEL = "claude-sonnet-4-6";
-const AGENT_ID = "agent_011Ca7zwtS5KSLDEA6w674Rr";
+const MODEL = "claude-sonnet-4-5";
+
+const SYSTEM_PROMPT = `Tu es l'agent commercial de Limen, marque de mariage premium au Domaine de la Croix Rochefort, Beaujolais. À chaque nouveau lead reçu tu génères un email de réponse personnalisé.
+
+Règles :
+- Ton chaleureux, sobre, premium. Jamais générique.
+- Mentionne leur date et budget estimé
+- Si localisation = local : propose dégustation sur site
+- Si localisation = distance : confirme coffret + RDV Zoom
+- Si localisation = null : propose un appel découverte
+- 150 mots maximum
+- Signature : Rémi — Limen
+- Jamais "suite à votre demande"
+- Ne confirme pas de date sans vérification humaine`;
 
 interface LeadPayload {
   id?: string;
@@ -131,8 +143,8 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         model: MODEL,
-        agent_id: AGENT_ID,
-        max_tokens: 4096,
+        max_tokens: 1024,
+        system: SYSTEM_PROMPT,
         messages: [
           {
             role: "user",
