@@ -32,6 +32,7 @@ import Signature from "./pages/Signature";
 import Acompte from "./pages/Acompte";
 import SiteDeMariage from "./pages/SiteDeMariage";
 import Unsubscribe from "./pages/Unsubscribe";
+import Partenaires from "./pages/Partenaires";
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,7 @@ const AppLayout = () => {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/unsubscribe" element={<Unsubscribe />} />
+        <Route path="/partenaires" element={<Partenaires />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!isConfigurateur && !isAdmin && !isSiteDeMariage && <Footer />}
