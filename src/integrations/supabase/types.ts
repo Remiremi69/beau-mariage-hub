@@ -280,6 +280,45 @@ export type Database = {
         }
         Relationships: []
       }
+      partenaires_leads: {
+        Row: {
+          ca_annuel: string | null
+          created_at: string
+          email: string
+          id: string
+          message: string | null
+          metier: string | null
+          nom: string | null
+          prenom: string
+          source: string
+          status: string
+        }
+        Insert: {
+          ca_annuel?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          message?: string | null
+          metier?: string | null
+          nom?: string | null
+          prenom: string
+          source?: string
+          status?: string
+        }
+        Update: {
+          ca_annuel?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string | null
+          metier?: string | null
+          nom?: string | null
+          prenom?: string
+          source?: string
+          status?: string
+        }
+        Relationships: []
+      }
       suppressed_emails: {
         Row: {
           created_at: string
