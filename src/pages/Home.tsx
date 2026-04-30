@@ -53,7 +53,7 @@ const Home = () => {
       {/* CTA after Partners */}
       <section style={{ backgroundColor: '#0D0E12', paddingTop: 60, paddingBottom: 60 }}>
         <div className="text-center">
-          <Link to="/configurateur">
+          <Link to="/serie-octobre-2027">
             <button
               style={{
                 backgroundColor: '#C9A96E',
@@ -62,14 +62,15 @@ const Home = () => {
                 fontFamily: "'Jost', sans-serif",
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                fontSize: '0.85rem',
-                padding: '18px 48px',
+                fontSize: '13px',
+                padding: '16px 36px',
                 border: 'none',
                 cursor: 'pointer',
+                width: 'auto',
               }}
               className="hover:opacity-90 transition-opacity"
             >
-              Configurer mon mariage →
+              Voir la Série Octobre 2027 →
             </button>
           </Link>
         </div>
@@ -129,7 +130,7 @@ const Home = () => {
       {/* CTA after Founder's Word */}
       <section style={{ backgroundColor: '#0D0E12', paddingTop: 60, paddingBottom: 60 }}>
         <div className="text-center">
-          <Link to="/configurateur">
+          <Link to="/serie-octobre-2027">
             <button
               style={{
                 backgroundColor: '#C9A96E',
@@ -138,14 +139,15 @@ const Home = () => {
                 fontFamily: "'Jost', sans-serif",
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                fontSize: '0.85rem',
-                padding: '18px 48px',
+                fontSize: '13px',
+                padding: '16px 36px',
                 border: 'none',
                 cursor: 'pointer',
+                width: 'auto',
               }}
               className="hover:opacity-90 transition-opacity"
             >
-              Configurer mon mariage →
+              Voir la Série Octobre 2027 →
             </button>
           </Link>
         </div>
@@ -335,7 +337,7 @@ const TimelineSection = () => {
         {/* CTA */}
         <ScrollReveal delay={0.5}>
           <div className="text-center mt-16 sm:mt-20">
-            <Link to="/configurateur">
+            <Link to="/serie-octobre-2027">
               <button
                 style={{
                   backgroundColor: '#C9A96E',
@@ -344,14 +346,15 @@ const TimelineSection = () => {
                   fontFamily: "'Jost', sans-serif",
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
-                  fontSize: '0.85rem',
-                  padding: '18px 48px',
+                  fontSize: '13px',
+                  padding: '16px 36px',
                   border: 'none',
                   cursor: 'pointer',
+                  width: 'auto',
                 }}
                 className="hover:opacity-90 transition-opacity"
               >
-                Commencer la configuration →
+                Voir la Série Octobre 2027 →
               </button>
             </Link>
           </div>
