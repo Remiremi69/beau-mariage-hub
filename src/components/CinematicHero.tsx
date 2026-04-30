@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Clock, Diamond, Star } from "lucide-react";
 
 const images = [
   "https://i.postimg.cc/5NHccFBF/54-domaine-de-lanbspcroixnbsprochefort.jpg",
@@ -10,23 +8,6 @@ const images = [
   "https://i.postimg.cc/5yVmsTSP/876-domaine-de-lanbspcroixnbsprochefort.jpg",
   "https://i.postimg.cc/x1YWXFrv/9-accueil-le-caveau.jpg",
 ];
-
-const AnimatedText = ({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) => {
-  return (
-    <span className={className}>
-      {text.split("").map((char, i) => (
-        <motion.span
-          key={i}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.04, delay: delay + i * 0.03, ease: "easeOut" }}
-        >
-          {char}
-        </motion.span>
-      ))}
-    </span>
-  );
-};
 
 const CinematicHero = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -43,12 +24,6 @@ const CinematicHero = () => {
     }, 6000);
     return () => clearInterval(interval);
   }, []);
-
-  const promises = [
-    { icon: Clock, title: "Tout est déjà sélectionné", desc: "Domaine, traiteur, photographe, DJ — nous avons fait le travail à votre place." },
-    { icon: Diamond, title: "Prix connu immédiatement", desc: "Le prix s'affiche en temps réel. Pas de devis à attendre, pas de frais cachés." },
-    { icon: Star, title: "Prestataires d'exception", desc: "Nous avons déjà sélectionné et validé les meilleurs talents pour votre grand jour." },
-  ];
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
@@ -71,11 +46,8 @@ const CinematicHero = () => {
         </motion.div>
       ))}
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-anthracite/50 via-anthracite/40 to-anthracite/70" />
-
-      {/* Vignette effect */}
-      <div className="absolute inset-0 z-[1]" style={{ boxShadow: "inset 0 0 150px 60px rgba(0,0,0,0.3)" }} />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 z-[1]" style={{ background: "rgba(0,0,0,0.5)" }} />
 
       {/* Image indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
@@ -84,93 +56,89 @@ const CinematicHero = () => {
             key={i}
             onClick={() => setCurrentImage(i)}
             className={`h-1.5 rounded-full transition-all duration-500 ${
-              i === currentImage ? "w-8 bg-primary" : "w-4 bg-card/40 hover:bg-card/60"
+              i === currentImage ? "w-8 bg-[#C9A96E]" : "w-4 bg-white/40 hover:bg-white/60"
             }`}
+            aria-label={`Image ${i + 1}`}
           />
         ))}
       </div>
 
       {/* Content */}
-      <motion.div className="container mx-auto px-4 z-10 pt-16 md:pt-20" style={{ opacity }}>
-        {/* Main Title with letter animation */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="mb-4 md:mb-6"
+      <motion.div className="container mx-auto px-4 z-10 flex flex-col items-center" style={{ opacity }}>
+        {/* Surtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            textTransform: "uppercase",
+            letterSpacing: "0.15em",
+            fontSize: "11px",
+            color: "#A0998A",
+            marginBottom: "16px",
+          }}
         >
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-card drop-shadow-lg leading-tight">
-            <AnimatedText text="Votre Mariage de Rêve." delay={0.3} />
-            <br />
-            <span className="text-primary">
-              <AnimatedText text="Tout est déjà prêt pour vous." delay={1.2} />
-            </span>
-          </h1>
-        </motion.div>
+          MARIAGE CLÉ-EN-MAIN · BEAUJOLAIS · 2027
+        </motion.p>
+
+        {/* Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.5 }}
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "48px",
+            fontWeight: 400,
+            color: "#F5F0E8",
+            lineHeight: 1.1,
+            marginBottom: "16px",
+          }}
+        >
+          Le seuil, pas le spectacle.
+        </motion.h1>
 
         {/* Subtitle */}
         <motion.p
-          className="text-lg sm:text-xl md:text-2xl text-primary mb-3 md:mb-4 max-w-3xl mx-auto drop-shadow-lg font-semibold"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2.5 }}
+          transition={{ duration: 0.9, delay: 0.8 }}
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontStyle: "italic",
+            fontSize: "28px",
+            color: "#C9A96E",
+          }}
         >
-          Il ne reste qu'à choisir votre date.
+          Tout est déjà prêt.
         </motion.p>
 
-        <motion.p
-          className="text-base sm:text-lg md:text-xl text-card/90 mb-8 md:mb-10 max-w-3xl mx-auto drop-shadow-lg px-2"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2.8 }}
-        >
-          Domaine sélectionné. Prestataires validés. Prix transparent. C'est ça, Le Beau Mariage.
-        </motion.p>
-
-        {/* CTAs */}
+        {/* CTA */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-10 md:mb-16 px-4 sm:px-0"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 3.2 }}
+          transition={{ duration: 0.9, delay: 1.1 }}
+          style={{ marginTop: "32px" }}
         >
-          <Link to="/configurateur" className="w-full sm:w-auto">
-            <Button size="xl" variant="hero" className="font-semibold text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto">
-              Voir les dates disponibles
-            </Button>
-          </Link>
-          <Link to="/serie-octobre-2027" className="w-full sm:w-auto">
-            <Button size="xl" variant="elegant" className="font-semibold text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto">
-              Voir la Série Actuelle
-            </Button>
+          <Link
+            to="/serie-octobre-2027"
+            style={{
+              display: "inline-block",
+              background: "#C9A96E",
+              color: "#0D0E12",
+              borderRadius: 0,
+              padding: "16px 36px",
+              fontFamily: "'Jost', sans-serif",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              fontSize: "13px",
+              textDecoration: "none",
+            }}
+          >
+            Voir la Série Octobre 2027 →
           </Link>
         </motion.div>
-
-        {/* 3 Promises */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-5xl mx-auto px-2 sm:px-0">
-          {promises.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={index}
-                className="bg-card/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-card/20 hover:bg-card/20 transition-colors duration-300"
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 3.5 + index * 0.15 }}
-              >
-                <div className="flex sm:flex-col items-center sm:items-center gap-3 sm:gap-0">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/20 flex items-center justify-center shrink-0 sm:mb-4">
-                    <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
-                  </div>
-                  <div className="text-left sm:text-center">
-                    <h3 className="text-base sm:text-xl font-bold text-card mb-0.5 sm:mb-2">{item.title}</h3>
-                    <p className="text-card/80 text-xs sm:text-sm">{item.desc}</p>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
       </motion.div>
     </section>
   );
