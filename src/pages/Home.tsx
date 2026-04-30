@@ -8,7 +8,6 @@ import SEO from "@/components/SEO";
 import { schemaHome } from '@/lib/schemas';
 import LeadCaptureSection from "@/components/LeadCaptureSection";
 import CinematicHero from "@/components/CinematicHero";
-import DoorHero from "@/components/DoorHero";
 import { ScrollReveal, StaggerContainer, ImageReveal } from "@/components/ScrollReveal";
 import venueImage from "@/assets/venue-exterior.jpg";
 
@@ -35,9 +34,6 @@ const Home = () => {
         <span className="hidden sm:inline"> — Ce site vous permet de découvrir notre concept. La série de mariage présentée est fictive et sert d'exemple.</span>
         <span className="sm:hidden"> La série présentée est un exemple.</span>
       </div>
-
-      {/* Door Hero - Le Seuil */}
-      <DoorHero />
 
       {/* Hero Section - Cinematic */}
       <CinematicHero />
