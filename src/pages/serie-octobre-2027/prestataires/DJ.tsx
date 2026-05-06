@@ -47,7 +47,7 @@ const DJ = () => {
     "Un duo — pas un prestataire solo — avec une présence et une sécurité techniques renforcées",
   ];
 
-  const services = [
+  const services: { icon: string; title: string; body: string; image?: string; imageAlt?: string; imagePosition?: string }[] = [
     {
       icon: "♫",
       title: "Son haut de gamme",
