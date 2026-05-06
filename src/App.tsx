@@ -27,7 +27,7 @@ import Photographe from "./pages/serie-octobre-2027/prestataires/Photographe";
 import DJ from "./pages/serie-octobre-2027/prestataires/DJ";
 import Decorateur from "./pages/serie-octobre-2027/prestataires/Decorateur";
 import Fleuriste from "./pages/serie-octobre-2027/prestataires/Fleuriste";
-import Musicien from "./pages/serie-octobre-2027/prestataires/Musicien";
+import Violoniste from "./pages/serie-octobre-2027/prestataires/Violoniste";
 import Signature from "./pages/Signature";
 import Acompte from "./pages/Acompte";
 import SiteDeMariage from "./pages/SiteDeMariage";
@@ -57,7 +57,8 @@ const AppLayout = () => {
         <Route path="/serie-octobre-2027/prestataires/dj" element={<DJ />} />
         <Route path="/serie-octobre-2027/prestataires/decorateur" element={<Decorateur />} />
         <Route path="/serie-octobre-2027/prestataires/fleuriste" element={<Fleuriste />} />
-        <Route path="/serie-octobre-2027/prestataires/musicien" element={<Musicien />} />
+        <Route path="/serie-octobre-2027/prestataires/musicien" element={<Navigate to="/serie-octobre-2027/prestataires/violoniste" replace />} />
+        <Route path="/serie-octobre-2027/prestataires/violoniste" element={<Violoniste />} />
         <Route path="/configurateur" element={<Configurateur />} />
         <Route path="/site-de-mariage" element={<SiteDeMariage />} />
         <Route path="/signature/:token" element={<Signature />} />
