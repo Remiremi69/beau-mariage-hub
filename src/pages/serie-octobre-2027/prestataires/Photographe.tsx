@@ -49,14 +49,14 @@ const Star = () => (
 const Photographe = () => {
   const partages = [
     "La conviction que l'image juste capture une présence, pas une performance",
-    "Une approche documentaire — observer, ne pas diriger",
+    "Une approche documentaire, observer, ne pas diriger",
     "Le refus du cliché : pas de pose figée, pas de décor artificiel",
     "La discrétion comme mode opératoire le jour J",
     "La rigueur d'un artisan sur chaque détail livré",
   ];
   const change = [
     "Loïc est briefé sur la philosophie Limen avant chaque mariage",
-    "Il connaît le déroulé exact — pas de coordination à gérer pour vous",
+    "Il connaît le déroulé exact, pas de coordination à gérer pour vous",
     "Ses images racontent le rite, pas la logistique",
     "La livraison est intégrée au Registre Limen de votre journée",
     "Un prestataire de moins à chercher, à comparer, à briefer",
@@ -65,22 +65,22 @@ const Photographe = () => {
     {
       quote:
         "Loïc a su capturer chaque émotion sans jamais s'imposer. Nos photos racontent vraiment notre journée, pas une mise en scène.",
-      author: "Philippe & Marie — Ain",
+      author: "Philippe & Marie, Ain",
     },
     {
       quote:
-        "Un regard d'une justesse rare. Les images nous bouleversent encore aujourd'hui — c'est exactement ce que nous avons vécu.",
-      author: "Clémence & Thomas — Rhône",
+        "Un regard d'une justesse rare. Les images nous bouleversent encore aujourd'hui, c'est exactement ce que nous avons vécu.",
+      author: "Clémence & Thomas, Rhône",
     },
     {
       quote:
         "Discret, précis, profondément humain. Le film de notre mariage est devenu un objet précieux que nous regardons souvent.",
-      author: "Aurélie & Baptiste — Beaujolais",
+      author: "Aurélie & Baptiste, Beaujolais",
     },
     {
       quote:
         "Nous cherchions quelqu'un capable de raconter, pas seulement de photographier. Loïc a fait bien plus encore.",
-      author: "Inès & Julien — Ain",
+      author: "Inès & Julien, Ain",
     },
   ];
 
@@ -88,24 +88,24 @@ const Photographe = () => {
     {
       n: "01",
       title: "Reportage intégral",
-      body: "De l'habillage à la dernière danse — couverture continue, sans interruption, pour saisir chaque moment du seuil.",
+      body: "De l'habillage à la dernière danse, couverture continue, sans interruption, pour saisir chaque moment du seuil.",
     },
     {
       n: "02",
       title: "Séance couple",
-      body: "Avant, pendant ou après le mariage — un temps suspendu à deux, dans la lumière du Beaujolais.",
+      body: "Avant, pendant ou après le mariage, un temps suspendu à deux, dans la lumière du Beaujolais.",
     },
     {
       n: "03",
       title: "Film de mariage",
-      body: "Vidéo disponible en complément — un film court, narratif, qui prolonge l'émotion du jour J.",
+      body: "Vidéo disponible en complément, un film court, narratif, qui prolonge l'émotion du jour J.",
     },
   ];
 
   return (
     <div style={{ backgroundColor: COLORS.lin, color: COLORS.texte, fontFamily: fontBody }}>
       <SEO
-        title="Loïc Cancade — Photographe & vidéaste partenaire | Le Beau Mariage par Limen"
+        title="Loïc Cancade, Photographe & vidéaste partenaire | Le Beau Mariage par Limen"
         description="Photographe & vidéaste de mariage en Beaujolais, Loïc Cancade signe les images de la sélection Limen. Reportage documentaire, regard juste, sans pose."
         canonical="https://lebeaumariage.fr/serie-octobre-2027/prestataires/photographe"
       />
@@ -174,7 +174,7 @@ const Photographe = () => {
         >
           <img
             src="/images/loic-hero-contrejour-coucher-soleil.jpg"
-            alt="Loïc Cancade — mariage à contre-jour au coucher de soleil"
+            alt="Loïc Cancade, mariage à contre-jour au coucher de soleil"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
           />
           <div
@@ -266,7 +266,7 @@ const Photographe = () => {
               margin: 0,
             }}
           >
-            Loïc photographie les mariages comme on raconte une histoire — sans pose, sans
+            Loïc photographie les mariages comme on raconte une histoire, sans pose, sans
             mise en scène. Une lecture documentaire de votre journée, ancrée dans la lumière
             naturelle du Beaujolais.
           </p>
@@ -333,7 +333,7 @@ const Photographe = () => {
                 lecture. Lire les regards, les silences, les gestes qui ne se rejouent pas.
               </p>
               <p>
-                Son travail s'inscrit dans une tradition documentaire — le contraire de la pose.
+                Son travail s'inscrit dans une tradition documentaire, le contraire de la pose.
                 Il observe, attend, et laisse la journée se déployer telle qu'elle est.
               </p>
               <p>
@@ -345,7 +345,7 @@ const Photographe = () => {
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <img
               src="/images/loic-philosophie-mariee-escalier-nb.jpg"
-              alt="Mariée dans l'escalier — noir et blanc, Loïc Cancade"
+              alt="Mariée dans l'escalier, noir et blanc, Loïc Cancade"
               style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center", marginBottom: "2rem", display: "block" }}
             />
             <div style={{ borderLeft: `1px solid ${COLORS.or}`, paddingLeft: "2.5rem" }}>
@@ -360,7 +360,7 @@ const Photographe = () => {
                 margin: 0,
               }}
             >
-              « Plus qu'un simple reportage, Loïc crée un souvenir intemporel — un mariage
+              « Plus qu'un simple reportage, Loïc crée un souvenir intemporel, un mariage
               capturé comme un film que l'on a envie de revivre encore et encore. »
             </p>
             <div
@@ -399,7 +399,7 @@ const Photographe = () => {
             <em>Un regard cohérent.</em>
           </h2>
           <p style={{ fontFamily: fontBody, fontWeight: 300, fontSize: "15px", lineHeight: 1.75, color: COLORS.texteLeger, maxWidth: "58ch", marginBottom: "4rem" }}>
-            Lumière naturelle, portraits nocturnes, instants volés — trois manières de regarder
+            Lumière naturelle, portraits nocturnes, instants volés, trois manières de regarder
             une journée qui composent ensemble une narration cohérente, fidèle à votre vérité.
           </p>
 
@@ -449,7 +449,7 @@ const Photographe = () => {
             ))}
           </div>
 
-          {/* GALERIE — son regard */}
+          {/* GALERIE, son regard */}
           <div style={{ paddingTop: "4rem" }}>
             <div
               style={{
@@ -478,7 +478,7 @@ const Photographe = () => {
               <div className="lc-galerie-tall" style={{ position: "relative", overflow: "hidden", gridRow: "span 2", minHeight: "500px" }}>
                 <img
                   src="/images/loic-galerie-drone-cercle.jpg"
-                  alt="Vue drone — cercle de mariage"
+                  alt="Vue drone, cercle de mariage"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
                 />
                 <span style={{ position: "absolute", bottom: "8px", right: "12px", fontFamily: fontBody, fontWeight: 300, fontSize: "10px", textTransform: "uppercase", color: "rgba(201,169,110,0.5)" }}>
@@ -488,7 +488,7 @@ const Photographe = () => {
               <div className="lc-galerie-cell" style={{ position: "relative", overflow: "hidden" }}>
                 <img
                   src="/images/loic-galerie-fleurs-rouges.jpg"
-                  alt="Fleurs rouges — détail"
+                  alt="Fleurs rouges, détail"
                   style={{ width: "100%", height: "245px", objectFit: "cover", objectPosition: "center", display: "block" }}
                 />
                 <span style={{ position: "absolute", bottom: "8px", right: "12px", fontFamily: fontBody, fontWeight: 300, fontSize: "10px", textTransform: "uppercase", color: "rgba(201,169,110,0.5)" }}>
@@ -662,7 +662,7 @@ const Photographe = () => {
             <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", fontFamily: fontBody, fontWeight: 300, fontSize: "15px", lineHeight: 1.75, color: COLORS.texteLeger }}>
               <p>
                 Loïc fait partie de la sélection Limen. Il est briefé, coordonné, intégré au
-                déroulé de votre journée par notre équipe — vous n'avez aucune négociation à
+                déroulé de votre journée par notre équipe, vous n'avez aucune négociation à
                 mener, aucun contrat séparé à signer.
               </p>
               <p>
@@ -670,7 +670,7 @@ const Photographe = () => {
                 moments clés à capter. Sa présence est invisible, son travail est précis.
               </p>
               <p>
-                À la livraison, ses images rejoignent votre Registre Limen — accessibles à vie,
+                À la livraison, ses images rejoignent votre Registre Limen, accessibles à vie,
                 organisées, prêtes à être partagées.
               </p>
             </div>
