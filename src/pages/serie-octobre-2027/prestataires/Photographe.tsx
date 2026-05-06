@@ -172,13 +172,17 @@ const Photographe = () => {
             padding: "3rem",
           }}
         >
-          {/* Replaceable image placeholder */}
-          {/* <img src="..." alt="Loïc Cancade" className="photo-placeholder" style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}} /> */}
+          <img
+            src="/images/loic-hero-contrejour-coucher-soleil.jpg"
+            alt="Loïc Cancade — mariage à contre-jour au coucher de soleil"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+          />
           <div
             style={{
               position: "absolute",
               inset: "3rem",
               border: `1px solid ${COLORS.or}33`,
+              pointerEvents: "none",
             }}
           />
           <div
@@ -338,7 +342,13 @@ const Photographe = () => {
               </p>
             </div>
           </div>
-          <div style={{ borderLeft: `1px solid ${COLORS.or}`, paddingLeft: "2.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <img
+              src="/images/loic-philosophie-mariee-escalier-nb.jpg"
+              alt="Mariée dans l'escalier — noir et blanc, Loïc Cancade"
+              style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center", marginBottom: "2rem", display: "block" }}
+            />
+            <div style={{ borderLeft: `1px solid ${COLORS.or}`, paddingLeft: "2.5rem" }}>
             <p
               style={{
                 fontFamily: fontTitle,
@@ -364,6 +374,7 @@ const Photographe = () => {
               }}
             >
               Mariages.net · Avis client
+            </div>
             </div>
           </div>
         </div>
@@ -403,12 +414,16 @@ const Photographe = () => {
             }}
           >
             {[
-              { label: "Lumière naturelle", bg: "linear-gradient(135deg, #d4c9b0, #b8a880)" },
-              { label: "Portraits nocturnes", bg: "linear-gradient(135deg, #1a1a22, #0d0e12)" },
-              { label: "Instants de vie", bg: "linear-gradient(135deg, #c8bfa8, #a89c78)" },
+              { label: "Lumière naturelle", src: "/images/loic-style-lumiere-naturelle-porte.jpg", pos: "center" },
+              { label: "Portraits nocturnes", src: "/images/loic-style-nocturne-champagne.jpg", pos: "center top" },
+              { label: "Instants de vie", src: "/images/loic-style-instant-fumigenes.jpg", pos: "center" },
             ].map((c) => (
-              <div key={c.label} style={{ position: "relative", aspectRatio: "3/4", background: c.bg, overflow: "hidden" }}>
-                {/* <img className="photo-placeholder" src="..." alt={c.label} style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}} /> */}
+              <div key={c.label} className="lc-style-card" style={{ position: "relative", aspectRatio: "3/4", overflow: "hidden", backgroundColor: COLORS.nuit }}>
+                <img
+                  src={c.src}
+                  alt={c.label}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: c.pos }}
+                />
                 <div
                   style={{
                     position: "absolute",
