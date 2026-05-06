@@ -52,6 +52,9 @@ const DJ = () => {
       icon: "♫",
       title: "Son haut de gamme",
       body: "Sonorisation professionnelle adaptée à chaque lieu — de la cérémonie intime à la grande salle de réception.",
+      image: "/images/astrevia/platines-piste.jpg",
+      imageAlt: "Régie DJ Pioneer XDJ-AZ devant une piste pleine en pleine soirée",
+      imagePosition: "center",
     },
     {
       icon: "◈",
@@ -73,6 +76,9 @@ const DJ = () => {
       icon: "◉",
       title: "DJ sur-mesure",
       body: "Une programmation personnalisée qui reflète vos goûts — construite avec vous, ajustée en temps réel le jour J.",
+      image: "/images/astrevia/salle-reception-bleue.jpg",
+      imageAlt: "Salle de réception habillée en lumière bleue avec scène et initiales projetées",
+      imagePosition: "center",
     },
   ];
 
