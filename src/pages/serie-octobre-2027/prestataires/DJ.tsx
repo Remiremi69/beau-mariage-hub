@@ -700,6 +700,8 @@ const DJ = () => {
           .lc-hero > div:last-child { padding: 3rem 1.5rem !important; }
           .lc-grid-2 { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
           .lc-services { grid-template-columns: repeat(2, 1fr) !important; }
+          .lc-galerie > img { height: 320px !important; }
+          .lc-galerie > div > img { height: 159px !important; }
           .lc-univers { grid-template-columns: 1fr !important; }
           .lc-comment { grid-template-columns: 1fr !important; }
           .lc-comment-icon { display: none !important; }
