@@ -308,6 +308,11 @@ const DJ = () => {
             </div>
           </div>
           <div style={{ borderLeft: `1px solid ${COLORS.or}`, paddingLeft: "2.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <img
+              src="/images/astrevia/scene-setup.jpg"
+              alt="Scène complète Astrévia Events installée dans une salle de pierre"
+              style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block", marginBottom: "2rem" }}
+            />
             <p
               style={{
                 fontFamily: fontTitle,
@@ -364,16 +369,25 @@ const DJ = () => {
 
           <div className="lc-services" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "2px", backgroundColor: `${COLORS.or}30` }}>
             {services.map((s) => (
-              <div key={s.title} style={{ backgroundColor: COLORS.linFonce, padding: "2rem 1.5rem" }}>
-                <div style={{ fontFamily: fontTitle, fontSize: "2rem", color: COLORS.or, lineHeight: 1, marginBottom: "1rem" }}>
-                  {s.icon}
+              <div key={s.title} style={{ backgroundColor: COLORS.linFonce, display: "flex", flexDirection: "column" }}>
+                {s.image && (
+                  <img
+                    src={s.image}
+                    alt={s.imageAlt || s.title}
+                    style={{ width: "100%", height: "160px", objectFit: "cover", objectPosition: s.imagePosition || "center", display: "block" }}
+                  />
+                )}
+                <div style={{ padding: "2rem 1.5rem" }}>
+                  <div style={{ fontFamily: fontTitle, fontSize: "2rem", color: COLORS.or, lineHeight: 1, marginBottom: "1rem" }}>
+                    {s.icon}
+                  </div>
+                  <h3 style={{ fontFamily: fontTitle, fontWeight: 400, fontSize: "1.25rem", color: COLORS.texte, margin: "0 0 0.75rem 0" }}>
+                    {s.title}
+                  </h3>
+                  <p style={{ fontFamily: fontBody, fontWeight: 300, fontSize: "0.9375rem", lineHeight: 1.7, color: COLORS.texteLeger, margin: 0 }}>
+                    {s.body}
+                  </p>
                 </div>
-                <h3 style={{ fontFamily: fontTitle, fontWeight: 400, fontSize: "1.25rem", color: COLORS.texte, margin: "0 0 0.75rem 0" }}>
-                  {s.title}
-                </h3>
-                <p style={{ fontFamily: fontBody, fontWeight: 300, fontSize: "0.9375rem", lineHeight: 1.7, color: COLORS.texteLeger, margin: 0 }}>
-                  {s.body}
-                </p>
               </div>
             ))}
           </div>
