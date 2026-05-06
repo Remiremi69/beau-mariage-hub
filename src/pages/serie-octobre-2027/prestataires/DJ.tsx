@@ -47,7 +47,7 @@ const DJ = () => {
     "Un duo — pas un prestataire solo — avec une présence et une sécurité techniques renforcées",
   ];
 
-  const services = [
+  const services: { icon: string; title: string; body: string; image?: string; imageAlt?: string; imagePosition?: string }[] = [
     {
       icon: "♫",
       title: "Son haut de gamme",
@@ -55,13 +55,19 @@ const DJ = () => {
     },
     {
       icon: "◈",
-      title: "Lumières & Effets",
-      body: "Éclairages pilotés par informatique, étincelles froides, fumée lourde — dosés avec précision selon l'ambiance.",
+      title: "Fumée lourde",
+      body: "Effet « danser sur les nuages » — fumée basse au sol qui sublime l'ouverture de bal et les premiers instants en piste.",
+      image: "/images/astrevia/fumee-lourde-piste.jpg",
+      imageAlt: "Piste de danse traversée par une fumée lourde bleutée",
+      imagePosition: "center",
     },
     {
       icon: "▣",
-      title: "Projection vidéo",
-      body: "Système de projection disponible pour vos instants forts — entrée de salle, diaporamas, moments personnalisés.",
+      title: "Étincelles froides",
+      body: "Jets d'étincelles froides totalement sécurisés — pour magnifier l'entrée des mariés ou l'ouverture de bal en intérieur comme en extérieur.",
+      image: "/images/astrevia/etincelles-couple.jpg",
+      imageAlt: "Couple de mariés entouré de jets d'étincelles froides",
+      imagePosition: "center",
     },
     {
       icon: "◉",
@@ -149,25 +155,12 @@ const DJ = () => {
           gridTemplateColumns: "1fr 1fr",
         }}
       >
-        <div style={{ backgroundColor: COLORS.nuit, position: "relative", overflow: "hidden", padding: "3rem" }}>
-          {/* <img className="photo-placeholder" src="..." alt="Astrévia Events" style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}} /> */}
-          <div style={{ position: "absolute", inset: "3rem", border: `1px solid ${COLORS.or}33` }} />
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              fontFamily: fontTitle,
-              fontSize: "180px",
-              color: COLORS.or,
-              opacity: 0.06,
-              lineHeight: 1,
-            }}
-          >
-            ⌐
-          </div>
+        <div style={{ backgroundColor: COLORS.nuit, position: "relative", overflow: "hidden" }}>
+          <img
+            src="/images/astrevia/hero-danse-fumee.jpg"
+            alt="Couple dansant entouré de fumée lourde, ambiance lumineuse Astrévia Events"
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
+          />
           <div
             style={{
               position: "absolute",
@@ -177,7 +170,8 @@ const DJ = () => {
               fontSize: "11px",
               textTransform: "uppercase",
               letterSpacing: "0.15em",
-              color: `${COLORS.or}80`,
+              color: `${COLORS.or}`,
+              textShadow: "0 1px 4px rgba(0,0,0,0.6)",
             }}
           >
             © Astrévia Events
@@ -314,6 +308,11 @@ const DJ = () => {
             </div>
           </div>
           <div style={{ borderLeft: `1px solid ${COLORS.or}`, paddingLeft: "2.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <img
+              src="/images/astrevia/scene-setup.jpg"
+              alt="Scène complète Astrévia Events installée dans une salle de pierre"
+              style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block", marginBottom: "2rem" }}
+            />
             <p
               style={{
                 fontFamily: fontTitle,
@@ -370,16 +369,25 @@ const DJ = () => {
 
           <div className="lc-services" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "2px", backgroundColor: `${COLORS.or}30` }}>
             {services.map((s) => (
-              <div key={s.title} style={{ backgroundColor: COLORS.linFonce, padding: "2rem 1.5rem" }}>
-                <div style={{ fontFamily: fontTitle, fontSize: "2rem", color: COLORS.or, lineHeight: 1, marginBottom: "1rem" }}>
-                  {s.icon}
+              <div key={s.title} style={{ backgroundColor: COLORS.linFonce, display: "flex", flexDirection: "column" }}>
+                {s.image && (
+                  <img
+                    src={s.image}
+                    alt={s.imageAlt || s.title}
+                    style={{ width: "100%", height: "160px", objectFit: "cover", objectPosition: s.imagePosition || "center", display: "block" }}
+                  />
+                )}
+                <div style={{ padding: "2rem 1.5rem" }}>
+                  <div style={{ fontFamily: fontTitle, fontSize: "2rem", color: COLORS.or, lineHeight: 1, marginBottom: "1rem" }}>
+                    {s.icon}
+                  </div>
+                  <h3 style={{ fontFamily: fontTitle, fontWeight: 400, fontSize: "1.25rem", color: COLORS.texte, margin: "0 0 0.75rem 0" }}>
+                    {s.title}
+                  </h3>
+                  <p style={{ fontFamily: fontBody, fontWeight: 300, fontSize: "0.9375rem", lineHeight: 1.7, color: COLORS.texteLeger, margin: 0 }}>
+                    {s.body}
+                  </p>
                 </div>
-                <h3 style={{ fontFamily: fontTitle, fontWeight: 400, fontSize: "1.25rem", color: COLORS.texte, margin: "0 0 0.75rem 0" }}>
-                  {s.title}
-                </h3>
-                <p style={{ fontFamily: fontBody, fontWeight: 300, fontSize: "0.9375rem", lineHeight: 1.7, color: COLORS.texteLeger, margin: 0 }}>
-                  {s.body}
-                </p>
               </div>
             ))}
           </div>
@@ -448,6 +456,43 @@ const DJ = () => {
         </div>
       </section>
 
+      {/* 5b. GALERIE */}
+      <section style={{ backgroundColor: COLORS.linFonce, padding: "4rem 0" }}>
+        <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+          <span
+            style={{
+              fontFamily: fontBody,
+              fontWeight: 400,
+              fontSize: "11px",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: COLORS.or,
+            }}
+          >
+            Leurs soirées
+          </span>
+        </div>
+        <div className="lc-galerie" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px" }}>
+          <img
+            src="/images/astrevia/platines-piste.jpg"
+            alt="Vue depuis les platines Pioneer sur une piste de danse bondée"
+            style={{ width: "100%", height: "500px", objectFit: "cover", display: "block" }}
+          />
+          <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gap: "2px" }}>
+            <img
+              src="/images/astrevia/etincelles-couple.jpg"
+              alt="Couple de mariés entouré d'étincelles froides"
+              style={{ width: "100%", height: "249px", objectFit: "cover", display: "block" }}
+            />
+            <img
+              src="/images/astrevia/hero-danse-fumee.jpg"
+              alt="Couple dansant dans la fumée lourde sous des lumières bleues"
+              style={{ width: "100%", height: "249px", objectFit: "cover", display: "block" }}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* 6. ALIGNEMENT LIMEN */}
       <section style={{ backgroundColor: COLORS.linFonce, padding: "6rem 5rem" }}>
         <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
@@ -459,7 +504,7 @@ const DJ = () => {
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
               lineHeight: 1.2,
               color: COLORS.texte,
-              margin: "0 0 4rem 0",
+              margin: "0 0 2rem 0",
               maxWidth: "32ch",
             }}
           >
@@ -467,6 +512,12 @@ const DJ = () => {
             <br />
             <em>au bon moment.</em>
           </h2>
+
+          <img
+            src="/images/astrevia/salle-reception-bleue.jpg"
+            alt="Salle de réception dressée avec éclairage bleu mural Astrévia Events"
+            style={{ width: "100%", height: "320px", objectFit: "cover", objectPosition: "center", display: "block", marginBottom: "3rem" }}
+          />
 
           <div className="lc-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", backgroundColor: `${COLORS.or}33` }}>
             {[
@@ -649,6 +700,8 @@ const DJ = () => {
           .lc-hero > div:last-child { padding: 3rem 1.5rem !important; }
           .lc-grid-2 { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
           .lc-services { grid-template-columns: repeat(2, 1fr) !important; }
+          .lc-galerie > img { height: 320px !important; }
+          .lc-galerie > div > img { height: 159px !important; }
           .lc-univers { grid-template-columns: 1fr !important; }
           .lc-comment { grid-template-columns: 1fr !important; }
           .lc-comment-icon { display: none !important; }
