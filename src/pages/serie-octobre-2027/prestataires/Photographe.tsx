@@ -782,6 +782,10 @@ const Photographe = () => {
           .lc-hero > div:last-child { padding: 3rem 1.5rem !important; }
           .lc-grid-2 { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
           .lc-gallery { grid-template-columns: repeat(2, 1fr) !important; }
+          .lc-gallery > div:nth-child(3) { grid-column: span 2; }
+          .lc-galerie { grid-template-columns: 1fr !important; }
+          .lc-galerie-tall { grid-row: auto !important; min-height: 260px !important; }
+          .lc-galerie-tall img, .lc-galerie-cell img { height: 260px !important; }
           .lc-approche { grid-template-columns: 1fr !important; }
           .lc-temoignages { grid-template-columns: 1fr !important; }
           .lc-comment { grid-template-columns: 1fr !important; }
