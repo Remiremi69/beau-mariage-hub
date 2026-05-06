@@ -512,9 +512,7 @@ const Photographe = () => {
           <div className="lc-approche" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2px", backgroundColor: `${COLORS.or}30` }}>
             {approches.map((a) => (
               <div key={a.n} style={{ backgroundColor: COLORS.linFonce, padding: "2.5rem 2rem" }}>
-                <div style={{ fontFamily: fontTitle, fontSize: "3.5rem", color: `${COLORS.or}4D`, lineHeight: 1, marginBottom: "1rem" }}>
-                  {a.n}
-                </div>
+                <div style={{ width: "24px", height: "1px", backgroundColor: COLORS.or, marginBottom: "1.5rem" }} />
                 <h3 style={{ fontFamily: fontTitle, fontWeight: 400, fontSize: "1.375rem", color: COLORS.texte, margin: "0 0 0.75rem 0" }}>
                   {a.title}
                 </h3>
