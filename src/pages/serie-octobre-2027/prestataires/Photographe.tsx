@@ -285,7 +285,7 @@ const Photographe = () => {
             {[
               { n: "4,9", l: "Note / 5" },
               { n: "+8", l: "Reportages publiés" },
-              { n: "Ain · Rhône", l: "Région" },
+              { n: "Ain · Rhône · Beaujolais", l: "Zone d'intervention" },
             ].map((s) => (
               <div key={s.l}>
                 <div style={{ fontFamily: fontTitle, fontSize: "2rem", color: COLORS.or, lineHeight: 1 }}>
