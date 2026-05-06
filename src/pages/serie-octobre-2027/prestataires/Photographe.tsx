@@ -662,17 +662,19 @@ const Photographe = () => {
             </h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", fontFamily: fontBody, fontWeight: 300, fontSize: "15px", lineHeight: 1.75, color: COLORS.texteLeger }}>
               <p>
-                Loïc fait partie de la sélection Limen. Il est briefé, coordonné, intégré au
-                déroulé de votre journée par notre équipe, vous n'avez aucune négociation à
-                mener, aucun contrat séparé à signer.
+                Loïc fait partie de la sélection Limen. Selon la formule choisie, il est briefé
+                et coordonné par notre équipe, vous n'avez pas à gérer la relation prestataire.
               </p>
               <p>
-                Le jour J, il connaît le timing exact, la philosophie de la maison, et les
+                Avant votre mariage, un entretien est organisé entre vous et Loïc, en visio ou
+                en présentiel selon vos préférences. C'est le moment pour lui de comprendre
+                votre histoire, vos envies, les instants qui comptent pour vous. Le jour J, il
+                arrive préparé : il connaît le timing, la philosophie de la maison, et les
                 moments clés à capter. Sa présence est invisible, son travail est précis.
               </p>
               <p>
-                À la livraison, ses images rejoignent votre Registre Limen, accessibles à vie,
-                organisées, prêtes à être partagées.
+                Les modalités de livraison et de couverture sont définies selon votre formule,
+                précisées lors de la configuration de votre mariage.
               </p>
             </div>
             <div style={{ width: "32px", height: "1px", backgroundColor: COLORS.or, margin: "2.5rem 0" }} />
