@@ -456,6 +456,43 @@ const DJ = () => {
         </div>
       </section>
 
+      {/* 5b. GALERIE */}
+      <section style={{ backgroundColor: COLORS.linFonce, padding: "4rem 0" }}>
+        <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+          <span
+            style={{
+              fontFamily: fontBody,
+              fontWeight: 400,
+              fontSize: "11px",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: COLORS.or,
+            }}
+          >
+            Leurs soirées
+          </span>
+        </div>
+        <div className="lc-galerie" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px" }}>
+          <img
+            src="/images/astrevia/platines-piste.jpg"
+            alt="Vue depuis les platines Pioneer sur une piste de danse bondée"
+            style={{ width: "100%", height: "500px", objectFit: "cover", display: "block" }}
+          />
+          <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gap: "2px" }}>
+            <img
+              src="/images/astrevia/etincelles-couple.jpg"
+              alt="Couple de mariés entouré d'étincelles froides"
+              style={{ width: "100%", height: "249px", objectFit: "cover", display: "block" }}
+            />
+            <img
+              src="/images/astrevia/hero-danse-fumee.jpg"
+              alt="Couple dansant dans la fumée lourde sous des lumières bleues"
+              style={{ width: "100%", height: "249px", objectFit: "cover", display: "block" }}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* 6. ALIGNEMENT LIMEN */}
       <section style={{ backgroundColor: COLORS.linFonce, padding: "6rem 5rem" }}>
         <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
@@ -467,7 +504,7 @@ const DJ = () => {
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
               lineHeight: 1.2,
               color: COLORS.texte,
-              margin: "0 0 4rem 0",
+              margin: "0 0 2rem 0",
               maxWidth: "32ch",
             }}
           >
@@ -475,6 +512,12 @@ const DJ = () => {
             <br />
             <em>au bon moment.</em>
           </h2>
+
+          <img
+            src="/images/astrevia/salle-reception-bleue.jpg"
+            alt="Salle de réception dressée avec éclairage bleu mural Astrévia Events"
+            style={{ width: "100%", height: "320px", objectFit: "cover", objectPosition: "center", display: "block", marginBottom: "3rem" }}
+          />
 
           <div className="lc-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", backgroundColor: `${COLORS.or}33` }}>
             {[
