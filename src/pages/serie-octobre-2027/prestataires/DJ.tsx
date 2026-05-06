@@ -155,25 +155,12 @@ const DJ = () => {
           gridTemplateColumns: "1fr 1fr",
         }}
       >
-        <div style={{ backgroundColor: COLORS.nuit, position: "relative", overflow: "hidden", padding: "3rem" }}>
-          {/* <img className="photo-placeholder" src="..." alt="Astrévia Events" style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}} /> */}
-          <div style={{ position: "absolute", inset: "3rem", border: `1px solid ${COLORS.or}33` }} />
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              fontFamily: fontTitle,
-              fontSize: "180px",
-              color: COLORS.or,
-              opacity: 0.06,
-              lineHeight: 1,
-            }}
-          >
-            ⌐
-          </div>
+        <div style={{ backgroundColor: COLORS.nuit, position: "relative", overflow: "hidden" }}>
+          <img
+            src="/images/astrevia/hero-danse-fumee.jpg"
+            alt="Couple dansant entouré de fumée lourde, ambiance lumineuse Astrévia Events"
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
+          />
           <div
             style={{
               position: "absolute",
@@ -183,7 +170,8 @@ const DJ = () => {
               fontSize: "11px",
               textTransform: "uppercase",
               letterSpacing: "0.15em",
-              color: `${COLORS.or}80`,
+              color: `${COLORS.or}`,
+              textShadow: "0 1px 4px rgba(0,0,0,0.6)",
             }}
           >
             © Astrévia Events
