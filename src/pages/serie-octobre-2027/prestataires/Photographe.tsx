@@ -88,18 +88,18 @@ const Photographe = () => {
   const approches = [
     {
       n: "01",
-      title: "Reportage intégral",
-      body: "De l'habillage à la dernière danse, couverture continue, sans interruption, pour saisir chaque moment du seuil.",
+      title: "Reportage de mariage",
+      body: "De l'habillage à la dernière danse, Loïc lit votre journée comme un récit, chaque instant saisi dans son ordre naturel, sans interruption ni mise en scène.",
     },
     {
       n: "02",
-      title: "Séance couple",
-      body: "Avant, pendant ou après le mariage, un temps suspendu à deux, dans la lumière du Beaujolais.",
+      title: "Portraits de couple",
+      body: "Un moment à deux, dans la lumière du Beaujolais. Loïc crée une parenthèse calme au milieu de votre journée, des images qui vous ressemblent, jamais forcées.",
     },
     {
       n: "03",
-      title: "Film de mariage",
-      body: "Vidéo disponible en complément, un film court, narratif, qui prolonge l'émotion du jour J.",
+      title: "Son regard documentaire",
+      body: "Ce qui distingue Loïc, c'est sa capacité à disparaître. Il observe, attend, et capture les instants vrais, ceux qu'on ne rejoue pas, ceux qu'on n'avait pas vus sur le moment.",
     },
   ];
 
@@ -512,9 +512,7 @@ const Photographe = () => {
           <div className="lc-approche" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2px", backgroundColor: `${COLORS.or}30` }}>
             {approches.map((a) => (
               <div key={a.n} style={{ backgroundColor: COLORS.linFonce, padding: "2.5rem 2rem" }}>
-                <div style={{ fontFamily: fontTitle, fontSize: "3.5rem", color: `${COLORS.or}4D`, lineHeight: 1, marginBottom: "1rem" }}>
-                  {a.n}
-                </div>
+                <div style={{ width: "24px", height: "1px", backgroundColor: COLORS.or, marginBottom: "1.5rem" }} />
                 <h3 style={{ fontFamily: fontTitle, fontWeight: 400, fontSize: "1.375rem", color: COLORS.texte, margin: "0 0 0.75rem 0" }}>
                   {a.title}
                 </h3>
