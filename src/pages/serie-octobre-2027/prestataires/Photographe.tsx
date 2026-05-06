@@ -58,8 +58,9 @@ const Photographe = () => {
     "Loïc est briefé sur la philosophie Limen avant chaque mariage",
     "Il connaît le déroulé exact, pas de coordination à gérer pour vous",
     "Ses images racontent le rite, pas la logistique",
-    "La livraison est intégrée au Registre Limen de votre journée",
+    "La coordination avec l'équipe Limen est assurée en amont, zéro friction le jour J",
     "Un prestataire de moins à chercher, à comparer, à briefer",
+    "Un entretien dédié avec Loïc avant le jour J, en visio ou en présentiel, pour qu'il connaisse votre histoire avant de la raconter",
   ];
   const temoignages = [
     {
