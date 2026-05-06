@@ -172,13 +172,17 @@ const Photographe = () => {
             padding: "3rem",
           }}
         >
-          {/* Replaceable image placeholder */}
-          {/* <img src="..." alt="Loïc Cancade" className="photo-placeholder" style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}} /> */}
+          <img
+            src="/images/loic-hero-contrejour-coucher-soleil.jpg"
+            alt="Loïc Cancade — mariage à contre-jour au coucher de soleil"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+          />
           <div
             style={{
               position: "absolute",
               inset: "3rem",
               border: `1px solid ${COLORS.or}33`,
+              pointerEvents: "none",
             }}
           />
           <div
@@ -338,7 +342,13 @@ const Photographe = () => {
               </p>
             </div>
           </div>
-          <div style={{ borderLeft: `1px solid ${COLORS.or}`, paddingLeft: "2.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <img
+              src="/images/loic-philosophie-mariee-escalier-nb.jpg"
+              alt="Mariée dans l'escalier — noir et blanc, Loïc Cancade"
+              style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center", marginBottom: "2rem", display: "block" }}
+            />
+            <div style={{ borderLeft: `1px solid ${COLORS.or}`, paddingLeft: "2.5rem" }}>
             <p
               style={{
                 fontFamily: fontTitle,
@@ -364,6 +374,7 @@ const Photographe = () => {
               }}
             >
               Mariages.net · Avis client
+            </div>
             </div>
           </div>
         </div>
@@ -403,12 +414,16 @@ const Photographe = () => {
             }}
           >
             {[
-              { label: "Lumière naturelle", bg: "linear-gradient(135deg, #d4c9b0, #b8a880)" },
-              { label: "Portraits nocturnes", bg: "linear-gradient(135deg, #1a1a22, #0d0e12)" },
-              { label: "Instants de vie", bg: "linear-gradient(135deg, #c8bfa8, #a89c78)" },
+              { label: "Lumière naturelle", src: "/images/loic-style-lumiere-naturelle-porte.jpg", pos: "center" },
+              { label: "Portraits nocturnes", src: "/images/loic-style-nocturne-champagne.jpg", pos: "center top" },
+              { label: "Instants de vie", src: "/images/loic-style-instant-fumigenes.jpg", pos: "center" },
             ].map((c) => (
-              <div key={c.label} style={{ position: "relative", aspectRatio: "3/4", background: c.bg, overflow: "hidden" }}>
-                {/* <img className="photo-placeholder" src="..." alt={c.label} style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}} /> */}
+              <div key={c.label} className="lc-style-card" style={{ position: "relative", aspectRatio: "3/4", overflow: "hidden", backgroundColor: COLORS.nuit }}>
+                <img
+                  src={c.src}
+                  alt={c.label}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: c.pos }}
+                />
                 <div
                   style={{
                     position: "absolute",
@@ -432,6 +447,65 @@ const Photographe = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* GALERIE — son regard */}
+          <div style={{ paddingTop: "4rem" }}>
+            <div
+              style={{
+                fontFamily: fontBody,
+                fontWeight: 400,
+                fontSize: "11px",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: COLORS.or,
+                textAlign: "center",
+                marginBottom: "2rem",
+              }}
+            >
+              Son regard
+            </div>
+            <div
+              className="lc-galerie"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "1px",
+                backgroundColor: "rgba(201,169,110,0.15)",
+                marginBottom: "3rem",
+              }}
+            >
+              <div className="lc-galerie-tall" style={{ position: "relative", overflow: "hidden", gridRow: "span 2", minHeight: "500px" }}>
+                <img
+                  src="/images/loic-galerie-drone-cercle.jpg"
+                  alt="Vue drone — cercle de mariage"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
+                />
+                <span style={{ position: "absolute", bottom: "8px", right: "12px", fontFamily: fontBody, fontWeight: 300, fontSize: "10px", textTransform: "uppercase", color: "rgba(201,169,110,0.5)" }}>
+                  © Loïc Cancade
+                </span>
+              </div>
+              <div className="lc-galerie-cell" style={{ position: "relative", overflow: "hidden" }}>
+                <img
+                  src="/images/loic-galerie-fleurs-rouges.jpg"
+                  alt="Fleurs rouges — détail"
+                  style={{ width: "100%", height: "245px", objectFit: "cover", objectPosition: "center", display: "block" }}
+                />
+                <span style={{ position: "absolute", bottom: "8px", right: "12px", fontFamily: fontBody, fontWeight: 300, fontSize: "10px", textTransform: "uppercase", color: "rgba(201,169,110,0.5)" }}>
+                  © Loïc Cancade
+                </span>
+              </div>
+              <div className="lc-galerie-cell" style={{ position: "relative", overflow: "hidden" }}>
+                <img
+                  src="/images/loic-galerie-danse-lumiere.jpg"
+                  alt="Danse dans la lumière"
+                  style={{ width: "100%", height: "245px", objectFit: "cover", objectPosition: "center", display: "block" }}
+                />
+                <span style={{ position: "absolute", bottom: "8px", right: "12px", fontFamily: fontBody, fontWeight: 300, fontSize: "10px", textTransform: "uppercase", color: "rgba(201,169,110,0.5)" }}>
+                  © Loïc Cancade
+                </span>
+              </div>
+            </div>
           </div>
 
           <div className="lc-approche" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2px", backgroundColor: `${COLORS.or}30` }}>
@@ -708,6 +782,10 @@ const Photographe = () => {
           .lc-hero > div:last-child { padding: 3rem 1.5rem !important; }
           .lc-grid-2 { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
           .lc-gallery { grid-template-columns: repeat(2, 1fr) !important; }
+          .lc-gallery > div:nth-child(3) { grid-column: span 2; }
+          .lc-galerie { grid-template-columns: 1fr !important; }
+          .lc-galerie-tall { grid-row: auto !important; min-height: 260px !important; }
+          .lc-galerie-tall img, .lc-galerie-cell img { height: 260px !important; }
           .lc-approche { grid-template-columns: 1fr !important; }
           .lc-temoignages { grid-template-columns: 1fr !important; }
           .lc-comment { grid-template-columns: 1fr !important; }
