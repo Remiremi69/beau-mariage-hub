@@ -55,13 +55,19 @@ const DJ = () => {
     },
     {
       icon: "◈",
-      title: "Lumières & Effets",
-      body: "Éclairages pilotés par informatique, étincelles froides, fumée lourde — dosés avec précision selon l'ambiance.",
+      title: "Fumée lourde",
+      body: "Effet « danser sur les nuages » — fumée basse au sol qui sublime l'ouverture de bal et les premiers instants en piste.",
+      image: "/images/astrevia/fumee-lourde-piste.jpg",
+      imageAlt: "Piste de danse traversée par une fumée lourde bleutée",
+      imagePosition: "center",
     },
     {
       icon: "▣",
-      title: "Projection vidéo",
-      body: "Système de projection disponible pour vos instants forts — entrée de salle, diaporamas, moments personnalisés.",
+      title: "Étincelles froides",
+      body: "Jets d'étincelles froides totalement sécurisés — pour magnifier l'entrée des mariés ou l'ouverture de bal en intérieur comme en extérieur.",
+      image: "/images/astrevia/etincelles-couple.jpg",
+      imageAlt: "Couple de mariés entouré de jets d'étincelles froides",
+      imagePosition: "center",
     },
     {
       icon: "◉",
