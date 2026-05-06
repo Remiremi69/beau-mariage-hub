@@ -449,6 +449,65 @@ const Photographe = () => {
             ))}
           </div>
 
+          {/* GALERIE — son regard */}
+          <div style={{ paddingTop: "4rem" }}>
+            <div
+              style={{
+                fontFamily: fontBody,
+                fontWeight: 400,
+                fontSize: "11px",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: COLORS.or,
+                textAlign: "center",
+                marginBottom: "2rem",
+              }}
+            >
+              Son regard
+            </div>
+            <div
+              className="lc-galerie"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "1px",
+                backgroundColor: "rgba(201,169,110,0.15)",
+                marginBottom: "3rem",
+              }}
+            >
+              <div className="lc-galerie-tall" style={{ position: "relative", overflow: "hidden", gridRow: "span 2", minHeight: "500px" }}>
+                <img
+                  src="/images/loic-galerie-drone-cercle.jpg"
+                  alt="Vue drone — cercle de mariage"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
+                />
+                <span style={{ position: "absolute", bottom: "8px", right: "12px", fontFamily: fontBody, fontWeight: 300, fontSize: "10px", textTransform: "uppercase", color: "rgba(201,169,110,0.5)" }}>
+                  © Loïc Cancade
+                </span>
+              </div>
+              <div className="lc-galerie-cell" style={{ position: "relative", overflow: "hidden" }}>
+                <img
+                  src="/images/loic-galerie-fleurs-rouges.jpg"
+                  alt="Fleurs rouges — détail"
+                  style={{ width: "100%", height: "245px", objectFit: "cover", objectPosition: "center", display: "block" }}
+                />
+                <span style={{ position: "absolute", bottom: "8px", right: "12px", fontFamily: fontBody, fontWeight: 300, fontSize: "10px", textTransform: "uppercase", color: "rgba(201,169,110,0.5)" }}>
+                  © Loïc Cancade
+                </span>
+              </div>
+              <div className="lc-galerie-cell" style={{ position: "relative", overflow: "hidden" }}>
+                <img
+                  src="/images/loic-galerie-danse-lumiere.jpg"
+                  alt="Danse dans la lumière"
+                  style={{ width: "100%", height: "245px", objectFit: "cover", objectPosition: "center", display: "block" }}
+                />
+                <span style={{ position: "absolute", bottom: "8px", right: "12px", fontFamily: fontBody, fontWeight: 300, fontSize: "10px", textTransform: "uppercase", color: "rgba(201,169,110,0.5)" }}>
+                  © Loïc Cancade
+                </span>
+              </div>
+            </div>
+          </div>
+
           <div className="lc-approche" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2px", backgroundColor: `${COLORS.or}30` }}>
             {approches.map((a) => (
               <div key={a.n} style={{ backgroundColor: COLORS.linFonce, padding: "2.5rem 2rem" }}>
