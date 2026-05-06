@@ -80,7 +80,7 @@ const Violoniste = () => {
       <SEO
         title="Alexandre Medjaher Chomat — Violoniste & performer partenaire | Le Beau Mariage par Limen"
         description="Violoniste dansant et performer, Alexandre Medjaher Chomat signe les performances scéniques de la sélection Limen. Une scène vivante au cœur de votre mariage."
-        canonical="https://lebeaumariage.fr/serie-octobre-2027/prestataires/musicien"
+        canonical="https://lebeaumariage.fr/serie-octobre-2027/prestataires/violoniste"
       />
 
       {/* 1. NAV */}

@@ -102,10 +102,10 @@ const prestataires = [
   },
   {
     icon: "🎼",
-    category: "MUSICIEN",
-    title: "La Bande-Sonore de Votre Amour",
-    description: "Musique live pour vos moments clés",
-    link: "/serie-octobre-2027/prestataires/musicien",
+    category: "VIOLONISTE",
+    title: "Alexandre Medjaher Chomat",
+    description: "Violoniste dansant · Performer",
+    link: "/serie-octobre-2027/prestataires/violoniste",
     lucideIcon: MicVocal
   }
 ];
