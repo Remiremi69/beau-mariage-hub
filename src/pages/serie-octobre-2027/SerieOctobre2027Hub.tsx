@@ -305,21 +305,94 @@ const SerieOctobre2027Hub = () => {
             {prestataires.map((prestataire, index) => {
               const categoryName = prestataire.category.charAt(0) + prestataire.category.slice(1).toLowerCase().replace(/ & .*/, '');
               const categoryLower = prestataire.category.toLowerCase().split(' ')[0];
+              const confirmed: Record<string, { eyebrow: string; title: string; body: string; href: string; linkLabel: string }> = {
+                "TRAITEUR": {
+                  eyebrow: "Gastronomie · Partenaire confirmé",
+                  title: "J & J Traiteur",
+                  body: "Formés dans les grandes maisons lyonnaises, La Mère Brazier, La Tête d'Oie, Les Toques Blanches. Une cuisine de tradition, entièrement sur mesure.",
+                  href: "/serie-octobre-2027/prestataires/traiteur",
+                  linkLabel: "Découvrir J & J Traiteur",
+                },
+                "PHOTOGRAPHE & VIDÉASTE": {
+                  eyebrow: "Photographie · Partenaire confirmé",
+                  title: "Loïc Cancade",
+                  body: "Style naturel, poétique, documentaire. Il lit votre journée sans la diriger, et livre des images qui ne ressemblent qu'à vous.",
+                  href: "/serie-octobre-2027/prestataires/photographe",
+                  linkLabel: "Découvrir Loïc Cancade",
+                },
+                "DJ": {
+                  eyebrow: "DJ & Animation · Partenaire confirmé",
+                  title: "Astrévia Events",
+                  body: "Jordan et Rémy. Plus de 10 ans d'expérience, un équipement complet, une programmation entièrement sur mesure. L'ambiance se construit, elle ne se déroule pas.",
+                  href: "/serie-octobre-2027/prestataires/dj",
+                  linkLabel: "Découvrir Astrévia Events",
+                },
+                "VIOLONISTE": {
+                  eyebrow: "Violon & Performance · Partenaire confirmé",
+                  title: "Alexandre Chomat",
+                  body: "Violoniste dansant, performer de scène. Plus de 80 mariages en France et à l'international. Chaque intervention est une scène vivante, pensée pour votre journée.",
+                  href: "/serie-octobre-2027/prestataires/violoniste",
+                  linkLabel: "Découvrir Alexandre Chomat",
+                },
+              };
+              const conf = confirmed[prestataire.category];
               return (
                 <div
                   key={prestataire.category}
                   className={`transition-all duration-700 ${prestatairesRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                  <div className="h-full bg-white p-6 hover:shadow-lg transition-all duration-300" style={{ borderRadius: '4px' }}>
-                    <div className="w-full h-0.5 mb-6" style={{ backgroundColor: '#C9A96E' }} />
-                    <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1A1814' }}>
-                      {categoryName} — Sélection en cours
-                    </h3>
-                    <p className="text-sm leading-relaxed" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
-                      Notre {categoryLower} pour la Série Octobre 2027 sera annoncé prochainement. Sélection sur critères stricts.
-                    </p>
-                  </div>
+                  {conf ? (
+                    <div
+                      className="h-full bg-white p-6 hover:shadow-lg transition-all duration-300 flex flex-col"
+                      style={{ borderRadius: '4px', borderLeft: '2px solid #C9A96E' }}
+                    >
+                      <p
+                        className="mb-4"
+                        style={{
+                          fontFamily: "'Jost', sans-serif",
+                          color: '#C9A96E',
+                          fontSize: '11px',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.15em',
+                          fontWeight: 400,
+                        }}
+                      >
+                        {conf.eyebrow}
+                      </p>
+                      <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1A1814' }}>
+                        {conf.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed mb-6" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
+                        {conf.body}
+                      </p>
+                      <Link
+                        to={conf.href}
+                        className="mt-auto hover:opacity-70 transition-opacity"
+                        style={{
+                          fontFamily: "'Jost', sans-serif",
+                          color: '#C9A96E',
+                          fontSize: '11px',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.15em',
+                          fontWeight: 400,
+                          textDecoration: 'none',
+                        }}
+                      >
+                        {conf.linkLabel} →
+                      </Link>
+                    </div>
+                  ) : (
+                    <div className="h-full bg-white p-6 hover:shadow-lg transition-all duration-300" style={{ borderRadius: '4px' }}>
+                      <div className="w-full h-0.5 mb-6" style={{ backgroundColor: '#C9A96E' }} />
+                      <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1A1814' }}>
+                        {categoryName} — Sélection en cours
+                      </h3>
+                      <p className="text-sm leading-relaxed" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
+                        Notre {categoryLower} pour la Série Octobre 2027 sera annoncé prochainement. Sélection sur critères stricts.
+                      </p>
+                    </div>
+                  )}
                 </div>
               );
             })}
