@@ -143,7 +143,7 @@ const Violoniste = () => {
           <img
             src="/images/alexandre-hero-portrait-montagne.jpg"
             alt="Alexandre Medjaher Chomat face à la montagne"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
           />
           <div
             style={{
