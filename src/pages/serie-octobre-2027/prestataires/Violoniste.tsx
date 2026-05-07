@@ -288,6 +288,27 @@ const Violoniste = () => {
             </div>
           </div>
           <div style={{ borderLeft: `1px solid ${COLORS.or}`, paddingLeft: "2.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <div style={{ position: "relative", overflow: "hidden", width: "100%", aspectRatio: "3/4", marginBottom: "2.5rem" }}>
+              <img
+                src="/images/alexandre-philosophie-portrait-scene.jpg"
+                alt="Alexandre Medjaher Chomat en scène"
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "8px",
+                  right: "12px",
+                  fontFamily: fontBody,
+                  fontWeight: 300,
+                  fontSize: "10px",
+                  textTransform: "uppercase",
+                  color: "rgba(201,169,110,0.5)",
+                }}
+              >
+                © Alexandre Medjaher Chomat
+              </div>
+            </div>
             <p
               style={{
                 fontFamily: fontTitle,
