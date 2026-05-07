@@ -184,7 +184,7 @@ const Violoniste = () => {
           >
             Alexandre
             <br />
-            Chomat
+            Medjaher Chomat
           </h1>
           <p
             style={{
