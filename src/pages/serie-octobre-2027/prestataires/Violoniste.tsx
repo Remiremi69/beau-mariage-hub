@@ -368,7 +368,29 @@ const Violoniste = () => {
 
           <div className="lc-approche" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2px", backgroundColor: `${COLORS.or}30` }}>
             {formats.map((a) => (
-              <div key={a.n} style={{ backgroundColor: COLORS.linFonce, padding: "2.5rem 2rem", display: "flex", flexDirection: "column" }}>
+              <div key={a.n} style={{ backgroundColor: COLORS.linFonce, padding: "0", display: "flex", flexDirection: "column" }}>
+                <div style={{ position: "relative", overflow: "hidden", width: "100%", aspectRatio: "4/3" }}>
+                  <img
+                    src={a.image}
+                    alt={a.title}
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "8px",
+                      right: "12px",
+                      fontFamily: fontBody,
+                      fontWeight: 300,
+                      fontSize: "10px",
+                      textTransform: "uppercase",
+                      color: "rgba(201,169,110,0.5)",
+                    }}
+                  >
+                    © Alexandre Medjaher Chomat
+                  </div>
+                </div>
+                <div style={{ padding: "2.5rem 2rem", display: "flex", flexDirection: "column", flexGrow: 1 }}>
                 <div style={{ fontFamily: fontTitle, fontSize: "3.5rem", color: `${COLORS.or}4D`, lineHeight: 1, marginBottom: "1rem" }}>
                   {a.n}
                 </div>
