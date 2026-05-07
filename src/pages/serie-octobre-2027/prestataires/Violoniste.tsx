@@ -454,7 +454,7 @@ const Violoniste = () => {
               overflow: "hidden",
             }}
           >
-            {/* <img className="photo-placeholder" src="..." alt={galerie[0].label} style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}} /> */}
+            <img src="/images/alexandre-performance-soiree.jpg" alt={galerie[0].label} style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}} />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.7))" }} />
             <div
               style={{
