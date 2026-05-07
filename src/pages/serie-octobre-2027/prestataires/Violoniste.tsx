@@ -53,18 +53,21 @@ const Violoniste = () => {
       title: "Cérémonie",
       body: "L'entrée, les rituels, la sortie — chaque note accompagne l'émotion des mariés. Entièrement personnalisé selon votre histoire.",
       badge: "Sur sélection",
+      image: "/images/alexandre-format-ceremonie.jpg",
     },
     {
       n: "02",
       title: "Cocktail",
       body: "Violon et improvisation mêlés à l'ambiance du moment. La performance s'adapte au lieu et à l'énergie de vos invités en temps réel.",
       badge: "Après entretien artistique",
+      image: "/images/alexandre-format-cocktail.jpg",
     },
     {
       n: "03",
       title: "Soirée & First Dance",
       body: "Une création scénique sur mesure — danse, lumière et émotion. L'expérience se vit comme un spectacle pensé uniquement pour vous.",
       badge: "Sur étude de projet",
+      image: "/images/alexandre-format-soiree.jpg",
     },
   ];
 
