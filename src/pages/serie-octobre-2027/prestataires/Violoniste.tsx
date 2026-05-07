@@ -53,18 +53,21 @@ const Violoniste = () => {
       title: "Cérémonie",
       body: "L'entrée, les rituels, la sortie — chaque note accompagne l'émotion des mariés. Entièrement personnalisé selon votre histoire.",
       badge: "Sur sélection",
+      image: "/images/alexandre-format-ceremonie.jpg",
     },
     {
       n: "02",
       title: "Cocktail",
       body: "Violon et improvisation mêlés à l'ambiance du moment. La performance s'adapte au lieu et à l'énergie de vos invités en temps réel.",
       badge: "Après entretien artistique",
+      image: "/images/alexandre-format-cocktail.jpg",
     },
     {
       n: "03",
       title: "Soirée & First Dance",
       body: "Une création scénique sur mesure — danse, lumière et émotion. L'expérience se vit comme un spectacle pensé uniquement pour vous.",
       badge: "Sur étude de projet",
+      image: "/images/alexandre-format-soiree.jpg",
     },
   ];
 
@@ -136,35 +139,22 @@ const Violoniste = () => {
           gridTemplateColumns: "1fr 1fr",
         }}
       >
-        <div style={{ backgroundColor: COLORS.nuit, position: "relative", overflow: "hidden", padding: "3rem" }}>
-          {/* <img className="photo-placeholder" src="..." alt="Alexandre Medjaher Chomat" style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}} /> */}
-          <div style={{ position: "absolute", inset: "3rem", border: `1px solid ${COLORS.or}33` }} />
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              fontFamily: fontTitle,
-              fontSize: "180px",
-              color: COLORS.or,
-              opacity: 0.06,
-              lineHeight: 1,
-            }}
-          >
-            ⌐
-          </div>
+        <div style={{ backgroundColor: COLORS.nuit, position: "relative", overflow: "hidden" }}>
+          <img
+            src="/images/alexandre-hero-portrait-montagne.jpg"
+            alt="Alexandre Medjaher Chomat face à la montagne"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
+          />
           <div
             style={{
               position: "absolute",
-              bottom: "1.5rem",
-              left: "1.5rem",
+              bottom: "8px",
+              right: "12px",
               fontFamily: fontBody,
-              fontSize: "11px",
+              fontWeight: 300,
+              fontSize: "10px",
               textTransform: "uppercase",
-              letterSpacing: "0.15em",
-              color: `${COLORS.or}80`,
+              color: "rgba(201,169,110,0.5)",
             }}
           >
             © Alexandre Medjaher Chomat
@@ -301,6 +291,27 @@ const Violoniste = () => {
             </div>
           </div>
           <div style={{ borderLeft: `1px solid ${COLORS.or}`, paddingLeft: "2.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <div style={{ position: "relative", overflow: "hidden", width: "100%", aspectRatio: "3/4", marginBottom: "2.5rem" }}>
+              <img
+                src="/images/alexandre-philosophie-portrait-scene.jpg"
+                alt="Alexandre Medjaher Chomat en scène"
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "8px",
+                  right: "12px",
+                  fontFamily: fontBody,
+                  fontWeight: 300,
+                  fontSize: "10px",
+                  textTransform: "uppercase",
+                  color: "rgba(201,169,110,0.5)",
+                }}
+              >
+                © Alexandre Medjaher Chomat
+              </div>
+            </div>
             <p
               style={{
                 fontFamily: fontTitle,
@@ -357,7 +368,29 @@ const Violoniste = () => {
 
           <div className="lc-approche" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2px", backgroundColor: `${COLORS.or}30` }}>
             {formats.map((a) => (
-              <div key={a.n} style={{ backgroundColor: COLORS.linFonce, padding: "2.5rem 2rem", display: "flex", flexDirection: "column" }}>
+              <div key={a.n} style={{ backgroundColor: COLORS.linFonce, padding: "0", display: "flex", flexDirection: "column" }}>
+                <div style={{ position: "relative", overflow: "hidden", width: "100%", aspectRatio: "4/3" }}>
+                  <img
+                    src={a.image}
+                    alt={a.title}
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "8px",
+                      right: "12px",
+                      fontFamily: fontBody,
+                      fontWeight: 300,
+                      fontSize: "10px",
+                      textTransform: "uppercase",
+                      color: "rgba(201,169,110,0.5)",
+                    }}
+                  >
+                    © Alexandre Medjaher Chomat
+                  </div>
+                </div>
+                <div style={{ padding: "2.5rem 2rem", display: "flex", flexDirection: "column", flexGrow: 1 }}>
                 <div style={{ fontFamily: fontTitle, fontSize: "3.5rem", color: `${COLORS.or}4D`, lineHeight: 1, marginBottom: "1rem" }}>
                   {a.n}
                 </div>
@@ -381,6 +414,7 @@ const Violoniste = () => {
                   >
                     {a.badge}
                   </span>
+                </div>
                 </div>
               </div>
             ))}
