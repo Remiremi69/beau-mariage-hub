@@ -476,6 +476,7 @@ const Violoniste = () => {
             const imgMap: Record<string, string> = {
               "Cérémonie · Entrée": "/images/alexandre-ceremonie-entree.jpg",
               "Lumière · Émotion": "/images/alexandre-lumiere-emotion.jpg",
+              "Duo · Scène": "/images/alexandre-duo-scene.jpg",
             };
             const img = imgMap[c.label];
             return (
