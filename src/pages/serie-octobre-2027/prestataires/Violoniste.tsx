@@ -472,9 +472,14 @@ const Violoniste = () => {
             </div>
           </div>
 
-          {galerie.slice(1).map((c) => (
+          {galerie.slice(1).map((c) => {
+            const imgMap: Record<string, string> = {
+              "Lumière · Émotion": "/images/alexandre-lumiere-emotion.jpg",
+            };
+            const img = imgMap[c.label];
+            return (
             <div key={c.label} style={{ position: "relative", aspectRatio: "4/5", background: c.bg, overflow: "hidden" }}>
-              {/* <img className="photo-placeholder" src="..." alt={c.label} style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}} /> */}
+              {img && <img src={img} alt={c.label} style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}} />}
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.7))" }} />
               <div
                 style={{
