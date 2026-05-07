@@ -496,7 +496,7 @@ const Violoniste = () => {
                 {c.label}
               </div>
             </div>
-          ))}
+          );})}
         </div>
       </section>
 
