@@ -176,7 +176,7 @@ const Violoniste = () => {
             style={{
               fontFamily: fontTitle,
               fontWeight: 300,
-              fontSize: "clamp(3rem, 6vw, 4.5rem)",
+              fontSize: "clamp(2.25rem, 5vw, 4rem)",
               lineHeight: 1.0,
               color: COLORS.texte,
               margin: 0,
