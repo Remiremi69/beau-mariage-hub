@@ -415,6 +415,7 @@ const Violoniste = () => {
                     {a.badge}
                   </span>
                 </div>
+                </div>
               </div>
             ))}
           </div>
