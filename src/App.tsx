@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-route
 import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider } from "./hooks/useAuth";
 import { Navigation } from "./components/Navigation";
+import ScrollToTop from "./components/ScrollToTop";
 import { Footer } from "./components/Footer";
 import Home from "./pages/Home";
 import Concept from "./pages/Concept";
@@ -88,6 +89,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
             <AppLayout />
           </BrowserRouter>
         </AuthProvider>
