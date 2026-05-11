@@ -67,7 +67,7 @@ const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) =>
         </motion.p>
 
         <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
-          <InfoButton label="Voir le travail d'Alexandre" onClick={() => setDrawerOpen(true)} />
+          <InfoButton label="Voir le travail de Loïc" onClick={() => setDrawerOpen(true)} />
         </motion.div>
 
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
@@ -94,16 +94,16 @@ const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) =>
             <div className="flex items-start justify-between">
               <div>
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e" }}>Reportage</p>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 28, color: "#faf8f4", marginTop: 8 }}>Alexandre M.</p>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 4 }}>Photographe de mariage · 8 ans d'expérience</p>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 28, color: "#faf8f4", marginTop: 8 }}>Loïc Cancade</p>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 4 }}>Photographe de mariage · ~50 mariages · Note 5/5</p>
               </div>
               <PhotoCircle slot="photographe-alexandre" />
             </div>
             <div style={{ borderTop: "1px solid rgba(201,169,110,0.10)", margin: "20px 0" }} />
-            <IncludedItem text="Présence de la préparation jusqu'au dîner (10h)" />
-            <IncludedItem text="Galerie privée en ligne sous 4 semaines" />
-            <IncludedItem text="400 photos retouchées livrées" />
-            <IncludedItem text="Droits de reproduction inclus" />
+            <IncludedItem text="Couverture complète de la journée — préparatifs à la soirée" />
+            <IncludedItem text="Entretien préparatoire avec Loïc — visio ou présentiel" />
+            <IncludedItem text="Style naturel, poétique, documentaire — jamais de pose forcée" />
+            <IncludedItem text="Ain · Rhône · Beaujolais — intervient sur le domaine" />
             <div className="flex items-end justify-between" style={{ marginTop: 20 }}>
               <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.35)", fontStyle: "italic" }}>Disponible pour toutes les dates d'Octobre 2027</span>
               <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 500, fontSize: 18, color: "#c9a96e" }}>+ 1 800 €</span>
@@ -122,8 +122,8 @@ const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) =>
             <div className="flex items-start justify-between">
               <div>
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e" }}>Premium</p>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 28, color: "#faf8f4", marginTop: 8 }}>Alexandre M. + Clara V.</p>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 4 }}>Duo photo & vidéo · Cinématique</p>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 28, color: "#faf8f4", marginTop: 8 }}>Loïc Cancade + vidéaste</p>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 4 }}>Photo & vidéo · Duo sur-mesure</p>
               </div>
               <div className="flex flex-shrink-0" style={{ marginLeft: 16 }}>
                 <PhotoCircle slot="photographe-alexandre" />
@@ -135,9 +135,9 @@ const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) =>
             <div style={{ borderTop: "1px solid rgba(201,169,110,0.10)", margin: "20px 0" }} />
             <IncludedItem text="Tout le Reportage, plus :" />
             <IncludedItem text="Vidéaste dédié toute la journée" />
-            <IncludedItem text="Film de mariage cinématique (5-7 min)" />
-            <IncludedItem text="Teaser 60 secondes livré sous 2 semaines" />
-            <IncludedItem text="600 photos retouchées livrées" />
+            <IncludedItem text="Film de mariage narratif — livraison selon modalités convenues" />
+            <IncludedItem text="Teaser court livré en priorité" />
+            <IncludedItem text="Volume et délais précisés lors de l'entretien préparatoire" />
             <div className="flex items-end justify-between" style={{ marginTop: 20 }}>
               <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.35)", fontStyle: "italic" }}>Disponible pour toutes les dates d'Octobre 2027</span>
               <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 500, fontSize: 18, color: "#c9a96e" }}>+ 3 200 €</span>
@@ -147,7 +147,13 @@ const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) =>
 
         <motion.p custom={7} initial="hidden" animate="visible" variants={fadeUp} className="text-center"
           style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.35)", fontStyle: "italic", marginTop: 24 }}>
-          Alexandre et Clara travaillent exclusivement sur les mariages Limen — ils connaissent le domaine par cœur.
+          Loïc a été sélectionné en personne pour la Série Octobre 2027. Il connaît le domaine, la philosophie Limen, et sera briefé avant votre journée.
+        </motion.p>
+        <motion.p custom={7.5} initial="hidden" animate="visible" variants={fadeUp} className="text-center"
+          style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.35)", fontStyle: "italic", marginTop: 8 }}>
+          <a href="https://www.loiccancade.com/mariage" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(232,221,208,0.35)", textDecoration: "none" }}>
+            <span style={{ color: "#c9a96e" }}>→</span> Voir le portfolio complet
+          </a>
         </motion.p>
 
         <motion.div custom={8} initial="hidden" animate="visible" variants={fadeUp}
