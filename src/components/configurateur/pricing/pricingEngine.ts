@@ -121,13 +121,12 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
   }
 
   const photoPrix = PHOTO_PRIX[state.photographe] ?? 0
-  if (photoPrix > 0) {
-    lines.push({
-      label: 'Photographe — ' + (photoLabelMap[state.photographe] ?? ''),
-      amount: photoPrix,
-      isIncluded: false,
-    })
-  }
+  lines.push({
+    label: 'Photographie — ' + (photoLabelMap[state.photographe] ?? ''),
+    sublabel: 'Loïc Cancade',
+    amount: photoPrix,
+    isIncluded: photoPrix === 0,
+  })
 
   const djPrix = DJ_PRIX[state.dj] ?? 0
   if (djPrix > 0) {
