@@ -38,9 +38,8 @@ const DECO_PRIX: Record<string, number> = {
 const CEREMONIE_PRIX = 800
 
 const PHOTO_PRIX: Record<string, number> = {
-  none: 0,
-  reportage: 1800,
-  premium: 3200,
+  essentielle: 0,
+  signature: 450,
 }
 
 const DJ_PRIX: Record<string, number> = {
