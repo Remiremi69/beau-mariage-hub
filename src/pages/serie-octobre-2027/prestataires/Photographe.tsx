@@ -65,23 +65,23 @@ const Photographe = () => {
   const temoignages = [
     {
       quote:
-        "Loïc a su capturer chaque émotion sans jamais s'imposer. Nos photos racontent vraiment notre journée, pas une mise en scène.",
-      author: "Philippe & Marie, Ain",
+        "Loïc a réalisé un très beau film de notre mariage, de la mairie à la pièce montée. De très beaux moments émouvants capturés. Un magnifique souvenir pour nous. Loïc est très professionnel et à l'écoute de nos attentes.",
+      author: "Christelle Barnaud · Google",
     },
     {
       quote:
-        "Un regard d'une justesse rare. Les images nous bouleversent encore aujourd'hui, c'est exactement ce que nous avons vécu.",
-      author: "Clémence & Thomas, Rhône",
+        "Dès les préparatifs, il a été très disponible et professionnel. Il a pris le temps de faire des appels vidéo avec nous pour discuter de nos attentes. Le jour du mariage, il a su capter de très beaux moments tout en restant discret. Les poses venaient naturellement, ce qui a donné un rendu très spontané et authentique. Nous recommandons chaleureusement Loïc pour son sérieux, sa gentillesse, et la qualité de son travail.",
+      author: "Chelsea C.S · Google · Visité en avril 2025",
     },
     {
       quote:
-        "Discret, précis, profondément humain. Le film de notre mariage est devenu un objet précieux que nous regardons souvent.",
-      author: "Aurélie & Baptiste, Beaujolais",
+        "Très bon photographe. Loïc est professionnel et sait s'adapter à toute situation.",
+      author: "Dorian Milan · Google · Visité en septembre 2024",
     },
     {
       quote:
-        "Nous cherchions quelqu'un capable de raconter, pas seulement de photographier. Loïc a fait bien plus encore.",
-      author: "Inès & Julien, Ain",
+        "Loïc est un photographe talentueux et polyvalent, qui sait s'adapter à toute situation. Je recommande ce professionnel.",
+      author: "Biche Gobetti · Google · Visité en juin 2024",
     },
   ];
 
@@ -283,8 +283,8 @@ const Photographe = () => {
             }}
           >
             {[
-              { n: "4,9", l: "Note / 5" },
-              { n: "+8", l: "Reportages publiés" },
+              { n: "5", l: "Note / 5" },
+              { n: "~50", l: "Mariages d'ici 2027" },
               { n: "Ain · Rhône · Beaujolais", l: "Zone d'intervention" },
             ].map((s) => (
               <div key={s.l}>
@@ -347,7 +347,7 @@ const Photographe = () => {
             <img
               src="/images/loic-philosophie-mariee-escalier-nb.jpg"
               alt="Mariée dans l'escalier, noir et blanc, Loïc Cancade"
-              style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center", marginBottom: "2rem", display: "block" }}
+              style={{ width: "100%", aspectRatio: "3/4", objectFit: "contain", objectPosition: "center", backgroundColor: "#0D0E12", marginBottom: "2rem", display: "block" }}
             />
             <div style={{ borderLeft: `1px solid ${COLORS.or}`, paddingLeft: "2.5rem" }}>
             <p
@@ -423,7 +423,7 @@ const Photographe = () => {
                 <img
                   src={c.src}
                   alt={c.label}
-                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: c.pos }}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", objectPosition: c.pos, backgroundColor: "#0D0E12" }}
                 />
                 <div
                   style={{
@@ -480,7 +480,7 @@ const Photographe = () => {
                 <img
                   src="/images/loic-galerie-drone-cercle.jpg"
                   alt="Vue drone, cercle de mariage"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
+                  style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", backgroundColor: "#F5F0E8", display: "block" }}
                 />
                 <span style={{ position: "absolute", bottom: "8px", right: "12px", fontFamily: fontBody, fontWeight: 300, fontSize: "10px", textTransform: "uppercase", color: "rgba(201,169,110,0.5)" }}>
                   © Loïc Cancade
@@ -490,7 +490,7 @@ const Photographe = () => {
                 <img
                   src="/images/loic-galerie-fleurs-rouges.jpg"
                   alt="Fleurs rouges, détail"
-                  style={{ width: "100%", height: "245px", objectFit: "cover", objectPosition: "center", display: "block" }}
+                  style={{ width: "100%", height: "245px", objectFit: "contain", objectPosition: "center", backgroundColor: "#F5F0E8", display: "block" }}
                 />
                 <span style={{ position: "absolute", bottom: "8px", right: "12px", fontFamily: fontBody, fontWeight: 300, fontSize: "10px", textTransform: "uppercase", color: "rgba(201,169,110,0.5)" }}>
                   © Loïc Cancade
@@ -500,7 +500,7 @@ const Photographe = () => {
                 <img
                   src="/images/loic-galerie-danse-lumiere.jpg"
                   alt="Danse dans la lumière"
-                  style={{ width: "100%", height: "245px", objectFit: "cover", objectPosition: "center", display: "block" }}
+                  style={{ width: "100%", height: "245px", objectFit: "contain", objectPosition: "center", backgroundColor: "#F5F0E8", display: "block" }}
                 />
                 <span style={{ position: "absolute", bottom: "8px", right: "12px", fontFamily: fontBody, fontWeight: 300, fontSize: "10px", textTransform: "uppercase", color: "rgba(201,169,110,0.5)" }}>
                   © Loïc Cancade
@@ -642,6 +642,20 @@ const Photographe = () => {
               </div>
             ))}
           </div>
+          <div
+            style={{
+              fontFamily: fontBody,
+              fontWeight: 300,
+              fontSize: "11px",
+              textTransform: "uppercase",
+              letterSpacing: "0.15em",
+              color: "#6B6355",
+              textAlign: "center",
+              marginTop: "2.5rem",
+            }}
+          >
+            Avis collectés sur Google · Note 5/5
+          </div>
         </div>
       </section>
 
@@ -673,6 +687,27 @@ const Photographe = () => {
               <p>
                 Les modalités de livraison et de couverture sont définies selon votre formule,
                 précisées lors de la configuration de votre mariage.
+              </p>
+              <p>
+                <a
+                  href="https://www.loiccancade.com/mariage"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: fontBody,
+                    fontWeight: 400,
+                    fontSize: "12px",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.15em",
+                    color: "#C9A96E",
+                    textDecoration: "none",
+                    transition: "opacity 0.3s",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                >
+                  → Découvrir le portfolio de Loïc
+                </a>
               </p>
             </div>
             <div style={{ width: "32px", height: "1px", backgroundColor: COLORS.or, margin: "2.5rem 0" }} />
