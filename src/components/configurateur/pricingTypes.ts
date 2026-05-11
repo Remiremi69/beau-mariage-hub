@@ -1,6 +1,6 @@
 export type Repas = 'essentiel' | 'gastronomique' | 'prestige'
 
-export type Photographe = 'none' | 'reportage' | 'premium'
+export type Photographe = 'essentielle' | 'signature'
 
 export type DJ = 'none' | 'standard' | 'premium'
 
@@ -51,7 +51,7 @@ export const defaultState: ConfigurateurState = {
   repasEntree: null,
   repasPlat: null,
   repasDessert: null,
-  photographe: 'none',
+  photographe: 'essentielle',
   dj: 'none',
   deco: 'seve',
   options: [],

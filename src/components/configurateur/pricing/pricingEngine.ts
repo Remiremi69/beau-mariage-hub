@@ -38,9 +38,8 @@ const DECO_PRIX: Record<string, number> = {
 const CEREMONIE_PRIX = 800
 
 const PHOTO_PRIX: Record<string, number> = {
-  none: 0,
-  reportage: 1800,
-  premium: 3200,
+  essentielle: 0,
+  signature: 450,
 }
 
 const DJ_PRIX: Record<string, number> = {
@@ -59,9 +58,8 @@ const decoLabelMap: Record<string, string> = {
   pierre: 'Pierre & Lumière',
 }
 const photoLabelMap: Record<string, string> = {
-  none: '',
-  reportage: 'Reportage',
-  premium: 'Premium Duo',
+  essentielle: 'Essentielle',
+  signature: 'Signature',
 }
 const djLabelMap: Record<string, string> = {
   none: '',
@@ -123,13 +121,12 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
   }
 
   const photoPrix = PHOTO_PRIX[state.photographe] ?? 0
-  if (photoPrix > 0) {
-    lines.push({
-      label: 'Photographe — ' + (photoLabelMap[state.photographe] ?? ''),
-      amount: photoPrix,
-      isIncluded: false,
-    })
-  }
+  lines.push({
+    label: 'Photographie — ' + (photoLabelMap[state.photographe] ?? ''),
+    sublabel: 'Loïc Cancade',
+    amount: photoPrix,
+    isIncluded: photoPrix === 0,
+  })
 
   const djPrix = DJ_PRIX[state.dj] ?? 0
   if (djPrix > 0) {
