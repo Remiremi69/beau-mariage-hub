@@ -51,7 +51,7 @@ export const defaultState: ConfigurateurState = {
   repasEntree: null,
   repasPlat: null,
   repasDessert: null,
-  photographe: 'none',
+  photographe: 'essentielle',
   dj: 'none',
   deco: 'seve',
   options: [],
