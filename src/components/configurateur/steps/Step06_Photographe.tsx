@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { User } from "lucide-react";
 import { ConfigurateurState, Photographe } from "../pricingTypes";
 import InfoButton from "../InfoButton";
 import PresentationDrawer from "../PresentationDrawer";
@@ -26,21 +25,20 @@ const cardActive: React.CSSProperties = {
   border: "1px solid #c9a96e", background: "rgba(201,169,110,0.07)",
 };
 
-const PhotoCircle = ({ slot }: { slot: string }) => (
-  <div
-    data-photo-slot={slot}
-    className="flex items-center justify-center flex-shrink-0"
-    style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(201,169,110,0.08)", border: "1px solid rgba(201,169,110,0.25)" }}
-  >
-    <User size={24} color="rgba(201,169,110,0.30)" />
-  </div>
-);
-
 const IncludedItem = ({ text }: { text: string }) => (
   <div className="flex gap-[10px] mb-2" style={{ alignItems: "flex-start" }}>
     <span style={{ color: "rgba(201,169,110,0.60)", flexShrink: 0, marginTop: 2 }}>—</span>
     <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.65)", lineHeight: 1.5 }}>{text}</span>
   </div>
+);
+
+const Badge = ({ label, tone = "gold" }: { label: string; tone?: "gold" | "neutral" }) => (
+  <span style={{
+    fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: "0.2em",
+    textTransform: "uppercase", padding: "3px 10px",
+    border: tone === "gold" ? "1px solid rgba(201,169,110,0.40)" : "1px solid rgba(232,221,208,0.30)",
+    color: tone === "gold" ? "rgba(201,169,110,0.80)" : "rgba(232,221,208,0.55)",
+  }}>{label}</span>
 );
 
 const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) => {
@@ -63,7 +61,7 @@ const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) =>
 
         <motion.p custom={2} initial="hidden" animate="visible" variants={fadeUp} className="text-center"
           style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 15, color: "rgba(232,221,208,0.65)", lineHeight: 1.8, maxWidth: 480, marginBottom: 44 }}>
-          Un photographe de mariage ne capture pas des poses. Il capture ce qui se passe entre les poses. Les larmes retenues. Le rire qui déborde.
+          Le photographe est inclus dans tous les mariages Limen. Loïc Cancade vous accompagne — choisissez simplement la profondeur de la couverture.
         </motion.p>
 
         <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
@@ -74,74 +72,52 @@ const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) =>
           style={{ width: 60, height: 1, background: "#c9a96e", margin: "0 auto 48px" }} />
 
         <div className="flex flex-col gap-4 w-full" style={{ maxWidth: 560 }}>
-          {/* Sans photographe */}
+          {/* Essentielle */}
           <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp}
-            onClick={() => select("none")}
-            className="flex items-center justify-between"
-            style={{ ...cardBase, ...(selected === "none" ? cardActive : {}), height: 80, padding: "0 28px" }}>
-            <div>
-              <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(232,221,208,0.50)" }}>Sans photographe</p>
-              <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.30)", marginTop: 4 }}>Vous gérez vous-même les souvenirs</p>
-            </div>
-            <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.35)" }}>—</span>
-          </motion.div>
-
-          {/* Reportage */}
-          <motion.div custom={5} initial="hidden" animate="visible" variants={fadeUp}
-            onClick={() => select("reportage")}
+            onClick={() => select("essentielle")}
             className="flex flex-col"
-            style={{ ...cardBase, ...(selected === "reportage" ? cardActive : {}), minHeight: 200, padding: 28 }}>
-            <div className="flex items-start justify-between">
+            style={{ ...cardBase, ...(selected === "essentielle" ? cardActive : {}), minHeight: 200, padding: 28 }}>
+            <div className="flex items-start justify-between gap-3">
               <div>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e" }}>Reportage</p>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e" }}>Essentielle</p>
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 28, color: "#faf8f4", marginTop: 8 }}>Loïc Cancade</p>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 4 }}>Photographe de mariage · ~50 mariages · Note 5/5</p>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 4 }}>Cérémonie → ouverture du bal · 14h30 → 22h30</p>
               </div>
-              <PhotoCircle slot="photographe-alexandre" />
+              <Badge label="Inclus" tone="neutral" />
             </div>
             <div style={{ borderTop: "1px solid rgba(201,169,110,0.10)", margin: "20px 0" }} />
-            <IncludedItem text="Couverture complète de la journée — préparatifs à la soirée" />
-            <IncludedItem text="Entretien préparatoire avec Loïc — visio ou présentiel" />
-            <IncludedItem text="Style naturel, poétique, documentaire — jamais de pose forcée" />
-            <IncludedItem text="Ain · Rhône · Beaujolais — intervient sur le domaine" />
-            <div className="flex items-end justify-between" style={{ marginTop: 20 }}>
-              <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.35)", fontStyle: "italic" }}>Disponible pour toutes les dates d'Octobre 2027</span>
-              <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 500, fontSize: 18, color: "#c9a96e" }}>+ 1 800 €</span>
-            </div>
+            <IncludedItem text="Minimum 450 photos HD retouchées" />
+            <IncludedItem text="Galerie privée en ligne" />
+            <IncludedItem text="Téléchargement offert à vos invités" />
+            <IncludedItem text="Livraison sous 6 à 8 semaines" />
+            <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.40)", fontStyle: "italic", marginTop: 16 }}>
+              Aucune contrainte logistique — le photographe arrive directement au domaine.
+            </p>
           </motion.div>
 
-          {/* Premium */}
-          <motion.div custom={6} initial="hidden" animate="visible" variants={fadeUp}
-            onClick={() => select("premium")}
-            className="flex flex-col relative"
-            style={{ ...cardBase, ...(selected === "premium" ? cardActive : {}), minHeight: 200, padding: 28 }}>
-            <span className="absolute top-3 right-4"
-              style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", border: "1px solid rgba(201,169,110,0.40)", padding: "3px 10px", color: "rgba(201,169,110,0.70)" }}>
-              Coup de cœur
-            </span>
-            <div className="flex items-start justify-between">
+          {/* Signature */}
+          <motion.div custom={5} initial="hidden" animate="visible" variants={fadeUp}
+            onClick={() => select("signature")}
+            className="flex flex-col"
+            style={{ ...cardBase, ...(selected === "signature" ? cardActive : {}), minHeight: 200, padding: 28 }}>
+            <div className="flex items-start justify-between gap-3">
               <div>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e" }}>Premium</p>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 28, color: "#faf8f4", marginTop: 8 }}>Loïc Cancade + vidéaste</p>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 4 }}>Photo & vidéo · Duo sur-mesure</p>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e" }}>Signature</p>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 28, color: "#faf8f4", marginTop: 8 }}>Loïc Cancade</p>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 4 }}>Préparatifs → soirée dansante · 12h00 → minuit</p>
               </div>
-              <div className="flex flex-shrink-0" style={{ marginLeft: 16 }}>
-                <PhotoCircle slot="photographe-alexandre" />
-                <div style={{ marginLeft: -16 }}>
-                  <PhotoCircle slot="videaste-clara" />
-                </div>
-              </div>
+              <Badge label="Prestige" tone="gold" />
             </div>
             <div style={{ borderTop: "1px solid rgba(201,169,110,0.10)", margin: "20px 0" }} />
-            <IncludedItem text="Tout le Reportage, plus :" />
-            <IncludedItem text="Vidéaste dédié toute la journée" />
-            <IncludedItem text="Film de mariage narratif — livraison selon modalités convenues" />
-            <IncludedItem text="Teaser court livré en priorité" />
-            <IncludedItem text="Volume et délais précisés lors de l'entretien préparatoire" />
-            <div className="flex items-end justify-between" style={{ marginTop: 20 }}>
-              <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.35)", fontStyle: "italic" }}>Disponible pour toutes les dates d'Octobre 2027</span>
-              <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 500, fontSize: 18, color: "#c9a96e" }}>+ 3 200 €</span>
-            </div>
+            <IncludedItem text="Minimum 600 photos HD retouchées" />
+            <IncludedItem text="Préparatifs de la mariée inclus" />
+            <IncludedItem text="Slideshow cinématique 4 à 6 minutes" />
+            <IncludedItem text="Galerie privée en ligne" />
+            <IncludedItem text="Téléchargement offert à vos invités" />
+            <IncludedItem text="Livraison sous 6 à 8 semaines" />
+            <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.40)", fontStyle: "italic", marginTop: 16 }}>
+              Lieu de préparatifs requis à moins de 30 min du domaine.
+            </p>
           </motion.div>
         </div>
 
