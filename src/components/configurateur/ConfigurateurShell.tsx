@@ -308,7 +308,7 @@ const ConfigurateurShell = () => {
       const count = [state.repasEntree, state.repasPlat, state.repasDessert].filter(Boolean).length;
       lines.push({ label: "Menu", value: count === 3 ? "Complet" : `${count}/3 plats` });
     }
-    if (state.currentStep >= 6 && state.photographe !== "none") {
+    if (state.currentStep >= 6) {
       lines.push({ label: "Photo", value: photoLabels[state.photographe] || "" });
     }
     if (state.currentStep >= 7 && state.dj !== "none") {
