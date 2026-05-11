@@ -603,7 +603,7 @@ const Photographe = () => {
               margin: "0 0 4rem 0",
             }}
           >
-            Quatre virgule neuf.
+            Cinq.
             <br />
             <em>Sur cinq.</em>
           </h2>
