@@ -58,9 +58,8 @@ const decoLabelMap: Record<string, string> = {
   pierre: 'Pierre & Lumière',
 }
 const photoLabelMap: Record<string, string> = {
-  none: '',
-  reportage: 'Reportage',
-  premium: 'Premium Duo',
+  essentielle: 'Essentielle',
+  signature: 'Signature',
 }
 const djLabelMap: Record<string, string> = {
   none: '',
