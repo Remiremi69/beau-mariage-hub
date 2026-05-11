@@ -61,7 +61,7 @@ const availableDates: Record<string, string> = {
 };
 
 const photoLabels: Record<string, string> = {
-  none: "", reportage: "Reportage", premium: "Premium Duo",
+  essentielle: "Essentielle", signature: "Signature",
 };
 const djLabels: Record<string, string> = {
   none: "", standard: "Standard", premium: "Premium",
