@@ -480,7 +480,7 @@ const Photographe = () => {
                 <img
                   src="/images/loic-galerie-drone-cercle.jpg"
                   alt="Vue drone, cercle de mariage"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
+                  style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", backgroundColor: "#F5F0E8", display: "block" }}
                 />
                 <span style={{ position: "absolute", bottom: "8px", right: "12px", fontFamily: fontBody, fontWeight: 300, fontSize: "10px", textTransform: "uppercase", color: "rgba(201,169,110,0.5)" }}>
                   © Loïc Cancade
@@ -490,7 +490,7 @@ const Photographe = () => {
                 <img
                   src="/images/loic-galerie-fleurs-rouges.jpg"
                   alt="Fleurs rouges, détail"
-                  style={{ width: "100%", height: "245px", objectFit: "cover", objectPosition: "center", display: "block" }}
+                  style={{ width: "100%", height: "245px", objectFit: "contain", objectPosition: "center", backgroundColor: "#F5F0E8", display: "block" }}
                 />
                 <span style={{ position: "absolute", bottom: "8px", right: "12px", fontFamily: fontBody, fontWeight: 300, fontSize: "10px", textTransform: "uppercase", color: "rgba(201,169,110,0.5)" }}>
                   © Loïc Cancade
@@ -500,7 +500,7 @@ const Photographe = () => {
                 <img
                   src="/images/loic-galerie-danse-lumiere.jpg"
                   alt="Danse dans la lumière"
-                  style={{ width: "100%", height: "245px", objectFit: "cover", objectPosition: "center", display: "block" }}
+                  style={{ width: "100%", height: "245px", objectFit: "contain", objectPosition: "center", backgroundColor: "#F5F0E8", display: "block" }}
                 />
                 <span style={{ position: "absolute", bottom: "8px", right: "12px", fontFamily: fontBody, fontWeight: 300, fontSize: "10px", textTransform: "uppercase", color: "rgba(201,169,110,0.5)" }}>
                   © Loïc Cancade
@@ -642,6 +642,20 @@ const Photographe = () => {
               </div>
             ))}
           </div>
+          <div
+            style={{
+              fontFamily: fontBody,
+              fontWeight: 300,
+              fontSize: "11px",
+              textTransform: "uppercase",
+              letterSpacing: "0.15em",
+              color: "#6B6355",
+              textAlign: "center",
+              marginTop: "2.5rem",
+            }}
+          >
+            Avis collectés sur Google · Note 5/5
+          </div>
         </div>
       </section>
 
@@ -673,6 +687,27 @@ const Photographe = () => {
               <p>
                 Les modalités de livraison et de couverture sont définies selon votre formule,
                 précisées lors de la configuration de votre mariage.
+              </p>
+              <p>
+                <a
+                  href="https://www.loiccancade.com/mariage"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: fontBody,
+                    fontWeight: 400,
+                    fontSize: "12px",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.15em",
+                    color: "#C9A96E",
+                    textDecoration: "none",
+                    transition: "opacity 0.3s",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                >
+                  → Découvrir le portfolio de Loïc
+                </a>
               </p>
             </div>
             <div style={{ width: "32px", height: "1px", backgroundColor: COLORS.or, margin: "2.5rem 0" }} />
