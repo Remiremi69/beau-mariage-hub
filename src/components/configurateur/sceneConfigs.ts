@@ -14,6 +14,9 @@ import decoBoheme1 from "@/assets/deco-boheme-moderne-1.jpg";
 import decoChampetre1 from "@/assets/deco-champetre-1.jpg";
 import decoRomantique from "@/assets/deco-romantique.jpg";
 import heroWedding from "@/assets/hero-wedding.jpg";
+import loicHero from "/images/loic-hero-contrejour-coucher-soleil.jpg";
+import loicDanse from "/images/loic-galerie-danse-lumiere.jpg";
+import loicFumigenes from "/images/loic-style-instant-fumigenes.jpg";
 
 // Scene triggered BEFORE each destination step (forward only)
 export const SCENE_CONFIGS: Record<number, SceneConfig> = {
@@ -50,6 +53,14 @@ export const SCENE_CONFIGS: Record<number, SceneConfig> = {
     title: "Votre table",
     subtitle: "Chef Sébastien · Cuisine de terroir",
     images: [tableSetup, chefSebastien],
+    duration: 4000,
+  },
+
+  // Before Step 6 — Photographe
+  6: {
+    title: "Votre photographe",
+    subtitle: "Loïc · Chaque image raconte quelque chose",
+    images: [loicHero, loicDanse, loicFumigenes],
     duration: 4000,
   },
 
