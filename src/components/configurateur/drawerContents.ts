@@ -2,7 +2,7 @@ import type { DrawerContent } from './PresentationDrawer';
 
 import chefSebastien from '@/assets/chef-sebastien.jpg';
 
-import photographeAlexandre from '@/assets/photographe-alexandre.jpg';
+import photographeAlexandre from '@/assets/photographe-loic.avif';
 
 import domaineHero2 from '@/assets/domaine-hero-2.png';
 import domaineHero3 from '@/assets/domaine-hero-3.png';
