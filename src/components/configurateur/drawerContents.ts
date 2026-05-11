@@ -193,42 +193,53 @@ export const drawerRepas: DrawerContent = {
 
 export const drawerPhotographe: DrawerContent = {
   label: 'LA MÉMOIRE',
-  title: 'Alexandre M.',
-  subtitle: 'Photographe de mariage · 8 ans',
+  title: 'Loïc Cancade',
+  subtitle: 'Photographe de mariage · Note 5/5 · Ain · Rhône · Beaujolais',
   sections: [
     {
       type: 'profile',
       content: {
         imageSlot: 'photographe-alexandre',
         imageUrl: photographeAlexandre,
-        name: 'Alexandre M.',
-        role: 'Photographe · Reportage & Portrait',
-        bio: 'Alexandre travaille exclusivement en lumière naturelle et en discrétion totale. Il ne pose jamais ses sujets — il attend le moment, puis il le prend. Ses mariages ressemblent à des films muets dont chaque image raconte quelque chose.',
+        name: 'Loïc Cancade',
+        role: 'Photographe · Style naturel & documentaire',
+        bio: 'Loïc ne pose jamais ses sujets. Il lit votre journée comme un récit — les regards, les silences, les gestes qui ne se rejouent pas. Ses images ne ressemblent à aucune autre, parce qu\'elles ne ressemblent qu\'à vous. Noté 5/5 sur Google et Mariages.net, il a accompagné près de 50 mariages en Ain, Rhône et Beaujolais.',
         details: [
-          '8 ans de reportages de mariage',
-          'Plus de 200 mariages photographiés',
-          'Lumière naturelle exclusivement',
-          'Galerie privée livrée sous 4 semaines',
-          'Droits de reproduction complets inclus',
+          'Note 5/5 — Google & Mariages.net',
+          '~50 mariages d\'ici Octobre 2027',
+          'Style naturel, poétique, documentaire',
+          'Entretien préparatoire inclus — visio ou présentiel',
+          'Intervient sur le Domaine de la Croix Rochefort',
         ],
       },
     },
     {
       type: 'highlight',
       content: {
-        text: '« Je ne photographie pas des mariages. Je photographie des gens qui s\'aiment ce jour-là. »',
+        text: '« Loïc a su capter de très beaux moments tout en restant discret. Les poses venaient naturellement — un rendu très spontané et authentique. »',
       },
     },
     {
       type: 'list',
       content: {
-        title: 'FORMULE PREMIUM — CLARA V.',
+        title: 'CE QUI NE CHANGE PAS',
         items: [
-          'Vidéaste dédiée toute la journée',
-          'Film cinématique 5-7 minutes',
-          'Teaser 60 secondes sous 2 semaines',
-          'Son ambiant + musique sur-mesure',
-          'Format optimisé réseaux & projection',
+          'Discrétion totale le jour J — sa présence est invisible',
+          'Aucune coordination à gérer — briefé par l\'équipe Limen',
+          'Un entretien avec vous avant le mariage — il connaît votre histoire',
+          'Portfolio complet sur loiccancade.com/mariage',
+        ],
+      },
+    },
+    {
+      type: 'list',
+      content: {
+        title: 'AVIS CLIENTS — GOOGLE',
+        items: [
+          '« De très beaux moments émouvants capturés. Un magnifique souvenir. » — Christelle B.',
+          '« Discret, précis, profondément humain. » — Dorian M.',
+          '« Son sérieux, sa gentillesse, et la qualité de son travail. » — Chelsea C.S.',
+          '« Photographe talentueux et polyvalent, sait s\'adapter à toute situation. » — Biche G.',
         ],
       },
     },
