@@ -383,7 +383,7 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
               badge="DÉGUSTATION INCLUSE"
             />
             <ChoiceLine category="Décoration" value={decoLabels[state.deco] || state.deco} price="Inclus" />
-            <ChoiceLine category="Photographe" value={photoLabels[state.photographe] || "Non sélectionné"} price={state.photographe === "none" ? undefined : state.photographe === "reportage" ? "+ 1 800 €" : "+ 3 200 €"} />
+            <ChoiceLine category="Photographie" value={`${photoLabels[state.photographe] || "Essentielle"} (Loïc Cancade)`} price={state.photographe === "signature" ? "+ 450 €" : "Inclus"} />
             <ChoiceLine category="DJ" value={djLabels[state.dj] || "Non sélectionné"} price={state.dj === "none" ? undefined : state.dj === "standard" ? "+ 1 200 €" : "+ 2 100 €"} />
             <div className="sm:col-span-2">
               <ChoiceLine category="Options" value={optionsList || "Aucune option"} price={breakdown.subtotalOptions > 0 ? `+ ${formatPrice(breakdown.subtotalOptions)}` : undefined} />
