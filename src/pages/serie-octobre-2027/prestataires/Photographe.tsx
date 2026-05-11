@@ -284,7 +284,7 @@ const Photographe = () => {
           >
             {[
               { n: "5", l: "Note / 5" },
-              { n: "~50", l: "Mariages d'ici 2027" },
+              { n: "~50", l: "Mariages déjà réalisés" },
               { n: "Ain · Rhône · Beaujolais", l: "Zone d'intervention" },
             ].map((s) => (
               <div key={s.l}>
