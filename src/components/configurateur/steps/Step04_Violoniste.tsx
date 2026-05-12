@@ -106,9 +106,6 @@ const Step04_Violoniste = ({ state, onUpdate, onNext, onPrev }: Step04Props) => 
                 </span>
               ))}
             </div>
-            <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 500, fontSize: 15, color: "#c9a96e", marginTop: "auto", paddingTop: 20 }}>
-              + 750 €
-            </p>
           </div>
 
           {/* Carte B — Option complémentaire */}
@@ -142,9 +139,6 @@ const Step04_Violoniste = ({ state, onUpdate, onNext, onPrev }: Step04Props) => 
                 </span>
               ))}
             </div>
-            <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 500, fontSize: 15, color: withOption ? "#c9a96e" : "rgba(232,221,208,0.45)", marginTop: "auto", paddingTop: 20 }}>
-              + 450 €
-            </p>
           </div>
         </motion.div>
 
