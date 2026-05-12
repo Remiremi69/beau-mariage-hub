@@ -65,9 +65,7 @@ const availableDates: Record<string, string> = {
 const photoLabels: Record<string, string> = {
   essentielle: "Essentielle", signature: "Signature",
 };
-const djLabels: Record<string, string> = {
-  none: "", standard: "Standard", premium: "Premium",
-};
+// (DJ labels n/a — DJ is now a feature toggle set, not an enum)
 
 /* ─── Haptic helper ───────────────────────────────────── */
 const haptic = (type: "light" | "medium" = "light") => {
@@ -317,8 +315,12 @@ const ConfigurateurShell = () => {
     if (state.currentStep >= 7) {
       lines.push({ label: "Photo", value: photoLabels[state.photographe] || "" });
     }
-    if (state.currentStep >= 8 && state.dj !== "none") {
-      lines.push({ label: "DJ", value: djLabels[state.dj] || "" });
+    if (state.currentStep >= 8) {
+      const extras = [
+        state.dj.sonoVH ? (state.ceremonieLaique ? "cocktail (inclus)" : "cocktail") : null,
+        state.dj.effetPrestige ? "Prestige" : null,
+      ].filter(Boolean);
+      lines.push({ label: "DJ", value: extras.length ? `Inclus + ${extras.join(" · ")}` : "Inclus" });
     }
     if (state.currentStep >= 10 && (state.options?.length ?? 0) > 0) {
       lines.push({ label: "Options", value: `${state.options.length}` });
