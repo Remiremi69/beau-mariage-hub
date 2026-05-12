@@ -158,7 +158,7 @@ const Signature = () => {
                 <ChoiceLine category="Repas" value={repasLabels[lead?.repas_formule || ""] || lead?.repas_formule || "—"} />
                 <ChoiceLine category="Décoration" value={decoLabels[lead?.deco || ""] || lead?.deco || "—"} />
                 <ChoiceLine category="Photographe" value={photoLabels[lead?.photographe || ""] || "—"} />
-                <ChoiceLine category="DJ" value={djLabels[lead?.dj || ""] || "—"} />
+                <ChoiceLine category="Animation musicale (DJ)" value={`Inclus${lead?.dj_sono_vh ? " + cocktail" : ""}${lead?.dj_effet_prestige ? " + Prestige" : ""}`} />
                 <ChoiceLine category="Options" value={optionsList || "Aucune"} />
               </div>
             </motion.div>
