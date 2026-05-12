@@ -1,10 +1,7 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { User } from "lucide-react";
-import { ConfigurateurState, DJ } from "../pricingTypes";
-import InfoButton from "../InfoButton";
-import PresentationDrawer from "../PresentationDrawer";
-import { drawerDJ } from "../drawerContents";
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+import { Music2, Mic2, Sparkles } from "lucide-react";
+import { ConfigurateurState } from "../pricingTypes";
 
 interface Step07Props {
   state: ConfigurateurState;
@@ -15,199 +12,255 @@ interface Step07Props {
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.7, ease: "easeOut" } }),
+  visible: (i: number) => ({
+    opacity: 1, y: 0,
+    transition: { delay: i * 0.1, duration: 0.7, ease: "easeOut" },
+  }),
 };
 
-const cardBase: React.CSSProperties = {
-  borderRadius: 2, cursor: "pointer", transition: "all 0.25s ease",
-  border: "1px solid rgba(201,169,110,0.15)", background: "rgba(26,22,18,0.35)",
-};
-const cardActive: React.CSSProperties = {
-  border: "1px solid #c9a96e", background: "rgba(201,169,110,0.07)",
+const COLORS = {
+  nuit: "#1A1814",
+  lin: "#F5F0E8",
+  or: "#C8A96E",
 };
 
-const IncludedItem = ({ text }: { text: string }) => (
-  <div className="flex gap-[10px] mb-2" style={{ alignItems: "flex-start" }}>
-    <span style={{ color: "rgba(201,169,110,0.60)", flexShrink: 0, marginTop: 2 }}>—</span>
-    <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.65)", lineHeight: 1.5 }}>{text}</span>
-  </div>
+const Badge = ({
+  label,
+  variant = "lin",
+}: { label: string; variant?: "lin" | "or" | "amber" }) => {
+  const styles: Record<string, React.CSSProperties> = {
+    lin: {
+      border: "1px solid rgba(245,240,232,0.30)",
+      color: "rgba(245,240,232,0.70)",
+      background: "transparent",
+    },
+    or: {
+      border: "1px solid #c9a96e",
+      color: "#c9a96e",
+      background: "rgba(201,169,110,0.10)",
+    },
+    amber: {
+      border: "1px solid rgba(232,213,176,0.65)",
+      color: "#1a1612",
+      background: "rgba(232,213,176,0.85)",
+    },
+  };
+  return (
+    <span
+      style={{
+        ...styles[variant],
+        fontFamily: "'Jost', sans-serif",
+        fontWeight: 400,
+        fontSize: 10,
+        letterSpacing: "0.20em",
+        textTransform: "uppercase",
+        padding: "3px 10px",
+      }}
+    >
+      {label}
+    </span>
+  );
+};
+
+const Toggle = ({
+  on, disabled = false, onClick,
+}: { on: boolean; disabled?: boolean; onClick: () => void }) => (
+  <button
+    onClick={disabled ? undefined : onClick}
+    aria-pressed={on}
+    disabled={disabled}
+    style={{
+      width: 48, height: 26, borderRadius: 999, position: "relative",
+      background: on ? "#c9a96e" : "rgba(245,240,232,0.18)",
+      border: "1px solid rgba(245,240,232,0.20)",
+      cursor: disabled ? "not-allowed" : "pointer",
+      transition: "all 0.25s ease",
+      flexShrink: 0,
+    }}
+  >
+    <span
+      style={{
+        position: "absolute", top: 2, left: on ? 24 : 2,
+        width: 20, height: 20, borderRadius: "50%",
+        background: on ? "#1a1612" : "rgba(245,240,232,0.85)",
+        transition: "all 0.25s ease",
+      }}
+    />
+  </button>
 );
 
-const ambiancePeriodes = [
-  { label: "VIN D'HONNEUR", tags: ["Jazz", "Bossa Nova", "Soul", "Acoustique"] },
-  { label: "DÎNER", tags: ["Variété française", "Jazz contemporain", "Électro-swing", "Lounge"] },
-  { label: "SOIRÉE", tags: ["Pop", "R&B", "House", "80s-90s", "Funk"] },
-];
-
 const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
-  const selected = state.dj;
-  const [musicTags, setMusicTags] = useState<string[]>(state.ambianceMusique || []);
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const dj = state.dj;
+  const sonoForcee = state.ceremonieLaique;
 
-  const select = (v: DJ) => onUpdate({ dj: v });
+  // Sync auto : cérémonie laïque → sonoVH forcé true
+  useEffect(() => {
+    if (sonoForcee && !dj.sonoVH) {
+      onUpdate({ dj: { ...dj, sonoVH: true } });
+    } else if (!sonoForcee && dj.sonoVH && (dj as { _ceremonieSync?: boolean })._ceremonieSync) {
+      // n/a — l'utilisateur garde le contrôle
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sonoForcee]);
 
-  const toggleTag = (tag: string) => {
-    setMusicTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    );
+  const toggleSono = () => {
+    if (sonoForcee) return;
+    onUpdate({ dj: { ...dj, sonoVH: !dj.sonoVH } });
+  };
+  const togglePrestige = () => {
+    onUpdate({ dj: { ...dj, effetPrestige: !dj.effetPrestige } });
   };
 
-  const handleContinue = () => {
-    onUpdate({ ambianceMusique: musicTags });
-    onNext();
+  const cardBase: React.CSSProperties = {
+    borderRadius: 2,
+    padding: "26px 28px",
+    transition: "all 0.25s ease",
+    background: "rgba(26,22,18,0.50)",
+    border: "1px solid rgba(201,169,110,0.18)",
+  };
+  const cardActive: React.CSSProperties = {
+    background: "rgba(201,169,110,0.07)",
+    border: "1px solid #c9a96e",
+  };
+  const cardLocked: React.CSSProperties = {
+    background: "rgba(232,213,176,0.06)",
+    border: "1px solid rgba(232,213,176,0.40)",
+    opacity: 0.95,
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen px-6" style={{ paddingTop: 60, paddingBottom: 60 }}>
-      <div className="flex flex-col items-center w-full" style={{ maxWidth: 700 }}>
+      <div className="flex flex-col items-center w-full" style={{ maxWidth: 720 }}>
+        {/* Eyebrow */}
         <motion.p custom={0} initial="hidden" animate="visible" variants={fadeUp}
           style={{ fontFamily: "'Jost', sans-serif", fontWeight: 200, fontSize: 11, letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(201,169,110,0.6)" }}>
-          Étape 7 · La nuit
+          Étape 8 · La musique
         </motion.p>
 
+        {/* Titre */}
         <motion.h2 custom={1} initial="hidden" animate="visible" variants={fadeUp} className="text-center mt-6"
           style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(38px, 5vw, 52px)", color: "#faf8f4", lineHeight: 1.15 }}>
-          La fête commence<br />quand vous voulez.
+          Votre soirée.
         </motion.h2>
 
+        {/* Subtitle */}
         <motion.p custom={2} initial="hidden" animate="visible" variants={fadeUp} className="text-center"
-          style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 15, color: "rgba(232,221,208,0.65)", lineHeight: 1.8, maxWidth: 480, marginBottom: 44 }}>
-          Du jazz pendant le dîner à l'électro à 2h du matin. Notre DJ lit la salle et adapte chaque set à l'énergie unique de votre soirée.
+          style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 15, color: "rgba(232,221,208,0.65)", lineHeight: 1.8, maxWidth: 480, marginBottom: 36 }}>
+          Tout est déjà prêt.<br />Vous choisissez l'atmosphère.
         </motion.p>
 
-        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
-          <InfoButton label="Découvrir l'univers de Marcus" onClick={() => setDrawerOpen(true)} />
-        </motion.div>
+        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}
+          style={{ width: 60, height: 1, background: COLORS.or, margin: "0 auto 36px" }} />
 
-        <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
-          style={{ width: 60, height: 1, background: "#c9a96e", margin: "0 auto 48px" }} />
-
-        <div className="flex flex-col gap-4 w-full" style={{ maxWidth: 560 }}>
-          {/* Sans DJ */}
-          <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp}>
-            <div onClick={() => select("none")}
-              className="flex items-center justify-between"
-              style={{ ...cardBase, ...(selected === "none" ? cardActive : {}), height: 80, padding: "0 28px" }}>
-              <div>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(232,221,208,0.50)" }}>Sans DJ</p>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.30)", marginTop: 4 }}>Playlist personnelle sur sono fournie</p>
+        <div className="flex flex-col gap-4 w-full" style={{ maxWidth: 600 }}>
+          {/* ─── Bloc 1 — Forfait inclus (non interactif) ─── */}
+          <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
+            style={{ ...cardBase, border: "1px solid rgba(201,169,110,0.30)" }}>
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0" style={{
+                width: 44, height: 44, borderRadius: 2, display: "flex",
+                alignItems: "center", justifyContent: "center",
+                background: "rgba(201,169,110,0.10)", border: "1px solid rgba(201,169,110,0.30)",
+              }}>
+                <Music2 size={20} color={COLORS.or} />
               </div>
-              <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.35)" }}>—</span>
+              <div style={{ flex: 1 }}>
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.20em", textTransform: "uppercase", color: "#faf8f4" }}>
+                    Votre soirée musicale
+                  </p>
+                  <Badge label="Inclus" variant="or" />
+                </div>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300, fontSize: 22, color: COLORS.or, marginTop: 8 }}>
+                  2 DJ · 19h30 → 4h du matin
+                </p>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.60)", lineHeight: 1.7, marginTop: 10 }}>
+                  Son professionnel HK Audio · Éclairage d'ambiance salle.
+                  Lecture de salle et adaptation en temps réel.
+                </p>
+              </div>
             </div>
-            <AnimatePresence>
-              {selected === "none" && (
-                <motion.p
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.35 }}
-                  style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", fontStyle: "italic", borderLeft: "1px solid rgba(201,169,110,0.30)", paddingLeft: 14, marginTop: 12, lineHeight: 1.7 }}>
-                  La sono du domaine est incluse dans tous les cas. Vous pouvez connecter votre propre playlist.
-                </motion.p>
-              )}
-            </AnimatePresence>
           </motion.div>
 
-          {/* Standard */}
+          {/* ─── Bloc 2 — Sonorisation cocktail ─── */}
+          <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp}
+            onClick={toggleSono}
+            title={sonoForcee ? "Activé car vous avez choisi la cérémonie laïque" : undefined}
+            style={{
+              ...(sonoForcee ? cardLocked : (dj.sonoVH ? cardActive : cardBase)),
+              cursor: sonoForcee ? "not-allowed" : "pointer",
+            }}
+          >
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0" style={{
+                width: 44, height: 44, borderRadius: 2, display: "flex",
+                alignItems: "center", justifyContent: "center",
+                background: "rgba(201,169,110,0.10)", border: "1px solid rgba(201,169,110,0.25)",
+              }}>
+                <Mic2 size={20} color={COLORS.or} />
+              </div>
+              <div style={{ flex: 1 }}>
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.20em", textTransform: "uppercase", color: "#faf8f4" }}>
+                    {sonoForcee ? "Ambiance cérémonie & cocktail" : "Ambiance cocktail"}
+                  </p>
+                  {sonoForcee
+                    ? <Badge label="Obligatoire" variant="amber" />
+                    : <Badge label="Optionnel" variant="lin" />}
+                </div>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.65)", lineHeight: 1.7, marginTop: 10 }}>
+                  {sonoForcee
+                    ? "La sonorisation de votre cérémonie et de votre cocktail est incluse."
+                    : "Une ambiance musicale pendant votre vin d'honneur."}
+                </p>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", fontStyle: "italic", marginTop: 6 }}>
+                  {sonoForcee
+                    ? "Inclus avec votre cérémonie laïque."
+                    : "Micro HF · Set list définie avec vous en amont."}
+                </p>
+              </div>
+              <Toggle on={dj.sonoVH || sonoForcee} disabled={sonoForcee} onClick={toggleSono} />
+            </div>
+          </motion.div>
+
+          {/* ─── Bloc 3 — Effet Prestige ─── */}
           <motion.div custom={5} initial="hidden" animate="visible" variants={fadeUp}
-            onClick={() => select("standard")}
-            className="flex flex-col"
-            style={{ ...cardBase, ...(selected === "standard" ? cardActive : {}), minHeight: 200, padding: 28 }}>
-            <div className="flex items-start justify-between">
-              <div>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e" }}>Standard</p>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 28, color: "#faf8f4", marginTop: 8 }}>Marcus D.</p>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 4 }}>DJ mariage & événements · 12 ans</p>
+            onClick={togglePrestige}
+            style={{ ...(dj.effetPrestige ? cardActive : cardBase), cursor: "pointer" }}
+          >
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0" style={{
+                width: 44, height: 44, borderRadius: 2, display: "flex",
+                alignItems: "center", justifyContent: "center",
+                background: "rgba(201,169,110,0.10)", border: "1px solid rgba(201,169,110,0.25)",
+              }}>
+                <Sparkles size={20} color={COLORS.or} />
               </div>
-              <div data-photo-slot="dj-marcus" className="flex items-center justify-center flex-shrink-0"
-                style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(201,169,110,0.08)", border: "1px solid rgba(201,169,110,0.25)" }}>
-                <User size={24} color="rgba(201,169,110,0.30)" />
+              <div style={{ flex: 1 }}>
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.20em", textTransform: "uppercase", color: "#faf8f4" }}>
+                    Prestige
+                  </p>
+                  <Badge label="✦ Prestige" variant="or" />
+                </div>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.65)", lineHeight: 1.7, marginTop: 10 }}>
+                  Marquez les instants forts de votre soirée avec des effets lumineux.
+                </p>
+                <ul style={{ marginTop: 10, padding: 0, listStyle: "none" }}>
+                  {["Entrée des mariés", "Ouverture du bal", "Dessert"].map((item) => (
+                    <li key={item} style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(245,240,232,0.55)", lineHeight: 1.8 }}>
+                      · {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-            <div style={{ borderTop: "1px solid rgba(201,169,110,0.10)", margin: "20px 0" }} />
-            <IncludedItem text="Présence de 19h à 2h du matin (7h)" />
-            <IncludedItem text="Sono professionnelle haut de gamme" />
-            <IncludedItem text="Jeu de lumières scénique inclus" />
-            <IncludedItem text="Consultation musicale 1 mois avant" />
-            <IncludedItem text="Lecture de salle & adaptation en temps réel" />
-            <div className="flex items-end justify-between" style={{ marginTop: 20 }}>
-              <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.35)", fontStyle: "italic" }}>Disponible pour toutes les dates d'Octobre 2027</span>
-              <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 500, fontSize: 18, color: "#c9a96e" }}>+ 1 200 €</span>
-            </div>
-          </motion.div>
-
-          {/* Premium */}
-          <motion.div custom={6} initial="hidden" animate="visible" variants={fadeUp}
-            onClick={() => select("premium")}
-            className="flex flex-col relative"
-            style={{ ...cardBase, ...(selected === "premium" ? cardActive : {}), minHeight: 200, padding: 28 }}>
-            <span className="absolute top-3 right-4"
-              style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", border: "1px solid rgba(201,169,110,0.40)", padding: "3px 10px", color: "rgba(201,169,110,0.70)" }}>
-              Expérience totale
-            </span>
-            <div className="flex items-start justify-between">
-              <div>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e" }}>Premium</p>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 28, color: "#faf8f4", marginTop: 8 }}>Marcus D.</p>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 4 }}>DJ · Sono live · Animation</p>
-              </div>
-              <div data-photo-slot="dj-marcus" className="flex items-center justify-center flex-shrink-0"
-                style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(201,169,110,0.08)", border: "1px solid rgba(201,169,110,0.25)" }}>
-                <User size={24} color="rgba(201,169,110,0.30)" />
-              </div>
-            </div>
-            <div style={{ borderTop: "1px solid rgba(201,169,110,0.10)", margin: "20px 0" }} />
-            <IncludedItem text="Tout le Standard, plus :" />
-            <IncludedItem text="Présence de 18h à 4h du matin (10h)" />
-            <IncludedItem text="Sono premium Funktion-One" />
-            <IncludedItem text="Système d'éclairage architectural" />
-            <IncludedItem text="Soirée ouverte avec option karaoké" />
-            <IncludedItem text="Coordination avec le photographe en temps réel" />
-            <div className="flex items-end justify-between" style={{ marginTop: 20 }}>
-              <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.35)", fontStyle: "italic" }}>Disponible pour toutes les dates d'Octobre 2027</span>
-              <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 500, fontSize: 18, color: "#c9a96e" }}>+ 2 100 €</span>
+              <Toggle on={dj.effetPrestige} onClick={togglePrestige} />
             </div>
           </motion.div>
         </div>
 
-        {/* Ambiance musicale */}
+        {/* Navigation */}
         <motion.div custom={7} initial="hidden" animate="visible" variants={fadeUp}
-          className="w-full" style={{ maxWidth: 560, marginTop: 44 }}>
-          <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.30em", textTransform: "uppercase", color: "rgba(201,169,110,0.60)", marginBottom: 20 }}>
-            Personnalisez l'ambiance
-          </p>
-          {ambiancePeriodes.map((periode) => (
-            <div key={periode.label} className="flex flex-col sm:flex-row items-start sm:items-center gap-4" style={{ padding: "14px 0", borderBottom: "1px solid rgba(201,169,110,0.08)" }}>
-              <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(232,221,208,0.55)", width: 160, flexShrink: 0 }}>
-                {periode.label}
-              </span>
-              <div className="flex flex-wrap gap-2 flex-1">
-                {periode.tags.map((tag) => {
-                  const isActive = musicTags.includes(tag);
-                  return (
-                    <button key={tag} onClick={() => toggleTag(tag)}
-                      className="transition-all duration-200"
-                      style={{
-                        fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 11, letterSpacing: "0.12em",
-                        padding: "6px 14px", borderRadius: 1, cursor: "pointer", background: isActive ? "rgba(201,169,110,0.08)" : "transparent",
-                        border: isActive ? "1px solid rgba(201,169,110,0.70)" : "1px solid rgba(201,169,110,0.20)",
-                        color: isActive ? "rgba(201,169,110,0.90)" : "rgba(232,221,208,0.45)",
-                      }}>
-                      {tag}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-        </motion.div>
-
-        <motion.p custom={8} initial="hidden" animate="visible" variants={fadeUp} className="text-center"
-          style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.35)", fontStyle: "italic", marginTop: 24 }}>
-          Marcus connaît le domaine. Il a déjà fait danser des salles entières jusqu'au lever du soleil à Croix Rochefort.
-        </motion.p>
-
-        <motion.div custom={9} initial="hidden" animate="visible" variants={fadeUp}
           className="flex items-center justify-between w-full mt-12" style={{ maxWidth: 480 }}>
           <button onClick={onPrev} className="transition-colors duration-200"
             style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, letterSpacing: "0.2em", color: "rgba(232,221,208,0.40)", background: "transparent", border: "none", cursor: "pointer" }}
@@ -215,15 +268,13 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
             onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(232,221,208,0.40)"; }}>
             ← RETOUR
           </button>
-          <motion.button onClick={handleContinue} className="transition-colors duration-300"
+          <motion.button onClick={onNext} className="transition-colors duration-300"
             style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.25em", textTransform: "uppercase", border: "1px solid #c9a96e", background: "transparent", color: "#c9a96e", padding: "18px 56px", borderRadius: 0, cursor: "pointer" }}
             whileHover={{ backgroundColor: "#c9a96e", color: "#1a1612" }}>
             Continuer
           </motion.button>
         </motion.div>
       </div>
-
-      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerDJ} />
     </div>
   );
 };
