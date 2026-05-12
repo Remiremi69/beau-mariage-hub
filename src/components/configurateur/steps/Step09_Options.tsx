@@ -140,8 +140,8 @@ const Step09_Options = ({ state, onUpdate, onNext, onPrev }: Step09Props) => {
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(232,221,208,0.55)", marginBottom: 4 }}>
                   option{selected.length > 1 ? "s" : ""} choisie{selected.length > 1 ? "s" : ""}
                 </p>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(201,169,110,0.70)" }}>
-                  + {total.toLocaleString("fr-FR")} € au forfait
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", fontStyle: "italic" }}>
+                  Détail tarifaire au récapitulatif
                 </p>
               </div>
             </motion.div>
