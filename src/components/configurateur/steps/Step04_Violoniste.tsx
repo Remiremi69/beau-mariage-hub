@@ -106,9 +106,6 @@ const Step04_Violoniste = ({ state, onUpdate, onNext, onPrev }: Step04Props) => 
                 </span>
               ))}
             </div>
-            <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 500, fontSize: 15, color: "#c9a96e", marginTop: "auto", paddingTop: 20 }}>
-              + 750 €
-            </p>
           </div>
 
           {/* Carte B — Option complémentaire */}
