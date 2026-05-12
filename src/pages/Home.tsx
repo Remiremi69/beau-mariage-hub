@@ -580,6 +580,9 @@ const PartnersSection = () => {
       category: "VIOLONISTE & PERFORMER",
       description: "Violoniste dansant, performer de scène. Plus de 80 mariages en France et à l'international. Une intervention rare, pensée comme un instant scénique au cœur de votre journée.",
       icon: MicVocal,
+      image: "/images/alexandre-philosophie-portrait-scene.jpg",
+      imageAlt: "Alexandre Medjaher Chomat, violoniste performer en scène",
+      imagePosition: "center 20%",
     },
     {
       title: "Marcus D. — DJ",
