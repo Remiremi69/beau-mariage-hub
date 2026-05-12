@@ -24,6 +24,8 @@ export type Database = {
           date_mariage: string | null
           deco: string | null
           dj: string | null
+          dj_effet_prestige: boolean | null
+          dj_sono_vh: boolean | null
           email: string
           guests_estimate: number | null
           id: string
@@ -58,6 +60,8 @@ export type Database = {
           date_mariage?: string | null
           deco?: string | null
           dj?: string | null
+          dj_effet_prestige?: boolean | null
+          dj_sono_vh?: boolean | null
           email: string
           guests_estimate?: number | null
           id?: string
@@ -92,6 +96,8 @@ export type Database = {
           date_mariage?: string | null
           deco?: string | null
           dj?: string | null
+          dj_effet_prestige?: boolean | null
+          dj_sono_vh?: boolean | null
           email?: string
           guests_estimate?: number | null
           id?: string
