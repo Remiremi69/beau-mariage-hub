@@ -23,7 +23,7 @@ export type ConfigurateurState = {
   repasPlat: string | null
   repasDessert: string | null
   photographe: Photographe
-  dj: DJ
+  dj: DJChoice
   deco: Deco
   options: string[]
   ambianceMusique: string[]
@@ -57,7 +57,7 @@ export const defaultState: ConfigurateurState = {
   repasPlat: null,
   repasDessert: null,
   photographe: 'essentielle',
-  dj: 'none',
+  dj: { sonoVH: false, effetPrestige: false },
   deco: 'seve',
   options: [],
   ambianceMusique: [],
