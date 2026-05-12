@@ -11,7 +11,7 @@ import CinematicHero from "@/components/CinematicHero";
 import { ScrollReveal, StaggerContainer, ImageReveal } from "@/components/ScrollReveal";
 import venueImage from "@/assets/venue-exterior.jpg";
 import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
-
+import photographeLoic from "@/assets/photographe-loic.avif";
 
 const Home = () => {
   const founderQuote = {
@@ -572,6 +572,8 @@ const PartnersSection = () => {
       category: "PHOTOGRAPHES & VIDÉASTES",
       description: "Style naturel et documentaire, noté 5/5 sur Google et Mariages.net. Loïc ne pose jamais ses sujets — il lit votre journée comme un récit, et capte ce qui ne se rejoue pas.",
       icon: Camera,
+      image: photographeLoic,
+      imageAlt: "Loïc Cancade, photographe de mariage, au travail lors d'un coucher de soleil",
     },
     {
       title: "Alexandre Medjaher Chomat — Violoniste",
