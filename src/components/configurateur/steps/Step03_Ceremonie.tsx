@@ -114,9 +114,11 @@ const Step03_Ceremonie = ({ state, onUpdate, onNext, onPrev }: Step03Props) => {
                 </span>
               ))}
             </div>
-            <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 500, fontSize: 15, color: "#c9a96e", marginTop: "auto", paddingTop: 20 }}>
-              + 800 €
-            </p>
+            <div style={{ marginTop: "auto", paddingTop: 20 }}>
+              <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: "0.20em", textTransform: "uppercase", border: "1px solid #c9a96e", color: "#c9a96e", background: "rgba(201,169,110,0.10)", padding: "3px 10px" }}>
+                ✦ Prestige
+              </span>
+            </div>
           </div>
         </motion.div>
 
