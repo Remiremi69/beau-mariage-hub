@@ -175,8 +175,9 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                   2 DJ · 19h30 → 4h du matin
                 </p>
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.60)", lineHeight: 1.7, marginTop: 10 }}>
-                  Son professionnel HK Audio · Éclairage d'ambiance salle.
-                  Lecture de salle et adaptation en temps réel.
+                  Deux DJ qui lisent la salle et font évoluer la soirée —
+                  de l'ambiance feutrée du dîner aux dernières danses,
+                  sans que vous ayez à orchestrer quoi que ce soit.
                 </p>
               </div>
             </div>
