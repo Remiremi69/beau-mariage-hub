@@ -11,6 +11,7 @@ export type ConfigurateurState = {
   date: string | null
   guests: number
   ceremonieLaique: boolean
+  violonisteOption: boolean
   vhBouchee: string | null
   vhAnimation: string | null
   vhMignardise: string | null
@@ -44,6 +45,7 @@ export const defaultState: ConfigurateurState = {
   date: null,
   guests: 80,
   ceremonieLaique: false,
+  violonisteOption: false,
   vhBouchee: null,
   vhAnimation: null,
   vhMignardise: null,
