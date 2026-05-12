@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Music2, Mic2, Sparkles } from "lucide-react";
+import { Music2, Mic2 } from "lucide-react";
 import { ConfigurateurState } from "../pricingTypes";
 
 interface Step07Props {
