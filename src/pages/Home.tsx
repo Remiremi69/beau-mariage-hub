@@ -43,14 +43,14 @@ const Home = () => {
       {/* How It Works Section - ACTION 2 */}
       <TimelineSection />
 
+      {/* Prestataires d'Exception Section - ACTION 3 */}
+      <PartnersSection />
+
       {/* Garantie Section - ACTION 4 */}
       <SerenitySection />
 
       {/* Business Model Section - ACTION 5 */}
       <BusinessModelSection />
-
-      {/* Prestataires d'Exception Section - ACTION 3 */}
-      <PartnersSection />
 
       {/* CTA after Partners */}
       <section style={{ backgroundColor: '#0D0E12', paddingTop: 60, paddingBottom: 60 }}>
