@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Music2, Mic2, Sparkles } from "lucide-react";
+import { Music2, Mic2 } from "lucide-react";
 import { ConfigurateurState } from "../pricingTypes";
 
 interface Step07Props {
@@ -224,37 +224,168 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
           </motion.div>
 
           {/* ─── Bloc 3 — Effet Prestige ─── */}
-          <motion.div custom={5} initial="hidden" animate="visible" variants={fadeUp}
+          <motion.div
+            custom={5}
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
             onClick={togglePrestige}
-            style={{ ...(dj.effetPrestige ? cardActive : cardBase), cursor: "pointer" }}
+            style={{
+              ...(dj.effetPrestige
+                ? {
+                    borderRadius: 2,
+                    padding: "26px 28px",
+                    transition: "all 0.25s ease",
+                    background: "rgba(201,169,110,0.07)",
+                    border: "1px solid #c9a96e",
+                    cursor: "pointer",
+                  }
+                : cardBase),
+              cursor: "pointer",
+            }}
           >
             <div className="flex items-start gap-4">
-              <div className="flex-shrink-0" style={{
-                width: 44, height: 44, borderRadius: 2, display: "flex",
-                alignItems: "center", justifyContent: "center",
-                background: "rgba(201,169,110,0.10)", border: "1px solid rgba(201,169,110,0.25)",
-              }}>
-                <Sparkles size={20} color={COLORS.or} />
+              <div
+                className="flex-shrink-0"
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: 2,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "rgba(201,169,110,0.10)",
+                  border: "1px solid rgba(201,169,110,0.25)",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontWeight: 300,
+                    fontSize: 26,
+                    color: COLORS.or,
+                    lineHeight: 1,
+                  }}
+                >
+                  ✦
+                </span>
               </div>
               <div style={{ flex: 1 }}>
                 <div className="flex items-center justify-between gap-3 flex-wrap">
-                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.20em", textTransform: "uppercase", color: "#faf8f4" }}>
+                  <p
+                    style={{
+                      fontFamily: "'Jost', sans-serif",
+                      fontWeight: 400,
+                      fontSize: 13,
+                      letterSpacing: "0.20em",
+                      textTransform: "uppercase",
+                      color: "#faf8f4",
+                    }}
+                  >
                     Prestige
                   </p>
-                  <Badge label="✦ Prestige" variant="or" />
+                  <div className="flex items-center gap-3">
+                    <Badge label="Prestige" variant="or" />
+                    <Toggle on={dj.effetPrestige} onClick={togglePrestige} />
+                  </div>
                 </div>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.65)", lineHeight: 1.7, marginTop: 10 }}>
-                  Marquez les instants forts de votre soirée avec des effets lumineux.
+                <p
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontStyle: "italic",
+                    fontWeight: 300,
+                    fontSize: 22,
+                    color: COLORS.lin,
+                    marginTop: 14,
+                    lineHeight: 1.4,
+                  }}
+                >
+                  Certains moments méritent d'être vus depuis la salle.
                 </p>
-                <ul style={{ marginTop: 10, padding: 0, listStyle: "none" }}>
-                  {["Entrée des mariés", "Ouverture du bal", "Dessert"].map((item) => (
-                    <li key={item} style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(245,240,232,0.55)", lineHeight: 1.8 }}>
-                      · {item}
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex flex-col gap-6 mt-6">
+                  <div>
+                    <p
+                      style={{
+                        fontFamily: "'Jost', sans-serif",
+                        fontWeight: 400,
+                        fontSize: 11,
+                        letterSpacing: "0.25em",
+                        textTransform: "uppercase",
+                        color: COLORS.or,
+                        marginBottom: 4,
+                      }}
+                    >
+                      VOTRE ENTRÉE
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "'Jost', sans-serif",
+                        fontWeight: 300,
+                        fontSize: 13,
+                        color: "rgba(245,240,232,0.75)",
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      Des gerbes d'étincelles dorées jaillissent de chaque côté
+                      lorsque vous franchissez le seuil.
+                    </p>
+                  </div>
+                  <div>
+                    <p
+                      style={{
+                        fontFamily: "'Jost', sans-serif",
+                        fontWeight: 400,
+                        fontSize: 11,
+                        letterSpacing: "0.25em",
+                        textTransform: "uppercase",
+                        color: COLORS.or,
+                        marginBottom: 4,
+                      }}
+                    >
+                      L'OUVERTURE DU BAL
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "'Jost', sans-serif",
+                        fontWeight: 300,
+                        fontSize: 13,
+                        color: "rgba(245,240,232,0.75)",
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      Une brume légère effleure le sol pendant que vous dansez —
+                      le reste de la salle disparaît.
+                    </p>
+                  </div>
+                  <div>
+                    <p
+                      style={{
+                        fontFamily: "'Jost', sans-serif",
+                        fontWeight: 400,
+                        fontSize: 11,
+                        letterSpacing: "0.25em",
+                        textTransform: "uppercase",
+                        color: COLORS.or,
+                        marginBottom: 4,
+                      }}
+                    >
+                      LE DESSERT
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "'Jost', sans-serif",
+                        fontWeight: 300,
+                        fontSize: 13,
+                        color: "rgba(245,240,232,0.75)",
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      Votre pièce montée arrive dans un halo d'étincelles et de
+                      lumière.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <Toggle on={dj.effetPrestige} onClick={togglePrestige} />
             </div>
           </motion.div>
         </div>
