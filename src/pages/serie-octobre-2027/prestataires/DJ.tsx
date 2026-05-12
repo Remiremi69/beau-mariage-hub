@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
+import djAstreviaPortrait from "@/assets/dj-astrevia-portrait.png";
 
 const COLORS = {
  nuit: "#0D0E12",
