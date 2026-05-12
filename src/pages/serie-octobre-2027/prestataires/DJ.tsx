@@ -36,15 +36,15 @@ const DJ = () => {
     "La conviction que l'ambiance se construit, elle ne se déroule pas",
     "Le refus du générique : une programmation unique pour chaque couple",
     "La discrétion technique — présent partout, visible nulle part",
-    "Un accompagnement de A à Z, pas une prestation livrée le jour J",
-    "La capacité à adapter l'énergie en temps réel selon les invités",
+    "Un accompagnement humain et attentif, de la préparation au dernier instant",
+    "La capacité à adapter l'énergie en temps réel selon vos invités",
   ];
   const change = [
-    "Jordan et Rémy sont briefés sur le déroulé Limen avant votre journée",
+    "Rémy et Jordan sont briefés sur le déroulé Limen avant votre journée",
     "La transition cocktail → dîner → soirée est coordonnée avec toute l'équipe",
     "Zéro coordination musicale à gérer — ils connaissent leur rôle avant d'arriver",
     "Leurs effets sont dosés pour sublimer, jamais pour saturer",
-    "Un duo — pas un prestataire solo — avec une présence et une sécurité techniques renforcées",
+    "Un duo fondateur — pas un prestataire solo — avec une présence et une sécurité techniques renforcées",
   ];
 
   const services: { icon: string; title: string; body: string; image?: string; imageAlt?: string; imagePosition?: string }[] = [
@@ -104,7 +104,7 @@ const DJ = () => {
     <div style={{ backgroundColor: COLORS.lin, color: COLORS.texte, fontFamily: fontBody }}>
       <SEO
         title="Astrévia Events — DJ & animation partenaires | Le Beau Mariage par Limen"
-        description="Jordan & Rémy d'Astrévia Events signent l'animation musicale de la sélection Limen. Son, lumière, effets et programmation sur-mesure pour votre mariage."
+        description="Rémy et Jordan d'Astrévia Events signent l'animation musicale de la sélection Limen. Son, lumière, effets et programmation sur-mesure pour votre mariage."
         canonical="https://lebeaumariage.fr/serie-octobre-2027/prestataires/dj"
       />
 
@@ -220,7 +220,7 @@ const DJ = () => {
               marginBottom: "1.5rem",
             }}
           >
-            Jordan & Rémy · Duo DJ & Animation
+            Rémy & Jordan · Fondateurs & Gérants
           </p>
           <p
             style={{
@@ -233,9 +233,10 @@ const DJ = () => {
               margin: 0,
             }}
           >
-            Ils ne mettent pas de la musique. Ils construisent une atmosphère — de la
-            cérémonie à la dernière danse, avec la précision de deux professionnels qui
-            savent que chaque moment a sa propre énergie.
+            Rémy et Jordan ne se contentent pas d'animer. Ils créent une ambiance
+            sur-mesure — de la cérémonie à la dernière danse, avec la précision de deux
+            professionnels investis qui savent que chaque instant mérite sa propre
+            énergie.
           </p>
 
           <div
@@ -249,7 +250,7 @@ const DJ = () => {
             }}
           >
             {[
-              { n: "+10 ans", l: "Expérience" },
+              { n: "+15 ans", l: "Expérience" },
               { n: "Son · Lumière · Effets", l: "Équipement complet" },
               { n: "Sur-mesure", l: "Chaque événement" },
             ].map((s) => (
@@ -296,20 +297,31 @@ const DJ = () => {
             </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", color: `${COLORS.lin}B3`, fontFamily: fontBody, fontWeight: 300, fontSize: "15px", lineHeight: 1.75 }}>
               <p>
-                Avec plus de dix ans d'expérience, Jordan et Rémy ont appris une chose :
-                l'ambiance ne se programme pas, elle se construit. Chaque soirée commence par
-                une écoute — de vos goûts, de l'énergie du lieu, du profil de vos invités.
+                Depuis plus de 15 ans, Rémy et Jordan accompagnent particuliers et
+                professionnels dans la réalisation d'événements uniques. Leur objectif est
+                simple : transformer chaque instant en une expérience élégante, immersive et
+                inoubliable.
               </p>
               <p>
-                Leur arsenal technique est complet : sonorisation haut de gamme adaptée à tout
-                type de lieu, éclairages pilotés par informatique, projection vidéo, étincelles
-                froides, fumée lourde. Mais ce qui les distingue, c'est l'usage qu'ils en font
-                — au service de l'émotion, jamais pour impressionner.
+                Chaque événement possède son identité. C'est pourquoi ils conçoivent une
+                programmation musicale entièrement personnalisée, adaptée à vos goûts, à
+                votre univers et à l'énergie que vous souhaitez transmettre à vos invités.
               </p>
               <p>
-                Ils vous accompagnent de la préparation jusqu'au dernier instant. Pas de brief
-                expédié par email — un vrai dialogue, des rendez-vous, une présence jusqu'à la
-                fin de la soirée.
+                Leur arsenal technique est complet — sonorisation haut de gamme, éclairages
+                pilotés par informatique, projection vidéo, étincelles froides, fumée lourde.
+                Mais ce qui les distingue, c'est l'usage qu'ils en font : au service de
+                l'émotion, jamais pour impressionner.
+              </p>
+              <p>
+                De la préparation jusqu'au dernier instant, ils sont à vos côtés pour vous
+                conseiller, vous guider et vous offrir une prestation à la hauteur de vos
+                attentes, avec proximité, passion et exigence.
+              </p>
+              <p>
+                Chez Astrévia Events, rien n'est laissé au hasard et rien n'est standardisé.
+                Chaque prestation est imaginée comme une création unique, pensée dans les
+                moindres détails afin de sublimer vos plus beaux moments.
               </p>
             </div>
           </div>
@@ -330,8 +342,9 @@ const DJ = () => {
                 margin: 0,
               }}
             >
-              « Chez nous, rien n'est standardisé : chaque événement est une création unique,
-              préparée avec rigueur, créativité et enthousiasme. »
+              « Choisir Astrévia Events, c'est bien plus que choisir une animation.
+              C'est offrir à vos invités une expérience mémorable portée par des
+              professionnels investis, créatifs et à l'écoute. »
             </p>
             <div
               style={{
@@ -345,6 +358,21 @@ const DJ = () => {
             >
               Astrévia Events
             </div>
+            <p
+              style={{
+                marginTop: "1.5rem",
+                fontFamily: fontBody,
+                fontWeight: 300,
+                fontSize: "13px",
+                lineHeight: 1.7,
+                color: `${COLORS.lin}66`,
+                fontStyle: "italic",
+              }}
+            >
+              Astrévia évoque les événements guidés par la voie des astres — une vision
+              poétique qui reflète leur volonté de faire de chaque célébration un moment
+              hors du temps.
+            </p>
           </div>
         </div>
       </section>
@@ -368,9 +396,10 @@ const DJ = () => {
             <em>Aucun compromis.</em>
           </h2>
           <p style={{ fontFamily: fontBody, fontWeight: 300, fontSize: "15px", lineHeight: 1.75, color: COLORS.texteLeger, maxWidth: "58ch", marginBottom: "4rem" }}>
-            Astrévia Events dispose d'un équipement complet pour couvrir chaque dimension de
-            votre soirée — du son au visuel, des effets à l'éclairage. Chez Limen, c'est leur
-            capacité à doser chaque élément avec discernement qui a fait la différence.
+            Astrévia Events met en scène vos événements grâce à des équipements de qualité
+            professionnelle et des effets visuels soigneusement pensés pour créer émotion,
+            ambiance et intensité. Chez Limen, c'est leur capacité à doser chaque élément
+            avec discernement qui a fait la différence.
           </p>
 
           <div className="lc-services" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "2px", backgroundColor: `${COLORS.or}30` }}>
@@ -421,9 +450,8 @@ const DJ = () => {
           <p style={{ fontFamily: fontBody, fontWeight: 300, fontSize: "15px", lineHeight: 1.75, color: `${COLORS.lin}B3`, maxWidth: "58ch", marginBottom: "4rem" }}>
             Astrévia Events ne se limite pas à l'animation de mariages. Ils produisent des
             spectacles — comme « L'Onde des Arts », leur création scénique mêlant artistes,
-            illusion et émotion, présentée en avril 2026 à Chânes. C'est cette capacité à
-            penser l'événement comme une expérience complète qui les place dans une autre
-            catégorie.
+            illusion et émotion. C'est cette capacité à penser l'événement comme une
+            expérience complète qui les place dans une autre catégorie.
           </p>
 
           <div className="lc-univers" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
@@ -584,7 +612,7 @@ const DJ = () => {
             </h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", fontFamily: fontBody, fontWeight: 300, fontSize: "15px", lineHeight: 1.75, color: COLORS.texteLeger }}>
               <p>
-                Jordan et Rémy sont intégrés à votre journée avant même que vous arriviez au
+                Rémy et Jordan sont intégrés à votre journée avant même que vous arriviez au
                 domaine. Leur brief musical est coordonné avec le reste de l'équipe Limen — ils
                 connaissent le minutage, les moments clés, vos incontournables et vos interdits.
               </p>
