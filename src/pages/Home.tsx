@@ -559,27 +559,27 @@ const BusinessModelSection = () => {
 const PartnersSection = () => {
   const categories = [
     {
-      title: "Traiteur — Sélection en cours",
+      title: "Jessica & Jérôme — J&J Traiteur",
       category: "TRAITEURS GASTRONOMIQUES",
-      description: "Notre traiteur pour la Série Octobre 2027 sera annoncé prochainement. Sélection en cours sur critères stricts.",
+      description: "Cuisine entièrement maison, produits frais du marché, ancrage beaujolais. Basés à Villefranche-sur-Saône, ils signent chaque repas Limen comme un vrai dîner — pas un service de mariage.",
       icon: UtensilsCrossed,
     },
     {
-      title: "Photographe — Sélection en cours",
+      title: "Loïc Cancade — Photographe",
       category: "PHOTOGRAPHES & VIDÉASTES",
-      description: "Notre photographe pour la Série Octobre 2027 sera annoncé prochainement. Sélection en cours sur critères stricts.",
+      description: "Style naturel et documentaire, noté 5/5 sur Google et Mariages.net. Loïc ne pose jamais ses sujets — il lit votre journée comme un récit, et capte ce qui ne se rejoue pas.",
       icon: Camera,
     },
     {
-      title: "Décorateur & Fleuriste — Sélection en cours",
-      category: "DÉCORATEURS & FLEURISTES",
-      description: "Notre décorateur et fleuriste pour la Série Octobre 2027 seront annoncés prochainement. Sélection en cours sur critères stricts.",
-      icon: Flower2,
+      title: "Alexandre Medjaher Chomat — Violoniste",
+      category: "VIOLONISTE & PERFORMER",
+      description: "Violoniste dansant, performer de scène. Plus de 80 mariages en France et à l'international. Une intervention rare, pensée comme un instant scénique au cœur de votre journée.",
+      icon: MicVocal,
     },
     {
-      title: "DJ & Musicien — Sélection en cours",
+      title: "Marcus D. — DJ",
       category: "DJ & MUSICIENS",
-      description: "Notre DJ et musicien pour la Série Octobre 2027 seront annoncés prochainement. Sélection en cours sur critères stricts.",
+      description: "12 ans de mariages et d'événements privés. Marcus ne joue pas une setlist préparée : il lit la salle, sent l'énergie, et construit la nuit en temps réel jusqu'au lever du soleil.",
       icon: Music,
     }
   ];
