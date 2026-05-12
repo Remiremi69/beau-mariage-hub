@@ -42,11 +42,9 @@ const PHOTO_PRIX: Record<string, number> = {
   signature: 450,
 }
 
-const DJ_PRIX: Record<string, number> = {
-  none: 0,
-  standard: 1200,
-  premium: 2100,
-}
+const DJ_BASE_PRICE = 1020 // forfait animation absorbé dans la base
+const DJ_SONO_VH_PRICE = 200
+const DJ_PRESTIGE_PRICE = 320
 
 const repasLabelMap: Record<string, string> = {
   essentiel: 'Essentiel',
@@ -60,11 +58,6 @@ const decoLabelMap: Record<string, string> = {
 const photoLabelMap: Record<string, string> = {
   essentielle: 'Essentielle',
   signature: 'Signature',
-}
-const djLabelMap: Record<string, string> = {
-  none: '',
-  standard: 'Standard',
-  premium: 'Premium',
 }
 
 export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
