@@ -580,6 +580,9 @@ const PartnersSection = () => {
       category: "VIOLONISTE & PERFORMER",
       description: "Violoniste dansant, performer de scène. Plus de 80 mariages en France et à l'international. Une intervention rare, pensée comme un instant scénique au cœur de votre journée.",
       icon: MicVocal,
+      image: "/images/alexandre-philosophie-portrait-scene.jpg",
+      imageAlt: "Alexandre Medjaher Chomat, violoniste performer en scène",
+      imagePosition: "center 20%",
     },
     {
       title: "Marcus D. — DJ",
@@ -620,7 +623,7 @@ const PartnersSection = () => {
                           src={cat.image}
                           alt={cat.imageAlt || cat.title}
                           className="absolute inset-0 w-full h-full object-cover"
-                          style={{ objectPosition: 'center top' }}
+                          style={{ objectPosition: cat.imagePosition || 'center top' }}
                         />
                         <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(26,24,20,0.85) 0%, rgba(26,24,20,0.15) 50%, rgba(26,24,20,0.0) 100%)' }} />
                       </>
