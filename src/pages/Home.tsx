@@ -623,7 +623,7 @@ const PartnersSection = () => {
                           src={cat.image}
                           alt={cat.imageAlt || cat.title}
                           className="absolute inset-0 w-full h-full object-cover"
-                          style={{ objectPosition: 'center top' }}
+                          style={{ objectPosition: cat.imagePosition || 'center top' }}
                         />
                         <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(26,24,20,0.85) 0%, rgba(26,24,20,0.15) 50%, rgba(26,24,20,0.0) 100%)' }} />
                       </>
