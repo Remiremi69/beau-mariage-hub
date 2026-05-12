@@ -164,8 +164,8 @@ const DJ = () => {
   >
   <div style={{ backgroundColor: COLORS.nuit, position: "relative", overflow: "hidden" }}>
    <img
-   src="/images/astrevia/hero-danse-fumee.jpg"
-   alt="Couple dansant entouré de fumée lourde, ambiance lumineuse Astrévia Events"
+   src={djAstreviaPortrait}
+   alt="Rémy et Jordan, fondateurs d'Astrévia Events, dans une salle de réception"
    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
    />
    <div
