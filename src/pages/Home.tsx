@@ -11,7 +11,7 @@ import CinematicHero from "@/components/CinematicHero";
 import { ScrollReveal, StaggerContainer, ImageReveal } from "@/components/ScrollReveal";
 import venueImage from "@/assets/venue-exterior.jpg";
 import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
-
+import photographeLoic from "@/assets/photographe-loic.avif";
 
 const Home = () => {
   const founderQuote = {
