@@ -60,7 +60,7 @@ const Step09_Options = ({ state, onUpdate, onNext, onPrev }: Step09Props) => {
     setSelected((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
   };
 
-  const total = selected.reduce((sum, id) => sum + (OPTION_PRICES[id] || 0), 0);
+  
 
   const handleContinue = () => {
     onUpdate({ options: selected });
