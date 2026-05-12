@@ -12,6 +12,7 @@ import { ScrollReveal, StaggerContainer, ImageReveal } from "@/components/Scroll
 import venueImage from "@/assets/venue-exterior.jpg";
 import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
 import photographeLoic from "@/assets/photographe-loic.avif";
+import djAstreviaPortrait from "@/assets/dj-astrevia-portrait.png";
 
 const Home = () => {
   const founderQuote = {
@@ -592,6 +593,9 @@ const PartnersSection = () => {
       category: "DJ & MUSICIENS",
       description: "12 ans de mariages et d'événements privés. Marcus ne joue pas une setlist préparée : il lit la salle, sent l'énergie, et construit la nuit en temps réel jusqu'au lever du soleil.",
       icon: Music,
+      image: djAstreviaPortrait,
+      imageAlt: "Rémy et Jordan, fondateurs d'Astrévia Events, en tenue de soirée dans une salle de réception",
+      imagePosition: "center 25%",
       href: "/serie-octobre-2027/prestataires/dj",
     }
   ];
