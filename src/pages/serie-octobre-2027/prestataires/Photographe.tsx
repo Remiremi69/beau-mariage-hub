@@ -138,7 +138,7 @@ const Photographe = () => {
           </span>
         </Link>
         <Link
-          to="/partenaires"
+          to="/serie-octobre-2027"
           style={{
             fontFamily: fontBody,
             fontSize: "12px",
