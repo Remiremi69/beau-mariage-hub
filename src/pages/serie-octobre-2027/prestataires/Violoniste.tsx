@@ -249,6 +249,35 @@ const Violoniste = () => {
               </div>
             ))}
           </div>
+
+          <a
+            href="https://alexandrechomat.fr"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-block",
+              marginTop: "2.5rem",
+              fontFamily: fontBody,
+              fontSize: "12px",
+              textTransform: "uppercase",
+              letterSpacing: "0.18em",
+              color: COLORS.or,
+              textDecoration: "none",
+              borderBottom: `1px solid ${COLORS.or}59`,
+              paddingBottom: "0.25rem",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderBottomColor = COLORS.or;
+              e.currentTarget.style.color = COLORS.texte;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderBottomColor = `${COLORS.or}59`;
+              e.currentTarget.style.color = COLORS.or;
+            }}
+          >
+            → Voir son univers
+          </a>
         </div>
       </section>
 
@@ -326,7 +355,10 @@ const Violoniste = () => {
               « Une performance émotionnelle — un moment suspendu dans le temps, qui restera
               gravé dans les mémoires. »
             </p>
-            <div
+            <a
+              href="https://alexandrechomat.fr"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 marginTop: "2rem",
                 fontFamily: fontBody,
@@ -334,10 +366,23 @@ const Violoniste = () => {
                 textTransform: "uppercase",
                 letterSpacing: "0.18em",
                 color: `${COLORS.or}80`,
+                textDecoration: "none",
+                borderBottom: `1px solid ${COLORS.or}40`,
+                paddingBottom: "0.15rem",
+                display: "inline-block",
+                transition: "all 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = COLORS.or;
+                e.currentTarget.style.borderBottomColor = COLORS.or;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = `${COLORS.or}80`;
+                e.currentTarget.style.borderBottomColor = `${COLORS.or}40`;
               }}
             >
               alexandrechomat.fr
-            </div>
+            </a>
           </div>
         </div>
       </section>
