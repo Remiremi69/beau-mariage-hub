@@ -278,14 +278,15 @@ const ConfigurateurShell = () => {
       case 1: return <Step01_Date {...props} />;
       case 2: return <Step02_Invites {...props} />;
       case 3: return <Step03_Ceremonie {...props} />;
-      case 4: return <Step04_VinDhonneur {...props} />;
-      case 5: return <Step05_Repas {...props} />;
-      case 6: return <Step06_Photographe {...props} />;
-      case 7: return <Step07_DJ {...props} />;
-      case 8: return <Step08_Deco {...props} />;
-      case 9: return <Step09_Options {...props} />;
-      case 10: return <Step10_SiteMariage {...props} />;
-      case 11: return <Step11_Recap {...props} />;
+      case 4: return <Step04_Violoniste {...props} />;
+      case 5: return <Step04_VinDhonneur {...props} />;
+      case 6: return <Step05_Repas {...props} />;
+      case 7: return <Step06_Photographe {...props} />;
+      case 8: return <Step07_DJ {...props} />;
+      case 9: return <Step08_Deco {...props} />;
+      case 10: return <Step09_Options {...props} />;
+      case 11: return <Step10_SiteMariage {...props} />;
+      case 12: return <Step11_Recap {...props} />;
       default: return null;
     }
   };
@@ -303,20 +304,23 @@ const ConfigurateurShell = () => {
       lines.push({ label: "Cérémonie", value: "Laïque" });
     }
     if (state.currentStep >= 4) {
+      lines.push({ label: "Violoniste", value: state.violonisteOption ? "Show + option" : "Show inclus" });
+    }
+    if (state.currentStep >= 5) {
       const vhCount = [state.vhBouchee, state.vhAnimation, state.vhMignardise].filter(Boolean).length;
       if (vhCount > 0) lines.push({ label: "VH", value: `${vhCount}/3` });
     }
-    if (state.currentStep === 5) {
+    if (state.currentStep === 6) {
       const count = [state.repasEntree, state.repasPlat, state.repasDessert].filter(Boolean).length;
       lines.push({ label: "Menu", value: count === 3 ? "Complet" : `${count}/3 plats` });
     }
-    if (state.currentStep >= 6) {
+    if (state.currentStep >= 7) {
       lines.push({ label: "Photo", value: photoLabels[state.photographe] || "" });
     }
-    if (state.currentStep >= 7 && state.dj !== "none") {
+    if (state.currentStep >= 8 && state.dj !== "none") {
       lines.push({ label: "DJ", value: djLabels[state.dj] || "" });
     }
-    if (state.currentStep >= 9 && (state.options?.length ?? 0) > 0) {
+    if (state.currentStep >= 10 && (state.options?.length ?? 0) > 0) {
       lines.push({ label: "Options", value: `${state.options.length}` });
     }
     return lines;
