@@ -249,6 +249,35 @@ const Violoniste = () => {
               </div>
             ))}
           </div>
+
+          <a
+            href="https://alexandrechomat.fr"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-block",
+              marginTop: "2.5rem",
+              fontFamily: fontBody,
+              fontSize: "12px",
+              textTransform: "uppercase",
+              letterSpacing: "0.18em",
+              color: COLORS.or,
+              textDecoration: "none",
+              borderBottom: `1px solid ${COLORS.or}59`,
+              paddingBottom: "0.25rem",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderBottomColor = COLORS.or;
+              e.currentTarget.style.color = COLORS.texte;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderBottomColor = `${COLORS.or}59`;
+              e.currentTarget.style.color = COLORS.or;
+            }}
+          >
+            → Voir son univers
+          </a>
         </div>
       </section>
 
