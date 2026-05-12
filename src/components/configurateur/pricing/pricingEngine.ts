@@ -87,6 +87,23 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
     })
   }
 
+  // Violoniste — show de base obligatoire pour le vin d'honneur
+  lines.push({
+    label: 'Violoniste — Show vin d\'honneur',
+    sublabel: 'Alexandre Medjaher Chomat · 3 morceaux',
+    amount: 750,
+    isIncluded: false,
+  })
+
+  if (state.violonisteOption) {
+    lines.push({
+      label: 'Violoniste — Interventions complémentaires',
+      sublabel: '1 morceau pendant le repas + 2 sur la piste',
+      amount: 450,
+      isIncluded: false,
+    })
+  }
+
   // Vin d'honneur — entièrement inclus dans le forfait
   lines.push({
     label: 'Vin d\'honneur',
