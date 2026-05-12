@@ -97,7 +97,7 @@ const Step04_Violoniste = ({ state, onUpdate, onNext, onPrev }: Step04Props) => 
             <div className="flex flex-col gap-[6px] mt-4">
               {[
                 "Performance scénique pendant le vin d'honneur",
-                "3 morceaux choisis avec vous (entrée, climax, sortie)",
+                "3 morceaux inspirés par l'ambiance ressentie sur place",
                 "Coordination amont avec le déroulé Limen",
                 "Tenue & matériel professionnels",
               ].map((item) => (
