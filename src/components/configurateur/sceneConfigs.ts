@@ -64,6 +64,18 @@ export const SCENE_CONFIGS: Record<number, SceneConfig> = {
     duration: 4000,
   },
 
+  // Before Step 7 — DJ
+  7: {
+    title: "Votre soirée",
+    subtitle: "Rémy & Jordan · Astrévia Events",
+    images: [
+      "/images/astrevia/hero-danse-fumee.jpg",
+      "/images/astrevia/etincelles-couple.jpg",
+      "/images/astrevia/salle-reception-bleue.jpg",
+    ],
+    duration: 4000,
+  },
+
   // Before Step 8 — Déco
   8: {
     title: "Votre atmosphère",
