@@ -211,14 +211,14 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                 </div>
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.65)", lineHeight: 1.7, marginTop: 10 }}>
                   {sonoForcee
-                    ? "La sonorisation de votre cérémonie et de votre cocktail est incluse."
-                    : "Une ambiance musicale pendant votre vin d'honneur."}
+                    ? "Un son pensé pour l'acoustique du caveau voûté, puis une ambiance qui accueille vos invités au cocktail."
+                    : "Une ambiance musicale pendant votre vin d'honneur — une set list définie avec vous en amont, un son intérieur et extérieur."}
                 </p>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", fontStyle: "italic", marginTop: 6 }}>
-                  {sonoForcee
-                    ? "Inclus avec votre cérémonie laïque."
-                    : "Micro HF · Set list définie avec vous en amont."}
-                </p>
+                {sonoForcee && (
+                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", fontStyle: "italic", marginTop: 6 }}>
+                    Inclus avec votre cérémonie laïque.
+                  </p>
+                )}
               </div>
               <Toggle on={dj.sonoVH || sonoForcee} disabled={sonoForcee} onClick={toggleSono} />
             </div>
