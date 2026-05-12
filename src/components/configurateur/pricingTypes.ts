@@ -2,7 +2,10 @@ export type Repas = 'essentiel' | 'gastronomique' | 'prestige'
 
 export type Photographe = 'essentielle' | 'signature'
 
-export type DJ = 'none' | 'standard' | 'premium'
+export type DJChoice = {
+  sonoVH: boolean
+  effetPrestige: boolean
+}
 
 export type Deco = 'seve' | 'pierre'
 
