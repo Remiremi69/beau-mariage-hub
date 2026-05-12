@@ -55,6 +55,8 @@ type LeadData = {
   repas_dessert: string | null;
   photographe: string | null;
   dj: string | null;
+  dj_sono_vh: boolean | null;
+  dj_effet_prestige: boolean | null;
   deco: string | null;
   options: string[] | null;
   total_estimate: number | null;
