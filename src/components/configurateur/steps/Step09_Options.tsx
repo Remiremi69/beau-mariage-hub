@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ConfigurateurState, OPTION_PRICES } from "../pricingTypes";
+import { ConfigurateurState } from "../pricingTypes";
 import InfoButton from "../InfoButton";
 import PresentationDrawer from "../PresentationDrawer";
 import { drawerOptions } from "../drawerContents";
