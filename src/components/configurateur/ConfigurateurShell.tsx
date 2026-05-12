@@ -420,8 +420,8 @@ const ConfigurateurShell = () => {
         </div>
       )}
 
-      {/* Step 11 — Wedding hero ambient */}
-      {currentStep === 11 && (
+      {/* Step 12 — Wedding hero ambient */}
+      {currentStep === 12 && (
         <div className="fixed inset-0" style={{ zIndex: 0, pointerEvents: "none" }}>
           <div
             className="absolute inset-0"
@@ -447,9 +447,9 @@ const ConfigurateurShell = () => {
         {renderStep()}
       </div>
 
-      {/* ─── Mini-récap flottant (desktop, hidden on step 11) ─── */}
+      {/* ─── Mini-récap flottant (desktop, hidden on step 12) ─── */}
       <AnimatePresence>
-        {currentStep >= 1 && currentStep < 11 && (
+        {currentStep >= 1 && currentStep < 12 && (
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
