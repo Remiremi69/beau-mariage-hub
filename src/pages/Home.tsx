@@ -12,6 +12,7 @@ import { ScrollReveal, StaggerContainer, ImageReveal } from "@/components/Scroll
 import venueImage from "@/assets/venue-exterior.jpg";
 import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
 import photographeLoic from "@/assets/photographe-loic.avif";
+import djAstreviaPortrait from "@/assets/dj-astrevia-portrait.png";
 
 const Home = () => {
   const founderQuote = {
