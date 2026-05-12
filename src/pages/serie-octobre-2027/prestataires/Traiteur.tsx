@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
+import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
 
 const COLORS = {
   nuit: "#0D0E12",
@@ -129,25 +130,12 @@ const Traiteur = () => {
           gridTemplateColumns: "1fr 1fr",
         }}
       >
-        <div style={{ backgroundColor: COLORS.nuit, position: "relative", overflow: "hidden", padding: "3rem" }}>
-          {/* <img className="photo-placeholder" src="..." alt="J & J Traiteur" style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}} /> */}
-          <div style={{ position: "absolute", inset: "3rem", border: `1px solid ${COLORS.or}33` }} />
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              fontFamily: fontTitle,
-              fontSize: "180px",
-              color: COLORS.or,
-              opacity: 0.06,
-              lineHeight: 1,
-            }}
-          >
-            ⌐
-          </div>
+        <div style={{ backgroundColor: COLORS.nuit, position: "relative", overflow: "hidden" }}>
+          <img
+            src={jjTraiteurPortrait}
+            alt="Jessica et Jérôme, fondateurs de J&J Traiteur, en tabliers J&J dans une salle voûtée éclairée à la bougie"
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+          />
           <div
             style={{
               position: "absolute",

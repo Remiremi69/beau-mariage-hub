@@ -10,6 +10,7 @@ import LeadCaptureSection from "@/components/LeadCaptureSection";
 import CinematicHero from "@/components/CinematicHero";
 import { ScrollReveal, StaggerContainer, ImageReveal } from "@/components/ScrollReveal";
 import venueImage from "@/assets/venue-exterior.jpg";
+import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
 
 
 const Home = () => {
@@ -563,6 +564,8 @@ const PartnersSection = () => {
       category: "TRAITEURS GASTRONOMIQUES",
       description: "Cuisine entièrement maison, produits frais du marché, ancrage beaujolais. Basés à Villefranche-sur-Saône, ils signent chaque repas Limen comme un vrai dîner — pas un service de mariage.",
       icon: UtensilsCrossed,
+      image: jjTraiteurPortrait,
+      imageAlt: "Jessica et Jérôme, fondateurs de J&J Traiteur, en tabliers J&J dans une salle voûtée",
     },
     {
       title: "Loïc Cancade — Photographe",
@@ -608,8 +611,19 @@ const PartnersSection = () => {
             return (
               <div key={index} className="group">
                 <div className="relative h-full overflow-hidden rounded-2xl bg-card border border-border/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-                  <div className="relative h-48 flex flex-col items-center justify-center" style={{ backgroundColor: '#1A1814' }}>
-                    <Icon className="h-10 w-10 mb-4" style={{ color: '#C8A96E' }} />
+                  <div className="relative h-48 flex flex-col items-center justify-center overflow-hidden" style={{ backgroundColor: '#1A1814' }}>
+                    {cat.image ? (
+                      <>
+                        <img
+                          src={cat.image}
+                          alt={cat.imageAlt || cat.title}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(26,24,20,0.85) 0%, rgba(26,24,20,0.15) 50%, rgba(26,24,20,0.0) 100%)' }} />
+                      </>
+                    ) : (
+                      <Icon className="h-10 w-10 mb-4" style={{ color: '#C8A96E' }} />
+                    )}
                     <div className="absolute bottom-4 left-4 right-4">
                       <div className="flex items-center justify-center gap-2" style={{ color: '#C8A96E' }}>
                         <span className="text-xs font-medium uppercase tracking-wider">{cat.category}</span>
