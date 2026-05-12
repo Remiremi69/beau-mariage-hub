@@ -4,7 +4,7 @@ import domaine2 from "@/assets/domaine-hero-2.png";
 import domaine3 from "@/assets/domaine-hero-3.png";
 import domaine4 from "@/assets/domaine-hero-4.png";
 import ceremonyArch from "@/assets/ceremony-arch.jpg";
-import chefSebastien from "@/assets/chef-sebastien.jpg";
+import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
 import tableSetup from "@/assets/table-setup.jpg";
 import julienSommelier from "@/assets/julien-sommelier.jpg";
 import vhBeaujolaisVivant from "@/assets/vh-beaujolais-vivant.jpg";
@@ -51,8 +51,8 @@ export const SCENE_CONFIGS: Record<number, SceneConfig> = {
   // Before Step 5 — Repas
   5: {
     title: "Votre table",
-    subtitle: "Chef Sébastien · Cuisine de terroir",
-    images: [tableSetup, chefSebastien],
+    subtitle: "Jessica & Jérôme · J&J Traiteur",
+    images: [tableSetup, jjTraiteurPortrait],
     duration: 4000,
   },
 
