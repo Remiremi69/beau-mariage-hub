@@ -134,7 +134,7 @@ const vhNames: Record<string, string> = {
 const repasLabels: Record<string, string> = { essentiel: "Essentiel", gastronomique: "Gastronomique", prestige: "Prestige" };
 const decoLabels: Record<string, string> = { seve: "Sève", pierre: "Pierre & Lumière" };
 const photoLabels: Record<string, string> = { essentielle: "Essentielle", signature: "Signature" };
-const djLabels: Record<string, string> = { none: "Non sélectionné", standard: "Standard", premium: "Premium" };
+// djLabels supprimé — DJ est désormais un set de toggles
 
 /* ── Week generation ──────────────────────────────────── */
 type WeekOption = { label: string; value: string; monday: Date };
@@ -322,7 +322,11 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
         ceremonie_laique: state.ceremonieLaique,
         vin_dhonneur: [state.vhBouchee, state.vhAnimation, state.vhMignardise].filter(Boolean).join(' · '),
         repas_formule: state.repas, repas_entree: state.repasEntree, repas_plat: state.repasPlat, repas_dessert: state.repasDessert,
-        photographe: state.photographe, dj: state.dj, deco: state.deco,
+        photographe: state.photographe,
+        dj: state.dj.effetPrestige ? 'prestige' : (state.dj.sonoVH ? 'sono_vh' : 'inclus'),
+        dj_sono_vh: state.dj.sonoVH,
+        dj_effet_prestige: state.dj.effetPrestige,
+        deco: state.deco,
         options: state.options, ambiance_musique: state.ambianceMusique ?? [],
         total_estimate: breakdown.totalEstimate, status: "new",
         localisation: localisation,
@@ -384,7 +388,18 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
             />
             <ChoiceLine category="Décoration" value={decoLabels[state.deco] || state.deco} price="Inclus" />
             <ChoiceLine category="Photographie" value={`${photoLabels[state.photographe] || "Essentielle"} (Loïc Cancade)`} price={state.photographe === "signature" ? "+ 450 €" : "Inclus"} />
-            <ChoiceLine category="DJ" value={djLabels[state.dj] || "Non sélectionné"} price={state.dj === "none" ? undefined : state.dj === "standard" ? "+ 1 200 €" : "+ 2 100 €"} />
+            <div className="sm:col-span-2">
+              <ChoiceLine
+                category="Animation musicale (DJ)"
+                value="2 DJ · 19h30 → 4h · HK Audio"
+                price="Inclus"
+                subtext={[
+                  state.dj.sonoVH ? (state.ceremonieLaique ? "+ Ambiance cérémonie & cocktail (Inclus)" : "+ Ambiance cocktail (+ 200 €)") : null,
+                  state.dj.effetPrestige ? "+ Effet Prestige (+ 320 €)" : null,
+                ].filter(Boolean).join(" · ") || undefined}
+                badge={state.dj.effetPrestige ? "PRESTIGE" : undefined}
+              />
+            </div>
             <div className="sm:col-span-2">
               <ChoiceLine category="Options" value={optionsList || "Aucune option"} price={breakdown.subtotalOptions > 0 ? `+ ${formatPrice(breakdown.subtotalOptions)}` : undefined} />
             </div>

@@ -42,11 +42,9 @@ const PHOTO_PRIX: Record<string, number> = {
   signature: 450,
 }
 
-const DJ_PRIX: Record<string, number> = {
-  none: 0,
-  standard: 1200,
-  premium: 2100,
-}
+const DJ_BASE_PRICE = 1020 // forfait animation absorbé dans la base
+const DJ_SONO_VH_PRICE = 200
+const DJ_PRESTIGE_PRICE = 320
 
 const repasLabelMap: Record<string, string> = {
   essentiel: 'Essentiel',
@@ -60,11 +58,6 @@ const decoLabelMap: Record<string, string> = {
 const photoLabelMap: Record<string, string> = {
   essentielle: 'Essentielle',
   signature: 'Signature',
-}
-const djLabelMap: Record<string, string> = {
-  none: '',
-  standard: 'Standard',
-  premium: 'Premium',
 }
 
 export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
@@ -145,14 +138,35 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
     isIncluded: photoPrix === 0,
   })
 
-  const djPrix = DJ_PRIX[state.dj] ?? 0
-  if (djPrix > 0) {
+  // DJ — animation incluse + add-ons
+  lines.push({
+    label: 'Animation musicale (DJ)',
+    sublabel: '2 DJ · 19h30 → 4h · Son HK Audio · Lumière d\'ambiance',
+    amount: 0,
+    isIncluded: true,
+  })
+  if (state.dj.sonoVH) {
     lines.push({
-      label: 'DJ — ' + (djLabelMap[state.dj] ?? ''),
-      amount: djPrix,
+      label: state.ceremonieLaique
+        ? 'Ambiance cérémonie & cocktail'
+        : 'Ambiance cocktail',
+      sublabel: state.ceremonieLaique
+        ? 'Sonorisation incluse avec votre cérémonie laïque'
+        : 'Micro HF · Set list définie en amont',
+      amount: DJ_SONO_VH_PRICE,
+      isIncluded: state.ceremonieLaique,
+    })
+  }
+  if (state.dj.effetPrestige) {
+    lines.push({
+      label: 'Effet Prestige',
+      sublabel: 'Effets lumineux — Entrée · Ouverture du bal · Dessert',
+      amount: DJ_PRESTIGE_PRICE,
       isIncluded: false,
     })
   }
+  // DJ_BASE_PRICE absorbé dans le forfait domaine — ne pas réincrémenter
+  void DJ_BASE_PRICE
 
   const safeOptions = state.options ?? []
   for (const optionId of safeOptions) {

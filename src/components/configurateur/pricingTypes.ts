@@ -2,7 +2,10 @@ export type Repas = 'essentiel' | 'gastronomique' | 'prestige'
 
 export type Photographe = 'essentielle' | 'signature'
 
-export type DJ = 'none' | 'standard' | 'premium'
+export type DJChoice = {
+  sonoVH: boolean
+  effetPrestige: boolean
+}
 
 export type Deco = 'seve' | 'pierre'
 
@@ -20,7 +23,7 @@ export type ConfigurateurState = {
   repasPlat: string | null
   repasDessert: string | null
   photographe: Photographe
-  dj: DJ
+  dj: DJChoice
   deco: Deco
   options: string[]
   ambianceMusique: string[]
@@ -54,7 +57,7 @@ export const defaultState: ConfigurateurState = {
   repasPlat: null,
   repasDessert: null,
   photographe: 'essentielle',
-  dj: 'none',
+  dj: { sonoVH: false, effetPrestige: false },
   deco: 'seve',
   options: [],
   ambianceMusique: [],
