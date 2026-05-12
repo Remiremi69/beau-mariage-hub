@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ConfigurateurState, OPTION_PRICES } from "../pricingTypes";
+import { ConfigurateurState } from "../pricingTypes";
 import InfoButton from "../InfoButton";
 import PresentationDrawer from "../PresentationDrawer";
 import { drawerOptions } from "../drawerContents";
@@ -60,7 +60,7 @@ const Step09_Options = ({ state, onUpdate, onNext, onPrev }: Step09Props) => {
     setSelected((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
   };
 
-  const total = selected.reduce((sum, id) => sum + (OPTION_PRICES[id] || 0), 0);
+  
 
   const handleContinue = () => {
     onUpdate({ options: selected });
@@ -119,7 +119,7 @@ const Step09_Options = ({ state, onUpdate, onNext, onPrev }: Step09Props) => {
                 <div className="flex-1">
                   <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(232,221,208,0.80)", marginBottom: 6 }}>{opt.name}</p>
                   <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.50)", lineHeight: 1.60 }}>{opt.description}</p>
-                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 500, fontSize: 14, color: "#c9a96e", marginTop: 10 }}>{opt.prix}</p>
+                  <span style={{ display: "inline-block", marginTop: 10, fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: "0.20em", textTransform: "uppercase", border: "1px solid #c9a96e", color: "#c9a96e", background: "rgba(201,169,110,0.10)", padding: "3px 10px" }}>✦ Prestige</span>
                 </div>
               </div>
             );
@@ -140,8 +140,8 @@ const Step09_Options = ({ state, onUpdate, onNext, onPrev }: Step09Props) => {
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(232,221,208,0.55)", marginBottom: 4 }}>
                   option{selected.length > 1 ? "s" : ""} choisie{selected.length > 1 ? "s" : ""}
                 </p>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(201,169,110,0.70)" }}>
-                  + {total.toLocaleString("fr-FR")} € au forfait
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", fontStyle: "italic" }}>
+                  Détail tarifaire au récapitulatif
                 </p>
               </div>
             </motion.div>

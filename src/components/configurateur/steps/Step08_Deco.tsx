@@ -263,8 +263,8 @@ const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
                       {opt.description}
                     </p>
                   </div>
-                  <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 500, fontSize: 13, color: "#c9a96e", flexShrink: 0 }}>
-                    {opt.prix}
+                  <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: "0.20em", textTransform: "uppercase", border: "1px solid #c9a96e", color: "#c9a96e", background: "rgba(201,169,110,0.10)", padding: "3px 10px", flexShrink: 0 }}>
+                    ✦ Prestige
                   </span>
                 </div>
               );
