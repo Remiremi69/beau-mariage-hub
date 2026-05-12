@@ -619,32 +619,34 @@ const PartnersSection = () => {
             const Icon = cat.icon;
             return (
               <div key={index} className="group">
-                <div className="relative h-full overflow-hidden rounded-2xl bg-card border border-border/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-                  <div className="relative h-48 flex flex-col items-center justify-center overflow-hidden" style={{ backgroundColor: '#1A1814' }}>
-                    {cat.image ? (
-                      <>
-                        <img
-                          src={cat.image}
-                          alt={cat.imageAlt || cat.title}
-                          className="absolute inset-0 w-full h-full object-cover"
-                          style={{ objectPosition: cat.imagePosition || 'center top' }}
-                        />
-                        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(26,24,20,0.85) 0%, rgba(26,24,20,0.15) 50%, rgba(26,24,20,0.0) 100%)' }} />
-                      </>
-                    ) : (
-                      <Icon className="h-10 w-10 mb-4" style={{ color: '#C8A96E' }} />
-                    )}
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="flex items-center justify-center gap-2" style={{ color: '#C8A96E' }}>
-                        <span className="text-xs font-medium uppercase tracking-wider">{cat.category}</span>
+                <Link to={cat.href} className="block h-full">
+                  <div className="relative h-full overflow-hidden rounded-2xl bg-card border border-border/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                    <div className="relative h-48 flex flex-col items-center justify-center overflow-hidden" style={{ backgroundColor: '#1A1814' }}>
+                      {cat.image ? (
+                        <>
+                          <img
+                            src={cat.image}
+                            alt={cat.imageAlt || cat.title}
+                            className="absolute inset-0 w-full h-full object-cover"
+                            style={{ objectPosition: cat.imagePosition || 'center top' }}
+                          />
+                          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(26,24,20,0.85) 0%, rgba(26,24,20,0.15) 50%, rgba(26,24,20,0.0) 100%)' }} />
+                        </>
+                      ) : (
+                        <Icon className="h-10 w-10 mb-4" style={{ color: '#C8A96E' }} />
+                      )}
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <div className="flex items-center justify-center gap-2" style={{ color: '#C8A96E' }}>
+                          <span className="text-xs font-medium uppercase tracking-wider">{cat.category}</span>
+                        </div>
                       </div>
                     </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-foreground mb-3">{cat.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{cat.description}</p>
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-foreground mb-3">{cat.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{cat.description}</p>
-                  </div>
-                </div>
+                </Link>
               </div>
             );
           })}
