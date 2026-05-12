@@ -589,9 +589,9 @@ const PartnersSection = () => {
       href: "/serie-octobre-2027/prestataires/violoniste",
     },
     {
-      title: "Marcus D. — DJ",
-      category: "DJ & MUSICIENS",
-      description: "12 ans de mariages et d'événements privés. Marcus ne joue pas une setlist préparée : il lit la salle, sent l'énergie, et construit la nuit en temps réel jusqu'au lever du soleil.",
+      title: "Rémy & Jordan — Astrévia Events",
+      category: "DJ & ANIMATION",
+      description: "Plus qu'une prestation, une signature. Rémy et Jordan composent chaque soirée comme un récit vivant — son, lumière et effets pensés en cohérence pour faire de la nuit un instant hors du temps.",
       icon: Music,
       image: djAstreviaPortrait,
       imageAlt: "Rémy et Jordan, fondateurs d'Astrévia Events, en tenue de soirée dans une salle de réception",
