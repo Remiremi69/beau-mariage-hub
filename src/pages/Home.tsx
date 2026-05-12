@@ -566,6 +566,7 @@ const PartnersSection = () => {
       icon: UtensilsCrossed,
       image: jjTraiteurPortrait,
       imageAlt: "Jessica et Jérôme, fondateurs de J&J Traiteur, en tabliers J&J dans une salle voûtée",
+      href: "/serie-octobre-2027/prestataires/traiteur",
     },
     {
       title: "Loïc Cancade — Photographe",
@@ -574,6 +575,7 @@ const PartnersSection = () => {
       icon: Camera,
       image: photographeLoic,
       imageAlt: "Loïc Cancade, photographe de mariage, au travail lors d'un coucher de soleil",
+      href: "/serie-octobre-2027/prestataires/photographe",
     },
     {
       title: "Alexandre Medjaher Chomat — Violoniste",
@@ -583,12 +585,14 @@ const PartnersSection = () => {
       image: "/images/alexandre-philosophie-portrait-scene.jpg",
       imageAlt: "Alexandre Medjaher Chomat, violoniste performer en scène",
       imagePosition: "center 20%",
+      href: "/serie-octobre-2027/prestataires/violoniste",
     },
     {
       title: "Marcus D. — DJ",
       category: "DJ & MUSICIENS",
       description: "12 ans de mariages et d'événements privés. Marcus ne joue pas une setlist préparée : il lit la salle, sent l'énergie, et construit la nuit en temps réel jusqu'au lever du soleil.",
       icon: Music,
+      href: "/serie-octobre-2027/prestataires/dj",
     }
   ];
 
