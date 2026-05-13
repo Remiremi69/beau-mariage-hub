@@ -378,7 +378,7 @@ const Photographe = () => {
                 color: `${COLORS.or}80`,
               }}
             >
-              Google · Avis client
+              Mariages.net · Avis client
             </div>
             </div>
           </div>
