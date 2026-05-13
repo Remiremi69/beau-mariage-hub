@@ -814,7 +814,8 @@ const Photographe = () => {
       <style>{`
         @media (max-width: 768px) {
           .lc-hero { grid-template-columns: 1fr !important; min-height: auto !important; }
-          .lc-hero > div:first-child { height: 50vw; padding: 1.5rem !important; }
+          .lc-hero > div:first-child { height: 110vw; padding: 1.5rem !important; }
+          .lc-hero > div:first-child img { object-position: center 30% !important; }
           .lc-hero > div:last-child { padding: 3rem 1.5rem !important; }
           .lc-grid-2 { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
           .lc-gallery { grid-template-columns: repeat(2, 1fr) !important; }
