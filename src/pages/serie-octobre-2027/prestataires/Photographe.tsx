@@ -361,8 +361,12 @@ const Photographe = () => {
                 margin: 0,
               }}
             >
-              « Plus qu'un simple reportage, Loïc crée un souvenir intemporel, un mariage
-              capturé comme un film que l'on a envie de revivre encore et encore. »
+              « Les photos sont superbes ! Du premier contact au jour J tout
+              a été parfait. Loïc a été génial le jour J, il a su composer avec
+              les changements de dernière minute sans problème et se fondre
+              avec les invités, tout le monde a adoré les photos et son
+              professionnalisme. Je vous le recommande vivement. Merci milles
+              fois encore ! »
             </p>
             <div
               style={{
@@ -374,7 +378,7 @@ const Photographe = () => {
                 color: `${COLORS.or}80`,
               }}
             >
-              Mariages.net · Avis client
+              Google · Avis client
             </div>
             </div>
           </div>
