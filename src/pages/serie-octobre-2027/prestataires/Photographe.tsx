@@ -254,7 +254,7 @@ const Photographe = () => {
               marginBottom: "1.5rem",
             }}
           >
-            Photographe & vidéaste de mariage
+            Photographe
           </p>
           <p
             style={{
