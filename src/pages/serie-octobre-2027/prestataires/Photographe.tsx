@@ -107,7 +107,7 @@ const Photographe = () => {
     <div style={{ backgroundColor: COLORS.lin, color: COLORS.texte, fontFamily: fontBody }}>
       <SEO
         title="Loïc Cancade, Photographe & vidéaste partenaire | Le Beau Mariage par Limen"
-        description="Photographe & vidéaste de mariage en Beaujolais, Loïc Cancade signe les images de la sélection Limen. Reportage documentaire, regard juste, sans pose."
+        description="Photographe de mariage en Beaujolais, Loïc Cancade signe les images de la sélection Limen. Reportage documentaire, regard juste, sans pose."
         canonical="https://lebeaumariage.fr/serie-octobre-2027/prestataires/photographe"
       />
 
@@ -254,7 +254,7 @@ const Photographe = () => {
               marginBottom: "1.5rem",
             }}
           >
-            Photographe & vidéaste de mariage
+            Photographe
           </p>
           <p
             style={{
