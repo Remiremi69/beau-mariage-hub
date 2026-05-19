@@ -141,7 +141,7 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
   // DJ — animation incluse + add-ons
   lines.push({
     label: 'Animation musicale (DJ)',
-    sublabel: '2 DJ · 19h30 → 4h · Son HK Audio · Lumière d\'ambiance',
+    sublabel: 'Astrévia Events · 19h30 → 4h · Lumière d\'ambiance',
     amount: 0,
     isIncluded: true,
   })

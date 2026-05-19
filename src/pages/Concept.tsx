@@ -3,7 +3,7 @@ import SEO from "@/components/SEO";
 import { schemaConcept } from '@/lib/schemas';
 
 const pillars = [
-  { number: "5", title: "Mariages par an", text: "Pas un de plus. La rareté n'est pas un argument — c'est ce qui garantit une attention totale à chaque couple." },
+  { number: "5", title: "Mariages par saison", text: "C'est la capacité d'accueil du Domaine de la Croix Rochefort sur la saison — pas un quota commercial. Cette rareté garantit une attention totale à chaque couple." },
   { number: "1", title: "Domaine. Une équipe.", text: "Chaque prestataire connaît le lieu par cœur. Chaque répétition affine l'exécution — sans jamais répéter votre mariage." },
   { number: "0", title: "Décision à prendre le jour J.", text: "Tout est réglé avant que vous arriviez. Vous n'avez qu'une chose à faire : être là." },
 ];

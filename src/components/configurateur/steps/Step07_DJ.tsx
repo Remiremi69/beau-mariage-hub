@@ -172,10 +172,10 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                   <Badge label="Inclus" variant="or" />
                 </div>
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300, fontSize: 22, color: COLORS.or, marginTop: 8 }}>
-                  2 DJ · 19h30 → 4h du matin
+                  Astrévia Events · 19h30 → 4h du matin
                 </p>
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.60)", lineHeight: 1.7, marginTop: 10 }}>
-                  Deux DJ qui lisent la salle et font évoluer la soirée —
+                  Astrévia Events lit la salle et fait évoluer la soirée —
                   de l'ambiance feutrée du dîner aux dernières danses,
                   sans que vous ayez à orchestrer quoi que ce soit.
                 </p>
@@ -354,7 +354,8 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                         lineHeight: 1.7,
                       }}
                     >
-                      Une brume légère effleure le sol pendant que vous dansez —
+                      Une brume légère effleure le sol et quatre étincelles
+                      froides jaillissent autour de vous pendant que vous dansez —
                       le reste de la salle disparaît.
                     </p>
                   </div>
@@ -386,6 +387,31 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                     </p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ─── Bloc 4 — Bar à vinyles (à venir) ─── */}
+          <motion.div custom={6} initial="hidden" animate="visible" variants={fadeUp}
+            style={{ ...cardBase, opacity: 0.7, cursor: "not-allowed" }}>
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0" style={{
+                width: 44, height: 44, borderRadius: 2, display: "flex",
+                alignItems: "center", justifyContent: "center",
+                background: "rgba(201,169,110,0.10)", border: "1px solid rgba(201,169,110,0.25)",
+              }}>
+                <span style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 22, color: COLORS.or, lineHeight: 1 }}>♪</span>
+              </div>
+              <div style={{ flex: 1 }}>
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.20em", textTransform: "uppercase", color: "#faf8f4" }}>
+                    Bar à vinyles
+                  </p>
+                  <Badge label="Disponible en 2027" variant="lin" />
+                </div>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.60)", lineHeight: 1.7, marginTop: 10 }}>
+                  Une platine vinyle, une sélection curatée et la possibilité pour vos invités de choisir le morceau suivant — un coin musical à part, en complément du DJ.
+                </p>
               </div>
             </div>
           </motion.div>

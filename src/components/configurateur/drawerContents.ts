@@ -248,20 +248,20 @@ export const drawerPhotographe: DrawerContent = {
 
 export const drawerDJ: DrawerContent = {
   label: 'LA NUIT',
-  title: 'Marcus D.',
-  subtitle: 'DJ mariage & événements · 12 ans',
+  title: 'Astrévia Events',
+  subtitle: 'Rémy & Jordan · DJ & animation · 15 ans',
   sections: [
     {
       type: 'profile',
       content: {
-        imageSlot: 'dj-marcus',
+        imageSlot: 'dj-astrevia',
         imageUrl: '',
-        name: 'Marcus D.',
-        role: 'DJ · Lecteur de salle',
-        bio: 'Marcus ne joue pas une setlist préparée. Il lit la salle, sent l\'énergie, et construit sa soirée en temps réel. Il a fait danser des salles entières jusqu\'au lever du soleil à Croix Rochefort — et il connaît chaque recoin acoustique du domaine.',
+        name: 'Astrévia Events',
+        role: 'Rémy & Jordan · Fondateurs',
+        bio: 'Rémy et Jordan ne jouent pas une setlist préparée. Ils lisent la salle, sentent l\'énergie, et construisent la soirée en temps réel. Astrévia Events a fait danser des salles entières jusqu\'au lever du soleil — son, lumière, effets et programmation sur-mesure pour votre journée.',
         details: [
-          '12 ans de mariages & événements privés',
-          'Sono professionnelle Funktion-One (formule Premium)',
+          '15 ans de mariages & événements privés',
+          'Sonorisation professionnelle haute fidélité',
           'Consultation musicale 1 mois avant',
           'Coordination avec le photographe incluse',
           'Playlist de secours gérée si besoin',
@@ -279,10 +279,10 @@ export const drawerDJ: DrawerContent = {
       content: {
         title: 'MATÉRIEL INCLUS',
         items: [
-          'Sono JBL professionnelle (formule Standard)',
-          'Sono Funktion-One haute fidélité (Premium)',
+          'Sonorisation professionnelle Astrévia Events',
           'Jeu de lumières scénique complet',
-          'Système d\'éclairage architectural (Premium)',
+          'Système d\'éclairage architectural (Prestige)',
+          'Fumée lourde + 4 étincelles froides (Prestige)',
           'Micro HF pour discours & animations',
         ],
       },
