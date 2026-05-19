@@ -5,6 +5,7 @@ export type Photographe = 'essentielle' | 'signature'
 export type DJChoice = {
   sonoVH: boolean
   effetPrestige: boolean
+  barVinyles: boolean
 }
 
 export type Deco = 'seve' | 'pierre'
