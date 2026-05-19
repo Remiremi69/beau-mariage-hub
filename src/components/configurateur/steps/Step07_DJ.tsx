@@ -172,10 +172,10 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                   <Badge label="Inclus" variant="or" />
                 </div>
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300, fontSize: 22, color: COLORS.or, marginTop: 8 }}>
-                  2 DJ · 19h30 → 4h du matin
+                  Astrévia Events · 19h30 → 4h du matin
                 </p>
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.60)", lineHeight: 1.7, marginTop: 10 }}>
-                  Deux DJ qui lisent la salle et font évoluer la soirée —
+                  Astrévia Events lit la salle et fait évoluer la soirée —
                   de l'ambiance feutrée du dîner aux dernières danses,
                   sans que vous ayez à orchestrer quoi que ce soit.
                 </p>
