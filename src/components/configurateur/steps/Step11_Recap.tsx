@@ -131,7 +131,12 @@ const vhNames: Record<string, string> = {
   "vh-anim-1": "Jambon Ibérique", "vh-anim-2": "Bar à Huîtres", "vh-anim-3": "Plancha Méditerranéenne",
   "vh-sucré-1": "Classique Français", "vh-sucré-2": "Terroir Beaujolais", "vh-sucré-3": "Gourmandise Libre",
 };
-const repasLabels: Record<string, string> = { essentiel: "Essentiel", gastronomique: "Gastronomique", prestige: "Prestige" };
+const repasLabels: Record<string, string> = {
+  menu1: "Menu 1 — Tradition Beaujolais",
+  menu2: "Menu 2 — Signature Limen",
+  // legacy values
+  essentiel: "Essentiel", gastronomique: "Gastronomique", prestige: "Prestige",
+};
 const decoLabels: Record<string, string> = { seve: "Sève", pierre: "Pierre & Lumière" };
 const photoLabels: Record<string, string> = { essentielle: "Essentielle", signature: "Signature" };
 // djLabels supprimé — DJ est désormais un set de toggles
@@ -382,10 +387,11 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
             <ChoiceLine
               category="Repas"
               value={repasLabels[state.repas] || state.repas}
-              price={`≈ ${formatPrice((state.repas === "essentiel" ? 65 : state.repas === "gastronomique" ? 90 : 130) * state.guests)}`}
-              subtext={menuSubtext || undefined}
-              badge="DÉGUSTATION INCLUSE"
+              price="Inclus"
+              subtext="⚠️ Ligne révisée à J−1 mois selon présents confirmés"
+              badge="J&J TRAITEUR"
             />
+
             <ChoiceLine category="Décoration" value={decoLabels[state.deco] || state.deco} price="Inclus" />
             <ChoiceLine category="Photographie" value={`${photoLabels[state.photographe] || "Essentielle"} (Loïc Cancade)`} price={state.photographe === "signature" ? "+ 450 €" : "Inclus"} />
             <div className="sm:col-span-2">

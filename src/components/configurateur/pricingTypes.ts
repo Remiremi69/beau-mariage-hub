@@ -1,4 +1,4 @@
-export type Repas = 'essentiel' | 'gastronomique' | 'prestige'
+export type Repas = 'menu1' | 'menu2'
 
 export type Photographe = 'essentielle' | 'signature'
 
@@ -53,7 +53,7 @@ export const defaultState: ConfigurateurState = {
   vhBouchee: null,
   vhAnimation: null,
   vhMignardise: null,
-  repas: 'essentiel',
+  repas: 'menu1',
   repasEntree: null,
   repasPlat: null,
   repasDessert: null,
