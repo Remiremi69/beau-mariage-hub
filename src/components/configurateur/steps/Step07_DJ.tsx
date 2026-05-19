@@ -354,7 +354,8 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                         lineHeight: 1.7,
                       }}
                     >
-                      Une brume légère effleure le sol pendant que vous dansez —
+                      Une brume légère effleure le sol et quatre étincelles
+                      froides jaillissent autour de vous pendant que vous dansez —
                       le reste de la salle disparaît.
                     </p>
                   </div>
