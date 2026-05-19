@@ -399,7 +399,7 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                       L'OUVERTURE DU BAL
                     </p>
                     <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(245,240,232,0.75)", lineHeight: 1.7 }}>
-                      Étincelles froides et fumée lourde pour votre première danse.
+                      Quatre étincelles froides et fumée lourde pour votre première danse.
                     </p>
                   </div>
                   <div>

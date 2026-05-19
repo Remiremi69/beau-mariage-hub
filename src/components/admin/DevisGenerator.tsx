@@ -114,7 +114,7 @@ const DevisGenerator = ({ lead, isOpen, onClose, mode }: DevisGeneratorProps) =>
         ? [{ label: `Décoration — ${decoLabels[lead.deco ?? ""]}`, detail: "Installation & démontage inclus", montant: decoPrix }]
         : [{ label: "Décoration — Champêtre Authentique", detail: "Fleurs locales, bougies, lin brut", montant: 0, inclus: true }]),
       ...(photoPrix > 0 ? [{ label: `Photographe — ${photoLabels[lead.photographe ?? ""]}`, detail: "Galerie privée livrée sous 4 semaines", montant: photoPrix }] : []),
-      ...(djPrix > 0 ? [{ label: `DJ — ${djLabels[lead.dj ?? ""]}`, detail: "Sono professionnelle + éclairage", montant: djPrix }] : []),
+      ...(djPrix > 0 ? [{ label: `Animation musicale — Astrévia Events`, detail: "Sono professionnelle + éclairage", montant: djPrix }] : []),
       ...(lead.options ?? []).map(id => ({ label: OPTION_LABELS[id] ?? id, detail: "", montant: OPTION_PRICES[id] ?? 0 })),
     ];
 
