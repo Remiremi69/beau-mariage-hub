@@ -527,11 +527,11 @@ const BusinessModelSection = () => {
         <ScrollReveal>
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Cinq mariages par saison. Pas un de plus.
-              <span className="block text-primary">C'est la capacité du domaine — pas une contrainte. C'est le modèle.</span>
+              Un mariage à la fois.
+              <span className="block text-primary">C'est la promesse du domaine — pas une contrainte. C'est le modèle.</span>
             </h2>
             <p className="text-card/70 text-sm sm:text-lg max-w-3xl mx-auto px-2">
-              Le Domaine de la Croix Rochefort accueille 5 mariages par saison. Ce n'est pas un argument marketing : c'est ce qui garantit que chaque mariage reçoit une attention totale — de la première réunion au dernier instant.
+              Le Domaine de la Croix Rochefort n'accueille qu'un mariage à la fois. Ce n'est pas un argument marketing : c'est ce qui rend possible une attention sans partage, de la première réunion au dernier instant.
             </p>
           </div>
         </ScrollReveal>
