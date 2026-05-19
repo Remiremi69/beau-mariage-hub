@@ -81,7 +81,7 @@ const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) =>
               <div>
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e" }}>Essentielle</p>
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 28, color: "#faf8f4", marginTop: 8 }}>Loïc Cancade</p>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 4 }}>Préparatifs → entrée en salle · 12h-21h</p>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 4 }}>Préparatifs → entrée en salle · 12h → 21h</p>
               </div>
               <Badge label="Inclus" tone="neutral" />
             </div>
