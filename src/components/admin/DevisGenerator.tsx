@@ -32,6 +32,9 @@ type DevisGeneratorProps = {
 };
 
 const repasLabels: Record<string, string> = {
+  menu1: "Menu 1 — Tradition Beaujolais",
+  menu2: "Menu 2 — Signature Limen",
+  // legacy values
   essentiel: "Essentiel",
   gastronomique: "Gastronomique",
   prestige: "Prestige",
@@ -83,7 +86,9 @@ type LigneDevis = {
 const DevisGenerator = ({ lead, isOpen, onClose, mode }: DevisGeneratorProps) => {
   const [guestsDefinitif, setGuestsDefinitif] = useState(lead.guests_estimate ?? 80);
   const [repasUnitaire, setRepasUnitaire] = useState(
-    lead.repas_formule === "prestige" ? 130
+    lead.repas_formule === "menu2" ? 85
+    : lead.repas_formule === "menu1" ? 80
+    : lead.repas_formule === "prestige" ? 130
     : lead.repas_formule === "gastronomique" ? 90
     : 65
   );

@@ -24,10 +24,13 @@ export type PriceBreakdown = {
 
 const BASE_FORFAIT = 8500
 
+// Tarifs internes J&J Traiteur (non affichés à l'utilisateur)
+const MENU1_BASE_PRICE_PER_PERSON = 80
+const MENU2_BASE_PRICE_PER_PERSON = 85
+
 const REPAS_PRIX: Record<string, number> = {
-  essentiel: 85,
-  gastronomique: 85,
-  prestige: 88,
+  menu1: MENU1_BASE_PRICE_PER_PERSON,
+  menu2: MENU2_BASE_PRICE_PER_PERSON,
 }
 
 const DECO_PRIX: Record<string, number> = {
@@ -47,9 +50,8 @@ const DJ_SONO_VH_PRICE = 200
 const DJ_PRESTIGE_PRICE = 320
 
 const repasLabelMap: Record<string, string> = {
-  essentiel: 'Essentiel',
-  gastronomique: 'Gastronomique',
-  prestige: 'Prestige',
+  menu1: 'Menu 1 — Tradition Beaujolais',
+  menu2: 'Menu 2 — Signature Limen',
 }
 const decoLabelMap: Record<string, string> = {
   seve: 'Sève',
@@ -105,13 +107,12 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
     isIncluded: true,
   })
 
-  const repasPrixUnit = REPAS_PRIX[state.repas] ?? 65
+  const repasPrixUnit = REPAS_PRIX[state.repas] ?? MENU1_BASE_PRICE_PER_PERSON
   lines.push({
     label: 'Repas — ' + (repasLabelMap[state.repas] ?? ''),
-    sublabel: `${repasPrixUnit} € × ${g} invités · Prix définitif après confirmation`,
+    sublabel: '⚠️ Ligne révisée à J−1 mois selon présents confirmés',
     amount: repasPrixUnit * g,
-    isIncluded: false,
-    isEstimate: true,
+    isIncluded: true,
   })
 
   const decoPrix = DECO_PRIX[state.deco] ?? 0

@@ -25,7 +25,11 @@ const OPTION_LABELS: Record<string, string> = {
   caricaturiste: "Caricaturiste", lanternes: "Lâcher de lanternes",
 };
 
-const repasLabels: Record<string, string> = { essentiel: "Essentiel", gastronomique: "Gastronomique", prestige: "Prestige" };
+const repasLabels: Record<string, string> = {
+  menu1: "Menu 1 — Tradition Beaujolais",
+  menu2: "Menu 2 — Signature Limen",
+  essentiel: "Essentiel", gastronomique: "Gastronomique", prestige: "Prestige",
+};
 const decoLabels: Record<string, string> = { seve: "Sève", pierre: "Pierre & Lumière" };
 const photoLabels: Record<string, string> = { none: "Non sélectionné", reportage: "Reportage", premium: "Premium Duo" };
 const djLabels: Record<string, string> = { none: "Non sélectionné", standard: "Standard", premium: "Premium" };
