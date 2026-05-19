@@ -1,7 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Music2, Mic2 } from "lucide-react";
 import { ConfigurateurState } from "../pricingTypes";
+import InfoButton from "../InfoButton";
+import PresentationDrawer from "../PresentationDrawer";
+import { drawerDJ } from "../drawerContents";
 
 interface Step07Props {
   state: ConfigurateurState;
@@ -106,6 +109,7 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
   const dj = state.dj;
   const sonoForcee = state.ceremonieLaique;
   const barVinylesBloque = sonoForcee || dj.sonoVH;
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   // Sync auto : cérémonie laïque → sonoVH forcé true
   useEffect(() => {
@@ -179,8 +183,12 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
           Tout est déjà prêt.<br />Vous choisissez l'atmosphère.
         </motion.p>
 
+        <motion.div custom={2.3} initial="hidden" animate="visible" variants={fadeUp}>
+          <InfoButton label="Découvrir Astrévia Events" onClick={() => setDrawerOpen(true)} />
+        </motion.div>
+
         <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}
-          style={{ width: 60, height: 1, background: COLORS.or, margin: "0 auto 36px" }} />
+          style={{ width: 60, height: 1, background: COLORS.or, margin: "24px auto 36px" }} />
 
         <div className="flex flex-col gap-4 w-full" style={{ maxWidth: 600 }}>
           {/* ─── Bloc 1 — Ambiance cocktail ─── */}
