@@ -391,9 +391,13 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
             </div>
           </motion.div>
 
-          {/* ─── Bloc 4 — Bar à vinyles (à venir) ─── */}
+          {/* ─── Bloc 4 — Bar à vinyles ─── */}
           <motion.div custom={6} initial="hidden" animate="visible" variants={fadeUp}
-            style={{ ...cardBase, opacity: 0.7, cursor: "not-allowed" }}>
+            onClick={() => onUpdate({ dj: { ...dj, barVinyles: !dj.barVinyles } })}
+            style={{
+              ...(dj.barVinyles ? cardActive : cardBase),
+              cursor: "pointer",
+            }}>
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0" style={{
                 width: 44, height: 44, borderRadius: 2, display: "flex",
@@ -407,10 +411,16 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                   <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.20em", textTransform: "uppercase", color: "#faf8f4" }}>
                     Bar à vinyles
                   </p>
-                  <Badge label="Disponible en 2027" variant="lin" />
+                  <div className="flex items-center gap-3">
+                    <Badge label="Optionnel" variant="lin" />
+                    <Toggle on={dj.barVinyles} onClick={() => onUpdate({ dj: { ...dj, barVinyles: !dj.barVinyles } })} />
+                  </div>
                 </div>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.60)", lineHeight: 1.7, marginTop: 10 }}>
-                  Une platine vinyle, une sélection curatée et la possibilité pour vos invités de choisir le morceau suivant — un coin musical à part, en complément du DJ.
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300, fontSize: 20, color: COLORS.lin, marginTop: 12, lineHeight: 1.4 }}>
+                  Pendant le vin d'honneur — le son du sillon, rien d'autre.
+                </p>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.65)", lineHeight: 1.7, marginTop: 10 }}>
+                  Une platine installée dans le caveau, une sélection curatée de 33 tours posée à côté — du jazz feutré aux soul sessions. Vos invités choisissent, soulèvent le diamant, laissent tourner. Un coin musical à part, en complément d'Astrévia Events.
                 </p>
               </div>
             </div>
