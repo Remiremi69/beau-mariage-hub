@@ -263,7 +263,7 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                   Pendant le vin d'honneur — le son du sillon, rien d'autre.
                 </p>
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.65)", lineHeight: 1.7, marginTop: 10 }}>
-                  Une régie vinyle installée dans l'espace cocktail. Les DJs sélectionnent les titres, vos invités posent l'aiguille et choisissent parmi une large sélection de 33 tours — du jazz feutré aux soul sessions.
+                  Une régie vinyle installée dans l'espace cocktail. Vos invités choisissent parmi une large sélection de 33 tours et les DJs posent l'aiguille.
                 </p>
               </div>
             </div>
