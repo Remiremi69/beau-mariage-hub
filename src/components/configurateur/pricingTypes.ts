@@ -58,7 +58,7 @@ export const defaultState: ConfigurateurState = {
   repasPlat: null,
   repasDessert: null,
   photographe: 'essentielle',
-  dj: { sonoVH: false, effetPrestige: false },
+  dj: { sonoVH: false, effetPrestige: false, barVinyles: false },
   deco: 'seve',
   options: [],
   ambianceMusique: [],
