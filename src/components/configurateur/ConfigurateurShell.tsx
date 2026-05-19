@@ -250,9 +250,24 @@ const ConfigurateurShell = () => {
   );
 
   /* ── Browser back/forward ──────────────────────────── */
+  const isFirstHistoryPush = useRef(true);
   useEffect(() => {
-    const url = `/configurateur${displayStep > 0 ? `?step=${displayStep}` : ""}`;
-    window.history.pushState({ step: displayStep }, "", url);
+    // Preserve existing query params (e.g. Lovable preview tokens) — only update `step`.
+    const params = new URLSearchParams(window.location.search);
+    if (displayStep > 0) {
+      params.set("step", String(displayStep));
+    } else {
+      params.delete("step");
+    }
+    const qs = params.toString();
+    const url = `/configurateur${qs ? `?${qs}` : ""}`;
+    if (isFirstHistoryPush.current) {
+      // Replace initial entry so we don't strip params nor pollute history on mount.
+      window.history.replaceState({ step: displayStep }, "", url);
+      isFirstHistoryPush.current = false;
+    } else {
+      window.history.pushState({ step: displayStep }, "", url);
+    }
   }, [displayStep]);
 
   useEffect(() => {
