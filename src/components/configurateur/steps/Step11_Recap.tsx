@@ -391,7 +391,7 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
             <div className="sm:col-span-2">
               <ChoiceLine
                 category="Animation musicale (DJ)"
-                value="2 DJ · 19h30 → 4h · HK Audio"
+                value="Astrévia Events · 19h30 → 4h"
                 price="Inclus"
                 subtext={[
                   state.dj.sonoVH ? (state.ceremonieLaique ? "+ Ambiance cérémonie & cocktail (Inclus)" : "+ Ambiance cocktail (+ 200 €)") : null,
