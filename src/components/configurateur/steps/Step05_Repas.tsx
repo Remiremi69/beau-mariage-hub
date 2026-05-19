@@ -290,7 +290,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
           color: "rgba(201,169,110,0.6)",
         }}
       >
-        Étape · Votre menu
+        Étape · Vin d'honneur & Table
       </motion.p>
 
       <motion.h2
@@ -308,7 +308,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
           lineHeight: 1.15,
         }}
       >
-        Votre menu.
+        Votre vin d'honneur<br />et votre table.
       </motion.h2>
 
       <motion.p

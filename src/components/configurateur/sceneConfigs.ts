@@ -52,32 +52,24 @@ export const SCENE_CONFIGS: Record<number, SceneConfig> = {
     duration: 3800,
   },
 
-  // Before Step 5 — Vin d'honneur
+  // Before Step 5 — Vin d'honneur & Table
   5: {
-    title: "Votre vin d'honneur",
-    subtitle: "Dans les jardins du domaine",
-    images: ["https://i.postimg.cc/x1YWXFrv/9-accueil-le-caveau.jpg", vhBeaujolaisVivant, vhSeuilSignature],
-    duration: 3000,
-  },
-
-  // Before Step 6 — Repas
-  6: {
-    title: "Votre table",
+    title: "Votre vin d'honneur et votre table",
     subtitle: "Jessica & Jérôme · J&J Traiteur",
-    images: [tableSetup, jjTraiteurPortrait],
+    images: [tableSetup, jjTraiteurPortrait, vhBeaujolaisVivant, vhSeuilSignature],
     duration: 4000,
   },
 
-  // Before Step 7 — Photographe
-  7: {
+  // Before Step 6 — Photographe
+  6: {
     title: "Votre photographe",
     subtitle: "Loïc · Chaque image raconte quelque chose",
     images: [loicHero, loicDanse, loicFumigenes],
     duration: 4000,
   },
 
-  // Before Step 8 — DJ
-  8: {
+  // Before Step 7 — DJ
+  7: {
     title: "Votre soirée",
     subtitle: "Rémy & Jordan · Astrévia Events",
     images: [
@@ -88,24 +80,24 @@ export const SCENE_CONFIGS: Record<number, SceneConfig> = {
     duration: 4000,
   },
 
-  // Before Step 9 — Déco
-  9: {
+  // Before Step 8 — Déco
+  8: {
     title: "Votre atmosphère",
     subtitle: "L'espace qui vous ressemble",
     images: [decoBoheme1, decoChampetre1, decoRomantique],
     duration: 3500,
   },
 
-  // Before Step 11 — Site mariage
-  11: {
+  // Before Step 10 — Site mariage
+  10: {
     title: "Votre présence en ligne",
     subtitle: "Partagée avec élégance",
     images: [heroWedding, domaine2],
     duration: 3000,
   },
 
-  // Before Step 12 — Récap
-  12: {
+  // Before Step 11 — Récap
+  11: {
     title: "Votre mariage",
     subtitle: "Tout est là",
     images: [domaine2, tableSetup, ceremonyArch],

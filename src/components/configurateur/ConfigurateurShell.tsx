@@ -9,7 +9,7 @@ import Step01_Date from "./steps/Step01_Date";
 import Step02_Invites from "./steps/Step02_Invites";
 import Step03_Ceremonie from "./steps/Step03_Ceremonie";
 import Step04_Violoniste from "./steps/Step04_Violoniste";
-import Step04_VinDhonneur from "./steps/Step04_VinDhonneur";
+
 import Step05_Repas from "./steps/Step05_Repas";
 import Step06_Photographe from "./steps/Step06_Photographe";
 import Step07_DJ from "./steps/Step07_DJ";
@@ -36,7 +36,6 @@ const STEP_BACKGROUNDS = [
   "radial-gradient(circle at 60% 40%, rgba(201,169,110,0.12) 0%, transparent 50%), linear-gradient(135deg, #0e0c09 0%, #1c1812 60%, #130f09 100%)",
   "radial-gradient(ellipse at 50% 0%, rgba(80,120,60,0.30) 0%, transparent 55%), linear-gradient(180deg, #080e06 0%, #101806 50%, #080e06 100%)",
   "radial-gradient(ellipse at 50% 50%, rgba(140,90,60,0.28) 0%, transparent 55%), linear-gradient(160deg, #0c0907 0%, #18120c 60%, #0e0a07 100%)",
-  "radial-gradient(ellipse at 40% 55%, rgba(120,20,30,0.35) 0%, transparent 50%), linear-gradient(160deg, #0c0606 0%, #1a0808 55%, #0e0606 100%)",
   "radial-gradient(ellipse at 55% 35%, rgba(201,169,110,0.18) 0%, transparent 45%), linear-gradient(150deg, #0c0b08 0%, #1a1710 60%, #110e08 100%)",
   "radial-gradient(circle at 50% 50%, rgba(40,60,100,0.35) 0%, transparent 55%), linear-gradient(160deg, #060608 0%, #0c0e18 60%, #060810 100%)",
   "radial-gradient(circle at 30% 50%, rgba(100,20,120,0.40) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(20,60,140,0.25) 0%, transparent 45%), linear-gradient(135deg, #08040e 0%, #100616 100%)",
@@ -46,11 +45,11 @@ const STEP_BACKGROUNDS = [
   "radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.25) 0%, transparent 60%), linear-gradient(160deg, #0d0b08 0%, #1a1612 50%, #231e17 100%)",
 ];
 
-const TOTAL_STEPS = 13;
+const TOTAL_STEPS = 12;
 
 const STEP_LABELS = [
   "Accueil", "Date", "Invités", "Cérémonie", "Violoniste",
-  "Vin d'honneur", "Repas", "Photographe",
+  "Vin d'honneur & Table", "Photographe",
   "DJ", "Déco", "Options", "Site mariage", "Récap",
 ];
 
@@ -292,14 +291,13 @@ const ConfigurateurShell = () => {
       case 2: return <Step02_Invites {...props} />;
       case 3: return <Step03_Ceremonie {...props} />;
       case 4: return <Step04_Violoniste {...props} />;
-      case 5: return <Step04_VinDhonneur {...props} />;
-      case 6: return <Step05_Repas {...props} />;
-      case 7: return <Step06_Photographe {...props} />;
-      case 8: return <Step07_DJ {...props} />;
-      case 9: return <Step08_Deco {...props} />;
-      case 10: return <Step09_Options {...props} />;
-      case 11: return <Step10_SiteMariage {...props} />;
-      case 12: return <Step11_Recap {...props} />;
+      case 5: return <Step05_Repas {...props} />;
+      case 6: return <Step06_Photographe {...props} />;
+      case 7: return <Step07_DJ {...props} />;
+      case 8: return <Step08_Deco {...props} />;
+      case 9: return <Step09_Options {...props} />;
+      case 10: return <Step10_SiteMariage {...props} />;
+      case 11: return <Step11_Recap {...props} />;
       default: return null;
     }
   };
@@ -319,25 +317,21 @@ const ConfigurateurShell = () => {
     if (state.currentStep >= 4) {
       lines.push({ label: "Violoniste", value: state.violonisteOption ? "Show + option" : "Show inclus" });
     }
-    if (state.currentStep >= 5) {
-      const vhCount = [state.vhBouchee, state.vhAnimation, state.vhMignardise].filter(Boolean).length;
-      if (vhCount > 0) lines.push({ label: "VH", value: `${vhCount}/3` });
-    }
-    if (state.currentStep === 6) {
+    if (state.currentStep === 5) {
       const count = [state.repasEntree, state.repasPlat, state.repasDessert].filter(Boolean).length;
       lines.push({ label: "Menu", value: count === 3 ? "Complet" : `${count}/3 plats` });
     }
-    if (state.currentStep >= 7) {
+    if (state.currentStep >= 6) {
       lines.push({ label: "Photo", value: photoLabels[state.photographe] || "" });
     }
-    if (state.currentStep >= 8) {
+    if (state.currentStep >= 7) {
       const extras = [
         state.dj.sonoVH ? (state.ceremonieLaique ? "cocktail (inclus)" : "cocktail") : null,
         state.dj.effetPrestige ? "Prestige" : null,
       ].filter(Boolean);
       lines.push({ label: "DJ", value: extras.length ? `Inclus + ${extras.join(" · ")}` : "Inclus" });
     }
-    if (state.currentStep >= 10 && (state.options?.length ?? 0) > 0) {
+    if (state.currentStep >= 9 && (state.options?.length ?? 0) > 0) {
       lines.push({ label: "Options", value: `${state.options.length}` });
     }
     return lines;
