@@ -89,19 +89,39 @@ const Toggle = ({
   </button>
 );
 
+const MATERIEL_PILLS = [
+  "Portique 8 m",
+  "8 lyres Beam",
+  "4 éblouisseurs",
+  "4 projecteurs LED",
+  "2 geysers CO₂",
+  "Machine à brouillard",
+  "2 écrans 85''",
+  "Mapping vidéo personnalisé",
+  "Système HK Audio",
+  "Micro HF",
+];
+
 const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
   const dj = state.dj;
   const sonoForcee = state.ceremonieLaique;
+  const barVinylesBloque = sonoForcee || dj.sonoVH;
 
   // Sync auto : cérémonie laïque → sonoVH forcé true
   useEffect(() => {
     if (sonoForcee && !dj.sonoVH) {
       onUpdate({ dj: { ...dj, sonoVH: true } });
-    } else if (!sonoForcee && dj.sonoVH && (dj as { _ceremonieSync?: boolean })._ceremonieSync) {
-      // n/a — l'utilisateur garde le contrôle
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sonoForcee]);
+
+  // Désactive bar à vinyles si non cumulable
+  useEffect(() => {
+    if (barVinylesBloque && dj.barVinyles) {
+      onUpdate({ dj: { ...dj, barVinyles: false } });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [barVinylesBloque]);
 
   const toggleSono = () => {
     if (sonoForcee) return;
@@ -109,6 +129,10 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
   };
   const togglePrestige = () => {
     onUpdate({ dj: { ...dj, effetPrestige: !dj.effetPrestige } });
+  };
+  const toggleBarVinyles = () => {
+    if (barVinylesBloque) return;
+    onUpdate({ dj: { ...dj, barVinyles: !dj.barVinyles } });
   };
 
   const cardBase: React.CSSProperties = {
@@ -127,6 +151,12 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
     border: "1px solid rgba(232,213,176,0.40)",
     opacity: 0.95,
   };
+
+  const barVinylesMessage = sonoForcee
+    ? "Inclus dans votre cérémonie laïque — la sonorisation du vin d'honneur est déjà prévue."
+    : dj.sonoVH
+      ? "Non cumulable avec l'ambiance cocktail."
+      : null;
 
   return (
     <div className="flex items-center justify-center min-h-screen px-6" style={{ paddingTop: 60, paddingBottom: 60 }}>
@@ -153,8 +183,86 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
           style={{ width: 60, height: 1, background: COLORS.or, margin: "0 auto 36px" }} />
 
         <div className="flex flex-col gap-4 w-full" style={{ maxWidth: 600 }}>
-          {/* ─── Bloc 1 — Forfait inclus (non interactif) ─── */}
+          {/* ─── Bloc 1 — Ambiance cocktail ─── */}
           <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
+            onClick={toggleSono}
+            title={sonoForcee ? "Activé car vous avez choisi la cérémonie laïque" : undefined}
+            style={{
+              ...(sonoForcee ? cardLocked : (dj.sonoVH ? cardActive : cardBase)),
+              cursor: sonoForcee ? "not-allowed" : "pointer",
+            }}
+          >
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0" style={{
+                width: 44, height: 44, borderRadius: 2, display: "flex",
+                alignItems: "center", justifyContent: "center",
+                background: "rgba(201,169,110,0.10)", border: "1px solid rgba(201,169,110,0.25)",
+              }}>
+                <Mic2 size={20} color={COLORS.or} />
+              </div>
+              <div style={{ flex: 1 }}>
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.20em", textTransform: "uppercase", color: "#faf8f4" }}>
+                    Ambiance cocktail
+                  </p>
+                  {sonoForcee
+                    ? <Badge label="Obligatoire" variant="amber" />
+                    : <Badge label="Optionnel" variant="lin" />}
+                </div>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300, fontSize: 20, color: COLORS.lin, marginTop: 12, lineHeight: 1.4 }}>
+                  La fête commence avant la fête.
+                </p>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.65)", lineHeight: 1.7, marginTop: 10 }}>
+                  Une ambiance sonore soignée pendant votre vin d'honneur — intérieur et extérieur — avec une set list construite avec vous en amont et un micro HF disponible. Cérémonie laïque incluse si elle a lieu sur le domaine.
+                </p>
+              </div>
+              <Toggle on={dj.sonoVH || sonoForcee} disabled={sonoForcee} onClick={toggleSono} />
+            </div>
+          </motion.div>
+
+          {/* ─── Bloc 2 — Bar à vinyles ─── */}
+          <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp}
+            onClick={toggleBarVinyles}
+            style={{
+              ...(dj.barVinyles ? cardActive : cardBase),
+              cursor: barVinylesBloque ? "not-allowed" : "pointer",
+              opacity: barVinylesBloque ? 0.35 : 1,
+            }}>
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0" style={{
+                width: 44, height: 44, borderRadius: 2, display: "flex",
+                alignItems: "center", justifyContent: "center",
+                background: "rgba(201,169,110,0.10)", border: "1px solid rgba(201,169,110,0.25)",
+              }}>
+                <span style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 22, color: COLORS.or, lineHeight: 1 }}>♪</span>
+              </div>
+              <div style={{ flex: 1 }}>
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.20em", textTransform: "uppercase", color: "#faf8f4" }}>
+                    Bar à vinyles
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <Badge label="Optionnel" variant="lin" />
+                    <Toggle on={dj.barVinyles} disabled={barVinylesBloque} onClick={toggleBarVinyles} />
+                  </div>
+                </div>
+                {barVinylesMessage && (
+                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontStyle: "italic", fontSize: 12, color: "rgba(232,221,208,0.50)", marginTop: 8 }}>
+                    {barVinylesMessage}
+                  </p>
+                )}
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300, fontSize: 20, color: COLORS.lin, marginTop: 12, lineHeight: 1.4 }}>
+                  Pendant le vin d'honneur — le son du sillon, rien d'autre.
+                </p>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.65)", lineHeight: 1.7, marginTop: 10 }}>
+                  Une régie vinyle installée dans l'espace cocktail. Les DJs sélectionnent les titres, vos invités posent l'aiguille et choisissent parmi une large sélection de 33 tours — du jazz feutré aux soul sessions.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ─── Bloc 3 — Votre soirée musicale (inclus) ─── */}
+          <motion.div custom={5} initial="hidden" animate="visible" variants={fadeUp}
             style={{ ...cardBase, border: "1px solid rgba(201,169,110,0.30)" }}>
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0" style={{
@@ -179,54 +287,28 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                   de l'ambiance feutrée du dîner aux dernières danses,
                   sans que vous ayez à orchestrer quoi que ce soit.
                 </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* ─── Bloc 2 — Sonorisation cocktail ─── */}
-          <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp}
-            onClick={toggleSono}
-            title={sonoForcee ? "Activé car vous avez choisi la cérémonie laïque" : undefined}
-            style={{
-              ...(sonoForcee ? cardLocked : (dj.sonoVH ? cardActive : cardBase)),
-              cursor: sonoForcee ? "not-allowed" : "pointer",
-            }}
-          >
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0" style={{
-                width: 44, height: 44, borderRadius: 2, display: "flex",
-                alignItems: "center", justifyContent: "center",
-                background: "rgba(201,169,110,0.10)", border: "1px solid rgba(201,169,110,0.25)",
-              }}>
-                <Mic2 size={20} color={COLORS.or} />
-              </div>
-              <div style={{ flex: 1 }}>
-                <div className="flex items-center justify-between gap-3 flex-wrap">
-                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.20em", textTransform: "uppercase", color: "#faf8f4" }}>
-                    {sonoForcee ? "Ambiance cérémonie & cocktail" : "Ambiance cocktail"}
-                  </p>
-                  {sonoForcee
-                    ? <Badge label="Obligatoire" variant="amber" />
-                    : <Badge label="Optionnel" variant="lin" />}
+                <div className="flex flex-wrap" style={{ gap: 6, marginTop: 16 }}>
+                  {MATERIEL_PILLS.map((pill) => (
+                    <span key={pill} style={{
+                      fontFamily: "'Jost', sans-serif",
+                      fontWeight: 300,
+                      fontSize: 10,
+                      color: "rgba(245,240,232,0.40)",
+                      border: "1px solid rgba(245,240,232,0.12)",
+                      padding: "3px 8px",
+                      borderRadius: 20,
+                    }}>
+                      {pill}
+                    </span>
+                  ))}
                 </div>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.65)", lineHeight: 1.7, marginTop: 10 }}>
-                  {sonoForcee
-                    ? "Un son pensé pour l'acoustique du caveau voûté, puis une ambiance qui accueille vos invités au cocktail."
-                    : "Une ambiance musicale pendant votre vin d'honneur — une set list définie avec vous en amont, un son intérieur et extérieur."}
-                </p>
-                {sonoForcee && (
-                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", fontStyle: "italic", marginTop: 6 }}>
-                    Inclus avec votre cérémonie laïque.
-                  </p>
-                )}
               </div>
-              <Toggle on={dj.sonoVH || sonoForcee} disabled={sonoForcee} onClick={toggleSono} />
             </div>
           </motion.div>
 
-          {/* ─── Bloc 3 — Effet Prestige ─── */}
+          {/* ─── Bloc 4 — Prestige ─── */}
           <motion.div
-            custom={5}
+            custom={6}
             initial="hidden"
             animate="visible"
             variants={fadeUp}
@@ -305,123 +387,30 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                 </p>
                 <div className="flex flex-col gap-6 mt-6">
                   <div>
-                    <p
-                      style={{
-                        fontFamily: "'Jost', sans-serif",
-                        fontWeight: 400,
-                        fontSize: 11,
-                        letterSpacing: "0.25em",
-                        textTransform: "uppercase",
-                        color: COLORS.or,
-                        marginBottom: 4,
-                      }}
-                    >
+                    <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.25em", textTransform: "uppercase", color: COLORS.or, marginBottom: 4 }}>
                       VOTRE ENTRÉE
                     </p>
-                    <p
-                      style={{
-                        fontFamily: "'Jost', sans-serif",
-                        fontWeight: 300,
-                        fontSize: 13,
-                        color: "rgba(245,240,232,0.75)",
-                        lineHeight: 1.7,
-                      }}
-                    >
-                      Des gerbes d'étincelles dorées jaillissent de chaque côté
-                      lorsque vous franchissez le seuil.
+                    <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(245,240,232,0.75)", lineHeight: 1.7 }}>
+                      Étincelles froides au moment où vous franchissez le seuil.
                     </p>
                   </div>
                   <div>
-                    <p
-                      style={{
-                        fontFamily: "'Jost', sans-serif",
-                        fontWeight: 400,
-                        fontSize: 11,
-                        letterSpacing: "0.25em",
-                        textTransform: "uppercase",
-                        color: COLORS.or,
-                        marginBottom: 4,
-                      }}
-                    >
+                    <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.25em", textTransform: "uppercase", color: COLORS.or, marginBottom: 4 }}>
                       L'OUVERTURE DU BAL
                     </p>
-                    <p
-                      style={{
-                        fontFamily: "'Jost', sans-serif",
-                        fontWeight: 300,
-                        fontSize: 13,
-                        color: "rgba(245,240,232,0.75)",
-                        lineHeight: 1.7,
-                      }}
-                    >
-                      Une brume légère effleure le sol et quatre étincelles
-                      froides jaillissent autour de vous pendant que vous dansez —
-                      le reste de la salle disparaît.
+                    <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(245,240,232,0.75)", lineHeight: 1.7 }}>
+                      Étincelles froides et fumée lourde pour votre première danse.
                     </p>
                   </div>
                   <div>
-                    <p
-                      style={{
-                        fontFamily: "'Jost', sans-serif",
-                        fontWeight: 400,
-                        fontSize: 11,
-                        letterSpacing: "0.25em",
-                        textTransform: "uppercase",
-                        color: COLORS.or,
-                        marginBottom: 4,
-                      }}
-                    >
+                    <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.25em", textTransform: "uppercase", color: COLORS.or, marginBottom: 4 }}>
                       LE DESSERT
                     </p>
-                    <p
-                      style={{
-                        fontFamily: "'Jost', sans-serif",
-                        fontWeight: 300,
-                        fontSize: 13,
-                        color: "rgba(245,240,232,0.75)",
-                        lineHeight: 1.7,
-                      }}
-                    >
-                      Votre pièce montée arrive dans un halo d'étincelles et de
-                      lumière.
+                    <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(245,240,232,0.75)", lineHeight: 1.7 }}>
+                      Étincelles et lumière à l'arrivée de la pièce montée.
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* ─── Bloc 4 — Bar à vinyles ─── */}
-          <motion.div custom={6} initial="hidden" animate="visible" variants={fadeUp}
-            onClick={() => onUpdate({ dj: { ...dj, barVinyles: !dj.barVinyles } })}
-            style={{
-              ...(dj.barVinyles ? cardActive : cardBase),
-              cursor: "pointer",
-            }}>
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0" style={{
-                width: 44, height: 44, borderRadius: 2, display: "flex",
-                alignItems: "center", justifyContent: "center",
-                background: "rgba(201,169,110,0.10)", border: "1px solid rgba(201,169,110,0.25)",
-              }}>
-                <span style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 22, color: COLORS.or, lineHeight: 1 }}>♪</span>
-              </div>
-              <div style={{ flex: 1 }}>
-                <div className="flex items-center justify-between gap-3 flex-wrap">
-                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.20em", textTransform: "uppercase", color: "#faf8f4" }}>
-                    Bar à vinyles
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <Badge label="Optionnel" variant="lin" />
-                    <Toggle on={dj.barVinyles} onClick={() => onUpdate({ dj: { ...dj, barVinyles: !dj.barVinyles } })} />
-                  </div>
-                </div>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300, fontSize: 20, color: COLORS.lin, marginTop: 12, lineHeight: 1.4 }}>
-                  Pendant le vin d'honneur — le son du sillon, rien d'autre.
-                </p>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.65)", lineHeight: 1.7, marginTop: 10 }}>
-                  Une platine installée dans le caveau, une sélection curatée de 33 tours posée à côté — du jazz feutré aux soul sessions. Vos invités choisissent, soulèvent le diamant, laissent tourner. Un coin musical à part, en complément d'Astrévia Events.
-                </p>
               </div>
             </div>
           </motion.div>
