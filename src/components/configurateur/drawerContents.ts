@@ -3,6 +3,7 @@ import type { DrawerContent } from './PresentationDrawer';
 import chefSebastien from '@/assets/chef-sebastien.jpg';
 
 import photographeAlexandre from '@/assets/photographe-loic.avif';
+import djAstreviaPortrait from '@/assets/dj-astrevia-portrait.png';
 
 import domaineHero2 from '@/assets/domaine-hero-2.png';
 import domaineHero3 from '@/assets/domaine-hero-3.png';
@@ -255,9 +256,9 @@ export const drawerDJ: DrawerContent = {
       type: 'profile',
       content: {
         imageSlot: 'dj-astrevia',
-        imageUrl: '',
+        imageUrl: djAstreviaPortrait,
         name: 'Astrévia Events',
-        role: 'Rémy & Jordan · Fondateurs',
+        role: 'Rémy & Jordan',
         bio: 'Rémy et Jordan ne jouent pas une setlist préparée. Ils lisent la salle, sentent l\'énergie, et construisent la soirée en temps réel. Astrévia Events a fait danser des salles entières jusqu\'au lever du soleil — son, lumière, effets et programmation sur-mesure pour votre journée.',
         details: [
           '15 ans de mariages & événements privés',
