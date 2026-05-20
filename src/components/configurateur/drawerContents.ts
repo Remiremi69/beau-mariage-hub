@@ -1,6 +1,6 @@
 import type { DrawerContent } from './PresentationDrawer';
 
-import chefSebastien from '@/assets/chef-sebastien.jpg';
+import chefSebastien from '@/assets/traiteurs-jessica-jerome.jpg';
 
 import photographeAlexandre from '@/assets/photographe-loic.avif';
 import djAstreviaPortrait from '@/assets/dj-astrevia-portrait.png';
