@@ -107,6 +107,14 @@ const prestataires = [
     description: "Violoniste dansant · Performer",
     link: "/serie-octobre-2027/prestataires/violoniste",
     lucideIcon: MicVocal
+  },
+  {
+    icon: "🕊️",
+    category: "CÉRÉMONIE LAÏQUE",
+    title: "Esther Coutin",
+    description: "Maîtresse de cérémonie · Officiante laïque",
+    link: "/prestataires/esther-coutin",
+    lucideIcon: MicVocal
   }
 ];
 
@@ -333,6 +341,13 @@ const SerieOctobre2027Hub = () => {
                   body: "Violoniste dansant, performer de scène. Plus de 80 mariages en France et à l'international. Chaque intervention est une scène vivante, pensée pour votre journée.",
                   href: "/serie-octobre-2027/prestataires/violoniste",
                   linkLabel: "Découvrir Alexandre Chomat",
+                },
+                "CÉRÉMONIE LAÏQUE": {
+                  eyebrow: "Cérémonie laïque · Partenaire confirmé",
+                  title: "Esther Coutin",
+                  body: "Speaker professionnelle, maîtresse de cérémonie et officiante laïque. Voix posée, présence rassurante, déroulé entièrement sur-mesure.",
+                  href: "/prestataires/esther-coutin",
+                  linkLabel: "Découvrir Esther Coutin",
                 },
               };
               const conf = confirmed[prestataire.category];
