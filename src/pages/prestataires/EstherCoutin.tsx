@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import estherHero from "@/assets/esther-coutin-hero.jpg";
 import ceremonieScene from "@/assets/esther-ceremonie-scene.jpg";
+import mariesMoment from "@/assets/esther-maries-moment.jpg";
 
 
 const COLORS = {
@@ -457,7 +458,11 @@ const EstherCoutin = () => {
 
           {galerie.slice(1).map((c) => (
             <div key={c.label} style={{ position: "relative", aspectRatio: "4/5", overflow: "hidden" }}>
-              <PhotoPlaceholder alt={c.label} />
+              {c.label === "Mariés · Le moment" ? (
+                <img src={mariesMoment} alt={c.label} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+              ) : (
+                <PhotoPlaceholder alt={c.label} />
+              )}
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.7))" }} />
               <div
                 style={{
