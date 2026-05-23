@@ -3,6 +3,7 @@ import SEO from "@/components/SEO";
 import estherHero from "@/assets/esther-coutin-hero.jpg";
 import ceremonieScene from "@/assets/esther-ceremonie-scene.jpg";
 import mariesMoment from "@/assets/esther-maries-moment.jpg";
+import animationSoiree from "@/assets/esther-animation-soiree.jpg";
 
 
 const COLORS = {
@@ -460,6 +461,8 @@ const EstherCoutin = () => {
             <div key={c.label} style={{ position: "relative", aspectRatio: "4/5", overflow: "hidden" }}>
               {c.label === "Mariés · Le moment" ? (
                 <img src={mariesMoment} alt={c.label} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+              ) : c.label === "Animation · Soirée" ? (
+                <img src={animationSoiree} alt={c.label} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
               ) : (
                 <PhotoPlaceholder alt={c.label} />
               )}
