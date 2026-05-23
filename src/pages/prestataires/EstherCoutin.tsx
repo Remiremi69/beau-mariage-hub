@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import estherHero from "@/assets/esther-coutin-hero.jpg";
+import ceremonieScene from "@/assets/esther-ceremonie-scene.jpg";
 
 
 const COLORS = {
@@ -424,7 +425,7 @@ const EstherCoutin = () => {
               overflow: "hidden",
             }}
           >
-            <PhotoPlaceholder alt={galerie[0].label} />
+            <img src={ceremonieScene} alt={galerie[0].label} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.7))" }} />
             <div
               style={{
