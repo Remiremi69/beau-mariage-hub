@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
+import estherHero from "@/assets/esther-coutin-hero.jpg";
+
 
 const COLORS = {
   nuit: "#0D0E12",
@@ -160,8 +162,7 @@ const EstherCoutin = () => {
       >
         <div style={{ backgroundColor: COLORS.nuit, position: "relative", overflow: "hidden" }}>
           <img
-            className="photo-placeholder"
-            src=""
+            src={estherHero}
             alt="Esther Coutin · Maîtresse de cérémonie"
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
           />
