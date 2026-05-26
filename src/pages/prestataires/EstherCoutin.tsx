@@ -70,7 +70,7 @@ const EstherCoutin = () => {
     },
     {
       title: "Fluidité de l'animation",
-      body: "Mise en valeur des entrées — mariés, témoins, pièces montées — accompagnement des discours, animation de jeux en coordination avec les témoins.",
+      body: "Mise en valeur des entrées, mariés, témoins, pièces montées, accompagnement des discours, animation de jeux en coordination avec les témoins.",
     },
     {
       title: "Gestion du timing",
@@ -84,17 +84,17 @@ const EstherCoutin = () => {
 
   const partages = [
     "La conviction qu'une cérémonie réussie est celle dont les mariés se souviennent comme d'une conversation, pas d'un spectacle",
-    "Le refus du script générique — chaque cérémonie est construite pour ce couple précis",
+    "Le refus du script générique, chaque cérémonie est construite pour ce couple précis",
     "La maîtrise du timing comme acte de respect envers les invités",
-    "Une présence qui s'efface quand il le faut — et qui porte quand c'est nécessaire",
+    "Une présence qui s'efface quand il le faut, et qui porte quand c'est nécessaire",
     "La fluidité comme mode opératoire de A à Z",
   ];
 
   const change = [
-    "Un rendez-vous approfondi avec Esther avant le jour J — elle connaît votre histoire",
+    "Un rendez-vous approfondi avec Esther avant le jour J, elle connaît votre histoire",
     "Le déroulé est coordonné avec toute l'équipe Limen en amont",
-    "Zéro improvisation le jour J — tout est anticipé, rien n'est laissé au hasard",
-    "Elle gère les imprévus — vous, vous vivez votre journée",
+    "Zéro improvisation le jour J, tout est anticipé, rien n'est laissé au hasard",
+    "Elle gère les imprévus, vous, vous vivez votre journée",
     "Une seule interlocutrice pour la cérémonie et l'animation de soirée si souhaité",
   ];
 
@@ -108,8 +108,8 @@ const EstherCoutin = () => {
   return (
     <div style={{ backgroundColor: COLORS.lin, color: COLORS.texte, fontFamily: fontBody }}>
       <SEO
-        title="Esther Coutin — Maîtresse de cérémonie & officiante laïque | Le Beau Mariage par Limen"
-        description="Speaker professionnelle, maîtresse de cérémonie et officiante laïque. Esther Coutin anime votre cérémonie avec fluidité et élégance — partenaire de la sélection Limen."
+        title="Esther Coutin, Maîtresse de cérémonie & officiante laïque | Le Beau Mariage par Limen"
+        description="Speaker professionnelle, maîtresse de cérémonie et officiante laïque. Esther Coutin anime votre cérémonie avec fluidité et élégance, partenaire de la sélection Limen."
         canonical="https://lebeaumariage.fr/prestataires/esther-coutin"
       />
 
@@ -252,7 +252,7 @@ const EstherCoutin = () => {
               margin: 0,
             }}
           >
-            Elle ne lit pas un discours. Elle porte une voix — la vôtre. Speaker
+            Elle ne lit pas un discours. Elle porte une voix, la vôtre. Speaker
             professionnelle à la radio et en événementiel, Esther Coutin anime votre
             cérémonie avec la fluidité de quelqu'un qui sait exactement quand parler,
             et quand se taire.
@@ -316,19 +316,19 @@ const EstherCoutin = () => {
             </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", color: `${COLORS.lin}B3`, fontFamily: fontBody, fontWeight: 300, fontSize: "15px", lineHeight: 1.75 }}>
               <p>
-                Esther est speaker professionnelle — à la radio, sur les défilés, les marathons,
+                Esther est speaker professionnelle, à la radio, sur les défilés, les marathons,
                 les salons du mariage. Habituée au micro depuis des années, elle sait mettre sa
                 voix et son énergie au service de vos moments, avec une fluidité et une élégance
                 naturelles.
               </p>
               <p>
                 Sa méthode commence bien avant le jour J : un rendez-vous approfondi pour
-                connaître votre histoire, choisir le ton de l'événement — élégant, festif,
-                intimiste — et construire un déroulé sur-mesure qui vous ressemble.
+                connaître votre histoire, choisir le ton de l'événement, élégant, festif,
+                intimiste, et construire un déroulé sur-mesure qui vous ressemble.
               </p>
               <p>
                 Le jour J, elle est votre repère : elle met en valeur les entrées, accompagne
-                les discours, gère le timing et les imprévus — avec une présence rassurante et
+                les discours, gère le timing et les imprévus, avec une présence rassurante et
                 une attention constante à votre confort.
               </p>
             </div>
@@ -383,7 +383,7 @@ const EstherCoutin = () => {
             <em>Une seule présence.</em>
           </h2>
           <p style={{ fontFamily: fontBody, fontWeight: 300, fontSize: "15px", lineHeight: 1.75, color: COLORS.texteLeger, maxWidth: "58ch", marginBottom: "4rem" }}>
-            Esther intervient sur chaque dimension de votre journée — de la construction de la
+            Esther intervient sur chaque dimension de votre journée, de la construction de la
             cérémonie à la coordination de la soirée. Chaque intervention est pensée comme un
             service à part entière.
           </p>
@@ -399,7 +399,6 @@ const EstherCoutin = () => {
           >
             {services.map((s) => (
               <div key={s.title} style={{ backgroundColor: COLORS.linFonce, padding: "2.5rem 2rem" }}>
-                <div style={{ color: COLORS.or, fontSize: "24px", lineHeight: 1, marginBottom: "1.25rem" }}>—</div>
                 <h3 style={{ fontFamily: fontTitle, fontWeight: 400, fontSize: "1.375rem", color: COLORS.texte, margin: "0 0 0.75rem 0" }}>
                   {s.title}
                 </h3>
@@ -544,9 +543,6 @@ const EstherCoutin = () => {
                     <li
                       key={it}
                       style={{
-                        display: "grid",
-                        gridTemplateColumns: "20px 1fr",
-                        gap: "0.75rem",
                         fontFamily: fontBody,
                         fontWeight: 300,
                         fontSize: "15px",
@@ -554,8 +550,7 @@ const EstherCoutin = () => {
                         color: COLORS.texte,
                       }}
                     >
-                      <span style={{ color: COLORS.or, lineHeight: 1.7 }}>—</span>
-                      <span>{it}</span>
+                      {it}
                     </li>
                   ))}
                 </ul>
@@ -581,16 +576,16 @@ const EstherCoutin = () => {
             <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", fontFamily: fontBody, fontWeight: 300, fontSize: "15px", lineHeight: 1.75, color: COLORS.texteLeger }}>
               <p>
                 Esther est intégrée à votre journée avant même que vous arriviez au domaine.
-                Son brief est coordonné avec le reste de l'équipe Limen — elle connaît le
+                Son brief est coordonné avec le reste de l'équipe Limen, elle connaît le
                 minutage, les moments clés, votre histoire.
               </p>
               <p>
-                Avant votre mariage, un rendez-vous est organisé entre vous et Esther — en
+                Avant votre mariage, un rendez-vous est organisé entre vous et Esther, en
                 visio ou en présentiel. C'est le moment pour construire ensemble la cérémonie
                 et l'animation qui vous ressemblent.
               </p>
               <p>
-                Le jour J, vous traversez votre journée. Esther se charge du reste — avec la
+                Le jour J, vous traversez votre journée. Esther se charge du reste, avec la
                 même fluidité que tout ce qui opère sous le seuil Limen.
               </p>
             </div>
