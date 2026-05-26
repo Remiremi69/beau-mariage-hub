@@ -399,7 +399,6 @@ const EstherCoutin = () => {
           >
             {services.map((s) => (
               <div key={s.title} style={{ backgroundColor: COLORS.linFonce, padding: "2.5rem 2rem" }}>
-                <div style={{ color: COLORS.or, fontSize: "24px", lineHeight: 1, marginBottom: "1.25rem" }}>—</div>
                 <h3 style={{ fontFamily: fontTitle, fontWeight: 400, fontSize: "1.375rem", color: COLORS.texte, margin: "0 0 0.75rem 0" }}>
                   {s.title}
                 </h3>
