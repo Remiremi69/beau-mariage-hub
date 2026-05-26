@@ -4,6 +4,7 @@ import chefSebastien from '@/assets/traiteurs-jessica-jerome.jpg';
 
 import photographeAlexandre from '@/assets/photographe-loic.avif';
 import djAstreviaPortrait from '@/assets/dj-astrevia-portrait.png';
+import estherCoutin from '@/assets/esther-coutin-hero.jpg';
 
 import domaineHero2 from '@/assets/domaine-hero-2.png';
 import domaineHero3 from '@/assets/domaine-hero-3.png';
@@ -72,19 +73,30 @@ export const drawerDomaine: DrawerContent = {
 
 export const drawerCeremonie: DrawerContent = {
   label: 'LA CÉRÉMONIE',
-  title: 'L\'officiant',
-  subtitle: 'Cérémonie sur-mesure',
+  title: 'Esther Coutin',
+  subtitle: 'Maîtresse de cérémonie & officiante laïque · Partenaire Limen',
   sections: [
     {
-      type: 'highlight',
+      type: 'profile',
       content: {
-        text: '« Une cérémonie laïque n\'est pas un discours. C\'est une conversation entre vous deux, portée par un tiers. »',
+        imageSlot: 'esther-coutin',
+        imageUrl: estherCoutin,
+        name: 'Esther Coutin',
+        role: 'Speaker professionnelle · Officiante laïque',
+        bio: "Speaker professionnelle, maîtresse de cérémonie et officiante laïque, Esther Coutin construit avec vous un déroulé entièrement sur-mesure. Voix posée, présence rassurante, fluidité d'animation — elle s'efface quand il le faut et porte la journée quand c'est nécessaire. Partenaire confirmée de la sélection Limen.",
+        details: [
+          "RDV approfondi avec les mariés — votre histoire, votre ton",
+          "Cérémonie entièrement écrite avec vous, jamais générique",
+          "Coordination des entrées, discours, jeux avec les témoins",
+          "Gestion du timing et des imprévus tout au long du jour J",
+          "Possibilité d'enchaîner avec l'animation de soirée",
+        ],
       },
     },
     {
-      type: 'text',
+      type: 'highlight',
       content: {
-        body: 'Notre officiant partenaire intervient exclusivement sur les mariages Limen. Il rencontre les mariés trois mois avant le jour J pour construire ensemble une cérémonie qui leur ressemble — leurs mots, leur histoire, leurs rituels choisis.',
+        text: "« Une cérémonie réussie est celle dont les mariés se souviennent comme d'une conversation, pas d'un spectacle. »",
       },
     },
     {
@@ -92,25 +104,24 @@ export const drawerCeremonie: DrawerContent = {
       content: {
         title: 'DÉROULÉ TYPE',
         items: [
-          'Entretien préparatoire (2h) — 3 mois avant',
-          'Rédaction collaborative du discours',
-          'Répétition sur site — la veille si souhaité',
-          'Cérémonie 30 à 45 minutes',
-          'Rituels au choix : sable, bougie, arbre...',
-          'Remise du texte enluminé après la cérémonie',
+          'Entretien préparatoire approfondi — plusieurs semaines avant',
+          'Rédaction collaborative du discours, choix du ton',
+          'Coordination avec toute l\'équipe Limen en amont',
+          'Cérémonie 30 à 45 minutes — sonorisation incluse',
+          'Rituels au choix : sable, bougie, plantation, vœux',
+          'Présence continue pour gérer les temps forts du jour J',
         ],
       },
     },
     {
       type: 'list',
       content: {
-        title: 'OPTIONS DE RITUELS',
+        title: 'CE QUI NE CHANGE PAS',
         items: [
-          'Rituel du sable — mélange symbolique',
-          'Rituel de la bougie — transmission de lumière',
-          'Plantation d\'un arbre — ancrage dans le vivant',
-          'Lecture de vœux personnels',
-          'Participation des enfants ou proches',
+          'Un rendez-vous avec Esther avant le mariage — elle connaît votre histoire',
+          'Zéro improvisation le jour J — tout est anticipé',
+          'Une présence qui rassure, jamais qui prend la place',
+          'Page dédiée : lebeaumariage.fr/prestataires/esther-coutin',
         ],
       },
     },
