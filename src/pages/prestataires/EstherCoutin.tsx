@@ -543,9 +543,6 @@ const EstherCoutin = () => {
                     <li
                       key={it}
                       style={{
-                        display: "grid",
-                        gridTemplateColumns: "20px 1fr",
-                        gap: "0.75rem",
                         fontFamily: fontBody,
                         fontWeight: 300,
                         fontSize: "15px",
@@ -553,8 +550,7 @@ const EstherCoutin = () => {
                         color: COLORS.texte,
                       }}
                     >
-                      <span style={{ color: COLORS.or, lineHeight: 1.7 }}>—</span>
-                      <span>{it}</span>
+                      {it}
                     </li>
                   ))}
                 </ul>
