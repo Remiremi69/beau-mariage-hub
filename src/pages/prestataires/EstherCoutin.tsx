@@ -383,7 +383,7 @@ const EstherCoutin = () => {
             <em>Une seule présence.</em>
           </h2>
           <p style={{ fontFamily: fontBody, fontWeight: 300, fontSize: "15px", lineHeight: 1.75, color: COLORS.texteLeger, maxWidth: "58ch", marginBottom: "4rem" }}>
-            Esther intervient sur chaque dimension de votre journée — de la construction de la
+            Esther intervient sur chaque dimension de votre journée, de la construction de la
             cérémonie à la coordination de la soirée. Chaque intervention est pensée comme un
             service à part entière.
           </p>
