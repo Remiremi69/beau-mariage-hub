@@ -38,10 +38,11 @@ export const SCENE_CONFIGS: Record<number, SceneConfig> = {
   // Before Step 3 — Cérémonie
   3: {
     title: "Votre cérémonie",
-    subtitle: "Un moment rien qu'à vous",
-    images: [ceremonyArch, venueExterior],
-    duration: 3200,
+    subtitle: "Esther Coutin · Maîtresse de cérémonie & officiante laïque",
+    images: [estherHero, estherCeremonie, estherMaries],
+    duration: 4000,
   },
+
 
   // Before Step 4 — Violoniste
   4: {
