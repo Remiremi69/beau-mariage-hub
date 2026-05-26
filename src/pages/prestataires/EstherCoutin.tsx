@@ -4,6 +4,7 @@ import estherHero from "@/assets/esther-coutin-hero.jpg";
 import ceremonieScene from "@/assets/esther-ceremonie-scene.jpg";
 import mariesMoment from "@/assets/esther-maries-moment.jpg";
 import animationSoiree from "@/assets/esther-animation-soiree.jpg";
+import speakerEvenementiel from "@/assets/esther-speaker-evenementiel.jpg";
 
 
 const COLORS = {
@@ -463,6 +464,8 @@ const EstherCoutin = () => {
                 <img src={mariesMoment} alt={c.label} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
               ) : c.label === "Animation · Soirée" ? (
                 <img src={animationSoiree} alt={c.label} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+              ) : c.label === "Speaker · Événementiel" ? (
+                <img src={speakerEvenementiel} alt={c.label} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
               ) : (
                 <PhotoPlaceholder alt={c.label} />
               )}
