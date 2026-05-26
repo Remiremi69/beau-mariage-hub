@@ -252,7 +252,7 @@ const EstherCoutin = () => {
               margin: 0,
             }}
           >
-            Elle ne lit pas un discours. Elle porte une voix — la vôtre. Speaker
+            Elle ne lit pas un discours. Elle porte une voix, la vôtre. Speaker
             professionnelle à la radio et en événementiel, Esther Coutin anime votre
             cérémonie avec la fluidité de quelqu'un qui sait exactement quand parler,
             et quand se taire.
