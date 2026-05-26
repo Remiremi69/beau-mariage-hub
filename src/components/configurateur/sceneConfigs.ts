@@ -4,6 +4,9 @@ import domaine2 from "@/assets/domaine-hero-2.png";
 import domaine3 from "@/assets/domaine-hero-3.png";
 import domaine4 from "@/assets/domaine-hero-4.png";
 import ceremonyArch from "@/assets/ceremony-arch.jpg";
+import estherHero from "@/assets/esther-coutin-hero.jpg";
+import estherCeremonie from "@/assets/esther-ceremonie-scene.jpg";
+import estherMaries from "@/assets/esther-maries-moment.jpg";
 import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
 import tableSetup from "@/assets/table-setup.jpg";
 import julienSommelier from "@/assets/julien-sommelier.jpg";
@@ -35,10 +38,11 @@ export const SCENE_CONFIGS: Record<number, SceneConfig> = {
   // Before Step 3 — Cérémonie
   3: {
     title: "Votre cérémonie",
-    subtitle: "Un moment rien qu'à vous",
-    images: [ceremonyArch, venueExterior],
-    duration: 3200,
+    subtitle: "Esther Coutin · Maîtresse de cérémonie & officiante laïque",
+    images: [estherHero, estherCeremonie, estherMaries],
+    duration: 4000,
   },
+
 
   // Before Step 4 — Violoniste
   4: {
