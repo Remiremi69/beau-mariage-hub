@@ -103,6 +103,7 @@ interface DessertDef {
   id: string;
   name: string;
   accroche: string;
+  image?: string;
 }
 
 const desserts: DessertDef[] = [
@@ -110,6 +111,7 @@ const desserts: DessertDef[] = [
     id: "royal-chocolat",
     name: "Royal chocolat feuillantine",
     accroche: "Trois textures de chocolat, croquant praliné, mousse aérienne.",
+    image: royalChocolatImg,
   },
   {
     id: "tarte-tatin",
