@@ -125,6 +125,7 @@ const desserts: DessertDef[] = [
     id: "fraisier",
     name: "Fraisier mascarpone",
     accroche: "Fraises de saison, citron vert, basilic frais.",
+    image: fraisierImg,
   },
 ];
 
