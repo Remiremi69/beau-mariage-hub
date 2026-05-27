@@ -586,7 +586,17 @@ const DessertCard = ({
         borderBottom: "1px solid rgba(201,169,110,0.10)",
       }}
     >
-      <DessertPlaceholder />
+      {dessert.image ? (
+        <img
+          src={dessert.image}
+          alt={dessert.name}
+          className="w-full h-full object-cover"
+          style={{ objectPosition: "center 60%" }}
+          loading="lazy"
+        />
+      ) : (
+        <DessertPlaceholder />
+      )}
     </div>
     <div className="flex flex-col flex-1" style={{ padding: "16px 18px 18px" }}>
       <p
