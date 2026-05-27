@@ -8,6 +8,7 @@ import menuTraditionImg from "@/assets/menu-automne-charolais.jpg";
 import menuSignatureImg from "@/assets/menu-nocturne-royal.jpg";
 import royalChocolatImg from "@/assets/desserts/royal-chocolat-feuillantine.jpg";
 import tarteTatinImg from "@/assets/desserts/tarte-tatin-caramel.jpg";
+import fraisierImg from "@/assets/desserts/fraisier-mascarpone.jpg";
 
 interface Step05Props {
   state: ConfigurateurState;
