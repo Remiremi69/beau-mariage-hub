@@ -7,6 +7,7 @@ import { drawerRepas } from "../drawerContents";
 import menuTraditionImg from "@/assets/menu-automne-charolais.jpg";
 import menuSignatureImg from "@/assets/menu-nocturne-royal.jpg";
 import royalChocolatImg from "@/assets/desserts/royal-chocolat-feuillantine.jpg";
+import tarteTatinImg from "@/assets/desserts/tarte-tatin-caramel.jpg";
 
 interface Step05Props {
   state: ConfigurateurState;
@@ -117,6 +118,7 @@ const desserts: DessertDef[] = [
     id: "tarte-tatin",
     name: "Tarte tatin caramel",
     accroche: "Pommes caramélisées, crème de Bresse fouettée.",
+    image: tarteTatinImg,
   },
   {
     id: "fraisier",
