@@ -118,6 +118,7 @@ const desserts: DessertDef[] = [
     id: "tarte-tatin",
     name: "Tarte tatin caramel",
     accroche: "Pommes caramélisées, crème de Bresse fouettée.",
+    image: tarteTatinImg,
   },
   {
     id: "fraisier",
