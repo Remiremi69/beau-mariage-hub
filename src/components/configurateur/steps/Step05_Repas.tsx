@@ -753,7 +753,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
           marginBottom: 16,
         }}
       >
-        J&J Traiteur · Maison de Belleville-en-Beaujolais
+        J&J Traiteur
       </motion.p>
 
       <motion.div
