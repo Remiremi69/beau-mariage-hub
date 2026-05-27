@@ -6,6 +6,7 @@ import PresentationDrawer from "../PresentationDrawer";
 import { drawerRepas } from "../drawerContents";
 import menuTraditionImg from "@/assets/menu-automne-charolais.jpg";
 import menuSignatureImg from "@/assets/menu-nocturne-royal.jpg";
+import royalChocolatImg from "@/assets/desserts/royal-chocolat-feuillantine.jpg";
 
 interface Step05Props {
   state: ConfigurateurState;
