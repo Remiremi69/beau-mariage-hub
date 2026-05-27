@@ -19,19 +19,26 @@ interface Step05Props {
 
 /* ───────────── Data ───────────── */
 
+interface PlatDef {
+  id: string;
+  nom: string;
+  accompagnement: string;
+  accroche: string;
+}
+
 interface MenuDef {
   id: Repas;
   number: string;
   name: string;
   image: string;
   accroche: string;
-  platSignature: { title: string; subtitle: string };
-  inclusBullets: string[];
+  vh: { title: string; sub1: string; sub2: string };
+  fromagesLine: string;
+  plats: PlatDef[];
   full: {
     vinHonneur: string;
     cocktailTitle: string;
     cocktail: string;
-    plats: string[];
     fromages: string;
   };
 }
@@ -43,14 +50,25 @@ const menus: MenuDef[] = [
     name: "Tradition Beaujolais",
     image: menuTraditionImg,
     accroche: "Pour qui aime le terroir, la générosité, l'âme lyonnaise.",
-    platSignature: {
-      title: "Cœur de rumsteak sauce vigneronne",
-      subtitle: "Wok de légumes · gratin dauphinois",
+    vh: {
+      title: "Crémant de Bourgogne",
+      sub1: "Kir au choix (4 sirops)",
+      sub2: "+ 8 pièces lyonnaises",
     },
-    inclusBullets: [
-      "Vin d'honneur Crémant de Bourgogne",
-      "Cocktail 8 pièces (lyonnaises)",
-      "Plateau de fromages du Beaujolais",
+    fromagesLine: "+ Plateau de fromages du Beaujolais",
+    plats: [
+      {
+        id: "rumsteak",
+        nom: "Cœur de rumsteak sauce vigneronne",
+        accompagnement: "Wok de légumes · gratin dauphinois",
+        accroche: "Pour qui aime la viande rouge, le caractère, la tradition.",
+      },
+      {
+        id: "saint-jacques",
+        nom: "Quenelle Saint-Jacques mousseline",
+        accompagnement: "Sauce bouillabaisse · riz gourmand",
+        accroche: "Pour qui aime la mer, la finesse, les saveurs lyonnaises.",
+      },
     ],
     full: {
       vinHonneur: "Crémant de Bourgogne · Kir (4 choix de sirop)",
@@ -60,10 +78,6 @@ const menus: MenuDef[] = [
         "Escargots persillade · Cervelle de canut · Crêpes truite fumée · " +
         "Pruneaux lard fumé · Tarte à l'oignon · Burger bœuf · " +
         "Crostini caviar d'aubergine poivron confit",
-      plats: [
-        "Cœur de rumsteak sauce vigneronne, wok légumes, gratin dauphinois",
-        "Quenelle Saint-Jacques mousseline, sauce bouillabaisse, riz gourmand",
-      ],
       fromages:
         "Saint-marcellin · Fourme d'Ambert · Chèvre mariné huile et herbes · Pain aux fruits",
     },
@@ -74,14 +88,25 @@ const menus: MenuDef[] = [
     name: "Signature Limen",
     image: menuSignatureImg,
     accroche: "Pour qui aime la cuisine précise, les saveurs voyageuses, l'évasion.",
-    platSignature: {
-      title: "Poulet fermier crème de morilles",
-      subtitle: "Pommes boulangère · wok de légumes",
+    vh: {
+      title: "Punch citron vert",
+      sub1: "Gingembre · Coriandre",
+      sub2: "+ 8 pièces signature",
     },
-    inclusBullets: [
-      "Vin d'honneur Punch citron vert gingembre",
-      "Cocktail 8 pièces (signature)",
-      "Plateau de fromages affinés",
+    fromagesLine: "+ Plateau de fromages affinés",
+    plats: [
+      {
+        id: "poulet-morilles",
+        nom: "Poulet fermier crème de morilles",
+        accompagnement: "Pommes boulangère · wok de légumes",
+        accroche: "Pour qui aime la volaille noble, les sauces crémées, la rondeur.",
+      },
+      {
+        id: "saumon-laque",
+        nom: "Pavé de saumon laqué japonais",
+        accompagnement: "Riz gourmand · wok de légumes",
+        accroche: "Pour qui aime les saveurs venues d'ailleurs, la précision asiatique.",
+      },
     ],
     full: {
       vinHonneur: "Punch citron vert · Gingembre · Coriandre",
@@ -91,10 +116,6 @@ const menus: MenuDef[] = [
         "Mini-cannelés chorizo crème d'aneth · Velouté courge émulsion chèvre frais noisette · " +
         "Verrine guacamole crevette · Croque monsieur jambon truffé · " +
         "Brochette canard mangue miel orange · Œuf brouillé saumon fumé et œufs de saumon",
-      plats: [
-        "Poulet fermier crème morilles, pommes boulangère, wok légumes",
-        "Pavé saumon laqué japonais, riz gourmand, wok légumes",
-      ],
       fromages:
         "Saint-marcellin · Fourme d'Ambert · Chèvre mariné · Fromage blanc coulis",
     },
@@ -158,6 +179,24 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
   </p>
 );
 
+const SubLabel = ({ children }: { children: React.ReactNode }) => (
+  <div className="flex items-center" style={{ gap: 10, marginBottom: 14 }}>
+    <div style={{ flex: 1, height: 0.5, background: "rgba(201,169,110,0.20)" }} />
+    <span
+      style={{
+        fontFamily: "'Jost', sans-serif",
+        fontSize: 9,
+        letterSpacing: "0.30em",
+        textTransform: "uppercase",
+        color: "rgba(201,169,110,0.55)",
+      }}
+    >
+      {children}
+    </span>
+    <div style={{ flex: 1, height: 0.5, background: "rgba(201,169,110,0.20)" }} />
+  </div>
+);
+
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <div style={{ marginBottom: 16 }}>
     <p
@@ -187,45 +226,17 @@ const Section = ({ title, children }: { title: string; children: React.ReactNode
   </div>
 );
 
-const DessertPlaceholder = () => (
-  <div
-    style={{
-      position: "absolute",
-      inset: 0,
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      background: "rgba(201,169,110,0.06)",
-      gap: 8,
-    }}
-  >
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(201,169,110,0.45)" strokeWidth="1">
-      <path d="M12 3l1.5 4.5H18l-3.5 2.7L16 15l-4-3-4 3 1.5-4.8L6 7.5h4.5z" />
-    </svg>
-    <span
-      style={{
-        fontFamily: "'Jost', sans-serif",
-        fontSize: 10,
-        letterSpacing: "0.25em",
-        textTransform: "uppercase",
-        color: "rgba(201,169,110,0.35)",
-      }}
-    >
-      Photo à venir
-    </span>
-  </div>
-);
-
 /* ───────────── Menu Card ───────────── */
 
 const MenuCard = ({
   menu,
   isSelected,
+  selectedPlatId,
   onSelect,
 }: {
   menu: MenuDef;
   isSelected: boolean;
+  selectedPlatId: string | null;
   onSelect: () => void;
 }) => {
   const [expanded, setExpanded] = useState(false);
@@ -352,22 +363,8 @@ const MenuCard = ({
             « {menu.accroche} »
           </p>
 
-          {/* Separator */}
-          <div className="flex items-center" style={{ gap: 10, marginBottom: 14 }}>
-            <div style={{ flex: 1, height: 0.5, background: "rgba(201,169,110,0.20)" }} />
-            <span
-              style={{
-                fontFamily: "'Jost', sans-serif",
-                fontSize: 9,
-                letterSpacing: "0.30em",
-                textTransform: "uppercase",
-                color: "rgba(201,169,110,0.55)",
-              }}
-            >
-              Le plat signature
-            </span>
-            <div style={{ flex: 1, height: 0.5, background: "rgba(201,169,110,0.20)" }} />
-          </div>
+          {/* ─── Vin d'honneur (HERO) ─── */}
+          <SubLabel>Votre vin d'honneur</SubLabel>
 
           <p
             style={{
@@ -378,70 +375,67 @@ const MenuCard = ({
               marginBottom: 4,
             }}
           >
-            {menu.platSignature.title}
+            {menu.vh.title}
           </p>
           <p
             style={{
               fontFamily: "'Jost', sans-serif",
               fontStyle: "italic",
               fontWeight: 300,
-              fontSize: 12,
+              fontSize: 13,
               color: "rgba(232,221,208,0.55)",
-              marginBottom: 6,
+              marginBottom: 4,
             }}
           >
-            {menu.platSignature.subtitle}
+            {menu.vh.sub1}
           </p>
           <p
             style={{
               fontFamily: "'Jost', sans-serif",
-              fontSize: 11,
-              color: "rgba(232,221,208,0.40)",
+              fontWeight: 300,
+              fontSize: 13,
+              color: "rgba(232,221,208,0.65)",
+              marginBottom: 22,
+            }}
+          >
+            {menu.vh.sub2}
+          </p>
+
+          {/* ─── Votre table ─── */}
+          <SubLabel>Votre table</SubLabel>
+
+          <p
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: 14,
+              color: "rgba(201,169,110,0.85)",
+              marginBottom: 2,
+            }}
+          >
+            Plat au choix parmi 2
+          </p>
+          <p
+            style={{
+              fontFamily: "'Jost', sans-serif",
               fontStyle: "italic",
+              fontSize: 11,
+              color: "rgba(232,221,208,0.50)",
+              marginBottom: 10,
+            }}
+          >
+            (sélection ci-dessous)
+          </p>
+          <p
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontWeight: 300,
+              fontSize: 13,
+              color: "rgba(232,221,208,0.65)",
               marginBottom: 20,
             }}
           >
-            Second choix de plat possible le Jour J
+            {menu.fromagesLine}
           </p>
-
-          {/* Micro separator */}
-          <div
-            style={{
-              width: 30,
-              height: 0.5,
-              background: "rgba(201,169,110,0.40)",
-              margin: "0 0 16px",
-            }}
-          />
-
-          <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px" }}>
-            {menu.inclusBullets.map((b, i) => (
-              <li
-                key={i}
-                style={{
-                  fontFamily: "'Jost', sans-serif",
-                  fontWeight: 300,
-                  fontSize: 13,
-                  color: "rgba(232,221,208,0.65)",
-                  paddingLeft: 16,
-                  position: "relative",
-                  marginBottom: 6,
-                  lineHeight: 1.55,
-                }}
-              >
-                <span
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    color: "rgba(201,169,110,0.75)",
-                  }}
-                >
-                  +
-                </span>
-                {b}
-              </li>
-            ))}
-          </ul>
         </div>
 
         {/* Expand toggle */}
@@ -470,7 +464,7 @@ const MenuCard = ({
             e.currentTarget.style.color = "rgba(201,169,110,0.75)";
           }}
         >
-          {expanded ? "Réduire ↑" : "Voir le menu complet ↓"}
+          {expanded ? "Réduire ↑" : "Voir tous les détails ↓"}
         </button>
 
         <AnimatePresence initial={false}>
@@ -486,29 +480,37 @@ const MenuCard = ({
               <div style={{ paddingTop: 8, paddingBottom: 8 }}>
                 <Section title="Vin d'honneur">{menu.full.vinHonneur}</Section>
                 <Section title={menu.full.cocktailTitle}>{menu.full.cocktail}</Section>
-                <Section title="Plat au choix le Jour J">
+                <Section title="Plat au choix">
                   <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                    {menu.full.plats.map((p, i) => (
-                      <li
-                        key={i}
-                        style={{
-                          paddingLeft: 14,
-                          position: "relative",
-                          marginBottom: 4,
-                        }}
-                      >
-                        <span
+                    {menu.plats.map((p) => {
+                      const chosen = selectedPlatId === p.id;
+                      return (
+                        <li
+                          key={p.id}
                           style={{
-                            position: "absolute",
-                            left: 0,
-                            color: "rgba(201,169,110,0.60)",
+                            paddingLeft: 16,
+                            position: "relative",
+                            marginBottom: 4,
+                            color: chosen
+                              ? "rgba(201,169,110,0.95)"
+                              : "rgba(232,221,208,0.70)",
                           }}
                         >
-                          →
-                        </span>
-                        {p}
-                      </li>
-                    ))}
+                          <span
+                            style={{
+                              position: "absolute",
+                              left: 0,
+                              color: chosen
+                                ? "#c9a96e"
+                                : "rgba(201,169,110,0.55)",
+                            }}
+                          >
+                            {chosen ? "✓" : "→"}
+                          </span>
+                          {p.nom} — {p.accompagnement}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </Section>
                 <Section title="Fromages">{menu.full.fromages}</Section>
@@ -545,7 +547,155 @@ const MenuCard = ({
   );
 };
 
+/* ───────────── Plat Card ───────────── */
+
+const PlatCard = ({
+  plat,
+  index,
+  isSelected,
+  onSelect,
+}: {
+  plat: PlatDef;
+  index: number;
+  isSelected: boolean;
+  onSelect: () => void;
+}) => (
+  <div
+    onClick={onSelect}
+    className="flex flex-col transition-all duration-[250ms]"
+    style={{
+      borderRadius: 2,
+      border: isSelected
+        ? "1px solid #c9a96e"
+        : "1px solid rgba(201,169,110,0.15)",
+      background: isSelected ? "rgba(201,169,110,0.06)" : "rgba(26,22,18,0.40)",
+      padding: "26px 24px 22px",
+      cursor: "pointer",
+      minWidth: 0,
+    }}
+    onMouseEnter={(e) => {
+      if (!isSelected) {
+        e.currentTarget.style.border = "1px solid rgba(201,169,110,0.40)";
+        e.currentTarget.style.transform = "translateY(-2px)";
+      }
+    }}
+    onMouseLeave={(e) => {
+      if (!isSelected) {
+        e.currentTarget.style.border = "1px solid rgba(201,169,110,0.15)";
+        e.currentTarget.style.transform = "translateY(0)";
+      }
+    }}
+  >
+    <div className="flex items-center" style={{ gap: 10, marginBottom: 12 }}>
+      <div style={{ flex: 1, height: 0.5, background: "rgba(201,169,110,0.20)" }} />
+      <span
+        style={{
+          fontFamily: "'Jost', sans-serif",
+          fontSize: 9,
+          letterSpacing: "0.30em",
+          textTransform: "uppercase",
+          color: "rgba(201,169,110,0.60)",
+        }}
+      >
+        Plat {index + 1}
+      </span>
+      <div style={{ flex: 1, height: 0.5, background: "rgba(201,169,110,0.20)" }} />
+    </div>
+
+    <p
+      style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        fontStyle: "italic",
+        fontSize: 24,
+        color: "#faf8f4",
+        lineHeight: 1.2,
+        marginBottom: 6,
+      }}
+    >
+      {plat.nom}
+    </p>
+    <p
+      style={{
+        fontFamily: "'Jost', sans-serif",
+        fontStyle: "italic",
+        fontWeight: 300,
+        fontSize: 13,
+        color: "rgba(232,221,208,0.60)",
+        marginBottom: 14,
+      }}
+    >
+      {plat.accompagnement}
+    </p>
+
+    <div
+      style={{
+        width: 24,
+        height: 0.5,
+        background: "rgba(201,169,110,0.45)",
+        marginBottom: 12,
+      }}
+    />
+
+    <p
+      style={{
+        fontFamily: "'Jost', sans-serif",
+        fontWeight: 300,
+        fontSize: 12,
+        color: "rgba(232,221,208,0.50)",
+        lineHeight: 1.6,
+        marginBottom: 18,
+        flex: 1,
+      }}
+    >
+      {plat.accroche}
+    </p>
+
+    <span
+      style={{
+        fontFamily: "'Jost', sans-serif",
+        fontSize: 10,
+        letterSpacing: "0.30em",
+        textTransform: "uppercase",
+        color: isSelected ? "#c9a96e" : "rgba(232,221,208,0.50)",
+        alignSelf: "flex-start",
+      }}
+    >
+      {isSelected ? "✓ Plat sélectionné" : "○ Choisir ce plat"}
+    </span>
+  </div>
+);
+
 /* ───────────── Dessert Card ───────────── */
+
+const DessertPlaceholder = () => (
+  <div
+    style={{
+      position: "absolute",
+      inset: 0,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      background: "rgba(201,169,110,0.06)",
+      gap: 8,
+    }}
+  >
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(201,169,110,0.45)" strokeWidth="1">
+      <path d="M12 3l1.5 4.5H18l-3.5 2.7L16 15l-4-3-4 3 1.5-4.8L6 7.5h4.5z" />
+    </svg>
+    <span
+      style={{
+        fontFamily: "'Jost', sans-serif",
+        fontSize: 10,
+        letterSpacing: "0.25em",
+        textTransform: "uppercase",
+        color: "rgba(201,169,110,0.35)",
+      }}
+    >
+      Photo à venir
+    </span>
+  </div>
+);
 
 const DessertCard = ({
   dessert,
@@ -651,49 +801,62 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
   const [selectedMenu, setSelectedMenu] = useState<Repas | null>(
     state.repas === "menu2" || state.repas === "menu1" ? state.repas : null
   );
+  const [selectedPlat, setSelectedPlat] = useState<string | null>(
+    state.repasPlat ?? null
+  );
   const [selectedDessert, setSelectedDessert] = useState<string | null>(
     state.repasDessert ?? null
   );
   const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const platRef = useRef<HTMLDivElement>(null);
   const dessertRef = useRef<HTMLDivElement>(null);
   const recapRef = useRef<HTMLDivElement>(null);
 
-  // Smooth scroll when blocs unlock
-  useEffect(() => {
-    if (selectedMenu && dessertRef.current) {
-      const el = dessertRef.current;
-      setTimeout(() => {
-        const y = el.getBoundingClientRect().top + window.scrollY - 100;
-        window.scrollTo({ top: y, behavior: "smooth" });
-      }, 350);
+  const handleMenuSelect = (menuId: Repas) => {
+    if (selectedMenu !== menuId) {
+      setSelectedPlat(null);
+      setSelectedDessert(null);
     }
+    setSelectedMenu(menuId);
+  };
+
+  const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const el = ref.current;
+    setTimeout(() => {
+      const y = el.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }, 350);
+  };
+
+  useEffect(() => {
+    if (selectedMenu) scrollToRef(platRef);
   }, [selectedMenu]);
 
   useEffect(() => {
-    if (selectedMenu && selectedDessert && recapRef.current) {
-      const el = recapRef.current;
-      setTimeout(() => {
-        const y = el.getBoundingClientRect().top + window.scrollY - 100;
-        window.scrollTo({ top: y, behavior: "smooth" });
-      }, 350);
-    }
-  }, [selectedDessert, selectedMenu]);
+    if (selectedMenu && selectedPlat) scrollToRef(dessertRef);
+  }, [selectedPlat]);
 
-  const canContinue = !!selectedMenu && !!selectedDessert;
+  useEffect(() => {
+    if (selectedMenu && selectedPlat && selectedDessert) scrollToRef(recapRef);
+  }, [selectedDessert]);
+
+  const canContinue = !!selectedMenu && !!selectedPlat && !!selectedDessert;
 
   const handleContinue = () => {
     if (!canContinue) return;
     onUpdate({
       repas: selectedMenu!,
       repasEntree: null,
-      repasPlat: null,
+      repasPlat: selectedPlat!,
       repasDessert: selectedDessert!,
     });
     onNext();
   };
 
   const currentMenu = menus.find((m) => m.id === selectedMenu) ?? null;
+  const currentPlat = currentMenu?.plats.find((p) => p.id === selectedPlat) ?? null;
   const currentDessert = desserts.find((d) => d.id === selectedDessert) ?? null;
 
   return (
@@ -802,14 +965,96 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
             key={m.id}
             menu={m}
             isSelected={selectedMenu === m.id}
-            onSelect={() => setSelectedMenu(m.id)}
+            selectedPlatId={selectedMenu === m.id ? selectedPlat : null}
+            onSelect={() => handleMenuSelect(m.id)}
           />
         ))}
       </motion.div>
 
-      {/* ───── BLOC 2 — DESSERT ───── */}
+      {/* ───── BLOC 2 — PLAT PRINCIPAL ───── */}
       <AnimatePresence>
-        {selectedMenu && (
+        {selectedMenu && currentMenu && (
+          <motion.div
+            ref={platRef}
+            key="plat-block"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            className="w-full"
+            style={{ maxWidth: 1000, marginTop: 80 }}
+          >
+            <div
+              className="flex items-center justify-center"
+              style={{ gap: 16, marginBottom: 32 }}
+            >
+              <div style={{ width: 40, height: 1, background: "#c9a96e" }} />
+              <span
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: 11,
+                  letterSpacing: "0.30em",
+                  textTransform: "uppercase",
+                  color: "rgba(201,169,110,0.80)",
+                }}
+              >
+                Au cœur du repas
+              </span>
+              <div style={{ width: 40, height: 1, background: "#c9a96e" }} />
+            </div>
+
+            <Eyebrow>02 · Votre plat principal</Eyebrow>
+
+            <h3
+              className="text-center"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 300,
+                fontStyle: "italic",
+                fontSize: 28,
+                color: "#faf8f4",
+                lineHeight: 1.2,
+                marginTop: 14,
+              }}
+            >
+              Choisissez votre plat
+            </h3>
+            <p
+              className="text-center"
+              style={{
+                fontFamily: "'Jost', sans-serif",
+                fontStyle: "italic",
+                fontWeight: 300,
+                fontSize: 13,
+                color: "rgba(232,221,208,0.65)",
+                marginTop: 8,
+                marginBottom: 36,
+              }}
+            >
+              Servi à tous vos invités — choisissez celui qui vous ressemble.
+            </p>
+
+            <div
+              className="grid grid-cols-1 md:grid-cols-2"
+              style={{ gap: 16 }}
+            >
+              {currentMenu.plats.map((p, i) => (
+                <PlatCard
+                  key={p.id}
+                  plat={p}
+                  index={i}
+                  isSelected={selectedPlat === p.id}
+                  onSelect={() => setSelectedPlat(p.id)}
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ───── BLOC 3 — DESSERT ───── */}
+      <AnimatePresence>
+        {selectedMenu && selectedPlat && (
           <motion.div
             ref={dessertRef}
             key="dessert-block"
@@ -820,7 +1065,6 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
             className="w-full"
             style={{ maxWidth: 1000, marginTop: 80 }}
           >
-            {/* Decorative separator */}
             <div
               className="flex items-center justify-center"
               style={{ gap: 16, marginBottom: 32 }}
@@ -840,7 +1084,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
               <div style={{ width: 40, height: 1, background: "#c9a96e" }} />
             </div>
 
-            <Eyebrow>02 · Votre dessert</Eyebrow>
+            <Eyebrow>03 · Votre dessert</Eyebrow>
 
             <h3
               className="text-center"
@@ -939,13 +1183,60 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
                 ))}
               </ul>
             </div>
+
+            {/* ─── Allergies & régimes ─── */}
+            <div
+              style={{
+                maxWidth: 600,
+                margin: "32px auto 0",
+                padding: "20px 28px",
+                background: "rgba(201,169,110,0.04)",
+                border: "1px solid rgba(201,169,110,0.15)",
+                borderRadius: 2,
+                display: "flex",
+                gap: 14,
+                alignItems: "flex-start",
+              }}
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(201,169,110,0.60)"
+                strokeWidth="1.5"
+                style={{ flexShrink: 0, marginTop: 2 }}
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="8.01" />
+                <line x1="12" y1="11" x2="12" y2="16" />
+              </svg>
+              <p
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontWeight: 300,
+                  fontSize: 13,
+                  color: "rgba(232,221,208,0.60)",
+                  lineHeight: 1.7,
+                  margin: 0,
+                }}
+              >
+                Allergies, régimes végétariens, casher, halal, sans gluten — nous
+                les recueillerons{" "}
+                <em style={{ color: "rgba(201,169,110,0.80)", fontStyle: "italic" }}>
+                  ensemble
+                </em>{" "}
+                après signature, lors d'un rendez-vous dédié. Aucun détail à
+                préciser maintenant.
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* ───── BLOC 3 — RÉCAP ───── */}
+      {/* ───── RÉCAP ───── */}
       <AnimatePresence>
-        {selectedMenu && selectedDessert && currentMenu && currentDessert && (
+        {canContinue && currentMenu && currentPlat && currentDessert && (
           <motion.div
             ref={recapRef}
             key="recap-block"
@@ -955,7 +1246,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             style={{
               width: "100%",
-              maxWidth: 520,
+              maxWidth: 560,
               marginTop: 72,
               padding: "32px 36px",
               background: "rgba(201,169,110,0.05)",
@@ -979,9 +1270,9 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
 
             {[
               { label: "Menu", value: currentMenu.name },
-              { label: "Plat signature", value: currentMenu.platSignature.title },
+              { label: "Vin d'honneur", value: currentMenu.vh.title },
+              { label: "Plat principal", value: currentPlat.nom },
               { label: "Dessert", value: currentDessert.name },
-              { label: "Vin d'honneur", value: "Inclus dans le menu" },
             ].map((row, i, arr) => (
               <div
                 key={row.label}
@@ -1062,13 +1353,15 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
             fontSize: 13,
             letterSpacing: "0.25em",
             textTransform: "uppercase",
-            border: "1px solid #c9a96e",
+            border: canContinue
+              ? "1px solid #c9a96e"
+              : "1px solid rgba(201,169,110,0.35)",
             background: "transparent",
-            color: "#c9a96e",
+            color: canContinue ? "#c9a96e" : "rgba(201,169,110,0.50)",
             padding: "18px 40px",
             borderRadius: 0,
             cursor: canContinue ? "pointer" : "not-allowed",
-            opacity: canContinue ? 1 : 0.4,
+            opacity: canContinue ? 1 : 0.5,
           }}
           whileHover={
             canContinue ? { backgroundColor: "#c9a96e", color: "#1a1612" } : {}
