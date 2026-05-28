@@ -14,6 +14,12 @@ export type ConfigurateurState = {
   currentStep: number
   date: string | null
   guests: number
+  preparation: {
+    lieuGite: boolean
+    maquilleuse: boolean
+    coiffeuse: boolean
+    photographePrep: boolean
+  }
   ceremonieLaique: boolean
   violonisteOption: boolean
   vhBouchee: string | null
@@ -34,12 +40,7 @@ export type ConfigurateurState = {
   rdvSemaine: string | null
   rdvJour: string | null
   rdvCreneau: string | null
-  adresseLivraison: {
-    rue: string
-    cp: string
-    ville: string
-    pays: string
-  } | null
+
   coffretDemande: boolean
   siteMariage: boolean
 }
