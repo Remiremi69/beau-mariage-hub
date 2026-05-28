@@ -857,18 +857,22 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
 
   useEffect(() => {
     if (!didMountRef.current) return;
-    if (selectedMenu && selectedPlat && selectedDessert) scrollToRef(recapRef);
+    if (selectedMenu && selectedPlat && selectedDessert) scrollToRef(nuitRef);
   }, [selectedDessert]);
 
   const canContinue = !!selectedMenu && !!selectedPlat && !!selectedDessert;
 
   const handleContinue = () => {
     if (!canContinue) return;
+    const otherOptions = (state.options ?? []).filter(
+      (o) => !NUIT_OPTION_IDS.includes(o)
+    );
     onUpdate({
       repas: selectedMenu!,
       repasEntree: null,
       repasPlat: selectedPlat!,
       repasDessert: selectedDessert!,
+      options: [...otherOptions, ...selectedOptionsNuit],
     });
     onNext();
   };
