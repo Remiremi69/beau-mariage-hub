@@ -49,7 +49,7 @@ const TOTAL_STEPS = 12;
 
 const STEP_LABELS = [
   "Accueil", "Date", "Invités", "Cérémonie", "Violoniste",
-  "Vin d'honneur & Table", "Photographe",
+  "Votre table & votre nuit", "Photographe",
   "DJ", "Déco", "Options", "Site mariage", "Récap",
 ];
 
