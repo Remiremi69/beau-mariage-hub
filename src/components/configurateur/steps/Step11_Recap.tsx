@@ -460,6 +460,21 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
   const [adresse, setAdresse] = useState({ rue: "", cp: "", ville: "", pays: "France" });
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isPdfGenerating, setIsPdfGenerating] = useState(false);
+  const pdfRef = useRef<PdfEsquisseHandle>(null);
+
+  const handleDownloadPdf = async () => {
+    if (!pdfRef.current || isPdfGenerating) return;
+    setIsPdfGenerating(true);
+    try {
+      await pdfRef.current.generatePdf();
+    } catch (err) {
+      console.error("Erreur génération PDF:", err);
+    } finally {
+      setIsPdfGenerating(false);
+    }
+  };
+
 
   const updateField = useCallback((field: string, value: string) => setContact((prev) => ({ ...prev, [field]: value })), []);
   const updateAdresse = useCallback((field: string, value: string) => setAdresse((prev) => ({ ...prev, [field]: value })), []);
