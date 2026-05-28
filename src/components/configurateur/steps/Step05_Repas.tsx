@@ -150,6 +150,55 @@ const desserts: DessertDef[] = [
   },
 ];
 
+/* ───────────── Data — Options Nuit ───────────── */
+
+interface OptionNuitDef {
+  id: string;
+  numero: string;
+  titre: string;
+  badge: string;
+  badgeStyle: "inclus" | "prestige";
+  tagline: string;
+  description: string;
+  selectable: boolean;
+}
+
+const optionsNuit: OptionNuitDef[] = [
+  {
+    id: "bar-nuit",
+    numero: "Option 1",
+    titre: "Bar de nuit",
+    badge: "INCLUS",
+    badgeStyle: "inclus",
+    tagline: "Déjà en place. À vous de l'habiter.",
+    description:
+      "Le bar est installé, éclairé, prêt. Bouteilles disposées, verres en place, espace dédié — sans qu'on vous le signale. La nuit peut continuer à son rythme, sans rupture. Les invités se servent. La fête reste fluide.",
+    selectable: false,
+  },
+  {
+    id: "service-bar-2h",
+    numero: "Option 2",
+    titre: "Service bar — 2 heures",
+    badge: "PRESTIGE",
+    badgeStyle: "prestige",
+    tagline: "Quelqu'un tient le bar. Vous tenez la nuit.",
+    description:
+      "Pendant deux heures, un serveur J&J prend position derrière le bar. Cocktails servis, verres renouvelés, rythme tenu. Vos invités ne cherchent rien — ils reçoivent. L'option pour les mariages où la soirée dansante doit rester pleine, de bout en bout.",
+    selectable: true,
+  },
+  {
+    id: "soupe-oignon",
+    numero: "Option 3",
+    titre: "Soupe à l'oignon",
+    badge: "PRESTIGE",
+    badgeStyle: "prestige",
+    tagline: "Le rituel qui marque la fin d'une belle nuit.",
+    description:
+      "J&J la prépare, la maintient au chaud, la pose en self-service. Bouillon doré, croûtons, fromage râpé. Pas une anecdote : le moment où la salle ralentit, où les gens s'assoient, où les conversations deviennent vraies. Une tradition qui n'a pas besoin d'être servie pour exister.",
+    selectable: true,
+  },
+];
+
 /* ───────────── Animations ───────────── */
 
 const fadeUp = {
