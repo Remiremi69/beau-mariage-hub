@@ -40,10 +40,16 @@ export type ConfigurateurState = {
   rdvSemaine: string | null
   rdvJour: string | null
   rdvCreneau: string | null
-
+  adresseLivraison: {
+    rue: string
+    cp: string
+    ville: string
+    pays: string
+  } | null
   coffretDemande: boolean
   siteMariage: boolean
 }
+
 
 export const defaultState: ConfigurateurState = {
   currentStep: 0,
