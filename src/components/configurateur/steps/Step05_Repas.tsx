@@ -172,7 +172,7 @@ const optionsNuit: OptionNuitDef[] = [
     badgeStyle: "inclus",
     tagline: "Déjà en place. À vous de l'habiter.",
     description:
-      "Le bar est installé, éclairé, prêt. Bouteilles disposées, verres en place, espace dédié — sans qu'on vous le signale. La nuit peut continuer à son rythme, sans rupture. Les invités se servent. La fête reste fluide.",
+      "Le bar est installé, éclairé, prêt. Verres en place, espace dédié — sans qu'on vous le signale. Les bouteilles d'alcool ne sont pas fournies (vous apportez les vôtres). La nuit peut continuer à son rythme, sans rupture. Les invités se servent. La fête reste fluide.",
     selectable: false,
   },
   {
@@ -183,7 +183,7 @@ const optionsNuit: OptionNuitDef[] = [
     badgeStyle: "prestige",
     tagline: "Quelqu'un tient le bar. Vous tenez la nuit.",
     description:
-      "Pendant deux heures, un serveur J&J prend position derrière le bar. Cocktails servis, verres renouvelés, rythme tenu. Vos invités ne cherchent rien — ils reçoivent. L'option pour les mariages où la soirée dansante doit rester pleine, de bout en bout.",
+      "Pendant deux heures, un serveur J&J prend position derrière le bar. Cocktails servis, verres renouvelés, rythme tenu. Les bouteilles d'alcool ne sont pas fournies (vous apportez les vôtres). Vos invités ne cherchent rien — ils reçoivent. L'option pour les mariages où la soirée dansante doit rester pleine, de bout en bout.",
     selectable: true,
   },
   {
