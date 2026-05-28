@@ -4,7 +4,7 @@ import { ConfigurateurState, Repas } from "../pricingTypes";
 import InfoButton from "../InfoButton";
 import PresentationDrawer from "../PresentationDrawer";
 import { drawerRepas } from "../drawerContents";
-import menuTraditionImg from "@/assets/menu-automne-charolais.jpg";
+import menuTraditionImg from "@/assets/menu/menu-tradition-beaujolais.jpg";
 import menuSignatureImg from "@/assets/menu-nocturne-royal.jpg";
 import royalChocolatImg from "@/assets/desserts/royal-chocolat-feuillantine.jpg";
 import tarteTatinImg from "@/assets/desserts/tarte-tatin-caramel.jpg";
