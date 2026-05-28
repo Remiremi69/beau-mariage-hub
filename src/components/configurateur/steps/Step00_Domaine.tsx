@@ -192,23 +192,40 @@ const Step00_Domaine = ({ onNext }: Step00Props) => {
         >
           Commencer
         </motion.button>
-
         {/* Mention basse */}
-        <motion.p
+        <motion.div
           custom={6}
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          style={{
-            fontFamily: "'Jost', sans-serif",
-            fontWeight: 300,
-            fontSize: "11px",
-            letterSpacing: "0.2em",
-            color: "rgba(232,221,208,0.35)",
-            marginTop: "32px",
-          }}
+          style={{ marginTop: "32px", textAlign: "center" }}
         >
-          10 à 15 minutes · Sans engagement
+          <p
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontWeight: 300,
+              fontSize: "11px",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "rgba(232,221,208,0.40)",
+              marginBottom: "8px",
+            }}
+          >
+            10 à 15 minutes · Sans engagement
+          </p>
+          <p
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontSize: "13px",
+              color: "rgba(232,221,208,0.45)",
+              lineHeight: 1.6,
+            }}
+          >
+            Vous pourrez reprendre plus tard si vous le souhaitez.
+          </p>
+        </motion.div>
+
         </motion.p>
       </div>
 
