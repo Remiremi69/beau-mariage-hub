@@ -598,7 +598,6 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
         {/* ═══ COMPOSANT PDF (HORS ÉCRAN) ═══ */}
         <PdfEsquisse ref={pdfRef} state={state} />
 
-        {/* ═══ BLOC 2 — VOS CHOIX ═══ */}
 
         {/* ═══ BLOC 2 — VOS CHOIX ═══ */}
         <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp} className="w-full" style={{ maxWidth: 700 }}>
