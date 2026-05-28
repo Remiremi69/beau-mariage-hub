@@ -87,7 +87,13 @@ const preparationOptions: PreparationOption[] = [
 ];
 
 const Step03_Preparation = ({ state, onUpdate, onNext, onPrev }: Step03Props) => {
-  const prep = state.preparation;
+  const prep = state.preparation ?? {
+    lieuGite: false,
+    maquilleuse: false,
+    coiffeuse: false,
+    photographePrep: false,
+  };
+
 
   const horaires = state.ceremonieLaique
     ? `${WEDDING_SCHEDULE.preparationStart} — ${WEDDING_SCHEDULE.ceremonyStart} · juste avant la cérémonie`
