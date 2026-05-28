@@ -7,8 +7,10 @@ import { calculateBreakdown } from "./pricing/pricingEngine";
 import Step00_Domaine from "./steps/Step00_Domaine";
 import Step01_Date from "./steps/Step01_Date";
 import Step02_Invites from "./steps/Step02_Invites";
+import Step03_Preparation from "./steps/Step03_Preparation";
 import Step03_Ceremonie from "./steps/Step03_Ceremonie";
 import Step04_Violoniste from "./steps/Step04_Violoniste";
+
 
 import Step05_Repas from "./steps/Step05_Repas";
 import Step06_Photographe from "./steps/Step06_Photographe";
