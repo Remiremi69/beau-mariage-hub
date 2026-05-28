@@ -293,17 +293,19 @@ const ConfigurateurShell = () => {
       case 0: return <Step00_Domaine onNext={nextStep} />;
       case 1: return <Step01_Date {...props} />;
       case 2: return <Step02_Invites {...props} />;
-      case 3: return <Step03_Ceremonie {...props} />;
-      case 4: return <Step04_Violoniste {...props} />;
-      case 5: return <Step05_Repas {...props} />;
-      case 6: return <Step06_Photographe {...props} />;
-      case 7: return <Step07_DJ {...props} />;
-      case 8: return <Step08_Deco {...props} />;
-      case 9: return <Step09_Options {...props} />;
-      case 10: return <Step10_SiteMariage {...props} />;
-      case 11: return <Step11_Recap {...props} />;
+      case 3: return <Step03_Preparation {...props} />;
+      case 4: return <Step03_Ceremonie {...props} />;
+      case 5: return <Step04_Violoniste {...props} />;
+      case 6: return <Step05_Repas {...props} />;
+      case 7: return <Step06_Photographe {...props} />;
+      case 8: return <Step07_DJ {...props} />;
+      case 9: return <Step08_Deco {...props} />;
+      case 10: return <Step09_Options {...props} />;
+      case 11: return <Step10_SiteMariage {...props} />;
+      case 12: return <Step11_Recap {...props} />;
       default: return null;
     }
+
   };
 
   /* ── Mini-recap contextual lines ────────────────────── */
