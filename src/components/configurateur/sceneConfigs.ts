@@ -35,17 +35,16 @@ export const SCENE_CONFIGS: Record<number, SceneConfig> = {
     duration: 3500,
   },
 
-  // Before Step 3 — Cérémonie
-  3: {
+  // Before Step 4 — Cérémonie (was 3)
+  4: {
     title: "Votre cérémonie",
     subtitle: "Esther Coutin · Maîtresse de cérémonie & officiante laïque",
     images: [estherHero, estherCeremonie, estherMaries],
     duration: 4000,
   },
 
-
-  // Before Step 4 — Violoniste
-  4: {
+  // Before Step 5 — Violoniste (was 4)
+  5: {
     title: "Votre violoniste",
     subtitle: "Alexandre Medjaher Chomat · Violon & performance",
     images: [
@@ -56,24 +55,24 @@ export const SCENE_CONFIGS: Record<number, SceneConfig> = {
     duration: 3800,
   },
 
-  // Before Step 5 — Vin d'honneur & Table
-  5: {
+  // Before Step 6 — Vin d'honneur & Table (was 5)
+  6: {
     title: "Votre vin d'honneur et votre table",
     subtitle: "Jessica & Jérôme · J&J Traiteur",
     images: [tableSetup, jjTraiteurPortrait, vhBeaujolaisVivant, vhSeuilSignature],
     duration: 4000,
   },
 
-  // Before Step 6 — Photographe
-  6: {
+  // Before Step 7 — Photographe (was 6)
+  7: {
     title: "Votre photographe",
     subtitle: "Loïc · Chaque image raconte quelque chose",
     images: [loicHero, loicDanse, loicFumigenes],
     duration: 4000,
   },
 
-  // Before Step 7 — DJ
-  7: {
+  // Before Step 8 — DJ (was 7)
+  8: {
     title: "Votre soirée",
     subtitle: "Rémy & Jordan · Astrévia Events",
     images: [
@@ -84,24 +83,24 @@ export const SCENE_CONFIGS: Record<number, SceneConfig> = {
     duration: 4000,
   },
 
-  // Before Step 8 — Déco
-  8: {
+  // Before Step 9 — Déco (was 8)
+  9: {
     title: "Votre atmosphère",
     subtitle: "L'espace qui vous ressemble",
     images: [decoBoheme1, decoChampetre1, decoRomantique],
     duration: 3500,
   },
 
-  // Before Step 10 — Site mariage
-  10: {
+  // Before Step 11 — Site mariage (was 10)
+  11: {
     title: "Votre présence en ligne",
     subtitle: "Partagée avec élégance",
     images: [heroWedding, domaine2],
     duration: 3000,
   },
 
-  // Before Step 11 — Récap
-  11: {
+  // Before Step 12 — Récap (was 11)
+  12: {
     title: "Votre mariage",
     subtitle: "Tout est là",
     images: [domaine2, tableSetup, ceremonyArch],

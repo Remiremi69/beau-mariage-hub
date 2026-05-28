@@ -7,8 +7,10 @@ import { calculateBreakdown } from "./pricing/pricingEngine";
 import Step00_Domaine from "./steps/Step00_Domaine";
 import Step01_Date from "./steps/Step01_Date";
 import Step02_Invites from "./steps/Step02_Invites";
+import Step03_Preparation from "./steps/Step03_Preparation";
 import Step03_Ceremonie from "./steps/Step03_Ceremonie";
 import Step04_Violoniste from "./steps/Step04_Violoniste";
+
 
 import Step05_Repas from "./steps/Step05_Repas";
 import Step06_Photographe from "./steps/Step06_Photographe";
@@ -29,11 +31,12 @@ const heroImages = [hero2, hero3, hero4, hero1];
 const allImages = [hero1, hero2, hero3, hero4, venueExterior, heroWedding];
 
 /* ─── Constants ───────────────────────────────────────── */
-
 const STEP_BACKGROUNDS = [
   "radial-gradient(ellipse at 30% 60%, rgba(201,169,110,0.20) 0%, transparent 55%), radial-gradient(ellipse at 75% 20%, rgba(201,169,110,0.08) 0%, transparent 40%), linear-gradient(160deg, #0d0b08 0%, #1a1612 45%, #231e17 70%, #1a1612 100%)",
   "radial-gradient(ellipse at 50% 100%, rgba(100,120,200,0.25) 0%, transparent 55%), linear-gradient(180deg, #060810 0%, #0d1228 55%, #080e1e 100%)",
   "radial-gradient(circle at 60% 40%, rgba(201,169,110,0.12) 0%, transparent 50%), linear-gradient(135deg, #0e0c09 0%, #1c1812 60%, #130f09 100%)",
+  // 3 — Préparation des mariés (nouveau, ambiance matinale dorée)
+  "radial-gradient(ellipse at 50% 30%, rgba(230,200,150,0.18) 0%, transparent 55%), radial-gradient(ellipse at 30% 80%, rgba(201,169,110,0.10) 0%, transparent 45%), linear-gradient(170deg, #0e0c09 0%, #1a1612 55%, #130f0a 100%)",
   "radial-gradient(ellipse at 50% 0%, rgba(80,120,60,0.30) 0%, transparent 55%), linear-gradient(180deg, #080e06 0%, #101806 50%, #080e06 100%)",
   "radial-gradient(ellipse at 50% 50%, rgba(140,90,60,0.28) 0%, transparent 55%), linear-gradient(160deg, #0c0907 0%, #18120c 60%, #0e0a07 100%)",
   "radial-gradient(ellipse at 55% 35%, rgba(201,169,110,0.18) 0%, transparent 45%), linear-gradient(150deg, #0c0b08 0%, #1a1710 60%, #110e08 100%)",
@@ -45,13 +48,14 @@ const STEP_BACKGROUNDS = [
   "radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.25) 0%, transparent 60%), linear-gradient(160deg, #0d0b08 0%, #1a1612 50%, #231e17 100%)",
 ];
 
-const TOTAL_STEPS = 12;
+const TOTAL_STEPS = 13;
 
 const STEP_LABELS = [
-  "Accueil", "Date", "Invités", "Cérémonie", "Violoniste",
+  "Accueil", "Date", "Invités", "Préparation des mariés", "Cérémonie", "Violoniste",
   "Votre table & votre nuit", "Photographe",
   "DJ", "Déco", "Options", "Site mariage", "Récap",
 ];
+
 
 const availableDates: Record<string, string> = {
   "2027-10-04": "Lun 4 Oct",
@@ -289,17 +293,19 @@ const ConfigurateurShell = () => {
       case 0: return <Step00_Domaine onNext={nextStep} />;
       case 1: return <Step01_Date {...props} />;
       case 2: return <Step02_Invites {...props} />;
-      case 3: return <Step03_Ceremonie {...props} />;
-      case 4: return <Step04_Violoniste {...props} />;
-      case 5: return <Step05_Repas {...props} />;
-      case 6: return <Step06_Photographe {...props} />;
-      case 7: return <Step07_DJ {...props} />;
-      case 8: return <Step08_Deco {...props} />;
-      case 9: return <Step09_Options {...props} />;
-      case 10: return <Step10_SiteMariage {...props} />;
-      case 11: return <Step11_Recap {...props} />;
+      case 3: return <Step03_Preparation {...props} />;
+      case 4: return <Step03_Ceremonie {...props} />;
+      case 5: return <Step04_Violoniste {...props} />;
+      case 6: return <Step05_Repas {...props} />;
+      case 7: return <Step06_Photographe {...props} />;
+      case 8: return <Step07_DJ {...props} />;
+      case 9: return <Step08_Deco {...props} />;
+      case 10: return <Step09_Options {...props} />;
+      case 11: return <Step10_SiteMariage {...props} />;
+      case 12: return <Step11_Recap {...props} />;
       default: return null;
     }
+
   };
 
   /* ── Mini-recap contextual lines ────────────────────── */
@@ -309,29 +315,27 @@ const ConfigurateurShell = () => {
       label: "Date",
       value: state.date ? availableDates[state.date] || state.date : "—",
     });
-    lines.push({ label: "Invités", value: String(state.guests) });
-
-    if (state.currentStep >= 3 && state.ceremonieLaique) {
+    if (state.currentStep >= 4 && state.ceremonieLaique) {
       lines.push({ label: "Cérémonie", value: "Laïque" });
     }
-    if (state.currentStep >= 4) {
+    if (state.currentStep >= 5) {
       lines.push({ label: "Violoniste", value: state.violonisteOption ? "Show + option" : "Show inclus" });
     }
-    if (state.currentStep === 5) {
+    if (state.currentStep === 6) {
       const count = [state.repasEntree, state.repasPlat, state.repasDessert].filter(Boolean).length;
       lines.push({ label: "Menu", value: count === 3 ? "Complet" : `${count}/3 plats` });
     }
-    if (state.currentStep >= 6) {
+    if (state.currentStep >= 7) {
       lines.push({ label: "Photo", value: photoLabels[state.photographe] || "" });
     }
-    if (state.currentStep >= 7) {
+    if (state.currentStep >= 8) {
       const extras = [
         state.dj.sonoVH ? (state.ceremonieLaique ? "cocktail (inclus)" : "cocktail") : null,
         state.dj.effetPrestige ? "Prestige" : null,
       ].filter(Boolean);
       lines.push({ label: "DJ", value: extras.length ? `Inclus + ${extras.join(" · ")}` : "Inclus" });
     }
-    if (state.currentStep >= 9 && (state.options?.length ?? 0) > 0) {
+    if (state.currentStep >= 10 && (state.options?.length ?? 0) > 0) {
       lines.push({ label: "Options", value: `${state.options.length}` });
     }
     return lines;
