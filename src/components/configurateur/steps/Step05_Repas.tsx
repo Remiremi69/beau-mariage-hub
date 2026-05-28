@@ -109,7 +109,7 @@ const menus: MenuDef[] = [
       },
     ],
     full: {
-      vinHonneur: "Punch citron vert · Gingembre · Coriandre",
+      vinHonneur: "Punch citron vert · Citronnade maison · Eaux plate & gazeuse à volonté · Softs · Gingembre · Coriandre",
       cocktailTitle: "Cocktail · 8 pièces",
       cocktail:
         "Plancha gambas snackées marmelade mangue safran · Rouleau d'aubergine · " +
