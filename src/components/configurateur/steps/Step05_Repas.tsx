@@ -90,7 +90,7 @@ const menus: MenuDef[] = [
     accroche: "Pour qui aime la cuisine précise, les saveurs voyageuses, l'évasion.",
     vh: {
       title: "Punch citron vert",
-      sub1: "Gingembre · Coriandre",
+      sub1: "Citronnade maison · Eaux plate & gazeuse à volonté · Softs · Gingembre · Coriandre",
       sub2: "+ 8 pièces signature",
     },
     fromagesLine: "+ Plateau de fromages affinés",
