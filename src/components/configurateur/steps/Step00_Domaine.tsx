@@ -92,7 +92,9 @@ const Step00_Domaine = ({ onNext }: Step00Props) => {
             maxWidth: "480px",
             lineHeight: 1.8,
           }}
+        >
           Au cœur du Beaujolais,
+
           le Domaine de la Croix Rochefort vous attend.
           Une journée pensée pour vous. Quelques moments à choisir,
           le reste vous attend.
