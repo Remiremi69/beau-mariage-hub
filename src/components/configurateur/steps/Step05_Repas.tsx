@@ -5,7 +5,7 @@ import InfoButton from "../InfoButton";
 import PresentationDrawer from "../PresentationDrawer";
 import { drawerRepas } from "../drawerContents";
 import menuTraditionImg from "@/assets/menu/menu-tradition-beaujolais.jpg";
-import menuSignatureImg from "@/assets/menu-nocturne-royal.jpg";
+import menuSignatureImg from "@/assets/menu/menu-signature-limen.jpg";
 import royalChocolatImg from "@/assets/desserts/royal-chocolat-feuillantine.jpg";
 import tarteTatinImg from "@/assets/desserts/tarte-tatin-caramel.jpg";
 import fraisierImg from "@/assets/desserts/fraisier-mascarpone.jpg";
