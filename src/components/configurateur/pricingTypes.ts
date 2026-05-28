@@ -104,7 +104,12 @@ export const OPTION_PRICES: Record<string, number> = {
   'photophores-fumes': 60,
   'service-bar-2h': 0,
   'soupe-oignon': 0,
+  'preparation-lieu': 0,
+  'preparation-maquilleuse': 0,
+  'preparation-coiffeuse': 0,
+  'preparation-photographe': 0,
 }
+
 
 export const OPTION_LABELS: Record<string, string> = {
   photobooth: 'Photobooth Premium',
