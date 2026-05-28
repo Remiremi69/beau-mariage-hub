@@ -844,6 +844,189 @@ const DessertCard = ({
   </div>
 );
 
+/* ───────────── OptionNuitCard ───────────── */
+
+const OptionNuitCard = ({
+  option,
+  isSelected,
+  onToggle,
+}: {
+  option: OptionNuitDef;
+  isSelected: boolean;
+  onToggle: () => void;
+}) => {
+  const clickable = option.selectable;
+  const badgeStyle =
+    option.badgeStyle === "inclus"
+      ? {
+          background: "transparent",
+          border: "1px solid rgba(201,169,110,0.50)",
+          color: "rgba(201,169,110,0.85)",
+        }
+      : {
+          background: "rgba(201,169,110,0.10)",
+          border: "1px solid rgba(201,169,110,0.30)",
+          color: "#c9a96e",
+        };
+
+  const cardStyle: React.CSSProperties = !clickable
+    ? {
+        background: "rgba(201,169,110,0.04)",
+        border: "1px solid rgba(201,169,110,0.25)",
+      }
+    : isSelected
+    ? {
+        background: "rgba(201,169,110,0.06)",
+        border: "1px solid #c9a96e",
+      }
+    : {
+        background: "rgba(26,22,18,0.40)",
+        border: "1px solid rgba(201,169,110,0.15)",
+      };
+
+  return (
+    <motion.div
+      onClick={clickable ? onToggle : undefined}
+      whileHover={clickable ? { y: -2 } : {}}
+      transition={{ duration: 0.2 }}
+      style={{
+        ...cardStyle,
+        padding: "28px 24px 22px",
+        borderRadius: 2,
+        cursor: clickable ? "pointer" : "default",
+        display: "flex",
+        flexDirection: "column",
+        gap: 14,
+        transition: "background 0.3s, border-color 0.3s",
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <span
+          style={{
+            ...badgeStyle,
+            padding: "4px 12px",
+            borderRadius: 2,
+            fontFamily: "'Jost', sans-serif",
+            fontSize: 10,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+          }}
+        >
+          {option.badge}
+        </span>
+      </div>
+
+      <div
+        style={{
+          fontFamily: "'Jost', sans-serif",
+          fontSize: 11,
+          letterSpacing: "0.30em",
+          textTransform: "uppercase",
+          color: "rgba(201,169,110,0.60)",
+          textAlign: "center",
+        }}
+      >
+        ─── {option.numero} ───
+      </div>
+
+      <h4
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontStyle: "italic",
+          fontWeight: 300,
+          fontSize: 22,
+          color: "#faf8f4",
+          textAlign: "center",
+          margin: 0,
+          lineHeight: 1.2,
+        }}
+      >
+        {option.titre}
+      </h4>
+
+      <p
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontStyle: "italic",
+          fontSize: 14,
+          color: "rgba(201,169,110,0.70)",
+          textAlign: "center",
+          margin: 0,
+          lineHeight: 1.4,
+        }}
+      >
+        « {option.tagline} »
+      </p>
+
+      <div
+        style={{
+          width: 24,
+          height: 1,
+          background: "rgba(201,169,110,0.40)",
+          margin: "4px auto",
+        }}
+      />
+
+      <p
+        style={{
+          fontFamily: "'Jost', sans-serif",
+          fontWeight: 300,
+          fontSize: 12,
+          color: "rgba(232,221,208,0.60)",
+          lineHeight: 1.7,
+          margin: 0,
+          flex: 1,
+        }}
+      >
+        {option.description}
+      </p>
+
+      <div style={{ marginTop: 10, textAlign: "center" }}>
+        {!clickable ? (
+          <div
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: 11,
+              letterSpacing: "0.20em",
+              textTransform: "uppercase",
+              color: "rgba(201,169,110,0.70)",
+            }}
+          >
+            ✓ Compris dans votre table
+          </div>
+        ) : (
+          <>
+            <div
+              style={{
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 11,
+                letterSpacing: "0.20em",
+                textTransform: "uppercase",
+                color: isSelected ? "#c9a96e" : "rgba(201,169,110,0.60)",
+              }}
+            >
+              {isSelected ? "✓ Ajouté à ma nuit" : "○ Ajouter à ma nuit"}
+            </div>
+            <div
+              style={{
+                fontFamily: "'Jost', sans-serif",
+                fontStyle: "italic",
+                fontSize: 10,
+                color: "rgba(232,221,208,0.40)",
+                marginTop: 6,
+              }}
+            >
+              Prix précisé au récapitulatif
+            </div>
+          </>
+        )}
+      </div>
+    </motion.div>
+  );
+};
+
+/* ───────────── Main Step ───────────── */
+
 /* ───────────── Main Step ───────────── */
 
 const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
