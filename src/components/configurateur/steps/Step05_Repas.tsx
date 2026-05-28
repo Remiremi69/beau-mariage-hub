@@ -51,8 +51,8 @@ const menus: MenuDef[] = [
     image: menuTraditionImg,
     accroche: "Pour qui aime le terroir, la générosité, l'âme lyonnaise.",
     vh: {
-      title: "Crémant de Bourgogne",
-      sub1: "Kir au choix (4 sirops)",
+      title: "Kir royal crémant de Bourgogne",
+      sub1: "Kir au choix (4 sirops) · Citronnade maison · Eaux plate & gazeuse à volonté · Softs",
       sub2: "+ 8 pièces lyonnaises",
     },
     fromagesLine: "+ Plateau de fromages du Beaujolais",
@@ -71,7 +71,7 @@ const menus: MenuDef[] = [
       },
     ],
     full: {
-      vinHonneur: "Crémant de Bourgogne · Kir (4 choix de sirop)",
+      vinHonneur: "Kir royal crémant de Bourgogne · Kir (4 choix de sirop) · Citronnade maison · Eaux plate & gazeuse à volonté · Softs",
       cocktailTitle: "Cocktail · 8 pièces",
       cocktail:
         "Plancha poulet sauce Bresse · Feuilleté 3 goûts (anchois / fromage / olive) · " +
