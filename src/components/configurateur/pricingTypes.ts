@@ -88,6 +88,8 @@ export const OPTION_PRICES: Record<string, number> = {
   'bougies-tapers-noires': 225,
   'chemin-velours': 100,
   'photophores-fumes': 60,
+  'service-bar-2h': 0,
+  'soupe-oignon': 0,
 }
 
 export const OPTION_LABELS: Record<string, string> = {
