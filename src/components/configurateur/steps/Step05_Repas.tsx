@@ -90,7 +90,7 @@ const menus: MenuDef[] = [
     accroche: "Pour qui aime la cuisine précise, les saveurs voyageuses, l'évasion.",
     vh: {
       title: "Punch citron vert",
-      sub1: "Gingembre · Coriandre",
+      sub1: "Citronnade maison · Eaux plate & gazeuse à volonté · Softs · Gingembre · Coriandre",
       sub2: "+ 8 pièces signature",
     },
     fromagesLine: "+ Plateau de fromages affinés",
@@ -109,7 +109,7 @@ const menus: MenuDef[] = [
       },
     ],
     full: {
-      vinHonneur: "Punch citron vert · Gingembre · Coriandre",
+      vinHonneur: "Punch citron vert · Citronnade maison · Eaux plate & gazeuse à volonté · Softs · Gingembre · Coriandre",
       cocktailTitle: "Cocktail · 8 pièces",
       cocktail:
         "Plancha gambas snackées marmelade mangue safran · Rouleau d'aubergine · " +
