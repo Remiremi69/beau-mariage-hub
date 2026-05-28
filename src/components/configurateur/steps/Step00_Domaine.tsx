@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import InfoButton from "../InfoButton";
 import PresentationDrawer from "../PresentationDrawer";
 import { drawerDomaine } from "../drawerContents";
+
 
 interface Step00Props {
   onNext: () => void;
