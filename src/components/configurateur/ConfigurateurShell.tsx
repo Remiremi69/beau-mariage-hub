@@ -315,29 +315,30 @@ const ConfigurateurShell = () => {
       label: "Date",
       value: state.date ? availableDates[state.date] || state.date : "—",
     });
-    lines.push({ label: "Invités", value: String(state.guests) });
-
-    if (state.currentStep >= 3 && state.ceremonieLaique) {
+    if (state.currentStep >= 4 && state.ceremonieLaique) {
       lines.push({ label: "Cérémonie", value: "Laïque" });
     }
-    if (state.currentStep >= 4) {
+    if (state.currentStep >= 5) {
       lines.push({ label: "Violoniste", value: state.violonisteOption ? "Show + option" : "Show inclus" });
     }
-    if (state.currentStep === 5) {
+    if (state.currentStep === 6) {
       const count = [state.repasEntree, state.repasPlat, state.repasDessert].filter(Boolean).length;
       lines.push({ label: "Menu", value: count === 3 ? "Complet" : `${count}/3 plats` });
     }
-    if (state.currentStep >= 6) {
+    if (state.currentStep >= 7) {
       lines.push({ label: "Photo", value: photoLabels[state.photographe] || "" });
     }
-    if (state.currentStep >= 7) {
+    if (state.currentStep >= 8) {
       const extras = [
         state.dj.sonoVH ? (state.ceremonieLaique ? "cocktail (inclus)" : "cocktail") : null,
         state.dj.effetPrestige ? "Prestige" : null,
       ].filter(Boolean);
       lines.push({ label: "DJ", value: extras.length ? `Inclus + ${extras.join(" · ")}` : "Inclus" });
     }
-    if (state.currentStep >= 9 && (state.options?.length ?? 0) > 0) {
+    if (state.currentStep >= 10 && (state.options?.length ?? 0) > 0) {
+      lines.push({ label: "Options", value: `${state.options.length}` });
+    }
+
       lines.push({ label: "Options", value: `${state.options.length}` });
     }
     return lines;
