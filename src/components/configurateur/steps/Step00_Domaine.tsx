@@ -92,20 +92,45 @@ const Step00_Domaine = ({ onNext }: Step00Props) => {
             maxWidth: "480px",
             lineHeight: 1.8,
           }}
-        >
           Au cœur du Beaujolais,
           le Domaine de la Croix Rochefort vous attend.
-          Composez votre journée, exactement comme vous
-          l'imaginez.
+          Une journée pensée pour vous. Quelques moments à choisir,
+          le reste vous attend.
         </motion.p>
 
-        {/* Info button */}
-        <motion.div custom={3.5} initial="hidden" animate="visible" variants={fadeUp}>
-          <InfoButton
-            label="En savoir plus sur le domaine"
-            onClick={() => setDrawerOpen(true)}
-          />
-        </motion.div>
+        {/* Lien discret vers le drawer */}
+        <motion.button
+          custom={3.5}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          onClick={() => setDrawerOpen(true)}
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontWeight: 300,
+            fontSize: "12px",
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            color: "rgba(201,169,110,0.55)",
+            background: "transparent",
+            border: "none",
+            cursor: "pointer",
+            marginTop: "20px",
+            paddingBottom: "2px",
+            borderBottom: "1px solid rgba(201,169,110,0.30)",
+            transition: "color 0.3s ease, border-color 0.3s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = "rgba(201,169,110,0.95)";
+            e.currentTarget.style.borderBottomColor = "rgba(201,169,110,0.70)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = "rgba(201,169,110,0.55)";
+            e.currentTarget.style.borderBottomColor = "rgba(201,169,110,0.30)";
+          }}
+        >
+          Découvrir le domaine
+        </motion.button>
 
         {/* Bloc "Ce qui vous attend" */}
         <motion.div
@@ -116,9 +141,9 @@ const Step00_Domaine = ({ onNext }: Step00Props) => {
           className="flex flex-col items-center gap-3 mt-10"
         >
           {[
-            "Le domaine & la date",
-            "Le repas, le vin, la cérémonie",
-            "La déco, le photographe, le DJ",
+            "Composer le matin",
+            "Orchestrer le rituel",
+            "Habiter la nuit",
           ].map((line) => (
             <span
               key={line}
@@ -135,6 +160,7 @@ const Step00_Domaine = ({ onNext }: Step00Props) => {
             </span>
           ))}
         </motion.div>
+
 
         {/* CTA */}
         <motion.button
