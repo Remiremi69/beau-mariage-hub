@@ -150,6 +150,55 @@ const desserts: DessertDef[] = [
   },
 ];
 
+/* ───────────── Data — Options Nuit ───────────── */
+
+interface OptionNuitDef {
+  id: string;
+  numero: string;
+  titre: string;
+  badge: string;
+  badgeStyle: "inclus" | "prestige";
+  tagline: string;
+  description: string;
+  selectable: boolean;
+}
+
+const optionsNuit: OptionNuitDef[] = [
+  {
+    id: "bar-nuit",
+    numero: "Option 1",
+    titre: "Bar de nuit",
+    badge: "INCLUS",
+    badgeStyle: "inclus",
+    tagline: "Déjà en place. À vous de l'habiter.",
+    description:
+      "Le bar est installé, éclairé, prêt. Bouteilles disposées, verres en place, espace dédié — sans qu'on vous le signale. La nuit peut continuer à son rythme, sans rupture. Les invités se servent. La fête reste fluide.",
+    selectable: false,
+  },
+  {
+    id: "service-bar-2h",
+    numero: "Option 2",
+    titre: "Service bar — 2 heures",
+    badge: "PRESTIGE",
+    badgeStyle: "prestige",
+    tagline: "Quelqu'un tient le bar. Vous tenez la nuit.",
+    description:
+      "Pendant deux heures, un serveur J&J prend position derrière le bar. Cocktails servis, verres renouvelés, rythme tenu. Vos invités ne cherchent rien — ils reçoivent. L'option pour les mariages où la soirée dansante doit rester pleine, de bout en bout.",
+    selectable: true,
+  },
+  {
+    id: "soupe-oignon",
+    numero: "Option 3",
+    titre: "Soupe à l'oignon",
+    badge: "PRESTIGE",
+    badgeStyle: "prestige",
+    tagline: "Le rituel qui marque la fin d'une belle nuit.",
+    description:
+      "J&J la prépare, la maintient au chaud, la pose en self-service. Bouillon doré, croûtons, fromage râpé. Pas une anecdote : le moment où la salle ralentit, où les gens s'assoient, où les conversations deviennent vraies. Une tradition qui n'a pas besoin d'être servie pour exister.",
+    selectable: true,
+  },
+];
+
 /* ───────────── Animations ───────────── */
 
 const fadeUp = {
@@ -795,6 +844,189 @@ const DessertCard = ({
   </div>
 );
 
+/* ───────────── OptionNuitCard ───────────── */
+
+const OptionNuitCard = ({
+  option,
+  isSelected,
+  onToggle,
+}: {
+  option: OptionNuitDef;
+  isSelected: boolean;
+  onToggle: () => void;
+}) => {
+  const clickable = option.selectable;
+  const badgeStyle =
+    option.badgeStyle === "inclus"
+      ? {
+          background: "transparent",
+          border: "1px solid rgba(201,169,110,0.50)",
+          color: "rgba(201,169,110,0.85)",
+        }
+      : {
+          background: "rgba(201,169,110,0.10)",
+          border: "1px solid rgba(201,169,110,0.30)",
+          color: "#c9a96e",
+        };
+
+  const cardStyle: React.CSSProperties = !clickable
+    ? {
+        background: "rgba(201,169,110,0.04)",
+        border: "1px solid rgba(201,169,110,0.25)",
+      }
+    : isSelected
+    ? {
+        background: "rgba(201,169,110,0.06)",
+        border: "1px solid #c9a96e",
+      }
+    : {
+        background: "rgba(26,22,18,0.40)",
+        border: "1px solid rgba(201,169,110,0.15)",
+      };
+
+  return (
+    <motion.div
+      onClick={clickable ? onToggle : undefined}
+      whileHover={clickable ? { y: -2 } : {}}
+      transition={{ duration: 0.2 }}
+      style={{
+        ...cardStyle,
+        padding: "28px 24px 22px",
+        borderRadius: 2,
+        cursor: clickable ? "pointer" : "default",
+        display: "flex",
+        flexDirection: "column",
+        gap: 14,
+        transition: "background 0.3s, border-color 0.3s",
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <span
+          style={{
+            ...badgeStyle,
+            padding: "4px 12px",
+            borderRadius: 2,
+            fontFamily: "'Jost', sans-serif",
+            fontSize: 10,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+          }}
+        >
+          {option.badge}
+        </span>
+      </div>
+
+      <div
+        style={{
+          fontFamily: "'Jost', sans-serif",
+          fontSize: 11,
+          letterSpacing: "0.30em",
+          textTransform: "uppercase",
+          color: "rgba(201,169,110,0.60)",
+          textAlign: "center",
+        }}
+      >
+        ─── {option.numero} ───
+      </div>
+
+      <h4
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontStyle: "italic",
+          fontWeight: 300,
+          fontSize: 22,
+          color: "#faf8f4",
+          textAlign: "center",
+          margin: 0,
+          lineHeight: 1.2,
+        }}
+      >
+        {option.titre}
+      </h4>
+
+      <p
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontStyle: "italic",
+          fontSize: 14,
+          color: "rgba(201,169,110,0.70)",
+          textAlign: "center",
+          margin: 0,
+          lineHeight: 1.4,
+        }}
+      >
+        « {option.tagline} »
+      </p>
+
+      <div
+        style={{
+          width: 24,
+          height: 1,
+          background: "rgba(201,169,110,0.40)",
+          margin: "4px auto",
+        }}
+      />
+
+      <p
+        style={{
+          fontFamily: "'Jost', sans-serif",
+          fontWeight: 300,
+          fontSize: 12,
+          color: "rgba(232,221,208,0.60)",
+          lineHeight: 1.7,
+          margin: 0,
+          flex: 1,
+        }}
+      >
+        {option.description}
+      </p>
+
+      <div style={{ marginTop: 10, textAlign: "center" }}>
+        {!clickable ? (
+          <div
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: 11,
+              letterSpacing: "0.20em",
+              textTransform: "uppercase",
+              color: "rgba(201,169,110,0.70)",
+            }}
+          >
+            ✓ Compris dans votre table
+          </div>
+        ) : (
+          <>
+            <div
+              style={{
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 11,
+                letterSpacing: "0.20em",
+                textTransform: "uppercase",
+                color: isSelected ? "#c9a96e" : "rgba(201,169,110,0.60)",
+              }}
+            >
+              {isSelected ? "✓ Ajouté à ma nuit" : "○ Ajouter à ma nuit"}
+            </div>
+            <div
+              style={{
+                fontFamily: "'Jost', sans-serif",
+                fontStyle: "italic",
+                fontSize: 10,
+                color: "rgba(232,221,208,0.40)",
+                marginTop: 6,
+              }}
+            >
+              Prix précisé au récapitulatif
+            </div>
+          </>
+        )}
+      </div>
+    </motion.div>
+  );
+};
+
+/* ───────────── Main Step ───────────── */
+
 /* ───────────── Main Step ───────────── */
 
 const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
@@ -807,10 +1039,20 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
   const [selectedDessert, setSelectedDessert] = useState<string | null>(
     state.repasDessert ?? null
   );
+  const NUIT_OPTION_IDS = ["service-bar-2h", "soupe-oignon"];
+  const [selectedOptionsNuit, setSelectedOptionsNuit] = useState<string[]>(
+    (state.options ?? []).filter((o) => NUIT_OPTION_IDS.includes(o))
+  );
+  const toggleOptionNuit = (id: string) => {
+    setSelectedOptionsNuit((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  };
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const platRef = useRef<HTMLDivElement>(null);
   const dessertRef = useRef<HTMLDivElement>(null);
+  const nuitRef = useRef<HTMLDivElement>(null);
   const recapRef = useRef<HTMLDivElement>(null);
 
   const handleMenuSelect = (menuId: Repas) => {
@@ -847,18 +1089,22 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
 
   useEffect(() => {
     if (!didMountRef.current) return;
-    if (selectedMenu && selectedPlat && selectedDessert) scrollToRef(recapRef);
+    if (selectedMenu && selectedPlat && selectedDessert) scrollToRef(nuitRef);
   }, [selectedDessert]);
 
   const canContinue = !!selectedMenu && !!selectedPlat && !!selectedDessert;
 
   const handleContinue = () => {
     if (!canContinue) return;
+    const otherOptions = (state.options ?? []).filter(
+      (o) => !NUIT_OPTION_IDS.includes(o)
+    );
     onUpdate({
       repas: selectedMenu!,
       repasEntree: null,
       repasPlat: selectedPlat!,
       repasDessert: selectedDessert!,
+      options: [...otherOptions, ...selectedOptionsNuit],
     });
     onNext();
   };
@@ -887,7 +1133,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
           color: "rgba(201,169,110,0.6)",
         }}
       >
-        Étape · Vin d'honneur & Table
+        Étape · Votre table & votre nuit
       </motion.p>
 
       <motion.h2
@@ -905,7 +1151,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
           lineHeight: 1.15,
         }}
       >
-        Votre vin d'honneur<br />et votre table.
+        Votre table<br />et votre nuit.
       </motion.h2>
 
       <motion.p
@@ -1242,6 +1488,83 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
         )}
       </AnimatePresence>
 
+      {/* ───── BLOC 4 — VOTRE NUIT ───── */}
+      <AnimatePresence>
+        {selectedMenu && selectedPlat && selectedDessert && (
+          <motion.div
+            ref={nuitRef}
+            key="nuit-block"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            className="w-full"
+            style={{ maxWidth: 1000, marginTop: 80 }}
+          >
+            <div
+              className="flex items-center justify-center"
+              style={{ gap: 16, marginBottom: 32 }}
+            >
+              <div style={{ width: 40, height: 1, background: "#c9a96e" }} />
+              <span
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: 11,
+                  letterSpacing: "0.30em",
+                  textTransform: "uppercase",
+                  color: "rgba(201,169,110,0.80)",
+                }}
+              >
+                Et pour la nuit
+              </span>
+              <div style={{ width: 40, height: 1, background: "#c9a96e" }} />
+            </div>
+
+            <Eyebrow>04 · Votre nuit</Eyebrow>
+
+            <h3
+              className="text-center"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 300,
+                fontStyle: "italic",
+                fontSize: 28,
+                color: "#faf8f4",
+                lineHeight: 1.2,
+                marginTop: 14,
+              }}
+            >
+              Prolongez la fête
+            </h3>
+            <p
+              className="text-center"
+              style={{
+                fontFamily: "'Jost', sans-serif",
+                fontStyle: "italic",
+                fontWeight: 300,
+                fontSize: 13,
+                color: "rgba(232,221,208,0.65)",
+                marginTop: 8,
+                marginBottom: 36,
+              }}
+            >
+              Trois prestations J&J pour faire durer la nuit, à votre rythme.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 16 }}>
+              {optionsNuit.map((opt) => (
+                <OptionNuitCard
+                  key={opt.id}
+                  option={opt}
+                  isSelected={selectedOptionsNuit.includes(opt.id)}
+                  onToggle={() => opt.selectable && toggleOptionNuit(opt.id)}
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ───── RÉCAP ───── */}
       <AnimatePresence>
         {canContinue && currentMenu && currentPlat && currentDessert && (
@@ -1319,6 +1642,58 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
                 </span>
               </div>
             ))}
+
+            {/* Section VOTRE NUIT dans le récap */}
+            <div style={{ marginTop: 24, paddingTop: 20, borderTop: "1px solid rgba(201,169,110,0.20)" }}>
+              <p
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: 11,
+                  letterSpacing: "0.30em",
+                  textTransform: "uppercase",
+                  color: "rgba(201,169,110,0.60)",
+                  textAlign: "center",
+                  marginBottom: 16,
+                }}
+              >
+                Votre nuit
+              </p>
+              {[
+                { label: "Bar de nuit installé", tag: "Inclus", show: true },
+                { label: "Service bar 2 heures", tag: "Prestige", show: selectedOptionsNuit.includes("service-bar-2h") },
+                { label: "Soupe à l'oignon", tag: "Prestige", show: selectedOptionsNuit.includes("soupe-oignon") },
+              ]
+                .filter((r) => r.show)
+                .map((r) => (
+                  <div
+                    key={r.label}
+                    className="flex items-center justify-between"
+                    style={{ padding: "10px 0", gap: 16 }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontStyle: "italic",
+                        fontSize: 15,
+                        color: "#faf8f4",
+                      }}
+                    >
+                      <span style={{ color: "rgba(201,169,110,0.70)", marginRight: 10 }}>✓</span>
+                      {r.label}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "'Jost', sans-serif",
+                        fontStyle: "italic",
+                        fontSize: 11,
+                        color: "rgba(201,169,110,0.50)",
+                      }}
+                    >
+                      ({r.tag})
+                    </span>
+                  </div>
+                ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
