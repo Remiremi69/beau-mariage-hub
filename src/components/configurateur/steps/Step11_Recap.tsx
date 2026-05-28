@@ -539,9 +539,66 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
           {formatDate(state.date)} · Domaine de la Croix Rochefort
         </motion.p>
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} style={{ width: 80, height: 1, background: "#c9a96e", margin: "36px auto 48px" }} />
-
         {/* ═══ TIMELINE DU JOUR J ═══ */}
         <TimelineBlock state={state} />
+
+        {/* ═══ BOUTON TÉLÉCHARGEMENT PDF ═══ */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="w-full flex flex-col items-center"
+          style={{ marginTop: 8, marginBottom: 64 }}
+        >
+          <button
+            onClick={handleDownloadPdf}
+            disabled={isPdfGenerating}
+            data-cursor-hover
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontWeight: 300,
+              fontSize: 12,
+              letterSpacing: "0.3em",
+              textTransform: "uppercase",
+              padding: "14px 28px",
+              border: "1px solid rgba(201,169,110,0.40)",
+              background: "transparent",
+              color: "rgba(201,169,110,0.80)",
+              cursor: isPdfGenerating ? "wait" : "pointer",
+              transition: "all 0.3s ease",
+              borderRadius: 0,
+            }}
+            onMouseEnter={(e) => {
+              if (!isPdfGenerating) {
+                e.currentTarget.style.borderColor = "#c9a96e";
+                e.currentTarget.style.color = "#c9a96e";
+              }
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "rgba(201,169,110,0.40)";
+              e.currentTarget.style.color = "rgba(201,169,110,0.80)";
+            }}
+          >
+            {isPdfGenerating ? "Création en cours…" : "↓ Télécharger l'esquisse"}
+          </button>
+          <p
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontSize: 13,
+              color: "rgba(232,221,208,0.50)",
+              marginTop: 14,
+              textAlign: "center",
+            }}
+          >
+            Une mise en page pour vous, à imprimer ou à contempler.
+          </p>
+        </motion.div>
+
+        {/* ═══ COMPOSANT PDF (HORS ÉCRAN) ═══ */}
+        <PdfEsquisse ref={pdfRef} state={state} />
+
+        {/* ═══ BLOC 2 — VOS CHOIX ═══ */}
 
         {/* ═══ BLOC 2 — VOS CHOIX ═══ */}
         <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp} className="w-full" style={{ maxWidth: 700 }}>
