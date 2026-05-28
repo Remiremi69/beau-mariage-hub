@@ -830,15 +830,23 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
     }, 350);
   };
 
+  const didMountRef = useRef(false);
   useEffect(() => {
+    if (!didMountRef.current) {
+      didMountRef.current = true;
+      window.scrollTo({ top: 0 });
+      return;
+    }
     if (selectedMenu) scrollToRef(platRef);
   }, [selectedMenu]);
 
   useEffect(() => {
+    if (!didMountRef.current) return;
     if (selectedMenu && selectedPlat) scrollToRef(dessertRef);
   }, [selectedPlat]);
 
   useEffect(() => {
+    if (!didMountRef.current) return;
     if (selectedMenu && selectedPlat && selectedDessert) scrollToRef(recapRef);
   }, [selectedDessert]);
 
