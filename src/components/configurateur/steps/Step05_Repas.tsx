@@ -1256,6 +1256,83 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
         )}
       </AnimatePresence>
 
+      {/* ───── BLOC 4 — VOTRE NUIT ───── */}
+      <AnimatePresence>
+        {selectedMenu && selectedPlat && selectedDessert && (
+          <motion.div
+            ref={nuitRef}
+            key="nuit-block"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            className="w-full"
+            style={{ maxWidth: 1000, marginTop: 80 }}
+          >
+            <div
+              className="flex items-center justify-center"
+              style={{ gap: 16, marginBottom: 32 }}
+            >
+              <div style={{ width: 40, height: 1, background: "#c9a96e" }} />
+              <span
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: 11,
+                  letterSpacing: "0.30em",
+                  textTransform: "uppercase",
+                  color: "rgba(201,169,110,0.80)",
+                }}
+              >
+                Et pour la nuit
+              </span>
+              <div style={{ width: 40, height: 1, background: "#c9a96e" }} />
+            </div>
+
+            <Eyebrow>04 · Votre nuit</Eyebrow>
+
+            <h3
+              className="text-center"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 300,
+                fontStyle: "italic",
+                fontSize: 28,
+                color: "#faf8f4",
+                lineHeight: 1.2,
+                marginTop: 14,
+              }}
+            >
+              Prolongez la fête
+            </h3>
+            <p
+              className="text-center"
+              style={{
+                fontFamily: "'Jost', sans-serif",
+                fontStyle: "italic",
+                fontWeight: 300,
+                fontSize: 13,
+                color: "rgba(232,221,208,0.65)",
+                marginTop: 8,
+                marginBottom: 36,
+              }}
+            >
+              Trois prestations J&J pour faire durer la nuit, à votre rythme.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 16 }}>
+              {optionsNuit.map((opt) => (
+                <OptionNuitCard
+                  key={opt.id}
+                  option={opt}
+                  isSelected={selectedOptionsNuit.includes(opt.id)}
+                  onToggle={() => opt.selectable && toggleOptionNuit(opt.id)}
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ───── RÉCAP ───── */}
       <AnimatePresence>
         {canContinue && currentMenu && currentPlat && currentDessert && (
