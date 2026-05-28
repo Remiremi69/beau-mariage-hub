@@ -905,7 +905,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
           lineHeight: 1.15,
         }}
       >
-        Votre vin d'honneur<br />et votre table.
+        Votre table<br />et votre nuit.
       </motion.h2>
 
       <motion.p
