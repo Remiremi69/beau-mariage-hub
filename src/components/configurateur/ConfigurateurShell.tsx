@@ -338,9 +338,6 @@ const ConfigurateurShell = () => {
     if (state.currentStep >= 10 && (state.options?.length ?? 0) > 0) {
       lines.push({ label: "Options", value: `${state.options.length}` });
     }
-
-      lines.push({ label: "Options", value: `${state.options.length}` });
-    }
     return lines;
   }, [state]);
 
