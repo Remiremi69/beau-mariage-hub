@@ -103,10 +103,10 @@ export const OPTION_LABELS: Record<string, string> = {
   lanternes: 'Lâcher de lanternes',
   nuit_nuptiale: 'Nuit nuptiale',
   'couverts-dores': 'Couverts dorés mat',
+  'verres-fumes': 'Verres fumés',
+  'bougies-tapers-noires': 'Bougies tapers noires ×60',
   'chemin-velours': 'Chemin de table velours',
   'photophores-fumes': 'Photophores fumés ×50',
   'service-bar-2h': 'Service bar — 2 heures',
   'soupe-oignon': 'Soupe à l\'oignon',
-}
-  'photophores-fumes': 'Photophores fumés ×50',
 }
