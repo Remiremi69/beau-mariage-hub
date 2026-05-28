@@ -226,7 +226,7 @@ const Step00_Domaine = ({ onNext }: Step00Props) => {
           </p>
         </motion.div>
 
-        </motion.p>
+
       </div>
 
       <PresentationDrawer
