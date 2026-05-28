@@ -31,11 +31,12 @@ const heroImages = [hero2, hero3, hero4, hero1];
 const allImages = [hero1, hero2, hero3, hero4, venueExterior, heroWedding];
 
 /* ─── Constants ───────────────────────────────────────── */
-
 const STEP_BACKGROUNDS = [
   "radial-gradient(ellipse at 30% 60%, rgba(201,169,110,0.20) 0%, transparent 55%), radial-gradient(ellipse at 75% 20%, rgba(201,169,110,0.08) 0%, transparent 40%), linear-gradient(160deg, #0d0b08 0%, #1a1612 45%, #231e17 70%, #1a1612 100%)",
   "radial-gradient(ellipse at 50% 100%, rgba(100,120,200,0.25) 0%, transparent 55%), linear-gradient(180deg, #060810 0%, #0d1228 55%, #080e1e 100%)",
   "radial-gradient(circle at 60% 40%, rgba(201,169,110,0.12) 0%, transparent 50%), linear-gradient(135deg, #0e0c09 0%, #1c1812 60%, #130f09 100%)",
+  // 3 — Préparation des mariés (nouveau, ambiance matinale dorée)
+  "radial-gradient(ellipse at 50% 30%, rgba(230,200,150,0.18) 0%, transparent 55%), radial-gradient(ellipse at 30% 80%, rgba(201,169,110,0.10) 0%, transparent 45%), linear-gradient(170deg, #0e0c09 0%, #1a1612 55%, #130f0a 100%)",
   "radial-gradient(ellipse at 50% 0%, rgba(80,120,60,0.30) 0%, transparent 55%), linear-gradient(180deg, #080e06 0%, #101806 50%, #080e06 100%)",
   "radial-gradient(ellipse at 50% 50%, rgba(140,90,60,0.28) 0%, transparent 55%), linear-gradient(160deg, #0c0907 0%, #18120c 60%, #0e0a07 100%)",
   "radial-gradient(ellipse at 55% 35%, rgba(201,169,110,0.18) 0%, transparent 45%), linear-gradient(150deg, #0c0b08 0%, #1a1710 60%, #110e08 100%)",
@@ -47,12 +48,14 @@ const STEP_BACKGROUNDS = [
   "radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.25) 0%, transparent 60%), linear-gradient(160deg, #0d0b08 0%, #1a1612 50%, #231e17 100%)",
 ];
 
-const TOTAL_STEPS = 12;
+const TOTAL_STEPS = 13;
 
 const STEP_LABELS = [
-  "Accueil", "Date", "Invités", "Cérémonie", "Violoniste",
+  "Accueil", "Date", "Invités", "Préparation des mariés", "Cérémonie", "Violoniste",
   "Votre table & votre nuit", "Photographe",
   "DJ", "Déco", "Options", "Site mariage", "Récap",
+];
+
 ];
 
 const availableDates: Record<string, string> = {
