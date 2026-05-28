@@ -1333,6 +1333,58 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
                 </span>
               </div>
             ))}
+
+            {/* Section VOTRE NUIT dans le récap */}
+            <div style={{ marginTop: 24, paddingTop: 20, borderTop: "1px solid rgba(201,169,110,0.20)" }}>
+              <p
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: 11,
+                  letterSpacing: "0.30em",
+                  textTransform: "uppercase",
+                  color: "rgba(201,169,110,0.60)",
+                  textAlign: "center",
+                  marginBottom: 16,
+                }}
+              >
+                Votre nuit
+              </p>
+              {[
+                { label: "Bar de nuit installé", tag: "Inclus", show: true },
+                { label: "Service bar 2 heures", tag: "Prestige", show: selectedOptionsNuit.includes("service-bar-2h") },
+                { label: "Soupe à l'oignon", tag: "Prestige", show: selectedOptionsNuit.includes("soupe-oignon") },
+              ]
+                .filter((r) => r.show)
+                .map((r) => (
+                  <div
+                    key={r.label}
+                    className="flex items-center justify-between"
+                    style={{ padding: "10px 0", gap: 16 }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontStyle: "italic",
+                        fontSize: 15,
+                        color: "#faf8f4",
+                      }}
+                    >
+                      <span style={{ color: "rgba(201,169,110,0.70)", marginRight: 10 }}>✓</span>
+                      {r.label}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "'Jost', sans-serif",
+                        fontStyle: "italic",
+                        fontSize: 11,
+                        color: "rgba(201,169,110,0.50)",
+                      }}
+                    >
+                      ({r.tag})
+                    </span>
+                  </div>
+                ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
