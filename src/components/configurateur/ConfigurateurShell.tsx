@@ -56,7 +56,6 @@ const STEP_LABELS = [
   "DJ", "Déco", "Options", "Site mariage", "Récap",
 ];
 
-];
 
 const availableDates: Record<string, string> = {
   "2027-10-04": "Lun 4 Oct",
