@@ -662,6 +662,9 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
         </motion.p>
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} style={{ width: 80, height: 1, background: "#c9a96e", margin: "36px auto 48px" }} />
 
+        {/* ═══ TIMELINE DU JOUR J ═══ */}
+        <TimelineBlock state={state} />
+
         {/* ═══ BLOC 2 — VOS CHOIX ═══ */}
         <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp} className="w-full" style={{ maxWidth: 700 }}>
           <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.35em", textTransform: "uppercase", color: "rgba(201,169,110,0.55)", marginBottom: 28 }}>Vos choix</p>
