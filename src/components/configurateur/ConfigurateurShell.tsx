@@ -137,7 +137,29 @@ const RecapLine = ({ label, value }: { label: string; value: string }) => (
 
 /* ═══════════════════════════════════════════════════════ */
 const ConfigurateurShell = () => {
-  const [state, setState] = useState<ConfigurateurState>(defaultState);
+  const [state, setState] = useState<ConfigurateurState>(() => {
+    try {
+      const saved = localStorage.getItem("limen-config-state");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && typeof parsed === "object" && "currentStep" in parsed) {
+          return { ...defaultState, ...parsed };
+        }
+      }
+    } catch (e) {
+      console.error("Erreur lecture state sauvegardé:", e);
+    }
+    return defaultState;
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("limen-config-state", JSON.stringify(state));
+    } catch (e) {
+      console.error("Erreur sauvegarde state:", e);
+    }
+  }, [state]);
+
   const [displayStep, setDisplayStep] = useState(0);
   const [transitionClass, setTransitionClass] = useState("");
   const [overlayActive, setOverlayActive] = useState(false);

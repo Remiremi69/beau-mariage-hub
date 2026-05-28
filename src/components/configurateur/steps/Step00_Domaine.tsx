@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import InfoButton from "../InfoButton";
 import PresentationDrawer from "../PresentationDrawer";
 import { drawerDomaine } from "../drawerContents";
+
 
 interface Step00Props {
   onNext: () => void;
@@ -94,18 +94,45 @@ const Step00_Domaine = ({ onNext }: Step00Props) => {
           }}
         >
           Au cœur du Beaujolais,
+
           le Domaine de la Croix Rochefort vous attend.
-          Composez votre journée, exactement comme vous
-          l'imaginez.
+          Une journée pensée pour vous. Quelques moments à choisir,
+          le reste vous attend.
         </motion.p>
 
-        {/* Info button */}
-        <motion.div custom={3.5} initial="hidden" animate="visible" variants={fadeUp}>
-          <InfoButton
-            label="En savoir plus sur le domaine"
-            onClick={() => setDrawerOpen(true)}
-          />
-        </motion.div>
+        {/* Lien discret vers le drawer */}
+        <motion.button
+          custom={3.5}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          onClick={() => setDrawerOpen(true)}
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontWeight: 300,
+            fontSize: "12px",
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            color: "rgba(201,169,110,0.55)",
+            background: "transparent",
+            border: "none",
+            cursor: "pointer",
+            marginTop: "20px",
+            paddingBottom: "2px",
+            borderBottom: "1px solid rgba(201,169,110,0.30)",
+            transition: "color 0.3s ease, border-color 0.3s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = "rgba(201,169,110,0.95)";
+            e.currentTarget.style.borderBottomColor = "rgba(201,169,110,0.70)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = "rgba(201,169,110,0.55)";
+            e.currentTarget.style.borderBottomColor = "rgba(201,169,110,0.30)";
+          }}
+        >
+          Découvrir le domaine
+        </motion.button>
 
         {/* Bloc "Ce qui vous attend" */}
         <motion.div
@@ -116,9 +143,9 @@ const Step00_Domaine = ({ onNext }: Step00Props) => {
           className="flex flex-col items-center gap-3 mt-10"
         >
           {[
-            "Le domaine & la date",
-            "Le repas, le vin, la cérémonie",
-            "La déco, le photographe, le DJ",
+            "Composer le matin",
+            "Orchestrer le rituel",
+            "Habiter la nuit",
           ].map((line) => (
             <span
               key={line}
@@ -135,6 +162,7 @@ const Step00_Domaine = ({ onNext }: Step00Props) => {
             </span>
           ))}
         </motion.div>
+
 
         {/* CTA */}
         <motion.button
@@ -164,24 +192,41 @@ const Step00_Domaine = ({ onNext }: Step00Props) => {
         >
           Commencer
         </motion.button>
-
         {/* Mention basse */}
-        <motion.p
+        <motion.div
           custom={6}
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          style={{
-            fontFamily: "'Jost', sans-serif",
-            fontWeight: 300,
-            fontSize: "11px",
-            letterSpacing: "0.2em",
-            color: "rgba(232,221,208,0.35)",
-            marginTop: "32px",
-          }}
+          style={{ marginTop: "32px", textAlign: "center" }}
         >
-          10 à 15 minutes · Sans engagement
-        </motion.p>
+          <p
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontWeight: 300,
+              fontSize: "11px",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "rgba(232,221,208,0.40)",
+              marginBottom: "8px",
+            }}
+          >
+            10 à 15 minutes · Sans engagement
+          </p>
+          <p
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontSize: "13px",
+              color: "rgba(232,221,208,0.45)",
+              lineHeight: 1.6,
+            }}
+          >
+            Vous pourrez reprendre plus tard si vous le souhaitez.
+          </p>
+        </motion.div>
+
+
       </div>
 
       <PresentationDrawer
