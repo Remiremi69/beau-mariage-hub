@@ -807,10 +807,20 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
   const [selectedDessert, setSelectedDessert] = useState<string | null>(
     state.repasDessert ?? null
   );
+  const NUIT_OPTION_IDS = ["service-bar-2h", "soupe-oignon"];
+  const [selectedOptionsNuit, setSelectedOptionsNuit] = useState<string[]>(
+    (state.options ?? []).filter((o) => NUIT_OPTION_IDS.includes(o))
+  );
+  const toggleOptionNuit = (id: string) => {
+    setSelectedOptionsNuit((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  };
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const platRef = useRef<HTMLDivElement>(null);
   const dessertRef = useRef<HTMLDivElement>(null);
+  const nuitRef = useRef<HTMLDivElement>(null);
   const recapRef = useRef<HTMLDivElement>(null);
 
   const handleMenuSelect = (menuId: Repas) => {
