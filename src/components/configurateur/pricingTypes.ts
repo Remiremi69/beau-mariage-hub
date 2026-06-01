@@ -14,12 +14,7 @@ export type ConfigurateurState = {
   currentStep: number
   date: string | null
   guests: number
-  preparation: {
-    lieuGite: boolean
-    maquilleuse: boolean
-    coiffeuse: boolean
-    photographePrep: boolean
-  }
+  preparation: boolean
   ceremonieLaique: boolean
   violonisteOption: boolean
   vhBouchee: string | null
