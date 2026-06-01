@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
+import { schemaPrestataireBreadcrumb } from "@/lib/schemas";
 
 const COLORS = {
   nuit: "#0D0E12",
@@ -109,6 +110,7 @@ const Photographe = () => {
         title="Loïc Cancade, Photographe & vidéaste partenaire | Le Beau Mariage par Limen"
         description="Photographe de mariage en Beaujolais, Loïc Cancade signe les images de la sélection Limen. Reportage documentaire, regard juste, sans pose."
         canonical="https://lebeaumariage.fr/serie-octobre-2027/prestataires/photographe"
+        jsonLd={schemaPrestataireBreadcrumb("photographe", "Photographe")}
       />
 
       {/* 1. NAV */}

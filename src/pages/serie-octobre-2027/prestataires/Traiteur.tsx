@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
+import { schemaPrestataireBreadcrumb } from "@/lib/schemas";
 import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
 
 const COLORS = {
@@ -75,6 +76,7 @@ const Traiteur = () => {
         title="J & J Traiteur — Traiteur partenaire | Le Beau Mariage par Limen"
         description="Traiteur de mariage en Beaujolais, formé dans les grandes maisons lyonnaises. J & J Traiteur signe la gastronomie de la sélection Limen — sur-mesure, sans compromis."
         canonical="https://lebeaumariage.fr/serie-octobre-2027/prestataires/traiteur"
+        jsonLd={schemaPrestataireBreadcrumb("traiteur", "Traiteur")}
       />
 
       {/* 1. NAV */}

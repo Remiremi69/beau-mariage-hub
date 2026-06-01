@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import SEO from "@/components/SEO";
+import { schemaPrestataireBreadcrumb } from "@/lib/schemas";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -74,6 +75,7 @@ const PrestataireTemplate = ({ data, slug }: PrestataireTemplateProps) => {
         title={`${data.title} - Série Octobre 2027 | Le Beau Mariage`}
         description={data.description[0]}
         canonical={`https://lebeaumariage.fr/serie-octobre-2027/prestataires/${slug}`}
+        jsonLd={schemaPrestataireBreadcrumb(slug, data.title)}
       />
 
       {/* Breadcrumb */}

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
+import { schemaPrestataireBreadcrumb } from "@/lib/schemas";
 import djAstreviaPortrait from "@/assets/dj-astrevia-portrait.png";
 
 const COLORS = {
@@ -107,6 +108,7 @@ const DJ = () => {
   title="Astrévia Events DJ & animation partenaires | Le Beau Mariage par Limen"
   description="Rémy et Jordan d'Astrévia Events signent l'animation musicale de la sélection Limen. Son, lumière, effets et programmation sur-mesure pour votre mariage."
   canonical="https://lebeaumariage.fr/serie-octobre-2027/prestataires/dj"
+  jsonLd={schemaPrestataireBreadcrumb("dj", "DJ")}
   />
 
   {/* 1. NAV */}
