@@ -43,8 +43,19 @@ const Badge = ({ label, tone = "gold" }: { label: string; tone?: "gold" | "neutr
 
 const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) => {
   const selected = state.photographe;
-  const select = (v: Photographe) => onUpdate({ photographe: v });
+  const isPreparationActive = state.preparation === true;
+  const select = (v: Photographe) => {
+    if (isPreparationActive && v === "essentielle") return;
+    onUpdate({ photographe: v });
+  };
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    if (isPreparationActive && state.photographe !== "signature") {
+      onUpdate({ photographe: "signature" });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPreparationActive]);
 
   return (
     <div className="flex items-center justify-center min-h-screen px-6" style={{ paddingTop: 60, paddingBottom: 60 }}>
