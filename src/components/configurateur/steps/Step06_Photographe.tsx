@@ -82,12 +82,67 @@ const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) =>
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
           style={{ width: 60, height: 1, background: "#c9a96e", margin: "0 auto 48px" }} />
 
+        {isPreparationActive && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            style={{
+              maxWidth: 600,
+              margin: "0 auto 32px",
+              padding: "16px 24px",
+              background: "rgba(201,169,110,0.05)",
+              border: "1px solid rgba(201,169,110,0.20)",
+              borderRadius: 2,
+              textAlign: "center",
+            }}
+          >
+            <p style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontSize: 14,
+              color: "rgba(232,221,208,0.75)",
+              lineHeight: 1.6,
+            }}>
+              Vous avez choisi le pack Préparation des mariés. La formule
+              photographe « Signature » est incluse pour couvrir votre
+              préparation dès 11h30.
+            </p>
+          </motion.div>
+        )}
+
         <div className="flex flex-col gap-4 w-full" style={{ maxWidth: 560 }}>
           {/* Essentielle */}
           <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp}
             onClick={() => select("essentielle")}
             className="flex flex-col"
-            style={{ ...cardBase, ...(selected === "essentielle" ? cardActive : {}), minHeight: 200, padding: 28 }}>
+            style={{
+              ...cardBase,
+              ...(selected === "essentielle" ? cardActive : {}),
+              minHeight: 200,
+              padding: 28,
+              opacity: isPreparationActive ? 0.4 : 1,
+              cursor: isPreparationActive ? "not-allowed" : "pointer",
+              pointerEvents: isPreparationActive ? "none" : "auto",
+              position: "relative",
+            }}>
+            {isPreparationActive && (
+              <div style={{
+                position: "absolute",
+                top: 12,
+                right: 12,
+                padding: "4px 10px",
+                background: "rgba(201,169,110,0.08)",
+                border: "1px solid rgba(201,169,110,0.20)",
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 9,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "rgba(201,169,110,0.60)",
+                borderRadius: 2,
+              }}>
+                Non disponible
+              </div>
+            )}
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e" }}>Essentielle</p>
@@ -111,6 +166,23 @@ const Step06_Photographe = ({ state, onUpdate, onNext, onPrev }: Step06Props) =>
             onClick={() => select("signature")}
             className="flex flex-col"
             style={{ ...cardBase, ...(selected === "signature" ? cardActive : {}), minHeight: 200, padding: 28 }}>
+            {isPreparationActive && (
+              <div style={{
+                marginBottom: 12,
+                padding: "4px 10px",
+                background: "rgba(201,169,110,0.10)",
+                border: "1px solid rgba(201,169,110,0.30)",
+                alignSelf: "flex-start",
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 9,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "#c9a96e",
+                borderRadius: 2,
+              }}>
+                Incluse avec votre préparation
+              </div>
+            )}
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e" }}>Signature</p>
