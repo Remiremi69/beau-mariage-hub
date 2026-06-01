@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ConfigurateurState, Deco } from "../pricingTypes";
+import seveImage from "@/assets/deco-seve.png.asset.json";
+
 
 interface Step08Props {
   state: ConfigurateurState;
