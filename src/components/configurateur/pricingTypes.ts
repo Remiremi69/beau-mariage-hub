@@ -66,6 +66,7 @@ export const defaultState: ConfigurateurState = {
   dj: { sonoVH: false, effetPrestige: false, barVinyles: false },
   deco: 'seve',
   options: [],
+  decoOptions: [],
   ambianceMusique: [],
   contact: { prenom: '', email: '', telephone: '' },
   totalEstimate: 0,
