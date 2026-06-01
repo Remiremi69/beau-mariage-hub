@@ -28,6 +28,7 @@ export type ConfigurateurState = {
   dj: DJChoice
   deco: Deco
   options: string[]
+  decoOptions: Array<'tapers_noires' | 'velours' | 'photophores_fumes'>
   ambianceMusique: string[]
   contact: { prenom: string; email: string; telephone: string }
   totalEstimate: number
