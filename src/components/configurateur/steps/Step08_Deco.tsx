@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ConfigurateurState, Deco } from "../pricingTypes";
-import InfoButton from "../InfoButton";
-import PresentationDrawer from "../PresentationDrawer";
-import { drawerDeco } from "../drawerContents";
 
 interface Step08Props {
   state: ConfigurateurState;
@@ -14,290 +11,698 @@ interface Step08Props {
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.7, ease: "easeOut" } }),
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.08, duration: 0.6, ease: "easeOut" },
+  }),
 };
 
-const SvgSeve = () => (
-  <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
-    <line x1="35" y1="75" x2="35" y2="20" stroke="rgba(201,169,110,0.40)" strokeWidth="1" />
-    <line x1="60" y1="75" x2="60" y2="10" stroke="rgba(201,169,110,0.40)" strokeWidth="1" />
-    <line x1="85" y1="75" x2="85" y2="25" stroke="rgba(201,169,110,0.40)" strokeWidth="1" />
-    <path d="M60 10 Q50 20 55 30" stroke="rgba(201,169,110,0.30)" fill="none" strokeWidth="0.8" />
-    <path d="M60 10 Q70 20 65 30" stroke="rgba(201,169,110,0.30)" fill="none" strokeWidth="0.8" />
-    <path d="M60 10 Q55 25 60 35" stroke="rgba(201,169,110,0.25)" fill="none" strokeWidth="0.8" />
-    <path d="M35 20 Q28 28 32 36" stroke="rgba(201,169,110,0.25)" fill="none" strokeWidth="0.8" />
-    <path d="M35 20 Q42 28 38 36" stroke="rgba(201,169,110,0.25)" fill="none" strokeWidth="0.8" />
-    <path d="M85 25 Q78 33 82 40" stroke="rgba(201,169,110,0.25)" fill="none" strokeWidth="0.8" />
-    <path d="M85 25 Q92 33 88 40" stroke="rgba(201,169,110,0.25)" fill="none" strokeWidth="0.8" />
-    <ellipse cx="48" cy="55" rx="5" ry="8" transform="rotate(-20 48 55)" fill="rgba(100,130,80,0.25)" />
-    <ellipse cx="72" cy="58" rx="4" ry="7" transform="rotate(15 72 58)" fill="rgba(100,130,80,0.20)" />
-  </svg>
-);
+type DecoOptionId = "tapers_noires" | "velours" | "photophores_fumes";
 
-const SvgPierre = () => (
-  <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
-    <line x1="15" y1="65" x2="105" y2="65" stroke="rgba(201,169,110,0.20)" strokeWidth="1" />
-    <rect x="38" y="35" width="8" height="30" stroke="rgba(201,169,110,0.30)" fill="none" strokeWidth="0.8" />
-    <rect x="56" y="25" width="8" height="40" stroke="rgba(201,169,110,0.35)" fill="none" strokeWidth="0.8" />
-    <rect x="74" y="40" width="8" height="25" stroke="rgba(201,169,110,0.30)" fill="none" strokeWidth="0.8" />
-    <path d="M42 35 Q42 28 42 32 Q44 27 42 35" fill="rgba(201,169,110,0.40)" />
-    <path d="M60 25 Q60 17 60 21 Q62 16 60 25" fill="rgba(201,169,110,0.50)" />
-    <path d="M78 40 Q78 33 78 37 Q80 32 78 40" fill="rgba(201,169,110,0.40)" />
-    <circle cx="42" cy="70" r="5" stroke="rgba(232,221,208,0.20)" fill="none" strokeWidth="0.8" />
-    <circle cx="60" cy="70" r="5" stroke="rgba(232,221,208,0.20)" fill="none" strokeWidth="0.8" />
-    <circle cx="78" cy="70" r="5" stroke="rgba(232,221,208,0.20)" fill="none" strokeWidth="0.8" />
-  </svg>
-);
-
-interface DecoCardData {
+interface FormulaCard {
   id: Deco;
-  svg: React.ReactNode;
-  bgColor: string;
-  slot: string;
   name: string;
-  accroche: [string, string];
+  subtitle: string;
   description: string;
+  badge?: string;
   palette: { color: string; label: string }[];
   includes: string[];
-  prix: string;
-  prixGold: boolean;
-  badge?: string;
 }
 
-const decoCards: DecoCardData[] = [
+const formulas: FormulaCard[] = [
   {
-    id: "seve", svg: <SvgSeve />, bgColor: "rgba(80,65,45,0.40)", slot: "deco-seve",
-    name: "SÈVE", accroche: ["Végétal, terracotta,", "lin brut"],
-    description: "Compositions de pampa blanc naturel, eucalyptus et gypsophile sur pieds dorés fins. Vaisselle en grès beige, lin brut, bougies pilier ivoire.",
-    palette: [{ color: "#C4A882", label: "Lin brut" }, { color: "#B87B5A", label: "Terracotta" }, { color: "#8B9E78", label: "Végétal" }],
+    id: "seve",
+    name: "SÈVE",
+    subtitle: "Végétal, terracotta, lin brut",
+    description:
+      "Compositions de pampa blanc naturel, eucalyptus et gypsophile sur pieds dorés fins. Chemin de table jute, bougies pilier ivoire, photophores verre naturel, rondins de bois brut.",
+    palette: [
+      { color: "#C4A882", label: "Lin brut" },
+      { color: "#C17B5A", label: "Terracotta" },
+      { color: "#7A8C6E", label: "Végétal" },
+    ],
     includes: [
-      "Nappage lin brut beige — table impériale + rondes",
-      "Vaisselle grès beige/ivoire (assiette plate + creuse)",
-      "Bougies pilier ivoire H.20cm — 2/table ronde",
+      "Bougies pilier ivoire H.20cm — 2/table",
       "Chemin de table jute — table impériale",
-      "Photophores verre naturel — 2/table ronde",
+      "Photophores verre naturel — 2/table",
+      "Rondins de bois brut — centre de table",
       "Compositions pampa/eucalyptus sur pieds dorés",
+      "Guirlandes sur poutres + plafond lumineux",
     ],
-    prix: "Inclus dans le forfait", prixGold: false,
   },
   {
-    id: "pierre", svg: <SvgPierre />, bgColor: "rgba(28,28,28,0.60)", slot: "deco-pierre",
-    name: "PIERRE & LUMIÈRE", accroche: ["Blanc pur,", "minimalisme absolu"], badge: "ÉPURÉ",
-    description: "Nappes damassé blanc épais, porcelaine blanche premium, cristallin. Aucun chemin de table — juste la lumière des bougies pilier blanc.",
-    palette: [{ color: "#F5F0E8", label: "Blanc ivoire" }, { color: "#D4CFC8", label: "Damassé" }, { color: "#C9A96E", label: "Or" }],
-    includes: [
-      "Nappage blanc damassé épais — 10 tables rondes",
-      "Vaisselle porcelaine blanche premium",
-      "Bougies pilier blanc H.25cm — 2/table",
-      "Verres cristallin — vin + eau",
-      "Compositions pampa/eucalyptus sur pieds dorés",
-      "Arche cérémonie métal doré + floraux séchés",
+    id: "pierre",
+    name: "PIERRE & LUMIÈRE",
+    subtitle: "Blanc pur, minimalisme absolu",
+    badge: "ÉPURÉ",
+    description:
+      "Arche habillée de floraux séchés, compositions pampa sur pieds dorés. Aucun chemin de table — juste la lumière des bougies pilier blanc.",
+    palette: [
+      { color: "#F0EDE6", label: "Blanc ivoire" },
+      { color: "#E8E0D0", label: "Damassé" },
+      { color: "#C8A96E", label: "Or" },
     ],
-    prix: "Inclus dans le forfait", prixGold: false,
+    includes: [
+      "Bougies pilier blanc H.25cm — 2/table",
+      "Arche cérémonie habillée floraux séchés",
+      "Compositions pampa/eucalyptus sur pieds dorés",
+      "Guirlandes sur poutres + plafond lumineux",
+      "Aucun chemin de table — épure totale",
+    ],
   },
 ];
 
-interface DecoOption {
-  id: string;
-  name: string;
-  description: string;
-  prix: string;
-}
-
-const decoOptions: DecoOption[] = [
-  { id: "couverts-dores", name: "COUVERTS DORÉS MAT", description: "Remplace l'inox brossé — finition mat luxueuse", prix: "+ 110 €" },
-  { id: "verres-fumes", name: "VERRES FUMÉS", description: "Remplace cristallin/transparent — ambiance intimiste", prix: "+ 180 €" },
-  { id: "bougies-tapers-noires", name: "BOUGIES TAPERS NOIRES ×60", description: "Effet dramatique — remplacement des bougies pilier", prix: "+ 225 €" },
-  { id: "chemin-velours", name: "CHEMIN DE TABLE VELOURS", description: "Sur la table impériale — matière noble et texturée", prix: "+ 100 €" },
-  { id: "photophores-fumes", name: "PHOTOPHORES FUMÉS ×50", description: "Remplace verre naturel — ambiance tamisée profonde", prix: "+ 60 €" },
+const decoOptions: { id: DecoOptionId; name: string; description: string }[] = [
+  {
+    id: "tapers_noires",
+    name: "BOUGIES TAPERS NOIRES ×60",
+    description: "Effet dramatique — remplace les bougies pilier",
+  },
+  {
+    id: "velours",
+    name: "CHEMIN DE TABLE VELOURS",
+    description: "Sur la table impériale — matière noble et texturée",
+  },
+  {
+    id: "photophores_fumes",
+    name: "PHOTOPHORES FUMÉS ×50",
+    description: "Remplace verre naturel — ambiance tamisée profonde",
+  },
 ];
 
-const DECO_OPTION_IDS = decoOptions.map(o => o.id);
+const FONT_BODY = "'Jost', sans-serif";
+const FONT_DISPLAY = "'Cormorant Garamond', serif";
+const LIN = "#F5F0E8";
+const OR = "#C8A96E";
 
 const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
-  const selected = state.deco;
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [decoOptionsSelected, setDecoOptionsSelected] = useState<string[]>(
-    state.options.filter(id => DECO_OPTION_IDS.includes(id))
-  );
+  const [decoTouched, setDecoTouched] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const selected = decoTouched ? state.deco : null;
+  const decoOpts = state.decoOptions ?? [];
 
-  const toggleDecoOption = (id: string) => {
-    setDecoOptionsSelected(prev =>
-      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
-    );
+  const toggleOption = (id: DecoOptionId) => {
+    const next = decoOpts.includes(id)
+      ? decoOpts.filter((x) => x !== id)
+      : [...decoOpts, id];
+    onUpdate({ decoOptions: next });
+  };
+
+  const selectFormula = (id: Deco) => {
+    setDecoTouched(true);
+    setError(null);
+    onUpdate({ deco: id });
   };
 
   const handleContinue = () => {
-    const otherOptions = state.options.filter(id => !DECO_OPTION_IDS.includes(id));
-    onUpdate({
-      deco: selected,
-      options: [...otherOptions, ...decoOptionsSelected],
-    });
+    if (!decoTouched) {
+      setError("Choisissez votre univers décoratif pour continuer.");
+      return;
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
     onNext();
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-6" style={{ paddingTop: 60, paddingBottom: 100 }}>
-      <div className="flex flex-col items-center w-full" style={{ maxWidth: 760 }}>
-        <motion.p custom={0} initial="hidden" animate="visible" variants={fadeUp}
-          style={{ fontFamily: "'Jost', sans-serif", fontWeight: 200, fontSize: 11, letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(201,169,110,0.6)" }}>
+    <div
+      className="flex items-center justify-center min-h-screen px-6"
+      style={{ background: "#1A1814", paddingTop: 60, paddingBottom: 100 }}
+    >
+      <div className="flex flex-col items-center w-full" style={{ maxWidth: 980 }}>
+        {/* En-tête */}
+        <motion.p
+          custom={0}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          style={{
+            fontFamily: FONT_BODY,
+            fontWeight: 200,
+            fontSize: 11,
+            letterSpacing: "0.4em",
+            textTransform: "uppercase",
+            color: `${OR}99`,
+          }}
+        >
           Étape 8 · L'atmosphère
         </motion.p>
 
-        <motion.h2 custom={1} initial="hidden" animate="visible" variants={fadeUp} className="text-center mt-6"
-          style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(38px, 5vw, 52px)", color: "#faf8f4", lineHeight: 1.15 }}>
-          L'espace qui<br />vous ressemble.
+        <motion.h2
+          custom={1}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="text-center mt-6"
+          style={{
+            fontFamily: FONT_DISPLAY,
+            fontWeight: 300,
+            fontStyle: "italic",
+            fontSize: "clamp(38px, 5vw, 52px)",
+            color: LIN,
+            lineHeight: 1.15,
+          }}
+        >
+          L'espace qui vous ressemble.
         </motion.h2>
 
-        <motion.p custom={2} initial="hidden" animate="visible" variants={fadeUp} className="text-center"
-          style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 15, color: "rgba(232,221,208,0.65)", lineHeight: 1.8, maxWidth: 500, marginBottom: 44 }}>
+        <motion.p
+          custom={2}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="text-center mt-6"
+          style={{
+            fontFamily: FONT_BODY,
+            fontWeight: 300,
+            fontSize: 15,
+            color: `${LIN}99`,
+            lineHeight: 1.8,
+            maxWidth: 560,
+          }}
+        >
           La décoration n'est pas un décor. C'est la première chose que vos invités ressentent en entrant. Choisissez votre langage visuel.
         </motion.p>
 
-        <motion.div custom={2.5} initial="hidden" animate="visible" variants={fadeUp}>
-          <InfoButton label="Voir les réalisations déco" onClick={() => setDrawerOpen(true)} />
-        </motion.div>
+        <motion.span
+          custom={2.5}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="mt-4"
+          style={{
+            fontFamily: FONT_BODY,
+            fontWeight: 300,
+            fontSize: 12,
+            letterSpacing: "0.15em",
+            color: `${LIN}66`,
+          }}
+        >
+          Voir les réalisations déco →
+        </motion.span>
 
-        <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp}
-          style={{ width: 60, height: 1, background: "#c9a96e", margin: "0 auto 52px" }} />
+        <motion.div
+          custom={3}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          style={{ width: 60, height: 1, background: OR, margin: "44px auto 44px" }}
+        />
 
-        {/* Cards — 2 columns */}
-        <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp}
-          className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
-          {decoCards.map((card) => {
+        {/* Bloc 2 : Formules */}
+        <motion.div
+          custom={4}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full"
+        >
+          {formulas.map((card) => {
             const isSelected = selected === card.id;
             return (
               <div
                 key={card.id}
-                onClick={() => onUpdate({ deco: card.id })}
+                onClick={() => selectFormula(card.id)}
                 className="flex flex-col overflow-hidden transition-all duration-300"
                 style={{
-                  borderRadius: 2, cursor: "pointer", minHeight: 420,
-                  border: isSelected ? "1px solid #c9a96e" : "1px solid rgba(201,169,110,0.15)",
-                  background: isSelected ? "rgba(201,169,110,0.06)" : "rgba(26,22,18,0.40)",
+                  borderRadius: 2,
+                  cursor: "pointer",
+                  border: isSelected
+                    ? `1.5px solid ${OR}`
+                    : `1px solid ${LIN}1F`,
+                  background: isSelected ? `${OR}0F` : `${LIN}0A`,
                 }}
-                onMouseEnter={(e) => { if (!isSelected) { e.currentTarget.style.border = "1px solid rgba(201,169,110,0.40)"; e.currentTarget.style.transform = "translateY(-3px)"; } }}
-                onMouseLeave={(e) => { if (!isSelected) { e.currentTarget.style.border = "1px solid rgba(201,169,110,0.15)"; e.currentTarget.style.transform = "translateY(0)"; } }}
               >
-                {/* Visual zone */}
-                <div data-photo-slot={card.slot} className="relative flex flex-col items-center justify-center"
-                  style={{ height: 200, background: card.bgColor, borderBottom: "1px solid rgba(201,169,110,0.10)" }}>
-                  {card.svg}
-                  <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 200, fontSize: 10, letterSpacing: "0.30em", textTransform: "uppercase", color: "rgba(201,169,110,0.30)", marginTop: 8 }}>
+                {/* Visuel */}
+                <div
+                  className="relative flex items-center justify-center"
+                  style={{
+                    aspectRatio: "4 / 3",
+                    background: "rgba(20,18,14,0.6)",
+                    borderBottom: `1px solid ${LIN}14`,
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: FONT_BODY,
+                      fontWeight: 200,
+                      fontSize: 10,
+                      letterSpacing: "0.30em",
+                      textTransform: "uppercase",
+                      color: `${OR}66`,
+                    }}
+                  >
                     Visuel à venir
                   </span>
                   {card.badge && (
-                    <span className="absolute top-3 right-3" style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", border: "1px solid rgba(201,169,110,0.40)", padding: "3px 10px", color: "rgba(201,169,110,0.70)" }}>
+                    <span
+                      className="absolute top-3 left-3"
+                      style={{
+                        fontFamily: FONT_BODY,
+                        fontWeight: 400,
+                        fontSize: 9,
+                        letterSpacing: "0.25em",
+                        textTransform: "uppercase",
+                        background: `${LIN}14`,
+                        color: `${LIN}B3`,
+                        padding: "3px 9px",
+                      }}
+                    >
                       {card.badge}
                     </span>
                   )}
                 </div>
 
-                {/* Text zone */}
-                <div className="flex flex-col flex-1 relative" style={{ padding: "24px 22px 28px" }}>
-                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.30em", textTransform: "uppercase", color: "rgba(232,221,208,0.80)", marginBottom: 6 }}>{card.name}</p>
-                  <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 22, color: "#faf8f4", lineHeight: 1.3, marginBottom: 14 }}>
-                    {card.accroche[0]}<br />{card.accroche[1]}
+                {/* Contenu */}
+                <div className="flex flex-col flex-1" style={{ padding: "26px 24px 28px" }}>
+                  <p
+                    style={{
+                      fontFamily: FONT_BODY,
+                      fontWeight: 400,
+                      fontSize: 15,
+                      letterSpacing: "0.30em",
+                      textTransform: "uppercase",
+                      color: LIN,
+                      marginBottom: 8,
+                    }}
+                  >
+                    {card.name}
                   </p>
-                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.55)", lineHeight: 1.70, marginBottom: 16 }}>{card.description}</p>
+                  <p
+                    style={{
+                      fontFamily: FONT_DISPLAY,
+                      fontWeight: 300,
+                      fontStyle: "italic",
+                      fontSize: 20,
+                      color: `${LIN}CC`,
+                      lineHeight: 1.3,
+                      marginBottom: 14,
+                    }}
+                  >
+                    {card.subtitle}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: FONT_BODY,
+                      fontWeight: 300,
+                      fontSize: 13,
+                      color: `${LIN}99`,
+                      lineHeight: 1.75,
+                      marginBottom: 18,
+                    }}
+                  >
+                    {card.description}
+                  </p>
 
-                  {/* Palette */}
-                  <div className="flex gap-3 mb-4">
+                  {/* Chips palette */}
+                  <div className="flex flex-wrap gap-3 mb-5">
                     {card.palette.map((p) => (
                       <div key={p.label} className="flex items-center gap-2">
-                        <div style={{ width: 16, height: 16, borderRadius: "50%", background: p.color, border: "1px solid rgba(201,169,110,0.15)" }} />
-                        <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 200, fontSize: 11, color: "rgba(232,221,208,0.40)", letterSpacing: "0.10em" }}>{p.label}</span>
+                        <div
+                          style={{
+                            width: 14,
+                            height: 14,
+                            borderRadius: "50%",
+                            background: p.color,
+                            border: `1px solid ${LIN}1F`,
+                          }}
+                        />
+                        <span
+                          style={{
+                            fontFamily: FONT_BODY,
+                            fontWeight: 300,
+                            fontSize: 11,
+                            color: `${LIN}80`,
+                            letterSpacing: "0.08em",
+                          }}
+                        >
+                          {p.label}
+                        </span>
                       </div>
                     ))}
                   </div>
 
                   {/* Includes */}
-                  <div className="flex flex-col gap-[6px] mb-4">
+                  <div className="flex flex-col gap-[6px] mb-5">
                     {card.includes.map((item) => (
-                      <span key={item} style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.50)" }}>— {item}</span>
+                      <span
+                        key={item}
+                        style={{
+                          fontFamily: FONT_BODY,
+                          fontWeight: 300,
+                          fontSize: 12.5,
+                          color: `${LIN}99`,
+                          lineHeight: 1.55,
+                        }}
+                      >
+                        — {item}
+                      </span>
                     ))}
                   </div>
 
-                  {/* Prix */}
-                  <p style={{ borderTop: "1px solid rgba(201,169,110,0.10)", paddingTop: 16, marginTop: "auto", fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 14, color: "rgba(232,221,208,0.60)" }}>
-                    {card.prix}
-                  </p>
-
-                  {isSelected && <div className="absolute bottom-4 right-4" style={{ width: 8, height: 8, borderRadius: "50%", background: "#c9a96e" }} />}
+                  {/* Badge inclus */}
+                  <span
+                    className="self-start mt-auto"
+                    style={{
+                      fontFamily: FONT_BODY,
+                      fontWeight: 400,
+                      fontSize: 10,
+                      letterSpacing: "0.25em",
+                      textTransform: "uppercase",
+                      border: `1px solid ${OR}80`,
+                      color: OR,
+                      padding: "5px 12px",
+                      background: "transparent",
+                    }}
+                  >
+                    Inclus dans le forfait
+                  </span>
                 </div>
               </div>
             );
           })}
         </motion.div>
 
-        {/* Options upgrades */}
-        <motion.div custom={5} initial="hidden" animate="visible" variants={fadeUp} className="w-full">
-          <p style={{
-            fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.30em",
-            textTransform: "uppercase", color: "rgba(201,169,110,0.55)", marginTop: 44, marginBottom: 20,
-          }}>
+        {/* Bloc 3 : Options */}
+        <motion.div
+          custom={5}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="w-full"
+          style={{ marginTop: 56 }}
+        >
+          <p
+            className="text-center"
+            style={{
+              fontFamily: FONT_BODY,
+              fontWeight: 400,
+              fontSize: 10,
+              letterSpacing: "0.35em",
+              textTransform: "uppercase",
+              color: `${LIN}80`,
+              marginBottom: 20,
+            }}
+          >
             OPTIONS — APPLICABLES AUX DEUX FORMULES
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {decoOptions.map((opt) => {
-              const isActive = decoOptionsSelected.includes(opt.id);
+              const isActive = decoOpts.includes(opt.id);
               return (
                 <div
                   key={opt.id}
-                  onClick={() => toggleDecoOption(opt.id)}
-                  className="relative flex items-center gap-3 transition-all duration-200"
+                  onClick={() => toggleOption(opt.id)}
+                  className="flex flex-col gap-3 transition-all duration-200"
                   style={{
-                    padding: "16px 18px", cursor: "pointer", borderRadius: 2,
-                    border: isActive ? "1px solid rgba(201,169,110,0.60)" : "1px solid rgba(201,169,110,0.15)",
-                    background: isActive ? "rgba(201,169,110,0.07)" : "rgba(26,22,18,0.40)",
+                    padding: "18px 20px",
+                    cursor: "pointer",
+                    borderRadius: 2,
+                    border: isActive ? `1px solid ${OR}` : `1px solid ${LIN}1F`,
+                    background: isActive ? `${OR}14` : `${LIN}0A`,
                   }}
                 >
-                  {isActive && (
-                    <div className="absolute top-2 right-2" style={{ width: 8, height: 8, background: "#c9a96e" }} />
-                  )}
-                  <div style={{ flex: 1 }}>
-                    <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(232,221,208,0.80)" }}>
-                      {opt.name}
-                    </p>
-                    <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 4 }}>
-                      {opt.description}
-                    </p>
-                  </div>
-                  <span style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: "0.20em", textTransform: "uppercase", border: "1px solid #c9a96e", color: "#c9a96e", background: "rgba(201,169,110,0.10)", padding: "3px 10px", flexShrink: 0 }}>
+                  <span
+                    className="self-start"
+                    style={{
+                      fontFamily: FONT_BODY,
+                      fontWeight: 400,
+                      fontSize: 9.5,
+                      letterSpacing: "0.25em",
+                      textTransform: "uppercase",
+                      background: `${OR}1F`,
+                      color: OR,
+                      padding: "3px 9px",
+                    }}
+                  >
                     ✦ Prestige
                   </span>
+                  <p
+                    style={{
+                      fontFamily: FONT_BODY,
+                      fontWeight: 400,
+                      fontSize: 12,
+                      letterSpacing: "0.20em",
+                      textTransform: "uppercase",
+                      color: LIN,
+                    }}
+                  >
+                    {opt.name}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: FONT_BODY,
+                      fontWeight: 300,
+                      fontSize: 12.5,
+                      color: `${LIN}99`,
+                      lineHeight: 1.55,
+                    }}
+                  >
+                    {opt.description}
+                  </p>
                 </div>
               );
             })}
           </div>
         </motion.div>
 
-        {/* Note */}
-        <motion.div custom={6} initial="hidden" animate="visible" variants={fadeUp}
-          className="w-full" style={{ marginTop: 40, padding: "18px 22px", background: "rgba(201,169,110,0.04)", borderLeft: "2px solid rgba(201,169,110,0.40)", borderRadius: "0 2px 2px 0" }}>
-          <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.60)", lineHeight: 1.75 }}>
-            La décoration est installée la veille du mariage. Les deux formules sont incluses dans le forfait. Les options upgrades s'appliquent à la formule choisie.
+        {/* Bloc 4 : Note de service */}
+        <motion.div
+          custom={6}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="w-full"
+          style={{
+            marginTop: 44,
+            padding: "22px 26px",
+            background: `${LIN}08`,
+            borderLeft: `2px solid ${OR}`,
+            borderRadius: "0 2px 2px 0",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: FONT_BODY,
+              fontWeight: 300,
+              fontSize: 13,
+              color: `${LIN}99`,
+              lineHeight: 1.75,
+              marginBottom: 14,
+            }}
+          >
+            La décoration est installée la veille du mariage par notre équipe. Les deux formules sont incluses dans le forfait. Les options s'appliquent à la formule choisie.
+          </p>
+          <p
+            style={{
+              fontFamily: FONT_DISPLAY,
+              fontWeight: 300,
+              fontStyle: "italic",
+              fontSize: 15,
+              color: OR,
+              lineHeight: 1.6,
+              marginBottom: 14,
+            }}
+          >
+            « Même formule = 30 min de retouches. Changement de formule = 2h max. Tout est prévu pour les 5 mariages. »
+          </p>
+          <p
+            style={{
+              fontFamily: FONT_BODY,
+              fontWeight: 300,
+              fontSize: 13,
+              color: LIN,
+              lineHeight: 1.75,
+            }}
+          >
+            La salle vous est accessible dès 12h si vous souhaitez y intégrer vos éléments personnels — photos, objets de famille, signalétique. Ils s'intègreront à l'univers choisi.
           </p>
         </motion.div>
 
+        {/* Bloc 5 : Kit fixe */}
+        <motion.div
+          custom={7}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="w-full"
+          style={{
+            marginTop: 28,
+            padding: "32px 32px",
+            background: `${LIN}05`,
+            borderRadius: 4,
+          }}
+        >
+          <p
+            style={{
+              fontFamily: FONT_BODY,
+              fontWeight: 400,
+              fontSize: 12,
+              letterSpacing: "0.30em",
+              textTransform: "uppercase",
+              color: LIN,
+              marginBottom: 6,
+            }}
+          >
+            Kit fixe Limen — installé une fois
+          </p>
+          <p
+            style={{
+              fontFamily: FONT_DISPLAY,
+              fontWeight: 300,
+              fontStyle: "italic",
+              fontSize: 16,
+              color: `${LIN}99`,
+              marginBottom: 24,
+            }}
+          >
+            Identique pour les 5 mariages
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <p
+                style={{
+                  fontFamily: FONT_BODY,
+                  fontWeight: 400,
+                  fontSize: 10.5,
+                  letterSpacing: "0.30em",
+                  textTransform: "uppercase",
+                  color: OR,
+                  marginBottom: 12,
+                }}
+              >
+                Compositions
+              </p>
+              <div className="flex flex-col gap-2">
+                {[
+                  "Compositions florales séchées ×13 sur pieds dorés H.80-90cm",
+                  "Pampa blanc naturel + eucalyptus + gypsophile",
+                  "Compositions bar pressoir caveau — grands vases verre",
+                  "Arche cérémonie habillée floraux séchés",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    style={{
+                      fontFamily: FONT_BODY,
+                      fontWeight: 300,
+                      fontSize: 12.5,
+                      color: `${LIN}99`,
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    — {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p
+                style={{
+                  fontFamily: FONT_BODY,
+                  fontWeight: 400,
+                  fontSize: 10.5,
+                  letterSpacing: "0.30em",
+                  textTransform: "uppercase",
+                  color: OR,
+                  marginBottom: 12,
+                }}
+              >
+                Structure & éclairage
+              </p>
+              <div className="flex flex-col gap-2">
+                <span
+                  style={{
+                    fontFamily: FONT_BODY,
+                    fontWeight: 300,
+                    fontSize: 12.5,
+                    color: `${LIN}99`,
+                    lineHeight: 1.6,
+                  }}
+                >
+                  — Tapis allée cérémonie lin brut
+                </span>
+                <span
+                  style={{
+                    fontFamily: FONT_BODY,
+                    fontWeight: 300,
+                    fontSize: 12.5,
+                    color: `${LIN}99`,
+                    lineHeight: 1.6,
+                  }}
+                >
+                  — Guirlandes sur poutres + plafond lumineux{" "}
+                  <span style={{ color: `${LIN}66`, fontSize: 11 }}>
+                    (inclus dans le domaine)
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Erreur */}
+        {error && (
+          <p
+            className="text-center mt-8"
+            style={{
+              fontFamily: FONT_BODY,
+              fontWeight: 300,
+              fontSize: 12,
+              letterSpacing: "0.10em",
+              color: OR,
+            }}
+          >
+            {error}
+          </p>
+        )}
+
         {/* Nav */}
-        <motion.div custom={7} initial="hidden" animate="visible" variants={fadeUp}
-          className="flex items-center justify-between w-full mt-12" style={{ maxWidth: 480 }}>
-          <button onClick={onPrev} className="transition-colors duration-200"
-            style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, letterSpacing: "0.2em", color: "rgba(232,221,208,0.40)", background: "transparent", border: "none", cursor: "pointer" }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(232,221,208,0.70)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(232,221,208,0.40)"; }}>
+        <motion.div
+          custom={8}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="flex items-center justify-between w-full mt-12"
+          style={{ maxWidth: 480 }}
+        >
+          <button
+            onClick={onPrev}
+            className="transition-colors duration-200"
+            style={{
+              fontFamily: FONT_BODY,
+              fontWeight: 300,
+              fontSize: 12,
+              letterSpacing: "0.2em",
+              color: `${LIN}66`,
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
             ← RETOUR
           </button>
-          <motion.button onClick={handleContinue} className="transition-colors duration-300"
-            style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.25em", textTransform: "uppercase", border: "1px solid #c9a96e", background: "transparent", color: "#c9a96e", padding: "18px 56px", borderRadius: 0, cursor: "pointer" }}
-            whileHover={{ backgroundColor: "#c9a96e", color: "#1a1612" }}>
+          <motion.button
+            onClick={handleContinue}
+            className="transition-colors duration-300"
+            style={{
+              fontFamily: FONT_BODY,
+              fontWeight: 400,
+              fontSize: 13,
+              letterSpacing: "0.25em",
+              textTransform: "uppercase",
+              border: `1px solid ${OR}`,
+              background: "transparent",
+              color: OR,
+              padding: "18px 56px",
+              borderRadius: 0,
+              cursor: "pointer",
+            }}
+            whileHover={{ backgroundColor: OR, color: "#1A1814" }}
+          >
             Continuer
           </motion.button>
         </motion.div>
       </div>
-
-      <PresentationDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} content={drawerDeco} />
     </div>
   );
 };
