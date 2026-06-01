@@ -14,12 +14,7 @@ export type ConfigurateurState = {
   currentStep: number
   date: string | null
   guests: number
-  preparation: {
-    lieuGite: boolean
-    maquilleuse: boolean
-    coiffeuse: boolean
-    photographePrep: boolean
-  }
+  preparation: boolean
   ceremonieLaique: boolean
   violonisteOption: boolean
   vhBouchee: string | null
@@ -55,12 +50,7 @@ export const defaultState: ConfigurateurState = {
   currentStep: 0,
   date: null,
   guests: 80,
-  preparation: {
-    lieuGite: false,
-    maquilleuse: false,
-    coiffeuse: false,
-    photographePrep: false,
-  },
+  preparation: false,
 
   ceremonieLaique: false,
   violonisteOption: false,
@@ -104,10 +94,7 @@ export const OPTION_PRICES: Record<string, number> = {
   'photophores-fumes': 60,
   'service-bar-2h': 0,
   'soupe-oignon': 0,
-  'preparation-lieu': 0,
-  'preparation-maquilleuse': 0,
-  'preparation-coiffeuse': 0,
-  'preparation-photographe': 0,
+  'preparation-pack': 0,
 }
 
 
