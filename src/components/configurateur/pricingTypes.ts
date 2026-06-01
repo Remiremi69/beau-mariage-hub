@@ -50,12 +50,7 @@ export const defaultState: ConfigurateurState = {
   currentStep: 0,
   date: null,
   guests: 80,
-  preparation: {
-    lieuGite: false,
-    maquilleuse: false,
-    coiffeuse: false,
-    photographePrep: false,
-  },
+  preparation: false,
 
   ceremonieLaique: false,
   violonisteOption: false,
