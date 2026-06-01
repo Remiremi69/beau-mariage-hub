@@ -293,6 +293,16 @@ export const schemaFAQ = (faqs: { question: string; answer: string }[]) => ({
   })),
 });
 
+export const schemaPrestataireBreadcrumb = (slug: string, label: string) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${BASE_URL}/` },
+    { '@type': 'ListItem', position: 2, name: 'Série Octobre 2027', item: `${BASE_URL}/serie-octobre-2027` },
+    { '@type': 'ListItem', position: 3, name: label, item: `${BASE_URL}/serie-octobre-2027/prestataires/${slug}` },
+  ],
+});
+
 export const schemaConcept = {
   '@context': 'https://schema.org',
   '@type': 'Article',
