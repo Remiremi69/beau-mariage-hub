@@ -47,12 +47,10 @@ export const drawerDomaine: DrawerContent = {
         items: [
           'Grande salle de réception (jusqu\'à 200 personnes)',
           'Cuisine professionnelle équipée',
-          'Espaces extérieurs & jardins privatisés',
+          'Espaces extérieurs',
           'Parking sécurisé sur site',
-          'Hébergement de l\'équipe Limen',
           'Coordination le jour J incluse',
           'Ménage complet avant et après',
-          'Accès dès la veille pour la décoration',
         ],
       },
     },
@@ -61,10 +59,10 @@ export const drawerDomaine: DrawerContent = {
       content: {
         title: 'INFOS PRATIQUES',
         items: [
-          'Beaujolais — à 45 min de Lyon',
+          'Beaujolais — à 50 min de Lyon',
           'Accès A6 sortie Belleville-sur-Saône',
-          'Gare TGV Mâcon à 30 min',
-          'Hôtels partenaires à 10 min du domaine',
+          'Gare TGV Mâcon à 35 min',
+          'Hotel et gite à 10 min du domaine',
         ],
       },
     },
