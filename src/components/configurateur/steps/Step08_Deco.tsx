@@ -28,6 +28,7 @@ interface FormulaCard {
   subtitle: string;
   description: string;
   badge?: string;
+  image?: string;
   palette: { color: string; label: string }[];
   includes: string[];
 }
@@ -37,6 +38,7 @@ const formulas: FormulaCard[] = [
     id: "seve",
     name: "SÈVE",
     subtitle: "Végétal, terracotta, lin brut",
+    image: seveImage.url,
     description:
       "Compositions de pampa blanc naturel, eucalyptus et gypsophile sur pieds dorés fins. Chemin de table jute, bougies pilier ivoire, photophores verre naturel, rondins de bois brut.",
     palette: [
@@ -53,6 +55,7 @@ const formulas: FormulaCard[] = [
       "Guirlandes sur poutres + plafond lumineux",
     ],
   },
+
   {
     id: "pierre",
     name: "PIERRE & LUMIÈRE",
