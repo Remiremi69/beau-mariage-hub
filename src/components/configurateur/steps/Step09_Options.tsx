@@ -32,24 +32,8 @@ const mkIcon = (children: React.ReactNode) => (
 );
 
 const options: OptionDef[] = [
-  { id: "photobooth", name: "PHOTOBOOTH PREMIUM", description: "Borne photo vintage, accessoires inclus, impressions instantanées & galerie numérique", prix: "+ 400 €",
+  { id: "photobooth", name: "PHOTOBOOTH", description: "Impressions, prise de vue illimitée numérique, clé USB incluse, impression 400 tirages", prix: "+ 400 €",
     icon: mkIcon(<><rect x="4" y="6" width="16" height="13" rx="2" /><circle cx="12" cy="13" r="3" /><line x1="9" y1="3" x2="15" y2="3" /></>) },
-  { id: "cocktail_bar", name: "BAR À COCKTAILS", description: "Barman dédié, cocktails signature Limen, mocktails & boissons premium pendant le vin d'honneur", prix: "+ 600 €",
-    icon: mkIcon(<><path d="M8 2L16 2L12 10L12 20" /><line x1="8" y1="20" x2="16" y2="20" /><line x1="7" y1="6" x2="17" y2="6" /></>) },
-  { id: "feu_artifice", name: "FEU D'ARTIFICE", description: "8 minutes de feu d'artifice musical synchronisé, tiré depuis le domaine à minuit", prix: "+ 1 800 €",
-    icon: mkIcon(<><line x1="12" y1="12" x2="12" y2="2" /><line x1="12" y1="12" x2="4" y2="6" /><line x1="12" y1="12" x2="20" y2="6" /><line x1="12" y1="12" x2="6" y2="18" /><line x1="12" y1="12" x2="18" y2="18" /><circle cx="12" cy="12" r="2" /></>) },
-  { id: "voiture_collection", name: "VOITURE DE COLLECTION", description: "Arrivée des mariés en véhicule de prestige, chauffeur en livrée, décoration florale du véhicule", prix: "+ 550 €",
-    icon: mkIcon(<><rect x="2" y="10" width="20" height="7" rx="3" /><circle cx="7" cy="17" r="2" /><circle cx="17" cy="17" r="2" /><path d="M5 10L7 5H17L19 10" /></>) },
-  { id: "livre_or", name: "LIVRE D'OR LIMEN", description: "Livre relié cuir, papier aquarelle, calligraphe présent pendant le vin d'honneur", prix: "+ 280 €",
-    icon: mkIcon(<><path d="M4 19V5a2 2 0 012-2h12a2 2 0 012 2v14" /><path d="M4 19a2 2 0 012-2h12a2 2 0 012 2" /><path d="M4 19a2 2 0 002 2h12a2 2 0 002-2" /></>) },
-  { id: "candy_bar", name: "SWEET TABLE", description: "Table de confiseries artisanales, macarons, chocolats, calissons — tout en blanc et or", prix: "+ 350 €",
-    icon: mkIcon(<><rect x="6" y="4" width="12" height="16" rx="1" /><line x1="6" y1="4" x2="18" y2="4" /><rect x="8" y="2" width="8" height="2" rx="1" /></>) },
-  { id: "caricaturiste", name: "CARICATURISTE", description: "Artiste présent 3h pendant le repas, croquis remis en souvenir à chaque table", prix: "+ 480 €",
-    icon: mkIcon(<><line x1="4" y1="20" x2="10" y2="4" /><line x1="10" y1="4" x2="11" y2="3" /><line x1="11" y1="3" x2="12" y2="4" /></>) },
-  { id: "lanternes", name: "LÂCHER DE LANTERNES", description: "50 lanternes biodégradables, moment collectif au coucher du soleil", prix: "+ 220 €",
-    icon: mkIcon(<><rect x="8" y="6" width="8" height="12" rx="1" /><path d="M10 18L12 22L14 18" /><line x1="12" y1="6" x2="12" y2="3" /></>) },
-  { id: "nuit_nuptiale", name: "NUIT NUPTIALE", description: "Chambre d'hôte de charme à 5 min du domaine, décorée aux couleurs de votre mariage, petit-déjeuner inclus le lendemain matin", prix: "+ 350 €",
-    icon: mkIcon(<><path d="M3 22V12a2 2 0 012-2h14a2 2 0 012 2v10" /><path d="M2 22h20" /><path d="M7 10V6a5 5 0 0110 0v4" /><rect x="9" y="14" width="6" height="5" rx="1" /></>) },
 ];
 
 const Step09_Options = ({ state, onUpdate, onNext, onPrev }: Step09Props) => {
