@@ -118,8 +118,7 @@ const PreparationPackCard = ({
         </p>
         <p>
           Une maquilleuse professionnelle vient à vous. Une coiffeuse
-          spécialisée mariage rejoint le gîte. Toutes les deux savent ce que
-          c'est qu'une mariée à 13h.
+          spécialisée mariage rejoint le gîte.
         </p>
       </div>
 
