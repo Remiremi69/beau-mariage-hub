@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ConfigurateurState, Deco } from "../pricingTypes";
 import seveImage from "@/assets/deco-seve.png.asset.json";
+import pierreImage from "@/assets/deco-pierre.png.asset.json";
 
 
 interface Step08Props {
@@ -61,6 +62,7 @@ const formulas: FormulaCard[] = [
     name: "PIERRE & LUMIÈRE",
     subtitle: "Blanc pur, minimalisme absolu",
     badge: "ÉPURÉ",
+    image: pierreImage.url,
     description:
       "Arche habillée de floraux séchés, compositions pampa sur pieds dorés. Aucun chemin de table — juste la lumière des bougies pilier blanc.",
     palette: [
