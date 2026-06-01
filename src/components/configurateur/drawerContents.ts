@@ -117,7 +117,6 @@ export const drawerCeremonie: DrawerContent = {
           'Un rendez-vous avec Esther avant le mariage — elle connaît votre histoire',
           'Zéro improvisation le jour J — tout est anticipé',
           'Une présence qui rassure, jamais qui prend la place',
-          'Page dédiée : lebeaumariage.fr/prestataires/esther-coutin',
         ],
       },
     },
