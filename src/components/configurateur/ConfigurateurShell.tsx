@@ -520,21 +520,6 @@ const ConfigurateurShell = () => {
                 <RecapLine key={l.label} label={l.label} value={l.value} />
               ))}
             </div>
-            <div
-              style={{
-                borderTop: "1px solid rgba(201,169,110,0.15)",
-                marginTop: "14px",
-                paddingTop: "14px",
-                fontFamily: "'Jost', sans-serif",
-                fontSize: "13px",
-                color: "#c9a96e",
-                fontWeight: 500,
-              }}
-            >
-              {breakdown.totalEstimate > 0
-                ? `${breakdown.totalEstimate.toLocaleString("fr-FR")} €`
-                : "—"}
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
