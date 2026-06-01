@@ -240,25 +240,35 @@ const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
               >
                 {/* Visuel */}
                 <div
-                  className="relative flex items-center justify-center"
+                  className="relative flex items-center justify-center overflow-hidden"
                   style={{
                     aspectRatio: "4 / 3",
                     background: "rgba(20,18,14,0.6)",
                     borderBottom: `1px solid ${LIN}14`,
                   }}
                 >
-                  <span
-                    style={{
-                      fontFamily: FONT_BODY,
-                      fontWeight: 200,
-                      fontSize: 10,
-                      letterSpacing: "0.30em",
-                      textTransform: "uppercase",
-                      color: `${OR}66`,
-                    }}
-                  >
-                    Visuel à venir
-                  </span>
+                  {card.image ? (
+                    <img
+                      src={card.image}
+                      alt={`Décoration ${card.name}`}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span
+                      style={{
+                        fontFamily: FONT_BODY,
+                        fontWeight: 200,
+                        fontSize: 10,
+                        letterSpacing: "0.30em",
+                        textTransform: "uppercase",
+                        color: `${OR}66`,
+                      }}
+                    >
+                      Visuel à venir
+                    </span>
+                  )}
+
                   {card.badge && (
                     <span
                       className="absolute top-3 left-3"
