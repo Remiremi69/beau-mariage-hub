@@ -132,7 +132,6 @@ const Step04_Violoniste = ({ state, onUpdate, onNext, onPrev }: Step04Props) => 
                 "1 morceau pendant le dîner — instant suspendu",
                 "2 morceaux sur la piste — ouverture & climax",
                 "Synchronisation avec Astrévia Events (DJ)",
-                "Setlist co-construite avec vous",
               ].map((item) => (
                 <span key={item} style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: withOption ? "rgba(201,169,110,0.75)" : "rgba(232,221,208,0.50)", lineHeight: 1.6 }}>
                   — {item}
@@ -142,20 +141,6 @@ const Step04_Violoniste = ({ state, onUpdate, onNext, onPrev }: Step04Props) => 
           </div>
         </motion.div>
 
-        <AnimatePresence>
-          {withOption && (
-            <motion.p
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 8 }}
-              transition={{ duration: 0.4 }}
-              className="text-center"
-              style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "rgba(232,221,208,0.55)", lineHeight: 1.7, fontStyle: "italic", marginTop: 28 }}
-            >
-              Alexandre construit la setlist avec vous trois mois avant — pour que chaque morceau tombe au bon moment.
-            </motion.p>
-          )}
-        </AnimatePresence>
 
         <motion.div custom={6} initial="hidden" animate="visible" variants={fadeUp}
           className="flex items-center justify-between w-full mt-12" style={{ maxWidth: 480 }}>
