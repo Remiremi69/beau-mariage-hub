@@ -106,8 +106,6 @@ export const drawerCeremonie: DrawerContent = {
           'Rédaction collaborative du discours, choix du ton',
           'Coordination avec toute l\'équipe Limen en amont',
           'Cérémonie 30 à 45 minutes — sonorisation incluse',
-          'Rituels au choix : sable, bougie, plantation, vœux',
-          'Présence continue pour gérer les temps forts du jour J',
         ],
       },
     },
