@@ -301,6 +301,124 @@ export const PdfEsquisse = forwardRef<PdfEsquisseHandle, PdfEsquisseProps>(
             ))}
           </div>
 
+          {/* Repas & menu */}
+          {(formuleLabel || courses.length > 0) && (
+            <div style={{ width: "100%", maxWidth: 150 * MM, marginTop: 22 * MM }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 6 * MM,
+                  marginBottom: 10 * MM,
+                }}
+              >
+                <div style={{ width: 30 * MM, height: 0.5, background: COLORS.or }} />
+                <div
+                  style={{
+                    fontFamily: jost,
+                    fontSize: 9,
+                    letterSpacing: "0.35em",
+                    textTransform: "uppercase",
+                    color: COLORS.or,
+                  }}
+                >
+                  Repas & menu
+                </div>
+                <div style={{ width: 30 * MM, height: 0.5, background: COLORS.or }} />
+              </div>
+
+              {formuleLabel && (
+                <div
+                  style={{
+                    fontFamily: cormorant,
+                    fontStyle: "italic",
+                    fontSize: 18,
+                    color: COLORS.encreText,
+                    textAlign: "center",
+                    marginBottom: 8 * MM,
+                  }}
+                >
+                  {formuleLabel}
+                </div>
+              )}
+
+              {courses.map((c) => (
+                <div
+                  key={c.label}
+                  style={{
+                    display: "flex",
+                    alignItems: "baseline",
+                    marginBottom: 4 * MM,
+                  }}
+                >
+                  <div
+                    style={{
+                      fontFamily: jost,
+                      fontSize: 9,
+                      letterSpacing: "0.2em",
+                      textTransform: "uppercase",
+                      color: COLORS.or,
+                      width: 22 * MM,
+                      flexShrink: 0,
+                    }}
+                  >
+                    {c.label}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: cormorant,
+                      fontStyle: "italic",
+                      fontSize: 13,
+                      color: COLORS.encreText,
+                      flex: 1,
+                    }}
+                  >
+                    {menuNames[c.id as string]}
+                  </div>
+                </div>
+              ))}
+
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  marginTop: 8 * MM,
+                  paddingTop: 6 * MM,
+                  borderTop: `0.5px solid ${COLORS.or}`,
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: jost,
+                    fontSize: 9,
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    color: COLORS.or,
+                    width: 22 * MM,
+                    flexShrink: 0,
+                  }}
+                >
+                  Vins
+                </div>
+                <div
+                  style={{
+                    fontFamily: jost,
+                    fontSize: 10,
+                    fontStyle: "italic",
+                    color: COLORS.encreSecondaire,
+                    flex: 1,
+                    lineHeight: 1.5,
+                  }}
+                >
+                  Non inclus — sélection effectuée lors de la dégustation
+                </div>
+              </div>
+            </div>
+          )}
+
+
+
           {/* Filet fin */}
           <div
             style={{
