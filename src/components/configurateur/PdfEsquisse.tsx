@@ -44,6 +44,24 @@ export const PdfEsquisse = forwardRef<PdfEsquisseHandle, PdfEsquisseProps>(
 
     const tightSpacing = moments.length > 13;
 
+    const menuNames: Record<string, string> = {
+      "entree-1": "Velouté de potimarron, châtaignes torréfiées",
+      "entree-2": "Œuf parfait, crème de cèpes",
+      "entree-3": "Tartare de truite des Dombes",
+      "plat-1": "Filet de bœuf Rossini",
+      "plat-2": "Suprême de volaille fermière",
+      "plat-3": "Pavé de cabillaud sauvage",
+      "dessert-1": "Pièce montée choux revisitée",
+      "dessert-2": "Entremets Beaujolais",
+      "dessert-3": "Vacherin glacé aux fruits rouges",
+    };
+    const repasLabels: Record<string, string> = {
+      menu1: "Menu 1 — Tradition Beaujolais",
+      menu2: "Menu 2 — Signature Limen",
+      menu3: "Menu 3 — Nocturne Royal",
+    };
+
+
     const buildFileName = () => {
       const date = state.date || new Date().toISOString().split("T")[0];
       return `Esquisse-Limen-${date}.pdf`;
