@@ -45,9 +45,9 @@ export const PdfEsquisse = forwardRef<PdfEsquisseHandle, PdfEsquisseProps>(
     const tightSpacing = moments.length > 13;
 
     const menuNames: Record<string, string> = {
-      "entree-1": "Velouté de potimarron, châtaignes torréfiées",
-      "entree-2": "Œuf parfait, crème de cèpes",
-      "entree-3": "Tartare de truite des Dombes",
+      "entree-1": "Velouté de courge rôtie",
+      "entree-2": "Tartare de saumon fumé",
+      "entree-3": "Terrine de foie gras maison",
       "plat-1": "Filet de bœuf Rossini",
       "plat-2": "Suprême de volaille fermière",
       "plat-3": "Pavé de cabillaud sauvage",
@@ -58,8 +58,17 @@ export const PdfEsquisse = forwardRef<PdfEsquisseHandle, PdfEsquisseProps>(
     const repasLabels: Record<string, string> = {
       menu1: "Menu 1 — Tradition Beaujolais",
       menu2: "Menu 2 — Signature Limen",
-      menu3: "Menu 3 — Nocturne Royal",
+      essentiel: "Essentiel",
+      gastronomique: "Gastronomique",
+      prestige: "Prestige",
     };
+    const formuleLabel = state.repas ? (repasLabels[state.repas] || state.repas) : null;
+    const courses = [
+      { label: "Entrée", id: state.repasEntree },
+      { label: "Plat", id: state.repasPlat },
+      { label: "Dessert", id: state.repasDessert },
+    ].filter((c) => c.id && menuNames[c.id as string]);
+
 
 
     const buildFileName = () => {
