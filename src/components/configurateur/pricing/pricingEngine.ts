@@ -73,6 +73,15 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
     })
   }
 
+  if (state.preparation) {
+    lines.push({
+      label: 'Préparation des mariés',
+      sublabel: 'Mise à disposition des suites · Accueil & coordination',
+      amount: 400,
+      isIncluded: false,
+    })
+  }
+
   if (state.ceremonieLaique) {
     lines.push({
       label: 'Cérémonie laïque',
