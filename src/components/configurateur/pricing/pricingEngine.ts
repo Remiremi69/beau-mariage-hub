@@ -36,7 +36,7 @@ const DECO_PRIX: Record<string, number> = {
   pierre: 0,
 }
 
-const CEREMONIE_PRIX = 800
+const CEREMONIE_PRIX = 1040
 
 const PHOTO_PRIX: Record<string, number> = {
   essentielle: 0,
