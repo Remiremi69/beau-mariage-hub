@@ -1484,6 +1484,56 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
                 préciser maintenant.
               </p>
             </div>
+
+            {/* ─── Vins du Domaine ─── */}
+            <div
+              style={{
+                maxWidth: 600,
+                margin: "20px auto 0",
+                padding: "20px 28px",
+                background: "rgba(201,169,110,0.04)",
+                border: "1px solid rgba(201,169,110,0.15)",
+                borderRadius: 2,
+                display: "flex",
+                gap: 14,
+                alignItems: "flex-start",
+              }}
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(201,169,110,0.60)"
+                strokeWidth="1.5"
+                style={{ flexShrink: 0, marginTop: 2 }}
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="8.01" />
+                <line x1="12" y1="11" x2="12" y2="16" />
+              </svg>
+              <p
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontWeight: 300,
+                  fontSize: 13,
+                  color: "rgba(232,221,208,0.60)",
+                  lineHeight: 1.7,
+                  margin: 0,
+                }}
+              >
+                <strong style={{ color: "rgba(201,169,110,0.85)", fontWeight: 400 }}>
+                  Les vins du Domaine
+                </strong>{" "}
+                — Les vins de la région seront présentés lors de votre dégustation
+                et{" "}
+                <em style={{ color: "rgba(201,169,110,0.80)", fontStyle: "italic" }}>
+                  accordés à votre menu
+                </em>
+                . Leur sélection se fait à cette occasion.
+              </p>
+            </div>
+
           </motion.div>
         )}
       </AnimatePresence>
