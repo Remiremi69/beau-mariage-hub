@@ -109,10 +109,10 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
     isIncluded: true,
   })
 
-  const repasPrixUnit = REPAS_PRIX[state.repas] ?? MENU1_BASE_PRICE_PER_PERSON
+  const repasPrixUnit = getRepasPrixUnit(state.repas, g)
   lines.push({
     label: 'Repas — ' + (repasLabelMap[state.repas] ?? ''),
-    sublabel: '⚠️ Ligne révisée à J−1 mois selon présents confirmés',
+    sublabel: 'Entrée · Plat · Dessert inclus · Ajusté à J−1 mois selon présents confirmés',
     amount: repasPrixUnit * g,
     isIncluded: true,
   })
