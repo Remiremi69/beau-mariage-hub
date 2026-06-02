@@ -33,7 +33,6 @@ import Signature from "./pages/Signature";
 import Acompte from "./pages/Acompte";
 import SiteDeMariage from "./pages/SiteDeMariage";
 import Unsubscribe from "./pages/Unsubscribe";
-import Partenaires from "./pages/Partenaires";
 import EstherCoutin from "./pages/prestataires/EstherCoutin";
 
 const queryClient = new QueryClient();
@@ -74,7 +73,6 @@ const AppLayout = () => {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/unsubscribe" element={<Unsubscribe />} />
-        <Route path="/partenaires" element={<Partenaires />} />
         <Route path="/prestataires/esther-coutin" element={<EstherCoutin />} />
         <Route path="/prestataires/ceremonie-laique" element={<Navigate to="/prestataires/esther-coutin" replace />} />
         <Route path="*" element={<NotFound />} />
