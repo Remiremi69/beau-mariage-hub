@@ -173,7 +173,7 @@ const optionsNuit: OptionNuitDef[] = [
     tagline: "Déjà en place. À vous de l'habiter.",
     description:
       "Le bar est installé, éclairé, prêt. Verres en place, espace dédié — sans qu'on vous le signale. Les bouteilles d'alcool ne sont pas fournies (vous apportez les vôtres). La nuit peut continuer à son rythme, sans rupture. Les invités se servent. La fête reste fluide.",
-    selectable: false,
+    selectable: true,
   },
   {
     id: "service-bar-2h",
@@ -1039,10 +1039,14 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
   const [selectedDessert, setSelectedDessert] = useState<string | null>(
     state.repasDessert ?? null
   );
-  const NUIT_OPTION_IDS = ["service-bar-2h", "soupe-oignon"];
-  const [selectedOptionsNuit, setSelectedOptionsNuit] = useState<string[]>(
-    (state.options ?? []).filter((o) => NUIT_OPTION_IDS.includes(o))
-  );
+  const NUIT_OPTION_IDS = ["bar-nuit", "service-bar-2h", "soupe-oignon"];
+  const [selectedOptionsNuit, setSelectedOptionsNuit] = useState<string[]>(() => {
+    const saved = (state.options ?? []).filter((o) => NUIT_OPTION_IDS.includes(o));
+    // Bar de nuit inclus par défaut tant que l'utilisateur n'a rien choisi ni explicitement exclu
+    const aVisite = (state.options ?? []).some((o) => o === "bar-nuit-exclu" || NUIT_OPTION_IDS.includes(o));
+    if (!aVisite) return ["bar-nuit", ...saved];
+    return saved.filter((o) => o !== "bar-nuit-exclu");
+  });
   const toggleOptionNuit = (id: string) => {
     setSelectedOptionsNuit((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
@@ -1097,14 +1101,17 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
   const handleContinue = () => {
     if (!canContinue) return;
     const otherOptions = (state.options ?? []).filter(
-      (o) => !NUIT_OPTION_IDS.includes(o)
+      (o) => !NUIT_OPTION_IDS.includes(o) && o !== "bar-nuit-exclu"
     );
+    const nuitToSave = selectedOptionsNuit.includes("bar-nuit")
+      ? selectedOptionsNuit
+      : [...selectedOptionsNuit, "bar-nuit-exclu"];
     onUpdate({
       repas: selectedMenu!,
       repasEntree: null,
       repasPlat: selectedPlat!,
       repasDessert: selectedDessert!,
-      options: [...otherOptions, ...selectedOptionsNuit],
+      options: [...otherOptions, ...nuitToSave],
     });
     onNext();
   };
@@ -1709,7 +1716,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
                 Votre nuit
               </p>
               {[
-                { label: "Bar de nuit installé", tag: "Inclus", show: true },
+                { label: "Bar de nuit installé", tag: "Inclus", show: selectedOptionsNuit.includes("bar-nuit") },
                 { label: "Service bar 2 heures", tag: "Prestige", show: selectedOptionsNuit.includes("service-bar-2h") },
                 { label: "Soupe à l'oignon", tag: "Prestige", show: selectedOptionsNuit.includes("soupe-oignon") },
               ]
