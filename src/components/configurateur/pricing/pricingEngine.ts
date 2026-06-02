@@ -22,7 +22,7 @@ export type PriceBreakdown = {
   hasRepasEstimate: boolean
 }
 
-const BASE_FORFAIT = 8500
+const DOMAINE_PRIX = 2750
 
 // Tarifs internes J&J Traiteur (non affichés à l'utilisateur)
 const MENU1_BASE_PRICE_PER_PERSON = 80
@@ -66,12 +66,14 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
   const lines: PriceLine[] = []
   const g = state.guests
 
-  lines.push({
-    label: 'Forfait Domaine',
-    sublabel: 'Salle, cuisine, coordination, ménage',
-    amount: BASE_FORFAIT,
-    isIncluded: false,
-  })
+  if (state.date) {
+    lines.push({
+      label: 'Location du Domaine',
+      sublabel: 'Domaine de la Croix Rochefort · Saint-Didier-sur-Beaujeu',
+      amount: DOMAINE_PRIX,
+      isIncluded: false,
+    })
+  }
 
   if (state.ceremonieLaique) {
     lines.push({
