@@ -1101,14 +1101,17 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
   const handleContinue = () => {
     if (!canContinue) return;
     const otherOptions = (state.options ?? []).filter(
-      (o) => !NUIT_OPTION_IDS.includes(o)
+      (o) => !NUIT_OPTION_IDS.includes(o) && o !== "bar-nuit-exclu"
     );
+    const nuitToSave = selectedOptionsNuit.includes("bar-nuit")
+      ? selectedOptionsNuit
+      : [...selectedOptionsNuit, "bar-nuit-exclu"];
     onUpdate({
       repas: selectedMenu!,
       repasEntree: null,
       repasPlat: selectedPlat!,
       repasDessert: selectedDessert!,
-      options: [...otherOptions, ...selectedOptionsNuit],
+      options: [...otherOptions, ...nuitToSave],
     });
     onNext();
   };
@@ -1713,7 +1716,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
                 Votre nuit
               </p>
               {[
-                { label: "Bar de nuit installé", tag: "Inclus", show: true },
+                { label: "Bar de nuit installé", tag: "Inclus", show: selectedOptionsNuit.includes("bar-nuit") },
                 { label: "Service bar 2 heures", tag: "Prestige", show: selectedOptionsNuit.includes("service-bar-2h") },
                 { label: "Soupe à l'oignon", tag: "Prestige", show: selectedOptionsNuit.includes("soupe-oignon") },
               ]
