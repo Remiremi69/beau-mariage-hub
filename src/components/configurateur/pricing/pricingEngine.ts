@@ -22,7 +22,7 @@ export type PriceBreakdown = {
   hasRepasEstimate: boolean
 }
 
-const BASE_FORFAIT = 8500
+const DOMAINE_PRIX = 2750
 
 // Tarifs internes J&J Traiteur (non affichés à l'utilisateur)
 const MENU1_BASE_PRICE_PER_PERSON = 80
