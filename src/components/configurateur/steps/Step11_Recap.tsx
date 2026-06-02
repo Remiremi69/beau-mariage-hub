@@ -614,6 +614,11 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
               subtext="⚠️ Ligne révisée à J−1 mois selon présents confirmés"
               badge="J&J TRAITEUR"
             />
+            <ChoiceLine
+              category="Vins"
+              value="Non inclus — sélection effectuée lors de la dégustation"
+              price="—"
+            />
 
             <ChoiceLine category="Décoration" value={decoLabels[state.deco] || state.deco} price="Inclus" />
             <ChoiceLine category="Photographie" value={`${photoLabels[state.photographe] || "Essentielle"} (Loïc Cancade)`} price={state.photographe === "signature" ? "+ 450 €" : "Inclus"} />
