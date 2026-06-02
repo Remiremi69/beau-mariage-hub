@@ -24,13 +24,11 @@ export type PriceBreakdown = {
 
 const DOMAINE_PRIX = 2750
 
-// Tarifs internes J&J Traiteur (non affichés à l'utilisateur)
-const MENU1_BASE_PRICE_PER_PERSON = 80
-const MENU2_BASE_PRICE_PER_PERSON = 85
-
-const REPAS_PRIX: Record<string, number> = {
-  menu1: MENU1_BASE_PRICE_PER_PERSON,
-  menu2: MENU2_BASE_PRICE_PER_PERSON,
+function getRepasPrixUnit(menu: string, guests: number): number {
+  if (menu === 'menu2') {
+    return guests <= 90 ? 88 : 87
+  }
+  return guests <= 90 ? 85 : 82
 }
 
 const DECO_PRIX: Record<string, number> = {
