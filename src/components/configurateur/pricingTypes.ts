@@ -96,7 +96,6 @@ export const OPTION_PRICES: Record<string, number> = {
   'photophores-fumes': 60,
   'service-bar-2h': 200,
   'soupe-oignon': 100,
-  'preparation-pack': 0,
 }
 
 
