@@ -1007,17 +1007,19 @@ const OptionNuitCard = ({
             >
               {isSelected ? "✓ Ajouté à ma nuit" : "○ Ajouter à ma nuit"}
             </div>
-            <div
-              style={{
-                fontFamily: "'Jost', sans-serif",
-                fontStyle: "italic",
-                fontSize: 10,
-                color: "rgba(232,221,208,0.40)",
-                marginTop: 6,
-              }}
-            >
-              Prix précisé au récapitulatif
-            </div>
+            {option.id !== "bar-nuit" && (
+              <div
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontStyle: "italic",
+                  fontSize: 10,
+                  color: "rgba(232,221,208,0.40)",
+                  marginTop: 6,
+                }}
+              >
+                Prix précisé au récapitulatif
+              </div>
+            )}
           </>
         )}
       </div>
