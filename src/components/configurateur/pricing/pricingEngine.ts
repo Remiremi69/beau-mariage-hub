@@ -39,8 +39,8 @@ const DECO_PRIX: Record<string, number> = {
 const CEREMONIE_PRIX = 1040
 
 const PHOTO_PRIX: Record<string, number> = {
-  essentielle: 0,
-  signature: 450,
+  essentielle: 1530,
+  signature: 1980,
 }
 
 const DJ_BASE_PRICE = 1020 // forfait animation absorbé dans la base
