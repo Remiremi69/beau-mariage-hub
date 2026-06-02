@@ -95,7 +95,7 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
   lines.push({
     label: 'Violoniste — Show vin d\'honneur',
     sublabel: 'Alexandre Medjaher Chomat · 3 morceaux',
-    amount: 750,
+    amount: 500,
     isIncluded: false,
   })
 
@@ -103,7 +103,7 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
     lines.push({
       label: 'Violoniste — Interventions complémentaires',
       sublabel: '1 morceau pendant le repas + 2 sur la piste',
-      amount: 450,
+      amount: 650,
       isIncluded: false,
     })
   }
