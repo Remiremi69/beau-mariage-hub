@@ -742,22 +742,6 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
           </p>
 
           <div className="flex flex-col-reverse sm:flex-row gap-3.5 w-full justify-center" style={{ maxWidth: 520 }}>
-            {/* Carte LOCAL */}
-            <button
-              onClick={() => setLocalisation(localisation === "local" ? null : "local")}
-              data-cursor-hover
-              className="flex-1 text-center transition-all duration-300"
-              style={{
-                padding: "28px 24px", borderRadius: 2, cursor: "pointer", background: localisation === "local" ? "rgba(201,169,110,0.10)" : "rgba(26,22,18,0.50)",
-                border: localisation === "local" ? "1px solid rgba(201,169,110,0.50)" : "1px solid rgba(201,169,110,0.15)",
-              }}
-            >
-              <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 28, color: "rgba(201,169,110,0.50)", marginBottom: 12 }}>◎</p>
-              <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(232,221,208,0.75)" }}>Proche du domaine</p>
-              <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 8 }}>À moins de 2h de Lyon</p>
-              <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: "#c9a96e", marginTop: 16 }}>Choisir un créneau</p>
-            </button>
-
             {/* Carte DISTANCE */}
             <button
               onClick={() => setLocalisation(localisation === "distance" ? null : "distance")}
