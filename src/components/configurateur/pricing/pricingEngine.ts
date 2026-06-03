@@ -88,6 +88,13 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
     })
   }
 
+  lines.push({
+    label: 'Coordination Limen',
+    sublabel: 'Accompagnement commercial, configuration & pilotage J−1 et Jour J',
+    amount: MARGE_LIMEN,
+    isIncluded: false,
+  })
+
   if (state.preparation) {
     lines.push({
       label: 'Préparation des mariés',
