@@ -324,8 +324,9 @@ const ConfigurateurShell = () => {
       case 8: return <Step07_DJ {...props} />;
       case 9: return <Step08_Deco {...props} />;
       case 10: return <Step09_Options {...props} />;
-      case 11: return <Step10_SiteMariage {...props} />;
-      case 12: return <Step11_Recap {...props} />;
+      case 11: return <Step10_MomentsPersonnels {...props} />;
+      case 12: return <Step10_SiteMariage {...props} />;
+      case 13: return <Step11_Recap {...props} />;
       default: return null;
     }
 
