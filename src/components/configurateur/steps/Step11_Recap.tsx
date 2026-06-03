@@ -723,7 +723,7 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
               Avant de vous décider,<br />goûtez.
             </h3>
             <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 14, color: "rgba(232,221,208,0.60)", lineHeight: 1.8 }}>
-              Nous organisons une dégustation avec le chef Sébastien — les plats que vous avez choisis, les vins beaujolais du sommelier Julien, dans les jardins du domaine. C'est votre prochaine étape naturelle.
+              Nous organisons une dégustation avec Jessica et Jérôme — les plats que vous avez choisis, les vins du domaine, dans les jardins du domaine. C'est votre prochaine étape naturelle.
             </p>
             <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(201,169,110,0.65)", letterSpacing: "0.10em", marginTop: 16 }}>
               2h avec le chef  ·  Menu complet dégusté  ·  Vins du domaine inclus
