@@ -43,9 +43,11 @@ const PHOTO_PRIX: Record<string, number> = {
   signature: 1980,
 }
 
-const DJ_BASE_PRICE = 1020 // forfait animation absorbé dans la base
+const DJ_BASE_PRICE = 900
 const DJ_SONO_VH_PRICE = 200
 const DJ_PRESTIGE_PRICE = 320
+const DJ_VINYLES_PRICE = 200
+const DJ_ECLAIRAGE_PRICE = 120
 
 const repasLabelMap: Record<string, string> = {
   menu1: 'Menu 1 — Tradition Beaujolais',
@@ -148,12 +150,12 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
     isIncluded: photoPrix === 0,
   })
 
-  // DJ — animation incluse + add-ons
+  // DJ — animation + add-ons
   lines.push({
     label: 'Animation musicale (DJ)',
-    sublabel: 'Astrévia Events · 19h30 → 4h · Lumière d\'ambiance',
-    amount: 0,
-    isIncluded: true,
+    sublabel: 'Astrévia Events · 19h30 → 4h du matin',
+    amount: DJ_BASE_PRICE,
+    isIncluded: false,
   })
   if (state.dj.sonoVH) {
     lines.push({
@@ -167,6 +169,14 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
       isIncluded: state.ceremonieLaique,
     })
   }
+  if (state.dj.barVinyles) {
+    lines.push({
+      label: 'Bar à vinyles',
+      sublabel: 'Vin d\'honneur · Régie vinyle · sélection 33 tours',
+      amount: DJ_VINYLES_PRICE,
+      isIncluded: false,
+    })
+  }
   if (state.dj.effetPrestige) {
     lines.push({
       label: 'Effet Prestige',
@@ -175,8 +185,14 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
       isIncluded: false,
     })
   }
-  // DJ_BASE_PRICE absorbé dans le forfait domaine — ne pas réincrémenter
-  void DJ_BASE_PRICE
+  if (state.dj.eclairageAmbiance) {
+    lines.push({
+      label: 'Éclairage d\'ambiance',
+      sublabel: 'Projecteurs LED en pourtour de salle · couleur au choix',
+      amount: DJ_ECLAIRAGE_PRICE,
+      isIncluded: false,
+    })
+  }
 
   const safeOptions = state.options ?? []
   for (const optionId of safeOptions) {
