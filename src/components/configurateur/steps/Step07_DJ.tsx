@@ -138,6 +138,9 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
     if (barVinylesBloque) return;
     onUpdate({ dj: { ...dj, barVinyles: !dj.barVinyles } });
   };
+  const toggleEclairage = () => {
+    onUpdate({ dj: { ...dj, eclairageAmbiance: !dj.eclairageAmbiance } });
+  };
 
   const cardBase: React.CSSProperties = {
     borderRadius: 2,
