@@ -485,6 +485,36 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
     }
   };
 
+  const handleEsquisseCapture = async () => {
+    if (!esquisseEmail.trim() || !esquissePrenom.trim()) return;
+    setEsquisseLoading(true);
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const client = supabase as any;
+      await client.from("leads").insert({
+        prenom: esquissePrenom.trim(),
+        email: esquisseEmail.trim(),
+        date_envisagee: state.date
+          ? new Date(state.date).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })
+          : null,
+      });
+      onUpdate({
+        contact: {
+          ...state.contact,
+          prenom: esquissePrenom.trim(),
+          email: esquisseEmail.trim(),
+        },
+      });
+    } catch (err) {
+      console.error("Erreur capture esquisse:", err);
+    } finally {
+      setEsquisseLoading(false);
+      setEsquisseCaptured(true);
+      handleDownloadPdf();
+    }
+  };
+
+
 
   const updateField = useCallback((field: string, value: string) => setContact((prev) => ({ ...prev, [field]: value })), []);
   const updateAdresse = useCallback((field: string, value: string) => setAdresse((prev) => ({ ...prev, [field]: value })), []);
