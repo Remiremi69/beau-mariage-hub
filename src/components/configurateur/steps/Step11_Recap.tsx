@@ -160,7 +160,7 @@ interface Step10Props {
   onPrev: () => void;
 }
 
-type Localisation = "local" | "distance" | null;
+type Localisation = "distance" | null;
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
