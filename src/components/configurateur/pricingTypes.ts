@@ -6,6 +6,7 @@ export type DJChoice = {
   sonoVH: boolean
   effetPrestige: boolean
   barVinyles: boolean
+  eclairageAmbiance: boolean
 }
 
 export type Deco = 'seve' | 'pierre'
@@ -63,7 +64,7 @@ export const defaultState: ConfigurateurState = {
   repasPlat: null,
   repasDessert: null,
   photographe: 'essentielle',
-  dj: { sonoVH: false, effetPrestige: false, barVinyles: false },
+  dj: { sonoVH: false, effetPrestige: false, barVinyles: false, eclairageAmbiance: false },
   deco: 'seve',
   options: [],
   decoOptions: [],
