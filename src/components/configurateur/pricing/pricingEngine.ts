@@ -49,6 +49,7 @@ const DECO_OPTION_LABELS: Record<string, string> = {
 }
 
 const CEREMONIE_PRIX = 1040
+const MARGE_LIMEN = 2000
 
 const PHOTO_PRIX: Record<string, number> = {
   essentielle: 1530,
@@ -86,6 +87,13 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
       isIncluded: false,
     })
   }
+
+  lines.push({
+    label: 'Coordination Limen',
+    sublabel: 'Accompagnement commercial, configuration & pilotage J−1 et Jour J',
+    amount: MARGE_LIMEN,
+    isIncluded: false,
+  })
 
   if (state.preparation) {
     lines.push({
