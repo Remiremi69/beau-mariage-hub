@@ -327,7 +327,6 @@ const CRENEAUX = [
 
 /* ── CTA label ────────────────────────────────────────── */
 const getCTALabel = (loc: Localisation): string => {
-  if (loc === "local") return "RÉSERVER MA DÉGUSTATION";
   if (loc === "distance") return "ENVOYER MA DEMANDE + EXPÉDIER MON COFFRET";
   return "ENVOYER MA DEMANDE";
 };
