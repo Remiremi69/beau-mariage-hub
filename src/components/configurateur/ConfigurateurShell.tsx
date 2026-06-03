@@ -17,6 +17,7 @@ import Step06_Photographe from "./steps/Step06_Photographe";
 import Step07_DJ from "./steps/Step07_DJ";
 import Step08_Deco from "./steps/Step08_Deco";
 import Step09_Options from "./steps/Step09_Options";
+import Step10_MomentsPersonnels from "./steps/Step10_MomentsPersonnels";
 import Step10_SiteMariage from "./steps/Step10_SiteMariage";
 import Step11_Recap from "./steps/Step11_Recap";
 
@@ -44,16 +45,17 @@ const STEP_BACKGROUNDS = [
   "radial-gradient(circle at 30% 50%, rgba(100,20,120,0.40) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(20,60,140,0.25) 0%, transparent 45%), linear-gradient(135deg, #08040e 0%, #100616 100%)",
   "radial-gradient(ellipse at 50% 65%, rgba(150,130,100,0.18) 0%, transparent 55%), linear-gradient(150deg, #0e0c09 0%, #1c1812 60%, #0e0c09 100%)",
   "radial-gradient(circle at 35% 35%, rgba(201,169,110,0.15) 0%, transparent 45%), linear-gradient(160deg, #0a0908 0%, #161410 100%)",
+  "radial-gradient(ellipse at 50% 40%, rgba(201,169,110,0.12) 0%, transparent 55%), linear-gradient(160deg, #0c0a08 0%, #181510 60%, #0e0c09 100%)",
   "radial-gradient(ellipse at 40% 40%, rgba(40,80,160,0.25) 0%, transparent 55%), radial-gradient(ellipse at 70% 70%, rgba(201,169,110,0.12) 0%, transparent 45%), linear-gradient(150deg, #08080e 0%, #100c18 60%, #0a0a0e 100%)",
   "radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.25) 0%, transparent 60%), linear-gradient(160deg, #0d0b08 0%, #1a1612 50%, #231e17 100%)",
 ];
 
-const TOTAL_STEPS = 13;
+const TOTAL_STEPS = 14;
 
 const STEP_LABELS = [
   "Accueil", "Date", "Invités", "Préparation des mariés", "Cérémonie", "Violoniste",
   "Votre table & votre nuit", "Photographe",
-  "DJ", "Déco", "Options", "Site mariage", "Récap",
+  "DJ", "Déco", "Options", "Vos moments", "Site mariage", "Récap",
 ];
 
 
@@ -323,8 +325,9 @@ const ConfigurateurShell = () => {
       case 8: return <Step07_DJ {...props} />;
       case 9: return <Step08_Deco {...props} />;
       case 10: return <Step09_Options {...props} />;
-      case 11: return <Step10_SiteMariage {...props} />;
-      case 12: return <Step11_Recap {...props} />;
+      case 11: return <Step10_MomentsPersonnels {...props} />;
+      case 12: return <Step10_SiteMariage {...props} />;
+      case 13: return <Step11_Recap {...props} />;
       default: return null;
     }
 
