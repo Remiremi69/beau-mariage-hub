@@ -81,7 +81,7 @@ export const defaultState: ConfigurateurState = {
 }
 
 export const OPTION_PRICES: Record<string, number> = {
-  photobooth: 400,
+  photobooth: 450,
   cocktail_bar: 600,
   feu_artifice: 1800,
   voiture_collection: 550,
