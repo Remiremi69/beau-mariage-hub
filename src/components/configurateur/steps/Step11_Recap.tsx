@@ -882,14 +882,12 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
               <motion.div key="success" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} className="text-center" style={{ maxWidth: 520 }}>
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 48, color: "#c9a96e", marginBottom: 16 }}>◇</p>
                 <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 36, color: "#faf8f4", marginBottom: 16 }}>
-                  {localisation === "local" ? "Votre dégustation est réservée." : "Votre demande est envoyée."}
+                  {localisation === "distance" ? "Votre demande est envoyée." : "On vous recontacte."}
                 </h3>
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 14, color: "rgba(232,221,208,0.60)", lineHeight: 1.8 }}>
-                  {localisation === "local"
-                    ? `Nous vous confirmons le créneau du ${rdvJour || "jour choisi"} par email dans les 2 heures. Vous rencontrerez le chef Sébastien et découvrirez votre menu en avant-première.`
-                    : localisation === "distance"
-                      ? `Votre coffret Limen sera expédié dans les 48 heures${adresse.ville ? ` à ${adresse.ville}` : ""}. Le RDV Zoom sera confirmé par email — prévoyez une bouteille de Beaujolais à portée de main.`
-                      : "Nous vous contacterons dans les 24 heures pour confirmer votre date et répondre à toutes vos questions."
+                  {localisation === "distance"
+                    ? `Votre coffret Limen sera expédié dans les 48 heures${adresse.ville ? ` à ${adresse.ville}` : ""}. Le RDV Zoom sera confirmé par email — prévoyez une bouteille de Beaujolais à portée de main.`
+                    : "Nous vous contacterons dans les 24 heures pour confirmer votre date et répondre à toutes vos questions."
                   }
                 </p>
                 <Roadmap loc={localisation} />
