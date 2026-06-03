@@ -17,6 +17,7 @@ import Step06_Photographe from "./steps/Step06_Photographe";
 import Step07_DJ from "./steps/Step07_DJ";
 import Step08_Deco from "./steps/Step08_Deco";
 import Step09_Options from "./steps/Step09_Options";
+import Step10_MomentsPersonnels from "./steps/Step10_MomentsPersonnels";
 import Step10_SiteMariage from "./steps/Step10_SiteMariage";
 import Step11_Recap from "./steps/Step11_Recap";
 
@@ -48,12 +49,12 @@ const STEP_BACKGROUNDS = [
   "radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.25) 0%, transparent 60%), linear-gradient(160deg, #0d0b08 0%, #1a1612 50%, #231e17 100%)",
 ];
 
-const TOTAL_STEPS = 13;
+const TOTAL_STEPS = 14;
 
 const STEP_LABELS = [
   "Accueil", "Date", "Invités", "Préparation des mariés", "Cérémonie", "Violoniste",
   "Votre table & votre nuit", "Photographe",
-  "DJ", "Déco", "Options", "Site mariage", "Récap",
+  "DJ", "Déco", "Options", "Vos moments", "Site mariage", "Récap",
 ];
 
 
