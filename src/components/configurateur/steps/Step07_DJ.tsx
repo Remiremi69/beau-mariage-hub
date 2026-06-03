@@ -138,6 +138,9 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
     if (barVinylesBloque) return;
     onUpdate({ dj: { ...dj, barVinyles: !dj.barVinyles } });
   };
+  const toggleEclairage = () => {
+    onUpdate({ dj: { ...dj, eclairageAmbiance: !dj.eclairageAmbiance } });
+  };
 
   const cardBase: React.CSSProperties = {
     borderRadius: 2,
@@ -419,6 +422,101 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                     </p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ─── Bloc 5 — Éclairage d'ambiance ─── */}
+          <motion.div
+            custom={6.5}
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            onClick={toggleEclairage}
+            style={{
+              ...(dj.eclairageAmbiance
+                ? {
+                    borderRadius: 2,
+                    padding: "26px 28px",
+                    transition: "all 0.25s ease",
+                    background: "rgba(201,169,110,0.07)",
+                    border: "1px solid #c9a96e",
+                    cursor: "pointer",
+                  }
+                : cardBase),
+              cursor: "pointer",
+            }}
+          >
+            <div className="flex items-start gap-4">
+              <div
+                className="flex-shrink-0"
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: 2,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "rgba(201,169,110,0.10)",
+                  border: "1px solid rgba(201,169,110,0.25)",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontWeight: 300,
+                    fontSize: 26,
+                    color: COLORS.or,
+                    lineHeight: 1,
+                  }}
+                >
+                  ✦
+                </span>
+              </div>
+              <div style={{ flex: 1 }}>
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                  <p
+                    style={{
+                      fontFamily: "'Jost', sans-serif",
+                      fontWeight: 400,
+                      fontSize: 13,
+                      letterSpacing: "0.20em",
+                      textTransform: "uppercase",
+                      color: "#faf8f4",
+                    }}
+                  >
+                    Éclairage d'ambiance
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <Badge label="Optionnel" variant="lin" />
+                    <Toggle on={dj.eclairageAmbiance} onClick={toggleEclairage} />
+                  </div>
+                </div>
+                <p
+                  style={{
+                    fontFamily: "'Jost', sans-serif",
+                    fontWeight: 400,
+                    fontSize: 11,
+                    letterSpacing: "0.20em",
+                    textTransform: "uppercase",
+                    color: COLORS.or,
+                    marginTop: 14,
+                  }}
+                >
+                  + 120 €
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'Jost', sans-serif",
+                    fontWeight: 300,
+                    fontSize: 13,
+                    color: "rgba(245,240,232,0.75)",
+                    lineHeight: 1.7,
+                    marginTop: 10,
+                  }}
+                >
+                  Projecteurs LED en pourtour de salle. Couleur choisie par les mariés pendant le repas, animation lumineuse synchronisée avec la piste de danse.
+                </p>
               </div>
             </div>
           </motion.div>
