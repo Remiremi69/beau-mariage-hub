@@ -332,7 +332,6 @@ const getCTALabel = (loc: Localisation): string => {
 };
 
 const getSubtitle = (loc: Localisation): string => {
-  if (loc === "local") return "Votre demande de dégustation sur site sera confirmée dans les 2 heures.";
   if (loc === "distance") return "Votre coffret sera expédié et le RDV Zoom confirmé dans les 2 heures.";
   return "Un conseiller Limen vous contacte sous 24h.";
 };
