@@ -447,7 +447,7 @@ const RDVSelector = ({
 };
 
 /* ════════════════════════════════════════════════════════ */
-const Step11_Recap = ({ state, onPrev }: Step10Props) => {
+const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
   const breakdown = useMemo(() => calculateBreakdown(state), [state]);
 
   const [contact, setContact] = useState({ prenom: state.contact?.prenom || "", nom: "", email: state.contact?.email || "", telephone: state.contact?.telephone || "", message: "" });
@@ -459,7 +459,19 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isPdfGenerating, setIsPdfGenerating] = useState(false);
+  const [esquisseCaptured, setEsquisseCaptured] = useState(!!state.contact?.email);
+  const [esquissePrenom, setEsquissePrenom] = useState(state.contact?.prenom || "");
+  const [esquisseEmail, setEsquisseEmail] = useState(state.contact?.email || "");
+  const [esquisseLoading, setEsquisseLoading] = useState(false);
   const pdfRef = useRef<PdfEsquisseHandle>(null);
+
+  useEffect(() => {
+    if (state.contact?.email) {
+      setEsquisseCaptured(true);
+      setEsquisseEmail(state.contact.email);
+      setEsquissePrenom(state.contact.prenom || "");
+    }
+  }, [state.contact?.email]);
 
   const handleDownloadPdf = async () => {
     if (!pdfRef.current || isPdfGenerating) return;
@@ -548,37 +560,85 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
           className="w-full flex flex-col items-center"
           style={{ marginTop: 8, marginBottom: 64 }}
         >
-          <button
-            onClick={handleDownloadPdf}
-            disabled={isPdfGenerating}
-            data-cursor-hover
-            style={{
-              fontFamily: "'Jost', sans-serif",
-              fontWeight: 300,
-              fontSize: 12,
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
-              padding: "14px 28px",
-              border: "1px solid rgba(201,169,110,0.40)",
-              background: "transparent",
-              color: "rgba(201,169,110,0.80)",
-              cursor: isPdfGenerating ? "wait" : "pointer",
-              transition: "all 0.3s ease",
-              borderRadius: 0,
-            }}
-            onMouseEnter={(e) => {
-              if (!isPdfGenerating) {
-                e.currentTarget.style.borderColor = "#c9a96e";
-                e.currentTarget.style.color = "#c9a96e";
-              }
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "rgba(201,169,110,0.40)";
-              e.currentTarget.style.color = "rgba(201,169,110,0.80)";
-            }}
-          >
-            {isPdfGenerating ? "Création en cours…" : "↓ Télécharger l'esquisse"}
-          </button>
+          {esquisseCaptured ? (
+            <button
+              onClick={handleDownloadPdf}
+              disabled={isPdfGenerating}
+              data-cursor-hover
+              style={{
+                fontFamily: "'Jost', sans-serif",
+                fontWeight: 300,
+                fontSize: 12,
+                letterSpacing: "0.3em",
+                textTransform: "uppercase",
+                padding: "14px 28px",
+                border: "1px solid rgba(201,169,110,0.40)",
+                background: "transparent",
+                color: "rgba(201,169,110,0.80)",
+                cursor: isPdfGenerating ? "wait" : "pointer",
+                transition: "all 0.3s ease",
+                borderRadius: 0,
+              }}
+              onMouseEnter={(e) => {
+                if (!isPdfGenerating) {
+                  e.currentTarget.style.borderColor = "#c9a96e";
+                  e.currentTarget.style.color = "#c9a96e";
+                }
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(201,169,110,0.40)";
+                e.currentTarget.style.color = "rgba(201,169,110,0.80)";
+              }}
+            >
+              {isPdfGenerating ? "Création en cours…" : "↓ Télécharger l'esquisse"}
+            </button>
+          ) : (
+            <div className="flex flex-col gap-3 w-full" style={{ maxWidth: 380 }}>
+              <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(232,221,208,0.55)", textAlign: "center", marginBottom: 4 }}>
+                Pour recevoir votre esquisse
+              </p>
+              <input
+                type="text"
+                placeholder="Votre prénom"
+                value={esquissePrenom}
+                onChange={(e) => setEsquissePrenom(e.target.value)}
+                style={inputStyle}
+                onFocus={focusIn}
+                onBlur={focusOut}
+              />
+              <input
+                type="email"
+                placeholder="votre@email.com"
+                value={esquisseEmail}
+                onChange={(e) => setEsquisseEmail(e.target.value)}
+                style={inputStyle}
+                onFocus={focusIn}
+                onBlur={focusOut}
+              />
+              <button
+                onClick={handleEsquisseCapture}
+                disabled={!esquissePrenom.trim() || !esquisseEmail.trim() || esquisseLoading}
+                data-cursor-hover
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontWeight: 300,
+                  fontSize: 12,
+                  letterSpacing: "0.3em",
+                  textTransform: "uppercase",
+                  padding: "14px 28px",
+                  border: "1px solid rgba(201,169,110,0.40)",
+                  background: "transparent",
+                  color: "rgba(201,169,110,0.80)",
+                  cursor: esquisseLoading ? "wait" : "pointer",
+                  transition: "all 0.3s ease",
+                  borderRadius: 0,
+                  opacity: (!esquissePrenom.trim() || !esquisseEmail.trim()) ? 0.5 : 1,
+                }}
+              >
+                {esquisseLoading ? "Un instant…" : "↓ Télécharger l'esquisse"}
+              </button>
+            </div>
+          )}
           <p
             style={{
               fontFamily: "'Cormorant Garamond', serif",
