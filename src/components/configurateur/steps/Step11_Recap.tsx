@@ -760,31 +760,6 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
           </div>
         </motion.div>
 
-        {/* 4C — Panneau LOCAL */}
-        <AnimatePresence>
-          {localisation === "local" && (
-            <motion.div
-              key="local-panel"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.4 }}
-              className="w-full flex justify-center overflow-hidden"
-              style={{ marginTop: 32 }}
-            >
-              <div style={{
-                background: "rgba(26,22,18,0.60)", border: "1px solid rgba(201,169,110,0.20)", borderRadius: 2,
-                padding: "28px 32px", maxWidth: 580, width: "100%",
-              }}>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.30em", textTransform: "uppercase", color: "rgba(201,169,110,0.55)", marginBottom: 24 }}>
-                  Choisissez votre créneau
-                </p>
-                <RDVSelector semaine={rdvSemaine} setSemaine={setRdvSemaine} jour={rdvJour} setJour={setRdvJour} creneau={rdvCreneau} setCreneau={setRdvCreneau} />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {/* 4D — Panneau DISTANCE */}
         <AnimatePresence>
           {localisation === "distance" && (
