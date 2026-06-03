@@ -160,7 +160,7 @@ interface Step10Props {
   onPrev: () => void;
 }
 
-type Localisation = "local" | "distance" | null;
+type Localisation = "distance" | null;
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -327,13 +327,11 @@ const CRENEAUX = [
 
 /* ── CTA label ────────────────────────────────────────── */
 const getCTALabel = (loc: Localisation): string => {
-  if (loc === "local") return "RÉSERVER MA DÉGUSTATION";
   if (loc === "distance") return "ENVOYER MA DEMANDE + EXPÉDIER MON COFFRET";
   return "ENVOYER MA DEMANDE";
 };
 
 const getSubtitle = (loc: Localisation): string => {
-  if (loc === "local") return "Votre demande de dégustation sur site sera confirmée dans les 2 heures.";
   if (loc === "distance") return "Votre coffret sera expédié et le RDV Zoom confirmé dans les 2 heures.";
   return "Un conseiller Limen vous contacte sous 24h.";
 };
@@ -743,22 +741,6 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
           </p>
 
           <div className="flex flex-col-reverse sm:flex-row gap-3.5 w-full justify-center" style={{ maxWidth: 520 }}>
-            {/* Carte LOCAL */}
-            <button
-              onClick={() => setLocalisation(localisation === "local" ? null : "local")}
-              data-cursor-hover
-              className="flex-1 text-center transition-all duration-300"
-              style={{
-                padding: "28px 24px", borderRadius: 2, cursor: "pointer", background: localisation === "local" ? "rgba(201,169,110,0.10)" : "rgba(26,22,18,0.50)",
-                border: localisation === "local" ? "1px solid rgba(201,169,110,0.50)" : "1px solid rgba(201,169,110,0.15)",
-              }}
-            >
-              <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 28, color: "rgba(201,169,110,0.50)", marginBottom: 12 }}>◎</p>
-              <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(232,221,208,0.75)" }}>Proche du domaine</p>
-              <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(232,221,208,0.45)", marginTop: 8 }}>À moins de 2h de Lyon</p>
-              <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: "#c9a96e", marginTop: 16 }}>Choisir un créneau</p>
-            </button>
-
             {/* Carte DISTANCE */}
             <button
               onClick={() => setLocalisation(localisation === "distance" ? null : "distance")}
@@ -776,31 +758,6 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
             </button>
           </div>
         </motion.div>
-
-        {/* 4C — Panneau LOCAL */}
-        <AnimatePresence>
-          {localisation === "local" && (
-            <motion.div
-              key="local-panel"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.4 }}
-              className="w-full flex justify-center overflow-hidden"
-              style={{ marginTop: 32 }}
-            >
-              <div style={{
-                background: "rgba(26,22,18,0.60)", border: "1px solid rgba(201,169,110,0.20)", borderRadius: 2,
-                padding: "28px 32px", maxWidth: 580, width: "100%",
-              }}>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.30em", textTransform: "uppercase", color: "rgba(201,169,110,0.55)", marginBottom: 24 }}>
-                  Choisissez votre créneau
-                </p>
-                <RDVSelector semaine={rdvSemaine} setSemaine={setRdvSemaine} jour={rdvJour} setJour={setRdvJour} creneau={rdvCreneau} setCreneau={setRdvCreneau} />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* 4D — Panneau DISTANCE */}
         <AnimatePresence>
@@ -883,14 +840,12 @@ const Step11_Recap = ({ state, onPrev }: Step10Props) => {
               <motion.div key="success" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} className="text-center" style={{ maxWidth: 520 }}>
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 48, color: "#c9a96e", marginBottom: 16 }}>◇</p>
                 <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 36, color: "#faf8f4", marginBottom: 16 }}>
-                  {localisation === "local" ? "Votre dégustation est réservée." : "Votre demande est envoyée."}
+                  {localisation === "distance" ? "Votre demande est envoyée." : "On vous recontacte."}
                 </h3>
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 14, color: "rgba(232,221,208,0.60)", lineHeight: 1.8 }}>
-                  {localisation === "local"
-                    ? `Nous vous confirmons le créneau du ${rdvJour || "jour choisi"} par email dans les 2 heures. Vous rencontrerez le chef Sébastien et découvrirez votre menu en avant-première.`
-                    : localisation === "distance"
-                      ? `Votre coffret Limen sera expédié dans les 48 heures${adresse.ville ? ` à ${adresse.ville}` : ""}. Le RDV Zoom sera confirmé par email — prévoyez une bouteille de Beaujolais à portée de main.`
-                      : "Nous vous contacterons dans les 24 heures pour confirmer votre date et répondre à toutes vos questions."
+                  {localisation === "distance"
+                    ? `Votre coffret Limen sera expédié dans les 48 heures${adresse.ville ? ` à ${adresse.ville}` : ""}. Le RDV Zoom sera confirmé par email — prévoyez une bouteille de Beaujolais à portée de main.`
+                    : "Nous vous contacterons dans les 24 heures pour confirmer votre date et répondre à toutes vos questions."
                   }
                 </p>
                 <Roadmap loc={localisation} />
