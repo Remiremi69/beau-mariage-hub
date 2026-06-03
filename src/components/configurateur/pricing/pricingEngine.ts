@@ -49,6 +49,7 @@ const DECO_OPTION_LABELS: Record<string, string> = {
 }
 
 const CEREMONIE_PRIX = 1040
+const MARGE_LIMEN = 2000
 
 const PHOTO_PRIX: Record<string, number> = {
   essentielle: 1530,
