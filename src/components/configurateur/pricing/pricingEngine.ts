@@ -32,8 +32,20 @@ function getRepasPrixUnit(menu: string, guests: number): number {
 }
 
 const DECO_PRIX: Record<string, number> = {
-  seve: 0,
-  pierre: 0,
+  seve: 1103,
+  pierre: 1038,
+}
+
+const DECO_OPTION_PRIX: Record<string, number> = {
+  tapers_noires: 225,
+  velours: 100,
+  photophores_fumes: 60,
+}
+
+const DECO_OPTION_LABELS: Record<string, string> = {
+  tapers_noires: 'Bougies tapers noires ×60',
+  velours: 'Chemin de table velours',
+  photophores_fumes: 'Photophores fumés ×50',
 }
 
 const CEREMONIE_PRIX = 1040
@@ -130,16 +142,22 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
   if (decoPrix > 0) {
     lines.push({
       label: 'Décoration — ' + (decoLabelMap[state.deco] ?? ''),
+      sublabel: state.deco === 'seve'
+        ? 'Végétal · Terracotta · Lin brut'
+        : 'Blanc pur · Minimalisme · Or',
       amount: decoPrix,
       isIncluded: false,
     })
-  } else {
-    lines.push({
-      label: 'Décoration — Champêtre Authentique',
-      sublabel: 'Fleurs locales, bougies, lin brut',
-      amount: 0,
-      isIncluded: true,
-    })
+  }
+  for (const optId of state.decoOptions ?? []) {
+    const prix = DECO_OPTION_PRIX[optId]
+    if (prix) {
+      lines.push({
+        label: DECO_OPTION_LABELS[optId] ?? optId,
+        amount: prix,
+        isIncluded: false,
+      })
+    }
   }
 
   const photoPrix = PHOTO_PRIX[state.photographe] ?? 0
