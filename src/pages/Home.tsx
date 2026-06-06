@@ -13,6 +13,7 @@ import venueImage from "@/assets/venue-exterior.jpg";
 import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
 import photographeLoic from "@/assets/photographe-loic.avif";
 import djAstreviaPortrait from "@/assets/dj-astrevia-portrait.png";
+import estherCoutinPortrait from "@/assets/esther-coutin-portrait.png.asset.json";
 
 const Home = () => {
   const founderQuote = {
@@ -597,6 +598,16 @@ const PartnersSection = () => {
       imageAlt: "Rémy et Jordan, fondateurs d'Astrévia Events, en tenue de soirée dans une salle de réception",
       imagePosition: "center 25%",
       href: "/serie-octobre-2027/prestataires/dj",
+    },
+    {
+      title: "Esther Coutin",
+      category: "CÉRÉMONIE LAÏQUE",
+      description: "Maîtresse de cérémonie et officiante laïque. Elle ne lit pas un discours, elle porte une voix — la vôtre. Avec la fluidité d'une speaker professionnelle et la justesse de quelqu'un qui sait quand parler et quand se taire.",
+      icon: MicVocal,
+      image: estherCoutinPortrait.url,
+      imageAlt: "Esther Coutin, maîtresse de cérémonie et officiante laïque",
+      imagePosition: "center 20%",
+      href: "/serie-octobre-2027/prestataires/esther-coutin",
     }
   ];
 
@@ -618,7 +629,7 @@ const PartnersSection = () => {
           </div>
         </ScrollReveal>
 
-        <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-10 sm:mb-16" staggerDelay={0.12}>
+        <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6 mb-10 sm:mb-16" staggerDelay={0.12}>
           {categories.map((cat, index) => {
             const Icon = cat.icon;
             return (
