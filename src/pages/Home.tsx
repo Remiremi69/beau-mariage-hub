@@ -679,7 +679,7 @@ const PartnersSection = () => {
       image: estherCoutinPortrait.url,
       imageAlt: "Esther Coutin, maîtresse de cérémonie et officiante laïque",
       imagePosition: "center 20%",
-      href: "/serie-octobre-2027/esther-coutin",
+      href: "serie-octobre-2027/prestataires/esther-coutin",
     },
   ];
 
