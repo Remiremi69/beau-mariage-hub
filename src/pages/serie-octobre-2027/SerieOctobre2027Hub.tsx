@@ -26,6 +26,7 @@ import { supabase } from "@/integrations/supabase/client";
 import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
 import photographeLoic from "@/assets/photographe-loic.avif";
 import djAstreviaPortrait from "@/assets/dj-astrevia-portrait.png";
+import estherCoutinPortrait from "@/assets/esther-coutin-portrait.png.asset.json";
 import SEO from "@/components/SEO";
 import { schemaSerie } from '@/lib/schemas';
 import {
