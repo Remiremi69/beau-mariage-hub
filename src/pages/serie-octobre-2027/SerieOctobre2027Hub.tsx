@@ -117,6 +117,9 @@ const prestataires: Array<{
     description: "Speaker professionnelle, maîtresse de cérémonie et officiante laïque. Voix posée, présence rassurante, déroulé entièrement sur-mesure.",
     href: "/prestataires/esther-coutin",
     lucideIcon: MicVocal,
+    image: estherCoutinPortrait.url,
+    imageAlt: "Esther Coutin, maîtresse de cérémonie laïque, micro en main sur scène",
+    imagePosition: "center 20%",
   },
 ];
 
