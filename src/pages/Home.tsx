@@ -598,6 +598,16 @@ const PartnersSection = () => {
       imageAlt: "Rémy et Jordan, fondateurs d'Astrévia Events, en tenue de soirée dans une salle de réception",
       imagePosition: "center 25%",
       href: "/serie-octobre-2027/prestataires/dj",
+    },
+    {
+      title: "Esther Coutin",
+      category: "CÉRÉMONIE LAÏQUE",
+      description: "Maîtresse de cérémonie et officiante laïque. Elle ne lit pas un discours, elle porte une voix — la vôtre. Avec la fluidité d'une speaker professionnelle et la justesse de quelqu'un qui sait quand parler et quand se taire.",
+      icon: MicVocal,
+      image: estherCoutinPortrait.url,
+      imageAlt: "Esther Coutin, maîtresse de cérémonie et officiante laïque",
+      imagePosition: "center 20%",
+      href: "/serie-octobre-2027/prestataires/esther-coutin",
     }
   ];
 
