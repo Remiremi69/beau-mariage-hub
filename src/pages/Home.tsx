@@ -1,11 +1,31 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, Clock, Diamond, Star, Palette, Coins, CheckCircle, PartyPopper, UtensilsCrossed, Camera, Flower2, Music, MicVocal, RefreshCw, ArrowRight, Users, Handshake, Check, ExternalLink } from "lucide-react";
+import {
+  Heart,
+  Clock,
+  Diamond,
+  Star,
+  Palette,
+  Coins,
+  CheckCircle,
+  PartyPopper,
+  UtensilsCrossed,
+  Camera,
+  Flower2,
+  Music,
+  MicVocal,
+  RefreshCw,
+  ArrowRight,
+  Users,
+  Handshake,
+  Check,
+  ExternalLink,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 import SEO from "@/components/SEO";
-import { schemaHome } from '@/lib/schemas';
+import { schemaHome } from "@/lib/schemas";
 import LeadCaptureSection from "@/components/LeadCaptureSection";
 import CinematicHero from "@/components/CinematicHero";
 import { ScrollReveal, StaggerContainer, ImageReveal } from "@/components/ScrollReveal";
@@ -19,7 +39,7 @@ const Home = () => {
   const founderQuote = {
     text: "Le Beau Mariage repose sur une idée simple : un rite de passage ne se gère pas. Il se traverse. Tout est déjà prêt.",
     author: "Rémi",
-    role: "Fondateur"
+    role: "Fondateur",
   };
 
   return (
@@ -30,11 +50,14 @@ const Home = () => {
         canonical="https://lebeaumariage.fr/"
         jsonLd={schemaHome}
       />
-      
+
       {/* Launch Banner */}
       <div className="bg-primary text-primary-foreground py-2.5 sm:py-3 px-3 sm:px-4 text-center text-xs sm:text-sm md:text-base">
         <span className="font-medium">🚀 Le Beau Mariage est en phase de lancement !</span>
-        <span className="hidden sm:inline"> — Ce site vous permet de découvrir notre concept. La série de mariage présentée est fictive et sert d'exemple.</span>
+        <span className="hidden sm:inline">
+          {" "}
+          — Ce site vous permet de découvrir notre concept. La série de mariage présentée est fictive et sert d'exemple.
+        </span>
         <span className="sm:hidden"> La série présentée est un exemple.</span>
       </div>
 
@@ -54,22 +77,22 @@ const Home = () => {
       <BusinessModelSection />
 
       {/* CTA after Partners */}
-      <section style={{ backgroundColor: '#0D0E12', paddingTop: 60, paddingBottom: 60 }}>
+      <section style={{ backgroundColor: "#0D0E12", paddingTop: 60, paddingBottom: 60 }}>
         <div className="text-center">
           <Link to="/serie-octobre-2027">
             <button
               style={{
-                backgroundColor: '#C9A96E',
-                color: '#0D0E12',
+                backgroundColor: "#C9A96E",
+                color: "#0D0E12",
                 borderRadius: 0,
                 fontFamily: "'Jost', sans-serif",
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                fontSize: '13px',
-                padding: '16px 36px',
-                border: 'none',
-                cursor: 'pointer',
-                width: 'auto',
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                fontSize: "13px",
+                padding: "16px 36px",
+                border: "none",
+                cursor: "pointer",
+                width: "auto",
               }}
               className="hover:opacity-90 transition-opacity"
             >
@@ -131,22 +154,22 @@ const Home = () => {
       </section>
 
       {/* CTA after Founder's Word */}
-      <section style={{ backgroundColor: '#0D0E12', paddingTop: 60, paddingBottom: 60 }}>
+      <section style={{ backgroundColor: "#0D0E12", paddingTop: 60, paddingBottom: 60 }}>
         <div className="text-center">
           <Link to="/serie-octobre-2027">
             <button
               style={{
-                backgroundColor: '#C9A96E',
-                color: '#0D0E12',
+                backgroundColor: "#C9A96E",
+                color: "#0D0E12",
                 borderRadius: 0,
                 fontFamily: "'Jost', sans-serif",
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                fontSize: '13px',
-                padding: '16px 36px',
-                border: 'none',
-                cursor: 'pointer',
-                width: 'auto',
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                fontSize: "13px",
+                padding: "16px 36px",
+                border: "none",
+                cursor: "pointer",
+                width: "auto",
               }}
               className="hover:opacity-90 transition-opacity"
             >
@@ -192,7 +215,10 @@ const TimelineSection = () => {
   ];
 
   return (
-    <section className="relative overflow-hidden" style={{ backgroundColor: '#0D0E12', paddingTop: 120, paddingBottom: 120 }}>
+    <section
+      className="relative overflow-hidden"
+      style={{ backgroundColor: "#0D0E12", paddingTop: 120, paddingBottom: 120 }}
+    >
       <div className="container mx-auto px-4 relative z-10">
         {/* Title */}
         <ScrollReveal>
@@ -200,9 +226,9 @@ const TimelineSection = () => {
             className="text-center mb-8 sm:mb-10 md:mb-14"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontStyle: 'italic',
-              color: '#F5F0E8',
-              fontSize: 'clamp(1.75rem, 4vw, 3.5rem)',
+              fontStyle: "italic",
+              color: "#F5F0E8",
+              fontSize: "clamp(1.75rem, 4vw, 3.5rem)",
               lineHeight: 1.2,
             }}
           >
@@ -214,7 +240,10 @@ const TimelineSection = () => {
         <div className="hidden md:block max-w-5xl mx-auto">
           <div className="relative">
             {/* Horizontal line */}
-            <div className="absolute top-[20px] left-[12.5%] right-[12.5%] h-px" style={{ backgroundColor: '#C9A96E' }} />
+            <div
+              className="absolute top-[20px] left-[12.5%] right-[12.5%] h-px"
+              style={{ backgroundColor: "#C9A96E" }}
+            />
 
             <div className="grid grid-cols-4 gap-8">
               {steps.map((step, index) => (
@@ -225,11 +254,19 @@ const TimelineSection = () => {
                       {step.isPortique ? (
                         <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <line x1="2" y1="6" x2="2" y2="40" stroke="#C9A96E" strokeWidth="2" strokeLinecap="square" />
-                          <line x1="30" y1="6" x2="30" y2="40" stroke="#C9A96E" strokeWidth="2" strokeLinecap="square" />
+                          <line
+                            x1="30"
+                            y1="6"
+                            x2="30"
+                            y2="40"
+                            stroke="#C9A96E"
+                            strokeWidth="2"
+                            strokeLinecap="square"
+                          />
                           <line x1="2" y1="6" x2="30" y2="6" stroke="#C9A96E" strokeWidth="2" strokeLinecap="square" />
                         </svg>
                       ) : (
-                        <div style={{ width: 20, height: 2, backgroundColor: '#C9A96E' }} />
+                        <div style={{ width: 20, height: 2, backgroundColor: "#C9A96E" }} />
                       )}
                     </div>
 
@@ -238,10 +275,10 @@ const TimelineSection = () => {
                       className="block mb-3"
                       style={{
                         fontFamily: "'Jost', sans-serif",
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.15em',
-                        color: '#C9A96E',
-                        fontSize: '0.65rem',
+                        textTransform: "uppercase",
+                        letterSpacing: "0.15em",
+                        color: "#C9A96E",
+                        fontSize: "0.65rem",
                       }}
                     >
                       {step.badge}
@@ -250,8 +287,8 @@ const TimelineSection = () => {
                       className="mb-2"
                       style={{
                         fontFamily: "'Cormorant Garamond', serif",
-                        color: '#F5F0E8',
-                        fontSize: '1.5rem',
+                        color: "#F5F0E8",
+                        fontSize: "1.5rem",
                         fontWeight: 600,
                       }}
                     >
@@ -260,8 +297,8 @@ const TimelineSection = () => {
                     <p
                       style={{
                         fontFamily: "'Jost', sans-serif",
-                        color: '#A0998A',
-                        fontSize: '0.85rem',
+                        color: "#A0998A",
+                        fontSize: "0.85rem",
                         lineHeight: 1.6,
                         maxWidth: 220,
                       }}
@@ -278,7 +315,7 @@ const TimelineSection = () => {
         {/* Mobile Timeline */}
         <div className="md:hidden relative pl-8">
           {/* Vertical line */}
-          <div className="absolute left-[9px] top-0 bottom-0 w-px" style={{ backgroundColor: '#C9A96E' }} />
+          <div className="absolute left-[9px] top-0 bottom-0 w-px" style={{ backgroundColor: "#C9A96E" }} />
 
           <div className="space-y-10">
             {steps.map((step, index) => (
@@ -293,7 +330,7 @@ const TimelineSection = () => {
                         <line x1="2" y1="6" x2="30" y2="6" stroke="#C9A96E" strokeWidth="2" strokeLinecap="square" />
                       </svg>
                     ) : (
-                      <div style={{ width: 20, height: 2, backgroundColor: '#C9A96E' }} />
+                      <div style={{ width: 20, height: 2, backgroundColor: "#C9A96E" }} />
                     )}
                   </div>
 
@@ -302,10 +339,10 @@ const TimelineSection = () => {
                     className="block mb-1"
                     style={{
                       fontFamily: "'Jost', sans-serif",
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.15em',
-                      color: '#C9A96E',
-                      fontSize: '0.6rem',
+                      textTransform: "uppercase",
+                      letterSpacing: "0.15em",
+                      color: "#C9A96E",
+                      fontSize: "0.6rem",
                     }}
                   >
                     {step.badge}
@@ -314,8 +351,8 @@ const TimelineSection = () => {
                     className="mb-1"
                     style={{
                       fontFamily: "'Cormorant Garamond', serif",
-                      color: '#F5F0E8',
-                      fontSize: '1.25rem',
+                      color: "#F5F0E8",
+                      fontSize: "1.25rem",
                       fontWeight: 600,
                     }}
                   >
@@ -324,8 +361,8 @@ const TimelineSection = () => {
                   <p
                     style={{
                       fontFamily: "'Jost', sans-serif",
-                      color: '#A0998A',
-                      fontSize: '0.8rem',
+                      color: "#A0998A",
+                      fontSize: "0.8rem",
                       lineHeight: 1.6,
                     }}
                   >
@@ -343,17 +380,17 @@ const TimelineSection = () => {
             <Link to="/serie-octobre-2027">
               <button
                 style={{
-                  backgroundColor: '#C9A96E',
-                  color: '#0D0E12',
+                  backgroundColor: "#C9A96E",
+                  color: "#0D0E12",
                   borderRadius: 0,
                   fontFamily: "'Jost', sans-serif",
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  fontSize: '13px',
-                  padding: '16px 36px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  width: 'auto',
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  fontSize: "13px",
+                  padding: "16px 36px",
+                  border: "none",
+                  cursor: "pointer",
+                  width: "auto",
                 }}
                 className="hover:opacity-90 transition-opacity"
               >
@@ -373,27 +410,30 @@ const SerenitySection = () => {
     {
       icon: Diamond,
       title: "Garantie Zéro Coût Caché",
-      description: "Le prix affiché est le prix payé. Point final. Fini les mauvaises surprises et les lignes en petits caractères. Votre devis est 100% transparent et tout est inclus.",
-      color: "primary"
+      description:
+        "Le prix affiché est le prix payé. Point final. Fini les mauvaises surprises et les lignes en petits caractères. Votre devis est 100% transparent et tout est inclus.",
+      color: "primary",
     },
     {
       icon: Star,
       title: "Garantie Qualité Inébranlable",
-      description: "Si l'un de nos partenaires ne peut assurer sa prestation, nous le remplaçons par un talent de niveau égal ou supérieur. Vous ne gérez rien. Nous gérons tout.",
-      color: "secondary"
+      description:
+        "Si l'un de nos partenaires ne peut assurer sa prestation, nous le remplaçons par un talent de niveau égal ou supérieur. Vous ne gérez rien. Nous gérons tout.",
+      color: "secondary",
     },
     {
       icon: RefreshCw,
       title: "Garantie Flexibilité Absolue",
-      description: "Un imprévu majeur vous oblige à changer vos plans : vous reportez votre mariage sans frais jusqu'à 6 mois avant la date. Le seuil attend.",
-      color: "primary"
-    }
+      description:
+        "Un imprévu majeur vous oblige à changer vos plans : vous reportez votre mariage sans frais jusqu'à 6 mois avant la date. Le seuil attend.",
+      color: "primary",
+    },
   ];
 
   return (
     <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <ScrollReveal>
           <div className="text-center mb-8 sm:mb-12 md:mb-20">
@@ -407,14 +447,19 @@ const SerenitySection = () => {
           </div>
         </ScrollReveal>
 
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto" staggerDelay={0.15}>
+        <StaggerContainer
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto"
+          staggerDelay={0.15}
+        >
           {guarantees.map((guarantee, index) => {
             const Icon = guarantee.icon;
             return (
               <div key={index} className="group">
                 <div className="relative h-full overflow-hidden rounded-2xl sm:rounded-3xl bg-card border border-border/50 p-5 sm:p-8 transition-all duration-500 hover:shadow-[0_30px_60px_-15px_hsl(14_71%_67%/0.25)] hover:-translate-y-3 hover:border-primary/20">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-primary/10 flex items-center justify-center mb-4 sm:mb-6">
-                    <Icon className={`h-6 w-6 sm:h-7 sm:w-7 ${guarantee.color === 'secondary' ? 'text-secondary' : 'text-primary'}`} />
+                    <Icon
+                      className={`h-6 w-6 sm:h-7 sm:w-7 ${guarantee.color === "secondary" ? "text-secondary" : "text-primary"}`}
+                    />
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-4">{guarantee.title}</h3>
                   <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">{guarantee.description}</p>
@@ -431,10 +476,22 @@ const SerenitySection = () => {
 // Wedding Site Section
 const WeddingSiteSection = () => {
   const benefits = [
-    { title: "Partagez votre histoire", description: "Racontez votre rencontre, vos moments forts, et présentez vos témoins." },
-    { title: "Toutes les infos au même endroit", description: "Horaires, adresses, plans d'accès, suggestions d'hôtels... Simplifiez la vie de vos invités." },
-    { title: "Gérez les confirmations de présence (RSVP)", description: "Vos invités confirment leur venue en un clic, directement sur le site." },
-    { title: "Votre liste de mariage intégrée", description: "Connectez facilement votre liste de mariage pour un accès simplifié." }
+    {
+      title: "Partagez votre histoire",
+      description: "Racontez votre rencontre, vos moments forts, et présentez vos témoins.",
+    },
+    {
+      title: "Toutes les infos au même endroit",
+      description: "Horaires, adresses, plans d'accès, suggestions d'hôtels... Simplifiez la vie de vos invités.",
+    },
+    {
+      title: "Gérez les confirmations de présence (RSVP)",
+      description: "Vos invités confirment leur venue en un clic, directement sur le site.",
+    },
+    {
+      title: "Votre liste de mariage intégrée",
+      description: "Connectez facilement votre liste de mariage pour un accès simplifié.",
+    },
   ];
 
   return (
@@ -443,9 +500,9 @@ const WeddingSiteSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
           {/* Left Column - Image with reveal */}
           <ScrollReveal direction="left">
-            <a 
-              href="https://beau-mariage-template.lovable.app" 
-              target="_blank" 
+            <a
+              href="https://beau-mariage-template.lovable.app"
+              target="_blank"
               rel="noopener noreferrer"
               className="group relative block overflow-hidden rounded-2xl shadow-[0_20px_60px_-15px_hsl(14_71%_67%/0.3)] transition-all duration-500 hover:shadow-[0_30px_80px_-15px_hsl(14_71%_67%/0.4)] hover:-translate-y-2"
             >
@@ -473,9 +530,10 @@ const WeddingSiteSection = () => {
               Inclus : Votre Site de Mariage
               <span className="block text-primary">Personnalisé</span>
             </h2>
-            
+
             <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
-              Parce que votre histoire est unique, nous vous offrons un site web élégant et personnalisé pour partager tous les détails de votre grand jour avec vos invités. C'est votre espace, inclus dans votre forfait.
+              Parce que votre histoire est unique, nous vous offrons un site web élégant et personnalisé pour partager
+              tous les détails de votre grand jour avec vos invités. C'est votre espace, inclus dans votre forfait.
             </p>
 
             <StaggerContainer className="space-y-4 mb-8" staggerDelay={0.1} direction="right">
@@ -507,19 +565,22 @@ const BusinessModelSection = () => {
   const points = [
     {
       icon: Users,
-      title: 'Le principe de la série',
-      description: 'Cinq mariages consécutifs. Un lieu. Une équipe. Chaque répétition affine l\'exécution — sans jamais répéter votre mariage.'
+      title: "Le principe de la série",
+      description:
+        "Cinq mariages consécutifs. Un lieu. Une équipe. Chaque répétition affine l'exécution — sans jamais répéter votre mariage.",
     },
     {
       icon: Coins,
       title: "Un modèle qui profite au couple",
-      description: "Moins de prospection pour nos partenaires, moins de logistique dispersée. Ces économies structurelles se répercutent directement sur votre forfait."
+      description:
+        "Moins de prospection pour nos partenaires, moins de logistique dispersée. Ces économies structurelles se répercutent directement sur votre forfait.",
     },
     {
       icon: Handshake,
       title: "Des partenaires choisis, pas référencés",
-      description: "Nous ne travaillons pas avec des annuaires. Chaque artisan a été rencontré, testé, choisi. Leur engagement est le nôtre."
-    }
+      description:
+        "Nous ne travaillons pas avec des annuaires. Chaque artisan a été rencontré, testé, choisi. Leur engagement est le nôtre.",
+    },
   ];
 
   return (
@@ -529,15 +590,21 @@ const BusinessModelSection = () => {
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
               Un mariage à la fois.
-              <span className="block text-primary">C'est la promesse du domaine — pas une contrainte. C'est le modèle.</span>
+              <span className="block text-primary">
+                C'est la promesse du domaine — pas une contrainte. C'est le modèle.
+              </span>
             </h2>
             <p className="text-card/70 text-sm sm:text-lg max-w-3xl mx-auto px-2">
-              Le Domaine de la Croix Rochefort n'accueille qu'un mariage à la fois. Ce n'est pas un argument marketing : c'est ce qui rend possible une attention sans partage, de la première réunion au dernier instant.
+              Le Domaine de la Croix Rochefort n'accueille qu'un mariage à la fois. Ce n'est pas un argument marketing :
+              c'est ce qui rend possible une attention sans partage, de la première réunion au dernier instant.
             </p>
           </div>
         </ScrollReveal>
 
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto" staggerDelay={0.15}>
+        <StaggerContainer
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto"
+          staggerDelay={0.15}
+        >
           {points.map((point, index) => {
             const Icon = point.icon;
             return (
@@ -564,7 +631,8 @@ const PartnersSection = () => {
     {
       title: "Jessica & Jérôme — J&J Traiteur",
       category: "TRAITEURS GASTRONOMIQUES",
-      description: "Cuisine entièrement maison, produits frais du marché, ancrage beaujolais. Basés à Villefranche-sur-Saône, ils signent chaque repas Limen comme un vrai dîner — pas un service de mariage.",
+      description:
+        "Cuisine entièrement maison, produits frais du marché, ancrage beaujolais. Basés à Villefranche-sur-Saône, ils signent chaque repas Limen comme un vrai dîner — pas un service de mariage.",
       icon: UtensilsCrossed,
       image: jjTraiteurPortrait,
       imageAlt: "Jessica et Jérôme, fondateurs de J&J Traiteur, en tabliers J&J dans une salle voûtée",
@@ -573,7 +641,8 @@ const PartnersSection = () => {
     {
       title: "Loïc Cancade — Photographe",
       category: "PHOTOGRAPHES & VIDÉASTES",
-      description: "Style naturel et documentaire, noté 5/5 sur Google et Mariages.net. Loïc ne pose jamais ses sujets — il lit votre journée comme un récit, et capte ce qui ne se rejoue pas.",
+      description:
+        "Style naturel et documentaire, noté 5/5 sur Google et Mariages.net. Loïc ne pose jamais ses sujets — il lit votre journée comme un récit, et capte ce qui ne se rejoue pas.",
       icon: Camera,
       image: photographeLoic,
       imageAlt: "Loïc Cancade, photographe de mariage, au travail lors d'un coucher de soleil",
@@ -582,7 +651,8 @@ const PartnersSection = () => {
     {
       title: "Alexandre Medjaher Chomat — Violoniste",
       category: "VIOLONISTE & PERFORMER",
-      description: "Violoniste dansant, performer de scène. Plus de 80 mariages en France et à l'international. Une intervention rare, pensée comme un instant scénique au cœur de votre journée.",
+      description:
+        "Violoniste dansant, performer de scène. Plus de 80 mariages en France et à l'international. Une intervention rare, pensée comme un instant scénique au cœur de votre journée.",
       icon: MicVocal,
       image: "/images/alexandre-philosophie-portrait-scene.jpg",
       imageAlt: "Alexandre Medjaher Chomat, violoniste performer en scène",
@@ -592,7 +662,8 @@ const PartnersSection = () => {
     {
       title: "Rémy & Jordan — Astrévia Events",
       category: "DJ & ANIMATION",
-      description: "Plus qu'une prestation, une signature. Rémy et Jordan composent chaque soirée comme un récit vivant — son, lumière et effets pensés en cohérence pour faire de la nuit un instant hors du temps.",
+      description:
+        "Plus qu'une prestation, une signature. Rémy et Jordan composent chaque soirée comme un récit vivant — son, lumière et effets pensés en cohérence pour faire de la nuit un instant hors du temps.",
       icon: Music,
       image: djAstreviaPortrait,
       imageAlt: "Rémy et Jordan, fondateurs d'Astrévia Events, en tenue de soirée dans une salle de réception",
@@ -602,13 +673,14 @@ const PartnersSection = () => {
     {
       title: "Esther Coutin",
       category: "CÉRÉMONIE LAÏQUE",
-      description: "Maîtresse de cérémonie et officiante laïque. Elle ne lit pas un discours, elle porte une voix — la vôtre. Avec la fluidité d'une speaker professionnelle et la justesse de quelqu'un qui sait quand parler et quand se taire.",
+      description:
+        "Maîtresse de cérémonie et officiante laïque. Elle ne lit pas un discours, elle porte une voix — la vôtre. Avec la fluidité d'une speaker professionnelle et la justesse de quelqu'un qui sait quand parler et quand se taire.",
       icon: MicVocal,
       image: estherCoutinPortrait.url,
       imageAlt: "Esther Coutin, maîtresse de cérémonie et officiante laïque",
       imagePosition: "center 20%",
-      href: "/serie-octobre-2027/prestataires/esther-coutin",
-    }
+      href: "/serie-octobre-2027/esther-coutin",
+    },
   ];
 
   return (
@@ -621,37 +693,51 @@ const PartnersSection = () => {
               <span className="block text-primary">c'est un Partenariat.</span>
             </h2>
             <p className="text-muted-foreground text-sm sm:text-lg max-w-3xl mx-auto mb-6 sm:mb-8 px-2">
-              Nous ne recrutons pas de prestataires. Nous choisissons des artisans qui partagent une exigence : que le couple soit entièrement présent.
+              Nous ne recrutons pas de prestataires. Nous choisissons des artisans qui partagent une exigence : que le
+              couple soit entièrement présent.
             </p>
             <p className="text-foreground text-sm sm:text-base max-w-4xl mx-auto leading-relaxed mb-8 sm:mb-12 px-2">
-              Chaque partenaire a été rencontré en personne. Chaque prestation a été évaluée sur le terrain. Aucun n'est là par défaut.
+              Chaque partenaire a été rencontré en personne. Chaque prestation a été évaluée sur le terrain. Aucun n'est
+              là par défaut.
             </p>
           </div>
         </ScrollReveal>
 
-        <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6 mb-10 sm:mb-16" staggerDelay={0.12}>
+        <StaggerContainer
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6 mb-10 sm:mb-16"
+          staggerDelay={0.12}
+        >
           {categories.map((cat, index) => {
             const Icon = cat.icon;
             return (
               <div key={index} className="group">
                 <Link to={cat.href} className="block h-full">
                   <div className="relative h-full overflow-hidden rounded-2xl bg-card border border-border/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-                    <div className="relative h-48 flex flex-col items-center justify-center overflow-hidden" style={{ backgroundColor: '#1A1814' }}>
+                    <div
+                      className="relative h-48 flex flex-col items-center justify-center overflow-hidden"
+                      style={{ backgroundColor: "#1A1814" }}
+                    >
                       {cat.image ? (
                         <>
                           <img
                             src={cat.image}
                             alt={cat.imageAlt || cat.title}
                             className="absolute inset-0 w-full h-full object-cover"
-                            style={{ objectPosition: cat.imagePosition || 'center top' }}
+                            style={{ objectPosition: cat.imagePosition || "center top" }}
                           />
-                          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(26,24,20,0.85) 0%, rgba(26,24,20,0.15) 50%, rgba(26,24,20,0.0) 100%)' }} />
+                          <div
+                            className="absolute inset-0"
+                            style={{
+                              background:
+                                "linear-gradient(to top, rgba(26,24,20,0.85) 0%, rgba(26,24,20,0.15) 50%, rgba(26,24,20,0.0) 100%)",
+                            }}
+                          />
                         </>
                       ) : (
-                        <Icon className="h-10 w-10 mb-4" style={{ color: '#C8A96E' }} />
+                        <Icon className="h-10 w-10 mb-4" style={{ color: "#C8A96E" }} />
                       )}
                       <div className="absolute bottom-4 left-4 right-4">
-                        <div className="flex items-center justify-center gap-2" style={{ color: '#C8A96E' }}>
+                        <div className="flex items-center justify-center gap-2" style={{ color: "#C8A96E" }}>
                           <span className="text-xs font-medium uppercase tracking-wider">{cat.category}</span>
                         </div>
                       </div>
@@ -666,7 +752,6 @@ const PartnersSection = () => {
             );
           })}
         </StaggerContainer>
-
       </div>
     </section>
   );
