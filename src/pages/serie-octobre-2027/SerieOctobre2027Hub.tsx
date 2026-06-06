@@ -23,6 +23,9 @@ import {
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
+import photographeLoic from "@/assets/photographe-loic.avif";
+import djAstreviaPortrait from "@/assets/dj-astrevia-portrait.png";
 import SEO from "@/components/SEO";
 import { schemaSerie } from '@/lib/schemas';
 import {
@@ -59,63 +62,61 @@ const useInView = (threshold = 0.1) => {
   return { ref, isInView };
 };
 
-const prestataires = [
+const prestataires: Array<{
+  category: string;
+  title: string;
+  description: string;
+  href: string;
+  lucideIcon: typeof Utensils;
+  image?: string;
+  imageAlt?: string;
+  imagePosition?: string;
+}> = [
   {
-    icon: "🍽️",
-    category: "TRAITEUR",
-    title: "Gastronomie d'Exception",
-    description: "Menu sur mesure avec produits locaux et frais",
-    link: "/serie-octobre-2027/prestataires/traiteur",
-    lucideIcon: Utensils
+    category: "TRAITEURS GASTRONOMIQUES",
+    title: "Jessica & Jérôme — J&J Traiteur",
+    description: "Cuisine entièrement maison, produits frais du marché, ancrage beaujolais. Basés à Villefranche-sur-Saône, ils signent chaque repas Limen comme un vrai dîner — pas un service de mariage.",
+    href: "/serie-octobre-2027/prestataires/traiteur",
+    lucideIcon: Utensils,
+    image: jjTraiteurPortrait,
+    imageAlt: "Jessica et Jérôme, fondateurs de J&J Traiteur",
   },
   {
-    icon: "📸",
-    category: "PHOTOGRAPHE & VIDÉASTE",
-    title: "Les Chasseurs de Souvenirs",
-    description: "Capturer chaque moment, chaque émotion",
-    link: "/serie-octobre-2027/prestataires/photographe",
-    lucideIcon: Camera
+    category: "PHOTOGRAPHES & VIDÉASTES",
+    title: "Loïc Cancade — Photographe",
+    description: "Style naturel et documentaire, noté 5/5 sur Google et Mariages.net. Loïc ne pose jamais ses sujets — il lit votre journée comme un récit, et capte ce qui ne se rejoue pas.",
+    href: "/serie-octobre-2027/prestataires/photographe",
+    lucideIcon: Camera,
+    image: photographeLoic,
+    imageAlt: "Loïc Cancade, photographe de mariage",
   },
   {
-    icon: "🎵",
-    category: "DJ",
-    title: "Les Maîtres du Rythme",
-    description: "Créer l'ambiance parfaite du début à la fin",
-    link: "/serie-octobre-2027/prestataires/dj",
-    lucideIcon: Music
+    category: "VIOLONISTE & PERFORMER",
+    title: "Alexandre Medjaher Chomat — Violoniste",
+    description: "Violoniste dansant, performer de scène. Plus de 80 mariages en France et à l'international. Une intervention rare, pensée comme un instant scénique au cœur de votre journée.",
+    href: "/serie-octobre-2027/prestataires/violoniste",
+    lucideIcon: MicVocal,
+    image: "/images/alexandre-philosophie-portrait-scene.jpg",
+    imageAlt: "Alexandre Medjaher Chomat, violoniste performer",
+    imagePosition: "center 20%",
   },
   {
-    icon: "✨",
-    category: "DÉCORATEUR",
-    title: "Les Architectes de l'Ambiance",
-    description: "Transformer le lieu en décor de rêve",
-    link: "/serie-octobre-2027/prestataires/decorateur",
-    lucideIcon: Sparkles
+    category: "DJ & ANIMATION",
+    title: "Rémy & Jordan — Astrévia Events",
+    description: "Plus qu'une prestation, une signature. Rémy et Jordan composent chaque soirée comme un récit vivant — son, lumière et effets pensés en cohérence pour faire de la nuit un instant hors du temps.",
+    href: "/serie-octobre-2027/prestataires/dj",
+    lucideIcon: Music,
+    image: djAstreviaPortrait,
+    imageAlt: "Rémy et Jordan, fondateurs d'Astrévia Events",
+    imagePosition: "center 25%",
   },
   {
-    icon: "🌸",
-    category: "FLEURISTE",
-    title: "L'Art de la Fleur",
-    description: "Créer des compositions florales uniques",
-    link: "/serie-octobre-2027/prestataires/fleuriste",
-    lucideIcon: Flower2
-  },
-  {
-    icon: "🎼",
-    category: "VIOLONISTE",
-    title: "Alexandre Medjaher Chomat",
-    description: "Violoniste dansant · Performer",
-    link: "/serie-octobre-2027/prestataires/violoniste",
-    lucideIcon: MicVocal
-  },
-  {
-    icon: "🕊️",
     category: "CÉRÉMONIE LAÏQUE",
     title: "Esther Coutin",
-    description: "Maîtresse de cérémonie · Officiante laïque",
-    link: "/prestataires/esther-coutin",
-    lucideIcon: MicVocal
-  }
+    description: "Speaker professionnelle, maîtresse de cérémonie et officiante laïque. Voix posée, présence rassurante, déroulé entièrement sur-mesure.",
+    href: "/prestataires/esther-coutin",
+    lucideIcon: MicVocal,
+  },
 ];
 
 const DATE_IDS = ["2027-10-04", "2027-10-05", "2027-10-06", "2027-10-07", "2027-10-08"];
@@ -309,105 +310,43 @@ const SerieOctobre2027Hub = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 max-w-6xl mx-auto">
             {prestataires.map((prestataire, index) => {
-              const categoryName = prestataire.category.charAt(0) + prestataire.category.slice(1).toLowerCase().replace(/ & .*/, '');
-              const categoryLower = prestataire.category.toLowerCase().split(' ')[0];
-              const confirmed: Record<string, { eyebrow: string; title: string; body: string; href: string; linkLabel: string }> = {
-                "TRAITEUR": {
-                  eyebrow: "Gastronomie · Partenaire confirmé",
-                  title: "J & J Traiteur",
-                  body: "Formés dans les grandes maisons lyonnaises, La Mère Brazier, La Tête d'Oie, Les Toques Blanches. Une cuisine de tradition, entièrement sur mesure.",
-                  href: "/serie-octobre-2027/prestataires/traiteur",
-                  linkLabel: "Découvrir J & J Traiteur",
-                },
-                "PHOTOGRAPHE & VIDÉASTE": {
-                  eyebrow: "Photographie · Partenaire confirmé",
-                  title: "Loïc Cancade",
-                  body: "Style naturel, poétique, documentaire. Il lit votre journée sans la diriger, et livre des images qui ne ressemblent qu'à vous.",
-                  href: "/serie-octobre-2027/prestataires/photographe",
-                  linkLabel: "Découvrir Loïc Cancade",
-                },
-                "DJ": {
-                  eyebrow: "DJ & Animation · Partenaire confirmé",
-                  title: "Astrévia Events",
-                  body: "Jordan et Rémy. Plus de 10 ans d'expérience, un équipement complet, une programmation entièrement sur mesure. L'ambiance se construit, elle ne se déroule pas.",
-                  href: "/serie-octobre-2027/prestataires/dj",
-                  linkLabel: "Découvrir Astrévia Events",
-                },
-                "VIOLONISTE": {
-                  eyebrow: "Violon & Performance · Partenaire confirmé",
-                  title: "Alexandre Chomat",
-                  body: "Violoniste dansant, performer de scène. Plus de 80 mariages en France et à l'international. Chaque intervention est une scène vivante, pensée pour votre journée.",
-                  href: "/serie-octobre-2027/prestataires/violoniste",
-                  linkLabel: "Découvrir Alexandre Chomat",
-                },
-                "CÉRÉMONIE LAÏQUE": {
-                  eyebrow: "Cérémonie laïque · Partenaire confirmé",
-                  title: "Esther Coutin",
-                  body: "Speaker professionnelle, maîtresse de cérémonie et officiante laïque. Voix posée, présence rassurante, déroulé entièrement sur-mesure.",
-                  href: "/prestataires/esther-coutin",
-                  linkLabel: "Découvrir Esther Coutin",
-                },
-              };
-              const conf = confirmed[prestataire.category];
+              const Icon = prestataire.lucideIcon;
               return (
                 <div
                   key={prestataire.category}
-                  className={`transition-all duration-700 ${prestatairesRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                  className={`group transition-all duration-700 ${prestatairesRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                  {conf ? (
-                    <div
-                      className="h-full bg-white p-6 hover:shadow-lg transition-all duration-300 flex flex-col"
-                      style={{ borderRadius: '4px', borderLeft: '2px solid #C9A96E' }}
-                    >
-                      <p
-                        className="mb-4"
-                        style={{
-                          fontFamily: "'Jost', sans-serif",
-                          color: '#C9A96E',
-                          fontSize: '11px',
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.15em',
-                          fontWeight: 400,
-                        }}
-                      >
-                        {conf.eyebrow}
-                      </p>
-                      <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1A1814' }}>
-                        {conf.title}
-                      </h3>
-                      <p className="text-sm leading-relaxed mb-6" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
-                        {conf.body}
-                      </p>
-                      <Link
-                        to={conf.href}
-                        className="mt-auto hover:opacity-70 transition-opacity"
-                        style={{
-                          fontFamily: "'Jost', sans-serif",
-                          color: '#C9A96E',
-                          fontSize: '11px',
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.15em',
-                          fontWeight: 400,
-                          textDecoration: 'none',
-                        }}
-                      >
-                        {conf.linkLabel} →
-                      </Link>
+                  <Link to={prestataire.href} className="block h-full">
+                    <div className="relative h-full overflow-hidden rounded-2xl bg-card border border-border/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                      <div className="relative h-48 flex flex-col items-center justify-center overflow-hidden" style={{ backgroundColor: '#1A1814' }}>
+                        {prestataire.image ? (
+                          <>
+                            <img
+                              src={prestataire.image}
+                              alt={prestataire.imageAlt || prestataire.title}
+                              className="absolute inset-0 w-full h-full object-cover"
+                              style={{ objectPosition: prestataire.imagePosition || 'center top' }}
+                            />
+                            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(26,24,20,0.85) 0%, rgba(26,24,20,0.15) 50%, rgba(26,24,20,0.0) 100%)' }} />
+                          </>
+                        ) : (
+                          <Icon className="h-10 w-10 mb-4" style={{ color: '#C8A96E' }} />
+                        )}
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <div className="flex items-center justify-center gap-2" style={{ color: '#C8A96E' }}>
+                            <span className="text-xs font-medium uppercase tracking-wider text-center">{prestataire.category}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold text-foreground mb-3">{prestataire.title}</h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">{prestataire.description}</p>
+                      </div>
                     </div>
-                  ) : (
-                    <div className="h-full bg-white p-6 hover:shadow-lg transition-all duration-300" style={{ borderRadius: '4px' }}>
-                      <div className="w-full h-0.5 mb-6" style={{ backgroundColor: '#C9A96E' }} />
-                      <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#1A1814' }}>
-                        {categoryName} — Sélection en cours
-                      </h3>
-                      <p className="text-sm leading-relaxed" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
-                        Notre {categoryLower} pour la Série Octobre 2027 sera annoncé prochainement. Sélection sur critères stricts.
-                      </p>
-                    </div>
-                  )}
+                  </Link>
                 </div>
               );
             })}
