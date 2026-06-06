@@ -62,63 +62,61 @@ const useInView = (threshold = 0.1) => {
   return { ref, isInView };
 };
 
-const prestataires = [
+const prestataires: Array<{
+  category: string;
+  title: string;
+  description: string;
+  href: string;
+  lucideIcon: typeof Utensils;
+  image?: string;
+  imageAlt?: string;
+  imagePosition?: string;
+}> = [
   {
-    icon: "🍽️",
-    category: "TRAITEUR",
-    title: "Gastronomie d'Exception",
-    description: "Menu sur mesure avec produits locaux et frais",
-    link: "/serie-octobre-2027/prestataires/traiteur",
-    lucideIcon: Utensils
+    category: "TRAITEURS GASTRONOMIQUES",
+    title: "Jessica & Jérôme — J&J Traiteur",
+    description: "Cuisine entièrement maison, produits frais du marché, ancrage beaujolais. Basés à Villefranche-sur-Saône, ils signent chaque repas Limen comme un vrai dîner — pas un service de mariage.",
+    href: "/serie-octobre-2027/prestataires/traiteur",
+    lucideIcon: Utensils,
+    image: jjTraiteurPortrait,
+    imageAlt: "Jessica et Jérôme, fondateurs de J&J Traiteur",
   },
   {
-    icon: "📸",
-    category: "PHOTOGRAPHE & VIDÉASTE",
-    title: "Les Chasseurs de Souvenirs",
-    description: "Capturer chaque moment, chaque émotion",
-    link: "/serie-octobre-2027/prestataires/photographe",
-    lucideIcon: Camera
+    category: "PHOTOGRAPHES & VIDÉASTES",
+    title: "Loïc Cancade — Photographe",
+    description: "Style naturel et documentaire, noté 5/5 sur Google et Mariages.net. Loïc ne pose jamais ses sujets — il lit votre journée comme un récit, et capte ce qui ne se rejoue pas.",
+    href: "/serie-octobre-2027/prestataires/photographe",
+    lucideIcon: Camera,
+    image: photographeLoic,
+    imageAlt: "Loïc Cancade, photographe de mariage",
   },
   {
-    icon: "🎵",
-    category: "DJ",
-    title: "Les Maîtres du Rythme",
-    description: "Créer l'ambiance parfaite du début à la fin",
-    link: "/serie-octobre-2027/prestataires/dj",
-    lucideIcon: Music
+    category: "VIOLONISTE & PERFORMER",
+    title: "Alexandre Medjaher Chomat — Violoniste",
+    description: "Violoniste dansant, performer de scène. Plus de 80 mariages en France et à l'international. Une intervention rare, pensée comme un instant scénique au cœur de votre journée.",
+    href: "/serie-octobre-2027/prestataires/violoniste",
+    lucideIcon: MicVocal,
+    image: "/images/alexandre-philosophie-portrait-scene.jpg",
+    imageAlt: "Alexandre Medjaher Chomat, violoniste performer",
+    imagePosition: "center 20%",
   },
   {
-    icon: "✨",
-    category: "DÉCORATEUR",
-    title: "Les Architectes de l'Ambiance",
-    description: "Transformer le lieu en décor de rêve",
-    link: "/serie-octobre-2027/prestataires/decorateur",
-    lucideIcon: Sparkles
+    category: "DJ & ANIMATION",
+    title: "Rémy & Jordan — Astrévia Events",
+    description: "Plus qu'une prestation, une signature. Rémy et Jordan composent chaque soirée comme un récit vivant — son, lumière et effets pensés en cohérence pour faire de la nuit un instant hors du temps.",
+    href: "/serie-octobre-2027/prestataires/dj",
+    lucideIcon: Music,
+    image: djAstreviaPortrait,
+    imageAlt: "Rémy et Jordan, fondateurs d'Astrévia Events",
+    imagePosition: "center 25%",
   },
   {
-    icon: "🌸",
-    category: "FLEURISTE",
-    title: "L'Art de la Fleur",
-    description: "Créer des compositions florales uniques",
-    link: "/serie-octobre-2027/prestataires/fleuriste",
-    lucideIcon: Flower2
-  },
-  {
-    icon: "🎼",
-    category: "VIOLONISTE",
-    title: "Alexandre Medjaher Chomat",
-    description: "Violoniste dansant · Performer",
-    link: "/serie-octobre-2027/prestataires/violoniste",
-    lucideIcon: MicVocal
-  },
-  {
-    icon: "🕊️",
     category: "CÉRÉMONIE LAÏQUE",
     title: "Esther Coutin",
-    description: "Maîtresse de cérémonie · Officiante laïque",
-    link: "/prestataires/esther-coutin",
-    lucideIcon: MicVocal
-  }
+    description: "Speaker professionnelle, maîtresse de cérémonie et officiante laïque. Voix posée, présence rassurante, déroulé entièrement sur-mesure.",
+    href: "/prestataires/esther-coutin",
+    lucideIcon: MicVocal,
+  },
 ];
 
 const DATE_IDS = ["2027-10-04", "2027-10-05", "2027-10-06", "2027-10-07", "2027-10-08"];
