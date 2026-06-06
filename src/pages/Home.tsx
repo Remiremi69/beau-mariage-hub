@@ -13,6 +13,7 @@ import venueImage from "@/assets/venue-exterior.jpg";
 import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
 import photographeLoic from "@/assets/photographe-loic.avif";
 import djAstreviaPortrait from "@/assets/dj-astrevia-portrait.png";
+import estherCoutinPortrait from "@/assets/esther-coutin-portrait.png.asset.json";
 
 const Home = () => {
   const founderQuote = {
