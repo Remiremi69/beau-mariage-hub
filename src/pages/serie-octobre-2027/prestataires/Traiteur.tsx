@@ -41,7 +41,7 @@ const PHILOSOPHIE_PARAGRAPHES = [
 ];
 
 const REFERENCES = [
-  { n: "01", nom: "La Tête d'Oie", ville: "Lyon", body: "Une maison lyonnaise de tradition — école de rigueur sur les produits du terroir et la précision de l'exécution." },
+  { n: "01", nom: "La Têtedoie", ville: "Lyon", body: "Une maison lyonnaise de tradition — école de rigueur sur les produits du terroir et la précision de l'exécution." },
   { n: "02", nom: "La Mère Brazier", ville: "Lyon", body: "Institution de la cuisine lyonnaise, deux étoiles Michelin — formation à l'exigence absolue du produit et du geste." },
   { n: "03", nom: "Les Toques Blanches", ville: "Rhône-Alpes", body: "Confrérie des chefs de la région — appartenance à un réseau d'excellence gastronomique reconnu." },
 ];
