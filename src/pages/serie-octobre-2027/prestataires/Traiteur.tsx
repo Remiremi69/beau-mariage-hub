@@ -35,13 +35,13 @@ const Eyebrow = ({ children, opacity = 1 }: { children: React.ReactNode; opacity
 
 // Contenu éditable — à mettre à jour après RDV J & J Traiteur
 const PHILOSOPHIE_PARAGRAPHES = [
-  "J & J Traiteur est né d'une conviction simple : la gastronomie de mariage mérite le même niveau d'exigence que la grande cuisine. Leurs fondateurs ont été formés dans des maisons qui ne font pas de concessions — la Tête d'Oie à Lyon, La Mère Brazier, Les Toques Blanches.",
+  "J & J Traiteur est né d'une conviction simple : la gastronomie de mariage mérite le même niveau d'exigence que la grande cuisine. Leurs fondateurs ont été formés dans des maisons qui ne font pas de concessions — la Têtedoie à Lyon, La Mère Brazier, Les Toques Blanches.",
   "Ce parcours se lit dans chaque assiette : des bases techniques irréprochables, une maîtrise des produits, et le refus des compromis qui transforment un repas de mariage en restauration collective habillée.",
   "Leur spécialité, c'est le sur-mesure véritable — pas un menu « personnalisé » dans une liste de trois options, mais une construction de A à Z autour de vos goûts, de la saison, du lieu et du nombre de couverts.",
 ];
 
 const REFERENCES = [
-  { n: "01", nom: "La Tête d'Oie", ville: "Lyon", body: "Une maison lyonnaise de tradition — école de rigueur sur les produits du terroir et la précision de l'exécution." },
+  { n: "01", nom: "La Têtedoie", ville: "Lyon", body: "Une maison lyonnaise de tradition — école de rigueur sur les produits du terroir et la précision de l'exécution." },
   { n: "02", nom: "La Mère Brazier", ville: "Lyon", body: "Institution de la cuisine lyonnaise, deux étoiles Michelin — formation à l'exigence absolue du produit et du geste." },
   { n: "03", nom: "Les Toques Blanches", ville: "Rhône-Alpes", body: "Confrérie des chefs de la région — appartenance à un réseau d'excellence gastronomique reconnu." },
 ];
