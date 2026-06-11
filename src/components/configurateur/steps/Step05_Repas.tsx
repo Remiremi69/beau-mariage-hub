@@ -52,7 +52,7 @@ const menus: MenuDef[] = [
     accroche: "Pour qui aime le terroir, la générosité, l'âme lyonnaise.",
     vh: {
       title: "Kir royal crémant de Bourgogne",
-      sub1: "Kir au choix (4 sirops) · Citronnade maison · Eaux plate & gazeuse à volonté · Softs",
+      sub1: "Kir au choix (4 crèmes) · Citronnade maison · Eaux plate & gazeuse · Eaux aromatisées. Softs",
       sub2: "+ 8 pièces lyonnaises",
     },
     fromagesLine: "+ Plateau de fromages du Beaujolais",
@@ -71,7 +71,7 @@ const menus: MenuDef[] = [
       },
     ],
     full: {
-      vinHonneur: "Kir royal crémant de Bourgogne · Kir (4 choix de sirop) · Citronnade maison · Eaux plate & gazeuse à volonté · Softs",
+      vinHonneur: "Kir royal crémant de Bourgogne · Kir (4 choix de crèmes) · Citronnade maison · Eaux plate & gazeuse · Eaux aromatisées. Softs",
       cocktailTitle: "Cocktail · 8 pièces",
       cocktail:
         "Plancha poulet sauce Bresse · Feuilleté 3 goûts (anchois / fromage / olive) · " +
@@ -89,8 +89,8 @@ const menus: MenuDef[] = [
     image: menuSignatureImg,
     accroche: "Pour qui aime la cuisine précise, les saveurs voyageuses, l'évasion.",
     vh: {
-      title: "Punch citron vert",
-      sub1: "Citronnade maison · Eaux plate & gazeuse à volonté · Softs · Gingembre · Coriandre",
+      title: "Punch citron vert gingembre et coriande",
+      sub1: "Citronnade maison · Eaux plate & gazeuse · Eaux aromatisées . Softs ·",
       sub2: "+ 8 pièces signature",
     },
     fromagesLine: "+ Plateau de fromages affinés",
@@ -109,7 +109,7 @@ const menus: MenuDef[] = [
       },
     ],
     full: {
-      vinHonneur: "Punch citron vert · Citronnade maison · Eaux plate & gazeuse à volonté · Softs · Gingembre · Coriandre",
+      vinHonneur: "Punch citron vert gingembre et coriande · Citronnade maison · Eaux plate & gazeuse · Eaux aromatisées . Softs ·",
       cocktailTitle: "Cocktail · 8 pièces",
       cocktail:
         "Plancha gambas snackées marmelade mangue safran · Rouleau d'aubergine · " +

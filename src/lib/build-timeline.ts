@@ -80,8 +80,8 @@ export const buildTimeline = (state: ConfigurateurState): TimelineMoment[] => {
       titre: "Le vin d'honneur",
       copy:
         state.repas === "menu1"
-          ? "Crémant de Bourgogne, kir au choix, 8 pièces lyonnaises. J&J au service."
-          : "Punch citron vert, gingembre, coriandre. 8 pièces signature. J&J au service.",
+          ? "Crémant de Bourgogne, kir au choix (4 crèmes), 8 pièces lyonnaises. J&J au service."
+          : "Punch citron vert gingembre et coriande. 8 pièces signature. J&J au service.",
       condition: true,
     },
     {
