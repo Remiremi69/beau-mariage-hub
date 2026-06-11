@@ -18,7 +18,7 @@ export const buildTimeline = (state: ConfigurateurState): TimelineMoment[] => {
     : WEDDING_SCHEDULE.vinHonneurStartNoCeremony;
 
   const platCopy: Record<string, string> = {
-    rumsteak: "Cœur de rumsteak sauce vigneronne. Le terroir dans l'assiette.",
+    rumsteak: "Cœur de rumsteak charolais sauce vigneronne. Le terroir dans l'assiette.",
     "saint-jacques": "Quenelle Saint-Jacques mousseline. Finesse lyonnaise.",
     "poulet-morilles": "Poulet fermier crème de morilles. Rondeur, élégance.",
     "saumon-laque": "Pavé de saumon laqué japonais. Voyage dans l'assiette.",
