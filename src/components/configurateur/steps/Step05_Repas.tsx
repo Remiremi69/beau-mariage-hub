@@ -55,18 +55,18 @@ const menus: MenuDef[] = [
       sub1: "Kir au choix (4 crèmes) · Citronnade maison · Eaux plate & gazeuse · Eaux aromatisées. Softs",
       sub2: "+ 8 pièces lyonnaises",
     },
-    fromagesLine: "+ Plateau de fromages du Beaujolais",
+    fromagesLine: "+ Plateau de fromages",
     plats: [
       {
         id: "rumsteak",
-        nom: "Cœur de rumsteak sauce vigneronne",
-        accompagnement: "Wok de légumes · gratin dauphinois",
+        nom: "Cœur de rumsteak charolais sauce vigneronne",
+        accompagnement: "Wok de légumes de saison · gratin dauphinois",
         accroche: "Pour qui aime la viande rouge, le caractère, la tradition.",
       },
       {
         id: "saint-jacques",
         nom: "Quenelle Saint-Jacques mousseline",
-        accompagnement: "Sauce bouillabaisse · riz gourmand",
+        accompagnement: "Sauce nantua · riz gourmand",
         accroche: "Pour qui aime la mer, la finesse, les saveurs lyonnaises.",
       },
     ],
@@ -75,11 +75,11 @@ const menus: MenuDef[] = [
       cocktailTitle: "Cocktail · 8 pièces",
       cocktail:
         "Plancha poulet sauce Bresse · Feuilleté 3 goûts (anchois / fromage / olive) · " +
-        "Escargots persillade · Cervelle de canut · Crêpes truite fumée · " +
+        "Escargots persillade · Cervelle de canut · Crêpes vonnassienne truite fumée · " +
         "Pruneaux lard fumé · Tarte à l'oignon · Burger bœuf · " +
-        "Crostini caviar d'aubergine poivron confit",
+        "Crostinis caviar d'aubergines et poivrons confits",
       fromages:
-        "Saint-marcellin · Fourme d'Ambert · Chèvre mariné huile et herbes · Pain aux fruits",
+        "Saint-marcellin · Fourme d'Ambert · Chèvre mariné huile et herbes · Pain aux fruits sec",
     },
   },
   {
@@ -93,7 +93,7 @@ const menus: MenuDef[] = [
       sub1: "Citronnade maison · Eaux plate & gazeuse · Eaux aromatisées . Softs ·",
       sub2: "+ 8 pièces signature",
     },
-    fromagesLine: "+ Plateau de fromages affinés",
+    fromagesLine: "+ Plateau de fromages ",
     plats: [
       {
         id: "poulet-morilles",
@@ -537,21 +537,22 @@ const MenuCard = ({
                         <li
                           key={p.id}
                           style={{
-                            paddingLeft: 16,
+                            paddingLeft: 0,
                             position: "relative",
-                            marginBottom: 4,
+                            marginBottom: 8,
                             color: chosen
                               ? "rgba(201,169,110,0.95)"
                               : "rgba(232,221,208,0.70)",
+                            whiteSpace: "pre-line"
                           }}
                         >
                           <span
                             style={{
-                              position: "absolute",
-                              left: 0,
+                              display: "block",
                               color: chosen
                                 ? "#c9a96e"
                                 : "rgba(201,169,110,0.55)",
+                              marginBottom: 2
                             }}
                           >
                             {chosen ? "✓" : "→"}
@@ -562,7 +563,7 @@ const MenuCard = ({
                     })}
                   </ul>
                 </Section>
-                <Section title="Fromages">{menu.full.fromages}</Section>
+                <Section title="TRILOGIE DE FROMAGES">{menu.full.fromages}</Section>
               </div>
             </motion.div>
           )}
