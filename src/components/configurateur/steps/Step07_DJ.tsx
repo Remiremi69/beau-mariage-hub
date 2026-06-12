@@ -476,19 +476,6 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                 <p
                   style={{
                     fontFamily: "'Jost', sans-serif",
-                    fontWeight: 400,
-                    fontSize: 11,
-                    letterSpacing: "0.20em",
-                    textTransform: "uppercase",
-                    color: COLORS.or,
-                    marginTop: 14,
-                  }}
-                >
-                  + 120 €
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'Jost', sans-serif",
                     fontWeight: 300,
                     fontSize: 13,
                     color: "rgba(245,240,232,0.75)",
