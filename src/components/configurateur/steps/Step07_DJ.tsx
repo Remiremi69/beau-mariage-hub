@@ -108,7 +108,7 @@ const MATERIEL_PILLS = [
 const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
   const dj = state.dj;
   const sonoForcee = state.ceremonieLaique;
-  const barVinylesBloque = sonoForcee || dj.sonoVH;
+  
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   // Sync auto : cérémonie laïque → sonoVH forcé true
@@ -119,13 +119,6 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sonoForcee]);
 
-  // Désactive bar à vinyles si non cumulable
-  useEffect(() => {
-    if (barVinylesBloque && dj.barVinyles) {
-      onUpdate({ dj: { ...dj, barVinyles: false } });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [barVinylesBloque]);
 
   const toggleSono = () => {
     if (sonoForcee) return;
@@ -135,7 +128,6 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
     onUpdate({ dj: { ...dj, effetPrestige: !dj.effetPrestige } });
   };
   const toggleBarVinyles = () => {
-    if (barVinylesBloque) return;
     onUpdate({ dj: { ...dj, barVinyles: !dj.barVinyles } });
   };
   const toggleEclairage = () => {
@@ -159,11 +151,6 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
     opacity: 0.95,
   };
 
-  const barVinylesMessage = sonoForcee
-    ? "Inclus dans votre cérémonie laïque — la sonorisation du vin d'honneur est déjà prévue."
-    : dj.sonoVH
-      ? "Non cumulable avec l'ambiance cocktail."
-      : null;
 
   return (
     <div className="flex items-center justify-center min-h-screen px-6" style={{ paddingTop: 60, paddingBottom: 60 }}>
@@ -236,8 +223,7 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
             onClick={toggleBarVinyles}
             style={{
               ...(dj.barVinyles ? cardActive : cardBase),
-              cursor: barVinylesBloque ? "not-allowed" : "pointer",
-              opacity: barVinylesBloque ? 0.35 : 1,
+              cursor: "pointer",
             }}>
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0" style={{
@@ -254,14 +240,9 @@ const Step07_DJ = ({ state, onUpdate, onNext, onPrev }: Step07Props) => {
                   </p>
                   <div className="flex items-center gap-3">
                     <Badge label="Optionnel" variant="lin" />
-                    <Toggle on={dj.barVinyles} disabled={barVinylesBloque} onClick={toggleBarVinyles} />
+                    <Toggle on={dj.barVinyles} onClick={toggleBarVinyles} />
                   </div>
                 </div>
-                {barVinylesMessage && (
-                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontStyle: "italic", fontSize: 12, color: "rgba(232,221,208,0.50)", marginTop: 8 }}>
-                    {barVinylesMessage}
-                  </p>
-                )}
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300, fontSize: 20, color: COLORS.lin, marginTop: 12, lineHeight: 1.4 }}>
                   Pendant le vin d'honneur — le son du sillon, rien d'autre.
                 </p>
