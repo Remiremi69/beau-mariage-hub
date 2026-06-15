@@ -123,7 +123,7 @@ const SectionProfile = ({ content }: { content: DrawerSectionProfile['content'] 
         }}
       >
         {content.imageUrl ? (
-          <img src={content.imageUrl} alt={content.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <img src={content.imageUrl} alt={content.name} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
         ) : (
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(201,169,110,0.30)" strokeWidth="1.5">
             <circle cx="12" cy="8" r="4" />
