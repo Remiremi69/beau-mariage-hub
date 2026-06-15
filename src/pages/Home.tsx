@@ -667,7 +667,8 @@ const PartnersSection = () => {
       icon: Music,
       image: djAstreviaPortrait,
       imageAlt: "Rémy et Jordan, fondateurs d'Astrévia Events, en tenue de soirée dans une salle de réception",
-      imagePosition: "center 25%",
+      imagePosition: "center center",
+      imageFit: "contain" as const,
       href: "/serie-octobre-2027/prestataires/dj",
     },
     {
@@ -722,7 +723,7 @@ const PartnersSection = () => {
                           <img
                             src={cat.image}
                             alt={cat.imageAlt || cat.title}
-                            className="absolute inset-0 w-full h-full object-cover"
+                            className={`absolute inset-0 w-full h-full ${(cat as any).imageFit === "contain" ? "object-contain" : "object-cover"}`}
                             style={{ objectPosition: cat.imagePosition || "center top" }}
                           />
                           <div
