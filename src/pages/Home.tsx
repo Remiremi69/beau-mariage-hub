@@ -667,7 +667,8 @@ const PartnersSection = () => {
       icon: Music,
       image: djAstreviaPortrait,
       imageAlt: "Rémy et Jordan, fondateurs d'Astrévia Events, en tenue de soirée dans une salle de réception",
-      imagePosition: "center 25%",
+      imagePosition: "center center",
+      imageFit: "contain" as const,
       href: "/serie-octobre-2027/prestataires/dj",
     },
     {
