@@ -723,7 +723,7 @@ const PartnersSection = () => {
                           <img
                             src={cat.image}
                             alt={cat.imageAlt || cat.title}
-                            className="absolute inset-0 w-full h-full object-cover"
+                            className={`absolute inset-0 w-full h-full ${(cat as any).imageFit === "contain" ? "object-contain" : "object-cover"}`}
                             style={{ objectPosition: cat.imagePosition || "center top" }}
                           />
                           <div
