@@ -1081,11 +1081,17 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
 
   const didMountRef = useRef(false);
   useEffect(() => {
-    if (!didMountRef.current) {
+    // Always open this step at the top, even when returning with prior selections.
+    window.scrollTo({ top: 0 });
+    // Mark mounted on next tick so subsequent selection changes can trigger scroll-to-section.
+    const t = setTimeout(() => {
       didMountRef.current = true;
-      window.scrollTo({ top: 0 });
-      return;
-    }
+    }, 0);
+    return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    if (!didMountRef.current) return;
     if (selectedMenu) scrollToRef(platRef);
   }, [selectedMenu]);
 
