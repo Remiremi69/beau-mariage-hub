@@ -136,7 +136,7 @@ const CinematicHero = () => {
               textDecoration: "none",
             }}
           >
-            Voir la Série Octobre 2027 →
+            VOIR LES SÉRIES 2027 EN COURS →
           </Link>
         </motion.div>
       </motion.div>
