@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import { schemaPrestataireBreadcrumb } from "@/lib/schemas";
 import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
+import ConfigurateurCTA from "@/components/ConfigurateurCTA";
 
 const COLORS = {
   nuit: "#0D0E12",

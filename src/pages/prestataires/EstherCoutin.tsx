@@ -5,6 +5,7 @@ import ceremonieScene from "@/assets/esther-ceremonie-scene.jpg";
 import mariesMoment from "@/assets/esther-maries-moment.jpg";
 import animationSoiree from "@/assets/esther-animation-soiree.jpg";
 import speakerEvenementiel from "@/assets/esther-speaker-evenementiel.jpg";
+import ConfigurateurCTA from "@/components/ConfigurateurCTA";
 
 
 const COLORS = {
