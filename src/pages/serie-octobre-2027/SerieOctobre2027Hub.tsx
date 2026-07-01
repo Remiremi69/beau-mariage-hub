@@ -181,9 +181,9 @@ const SerieOctobre2027Hub = () => {
   return (
     <div className="min-h-screen pt-20">
       <SEO
-        title="Mariage Beaujolais Octobre 2027 — 5 Dates au Domaine de la Croix Rochefort"
-        description="5 mariages d'exception du 4 au 8 octobre 2027 au cœur du Beaujolais. Formule tout compris : lieu, traiteur, photographe, DJ. À 40 min de Lyon. Places limitées."
-        canonical="https://lebeaumariage.fr/serie-octobre-2027"
+        title="Mariages Beaujolais 2027 — Séries Mai & Octobre au Domaine de la Croix Rochefort"
+        description="8 mariages d'exception en 2027 au cœur du Beaujolais : 3 dates en mai (du 4 au 6) et 5 dates en octobre (du 4 au 8). Formule tout compris. À 40 min de Lyon."
+        canonical="https://lebeaumariage.fr/series-2027"
         jsonLd={schemaSerie}
       />
 
@@ -198,7 +198,7 @@ const SerieOctobre2027Hub = () => {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>Série Octobre 2027</BreadcrumbPage>
+              <BreadcrumbPage>Séries 2027</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
