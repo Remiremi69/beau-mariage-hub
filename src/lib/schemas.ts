@@ -80,7 +80,7 @@ export const schemaDomaine = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Accueil', item: BASE_URL },
-      { '@type': 'ListItem', position: 2, name: 'Série Octobre 2027', item: `${BASE_URL}/serie-octobre-2027` },
+      { '@type': 'ListItem', position: 2, name: 'Séries 2027', item: `${BASE_URL}/series-2027` },
       { '@type': 'ListItem', position: 3, name: 'Domaine de la Croix Rochefort', item: `${BASE_URL}/serie-octobre-2027/domaine` },
     ],
   },
