@@ -818,7 +818,10 @@ const Photographe = () => {
       </footer>
 
       {/* Responsive overrides */}
-      <style>{`
+      <ConfigurateurCTA />
+
+      {/* Responsive */}
+<style>{`
         @media (max-width: 768px) {
           .lc-hero { grid-template-columns: 1fr !important; min-height: auto !important; }
           .lc-hero > div:first-child { height: 110vw; padding: 1.5rem !important; }

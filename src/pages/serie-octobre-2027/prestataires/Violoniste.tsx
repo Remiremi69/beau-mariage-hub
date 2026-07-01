@@ -743,8 +743,10 @@ const Violoniste = () => {
         </div>
       </footer>
 
+      <ConfigurateurCTA />
+
       {/* Responsive */}
-      <style>{`
+<style>{`
         @media (max-width: 768px) {
           .lc-hero { grid-template-columns: 1fr !important; min-height: auto !important; }
           .lc-hero > div:first-child { height: 50vw; padding: 1.5rem !important; }
