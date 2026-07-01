@@ -50,8 +50,9 @@ const AppLayout = () => {
         <Route path="/" element={<Home />} />
         <Route path="/concept" element={<Concept />} />
         <Route path="/guide-mariage-beaujolais" element={<GuideBeaujolais />} />
-        <Route path="/serie-ete-2027" element={<Navigate to="/serie-octobre-2027" replace />} />
-        <Route path="/serie-octobre-2027" element={<SerieOctobre2027Hub />} />
+        <Route path="/serie-ete-2027" element={<Navigate to="/series-2027" replace />} />
+        <Route path="/serie-octobre-2027" element={<Navigate to="/series-2027" replace />} />
+        <Route path="/series-2027" element={<SerieOctobre2027Hub />} />
         <Route path="/serie-octobre-2027/domaine" element={<DomaineDetail />} />
         <Route path="/serie-octobre-2027/prestataires/traiteur" element={<Traiteur />} />
         <Route path="/serie-octobre-2027/prestataires/photographe" element={<Photographe />} />
