@@ -64,6 +64,30 @@ const Home = () => {
       {/* Hero Section - Cinematic */}
       <CinematicHero />
 
+      {/* Séries disponibles — bandeau discret */}
+      <Link
+        to="/configurateur"
+        aria-label="Choisir votre date — Séries Mai 2027 et Octobre 2027"
+        className="block border-y border-[#C8A96E]/30 bg-[#1A1814] text-[#F5F0E8] hover:bg-[#221f1a] transition-colors"
+      >
+        <div className="max-w-5xl mx-auto px-4 py-4 sm:py-5 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-center">
+          <div className="flex items-center gap-3">
+            <span className="text-[#C8A96E] text-xs tracking-[0.25em] uppercase font-[Jost]">
+              2 séries disponibles
+            </span>
+            <span className="hidden sm:inline text-[#C8A96E]/40">|</span>
+            <span className="font-[Cormorant_Garamond] text-lg sm:text-xl italic">
+              Mai 2027 &nbsp;·&nbsp; Octobre 2027
+            </span>
+          </div>
+          <span className="text-xs sm:text-sm text-[#F5F0E8]/70 font-[Jost] inline-flex items-center gap-2">
+            Choisissez votre semaine, tout le reste est déjà prêt.
+            <ArrowRight className="w-3.5 h-3.5 text-[#C8A96E]" />
+          </span>
+        </div>
+      </Link>
+
+
       {/* How It Works Section - ACTION 2 */}
       <TimelineSection />
 
