@@ -72,7 +72,7 @@ const PrestataireTemplate = ({ data, slug }: PrestataireTemplateProps) => {
   return (
     <div className="min-h-screen pt-20">
       <SEO 
-        title={`${data.title} - Série Octobre 2027 | Le Beau Mariage`}
+        title={`${data.title} - Séries 2027 | Le Beau Mariage`}
         description={data.description[0]}
         canonical={`https://lebeaumariage.fr/serie-octobre-2027/prestataires/${slug}`}
         jsonLd={schemaPrestataireBreadcrumb(slug, data.title)}
@@ -90,7 +90,7 @@ const PrestataireTemplate = ({ data, slug }: PrestataireTemplateProps) => {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link to="/serie-octobre-2027">Série Octobre 2027</Link>
+                <Link to="/series-2027">Séries 2027</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
@@ -233,9 +233,9 @@ const PrestataireTemplate = ({ data, slug }: PrestataireTemplateProps) => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Link to="/serie-octobre-2027">
+            <Link to="/series-2027">
               <Button size="xl" variant="outline" className="font-semibold text-lg px-10">
-                Retour à la Série
+                Retour aux Séries 2027
               </Button>
             </Link>
           </div>
