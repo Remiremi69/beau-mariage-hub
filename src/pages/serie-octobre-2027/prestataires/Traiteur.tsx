@@ -106,7 +106,7 @@ const Traiteur = () => {
           </span>
         </Link>
         <Link
-          to="/serie-octobre-2027"
+          to="/series-2027"
           style={{
             fontFamily: fontBody,
             fontSize: "12px",
