@@ -123,15 +123,19 @@ const prestataires: Array<{
   },
 ];
 
-const DATE_IDS = ["2027-10-04", "2027-10-05", "2027-10-06", "2027-10-07", "2027-10-08"];
+const DATE_IDS = ["2027-05-04", "2027-05-05", "2027-05-06", "2027-10-04", "2027-10-05", "2027-10-06", "2027-10-07", "2027-10-08"];
 
 const dates = [
+  { day: "Mardi", date: "4", month: "Mai", year: "2027", dateId: "2027-05-04" },
+  { day: "Mercredi", date: "5", month: "Mai", year: "2027", dateId: "2027-05-05" },
+  { day: "Jeudi", date: "6", month: "Mai", year: "2027", dateId: "2027-05-06" },
   { day: "Lundi", date: "4", month: "Octobre", year: "2027", dateId: "2027-10-04" },
   { day: "Mardi", date: "5", month: "Octobre", year: "2027", dateId: "2027-10-05" },
   { day: "Mercredi", date: "6", month: "Octobre", year: "2027", dateId: "2027-10-06" },
   { day: "Jeudi", date: "7", month: "Octobre", year: "2027", dateId: "2027-10-07" },
   { day: "Vendredi", date: "8", month: "Octobre", year: "2027", dateId: "2027-10-08" },
 ];
+
 
 const steps = [
   {
