@@ -25,6 +25,15 @@ const fadeUp = {
 
 const series = [
   {
+    id: "mai-2027",
+    label: "Série Mai 2027",
+    dates: [
+      { date: "2027-05-04", jour: "Mardi", libelle: "4 Mai 2027" },
+      { date: "2027-05-05", jour: "Mercredi", libelle: "5 Mai 2027" },
+      { date: "2027-05-06", jour: "Jeudi", libelle: "6 Mai 2027" },
+    ],
+  },
+  {
     id: "octobre-2027",
     label: "Série Octobre 2027",
     dates: [
@@ -35,16 +44,8 @@ const series = [
       { date: "2027-10-08", jour: "Vendredi", libelle: "8 Octobre 2027" },
     ],
   },
-  {
-    id: "mai-2027",
-    label: "Série Mai 2027",
-    dates: [
-      { date: "2027-05-04", jour: "Mardi", libelle: "4 Mai 2027" },
-      { date: "2027-05-05", jour: "Mercredi", libelle: "5 Mai 2027" },
-      { date: "2027-05-06", jour: "Jeudi", libelle: "6 Mai 2027" },
-    ],
-  },
 ];
+
 
 const Step01_Date = ({ state, onUpdate, onNext }: Step01Props) => {
   const selected = state.date;
