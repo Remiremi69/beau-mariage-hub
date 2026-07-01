@@ -359,6 +359,31 @@ const SerieOctobre2027Hub = () => {
         </div>
       </section>
 
+      {/* CTA intermédiaire */}
+      <section className="py-12 bg-card">
+        <div className="container mx-auto px-4 flex justify-center">
+          <Link to="/configurateur">
+            <button
+              style={{
+                backgroundColor: '#C9A96E',
+                color: '#0D0E12',
+                borderRadius: 0,
+                fontFamily: "'Jost', sans-serif",
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                padding: '18px 48px',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+              }}
+            >
+              Configurer mon mariage →
+            </button>
+          </Link>
+        </div>
+      </section>
+
       {/* Section Les Dates */}
       <section className="py-16 md:py-24 bg-background" ref={datesRef.ref}>
         <div className="container mx-auto px-4">
