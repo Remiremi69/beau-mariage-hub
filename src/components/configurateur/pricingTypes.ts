@@ -14,6 +14,8 @@ export type Deco = 'seve' | 'pierre'
 export type ConfigurateurState = {
   currentStep: number
   date: string | null
+  serieId: string | null
+  serieLabel: string | null
   guests: number
   preparation: boolean
   ceremonieLaique: boolean
@@ -51,6 +53,8 @@ export type ConfigurateurState = {
 export const defaultState: ConfigurateurState = {
   currentStep: 0,
   date: null,
+  serieId: null,
+  serieLabel: null,
   guests: 80,
   preparation: false,
 

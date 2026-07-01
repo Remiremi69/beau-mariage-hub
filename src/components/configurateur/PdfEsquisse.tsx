@@ -224,7 +224,7 @@ export const PdfEsquisse = forwardRef<PdfEsquisseHandle, PdfEsquisseProps>(
                 marginBottom: 6 * MM,
               }}
             >
-              {formatDate(state.date)}
+              {state.serieLabel ? `${state.serieLabel.toUpperCase()} · ` : ""}{formatDate(state.date)}
             </div>
             <div
               style={{

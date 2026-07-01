@@ -527,7 +527,7 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
       const client = supabase as any;
       const { error } = await client.from("configurateur_leads").insert({
         prenom: contact.prenom, nom: contact.nom, email: contact.email, telephone: contact.telephone,
-        message: contact.message, date_mariage: state.date, guests_estimate: state.guests,
+        message: contact.message, date_mariage: state.date, serie_id: state.serieId, serie_label: state.serieLabel, guests_estimate: state.guests,
         ceremonie_laique: state.ceremonieLaique,
         vin_dhonneur: [state.vhBouchee, state.vhAnimation, state.vhMignardise].filter(Boolean).join(' · '),
         repas_formule: state.repas, repas_entree: state.repasEntree, repas_plat: state.repasPlat, repas_dessert: state.repasDessert,
