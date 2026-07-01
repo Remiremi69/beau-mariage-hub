@@ -122,7 +122,7 @@ const CinematicHero = () => {
           style={{ marginTop: "32px" }}
         >
           <Link
-            to="/serie-octobre-2027"
+            to="/series-2027"
             style={{
               display: "inline-block",
               background: "#C9A96E",
