@@ -408,41 +408,8 @@ const SerieOctobre2027Hub = () => {
         </div>
       </section>
 
-      {/* Section Statut de la Série */}
-      <section className="py-16 md:py-24 bg-background" ref={statutRef.ref}>
-        <div className="container mx-auto px-4">
-          <div className={`max-w-3xl mx-auto transition-all duration-1000 ${statutRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="p-8 md:p-12 text-center" style={{ backgroundColor: 'transparent', border: '1px solid #C9A96E' }}>
-              <p className="text-lg mb-8 leading-relaxed" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
-                Les prestataires sont en cours de finalisation.<br />
-                Les cinq dates sont disponibles.<br /><br />
-                Si vous souhaitez être informé en priorité<br />
-                à l'ouverture des réservations, laissez-nous<br />
-                vos coordonnées.
-              </p>
-              <Link to="/contact">
-                <button
-                  style={{
-                    backgroundColor: '#C9A96E',
-                    color: '#0D0E12',
-                    borderRadius: 0,
-                    fontFamily: "'Jost', sans-serif",
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                    padding: '18px 48px',
-                    border: 'none',
-                    cursor: 'pointer',
-                    fontSize: '0.875rem',
-                    fontWeight: 500,
-                  }}
-                >
-                  Être informé en priorité →
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+
+
 
       {/* Section Localisation */}
       <section className="py-16 md:py-24 bg-background" ref={localisationRef.ref}>
