@@ -167,9 +167,35 @@ const PrestataireTemplate = ({ data, slug }: PrestataireTemplateProps) => {
         </div>
       </section>
 
+      {/* CTA intermédiaire */}
+      <section className="py-12 bg-background">
+        <div className="container mx-auto px-4 flex justify-center">
+          <Link to="/configurateur">
+            <button
+              style={{
+                backgroundColor: '#C9A96E',
+                color: '#0D0E12',
+                borderRadius: 0,
+                fontFamily: "'Jost', sans-serif",
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                padding: '18px 48px',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+              }}
+            >
+              Configurer mon mariage →
+            </button>
+          </Link>
+        </div>
+      </section>
+
       {/* Section Galerie (si disponible) */}
       {data.galleryImages && data.galleryImages.length > 0 && (
         <section className="py-16 md:py-24 bg-background" ref={galleryRef.ref}>
+
           <div className="container mx-auto px-4">
             <div className={`text-center mb-12 transition-all duration-1000 ${galleryRef.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
