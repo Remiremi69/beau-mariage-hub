@@ -215,17 +215,18 @@ const SerieOctobre2027Hub = () => {
       >
         <div className="container mx-auto px-4 z-10">
           <p className="mb-6" style={{ fontFamily: "'Jost', sans-serif", textTransform: 'uppercase', letterSpacing: '0.2em', color: '#C9A96E', fontSize: '0.875rem' }}>
-            OCTOBRE 2027 · BEAUJOLAIS
+            OCTOBRE & MAI 2027 · BEAUJOLAIS
           </p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 drop-shadow-lg" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#F5F0E8' }}>
-            Cinq seuils à franchir.
+            Huit seuils à franchir.
           </h1>
           <p className="text-xl md:text-2xl mb-4 drop-shadow-lg italic" style={{ fontFamily: "'Cormorant Garamond', serif", color: '#C9A96E' }}>
-            Une semaine. Un domaine. Cinq mariages.
+            Deux semaines. Un domaine. Huit mariages.
           </p>
           <p className="text-sm mb-10 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
             Domaine de la Croix Rochefort · Saint-Didier-sur-Beaujeu<br />
-            Du 4 au 8 octobre 2027 · 5 dates disponibles
+            Du 4 au 8 octobre 2027 · 5 dates disponibles<br />
+            Du 4 au 6 mai 2027 · 3 dates disponibles
           </p>
           <Link to="/configurateur">
             <button
