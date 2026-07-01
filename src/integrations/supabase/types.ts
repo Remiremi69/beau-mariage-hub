@@ -42,6 +42,8 @@ export type Database = {
           repas_entree: string | null
           repas_formule: string | null
           repas_plat: string | null
+          serie_id: string | null
+          serie_label: string | null
           site_mariage: boolean | null
           status: string | null
           telephone: string | null
@@ -78,6 +80,8 @@ export type Database = {
           repas_entree?: string | null
           repas_formule?: string | null
           repas_plat?: string | null
+          serie_id?: string | null
+          serie_label?: string | null
           site_mariage?: boolean | null
           status?: string | null
           telephone?: string | null
@@ -114,6 +118,8 @@ export type Database = {
           repas_entree?: string | null
           repas_formule?: string | null
           repas_plat?: string | null
+          serie_id?: string | null
+          serie_label?: string | null
           site_mariage?: boolean | null
           status?: string | null
           telephone?: string | null
@@ -376,6 +382,7 @@ export type Database = {
         Args: { message_id: number; queue_name: string }
         Returns: boolean
       }
+      email_queue_dispatch: { Args: never; Returns: undefined }
       enqueue_email: {
         Args: { payload: Json; queue_name: string }
         Returns: number
