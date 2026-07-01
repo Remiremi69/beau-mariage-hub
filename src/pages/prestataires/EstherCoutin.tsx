@@ -5,6 +5,7 @@ import ceremonieScene from "@/assets/esther-ceremonie-scene.jpg";
 import mariesMoment from "@/assets/esther-maries-moment.jpg";
 import animationSoiree from "@/assets/esther-animation-soiree.jpg";
 import speakerEvenementiel from "@/assets/esther-speaker-evenementiel.jpg";
+import ConfigurateurCTA from "@/components/ConfigurateurCTA";
 
 
 const COLORS = {
@@ -689,8 +690,10 @@ const EstherCoutin = () => {
         </div>
       </footer>
 
+      <ConfigurateurCTA />
+
       {/* Responsive */}
-      <style>{`
+<style>{`
         @media (max-width: 768px) {
           .lc-hero { grid-template-columns: 1fr !important; min-height: auto !important; }
           .lc-hero > div:first-child { height: 50vw; }

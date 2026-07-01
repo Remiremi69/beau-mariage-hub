@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import { schemaPrestataireBreadcrumb } from "@/lib/schemas";
 import jjTraiteurPortrait from "@/assets/jj-traiteur-portrait.png";
+import ConfigurateurCTA from "@/components/ConfigurateurCTA";
 
 const COLORS = {
   nuit: "#0D0E12",
@@ -586,8 +587,10 @@ const Traiteur = () => {
         </div>
       </footer>
 
+      <ConfigurateurCTA />
+
       {/* Responsive */}
-      <style>{`
+<style>{`
         @media (max-width: 768px) {
           .lc-hero { grid-template-columns: 1fr !important; min-height: auto !important; }
           .lc-hero > div:first-child { height: 50vw; padding: 1.5rem !important; }
