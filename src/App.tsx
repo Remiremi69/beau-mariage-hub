@@ -34,6 +34,7 @@ import Acompte from "./pages/Acompte";
 import SiteDeMariage from "./pages/SiteDeMariage";
 import Unsubscribe from "./pages/Unsubscribe";
 import EstherCoutin from "./pages/prestataires/EstherCoutin";
+import SeMarierIci from "./pages/SeMarierIci";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,7 @@ const AppLayout = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/concept" element={<Concept />} />
+        <Route path="/se-marier-ici" element={<SeMarierIci />} />
         <Route path="/guide-mariage-beaujolais" element={<GuideBeaujolais />} />
         <Route path="/serie-ete-2027" element={<Navigate to="/series-2027" replace />} />
         <Route path="/serie-octobre-2027" element={<Navigate to="/series-2027" replace />} />
