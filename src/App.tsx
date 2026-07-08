@@ -35,6 +35,7 @@ import SiteDeMariage from "./pages/SiteDeMariage";
 import Unsubscribe from "./pages/Unsubscribe";
 import EstherCoutin from "./pages/prestataires/EstherCoutin";
 import SeMarierIci from "./pages/SeMarierIci";
+import OAuthConsent from "./pages/OAuthConsent";
 
 const queryClient = new QueryClient();
 
@@ -43,10 +44,11 @@ const AppLayout = () => {
   const isConfigurateur = location.pathname === "/configurateur";
   const isAdmin = location.pathname.startsWith("/admin");
   const isSiteDeMariage = location.pathname === "/site-de-mariage";
+  const isOAuthConsent = location.pathname === "/.lovable/oauth/consent";
 
   return (
     <>
-      {!isConfigurateur && !isAdmin && !isSiteDeMariage && <Navigation />}
+      {!isConfigurateur && !isAdmin && !isSiteDeMariage && !isOAuthConsent && <Navigation />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/concept" element={<Concept />} />
@@ -78,9 +80,10 @@ const AppLayout = () => {
         <Route path="/unsubscribe" element={<Unsubscribe />} />
         <Route path="/prestataires/esther-coutin" element={<EstherCoutin />} />
         <Route path="/prestataires/ceremonie-laique" element={<Navigate to="/prestataires/esther-coutin" replace />} />
+        <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {!isConfigurateur && !isAdmin && !isSiteDeMariage && <Footer />}
+      {!isConfigurateur && !isAdmin && !isSiteDeMariage && !isOAuthConsent && <Footer />}
     </>
   );
 };

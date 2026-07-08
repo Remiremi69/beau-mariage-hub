@@ -1,14 +1,23 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 
 const AdminLogin = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const safeNext = (): string | null => {
+    const next = searchParams.get("next");
+    if (!next) return null;
+    // n'accepter que des chemins internes (protection open redirect)
+    if (!next.startsWith("/") || next.startsWith("//")) return null;
+    return next;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,7 +28,12 @@ const AdminLogin = () => {
     if (err) {
       setError(err);
     } else {
-      navigate("/admin");
+      const next = safeNext();
+      if (next) {
+        window.location.href = next;
+      } else {
+        navigate("/admin");
+      }
     }
   };
 
