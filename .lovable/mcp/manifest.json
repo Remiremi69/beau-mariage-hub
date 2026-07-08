@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "sdk_version": "0.20.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://fwsqtjkydzetwcqidclw.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "limen-mcp",
+      "version": "0.1.0",
+      "title": "Limen — Domaine de la Croix Rochefort"
+    },
+    "tools": [
+      {
+        "name": "list_leads",
+        "title": "Lister les leads du configurateur",
+        "description": "Retourne les leads récents captés via le configurateur Limen (Domaine de la Croix Rochefort). Réservé aux administrateurs (RLS).",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "limit": {
+              "default": 20,
+              "description": "Nombre maximum de leads à retourner (défaut 20).",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "status": {
+              "description": "Filtre optionnel sur le statut du lead (ex: 'new', 'contacted').",
+              "type": "string"
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_lead",
+        "title": "Détail d'un lead",
+        "description": "Retourne l'ensemble des champs d'un lead du configurateur à partir de son identifiant. Réservé aux administrateurs.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+              "description": "UUID du lead configurateur."
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "update_lead_status",
+        "title": "Mettre à jour le statut d'un lead",
+        "description": "Met à jour le statut d'un lead du configurateur (ex: 'new', 'contacted', 'qualified', 'lost'). Réservé aux administrateurs.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+              "description": "UUID du lead."
+            },
+            "status": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 50,
+              "description": "Nouveau statut."
+            }
+          },
+          "required": [
+            "id",
+            "status"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
