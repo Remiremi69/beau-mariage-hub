@@ -35,6 +35,7 @@ import SiteDeMariage from "./pages/SiteDeMariage";
 import Unsubscribe from "./pages/Unsubscribe";
 import EstherCoutin from "./pages/prestataires/EstherCoutin";
 import SeMarierIci from "./pages/SeMarierIci";
+import OAuthConsent from "./pages/OAuthConsent";
 
 const queryClient = new QueryClient();
 
