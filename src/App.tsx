@@ -44,10 +44,11 @@ const AppLayout = () => {
   const isConfigurateur = location.pathname === "/configurateur";
   const isAdmin = location.pathname.startsWith("/admin");
   const isSiteDeMariage = location.pathname === "/site-de-mariage";
+  const isOAuthConsent = location.pathname === "/.lovable/oauth/consent";
 
   return (
     <>
-      {!isConfigurateur && !isAdmin && !isSiteDeMariage && <Navigation />}
+      {!isConfigurateur && !isAdmin && !isSiteDeMariage && !isOAuthConsent && <Navigation />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/concept" element={<Concept />} />
