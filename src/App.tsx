@@ -82,7 +82,7 @@ const AppLayout = () => {
         <Route path="/prestataires/ceremonie-laique" element={<Navigate to="/prestataires/esther-coutin" replace />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {!isConfigurateur && !isAdmin && !isSiteDeMariage && <Footer />}
+      {!isConfigurateur && !isAdmin && !isSiteDeMariage && !isOAuthConsent && <Footer />}
     </>
   );
 };
