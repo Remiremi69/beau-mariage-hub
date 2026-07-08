@@ -80,6 +80,7 @@ const AppLayout = () => {
         <Route path="/unsubscribe" element={<Unsubscribe />} />
         <Route path="/prestataires/esther-coutin" element={<EstherCoutin />} />
         <Route path="/prestataires/ceremonie-laique" element={<Navigate to="/prestataires/esther-coutin" replace />} />
+        <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!isConfigurateur && !isAdmin && !isSiteDeMariage && !isOAuthConsent && <Footer />}
