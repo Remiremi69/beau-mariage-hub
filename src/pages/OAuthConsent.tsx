@@ -2,7 +2,32 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 
-// Wrapper typé local pour la beta supabase.auth.oauth
+/**
+ * Page de consentement OAuth 2.1 pour le serveur MCP Limen.
+ *
+ * IMPORTANT — pourquoi on n'utilise PAS supabase.auth.oauth.* :
+ * Le namespace beta `supabase.auth.oauth.*` (getAuthorizationDetails,
+ * approveAuthorization, denyAuthorization) passe par `_useSession()`, qui
+ * acquiert un verrou global `navigator.locks` sur la clé de session Supabase
+ * (`sb-<ref>-auth-token`). Ce verrou est partagé entre TOUS les onglets du
+ * même origin. Quand Claude ouvre cette page depuis un onglet parent (ou que
+ * notre `AuthProvider` fait tourner en parallèle `getSession()` +
+ * `onAuthStateChange` + `checkAdmin` RLS), le verrou peut ne jamais se
+ * libérer → la Promise reste pending indéfiniment et AUCUNE requête réseau
+ * n'est même émise (symptôme observé : « Chargement… » infini, 0 requête
+ * dans l'onglet Network).
+ *
+ * On appelle donc directement l'API REST Supabase Auth OAuth 2.1
+ * (`/auth/v1/oauth/authorizations/:id` et `.../consent`), en lisant le token
+ * d'accès depuis le storage local — sans passer par le lock du SDK.
+ */
+
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
+const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
+const PROJECT_REF = import.meta.env.VITE_SUPABASE_PROJECT_ID as string;
+const STORAGE_KEY = `sb-${PROJECT_REF}-auth-token`;
+const REQUEST_TIMEOUT_MS = 8000;
+
 type OAuthClient = { name?: string; client_name?: string; redirect_uris?: string[] };
 type OAuthDetails = {
   client?: OAuthClient;
@@ -10,13 +35,55 @@ type OAuthDetails = {
   redirect_url?: string;
   redirect_to?: string;
 } | null;
-interface OAuthNs {
-  getAuthorizationDetails: (id: string) => Promise<{ data: OAuthDetails; error: { message: string } | null }>;
-  approveAuthorization: (id: string) => Promise<{ data: OAuthDetails; error: { message: string } | null }>;
-  denyAuthorization: (id: string) => Promise<{ data: OAuthDetails; error: { message: string } | null }>;
+
+function readAccessToken(): string | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    return parsed?.access_token ?? parsed?.currentSession?.access_token ?? null;
+  } catch {
+    return null;
+  }
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const oauth = (supabase.auth as any).oauth as OAuthNs;
+
+async function oauthFetch(
+  path: string,
+  init: RequestInit,
+  timeoutMs = REQUEST_TIMEOUT_MS,
+): Promise<{ data: OAuthDetails; error: { message: string } | null }> {
+  const token = readAccessToken();
+  if (!token) return { data: null, error: { message: "Session absente (token introuvable)." } };
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(`${SUPABASE_URL}/auth/v1${path}`, {
+      ...init,
+      signal: controller.signal,
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_PUBLISHABLE_KEY,
+        Authorization: `Bearer ${token}`,
+        ...(init.headers ?? {}),
+      },
+    });
+    const text = await res.text();
+    const json = text ? JSON.parse(text) : null;
+    if (!res.ok) {
+      const msg = json?.error_description || json?.msg || json?.error || `HTTP ${res.status}`;
+      return { data: null, error: { message: msg } };
+    }
+    return { data: json, error: null };
+  } catch (e) {
+    if ((e as Error).name === "AbortError") {
+      return { data: null, error: { message: `Délai dépassé (${timeoutMs / 1000}s) — le serveur d'autorisation n'a pas répondu.` } };
+    }
+    return { data: null, error: { message: e instanceof Error ? e.message : "Erreur réseau inconnue." } };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
 
 export default function OAuthConsent() {
   const [params] = useSearchParams();
@@ -24,36 +91,47 @@ export default function OAuthConsent() {
   const [details, setDetails] = useState<OAuthDetails>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     let active = true;
     (async () => {
       if (!authorizationId) {
         setError("Paramètre authorization_id manquant.");
+        setLoaded(true);
         return;
       }
-      const { data: sess } = await supabase.auth.getSession();
-      if (!sess.session) {
+
+      // Vérif de session SANS passer par supabase.auth.getSession() (qui prend
+      // le lock). On lit directement le storage.
+      const token = readAccessToken();
+      if (!token) {
         const next = window.location.pathname + window.location.search;
         window.location.href = "/admin/login?next=" + encodeURIComponent(next);
         return;
       }
-      try {
-        const { data, error } = await oauth.getAuthorizationDetails(authorizationId);
-        if (!active) return;
-        if (error) {
-          setError(error.message);
-          return;
-        }
-        const immediate = data?.redirect_url ?? data?.redirect_to;
-        if (immediate && !data?.client) {
-          window.location.href = immediate;
-          return;
-        }
-        setDetails(data);
-      } catch (e) {
-        setError(e instanceof Error ? e.message : "Erreur inconnue.");
+
+      const { data, error } = await oauthFetch(
+        `/oauth/authorizations/${encodeURIComponent(authorizationId)}`,
+        { method: "GET" },
+      );
+      if (!active) return;
+
+      if (error) {
+        console.error("[OAuthConsent] getAuthorizationDetails failed:", error);
+        setError(error.message);
+        setLoaded(true);
+        return;
       }
+
+      const immediate = data?.redirect_url ?? data?.redirect_to;
+      if (immediate && !data?.client) {
+        window.location.href = immediate;
+        return;
+      }
+
+      setDetails(data);
+      setLoaded(true);
     })();
     return () => {
       active = false;
@@ -63,27 +141,28 @@ export default function OAuthConsent() {
   async function decide(approve: boolean) {
     setBusy(true);
     setError(null);
-    try {
-      const { data, error } = approve
-        ? await oauth.approveAuthorization(authorizationId)
-        : await oauth.denyAuthorization(authorizationId);
-      if (error) {
-        setBusy(false);
-        setError(error.message);
-        return;
-      }
-      const target = data?.redirect_url ?? data?.redirect_to;
-      if (!target) {
-        setBusy(false);
-        setError("Aucune URL de redirection retournée par le serveur d'autorisation.");
-        return;
-      }
-      window.location.href = target;
-    } catch (e) {
+    const { data, error } = await oauthFetch(
+      `/oauth/authorizations/${encodeURIComponent(authorizationId)}/consent`,
+      { method: "POST", body: JSON.stringify({ action: approve ? "approve" : "deny" }) },
+    );
+    if (error) {
+      console.error("[OAuthConsent] consent failed:", error);
       setBusy(false);
-      setError(e instanceof Error ? e.message : "Erreur inconnue.");
+      setError(error.message);
+      return;
     }
+    const target = data?.redirect_url ?? data?.redirect_to;
+    if (!target) {
+      setBusy(false);
+      setError("Aucune URL de redirection retournée par le serveur d'autorisation.");
+      return;
+    }
+    window.location.href = target;
   }
+
+  // Silence l'avertissement d'unused import de `supabase` sans casser le build
+  // si un futur refactor souhaite y revenir.
+  void supabase;
 
   const clientName = details?.client?.client_name ?? details?.client?.name ?? "cette application";
 
@@ -137,7 +216,7 @@ export default function OAuthConsent() {
           </p>
         )}
 
-        {!details && !error && (
+        {!loaded && !error && (
           <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, textAlign: "center", opacity: 0.7 }}>
             Chargement…
           </p>
