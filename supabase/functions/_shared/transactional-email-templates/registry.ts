@@ -10,7 +10,9 @@ export interface TemplateEntry {
 }
 
 import { template as agentCommercialMessage } from './agent-commercial-message.tsx'
+import { template as cercleInvitation } from './cercle-invitation.tsx'
 
 export const TEMPLATES: Record<string, TemplateEntry> = {
   'agent-commercial-message': agentCommercialMessage,
+  'cercle-invitation': cercleInvitation,
 }
