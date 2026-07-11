@@ -6,7 +6,9 @@ import { buildTimeline } from "@/lib/build-timeline";
 
 export type PdfEsquisseHandle = {
   generatePdf: () => Promise<void>;
+  generatePdfBlob: () => Promise<{ blob: Blob; fileName: string } | null>;
 };
+
 
 interface PdfEsquisseProps {
   state: ConfigurateurState;
