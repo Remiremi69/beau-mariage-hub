@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Public peut lire contributions de cercles non-brouillon" ON public.contributions;
