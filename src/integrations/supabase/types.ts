@@ -119,6 +119,7 @@ export type Database = {
           dj_effet_prestige: boolean | null
           dj_sono_vh: boolean | null
           email: string
+          esquisse_url: string | null
           guests_estimate: number | null
           id: string
           localisation: string | null
@@ -157,6 +158,7 @@ export type Database = {
           dj_effet_prestige?: boolean | null
           dj_sono_vh?: boolean | null
           email: string
+          esquisse_url?: string | null
           guests_estimate?: number | null
           id?: string
           localisation?: string | null
@@ -195,6 +197,7 @@ export type Database = {
           dj_effet_prestige?: boolean | null
           dj_sono_vh?: boolean | null
           email?: string
+          esquisse_url?: string | null
           guests_estimate?: number | null
           id?: string
           localisation?: string | null
