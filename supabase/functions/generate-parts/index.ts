@@ -221,13 +221,14 @@ Deno.serve(async (req) => {
   }
 
   // Body
-  let body: { couple_id?: string }
+  let body: { couple_id?: string; force?: boolean }
   try {
     body = await req.json()
   } catch {
     return json({ error: 'Invalid JSON body' }, 400)
   }
   const couple_id = body?.couple_id
+  const force = body?.force === true
   if (!couple_id || typeof couple_id !== 'string') {
     return json({ error: 'couple_id (uuid) requis' }, 400)
   }
@@ -235,13 +236,31 @@ Deno.serve(async (req) => {
   // 1. Vérifie qu'aucun Cercle n'existe déjà
   const { data: existing, error: existingErr } = await service
     .from('cercles')
-    .select('id')
+    .select('id, statut')
     .eq('couple_id', couple_id)
     .maybeSingle()
   if (existingErr) return json({ error: `Lecture cercles: ${existingErr.message}` }, 500)
   if (existing) {
-    return json({ error: `Un Cercle existe déjà pour ce couple (id=${existing.id})` }, 409)
+    if (!force) {
+      return json({
+        error: `Un Cercle existe déjà pour ce couple (id=${existing.id})`,
+        cercle_id: existing.id,
+        statut: existing.statut,
+      }, 409)
+    }
+    if (existing.statut !== 'brouillon') {
+      return json({
+        error: `Cercle ${existing.id} publié (statut=${existing.statut}) — régénération refusée`,
+      }, 409)
+    }
+    // Purge : parts, tokens, contributions éventuelles, puis cercle
+    await service.from('contributions').delete().eq('cercle_id', existing.id)
+    await service.from('parts').delete().eq('cercle_id', existing.id)
+    await service.from('cercle_tokens').delete().eq('cercle_id', existing.id)
+    const { error: delErr } = await service.from('cercles').delete().eq('id', existing.id)
+    if (delErr) return json({ error: `Purge cercle: ${delErr.message}` }, 500)
   }
+
 
   // 2. Charge le lead
   const { data: lead, error: leadErr } = await service
