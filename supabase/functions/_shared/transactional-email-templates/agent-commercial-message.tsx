@@ -93,7 +93,9 @@ export const template = {
     prenom: 'Camille',
     bodyText:
       "Merci d'avoir configuré votre mariage avec Limen.\n\nJ'ai pris le temps de regarder vos choix et je serais ravi d'échanger avec vous pour affiner ensemble les derniers détails.\n\nÀ très vite,",
+    esquisseUrl: 'https://example.com/esquisse.pdf',
   },
+
 } satisfies TemplateEntry
 
 const main = {
