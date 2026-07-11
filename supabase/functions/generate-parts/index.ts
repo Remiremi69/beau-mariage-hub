@@ -138,25 +138,73 @@ interface CleanPart {
   etape_composeur_source: string | null
 }
 
-function parseAndValidateParts(raw: string): CleanPart[] {
-  // Strip markdown fences si présents
+function extractJsonArray(raw: string): unknown {
+  // Strip markdown fences
   let cleaned = raw.trim()
   if (cleaned.startsWith('```')) {
     cleaned = cleaned.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim()
   }
-  // Récupère le premier tableau JSON présent
-  const firstBracket = cleaned.indexOf('[')
-  const lastBracket = cleaned.lastIndexOf(']')
-  if (firstBracket === -1 || lastBracket === -1 || lastBracket < firstBracket) {
-    throw new Error('Réponse Claude sans tableau JSON')
-  }
-  cleaned = cleaned.slice(firstBracket, lastBracket + 1)
 
-  const parsed = JSON.parse(cleaned)
+  // If the response is an object wrapping the array (e.g. {"parts":[...]}),
+  // extract that array by scanning brackets while respecting strings/escapes.
+  const firstBracket = cleaned.indexOf('[')
+  if (firstBracket === -1) throw new Error('Réponse Claude sans tableau JSON')
+
+  let depth = 0
+  let end = -1
+  let inString = false
+  let escape = false
+  for (let i = firstBracket; i < cleaned.length; i++) {
+    const c = cleaned[i]
+    if (escape) { escape = false; continue }
+    if (inString) {
+      if (c === '\\') escape = true
+      else if (c === '"') inString = false
+      continue
+    }
+    if (c === '"') { inString = true; continue }
+    if (c === '[') depth++
+    else if (c === ']') {
+      depth--
+      if (depth === 0) { end = i; break }
+    }
+  }
+
+  let slice: string
+  if (end === -1) {
+    // Truncated — auto-repair by closing arrays/objects
+    slice = cleaned.slice(firstBracket)
+    let braces = 0, brackets = 0, s = false, esc = false
+    for (const c of slice) {
+      if (esc) { esc = false; continue }
+      if (s) { if (c === '\\') esc = true; else if (c === '"') s = false; continue }
+      if (c === '"') { s = true; continue }
+      if (c === '{') braces++
+      else if (c === '}') braces--
+      else if (c === '[') brackets++
+      else if (c === ']') brackets--
+    }
+    // Drop trailing comma / partial value after last complete object
+    slice = slice.replace(/,\s*$/, '').replace(/,\s*\{[^{}]*$/, '')
+    while (braces-- > 0) slice += '}'
+    while (brackets-- > 0) slice += ']'
+  } else {
+    slice = cleaned.slice(firstBracket, end + 1)
+  }
+
+  // Remove trailing commas and control chars
+  slice = slice.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']').replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
+
+  return JSON.parse(slice)
+}
+
+function parseAndValidateParts(raw: string): CleanPart[] {
+  const parsed = extractJsonArray(raw)
   if (!Array.isArray(parsed)) throw new Error('Réponse Claude non-tableau')
   if (parsed.length < 15 || parsed.length > 25) {
     throw new Error(`Nombre de parts hors bornes: ${parsed.length} (attendu 15-25)`)
   }
+
 
   const NIVEAUX = new Set(['seuil', 'signature', 'fondatrice'])
   const out: CleanPart[] = []
