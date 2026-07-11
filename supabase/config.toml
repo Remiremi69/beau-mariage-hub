@@ -17,3 +17,7 @@ verify_jwt = false
 
 [functions.handle-email-suppression]
 verify_jwt = false
+
+[functions.generate-parts]
+verify_jwt = true
+
