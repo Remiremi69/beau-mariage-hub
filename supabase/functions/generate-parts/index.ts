@@ -10,7 +10,8 @@ const corsHeaders = {
     'authorization, x-client-info, apikey, content-type',
 }
 
-const ANTHROPIC_MODEL = 'claude-sonnet-4-5'
+const ANTHROPIC_MODEL = 'claude-sonnet-5'
+const ANTHROPIC_MODEL_FALLBACK = 'claude-sonnet-4-6'
 const SITE_BASE_URL = 'https://lebeaumariage.fr'
 
 const SYSTEM_PROMPT = `Tu es le générateur de parts du Cercle, la liste de mariage inversée du Beau Mariage (Domaine de la Croix Rochefort, Beaujolais). À partir de l'Esquisse d'un couple — le JSON de leurs choix dans le Composeur — tu génères les parts nommées de leur mariage : les fragments du rite que leurs proches vont porter.
@@ -142,7 +143,11 @@ function parseAndValidateParts(raw: string): CleanPart[] {
   return out
 }
 
-async function callClaude(anthropicKey: string, esquisseJson: string): Promise<string> {
+async function callClaude(
+  anthropicKey: string,
+  esquisseJson: string,
+  model: string,
+): Promise<string> {
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
@@ -151,7 +156,7 @@ async function callClaude(anthropicKey: string, esquisseJson: string): Promise<s
       'content-type': 'application/json',
     },
     body: JSON.stringify({
-      model: ANTHROPIC_MODEL,
+      model,
       max_tokens: 4096,
       system: SYSTEM_PROMPT,
       messages: [
@@ -164,7 +169,7 @@ async function callClaude(anthropicKey: string, esquisseJson: string): Promise<s
   })
   if (!res.ok) {
     const errText = await res.text()
-    throw new Error(`Claude API ${res.status}: ${errText.slice(0, 500)}`)
+    throw new Error(`Claude API ${res.status} (${model}): ${errText.slice(0, 500)}`)
   }
   const data = await res.json()
   const text = data?.content?.[0]?.text
@@ -254,6 +259,10 @@ Deno.serve(async (req) => {
   delete esquisse.created_at
   delete esquisse.status
   delete esquisse.message
+  // Champs de contact — inutiles pour la génération, on allège le contexte
+  delete esquisse.nom
+  delete esquisse.email
+  delete esquisse.telephone
   const esquisseJson = JSON.stringify(esquisse, null, 2)
 
   // 4. Crée le Cercle avec slug unique (retry sur collision)
@@ -284,17 +293,19 @@ Deno.serve(async (req) => {
   }
   if (!cercleId) return json({ error: 'Impossible de générer un slug unique après 5 tentatives' }, 500)
 
-  // 5. Appelle Claude (avec 1 retry sur échec de parsing)
+  // 5. Appelle Claude (retry sur parsing, fallback modèle sur 2e tentative)
   let parts: CleanPart[] | null = null
   let lastError: unknown = null
-  for (let attempt = 0; attempt < 2; attempt++) {
+  const modelAttempts = [ANTHROPIC_MODEL, ANTHROPIC_MODEL_FALLBACK]
+  for (let attempt = 0; attempt < modelAttempts.length; attempt++) {
+    const model = modelAttempts[attempt]
     try {
-      const raw = await callClaude(ANTHROPIC_API_KEY, esquisseJson)
+      const raw = await callClaude(ANTHROPIC_API_KEY, esquisseJson, model)
       parts = parseAndValidateParts(raw)
       break
     } catch (e) {
       lastError = e
-      console.error(`[generate-parts] tentative ${attempt + 1} échouée:`, e)
+      console.error(`[generate-parts] tentative ${attempt + 1} (${model}) échouée:`, e)
     }
   }
 
