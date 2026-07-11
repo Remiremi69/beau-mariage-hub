@@ -460,19 +460,8 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [isPdfGenerating, setIsPdfGenerating] = useState(false);
-  const [esquisseCaptured, setEsquisseCaptured] = useState(!!state.contact?.email);
-  const [esquissePrenom, setEsquissePrenom] = useState(state.contact?.prenom || "");
-  const [esquisseEmail, setEsquisseEmail] = useState(state.contact?.email || "");
-  const [esquisseLoading, setEsquisseLoading] = useState(false);
+  const [esquisseUrl, setEsquisseUrl] = useState<string | null>(null);
   const pdfRef = useRef<PdfEsquisseHandle>(null);
-
-  useEffect(() => {
-    if (state.contact?.email) {
-      setEsquisseCaptured(true);
-      setEsquisseEmail(state.contact.email);
-      setEsquissePrenom(state.contact.prenom || "");
-    }
-  }, [state.contact?.email]);
 
   const handleDownloadPdf = async () => {
     if (!pdfRef.current || isPdfGenerating) return;
@@ -485,37 +474,6 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
       setIsPdfGenerating(false);
     }
   };
-
-  const handleEsquisseCapture = async () => {
-    if (!esquisseEmail.trim() || !esquissePrenom.trim()) return;
-    setEsquisseLoading(true);
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const client = supabase as any;
-      await client.from("leads").insert({
-        prenom: esquissePrenom.trim(),
-        email: esquisseEmail.trim(),
-        date_envisagee: state.date
-          ? new Date(state.date).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })
-          : null,
-      });
-      onUpdate({
-        contact: {
-          ...state.contact,
-          prenom: esquissePrenom.trim(),
-          email: esquisseEmail.trim(),
-        },
-      });
-    } catch (err) {
-      console.error("Erreur capture esquisse:", err);
-    } finally {
-      setEsquisseLoading(false);
-      setEsquisseCaptured(true);
-      handleDownloadPdf();
-    }
-  };
-
-
 
   const updateField = useCallback((field: string, value: string) => setContact((prev) => ({ ...prev, [field]: value })), []);
   const updateAdresse = useCallback((field: string, value: string) => setAdresse((prev) => ({ ...prev, [field]: value })), []);
@@ -547,7 +505,7 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
         adresse_livraison: localisation === "distance" ? { rue: adresse.rue, cp: adresse.cp, ville: adresse.ville, pays: adresse.pays } : null,
         coffret_demande: localisation === "distance",
         site_mariage: state.siteMariage,
-      });
+      }).select().single();
 
       const result = await Promise.race([
         insertPromise,
@@ -556,11 +514,46 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
         ),
       ]);
 
-      if (result && !result.error) {
-        setIsSuccess(true);
-      } else {
+      if (!result || result.error || !result.data) {
         throw new Error(result?.error?.message || "Insert failed");
       }
+
+      setIsSuccess(true);
+      const leadId = result.data.id as string;
+
+      // Fire-and-forget PDF upload + URL persistence
+      (async () => {
+        try {
+          if (!pdfRef.current) return;
+          const pdfResult = await pdfRef.current.generatePdfBlob();
+          if (!pdfResult) return;
+          const path = `${leadId}.pdf`;
+          const { error: uploadErr } = await client.storage
+            .from("esquisses")
+            .upload(path, pdfResult.blob, {
+              contentType: "application/pdf",
+              upsert: true,
+            });
+          if (uploadErr) {
+            console.error("Erreur upload esquisse:", uploadErr);
+            return;
+          }
+          const { data: signed, error: signErr } = await client.storage
+            .from("esquisses")
+            .createSignedUrl(path, 60 * 60 * 24 * 365 * 5); // 5 ans
+          if (signErr || !signed?.signedUrl) {
+            console.error("Erreur signed URL:", signErr);
+            return;
+          }
+          setEsquisseUrl(signed.signedUrl);
+          await client
+            .from("configurateur_leads")
+            .update({ esquisse_url: signed.signedUrl })
+            .eq("id", leadId);
+        } catch (err) {
+          console.error("Erreur post-insert esquisse:", err);
+        }
+      })();
     } catch (error: any) {
       console.error("Erreur envoi lead:", error);
       setErrorMsg("Votre demande n'a pas pu être envoyée. Réessayez dans un instant, ou écrivez-nous directement — votre composition est conservée.");
@@ -568,6 +561,7 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
       setIsLoading(false);
     }
   };
+
 
   const menuSubtext = [state.repasEntree, state.repasPlat, state.repasDessert].map((id) => id ? menuNames[id] : null).filter(Boolean).join(" · ");
   const optionsList = (state.options || []).map((id) => OPTION_LABELS[id] || id).join(" · ");
@@ -603,85 +597,38 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
           className="w-full flex flex-col items-center"
           style={{ marginTop: 8, marginBottom: 64 }}
         >
-          {esquisseCaptured ? (
-            <button
-              onClick={handleDownloadPdf}
-              disabled={isPdfGenerating}
-              data-cursor-hover
-              style={{
-                fontFamily: "'Jost', sans-serif",
-                fontWeight: 300,
-                fontSize: 12,
-                letterSpacing: "0.3em",
-                textTransform: "uppercase",
-                padding: "14px 28px",
-                border: "1px solid rgba(201,169,110,0.40)",
-                background: "transparent",
-                color: "rgba(201,169,110,0.80)",
-                cursor: isPdfGenerating ? "wait" : "pointer",
-                transition: "all 0.3s ease",
-                borderRadius: 0,
-              }}
-              onMouseEnter={(e) => {
-                if (!isPdfGenerating) {
-                  e.currentTarget.style.borderColor = "#c9a96e";
-                  e.currentTarget.style.color = "#c9a96e";
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(201,169,110,0.40)";
-                e.currentTarget.style.color = "rgba(201,169,110,0.80)";
-              }}
-            >
-              {isPdfGenerating ? "Création en cours…" : "↓ Télécharger l'esquisse"}
-            </button>
-          ) : (
-            <div className="flex flex-col gap-3 w-full" style={{ maxWidth: 380 }}>
-              <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(232,221,208,0.55)", textAlign: "center", marginBottom: 4 }}>
-                Pour recevoir votre esquisse
-              </p>
-              <input
-                type="text"
-                placeholder="Votre prénom"
-                value={esquissePrenom}
-                onChange={(e) => setEsquissePrenom(e.target.value)}
-                style={inputStyle}
-                onFocus={focusIn}
-                onBlur={focusOut}
-              />
-              <input
-                type="email"
-                placeholder="votre@email.com"
-                value={esquisseEmail}
-                onChange={(e) => setEsquisseEmail(e.target.value)}
-                style={inputStyle}
-                onFocus={focusIn}
-                onBlur={focusOut}
-              />
-              <button
-                onClick={handleEsquisseCapture}
-                disabled={!esquissePrenom.trim() || !esquisseEmail.trim() || esquisseLoading}
-                data-cursor-hover
-                style={{
-                  fontFamily: "'Jost', sans-serif",
-                  fontWeight: 300,
-                  fontSize: 12,
-                  letterSpacing: "0.3em",
-                  textTransform: "uppercase",
-                  padding: "14px 28px",
-                  border: "1px solid rgba(201,169,110,0.40)",
-                  background: "transparent",
-                  color: "rgba(201,169,110,0.80)",
-                  cursor: esquisseLoading ? "wait" : "pointer",
-                  transition: "all 0.3s ease",
-                  borderRadius: 0,
-                  opacity: (!esquissePrenom.trim() || !esquisseEmail.trim()) ? 0.5 : 1,
-                }}
-              >
-                {esquisseLoading ? "Un instant…" : "↓ Télécharger l'esquisse"}
-              </button>
-            </div>
-          )}
+          <button
+            onClick={handleDownloadPdf}
+            disabled={isPdfGenerating}
+            data-cursor-hover
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontWeight: 300,
+              fontSize: 12,
+              letterSpacing: "0.3em",
+              textTransform: "uppercase",
+              padding: "14px 28px",
+              border: "1px solid rgba(201,169,110,0.40)",
+              background: "transparent",
+              color: "rgba(201,169,110,0.80)",
+              cursor: isPdfGenerating ? "wait" : "pointer",
+              transition: "all 0.3s ease",
+              borderRadius: 0,
+            }}
+            onMouseEnter={(e) => {
+              if (!isPdfGenerating) {
+                e.currentTarget.style.borderColor = "#c9a96e";
+                e.currentTarget.style.color = "#c9a96e";
+              }
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "rgba(201,169,110,0.40)";
+              e.currentTarget.style.color = "rgba(201,169,110,0.80)";
+            }}
+          >
+            {isPdfGenerating ? "Création en cours…" : "↓ Télécharger l'esquisse"}
+          </button>
+
           <p
             style={{
               fontFamily: "'Cormorant Garamond', serif",
@@ -849,8 +796,43 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
                     : "Nous vous contacterons dans les 24 heures pour confirmer votre date et répondre à toutes vos questions."
                   }
                 </p>
+                <div className="flex flex-col items-center gap-3" style={{ marginTop: 32 }}>
+                  <a
+                    href={esquisseUrl || undefined}
+                    onClick={(e) => {
+                      if (!esquisseUrl) {
+                        e.preventDefault();
+                        handleDownloadPdf();
+                      }
+                    }}
+                    target={esquisseUrl ? "_blank" : undefined}
+                    rel={esquisseUrl ? "noopener noreferrer" : undefined}
+                    download={esquisseUrl ? true : undefined}
+                    data-cursor-hover
+                    style={{
+                      fontFamily: "'Jost', sans-serif",
+                      fontWeight: 300,
+                      fontSize: 12,
+                      letterSpacing: "0.3em",
+                      textTransform: "uppercase",
+                      padding: "14px 28px",
+                      border: "1px solid #c9a96e",
+                      background: "rgba(201,169,110,0.08)",
+                      color: "#c9a96e",
+                      cursor: "pointer",
+                      textDecoration: "none",
+                      display: "inline-block",
+                    }}
+                  >
+                    ↓ Télécharger votre esquisse
+                  </a>
+                  <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: 13, color: "rgba(232,221,208,0.55)", textAlign: "center" }}>
+                    Elle vous attend aussi dans l'email de confirmation.
+                  </p>
+                </div>
                 <Roadmap loc={localisation} />
               </motion.div>
+
             ) : (
               <motion.div key="form" className="w-full flex flex-col items-center">
                 <h3 className="text-center" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 36, color: "#faf8f4", marginBottom: 8 }}>On vous rappelle ?</h3>

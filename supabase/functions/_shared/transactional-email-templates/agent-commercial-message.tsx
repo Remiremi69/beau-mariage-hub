@@ -1,8 +1,10 @@
 import * as React from 'npm:react@18.3.1'
 import {
   Body,
+  Button,
   Container,
   Head,
+  Hr,
   Html,
   Preview,
   Section,
@@ -10,16 +12,19 @@ import {
 } from 'npm:@react-email/components@0.0.22'
 import type { TemplateEntry } from './registry.ts'
 
+
 const SITE_NAME = 'Limen — Le Beau Mariage'
 
 interface AgentCommercialMessageProps {
   prenom?: string
   bodyText?: string
+  esquisseUrl?: string
 }
 
 const AgentCommercialMessageEmail = ({
   prenom,
   bodyText,
+  esquisseUrl,
 }: AgentCommercialMessageProps) => {
   const greeting = prenom ? `Bonjour ${prenom},` : 'Bonjour,'
   const paragraphs = (bodyText ?? '').split(/\n{2,}/).map((p) => p.trim()).filter(Boolean)
@@ -53,6 +58,21 @@ const AgentCommercialMessageEmail = ({
             )}
           </Section>
 
+          {esquisseUrl ? (
+            <>
+              <Hr style={divider} />
+              <Section style={esquisseSection}>
+                <Text style={esquisseLabel}>Votre esquisse personnalisée</Text>
+                <Text style={esquisseIntro}>
+                  Le déroulé de votre journée, mis en page pour vous.
+                </Text>
+                <Button href={esquisseUrl} style={esquisseButton}>
+                  ↓ Télécharger votre esquisse (PDF)
+                </Button>
+              </Section>
+            </>
+          ) : null}
+
           <Section style={signature}>
             <Text style={signatureName}>Rémi</Text>
             <Text style={signatureRole}>{SITE_NAME}</Text>
@@ -64,6 +84,7 @@ const AgentCommercialMessageEmail = ({
   )
 }
 
+
 export const template = {
   component: AgentCommercialMessageEmail,
   subject: 'Votre mariage au Domaine de la Croix Rochefort — Limen',
@@ -72,7 +93,9 @@ export const template = {
     prenom: 'Camille',
     bodyText:
       "Merci d'avoir configuré votre mariage avec Limen.\n\nJ'ai pris le temps de regarder vos choix et je serais ravi d'échanger avec vous pour affiner ensemble les derniers détails.\n\nÀ très vite,",
+    esquisseUrl: 'https://example.com/esquisse.pdf',
   },
+
 } satisfies TemplateEntry
 
 const main = {
@@ -151,4 +174,43 @@ const signatureContact = {
   fontSize: '13px',
   color: '#C8A96E',
   margin: 0,
+}
+
+const divider = {
+  borderTop: '1px solid #E8E0D0',
+  margin: '32px 0',
+}
+
+const esquisseSection = {
+  textAlign: 'center' as const,
+  marginBottom: '32px',
+}
+
+const esquisseLabel = {
+  fontSize: '11px',
+  letterSpacing: '0.3em',
+  color: '#C8A96E',
+  textTransform: 'uppercase' as const,
+  margin: '0 0 8px',
+  fontWeight: 'bold' as const,
+}
+
+const esquisseIntro = {
+  fontSize: '14px',
+  color: '#1A1814',
+  fontStyle: 'italic' as const,
+  margin: '0 0 18px',
+}
+
+const esquisseButton = {
+  backgroundColor: '#1A1814',
+  color: '#F5F0E8',
+  padding: '14px 28px',
+  fontSize: '12px',
+  letterSpacing: '0.25em',
+  textTransform: 'uppercase' as const,
+  textDecoration: 'none',
+  display: 'inline-block',
+  borderRadius: 0,
+  fontWeight: 'bold' as const,
 }

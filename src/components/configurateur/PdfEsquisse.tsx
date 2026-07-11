@@ -6,7 +6,9 @@ import { buildTimeline } from "@/lib/build-timeline";
 
 export type PdfEsquisseHandle = {
   generatePdf: () => Promise<void>;
+  generatePdfBlob: () => Promise<{ blob: Blob; fileName: string } | null>;
 };
+
 
 interface PdfEsquisseProps {
   state: ConfigurateurState;
@@ -76,37 +78,49 @@ export const PdfEsquisse = forwardRef<PdfEsquisseHandle, PdfEsquisseProps>(
       return `Esquisse-Limen-${date}.pdf`;
     };
 
-    useImperativeHandle(ref, () => ({
-      generatePdf: async () => {
-        if (!pdfRef.current) return;
-        const canvas = await html2canvas(pdfRef.current, {
-          scale: 2,
-          backgroundColor: COLORS.fond,
-          useCORS: true,
-          logging: false,
-        });
-        const imgData = canvas.toDataURL("image/jpeg", 0.95);
-        const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
-        const imgWidth = 210;
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    const renderPdf = async (): Promise<jsPDF | null> => {
+      if (!pdfRef.current) return null;
+      const canvas = await html2canvas(pdfRef.current, {
+        scale: 2,
+        backgroundColor: COLORS.fond,
+        useCORS: true,
+        logging: false,
+      });
+      const imgData = canvas.toDataURL("image/jpeg", 0.95);
+      const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+      const imgWidth = 210;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-        if (imgHeight <= 297) {
-          pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
-        } else {
-          let heightLeft = imgHeight;
-          let position = 0;
+      if (imgHeight <= 297) {
+        pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
+      } else {
+        let heightLeft = imgHeight;
+        let position = 0;
+        pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
+        heightLeft -= 297;
+        while (heightLeft > 0) {
+          position = heightLeft - imgHeight;
+          pdf.addPage();
           pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
           heightLeft -= 297;
-          while (heightLeft > 0) {
-            position = heightLeft - imgHeight;
-            pdf.addPage();
-            pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
-            heightLeft -= 297;
-          }
         }
+      }
+      return pdf;
+    };
+
+    useImperativeHandle(ref, () => ({
+      generatePdf: async () => {
+        const pdf = await renderPdf();
+        if (!pdf) return;
         pdf.save(buildFileName());
       },
+      generatePdfBlob: async () => {
+        const pdf = await renderPdf();
+        if (!pdf) return null;
+        return { blob: pdf.output("blob"), fileName: buildFileName() };
+      },
     }));
+
 
     // A4 portrait at 96dpi-ish: 794 x 1123 px (we use mm internally via px proxy)
     // Use mm-equivalent in px: 1mm ≈ 3.78px. We render at width = 210mm * 3.78 = ~794px

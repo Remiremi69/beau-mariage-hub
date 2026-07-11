@@ -58,6 +58,8 @@ interface LeadPayload {
   rdv_jour?: string | null;
   rdv_creneau?: string | null;
   coffret_demande?: boolean | null;
+  esquisse_url?: string | null;
+
   status?: string | null;
   created_at?: string | null;
   [key: string]: unknown;
@@ -266,6 +268,25 @@ serve(async (req) => {
     if (lead.email && generatedText && SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY) {
       try {
         const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+
+        // Attend jusqu'à 20s que l'esquisse PDF soit uploadée et son URL persistée
+        let esquisseUrl: string | null = lead.esquisse_url ?? null;
+        if (!esquisseUrl && lead.id) {
+          for (let attempt = 0; attempt < 10; attempt++) {
+            await new Promise((r) => setTimeout(r, 2000));
+            const { data: refreshed } = await supabase
+              .from("configurateur_leads")
+              .select("esquisse_url")
+              .eq("id", lead.id)
+              .maybeSingle();
+            if (refreshed?.esquisse_url) {
+              esquisseUrl = refreshed.esquisse_url as string;
+              break;
+            }
+          }
+        }
+        console.log("Esquisse URL pour lead", lead.id, ":", esquisseUrl ? "présente" : "absente");
+
         const { data: emailRes, error: emailErr } =
           await supabase.functions.invoke("send-transactional-email", {
             body: {
@@ -275,7 +296,9 @@ serve(async (req) => {
               templateData: {
                 prenom: lead.prenom ?? null,
                 bodyText: generatedText,
+                esquisseUrl: esquisseUrl,
               },
+
             },
           });
 
