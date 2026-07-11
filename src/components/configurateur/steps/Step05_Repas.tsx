@@ -1149,7 +1149,7 @@ const Step05_Repas = ({ state, onUpdate, onNext, onPrev }: Step05Props) => {
           color: "rgba(201,169,110,0.6)",
         }}
       >
-        Étape · Votre table & votre nuit
+        Étape 6 · Votre table & votre nuit
       </motion.p>
 
       <motion.h2

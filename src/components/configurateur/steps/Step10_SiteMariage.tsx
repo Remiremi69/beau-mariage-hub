@@ -33,7 +33,7 @@ const Step10_SiteMariage = ({ state, onUpdate, onNext, onPrev }: Step10Props) =>
         {/* Label */}
         <motion.p custom={0} initial="hidden" animate="visible" variants={fadeUp}
           style={{ fontFamily: "'Jost', sans-serif", fontWeight: 200, fontSize: 11, letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(201,169,110,0.6)" }}>
-          Étape 10 · Votre présence en ligne
+          Étape 12 · Votre présence en ligne
         </motion.p>
 
         {/* Titre */}

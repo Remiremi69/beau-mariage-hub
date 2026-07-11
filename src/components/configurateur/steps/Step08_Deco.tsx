@@ -152,7 +152,7 @@ const Step08_Deco = ({ state, onUpdate, onNext, onPrev }: Step08Props) => {
             color: `${OR}99`,
           }}
         >
-          Étape 8 · L'atmosphère
+          Étape 9 · L'atmosphère
         </motion.p>
 
         <motion.h2

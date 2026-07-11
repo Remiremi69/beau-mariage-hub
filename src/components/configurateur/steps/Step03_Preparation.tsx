@@ -280,7 +280,7 @@ const Step03_Preparation = ({ state, onUpdate, onNext, onPrev }: Step03Props) =>
             color: "rgba(201,169,110,0.6)",
           }}
         >
-          Étape · Préparation des mariés
+          Étape 3 · Préparation des mariés
         </motion.p>
 
         <motion.h2
