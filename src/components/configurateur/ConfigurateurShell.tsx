@@ -162,7 +162,20 @@ const ConfigurateurShell = () => {
     }
   }, [state]);
 
-  const [displayStep, setDisplayStep] = useState(0);
+  const [displayStep, setDisplayStep] = useState(() => {
+    try {
+      const saved = localStorage.getItem("limen-config-state");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && typeof parsed === "object" && typeof parsed.currentStep === "number") {
+          return parsed.currentStep;
+        }
+      }
+    } catch (e) {
+      console.error("Erreur lecture displayStep sauvegardé:", e);
+    }
+    return 0;
+  });
   const [transitionClass, setTransitionClass] = useState("");
   const [overlayActive, setOverlayActive] = useState(false);
   const isTransitioning = useRef(false);
@@ -460,8 +473,8 @@ const ConfigurateurShell = () => {
         </div>
       )}
 
-      {/* Step 12 — Wedding hero ambient */}
-      {currentStep === 12 && (
+      {/* Step 13 — Wedding hero ambient */}
+      {currentStep === 13 && (
         <div className="fixed inset-0" style={{ zIndex: 0, pointerEvents: "none" }}>
           <div
             className="absolute inset-0"
@@ -487,9 +500,9 @@ const ConfigurateurShell = () => {
         {renderStep()}
       </div>
 
-      {/* ─── Mini-récap flottant (desktop, hidden on step 12) ─── */}
+      {/* ─── Mini-récap flottant (desktop, hidden on step 13) ─── */}
       <AnimatePresence>
-        {currentStep >= 1 && currentStep < 12 && (
+        {currentStep >= 1 && currentStep < 13 && (
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
