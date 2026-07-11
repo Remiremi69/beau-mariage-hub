@@ -79,7 +79,7 @@ const CinematicHero = () => {
             marginBottom: "16px",
           }}
         >
-          MARIAGE CLÉ-EN-MAIN · BEAUJOLAIS · 2027
+          MARIAGE CLÉ EN MAIN À COMPOSER · BEAUJOLAIS · 2027
         </motion.p>
 
         {/* Headline */}
@@ -96,7 +96,7 @@ const CinematicHero = () => {
             marginBottom: "16px",
           }}
         >
-          Le seuil, pas le spectacle.
+          Tout est prêt. Tout est à vous.
         </motion.h1>
 
         {/* Subtitle */}
@@ -111,7 +111,7 @@ const CinematicHero = () => {
             color: "#C9A96E",
           }}
         >
-          Tout est déjà prêt.
+          Un domaine privatisé trois jours. Une série limitée de mariages par an.
         </motion.p>
 
         {/* CTA */}
