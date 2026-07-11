@@ -175,3 +175,42 @@ const signatureContact = {
   color: '#C8A96E',
   margin: 0,
 }
+
+const divider = {
+  borderTop: '1px solid #E8E0D0',
+  margin: '32px 0',
+}
+
+const esquisseSection = {
+  textAlign: 'center' as const,
+  marginBottom: '32px',
+}
+
+const esquisseLabel = {
+  fontSize: '11px',
+  letterSpacing: '0.3em',
+  color: '#C8A96E',
+  textTransform: 'uppercase' as const,
+  margin: '0 0 8px',
+  fontWeight: 'bold' as const,
+}
+
+const esquisseIntro = {
+  fontSize: '14px',
+  color: '#1A1814',
+  fontStyle: 'italic' as const,
+  margin: '0 0 18px',
+}
+
+const esquisseButton = {
+  backgroundColor: '#1A1814',
+  color: '#F5F0E8',
+  padding: '14px 28px',
+  fontSize: '12px',
+  letterSpacing: '0.25em',
+  textTransform: 'uppercase' as const,
+  textDecoration: 'none',
+  display: 'inline-block',
+  borderRadius: 0,
+  fontWeight: 'bold' as const,
+}
