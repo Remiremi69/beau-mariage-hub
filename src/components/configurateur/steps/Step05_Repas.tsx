@@ -89,7 +89,7 @@ const menus: MenuDef[] = [
     image: menuSignatureImg,
     accroche: "Pour qui aime la cuisine précise, les saveurs voyageuses, l'évasion.",
     vh: {
-      title: "Punch citron vert gingembre et coriande",
+      title: "Punch citron vert gingembre et coriandre",
       sub1: "Citronnade maison · Eaux plate & gazeuse · Eaux aromatisées . Softs ·",
       sub2: "+ 8 pièces signature",
     },
@@ -109,7 +109,7 @@ const menus: MenuDef[] = [
       },
     ],
     full: {
-      vinHonneur: "Punch citron vert gingembre et coriande · Citronnade maison · Eaux plate & gazeuse · Eaux aromatisées . Softs ·",
+      vinHonneur: "Punch citron vert gingembre et coriandre · Citronnade maison · Eaux plate & gazeuse · Eaux aromatisées . Softs ·",
       cocktailTitle: "Cocktail · 8 pièces",
       cocktail:
         "Plancha gambas snackées marmelade mangue safran · Rouleau d'aubergine · " +

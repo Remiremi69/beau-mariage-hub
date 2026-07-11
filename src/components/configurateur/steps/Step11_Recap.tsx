@@ -326,15 +326,11 @@ const CRENEAUX = [
 ];
 
 /* ── CTA label ────────────────────────────────────────── */
-const getCTALabel = (loc: Localisation): string => {
-  if (loc === "distance") return "ENVOYER MA DEMANDE";
-  return "ENVOYER MA DEMANDE";
-};
+const getCTALabel = (_loc: Localisation): string => "JE RÉSERVE MA DÉGUSTATION";
 
-const getSubtitle = (loc: Localisation): string => {
-  if (loc === "distance") return "Votre coffret sera expédié et le RDV Zoom confirmé dans les 2 heures.";
-  return "Un conseiller Limen vous contacte sous 24h.";
-};
+const getSubtitle = (_loc: Localisation): string =>
+  "Nous vous appelons sous 24h pour convenir ensemble de la date.";
+
 
 /* ── Roadmap ──────────────────────────────────────────── */
 const Roadmap = ({ loc }: { loc: Localisation }) => {
@@ -462,6 +458,42 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
   const [isPdfGenerating, setIsPdfGenerating] = useState(false);
   const [esquisseUrl, setEsquisseUrl] = useState<string | null>(null);
   const pdfRef = useRef<PdfEsquisseHandle>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+  const timelineEndRef = useRef<HTMLDivElement>(null);
+  const [showFloatingCTA, setShowFloatingCTA] = useState(false);
+
+  useEffect(() => {
+    if (!timelineEndRef.current || !formRef.current) return;
+    let pastTimeline = false;
+    let formVisible = false;
+    const update = () => setShowFloatingCTA(pastTimeline && !formVisible && !isSuccess);
+    const timelineObs = new IntersectionObserver(
+      ([entry]) => {
+        // "past timeline" = timeline sentinel is above viewport
+        pastTimeline = entry.boundingClientRect.top < 0 && !entry.isIntersecting;
+        update();
+      },
+      { threshold: 0 }
+    );
+    const formObs = new IntersectionObserver(
+      ([entry]) => {
+        formVisible = entry.isIntersecting;
+        update();
+      },
+      { threshold: 0.15 }
+    );
+    timelineObs.observe(timelineEndRef.current);
+    formObs.observe(formRef.current);
+    return () => {
+      timelineObs.disconnect();
+      formObs.disconnect();
+    };
+  }, [isSuccess]);
+
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
 
   const handleDownloadPdf = async () => {
     if (!pdfRef.current || isPdfGenerating) return;
@@ -588,6 +620,8 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} style={{ width: 80, height: 1, background: "#c9a96e", margin: "36px auto 48px" }} />
         {/* ═══ TIMELINE DU JOUR J ═══ */}
         <TimelineBlock state={state} />
+        <div ref={timelineEndRef} aria-hidden style={{ width: "100%", height: 1 }} />
+
 
         {/* ═══ BOUTON TÉLÉCHARGEMENT PDF ═══ */}
         <motion.div
@@ -759,42 +793,27 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
           </div>
         </motion.div>
 
-        {/* ═══ BLOC 4 — PARCOURS DE CONVERSION ═══ */}
+        {/* ═══ BLOC 4 — RÉSERVATION DÉGUSTATION (intro + formulaire fusionnés) ═══ */}
         <motion.div custom={7} initial="hidden" animate="visible" variants={fadeUp} style={{ width: 80, height: 1, background: "#c9a96e", margin: "48px auto" }} />
 
-        {/* 4A — Mention dégustation */}
-        <motion.div custom={8} initial="hidden" animate="visible" variants={fadeUp} className="w-full flex justify-center">
-          <div style={{
-            background: "rgba(26,22,18,0.60)", border: "1px solid rgba(201,169,110,0.20)", borderRadius: 2,
-            padding: "32px 36px", maxWidth: 580, width: "100%", textAlign: "center",
-          }}>
-            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 24, color: "rgba(201,169,110,0.40)", marginBottom: 16 }}>✦</p>
-            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 28, color: "#faf8f4", marginBottom: 12, lineHeight: 1.3 }}>
-              Avant de vous décider,<br />goûtez.
-            </h3>
-            <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 14, color: "rgba(232,221,208,0.60)", lineHeight: 1.8 }}>
-              Nous organisons une dégustation avec Jessica et Jérôme — les plats que vous avez choisis, les vins du domaine, dans les jardins du domaine. C'est votre prochaine étape naturelle.
-            </p>
-          </div>
-        </motion.div>
-
-
-        {/* ═══ BLOC 5 — FORMULAIRE CONTACT ═══ */}
-        <motion.div custom={10} initial="hidden" animate="visible" variants={fadeUp} style={{ width: 80, height: 1, background: "#c9a96e", margin: "48px auto" }} />
-
-        <motion.div custom={11} initial="hidden" animate="visible" variants={fadeUp} className="w-full flex flex-col items-center" style={{ maxWidth: 700 }}>
+        <motion.div
+          ref={formRef}
+          custom={11}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="w-full flex flex-col items-center"
+          style={{ maxWidth: 700, scrollMarginTop: 80 }}
+        >
           <AnimatePresence mode="wait">
             {isSuccess ? (
               <motion.div key="success" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} className="text-center" style={{ maxWidth: 520 }}>
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 48, color: "#c9a96e", marginBottom: 16 }}>◇</p>
                 <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 36, color: "#faf8f4", marginBottom: 16 }}>
-                  {localisation === "distance" ? "Votre demande est envoyée." : "On vous recontacte."}
+                  Votre dégustation se prépare.
                 </h3>
                 <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 14, color: "rgba(232,221,208,0.60)", lineHeight: 1.8 }}>
-                  {localisation === "distance"
-                    ? `Votre coffret Limen sera expédié dans les 48 heures${adresse.ville ? ` à ${adresse.ville}` : ""}. Le RDV Zoom sera confirmé par email — prévoyez une bouteille de Beaujolais à portée de main.`
-                    : "Nous vous contacterons dans les 24 heures pour confirmer votre date et répondre à toutes vos questions."
-                  }
+                  Nous vous appelons sous 24h pour fixer la date avec vous. Votre esquisse vous attend dans votre boîte mail.
                 </p>
                 <div className="flex flex-col items-center gap-3" style={{ marginTop: 32 }}>
                   <a
@@ -835,10 +854,22 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
 
             ) : (
               <motion.div key="form" className="w-full flex flex-col items-center">
-                <h3 className="text-center" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 36, color: "#faf8f4", marginBottom: 8 }}>On vous rappelle ?</h3>
+                {/* Intro dégustation (ex-BLOC 4A) */}
+                <div style={{
+                  background: "rgba(26,22,18,0.60)", border: "1px solid rgba(201,169,110,0.20)", borderRadius: 2,
+                  padding: "28px 32px", maxWidth: 580, width: "100%", textAlign: "center", marginBottom: 40,
+                }}>
+                  <p style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 24, color: "rgba(201,169,110,0.40)", marginBottom: 12 }}>✦</p>
+                  <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 14, color: "rgba(232,221,208,0.70)", lineHeight: 1.8 }}>
+                    Nous organisons une dégustation avec Jessica et Jérôme — les plats que vous avez choisis, les vins du domaine, dans les jardins du domaine. C'est votre prochaine étape naturelle.
+                  </p>
+                </div>
+
+                <h3 className="text-center" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 36, color: "#faf8f4", marginBottom: 8 }}>Réservez votre dégustation</h3>
                 <p className="text-center" style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 14, color: "rgba(232,221,208,0.55)", lineHeight: 1.7, marginBottom: 36 }}>
                   {getSubtitle(localisation)}
                 </p>
+
                 <div className="flex flex-col gap-3.5 w-full" style={{ maxWidth: 480 }}>
                   <div><label style={labelStyle}>Prénom</label><input type="text" placeholder="Votre prénom" value={contact.prenom} onChange={(e) => updateField("prenom", e.target.value)} style={inputStyle} onFocus={focusIn} onBlur={focusOut} /></div>
                   <div><label style={labelStyle}>Nom</label><input type="text" placeholder="Votre nom" value={contact.nom} onChange={(e) => updateField("nom", e.target.value)} style={inputStyle} onFocus={focusIn} onBlur={focusOut} /></div>
@@ -888,8 +919,46 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
           </motion.div>
         )}
       </div>
+
+      {/* ═══ FLOATING CTA — Réserver ma dégustation ═══ */}
+      <AnimatePresence>
+        {showFloatingCTA && (
+          <motion.button
+            key="floating-cta"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            onClick={scrollToForm}
+            data-cursor-hover
+            style={{
+              position: "fixed",
+              right: "clamp(16px, 3vw, 32px)",
+              bottom: "clamp(16px, 3vw, 32px)",
+              zIndex: 60,
+              fontFamily: "'Jost', sans-serif",
+              fontWeight: 400,
+              fontSize: 11,
+              letterSpacing: "0.25em",
+              textTransform: "uppercase",
+              padding: "14px 22px",
+              background: "rgba(26,22,18,0.78)",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
+              border: "1px solid rgba(201,169,110,0.55)",
+              color: "#c9a96e",
+              cursor: "pointer",
+              borderRadius: 0,
+              boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
+            }}
+          >
+            Réserver ma dégustation ↓
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
+
 };
 
 export default Step11_Recap;
