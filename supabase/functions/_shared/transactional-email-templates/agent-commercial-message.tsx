@@ -18,11 +18,13 @@ const SITE_NAME = 'Limen — Le Beau Mariage'
 interface AgentCommercialMessageProps {
   prenom?: string
   bodyText?: string
+  esquisseUrl?: string
 }
 
 const AgentCommercialMessageEmail = ({
   prenom,
   bodyText,
+  esquisseUrl,
 }: AgentCommercialMessageProps) => {
   const greeting = prenom ? `Bonjour ${prenom},` : 'Bonjour,'
   const paragraphs = (bodyText ?? '').split(/\n{2,}/).map((p) => p.trim()).filter(Boolean)
@@ -56,6 +58,21 @@ const AgentCommercialMessageEmail = ({
             )}
           </Section>
 
+          {esquisseUrl ? (
+            <>
+              <Hr style={divider} />
+              <Section style={esquisseSection}>
+                <Text style={esquisseLabel}>Votre esquisse personnalisée</Text>
+                <Text style={esquisseIntro}>
+                  Le déroulé de votre journée, mis en page pour vous.
+                </Text>
+                <Button href={esquisseUrl} style={esquisseButton}>
+                  ↓ Télécharger votre esquisse (PDF)
+                </Button>
+              </Section>
+            </>
+          ) : null}
+
           <Section style={signature}>
             <Text style={signatureName}>Rémi</Text>
             <Text style={signatureRole}>{SITE_NAME}</Text>
@@ -66,6 +83,7 @@ const AgentCommercialMessageEmail = ({
     </Html>
   )
 }
+
 
 export const template = {
   component: AgentCommercialMessageEmail,
