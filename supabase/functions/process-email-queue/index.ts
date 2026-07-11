@@ -1,5 +1,65 @@
-import { sendLovableEmail } from 'npm:@lovable.dev/email-js'
 import { createClient } from 'npm:@supabase/supabase-js@2'
+
+const RESEND_FROM = 'Le Beau Mariage <contact@lebeaumariage.fr>'
+
+class ResendSendError extends Error {
+  status: number
+  retryAfterSeconds: number | null
+  constructor(status: number, message: string, retryAfterSeconds: number | null = null) {
+    super(message)
+    this.status = status
+    this.retryAfterSeconds = retryAfterSeconds
+  }
+}
+
+async function sendViaResend(
+  apiKey: string,
+  payload: {
+    to: string
+    subject: string
+    html?: string
+    text?: string
+    idempotency_key?: string
+  }
+): Promise<void> {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${apiKey}`,
+  }
+  if (payload.idempotency_key) {
+    headers['Idempotency-Key'] = payload.idempotency_key
+  }
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      from: RESEND_FROM,
+      to: [payload.to],
+      subject: payload.subject,
+      html: payload.html,
+      text: payload.text,
+    }),
+  })
+
+  if (!res.ok) {
+    const bodyText = await res.text()
+    let retryAfter: number | null = null
+    const ra = res.headers.get('Retry-After')
+    if (ra) {
+      const n = parseInt(ra, 10)
+      if (!isNaN(n)) retryAfter = n
+    }
+    console.error('Resend API error', {
+      status: res.status,
+      retryAfter,
+      body: bodyText,
+      to: payload.to,
+      subject: payload.subject,
+    })
+    throw new ResendSendError(res.status, `Resend ${res.status}: ${bodyText}`, retryAfter)
+  }
+}
 
 const MAX_RETRIES = 5
 const DEFAULT_BATCH_SIZE = 10
