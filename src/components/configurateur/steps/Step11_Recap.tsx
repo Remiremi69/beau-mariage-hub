@@ -458,6 +458,7 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
   const [adresse, setAdresse] = useState({ rue: "", cp: "", ville: "", pays: "France" });
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [isPdfGenerating, setIsPdfGenerating] = useState(false);
   const [esquisseCaptured, setEsquisseCaptured] = useState(!!state.contact?.email);
   const [esquissePrenom, setEsquissePrenom] = useState(state.contact?.prenom || "");
