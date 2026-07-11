@@ -21,3 +21,7 @@ verify_jwt = false
 [functions.generate-parts]
 verify_jwt = true
 
+[functions.upload-esquisse]
+verify_jwt = false
+
+
