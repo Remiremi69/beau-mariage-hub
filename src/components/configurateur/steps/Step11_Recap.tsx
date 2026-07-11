@@ -620,6 +620,8 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} style={{ width: 80, height: 1, background: "#c9a96e", margin: "36px auto 48px" }} />
         {/* ═══ TIMELINE DU JOUR J ═══ */}
         <TimelineBlock state={state} />
+        <div ref={timelineEndRef} aria-hidden style={{ width: "100%", height: 1 }} />
+
 
         {/* ═══ BOUTON TÉLÉCHARGEMENT PDF ═══ */}
         <motion.div
