@@ -143,7 +143,11 @@ function parseAndValidateParts(raw: string): CleanPart[] {
   return out
 }
 
-async function callClaude(anthropicKey: string, esquisseJson: string): Promise<string> {
+async function callClaude(
+  anthropicKey: string,
+  esquisseJson: string,
+  model: string,
+): Promise<string> {
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
@@ -152,7 +156,7 @@ async function callClaude(anthropicKey: string, esquisseJson: string): Promise<s
       'content-type': 'application/json',
     },
     body: JSON.stringify({
-      model: ANTHROPIC_MODEL,
+      model,
       max_tokens: 4096,
       system: SYSTEM_PROMPT,
       messages: [
@@ -165,7 +169,7 @@ async function callClaude(anthropicKey: string, esquisseJson: string): Promise<s
   })
   if (!res.ok) {
     const errText = await res.text()
-    throw new Error(`Claude API ${res.status}: ${errText.slice(0, 500)}`)
+    throw new Error(`Claude API ${res.status} (${model}): ${errText.slice(0, 500)}`)
   }
   const data = await res.json()
   const text = data?.content?.[0]?.text
