@@ -10,7 +10,8 @@ const corsHeaders = {
     'authorization, x-client-info, apikey, content-type',
 }
 
-const ANTHROPIC_MODEL = 'claude-sonnet-4-5'
+const ANTHROPIC_MODEL = 'claude-sonnet-5'
+const ANTHROPIC_MODEL_FALLBACK = 'claude-sonnet-4-6'
 const SITE_BASE_URL = 'https://lebeaumariage.fr'
 
 const SYSTEM_PROMPT = `Tu es le générateur de parts du Cercle, la liste de mariage inversée du Beau Mariage (Domaine de la Croix Rochefort, Beaujolais). À partir de l'Esquisse d'un couple — le JSON de leurs choix dans le Composeur — tu génères les parts nommées de leur mariage : les fragments du rite que leurs proches vont porter.
