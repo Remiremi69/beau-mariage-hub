@@ -919,8 +919,46 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
           </motion.div>
         )}
       </div>
+
+      {/* ═══ FLOATING CTA — Réserver ma dégustation ═══ */}
+      <AnimatePresence>
+        {showFloatingCTA && (
+          <motion.button
+            key="floating-cta"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            onClick={scrollToForm}
+            data-cursor-hover
+            style={{
+              position: "fixed",
+              right: "clamp(16px, 3vw, 32px)",
+              bottom: "clamp(16px, 3vw, 32px)",
+              zIndex: 60,
+              fontFamily: "'Jost', sans-serif",
+              fontWeight: 400,
+              fontSize: 11,
+              letterSpacing: "0.25em",
+              textTransform: "uppercase",
+              padding: "14px 22px",
+              background: "rgba(26,22,18,0.78)",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
+              border: "1px solid rgba(201,169,110,0.55)",
+              color: "#c9a96e",
+              cursor: "pointer",
+              borderRadius: 0,
+              boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
+            }}
+          >
+            Réserver ma dégustation ↓
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
+
 };
 
 export default Step11_Recap;
