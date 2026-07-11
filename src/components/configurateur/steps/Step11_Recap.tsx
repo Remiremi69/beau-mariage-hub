@@ -326,15 +326,11 @@ const CRENEAUX = [
 ];
 
 /* ── CTA label ────────────────────────────────────────── */
-const getCTALabel = (loc: Localisation): string => {
-  if (loc === "distance") return "ENVOYER MA DEMANDE";
-  return "ENVOYER MA DEMANDE";
-};
+const getCTALabel = (_loc: Localisation): string => "JE RÉSERVE MA DÉGUSTATION";
 
-const getSubtitle = (loc: Localisation): string => {
-  if (loc === "distance") return "Votre coffret sera expédié et le RDV Zoom confirmé dans les 2 heures.";
-  return "Un conseiller Limen vous contacte sous 24h.";
-};
+const getSubtitle = (_loc: Localisation): string =>
+  "Nous vous appelons sous 24h pour convenir ensemble de la date.";
+
 
 /* ── Roadmap ──────────────────────────────────────────── */
 const Roadmap = ({ loc }: { loc: Localisation }) => {
