@@ -796,8 +796,43 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
                     : "Nous vous contacterons dans les 24 heures pour confirmer votre date et répondre à toutes vos questions."
                   }
                 </p>
+                <div className="flex flex-col items-center gap-3" style={{ marginTop: 32 }}>
+                  <a
+                    href={esquisseUrl || undefined}
+                    onClick={(e) => {
+                      if (!esquisseUrl) {
+                        e.preventDefault();
+                        handleDownloadPdf();
+                      }
+                    }}
+                    target={esquisseUrl ? "_blank" : undefined}
+                    rel={esquisseUrl ? "noopener noreferrer" : undefined}
+                    download={esquisseUrl ? true : undefined}
+                    data-cursor-hover
+                    style={{
+                      fontFamily: "'Jost', sans-serif",
+                      fontWeight: 300,
+                      fontSize: 12,
+                      letterSpacing: "0.3em",
+                      textTransform: "uppercase",
+                      padding: "14px 28px",
+                      border: "1px solid #c9a96e",
+                      background: "rgba(201,169,110,0.08)",
+                      color: "#c9a96e",
+                      cursor: "pointer",
+                      textDecoration: "none",
+                      display: "inline-block",
+                    }}
+                  >
+                    ↓ Télécharger votre esquisse
+                  </a>
+                  <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: 13, color: "rgba(232,221,208,0.55)", textAlign: "center" }}>
+                    Elle vous attend aussi dans l'email de confirmation.
+                  </p>
+                </div>
                 <Roadmap loc={localisation} />
               </motion.div>
+
             ) : (
               <motion.div key="form" className="w-full flex flex-col items-center">
                 <h3 className="text-center" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontStyle: "italic", fontSize: 36, color: "#faf8f4", marginBottom: 8 }}>On vous rappelle ?</h3>
