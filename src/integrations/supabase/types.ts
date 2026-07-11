@@ -14,6 +14,98 @@ export type Database = {
   }
   public: {
     Tables: {
+      cercle_tokens: {
+        Row: {
+          cercle_id: string
+          created_at: string
+          expires_at: string | null
+          id: string
+          status: string
+          token: string
+        }
+        Insert: {
+          cercle_id: string
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          status?: string
+          token: string
+        }
+        Update: {
+          cercle_id?: string
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          status?: string
+          token?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cercle_tokens_cercle_id_fkey"
+            columns: ["cercle_id"]
+            isOneToOne: false
+            referencedRelation: "cercles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cercles: {
+        Row: {
+          couple_id: string
+          created_at: string
+          date_cloture: string | null
+          esquisse_id: string | null
+          id: string
+          lien_cagnotte: string | null
+          montants_visibles: boolean
+          mot_couple: string | null
+          photo_url: string | null
+          slug: string
+          statut: string
+        }
+        Insert: {
+          couple_id: string
+          created_at?: string
+          date_cloture?: string | null
+          esquisse_id?: string | null
+          id?: string
+          lien_cagnotte?: string | null
+          montants_visibles?: boolean
+          mot_couple?: string | null
+          photo_url?: string | null
+          slug: string
+          statut?: string
+        }
+        Update: {
+          couple_id?: string
+          created_at?: string
+          date_cloture?: string | null
+          esquisse_id?: string | null
+          id?: string
+          lien_cagnotte?: string | null
+          montants_visibles?: boolean
+          mot_couple?: string | null
+          photo_url?: string | null
+          slug?: string
+          statut?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cercles_couple_id_fkey"
+            columns: ["couple_id"]
+            isOneToOne: false
+            referencedRelation: "configurateur_leads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cercles_esquisse_id_fkey"
+            columns: ["esquisse_id"]
+            isOneToOne: false
+            referencedRelation: "configurateur_leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       configurateur_leads: {
         Row: {
           adresse_livraison: Json | null
@@ -130,6 +222,44 @@ export type Database = {
           vin_dhonneur?: string | null
         }
         Relationships: []
+      }
+      contributions: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          montant_declare: number | null
+          mot: string | null
+          part_id: string
+          prenom: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          montant_declare?: number | null
+          mot?: string | null
+          part_id: string
+          prenom: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          montant_declare?: number | null
+          mot?: string | null
+          part_id?: string
+          prenom?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contributions_part_id_fkey"
+            columns: ["part_id"]
+            isOneToOne: false
+            referencedRelation: "parts"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       email_send_log: {
         Row: {
@@ -331,6 +461,53 @@ export type Database = {
         }
         Relationships: []
       }
+      parts: {
+        Row: {
+          cercle_id: string
+          created_at: string
+          etape_composeur_source: string | null
+          evocation: string
+          id: string
+          montant_suggere: number
+          niveau: string
+          ordre: number
+          quantite_totale: number
+          titre: string
+        }
+        Insert: {
+          cercle_id: string
+          created_at?: string
+          etape_composeur_source?: string | null
+          evocation: string
+          id?: string
+          montant_suggere: number
+          niveau: string
+          ordre?: number
+          quantite_totale: number
+          titre: string
+        }
+        Update: {
+          cercle_id?: string
+          created_at?: string
+          etape_composeur_source?: string | null
+          evocation?: string
+          id?: string
+          montant_suggere?: number
+          niveau?: string
+          ordre?: number
+          quantite_totale?: number
+          titre?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "parts_cercle_id_fkey"
+            columns: ["cercle_id"]
+            isOneToOne: false
+            referencedRelation: "cercles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       suppressed_emails: {
         Row: {
           created_at: string
@@ -375,7 +552,38 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      contributions_publiques: {
+        Row: {
+          created_at: string | null
+          id: string | null
+          mot: string | null
+          part_id: string | null
+          prenom: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string | null
+          mot?: string | null
+          part_id?: string | null
+          prenom?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string | null
+          mot?: string | null
+          part_id?: string | null
+          prenom?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contributions_part_id_fkey"
+            columns: ["part_id"]
+            isOneToOne: false
+            referencedRelation: "parts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       delete_email: {
