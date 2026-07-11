@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import DevisGenerator from "@/components/admin/DevisGenerator";
+import CercleGeneratorPanel from "@/components/admin/CercleGeneratorPanel";
 
 type LeadRow = {
   id: string;
