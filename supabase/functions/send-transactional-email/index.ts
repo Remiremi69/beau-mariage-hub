@@ -5,15 +5,12 @@ import { TEMPLATES } from '../_shared/transactional-email-templates/registry.ts'
 
 // Configuration baked in at scaffold time — do NOT change these manually.
 // To update, re-run the email domain setup flow.
-const SITE_NAME = "beau-mariage-hub"
-// SENDER_DOMAIN is the verified sender subdomain FQDN (e.g., "notify.example.com").
-// It MUST match the subdomain delegated to Lovable's nameservers — never the root domain.
-// The email API looks up this exact domain; a mismatch causes "No email domain record found".
-const SENDER_DOMAIN = "notify.lebeaumariage.fr"
-// FROM_DOMAIN is the domain shown in the From: header (e.g., "example.com").
-// When display_from_root is enabled, this can be the root domain for cleaner branding,
-// even though actual sending uses the subdomain above.
+const SITE_NAME = "Le Beau Mariage"
+// Sending is done via Resend using RESEND_API_KEY. The From address below must
+// use a domain verified in the Resend account.
+const SENDER_DOMAIN = "lebeaumariage.fr"
 const FROM_DOMAIN = "lebeaumariage.fr"
+const FROM_ADDRESS = `${SITE_NAME} <contact@${FROM_DOMAIN}>`
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
