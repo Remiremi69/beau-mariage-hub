@@ -458,6 +458,42 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
   const [isPdfGenerating, setIsPdfGenerating] = useState(false);
   const [esquisseUrl, setEsquisseUrl] = useState<string | null>(null);
   const pdfRef = useRef<PdfEsquisseHandle>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+  const timelineEndRef = useRef<HTMLDivElement>(null);
+  const [showFloatingCTA, setShowFloatingCTA] = useState(false);
+
+  useEffect(() => {
+    if (!timelineEndRef.current || !formRef.current) return;
+    let pastTimeline = false;
+    let formVisible = false;
+    const update = () => setShowFloatingCTA(pastTimeline && !formVisible && !isSuccess);
+    const timelineObs = new IntersectionObserver(
+      ([entry]) => {
+        // "past timeline" = timeline sentinel is above viewport
+        pastTimeline = entry.boundingClientRect.top < 0 && !entry.isIntersecting;
+        update();
+      },
+      { threshold: 0 }
+    );
+    const formObs = new IntersectionObserver(
+      ([entry]) => {
+        formVisible = entry.isIntersecting;
+        update();
+      },
+      { threshold: 0.15 }
+    );
+    timelineObs.observe(timelineEndRef.current);
+    formObs.observe(formRef.current);
+    return () => {
+      timelineObs.disconnect();
+      formObs.disconnect();
+    };
+  }, [isSuccess]);
+
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
 
   const handleDownloadPdf = async () => {
     if (!pdfRef.current || isPdfGenerating) return;
