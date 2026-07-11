@@ -31,18 +31,27 @@ const CercleGeneratorPanel = () => {
   const [result, setResult] = useState<GenerateResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const handleGenerate = async () => {
+  const handleGenerate = async (force = false) => {
     if (!coupleId.trim()) return;
+    if (force && !confirm("Régénérer supprimera le Cercle brouillon existant et ses parts. Continuer ?")) return;
     setLoading(true);
     setError(null);
     setResult(null);
     try {
       const { data, error: fnErr } = await supabase.functions.invoke(
         "generate-parts",
-        { body: { couple_id: coupleId.trim() } }
+        { body: { couple_id: coupleId.trim(), force } }
       );
       if (fnErr) {
-        setError(fnErr.message ?? String(fnErr));
+        // Tente de récupérer le corps JSON de la réponse d'erreur
+        // deno-lint-ignore no-explicit-any
+        const ctx = (fnErr as any)?.context;
+        let msg = fnErr.message ?? String(fnErr);
+        try {
+          const body = ctx && typeof ctx.json === "function" ? await ctx.json() : null;
+          if (body?.error) msg = body.error;
+        } catch { /* noop */ }
+        setError(msg);
       } else if (data?.error) {
         setError(`${data.error}${data.details ? ` — ${data.details}` : ""}`);
       } else {
@@ -81,14 +90,14 @@ const CercleGeneratorPanel = () => {
         (parts via Claude + token + email).
       </p>
 
-      <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+      <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
         <input
           type="text"
           value={coupleId}
           onChange={(e) => setCoupleId(e.target.value)}
           placeholder="couple_id (uuid)"
           style={{
-            flex: 1,
+            flex: "1 1 260px",
             padding: "8px 12px",
             background: "rgba(232,221,208,0.05)",
             border: "1px solid rgba(232,221,208,0.15)",
@@ -98,7 +107,7 @@ const CercleGeneratorPanel = () => {
           }}
         />
         <button
-          onClick={handleGenerate}
+          onClick={() => handleGenerate(false)}
           disabled={loading || !coupleId.trim()}
           style={{
             padding: "8px 20px",
@@ -115,7 +124,27 @@ const CercleGeneratorPanel = () => {
         >
           {loading ? "Génération…" : "Générer le Cercle"}
         </button>
+        <button
+          onClick={() => handleGenerate(true)}
+          disabled={loading || !coupleId.trim()}
+          title="Supprime le Cercle brouillon existant puis régénère"
+          style={{
+            padding: "8px 20px",
+            background: "transparent",
+            color: "#c9a96e",
+            border: "1px solid #c9a96e",
+            fontFamily: "'Jost', sans-serif",
+            fontSize: 12,
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            cursor: loading ? "wait" : "pointer",
+            fontWeight: 500,
+          }}
+        >
+          Régénérer
+        </button>
       </div>
+
 
       {error && (
         <div
