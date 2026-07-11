@@ -460,19 +460,8 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [isPdfGenerating, setIsPdfGenerating] = useState(false);
-  const [esquisseCaptured, setEsquisseCaptured] = useState(!!state.contact?.email);
-  const [esquissePrenom, setEsquissePrenom] = useState(state.contact?.prenom || "");
-  const [esquisseEmail, setEsquisseEmail] = useState(state.contact?.email || "");
-  const [esquisseLoading, setEsquisseLoading] = useState(false);
+  const [esquisseUrl, setEsquisseUrl] = useState<string | null>(null);
   const pdfRef = useRef<PdfEsquisseHandle>(null);
-
-  useEffect(() => {
-    if (state.contact?.email) {
-      setEsquisseCaptured(true);
-      setEsquisseEmail(state.contact.email);
-      setEsquissePrenom(state.contact.prenom || "");
-    }
-  }, [state.contact?.email]);
 
   const handleDownloadPdf = async () => {
     if (!pdfRef.current || isPdfGenerating) return;
@@ -485,37 +474,6 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
       setIsPdfGenerating(false);
     }
   };
-
-  const handleEsquisseCapture = async () => {
-    if (!esquisseEmail.trim() || !esquissePrenom.trim()) return;
-    setEsquisseLoading(true);
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const client = supabase as any;
-      await client.from("leads").insert({
-        prenom: esquissePrenom.trim(),
-        email: esquisseEmail.trim(),
-        date_envisagee: state.date
-          ? new Date(state.date).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })
-          : null,
-      });
-      onUpdate({
-        contact: {
-          ...state.contact,
-          prenom: esquissePrenom.trim(),
-          email: esquisseEmail.trim(),
-        },
-      });
-    } catch (err) {
-      console.error("Erreur capture esquisse:", err);
-    } finally {
-      setEsquisseLoading(false);
-      setEsquisseCaptured(true);
-      handleDownloadPdf();
-    }
-  };
-
-
 
   const updateField = useCallback((field: string, value: string) => setContact((prev) => ({ ...prev, [field]: value })), []);
   const updateAdresse = useCallback((field: string, value: string) => setAdresse((prev) => ({ ...prev, [field]: value })), []);
@@ -547,7 +505,7 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
         adresse_livraison: localisation === "distance" ? { rue: adresse.rue, cp: adresse.cp, ville: adresse.ville, pays: adresse.pays } : null,
         coffret_demande: localisation === "distance",
         site_mariage: state.siteMariage,
-      });
+      }).select().single();
 
       const result = await Promise.race([
         insertPromise,
@@ -556,11 +514,46 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
         ),
       ]);
 
-      if (result && !result.error) {
-        setIsSuccess(true);
-      } else {
+      if (!result || result.error || !result.data) {
         throw new Error(result?.error?.message || "Insert failed");
       }
+
+      setIsSuccess(true);
+      const leadId = result.data.id as string;
+
+      // Fire-and-forget PDF upload + URL persistence
+      (async () => {
+        try {
+          if (!pdfRef.current) return;
+          const pdfResult = await pdfRef.current.generatePdfBlob();
+          if (!pdfResult) return;
+          const path = `${leadId}.pdf`;
+          const { error: uploadErr } = await client.storage
+            .from("esquisses")
+            .upload(path, pdfResult.blob, {
+              contentType: "application/pdf",
+              upsert: true,
+            });
+          if (uploadErr) {
+            console.error("Erreur upload esquisse:", uploadErr);
+            return;
+          }
+          const { data: signed, error: signErr } = await client.storage
+            .from("esquisses")
+            .createSignedUrl(path, 60 * 60 * 24 * 365 * 5); // 5 ans
+          if (signErr || !signed?.signedUrl) {
+            console.error("Erreur signed URL:", signErr);
+            return;
+          }
+          setEsquisseUrl(signed.signedUrl);
+          await client
+            .from("configurateur_leads")
+            .update({ esquisse_url: signed.signedUrl })
+            .eq("id", leadId);
+        } catch (err) {
+          console.error("Erreur post-insert esquisse:", err);
+        }
+      })();
     } catch (error: any) {
       console.error("Erreur envoi lead:", error);
       setErrorMsg("Votre demande n'a pas pu être envoyée. Réessayez dans un instant, ou écrivez-nous directement — votre composition est conservée.");
@@ -568,6 +561,7 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
       setIsLoading(false);
     }
   };
+
 
   const menuSubtext = [state.repasEntree, state.repasPlat, state.repasDessert].map((id) => id ? menuNames[id] : null).filter(Boolean).join(" · ");
   const optionsList = (state.options || []).map((id) => OPTION_LABELS[id] || id).join(" · ");
