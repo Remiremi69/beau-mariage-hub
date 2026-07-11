@@ -13,7 +13,7 @@ const FAQ = () => {
     {
       question: "Quel est le prix d'un mariage avec Le Beau Mariage ?",
       answer:
-        "Le prix dépend entièrement de votre configuration : nombre d'invités, formule repas choisie, et options sélectionnées. La fourchette va d'environ 12 000 € pour 50 invités avec la formule Essentielle, à environ 34 000 € pour 120 invités en formule Prestige avec toutes les options. Pour 80 invités avec la formule Gastronomique, un photographe et un DJ, le total est d'environ 19 500 €. Il n'y a pas de prix unique : notre configurateur en ligne calcule votre devis exact en moins de 10 minutes, avec le détail de chaque poste. Aucune mauvaise surprise : ce que vous voyez dans le configurateur est ce que vous payez.",
+        "Le prix dépend entièrement de votre configuration : nombre d'invités, formule repas choisie, et options sélectionnées. La fourchette va d'environ 12 000 € pour 50 invités avec la formule Essentielle, à environ 34 000 € pour 120 invités en formule Prestige avec toutes les options. Pour 80 invités avec la formule Gastronomique, un photographe et un DJ, le total est d'environ 19 500 €. Il n'y a pas de prix unique : notre composeur en ligne calcule votre devis exact en moins de 10 minutes, avec le détail de chaque poste. Aucune mauvaise surprise : ce que vous voyez dans le composeur est ce que vous payez.",
     },
     {
       question: "Qu'est-ce qui est inclus dans la formule Le Beau Mariage ?",
@@ -28,7 +28,7 @@ const FAQ = () => {
     {
       question: "Quelles sont les dates disponibles pour se marier ?",
       answer:
-        "La première série Le Beau Mariage propose 5 dates consécutives du 4 au 8 octobre 2027 au Domaine de la Croix Rochefort en Beaujolais. Les places sont limitées à 5 mariages sur cette série inaugurale. La réservation se fait via le configurateur en ligne. Des séries ultérieures sont en cours de planification.",
+        "La première série Le Beau Mariage propose 5 dates consécutives du 4 au 8 octobre 2027 au Domaine de la Croix Rochefort en Beaujolais. Les places sont limitées à 5 mariages sur cette série inaugurale. La réservation se fait via le composeur en ligne. Des séries ultérieures sont en cours de planification.",
     },
     {
       question: "Où se situe le domaine et comment y accéder depuis Lyon ?",

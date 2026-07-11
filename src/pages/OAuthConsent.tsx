@@ -235,7 +235,7 @@ export default function OAuthConsent() {
                 color: "rgba(250,248,244,0.85)",
               }}
             >
-              Cette application pourra utiliser les outils Limen activés (leads du configurateur) en votre nom.
+              Cette application pourra utiliser les outils Limen activés (leads du composeur) en votre nom.
             </p>
             <p
               style={{

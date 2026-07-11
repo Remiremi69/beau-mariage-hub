@@ -341,7 +341,7 @@ const DomaineDetail = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/configurateur">
               <Button size="xl" variant="elegant" className="font-semibold text-lg px-10">
-                Configurer Mon Mariage
+                Composer Mon Mariage
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>

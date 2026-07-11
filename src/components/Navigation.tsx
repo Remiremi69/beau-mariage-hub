@@ -12,7 +12,7 @@ export const Navigation = () => {
     { to: "/serie-octobre-2027", label: "Série Octobre 2027" },
     { to: "/garantie", label: "Notre Garantie" },
     { to: "/contact", label: "Contact" },
-    { to: "/configurateur", label: "Créer votre mariage" },
+    { to: "/configurateur", label: "Composer votre mariage" },
   ];
 
   return (
