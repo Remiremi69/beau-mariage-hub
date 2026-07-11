@@ -91,16 +91,24 @@ export const SCENE_CONFIGS: Record<number, SceneConfig> = {
     duration: 3500,
   },
 
-  // Before Step 11 — Site mariage (was 10)
+  // Before Step 11 — Vos moments
   11: {
+    title: "Vos moments",
+    subtitle: "Ce qui n'appartient qu'à vous",
+    images: [estherMaries, heroWedding],
+    duration: 3000,
+  },
+
+  // Before Step 12 — Site mariage
+  12: {
     title: "Votre présence en ligne",
     subtitle: "Partagée avec élégance",
     images: [heroWedding, domaine2],
     duration: 3000,
   },
 
-  // Before Step 12 — Récap (was 11)
-  12: {
+  // Before Step 13 — Récap
+  13: {
     title: "Votre mariage",
     subtitle: "Tout est là",
     images: [domaine2, tableSetup, ceremonyArch],
