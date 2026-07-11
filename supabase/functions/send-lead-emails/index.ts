@@ -1,9 +1,9 @@
 import { createClient } from 'npm:@supabase/supabase-js@2'
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors'
 
-const SENDER_DOMAIN = 'notify.lebeaumariage.fr'
-const FROM_EMAIL = 'Limen Mariage <contact@lebeaumariage.fr>'
-const FROM_ADMIN = 'Limen Configurateur <configurateur@lebeaumariage.fr>'
+const SENDER_DOMAIN = 'lebeaumariage.fr'
+const FROM_EMAIL = 'Le Beau Mariage <contact@lebeaumariage.fr>'
+const FROM_ADMIN = 'Le Beau Mariage <contact@lebeaumariage.fr>'
 
 function parseJwtClaims(token: string): Record<string, unknown> | null {
   const parts = token.split('.')
