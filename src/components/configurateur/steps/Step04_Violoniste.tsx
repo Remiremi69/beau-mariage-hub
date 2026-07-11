@@ -47,7 +47,7 @@ const Step04_Violoniste = ({ state, onUpdate, onNext, onPrev }: Step04Props) => 
       <div className="flex flex-col items-center w-full" style={{ maxWidth: 720 }}>
         <motion.p custom={0} initial="hidden" animate="visible" variants={fadeUp}
           style={{ fontFamily: "'Jost', sans-serif", fontWeight: 200, fontSize: 11, letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(201,169,110,0.6)" }}>
-          Étape 4 · Le violoniste
+          Étape 5 · Le violoniste
         </motion.p>
 
         <motion.h2 custom={1} initial="hidden" animate="visible" variants={fadeUp}

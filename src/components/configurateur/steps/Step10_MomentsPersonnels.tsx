@@ -70,7 +70,7 @@ const Step10_MomentsPersonnels = ({ onNext, onPrev }: Step10MPProps) => {
             color: "rgba(201,169,110,0.6)",
           }}
         >
-          Étape 10 · Vos moments
+          Étape 11 · Vos moments
         </motion.p>
 
         {/* Titre */}

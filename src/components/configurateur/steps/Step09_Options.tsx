@@ -56,7 +56,7 @@ const Step09_Options = ({ state, onUpdate, onNext, onPrev }: Step09Props) => {
       <div className="flex flex-col items-center w-full" style={{ maxWidth: 700 }}>
         <motion.p custom={0} initial="hidden" animate="visible" variants={fadeUp}
           style={{ fontFamily: "'Jost', sans-serif", fontWeight: 200, fontSize: 11, letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(201,169,110,0.6)" }}>
-          Étape 9 · Les extras
+          Étape 10 · Les extras
         </motion.p>
 
         <motion.h2 custom={1} initial="hidden" animate="visible" variants={fadeUp} className="text-center mt-6"

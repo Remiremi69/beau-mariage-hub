@@ -48,7 +48,7 @@ const Step03_Ceremonie = ({ state, onUpdate, onNext, onPrev }: Step03Props) => {
         {/* Label */}
         <motion.p custom={0} initial="hidden" animate="visible" variants={fadeUp}
           style={{ fontFamily: "'Jost', sans-serif", fontWeight: 200, fontSize: 11, letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(201,169,110,0.6)" }}>
-          Étape 3 · La cérémonie
+          Étape 4 · La cérémonie
         </motion.p>
 
         {/* Titre */}
