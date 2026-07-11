@@ -293,17 +293,19 @@ Deno.serve(async (req) => {
   }
   if (!cercleId) return json({ error: 'Impossible de générer un slug unique après 5 tentatives' }, 500)
 
-  // 5. Appelle Claude (avec 1 retry sur échec de parsing)
+  // 5. Appelle Claude (retry sur parsing, fallback modèle sur 2e tentative)
   let parts: CleanPart[] | null = null
   let lastError: unknown = null
-  for (let attempt = 0; attempt < 2; attempt++) {
+  const modelAttempts = [ANTHROPIC_MODEL, ANTHROPIC_MODEL_FALLBACK]
+  for (let attempt = 0; attempt < modelAttempts.length; attempt++) {
+    const model = modelAttempts[attempt]
     try {
-      const raw = await callClaude(ANTHROPIC_API_KEY, esquisseJson)
+      const raw = await callClaude(ANTHROPIC_API_KEY, esquisseJson, model)
       parts = parseAndValidateParts(raw)
       break
     } catch (e) {
       lastError = e
-      console.error(`[generate-parts] tentative ${attempt + 1} échouée:`, e)
+      console.error(`[generate-parts] tentative ${attempt + 1} (${model}) échouée:`, e)
     }
   }
 
