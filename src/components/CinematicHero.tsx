@@ -111,7 +111,7 @@ const CinematicHero = () => {
             color: "#C9A96E",
           }}
         >
-          Un domaine privatisé trois jours. Une série limitée de mariages par an.
+          Un domaine privatisé. Un nombre limitée de mariages par an.
         </motion.p>
 
         {/* CTA */}
