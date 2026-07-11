@@ -259,6 +259,10 @@ Deno.serve(async (req) => {
   delete esquisse.created_at
   delete esquisse.status
   delete esquisse.message
+  // Champs de contact — inutiles pour la génération, on allège le contexte
+  delete esquisse.nom
+  delete esquisse.email
+  delete esquisse.telephone
   const esquisseJson = JSON.stringify(esquisse, null, 2)
 
   // 4. Crée le Cercle avec slug unique (retry sur collision)
