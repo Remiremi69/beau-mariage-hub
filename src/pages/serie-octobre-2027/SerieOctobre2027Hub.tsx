@@ -248,7 +248,7 @@ const SerieOctobre2027Hub = () => {
                 fontWeight: 500,
               }}
             >
-              Configurer mon mariage →
+              Composer mon mariage →
             </button>
           </Link>
         </div>
@@ -382,7 +382,7 @@ const SerieOctobre2027Hub = () => {
                 fontWeight: 500,
               }}
             >
-              Configurer mon mariage →
+              Composer mon mariage →
             </button>
           </Link>
         </div>

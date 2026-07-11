@@ -114,7 +114,7 @@ const Concept = () => {
                   cursor: 'pointer',
                 }}
               >
-                Configurer mon mariage →
+                Composer mon mariage →
               </button>
             </Link>
           </div>

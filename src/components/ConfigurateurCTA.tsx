@@ -19,7 +19,7 @@ const ConfigurateurCTA = ({ background = "#F5F0E8" }: { background?: string }) =
             fontWeight: 500,
           }}
         >
-          Configurer mon mariage →
+          Composer mon mariage →
         </button>
       </Link>
     </div>

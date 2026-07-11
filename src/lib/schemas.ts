@@ -232,7 +232,7 @@ export const schemaConcept = {
 export const schemaConfigurateur = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
-  name: 'Configurateur de mariage Le Beau Mariage',
+  name: 'Composeur de mariage Le Beau Mariage',
   description: 'Créez votre devis de mariage en 10 minutes. Prix transparent, formule tout compris Beaujolais.',
   applicationCategory: 'Wedding Planning',
   url: `${BASE_URL}/configurateur`,

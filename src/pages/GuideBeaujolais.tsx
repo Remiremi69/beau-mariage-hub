@@ -77,7 +77,7 @@ const GuideBeaujolais = () => {
           <p className="text-muted-foreground">Prêt à commencer ?</p>
           <p className="text-muted-foreground">5 dates disponibles en octobre 2027. Places limitées.</p>
           <Link to="/configurateur" className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-full font-medium hover:opacity-90 transition">
-            Configurer mon mariage →
+            Composer mon mariage →
           </Link>
         </section>
 
