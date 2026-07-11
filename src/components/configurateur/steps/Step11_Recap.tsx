@@ -553,39 +553,31 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
       setIsSuccess(true);
       const leadId = result.data.id as string;
 
-      // Fire-and-forget PDF upload + URL persistence
+      // Fire-and-forget PDF upload via secure edge function
       (async () => {
         try {
           if (!pdfRef.current) return;
           const pdfResult = await pdfRef.current.generatePdfBlob();
           if (!pdfResult) return;
-          const path = `${leadId}.pdf`;
-          const { error: uploadErr } = await client.storage
-            .from("esquisses")
-            .upload(path, pdfResult.blob, {
-              contentType: "application/pdf",
-              upsert: true,
-            });
-          if (uploadErr) {
-            console.error("Erreur upload esquisse:", uploadErr);
+          const fd = new FormData();
+          fd.append("lead_id", leadId);
+          fd.append(
+            "file",
+            new File([pdfResult.blob], `${leadId}.pdf`, { type: "application/pdf" }),
+          );
+          const { data, error } = await client.functions.invoke("upload-esquisse", {
+            body: fd,
+          });
+          if (error) {
+            console.error("Erreur upload esquisse:", error);
             return;
           }
-          const { data: signed, error: signErr } = await client.storage
-            .from("esquisses")
-            .createSignedUrl(path, 60 * 60 * 24 * 365 * 5); // 5 ans
-          if (signErr || !signed?.signedUrl) {
-            console.error("Erreur signed URL:", signErr);
-            return;
-          }
-          setEsquisseUrl(signed.signedUrl);
-          await client
-            .from("configurateur_leads")
-            .update({ esquisse_url: signed.signedUrl })
-            .eq("id", leadId);
+          if (data?.url) setEsquisseUrl(data.url);
         } catch (err) {
           console.error("Erreur post-insert esquisse:", err);
         }
       })();
+
     } catch (error: any) {
       console.error("Erreur envoi lead:", error);
       setErrorMsg("Votre demande n'a pas pu être envoyée. Réessayez dans un instant, ou écrivez-nous directement — votre composition est conservée.");
