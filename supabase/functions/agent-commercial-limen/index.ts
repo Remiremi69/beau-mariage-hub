@@ -58,6 +58,8 @@ interface LeadPayload {
   rdv_jour?: string | null;
   rdv_creneau?: string | null;
   coffret_demande?: boolean | null;
+  esquisse_url?: string | null;
+
   status?: string | null;
   created_at?: string | null;
   [key: string]: unknown;
