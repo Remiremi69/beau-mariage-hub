@@ -174,8 +174,14 @@ const Admin = () => {
         ))}
       </div>
 
+      {/* Cercle — banc d'essai */}
+      <div className="px-6 pt-2">
+        <CercleGeneratorPanel />
+      </div>
+
       {/* Lead list */}
       <div className="px-6 pb-20">
+
         {loadingLeads ? (
           <p style={{ color: "rgba(232,221,208,0.40)", fontFamily: "'Jost', sans-serif", textAlign: "center", marginTop: 40 }}>Chargement des leads...</p>
         ) : leads.length === 0 ? (
