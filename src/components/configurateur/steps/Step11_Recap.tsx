@@ -522,10 +522,11 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
   const handleSubmit = async () => {
     if (!contact.email.trim() || !contact.prenom.trim()) return;
     setIsLoading(true);
+    setErrorMsg(null);
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const client = supabase as any;
-      const { error } = await client.from("configurateur_leads").insert({
+      const insertPromise = client.from("configurateur_leads").insert({
         prenom: contact.prenom, nom: contact.nom, email: contact.email, telephone: contact.telephone,
         message: contact.message, date_mariage: state.date, serie_id: state.serieId, serie_label: state.serieLabel, guests_estimate: state.guests,
         ceremonie_laique: state.ceremonieLaique,
@@ -546,11 +547,22 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
         coffret_demande: localisation === "distance",
         site_mariage: state.siteMariage,
       });
-      if (error) console.error("Erreur envoi:", error);
-      setIsSuccess(true);
-    } catch (err) {
-      console.error("Erreur envoi:", err);
-      setIsSuccess(true);
+
+      const result = await Promise.race([
+        insertPromise,
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error("Request timed out")), 15000)
+        ),
+      ]);
+
+      if (result && !result.error) {
+        setIsSuccess(true);
+      } else {
+        throw new Error(result?.error?.message || "Insert failed");
+      }
+    } catch (error: any) {
+      console.error("Erreur envoi lead:", error);
+      setErrorMsg("Votre demande n'a pas pu être envoyée. Réessayez dans un instant, ou écrivez-nous directement — votre composition est conservée.");
     } finally {
       setIsLoading(false);
     }
@@ -866,6 +878,16 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
                   >
                     {isLoading ? "ENVOI EN COURS..." : getCTALabel(localisation)}
                   </motion.button>
+
+                  {errorMsg && (
+                    <p style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: 13, color: "#c9a96e", lineHeight: 1.6, textAlign: "center", marginTop: 16 }}>
+                      Votre demande n'a pas pu être envoyée. Réessayez dans un instant, ou{" "}
+                      <a href="mailto:remi@lebeaumariage.fr" style={{ color: "#c9a96e", textDecoration: "underline", textUnderlineOffset: 3 }}>
+                        écrivez-nous directement
+                      </a>{" "}
+                      — votre composition est conservée.
+                    </p>
+                  )}
                 </div>
               </motion.div>
             )}
