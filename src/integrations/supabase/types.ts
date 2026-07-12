@@ -236,6 +236,8 @@ export type Database = {
           mot: string | null
           part_id: string
           prenom: string
+          statut: string
+          stripe_session_id: string | null
         }
         Insert: {
           certificat_url?: string | null
@@ -246,6 +248,8 @@ export type Database = {
           mot?: string | null
           part_id: string
           prenom: string
+          statut?: string
+          stripe_session_id?: string | null
         }
         Update: {
           certificat_url?: string | null
@@ -256,6 +260,8 @@ export type Database = {
           mot?: string | null
           part_id?: string
           prenom?: string
+          statut?: string
+          stripe_session_id?: string | null
         }
         Relationships: [
           {

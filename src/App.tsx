@@ -36,6 +36,7 @@ import Unsubscribe from "./pages/Unsubscribe";
 import EstherCoutin from "./pages/prestataires/EstherCoutin";
 import SeMarierIci from "./pages/SeMarierIci";
 import OAuthConsent from "./pages/OAuthConsent";
+import CerclePublic from "./pages/CerclePublic";
 
 const queryClient = new QueryClient();
 
@@ -45,10 +46,11 @@ const AppLayout = () => {
   const isAdmin = location.pathname.startsWith("/admin");
   const isSiteDeMariage = location.pathname === "/site-de-mariage";
   const isOAuthConsent = location.pathname === "/.lovable/oauth/consent";
+  const isCerclePublic = location.pathname.startsWith("/cercle/");
 
   return (
     <>
-      {!isConfigurateur && !isAdmin && !isSiteDeMariage && !isOAuthConsent && <Navigation />}
+      {!isConfigurateur && !isAdmin && !isSiteDeMariage && !isOAuthConsent && !isCerclePublic && <Navigation />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/concept" element={<Concept />} />
@@ -81,9 +83,10 @@ const AppLayout = () => {
         <Route path="/prestataires/esther-coutin" element={<EstherCoutin />} />
         <Route path="/prestataires/ceremonie-laique" element={<Navigate to="/prestataires/esther-coutin" replace />} />
         <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
+        <Route path="/cercle/:slug" element={<CerclePublic />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {!isConfigurateur && !isAdmin && !isSiteDeMariage && !isOAuthConsent && <Footer />}
+      {!isConfigurateur && !isAdmin && !isSiteDeMariage && !isOAuthConsent && !isCerclePublic && <Footer />}
     </>
   );
 };
