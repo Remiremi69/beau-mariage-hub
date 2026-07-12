@@ -609,24 +609,10 @@ const PorteScreen = ({
   const [statut, setStatut] = useState<string | null>(null);
   const [details, setDetails] = useState<{ prenom?: string; titre?: string } | null>(null);
 
-  // Poll léger sur le statut
+  // Poll léger sur le statut via l'edge function contribution-status
   useEffect(() => {
     let alive = true;
     let tries = 0;
-    const check = async () => {
-      try {
-        const { data } = await supabase.functions.invoke("contribution-status", {
-          body: null,
-          method: "GET" as never,
-          // supabase-js n'accepte pas GET → on utilise fetch direct
-        } as never);
-        if (data && (data as { statut?: string }).statut) {
-          if (!alive) return;
-          setStatut((data as { statut: string }).statut);
-        }
-      } catch { /* ignore */ }
-    };
-    // Utilise fetch direct pour GET
     const url = `${(supabase as unknown as { supabaseUrl: string }).supabaseUrl}/functions/v1/contribution-status?cid=${contributionId}`;
     const anonKey = (supabase as unknown as { supabaseKey: string }).supabaseKey;
     const poll = async () => {
@@ -637,16 +623,15 @@ const PorteScreen = ({
         if (j?.statut) setStatut(j.statut);
       } catch { /* ignore */ }
     };
-    void check;
     void poll();
     const interval = setInterval(() => {
       tries += 1;
-      if (tries > 20 || statut === "payee" || statut === "echouee") { clearInterval(interval); return; }
+      if (tries > 20) { clearInterval(interval); return; }
       void poll();
     }, 1500);
     return () => { alive = false; clearInterval(interval); };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contributionId]);
+
 
   // Une fois payee : essaie de récupérer prénom + titre de part depuis la vue publique
   useEffect(() => {
