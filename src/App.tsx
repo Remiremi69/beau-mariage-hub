@@ -46,10 +46,11 @@ const AppLayout = () => {
   const isAdmin = location.pathname.startsWith("/admin");
   const isSiteDeMariage = location.pathname === "/site-de-mariage";
   const isOAuthConsent = location.pathname === "/.lovable/oauth/consent";
+  const isCerclePublic = location.pathname.startsWith("/cercle/");
 
   return (
     <>
-      {!isConfigurateur && !isAdmin && !isSiteDeMariage && !isOAuthConsent && <Navigation />}
+      {!isConfigurateur && !isAdmin && !isSiteDeMariage && !isOAuthConsent && !isCerclePublic && <Navigation />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/concept" element={<Concept />} />
