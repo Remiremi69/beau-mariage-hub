@@ -228,6 +228,7 @@ export type Database = {
       }
       contributions: {
         Row: {
+          certificat_url: string | null
           created_at: string
           email: string | null
           id: string
@@ -237,6 +238,7 @@ export type Database = {
           prenom: string
         }
         Insert: {
+          certificat_url?: string | null
           created_at?: string
           email?: string | null
           id?: string
@@ -246,6 +248,7 @@ export type Database = {
           prenom: string
         }
         Update: {
+          certificat_url?: string | null
           created_at?: string
           email?: string | null
           id?: string
@@ -466,39 +469,36 @@ export type Database = {
       }
       parts: {
         Row: {
+          actif: boolean
           cercle_id: string
           created_at: string
-          etape_composeur_source: string | null
           evocation: string
           id: string
-          montant_suggere: number
-          niveau: string
+          montant_cible: number
           ordre: number
-          quantite_totale: number
+          poste_cle: string
           titre: string
         }
         Insert: {
+          actif?: boolean
           cercle_id: string
           created_at?: string
-          etape_composeur_source?: string | null
           evocation: string
           id?: string
-          montant_suggere: number
-          niveau: string
+          montant_cible?: number
           ordre?: number
-          quantite_totale: number
+          poste_cle: string
           titre: string
         }
         Update: {
+          actif?: boolean
           cercle_id?: string
           created_at?: string
-          etape_composeur_source?: string | null
           evocation?: string
           id?: string
-          montant_suggere?: number
-          niveau?: string
+          montant_cible?: number
           ordre?: number
-          quantite_totale?: number
+          poste_cle?: string
           titre?: string
         }
         Relationships: [
@@ -510,6 +510,36 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      postes_catalogue: {
+        Row: {
+          actif_par_defaut: boolean
+          cle: string
+          created_at: string
+          evocation: string
+          id: string
+          ordre: number
+          titre: string
+        }
+        Insert: {
+          actif_par_defaut?: boolean
+          cle: string
+          created_at?: string
+          evocation: string
+          id?: string
+          ordre?: number
+          titre: string
+        }
+        Update: {
+          actif_par_defaut?: boolean
+          cle?: string
+          created_at?: string
+          evocation?: string
+          id?: string
+          ordre?: number
+          titre?: string
+        }
+        Relationships: []
       }
       suppressed_emails: {
         Row: {
