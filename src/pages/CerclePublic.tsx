@@ -51,6 +51,7 @@ const ArcheSVG = () => (
 
 const CerclePublic = () => {
   const { slug } = useParams<{ slug: string }>();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [cercle, setCercle] = useState<Cercle | null>(null);
   const [couple, setCouple] = useState<Couple | null>(null);
@@ -58,6 +59,9 @@ const CerclePublic = () => {
   const [counts, setCounts] = useState<Record<string, number>>({});
   const [notFound, setNotFound] = useState(false);
   const [selectedPart, setSelectedPart] = useState<Part | null>(null);
+
+  const showPorte = searchParams.get("porte") === "1";
+  const contributionId = searchParams.get("cid");
 
   useEffect(() => {
     let alive = true;
