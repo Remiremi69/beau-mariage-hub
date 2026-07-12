@@ -1,54 +1,78 @@
+## Plan de migration — Le Cercle v2 (enveloppes par poste)
 
+### 1. Nettoyage des données de test
+Une migration unique qui exécute, dans l'ordre :
+```sql
+TRUNCATE public.contributions, public.parts, public.cercle_tokens, public.cercles RESTART IDENTITY CASCADE;
+```
 
-## Clarification importante
+### 2. Nouvelle table `postes_catalogue`
+```
+- id uuid pk
+- cle text unique
+- titre text
+- evocation text
+- ordre int (0..10)
+- actif_par_defaut bool
+- created_at timestamptz
+```
+GRANT SELECT à `anon` + `authenticated`, GRANT ALL à `service_role`.
+RLS activée. Policies :
+- `SELECT` : `true` (lecture publique, catalogue générique).
+- `INSERT/UPDATE/DELETE` : `has_role(auth.uid(), 'admin')` uniquement.
 
-L'écran « Manage DNS records » dans **Lovable** (capture d'écran) sert à gérer les DNS d'un domaine **acheté via Lovable**. Mais `lebeaumariage.fr` est acheté chez **Hostinger** — donc cet écran Lovable n'est PAS le bon endroit.
+Seed des 11 postes fournis (ordre 0..10, `photobooth` inactif par défaut).
 
-### Où ajouter les NS records ?
+### 3. Refonte de `parts`
+- DROP colonnes : `niveau`, `montant_suggere`, `quantite_totale`, `etape_composeur_source`.
+- (Type enum `niveau_part` s'il existe : DROP TYPE si plus référencé.)
+- ADD colonnes :
+  - `poste_cle text not null`
+  - `montant_cible integer not null default 0`
+  - `actif boolean not null default true`
+- Conservées : `id`, `cercle_id`, `titre`, `evocation`, `ordre`, `created_at`.
 
-Les NS records doivent être ajoutés **chez Hostinger** (registrar du domaine), PAS dans Lovable.
+### 4. Sécurité `parts` — verrouillage du `montant_cible`
+- `REVOKE ALL ON public.parts FROM anon, authenticated;`
+- `GRANT SELECT (id, cercle_id, poste_cle, titre, evocation, actif, ordre, created_at) ON public.parts TO anon, authenticated;`
+- `GRANT ALL ON public.parts TO service_role;`
+- Drop des anciennes policies SELECT anon, puis :
+  - Policy `SELECT` (anon, authenticated) : `actif = true AND EXISTS (SELECT 1 FROM cercles c WHERE c.id = parts.cercle_id AND c.statut <> 'brouillon')`.
+  - Policy admin `ALL` via `has_role`.
+- `montant_cible` reste totalement inaccessible côté client (privilège colonne + jamais dans une vue publique).
 
-## Plan d'action corrigé
+### 5. `contributions`
+- ADD `certificat_url text null`.
+- `email` reste nullable (aucune contrainte ajoutée).
+- Aucun changement sur `montant_declare` ni sur la vue `contributions_publiques`.
 
-### Étape 1 — Quitter l'écran Lovable « Manage DNS records »
-Cet écran ne sert pas pour ce cas. Ferme-le.
+### 6. Edge Function `generate-parts`
+Nom conservé (`generate-parts`). Réécriture :
+- Retirer : import Anthropic, `SYSTEM_PROMPT`, `callClaude`, `parseParts`, validations "15–25 parts", retry parsing JSON.
+- Conserver : validation lead, création du `cercle` (slug, statut brouillon), création `cercle_tokens`, envoi email d'invitation, gestion `force` (409 si existe).
+- Nouvelle logique parts :
+  ```ts
+  const { data: postes } = await supabase
+    .from('postes_catalogue')
+    .select('cle, titre, evocation, ordre')
+    .eq('actif_par_defaut', true)
+    .order('ordre');
+  const rows = postes.map(p => ({
+    cercle_id, poste_cle: p.cle, titre: p.titre,
+    evocation: p.evocation, ordre: p.ordre,
+    montant_cible: 0, actif: true,
+  }));
+  await supabase.from('parts').insert(rows);
+  ```
 
-### Étape 2 — Aller dans Cloud → Emails
-Dans Lovable, va dans **Cloud → Emails → Manage Domains**. Là, tu verras le domaine `notify.lebeaumariage.fr` avec ses **2 NS records à copier** (du type `ns3.lovable.cloud`, `ns4.lovable.cloud`).
+### 7. Impact frontend
+`src/components/admin/CercleGeneratorPanel.tsx` référence `niveau`, `montant_suggere`, `quantite_totale`. Après migration (types regénérés), je le simplifierai pour afficher `poste_cle`, `titre`, `evocation`, `ordre` (montant_cible non affiché ici — il sera édité dans un futur écran admin dédié).
 
-**📋 Copie ces 2 valeurs.**
-
-### Étape 3 — Aller chez Hostinger
-1. Connecte-toi à [hpanel.hostinger.com](https://hpanel.hostinger.com)
-2. **Domains** → clique sur `lebeaumariage.fr`
-3. **DNS / Nameservers** → **DNS Records**
-4. Clique **Add Record**
-
-### Étape 4 — Vérifier que Hostinger propose bien le type NS
-Dans le menu déroulant **Type** chez Hostinger, tu devrais voir : A, AAAA, CNAME, MX, TXT, **NS**, SRV, CAA…
-
-Si **NS n'apparaît pas** chez Hostinger non plus, c'est une limitation de leur interface DNS de base. Dans ce cas → voir Plan B ci-dessous.
-
-### Étape 5 — Si NS est disponible chez Hostinger
-Crée 2 enregistrements :
-- **Type** : NS
-- **Name** : `notify`
-- **Points to / Nameserver** : la valeur copiée depuis Lovable
-- **TTL** : 14400
-
-Répéter pour la 2ème valeur NS.
+### 8. Hors périmètre (non touché)
+`cercles`, `cercle_tokens`, vue `contributions_publiques`, système de token, pipeline email.
 
 ---
 
-## Plan B — Si Hostinger ne permet PAS les NS records sur sous-domaine
+**Ordre d'exécution** : (a) migration SQL unique regroupant sections 1→5, (b) redeploy edge function (section 6), (c) patch du panel admin (section 7).
 
-Certains plans Hostinger limitent les types DNS. Solutions possibles :
-1. **Changer les nameservers du domaine entier** vers Lovable (mais ça casserait le site web actuel)
-2. **Utiliser Cloudflare comme DNS intermédiaire** (gratuit) : transférer les nameservers de `lebeaumariage.fr` vers Cloudflare, puis ajouter les NS records depuis Cloudflare qui supporte tous les types
-3. **Contacter le support Hostinger** pour qu'ils ajoutent les NS records manuellement
-
-## Questions à clarifier
-
-1. **Es-tu actuellement dans Lovable (Manage DNS records) ou chez Hostinger ?** La capture montre Lovable — il faut basculer vers Hostinger.
-2. **Une fois chez Hostinger dans la zone DNS, peux-tu me dire quels types sont proposés dans le menu Type ?** (capture d'écran utile)
-
+Confirme et j'applique la migration.
