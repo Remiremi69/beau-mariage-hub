@@ -387,22 +387,29 @@ const ContributionModal = ({ part, onClose }: { part: Part; onClose: () => void 
     if (!prenom.trim()) return setError("Votre prénom est nécessaire.");
     if (!email.trim() || !/^\S+@\S+\.\S+$/.test(email)) return setError("Un email valide est nécessaire pour le certificat.");
     setLoading(true);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { error: err } = await (supabase as any).from("contributions").insert({
-      part_id: part.id,
-      prenom: prenom.trim(),
-      mot: mot.trim() || null,
-      email: email.trim(),
-      montant_declare: m,
-      statut: "en_attente",
-    });
-    setLoading(false);
-    if (err) {
-      setError("Impossible d'enregistrer votre part pour le moment.");
-      return;
+    try {
+      const { data, error: err } = await supabase.functions.invoke("create-checkout", {
+        body: {
+          part_id: part.id,
+          cercle_id: part.cercle_id,
+          montant: m,
+          prenom: prenom.trim(),
+          mot: mot.trim() || null,
+          email: email.trim(),
+        },
+      });
+      if (err) throw err;
+      const url = (data as { url?: string } | null)?.url;
+      if (!url) throw new Error("URL de paiement manquante");
+      // Redirige vers Stripe Checkout
+      window.location.href = url;
+    } catch (e) {
+      console.error(e);
+      setError("Impossible d'ouvrir le paiement pour le moment.");
+      setLoading(false);
     }
-    setConfirmed(true);
   };
+
 
   return (
     <div
