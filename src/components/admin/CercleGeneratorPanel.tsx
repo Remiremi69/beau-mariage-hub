@@ -3,13 +3,11 @@ import { supabase } from "@/integrations/supabase/client";
 
 interface GeneratedPart {
   id: string;
+  poste_cle: string;
   titre: string;
   evocation: string;
-  niveau: "seuil" | "signature" | "fondatrice";
-  montant_suggere: number;
-  quantite_totale: number;
-  etape_composeur_source: string | null;
   ordre: number;
+  actif: boolean;
 }
 
 interface GenerateResult {
@@ -22,8 +20,6 @@ interface GenerateResult {
   email_sent: boolean;
   email_error: string | null;
 }
-
-const NIVEAUX: Array<GeneratedPart["niveau"]> = ["seuil", "signature", "fondatrice"];
 
 const CercleGeneratorPanel = () => {
   const [coupleId, setCoupleId] = useState("");
@@ -43,7 +39,6 @@ const CercleGeneratorPanel = () => {
         { body: { couple_id: coupleId.trim(), force } }
       );
       if (fnErr) {
-        // Tente de récupérer le corps JSON de la réponse d'erreur
         // deno-lint-ignore no-explicit-any
         const ctx = (fnErr as any)?.context;
         let msg = fnErr.message ?? String(fnErr);
@@ -86,8 +81,8 @@ const CercleGeneratorPanel = () => {
         Le Cercle — Générateur (banc d'essai)
       </h2>
       <p style={{ fontSize: 12, color: "rgba(232,221,208,0.55)", marginBottom: 16 }}>
-        Colle un <code>configurateur_leads.id</code>, génère le Cercle complet
-        (parts via Claude + token + email).
+        Colle un <code>configurateur_leads.id</code>, génère le Cercle avec les
+        parts issues du catalogue (montants à renseigner ensuite).
       </p>
 
       <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
@@ -145,7 +140,6 @@ const CercleGeneratorPanel = () => {
         </button>
       </div>
 
-
       {error && (
         <div
           style={{
@@ -199,75 +193,43 @@ const CercleGeneratorPanel = () => {
             </div>
           </div>
 
-          {NIVEAUX.map((niveau) => {
-            const partsNiveau = result.parts.filter((p) => p.niveau === niveau);
-            if (!partsNiveau.length) return null;
-            return (
-              <div key={niveau} style={{ marginBottom: 20 }}>
-                <h3
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 18,
-                    color: "#c9a96e",
-                    borderBottom: "1px solid rgba(201,169,110,0.25)",
-                    paddingBottom: 6,
-                    marginBottom: 10,
-                    textTransform: "capitalize",
-                  }}
-                >
-                  {niveau} · {partsNiveau.length} parts
-                </h3>
-                {partsNiveau.map((p) => (
-                  <div
-                    key={p.id}
-                    style={{
-                      padding: "10px 12px",
-                      background: "rgba(232,221,208,0.03)",
-                      borderLeft: "2px solid rgba(201,169,110,0.4)",
-                      marginBottom: 8,
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "baseline",
-                        marginBottom: 4,
-                      }}
-                    >
-                      <strong style={{ color: "#E8DDD0", fontSize: 14 }}>
-                        {p.titre}
-                      </strong>
-                      <span style={{ color: "#c9a96e", fontSize: 12 }}>
-                        {p.montant_suggere} € × {p.quantite_totale}
-                      </span>
-                    </div>
-                    <p
-                      style={{
-                        fontStyle: "italic",
-                        color: "rgba(232,221,208,0.75)",
-                        margin: "0 0 4px",
-                        lineHeight: 1.5,
-                      }}
-                    >
-                      {p.evocation}
-                    </p>
-                    {p.etape_composeur_source && (
-                      <p
-                        style={{
-                          fontSize: 11,
-                          color: "rgba(232,221,208,0.35)",
-                          margin: 0,
-                        }}
-                      >
-                        source : {p.etape_composeur_source}
-                      </p>
-                    )}
-                  </div>
-                ))}
+          {result.parts.map((p) => (
+            <div
+              key={p.id}
+              style={{
+                padding: "10px 12px",
+                background: "rgba(232,221,208,0.03)",
+                borderLeft: "2px solid rgba(201,169,110,0.4)",
+                marginBottom: 8,
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "baseline",
+                  marginBottom: 4,
+                }}
+              >
+                <strong style={{ color: "#E8DDD0", fontSize: 14 }}>
+                  {p.titre}
+                </strong>
+                <span style={{ color: "rgba(201,169,110,0.7)", fontSize: 11 }}>
+                  {p.poste_cle} · ordre {p.ordre}
+                </span>
               </div>
-            );
-          })}
+              <p
+                style={{
+                  fontStyle: "italic",
+                  color: "rgba(232,221,208,0.75)",
+                  margin: 0,
+                  lineHeight: 1.5,
+                }}
+              >
+                {p.evocation}
+              </p>
+            </div>
+          ))}
         </div>
       )}
     </div>
