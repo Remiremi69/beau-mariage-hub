@@ -24,4 +24,13 @@ verify_jwt = true
 [functions.upload-esquisse]
 verify_jwt = false
 
+[functions.create-checkout]
+verify_jwt = false
+
+[functions.stripe-webhook-cercle]
+verify_jwt = false
+
+[functions.contribution-status]
+verify_jwt = false
+
 
