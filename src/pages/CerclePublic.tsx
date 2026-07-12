@@ -595,4 +595,150 @@ const Field = ({ label, children }: { label: string; children: React.ReactNode }
   </div>
 );
 
+const PorteScreen = ({
+  contributionId,
+  coupleLabel,
+  prenomFromUrl,
+  onClose,
+}: {
+  contributionId: string;
+  coupleLabel: string;
+  prenomFromUrl?: string;
+  onClose: () => void;
+}) => {
+  const [statut, setStatut] = useState<string | null>(null);
+  const [details, setDetails] = useState<{ prenom?: string; titre?: string } | null>(null);
+
+  // Poll léger sur le statut
+  useEffect(() => {
+    let alive = true;
+    let tries = 0;
+    const check = async () => {
+      try {
+        const { data } = await supabase.functions.invoke("contribution-status", {
+          body: null,
+          method: "GET" as never,
+          // supabase-js n'accepte pas GET → on utilise fetch direct
+        } as never);
+        if (data && (data as { statut?: string }).statut) {
+          if (!alive) return;
+          setStatut((data as { statut: string }).statut);
+        }
+      } catch { /* ignore */ }
+    };
+    // Utilise fetch direct pour GET
+    const url = `${(supabase as unknown as { supabaseUrl: string }).supabaseUrl}/functions/v1/contribution-status?cid=${contributionId}`;
+    const anonKey = (supabase as unknown as { supabaseKey: string }).supabaseKey;
+    const poll = async () => {
+      try {
+        const r = await fetch(url, { headers: { apikey: anonKey, Authorization: `Bearer ${anonKey}` } });
+        const j = await r.json();
+        if (!alive) return;
+        if (j?.statut) setStatut(j.statut);
+      } catch { /* ignore */ }
+    };
+    void check;
+    void poll();
+    const interval = setInterval(() => {
+      tries += 1;
+      if (tries > 20 || statut === "payee" || statut === "echouee") { clearInterval(interval); return; }
+      void poll();
+    }, 1500);
+    return () => { alive = false; clearInterval(interval); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contributionId]);
+
+  // Une fois payee : essaie de récupérer prénom + titre de part depuis la vue publique
+  useEffect(() => {
+    if (statut !== "payee") return;
+    (async () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data } = await (supabase as any)
+        .from("contributions_publiques")
+        .select("prenom, part_id")
+        .eq("id", contributionId)
+        .maybeSingle();
+      if (data?.part_id) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const { data: p } = await (supabase as any)
+          .from("parts").select("titre").eq("id", data.part_id).maybeSingle();
+        setDetails({ prenom: data.prenom, titre: p?.titre });
+      }
+    })();
+  }, [statut, contributionId]);
+
+  const isPending = statut !== "payee" && statut !== "echouee";
+  const prenom = details?.prenom || prenomFromUrl || "vous";
+
+  return (
+    <>
+      <SEO title="Merci — Le Cercle" description="Merci d'avoir porté une part." noIndex />
+      <div style={{ background: NUIT, color: LIN, minHeight: "100vh" }} className="flex items-center justify-center px-6">
+        <div className="text-center" style={{ maxWidth: 520 }}>
+          <div className="mx-auto" style={{ maxWidth: 240, marginBottom: 32, opacity: 0.5 }}>
+            <ArcheSVG />
+          </div>
+          <div style={{ width: 40, height: 1, background: OR, margin: "0 auto 32px" }} />
+
+          {statut === "echouee" ? (
+            <>
+              <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300, fontSize: 36, color: LIN }}>
+                Le paiement n'a pas abouti
+              </h1>
+              <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, lineHeight: 1.7, color: LIN, opacity: 0.7, marginTop: 20 }}>
+                Aucune somme n'a été prélevée. Vous pouvez réessayer quand vous le souhaitez.
+              </p>
+            </>
+          ) : isPending ? (
+            <>
+              <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 10, letterSpacing: "0.35em", textTransform: "uppercase", color: OR, opacity: 0.8 }}>
+                Nous confirmons votre part…
+              </p>
+              <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300, fontSize: 36, color: LIN, marginTop: 20 }}>
+                Un instant.
+              </h1>
+              <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, lineHeight: 1.7, color: LIN, opacity: 0.65, marginTop: 20 }}>
+                Stripe nous transmet la confirmation. Ne fermez pas cette page.
+              </p>
+            </>
+          ) : (
+            <>
+              <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 10, letterSpacing: "0.35em", textTransform: "uppercase", color: OR, opacity: 0.9 }}>
+                Votre part est portée
+              </p>
+              <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300, fontSize: 36, color: LIN, marginTop: 20, lineHeight: 1.2 }}>
+                {prenom}, vous portez {details?.titre ? <em style={{ color: OR, fontStyle: "italic" }}>{details.titre.toLowerCase()}</em> : "votre part"}.
+              </h1>
+              <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: 20, lineHeight: 1.6, color: LIN, opacity: 0.75, marginTop: 24 }}>
+                Le jour venu, il existera grâce à vous.
+              </p>
+              <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 13, lineHeight: 1.7, color: LIN, opacity: 0.55, marginTop: 28 }}>
+                Votre certificat vous sera envoyé par email dans les prochaines minutes.
+              </p>
+            </>
+          )}
+
+          <button
+            onClick={onClose}
+            style={{
+              marginTop: 40,
+              fontFamily: "'Jost', sans-serif",
+              fontSize: 11,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              padding: "14px 28px",
+              border: `1px solid ${OR}`,
+              background: "transparent",
+              color: OR,
+              cursor: "pointer",
+            }}
+          >
+            Retour au Cercle de {coupleLabel}
+          </button>
+        </div>
+      </div>
+    </>
+  );
+};
+
 export default CerclePublic;
