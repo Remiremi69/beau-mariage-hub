@@ -36,6 +36,7 @@ import Unsubscribe from "./pages/Unsubscribe";
 import EstherCoutin from "./pages/prestataires/EstherCoutin";
 import SeMarierIci from "./pages/SeMarierIci";
 import OAuthConsent from "./pages/OAuthConsent";
+import CerclePublic from "./pages/CerclePublic";
 
 const queryClient = new QueryClient();
 
