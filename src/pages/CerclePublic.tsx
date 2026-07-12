@@ -151,6 +151,23 @@ const CerclePublic = () => {
 
   if (!cercle) return null;
 
+  if (showPorte && contributionId) {
+    return (
+      <PorteScreen
+        contributionId={contributionId}
+        prenomFromUrl={searchParams.get("prenom") || undefined}
+        coupleLabel={coupleLabel}
+        onClose={() => {
+          searchParams.delete("porte");
+          searchParams.delete("cid");
+          searchParams.delete("prenom");
+          setSearchParams(searchParams, { replace: true });
+        }}
+      />
+    );
+  }
+
+
   return (
     <>
       <SEO title={`Le Cercle de ${coupleLabel}`} description="Portez une part réelle de ce mariage." noIndex />
