@@ -10,7 +10,7 @@ const SITE_NAME = "Le Beau Mariage"
 // use a domain verified in the Resend account.
 const SENDER_DOMAIN = "lebeaumariage.fr"
 const FROM_DOMAIN = "lebeaumariage.fr"
-const FROM_ADDRESS = `${SITE_NAME} <contact@${FROM_DOMAIN}>`
+const FROM_ADDRESS = `${SITE_NAME} <remi@${FROM_DOMAIN}>`
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',

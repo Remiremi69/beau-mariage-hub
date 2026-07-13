@@ -84,7 +84,7 @@ const CertificatPartEmail = ({
 
           <Section style={signature}>
             <Text style={signatureName}>Le Beau Mariage</Text>
-            <Text style={signatureContact}>contact@lebeaumariage.fr</Text>
+            <Text style={signatureContact}>remi@lebeaumariage.fr</Text>
           </Section>
         </Container>
       </Body>

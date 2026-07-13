@@ -1,6 +1,7 @@
 import { createClient } from 'npm:@supabase/supabase-js@2'
 
-const RESEND_FROM = 'Le Beau Mariage <contact@lebeaumariage.fr>'
+const RESEND_FROM = 'Le Beau Mariage <remi@lebeaumariage.fr>'
+const RESEND_REPLY_TO = 'remi@lebeaumariage.fr'
 
 class ResendSendError extends Error {
   status: number
@@ -35,6 +36,7 @@ async function sendViaResend(
     headers,
     body: JSON.stringify({
       from: RESEND_FROM,
+      reply_to: RESEND_REPLY_TO,
       to: [payload.to],
       subject: payload.subject,
       html: payload.html,
