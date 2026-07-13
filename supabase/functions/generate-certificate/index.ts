@@ -4,6 +4,7 @@
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
 import { Resvg, initWasm } from "npm:@resvg/resvg-wasm@2.6.2";
+import { formatPrenom, formatPrenomsCouple, formatMariageDe } from "../_shared/prenom.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -52,15 +53,6 @@ async function loadFonts(
   return buffers;
 }
 
-// Normalise "ANTO" ou "anto" → "Anto"
-function toProperCase(s: string): string {
-  return s
-    .toLowerCase()
-    .split(/(\s|-)/)
-    .map((part) => (part.length && !/\s|-/.test(part) ? part[0].toUpperCase() + part.slice(1) : part))
-    .join("");
-}
-
 function escapeXml(s: string): string {
   return s
     .replace(/&/g, "&amp;")
@@ -90,7 +82,7 @@ function wrapText(text: string, maxCharsPerLine: number): string[] {
 function buildSVG(opts: {
   prenom: string;
   poste: string;
-  couple: string;
+  coupleMariageDe: string; // fragment déjà élidé : "d'Anto & Momo" | "de Momo" | "des mariés"
   date: string;
   shortId: string;
 }): string {
@@ -102,7 +94,7 @@ function buildSVG(opts: {
 
   const prenom = escapeXml(opts.prenom);
   const posteLines = wrapText(opts.poste, 22).map(escapeXml);
-  const couple = escapeXml(opts.couple);
+  const coupleMariageDe = escapeXml(opts.coupleMariageDe);
   const date = escapeXml(opts.date);
   const shortId = escapeXml(opts.shortId.toUpperCase());
 
@@ -169,7 +161,7 @@ function buildSVG(opts: {
   <!-- Pour le mariage de -->
   <text x="${W / 2}" y="${posteEndY + 110}" fill="${LIN}" opacity="0.75"
         font-family="Cormorant Garamond" font-style="italic" font-size="30" text-anchor="middle">
-    pour le mariage de ${couple}
+    pour le mariage ${coupleMariageDe}
   </text>
 
   <!-- Phrase d'évocation -->
@@ -249,11 +241,12 @@ Deno.serve(async (req) => {
       .eq("id", cercle.couple_id)
       .maybeSingle();
 
-    const prenomPorteur = toProperCase((contribution.prenom || "").trim() || "Invité");
+    const prenomPorteur = formatPrenom(contribution.prenom) || "Invité";
     const posteTitre = part.titre || "une part";
-    const couplePrenom = toProperCase((couple?.prenom || "").trim());
-    const coupleNom = toProperCase((couple?.nom || "").trim());
-    const coupleLabel = [couplePrenom, coupleNom].filter(Boolean).join(" & ") || "les mariés";
+    // Libellé nom du couple ("Anto & Momo") pour l'email, et fragment élidé
+    // ("d'Anto & Momo" / "des mariés") pour le certificat + le sujet/preview de l'email.
+    const coupleLabel = formatPrenomsCouple(couple?.prenom, couple?.nom);
+    const coupleMariageDe = formatMariageDe(couple?.prenom, couple?.nom);
 
     // 3. Rendu SVG → PNG
     await ensureWasm();
@@ -262,7 +255,7 @@ Deno.serve(async (req) => {
     const svg = buildSVG({
       prenom: prenomPorteur,
       poste: posteTitre,
-      couple: coupleLabel,
+      coupleMariageDe,
       date: formatDate(contribution.created_at),
       shortId: contribution.id.slice(0, 8),
     });

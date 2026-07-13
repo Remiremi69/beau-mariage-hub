@@ -13,6 +13,7 @@ import {
   Text,
 } from 'npm:@react-email/components@0.0.22'
 import type { TemplateEntry } from './registry.ts'
+import { formatPrenom, mariageDeLabel } from '../prenom.ts'
 
 interface Props {
   prenom?: string
@@ -29,14 +30,14 @@ const CertificatPartEmail = ({
   certificat_url,
   cercle_url,
 }: Props) => {
-  const p = prenom || 'Vous'
+  const p = formatPrenom(prenom) || 'Vous'
   const posteLabel = poste || 'une part'
-  const coupleLabel = couple || 'des mariés'
+  const coupleMariageDe = mariageDeLabel(couple)
 
   return (
     <Html lang="fr" dir="ltr">
       <Head />
-      <Preview>Votre part du mariage de {coupleLabel}</Preview>
+      <Preview>Votre part du mariage {coupleMariageDe}</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={header}>
@@ -95,7 +96,7 @@ const CertificatPartEmail = ({
 export const template = {
   component: CertificatPartEmail,
   subject: (data: Record<string, unknown>) =>
-    `Votre part du mariage de ${(data?.couple as string) || 'nos mariés'}`,
+    `Votre part du mariage ${mariageDeLabel(data?.couple as string | undefined)}`,
   displayName: 'Certificat de part — Le Cercle',
   previewData: {
     prenom: 'Anto',

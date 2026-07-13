@@ -10,6 +10,7 @@ import {
   Text,
 } from 'npm:@react-email/components@0.0.22'
 import type { TemplateEntry } from './registry.ts'
+import { formatPrenom } from '../prenom.ts'
 
 const SITE_NAME = 'Limen — Le Beau Mariage'
 
@@ -24,7 +25,8 @@ const CercleInvitationEmail = ({
   lien_gestion,
   nb_parts,
 }: CercleInvitationProps) => {
-  const greeting = prenom ? `Bonjour ${prenom},` : 'Bonjour,'
+  const prenomFmt = formatPrenom(prenom)
+  const greeting = prenomFmt ? `Bonjour ${prenomFmt},` : 'Bonjour,'
 
   return (
     <Html lang="fr" dir="ltr">

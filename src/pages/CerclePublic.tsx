@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import SEO from "@/components/SEO";
+import { formatPrenom, formatPrenomsCouple, formatMariageDe } from "@/lib/prenom";
 
 type Cercle = {
   id: string;
@@ -115,11 +116,10 @@ const CerclePublic = () => {
     };
   }, [slug]);
 
-  const coupleLabel = useMemo(() => {
-    if (!couple) return "les mariés";
-    const p = (couple.prenom || "").trim();
-    return p || "les mariés";
-  }, [couple]);
+  const coupleLabel = useMemo(
+    () => formatPrenomsCouple(couple?.prenom, couple?.nom),
+    [couple],
+  );
 
   if (loading) {
     return (
@@ -202,9 +202,18 @@ const CerclePublic = () => {
                 color: LIN,
               }}
             >
-              {couple?.prenom || "Les mariés"}
-              {couple?.nom ? <> <span style={{ color: OR, fontStyle: "normal", fontWeight: 200 }}>&amp;</span> </> : null}
-              {couple?.nom || ""}
+              {(() => {
+                const a = formatPrenom(couple?.prenom);
+                const b = formatPrenom(couple?.nom);
+                if (a && b) {
+                  return (
+                    <>
+                      {a} <span style={{ color: OR, fontStyle: "normal", fontWeight: 200 }}>&amp;</span> {b}
+                    </>
+                  );
+                }
+                return a || b || "Les mariés";
+              })()}
             </h1>
 
             <p
@@ -219,7 +228,7 @@ const CerclePublic = () => {
                 marginInline: "auto",
               }}
             >
-              Les proches de {coupleLabel} portent leur mariage.
+              Les proches {formatMariageDe(couple?.prenom, couple?.nom)} portent leur mariage.
               <br />
               Choisissez ce que vous porterez.
             </p>
@@ -435,7 +444,7 @@ const ContributionModal = ({ part, onClose }: { part: Part; onClose: () => void 
           <div className="text-center">
             <div style={{ width: 40, height: 1, background: OR, margin: "0 auto 28px" }} />
             <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300, fontSize: 30, color: LIN }}>
-              Merci {prenom}.
+              Merci {formatPrenom(prenom)}.
             </h3>
             <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, lineHeight: 1.7, color: LIN, opacity: 0.7, marginTop: 20 }}>
               Le paiement sera activé très bientôt.
@@ -656,7 +665,7 @@ const PorteScreen = ({
   }, [statut, contributionId]);
 
   const isPending = statut !== "payee" && statut !== "echouee";
-  const prenom = details?.prenom || prenomFromUrl || "vous";
+  const prenom = formatPrenom(details?.prenom || prenomFromUrl) || "vous";
 
   return (
     <>

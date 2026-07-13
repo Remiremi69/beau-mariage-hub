@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import SEO from "@/components/SEO";
+import { formatPrenomsCouple } from "@/lib/prenom";
 
 const NUIT = "#1A1814";
 const LIN = "#F5F0E8";
@@ -174,7 +175,7 @@ const CercleGestion = () => {
   if (!data) return null;
 
   const isPublie = data.cercle.statut === "publie";
-  const prenoms = [data.couple?.prenom, data.couple?.nom].filter(Boolean).join(" ");
+  const prenoms = formatPrenomsCouple(data.couple?.prenom, data.couple?.nom);
 
   return (
     <div style={{ background: NUIT, color: LIN, fontFamily: "'Jost', sans-serif" }} className="min-h-screen">
