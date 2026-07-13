@@ -1,6 +1,7 @@
 import { createClient } from 'npm:@supabase/supabase-js@2'
 
-const RESEND_FROM = 'Le Beau Mariage <contact@lebeaumariage.fr>'
+const RESEND_FROM = 'Le Beau Mariage <remi@lebeaumariage.fr>'
+const RESEND_REPLY_TO = 'remi@lebeaumariage.fr'
 
 class ResendSendError extends Error {
   status: number
