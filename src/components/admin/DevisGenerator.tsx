@@ -285,7 +285,7 @@ const DevisGenerator = ({ lead, isOpen, onClose, mode }: DevisGeneratorProps) =>
                   <p style={{ fontSize: 28, letterSpacing: "0.25em", fontWeight: 300, color: "#1e1e1e" }}>LIMEN</p>
                   <p style={{ fontSize: 12, color: "#6b7280", marginTop: 4 }}>Domaine de la Croix Rochefort</p>
                   <p style={{ fontSize: 12, color: "#6b7280" }}>Beaujolais, France</p>
-                  <p style={{ fontSize: 12, color: "#c9a96e", marginTop: 4 }}>contact@lebeaumariage.fr</p>
+                  <p style={{ fontSize: 12, color: "#c9a96e", marginTop: 4 }}>remi@lebeaumariage.fr</p>
                   <p style={{ fontSize: 12, color: "#c9a96e" }}>lebeaumariage.fr</p>
                 </div>
                 <div style={{ textAlign: "right" }}>
