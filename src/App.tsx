@@ -37,6 +37,7 @@ import EstherCoutin from "./pages/prestataires/EstherCoutin";
 import SeMarierIci from "./pages/SeMarierIci";
 import OAuthConsent from "./pages/OAuthConsent";
 import CerclePublic from "./pages/CerclePublic";
+import CercleGestion from "./pages/CercleGestion";
 
 const queryClient = new QueryClient();
 
@@ -83,6 +84,7 @@ const AppLayout = () => {
         <Route path="/prestataires/esther-coutin" element={<EstherCoutin />} />
         <Route path="/prestataires/ceremonie-laique" element={<Navigate to="/prestataires/esther-coutin" replace />} />
         <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
+        <Route path="/cercle/gerer/:token" element={<CercleGestion />} />
         <Route path="/cercle/:slug" element={<CerclePublic />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
