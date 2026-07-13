@@ -33,4 +33,9 @@ verify_jwt = false
 [functions.contribution-status]
 verify_jwt = false
 
+[functions.generate-certificate]
+verify_jwt = false
+
+
+
 
