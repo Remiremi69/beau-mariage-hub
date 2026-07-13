@@ -257,7 +257,7 @@ Deno.serve(async (req) => {
 
     // 3. Rendu SVG → PNG
     await ensureWasm();
-    const fontBuffers = await loadFonts();
+    const fontBuffers = await loadFonts(supabase);
 
     const svg = buildSVG({
       prenom: prenomPorteur,
