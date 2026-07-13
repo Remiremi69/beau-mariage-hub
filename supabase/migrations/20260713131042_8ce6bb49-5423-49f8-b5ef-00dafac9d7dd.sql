@@ -1,0 +1,1 @@
+ALTER TABLE public.contributions ADD COLUMN IF NOT EXISTS certificat_url text;

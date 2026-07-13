@@ -67,8 +67,18 @@ Deno.serve(async (req) => {
         .update({ statut: "payee" })
         .eq("id", contributionId);
 
-      // TODO étape 3 : générer le certificat PDF + envoyer l'email au contributeur
       console.log("Contribution payée:", contributionId);
+
+      // Fire-and-forget : la génération du certificat et l'envoi de l'email sont
+      // délégués à generate-certificate. Toute erreur y est loggée mais ne remonte
+      // JAMAIS ici — sinon Stripe rejouerait l'événement et on risquerait un
+      // double traitement. On ne bloque pas la réponse 200.
+      supabase.functions
+        .invoke("generate-certificate", { body: { contribution_id: contributionId } })
+        .then(({ error }) => {
+          if (error) console.error("generate-certificate invoke error:", error);
+        })
+        .catch((e) => console.error("generate-certificate invoke threw:", e));
     } else if (
       event.type === "checkout.session.expired" ||
       event.type === "checkout.session.async_payment_failed"

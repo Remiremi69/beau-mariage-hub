@@ -24,12 +24,12 @@ Deno.serve(async (req) => {
 
   const { data } = await supabase
     .from("contributions")
-    .select("statut")
+    .select("statut, certificat_url")
     .eq("id", cid)
     .maybeSingle();
 
   if (!data) return json({ statut: null }, 404);
-  return json({ statut: data.statut }, 200);
+  return json({ statut: data.statut, certificat_url: data.certificat_url }, 200);
 });
 
 function json(payload: unknown, status = 200) {

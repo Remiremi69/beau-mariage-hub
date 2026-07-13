@@ -607,9 +607,10 @@ const PorteScreen = ({
   onClose: () => void;
 }) => {
   const [statut, setStatut] = useState<string | null>(null);
+  const [certificatUrl, setCertificatUrl] = useState<string | null>(null);
   const [details, setDetails] = useState<{ prenom?: string; titre?: string } | null>(null);
 
-  // Poll léger sur le statut via l'edge function contribution-status
+  // Poll léger sur le statut + certificat_url via l'edge function contribution-status
   useEffect(() => {
     let alive = true;
     let tries = 0;
@@ -621,12 +622,14 @@ const PorteScreen = ({
         const j = await r.json();
         if (!alive) return;
         if (j?.statut) setStatut(j.statut);
+        if (j?.certificat_url) setCertificatUrl(j.certificat_url);
       } catch { /* ignore */ }
     };
     void poll();
     const interval = setInterval(() => {
       tries += 1;
-      if (tries > 20) { clearInterval(interval); return; }
+      // On continue jusqu'à 40 tries (~60s) pour attraper le certificat après le paiement
+      if (tries > 40) { clearInterval(interval); return; }
       void poll();
     }, 1500);
     return () => { alive = false; clearInterval(interval); };
@@ -698,8 +701,33 @@ const PorteScreen = ({
                 Le jour venu, il existera grâce à vous.
               </p>
               <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 13, lineHeight: 1.7, color: LIN, opacity: 0.55, marginTop: 28 }}>
-                Votre certificat vous sera envoyé par email dans les prochaines minutes.
+                {certificatUrl
+                  ? "Votre certificat vous a été envoyé par email."
+                  : "Votre certificat vous sera envoyé par email dans les prochaines minutes."}
               </p>
+              {certificatUrl && (
+                <div style={{ marginTop: 24 }}>
+                  <a
+                    href={certificatUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "inline-block",
+                      fontFamily: "'Jost', sans-serif",
+                      fontSize: 11,
+                      letterSpacing: "0.25em",
+                      textTransform: "uppercase",
+                      padding: "14px 28px",
+                      border: `1px solid ${OR}`,
+                      background: OR,
+                      color: NUIT,
+                      textDecoration: "none",
+                    }}
+                  >
+                    Voir mon certificat
+                  </a>
+                </div>
+              )}
             </>
           )}
 
