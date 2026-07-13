@@ -48,7 +48,6 @@ const AppLayout = () => {
   const isSiteDeMariage = location.pathname === "/site-de-mariage";
   const isOAuthConsent = location.pathname === "/.lovable/oauth/consent";
   const isCerclePublic = location.pathname.startsWith("/cercle/");
-  const isCercleGestion = location.pathname.startsWith("/cercle/gerer/");
 
   return (
     <>
