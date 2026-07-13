@@ -11,15 +11,13 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-// URLs de polices Google Fonts (TTF bruts, hébergés sur GitHub officiel Google Fonts)
-const FONT_URLS = {
-  cormorantItalic:
-    "https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/CormorantGaramond-Italic.ttf",
-  cormorantRegular:
-    "https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/CormorantGaramond-Regular.ttf",
-  jostRegular:
-    "https://raw.githubusercontent.com/google/fonts/main/ofl/jost/static/Jost-Regular.ttf",
-};
+// Polices hébergées dans le bucket privé `fonts` de Supabase Storage
+// (fichiers uploadés une fois pour toutes — pas de dépendance à GitHub).
+const FONT_FILES = [
+  "CormorantGaramond-Regular.ttf",
+  "CormorantGaramond-Italic.ttf",
+  "Jost-Regular.ttf",
+];
 
 const WASM_URL = "https://unpkg.com/@resvg/resvg-wasm@2.6.2/index_bg.wasm";
 
@@ -37,13 +35,17 @@ async function ensureWasm() {
   await wasmReady;
 }
 
-async function loadFonts(): Promise<Uint8Array[]> {
+async function loadFonts(
+  supabase: ReturnType<typeof createClient>,
+): Promise<Uint8Array[]> {
   if (fontBuffersCache) return fontBuffersCache;
   const buffers = await Promise.all(
-    Object.values(FONT_URLS).map(async (url) => {
-      const r = await fetch(url);
-      if (!r.ok) throw new Error(`Font fetch ${url}: ${r.status}`);
-      return new Uint8Array(await r.arrayBuffer());
+    FONT_FILES.map(async (file) => {
+      const { data, error } = await supabase.storage.from("fonts").download(file);
+      if (error || !data) {
+        throw new Error(`Font download ${file}: ${error?.message ?? "no data"}`);
+      }
+      return new Uint8Array(await data.arrayBuffer());
     }),
   );
   fontBuffersCache = buffers;
