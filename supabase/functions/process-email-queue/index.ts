@@ -36,6 +36,7 @@ async function sendViaResend(
     headers,
     body: JSON.stringify({
       from: RESEND_FROM,
+      reply_to: RESEND_REPLY_TO,
       to: [payload.to],
       subject: payload.subject,
       html: payload.html,
