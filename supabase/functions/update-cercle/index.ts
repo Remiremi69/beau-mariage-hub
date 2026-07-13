@@ -59,8 +59,14 @@ Deno.serve(async (req) => {
         console.error("upload photo error:", upErr);
         return jsonRes({ error: "Échec upload photo" }, 500);
       }
-      const { data: pub } = admin.storage.from("cercle-photos").getPublicUrl(path);
-      update.photo_url = pub.publicUrl;
+      const { data: signed, error: signErr } = await admin.storage
+        .from("cercle-photos")
+        .createSignedUrl(path, 60 * 60 * 24 * 365 * 5);
+      if (signErr || !signed?.signedUrl) {
+        console.error("sign photo error:", signErr);
+        return jsonRes({ error: "Échec URL photo" }, 500);
+      }
+      update.photo_url = signed.signedUrl;
     } else if (removePhoto) {
       update.photo_url = null;
     }
