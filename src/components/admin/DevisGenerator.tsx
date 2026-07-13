@@ -429,7 +429,7 @@ const DevisGenerator = ({ lead, isOpen, onClose, mode }: DevisGeneratorProps) =>
 
               {/* Footer */}
               <p style={{ textAlign: "center", marginTop: 40, fontSize: 11, color: "#9ca3af" }}>
-                Limen · Domaine de la Croix Rochefort · Beaujolais · contact@lebeaumariage.fr · lebeaumariage.fr
+                Limen · Domaine de la Croix Rochefort · Beaujolais · remi@lebeaumariage.fr · lebeaumariage.fr
               </p>
             </div>
           </div>
