@@ -38,6 +38,7 @@ import SeMarierIci from "./pages/SeMarierIci";
 import OAuthConsent from "./pages/OAuthConsent";
 import CerclePublic from "./pages/CerclePublic";
 import CercleGestion from "./pages/CercleGestion";
+import LeCercle from "./pages/LeCercle";
 
 const queryClient = new QueryClient();
 
@@ -77,6 +78,7 @@ const AppLayout = () => {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/garantie" element={<Garantie />} />
+        <Route path="/le-cercle" element={<LeCercle />} />
         <Route path="/certification" element={<Certification />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} />

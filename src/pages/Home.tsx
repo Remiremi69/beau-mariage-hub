@@ -26,6 +26,7 @@ import { Link } from "react-router-dom";
 
 import SEO from "@/components/SEO";
 import { schemaHome } from "@/lib/schemas";
+import ArcheMotif from "@/components/cercle/ArcheMotif";
 import LeadCaptureSection from "@/components/LeadCaptureSection";
 import CinematicHero from "@/components/CinematicHero";
 import { ScrollReveal, StaggerContainer, ImageReveal } from "@/components/ScrollReveal";
@@ -93,6 +94,9 @@ const Home = () => {
 
       {/* Prestataires d'Exception Section - ACTION 3 */}
       <PartnersSection />
+
+      {/* Le Cercle — teaser */}
+      <CercleTeaserSection />
 
       {/* Garantie Section - ACTION 4 */}
       <SerenitySection />
@@ -492,6 +496,87 @@ const SerenitySection = () => {
             );
           })}
         </StaggerContainer>
+      </div>
+    </section>
+  );
+};
+
+// Le Cercle Teaser Section
+const CercleTeaserSection = () => {
+  const NUIT = "#1A1814";
+  const LIN = "#F5F0E8";
+  const OR = "#C8A96E";
+
+  return (
+    <section style={{ backgroundColor: NUIT, color: LIN, paddingTop: 100, paddingBottom: 100 }}>
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center max-w-5xl mx-auto">
+          <ScrollReveal direction="left">
+            <div className="mx-auto" style={{ maxWidth: 260, opacity: 0.85 }}>
+              <ArcheMotif color={OR} />
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal direction="right" delay={0.15}>
+            <p
+              style={{
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 11,
+                letterSpacing: "0.3em",
+                textTransform: "uppercase",
+                color: OR,
+                marginBottom: 18,
+              }}
+            >
+              Le Cercle
+            </p>
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 300,
+                fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+                lineHeight: 1.2,
+                color: LIN,
+                marginBottom: 20,
+              }}
+            >
+              Et si vos proches portaient votre mariage avec vous ?
+            </h2>
+            <p
+              style={{
+                fontFamily: "'Jost', sans-serif",
+                fontWeight: 300,
+                fontSize: "1rem",
+                lineHeight: 1.75,
+                color: LIN,
+                opacity: 0.75,
+                marginBottom: 32,
+              }}
+            >
+              Le Cercle transforme la liste de mariage classique en un geste collectif — chaque proche porte un
+              fragment réel de votre jour, avant qu'il arrive.
+            </p>
+            <Link
+              to="/le-cercle"
+              style={{
+                display: "inline-block",
+                fontFamily: "'Jost', sans-serif",
+                fontWeight: 500,
+                fontSize: "0.8rem",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                padding: "16px 32px",
+                color: OR,
+                border: `1px solid ${OR}`,
+                textDecoration: "none",
+                transition: "background 0.3s ease, color 0.3s ease",
+              }}
+              className="hover:!bg-[#C8A96E] hover:!text-[#1A1814]"
+            >
+              Découvrir Le Cercle →
+            </Link>
+          </ScrollReveal>
+        </div>
       </div>
     </section>
   );

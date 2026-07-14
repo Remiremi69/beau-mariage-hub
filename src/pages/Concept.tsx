@@ -99,7 +99,15 @@ const Concept = () => {
             ))}
           </div>
 
-          <div className="mt-16">
+          <p className="mt-10 text-sm max-w-xl mx-auto" style={{ fontFamily: "'Jost', sans-serif", color: '#A0998A' }}>
+            Chaque mariage inclut aussi{' '}
+            <Link to="/le-cercle" className="underline underline-offset-4" style={{ color: '#C9A96E' }}>
+              Le Cercle
+            </Link>
+            , la liste de mariage inversée qui permet à vos proches de porter une part réelle de votre jour.
+          </p>
+
+          <div className="mt-10">
             <Link to="/configurateur">
               <button
                 className="uppercase tracking-widest font-medium"

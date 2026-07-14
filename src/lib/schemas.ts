@@ -229,6 +229,15 @@ export const schemaConcept = {
   mainEntityOfPage: `${BASE_URL}/concept`,
 };
 
+export const schemaLeCercleBreadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${BASE_URL}/` },
+    { '@type': 'ListItem', position: 2, name: 'Le Cercle', item: `${BASE_URL}/le-cercle` },
+  ],
+};
+
 export const schemaConfigurateur = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',

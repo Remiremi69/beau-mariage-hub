@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import { schemaFAQ } from '@/lib/schemas';
 
@@ -88,7 +89,15 @@ const FAQ = () => {
             </CardContent>
           </Card>
 
-          <div className="mt-16">
+          <p className="text-center text-muted-foreground mt-16 text-base">
+            Vous voulez que vos proches portent votre mariage avec vous ?{' '}
+            <Link to="/le-cercle" className="text-primary font-semibold hover:underline">
+              Découvrez Le Cercle
+            </Link>
+            .
+          </p>
+
+          <div className="mt-10">
             <Card className="border-none shadow-[0_10px_40px_-10px_hsl(14_71%_67%/0.2)] bg-gradient-to-br from-primary/5 to-secondary/5">
               <CardContent className="p-12 text-center">
                 <h3 className="text-3xl font-bold mb-4">Vous avez d'autres questions ?</h3>
