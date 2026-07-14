@@ -517,7 +517,12 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const client = supabase as any;
+      // Id généré côté client : anon n'a pas de policy SELECT sur configurateur_leads
+      // (volontaire, pour protéger emails/téléphones des prospects), donc un .select()
+      // après l'insert échouerait sur le RETURNING implicite malgré un INSERT autorisé.
+      const leadId = crypto.randomUUID();
       const insertPromise = client.from("configurateur_leads").insert({
+        id: leadId,
         prenom: contact.prenom, nom: contact.nom, email: contact.email, telephone: contact.telephone,
         message: contact.message, date_mariage: state.date, serie_id: state.serieId, serie_label: state.serieLabel, guests_estimate: state.guests,
         ceremonie_laique: state.ceremonieLaique,
@@ -537,7 +542,7 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
         adresse_livraison: localisation === "distance" ? { rue: adresse.rue, cp: adresse.cp, ville: adresse.ville, pays: adresse.pays } : null,
         coffret_demande: localisation === "distance",
         site_mariage: state.siteMariage,
-      }).select().single();
+      });
 
       const result = await Promise.race([
         insertPromise,
@@ -546,12 +551,11 @@ const Step11_Recap = ({ state, onPrev, onUpdate }: Step10Props) => {
         ),
       ]);
 
-      if (!result || result.error || !result.data) {
-        throw new Error(result?.error?.message || "Insert failed");
+      if (!result || (result as { error?: unknown }).error) {
+        throw new Error((result as { error?: { message?: string } })?.error?.message || "Insert failed");
       }
 
       setIsSuccess(true);
-      const leadId = result.data.id as string;
 
       // Fire-and-forget PDF upload via secure edge function
       (async () => {
