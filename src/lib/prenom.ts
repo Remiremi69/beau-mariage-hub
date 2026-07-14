@@ -20,10 +20,15 @@ export function formatPrenom(prenom?: string | null): string {
 }
 
 /**
- * Affichage du couple à partir des deux prénoms.
+ * Affichage du couple à partir des DEUX prénoms des mariés.
  *   ("ANTO", "momo") → "Anto & Momo"
- *   ("ANTO", null)   → "Anto"
+ *   ("ANTO", null)   → "les mariés"   (un seul prénom ≠ un couple)
  *   (null, null)     → "les mariés"
+ *
+ * ⚠️ On n'affiche un couple que si DEUX vrais prénoms existent. On ne
+ * fabrique jamais un faux couple à partir du prénom + nom de famille d'une
+ * même personne (ce serait trompeur et exposerait un nom de famille).
+ * Tant qu'il n'y a pas de vrai second prénom en base → repli neutre.
  */
 export function formatPrenomsCouple(
   prenom1?: string | null,
@@ -32,8 +37,6 @@ export function formatPrenomsCouple(
   const a = formatPrenom(prenom1);
   const b = formatPrenom(prenom2);
   if (a && b) return `${a} & ${b}`;
-  if (a) return a;
-  if (b) return b;
   return "les mariés";
 }
 
@@ -68,7 +71,7 @@ export function mariageDeLabel(coupleLabel?: string | null): string {
 /**
  * Fragment "de/d'/des …" à partir des deux prénoms bruts.
  *   ("ANTO", "momo") → "d'Anto & Momo"
- *   ("Momo", null)   → "de Momo"
+ *   ("Momo", null)   → "des mariés"   (un seul prénom → repli neutre)
  *   (null, null)     → "des mariés"
  * Utile pour "Les proches {…} portent leur mariage." et
  * "pour le mariage {…}".

@@ -175,7 +175,9 @@ const CercleGestion = () => {
   if (!data) return null;
 
   const isPublie = data.cercle.statut === "publie";
-  const prenoms = formatPrenomsCouple(data.couple?.prenom, data.couple?.nom);
+  // couple.nom = nom de famille → jamais utilisé comme 2ᵉ prénom.
+  // Repli neutre tant qu'il n'y a pas de vrai second prénom (à remplacer par prenom2).
+  const prenoms = formatPrenomsCouple(data.couple?.prenom, null);
 
   return (
     <div style={{ background: NUIT, color: LIN, fontFamily: "'Jost', sans-serif" }} className="min-h-screen">

@@ -243,10 +243,12 @@ Deno.serve(async (req) => {
 
     const prenomPorteur = formatPrenom(contribution.prenom) || "Invité";
     const posteTitre = part.titre || "une part";
-    // Libellé nom du couple ("Anto & Momo") pour l'email, et fragment élidé
-    // ("d'Anto & Momo" / "des mariés") pour le certificat + le sujet/preview de l'email.
-    const coupleLabel = formatPrenomsCouple(couple?.prenom, couple?.nom);
-    const coupleMariageDe = formatMariageDe(couple?.prenom, couple?.nom);
+    // couple.nom = nom de famille (une seule personne) → JAMAIS utilisé comme 2ᵉ prénom.
+    // Tant qu'il n'y a pas de vrai second prénom en base, on passe null en 2ᵉ argument
+    // → repli neutre ("les mariés" / "des mariés"). À remplacer par couple?.prenom2 plus tard.
+    const prenom2: string | null = null;
+    const coupleLabel = formatPrenomsCouple(couple?.prenom, prenom2);
+    const coupleMariageDe = formatMariageDe(couple?.prenom, prenom2);
 
     // 3. Rendu SVG → PNG
     await ensureWasm();

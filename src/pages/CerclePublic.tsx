@@ -116,8 +116,12 @@ const CerclePublic = () => {
     };
   }, [slug]);
 
+  // couple.nom = nom de famille (une seule personne) → JAMAIS utilisé comme 2ᵉ prénom.
+  // Tant qu'il n'y a pas de vrai second prénom en base, le 2ᵉ argument reste null
+  // (→ repli neutre "les mariés"). À remplacer par couple?.prenom2 le jour venu.
+  const prenom2: string | null = null;
   const coupleLabel = useMemo(
-    () => formatPrenomsCouple(couple?.prenom, couple?.nom),
+    () => formatPrenomsCouple(couple?.prenom, prenom2),
     [couple],
   );
 
@@ -203,8 +207,9 @@ const CerclePublic = () => {
               }}
             >
               {(() => {
+                // Couple affiché uniquement si DEUX vrais prénoms existent.
                 const a = formatPrenom(couple?.prenom);
-                const b = formatPrenom(couple?.nom);
+                const b = formatPrenom(prenom2);
                 if (a && b) {
                   return (
                     <>
@@ -212,7 +217,7 @@ const CerclePublic = () => {
                     </>
                   );
                 }
-                return a || b || "Les mariés";
+                return "Les mariés";
               })()}
             </h1>
 
@@ -228,7 +233,7 @@ const CerclePublic = () => {
                 marginInline: "auto",
               }}
             >
-              Les proches {formatMariageDe(couple?.prenom, couple?.nom)} portent leur mariage.
+              Les proches {formatMariageDe(couple?.prenom, prenom2)} portent leur mariage.
               <br />
               Choisissez ce que vous porterez.
             </p>
