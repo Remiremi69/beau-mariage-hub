@@ -126,6 +126,26 @@ serve(async (req) => {
   }
 
   try {
+    // Authenticate caller — must present the service_role JWT (sent by the DB trigger)
+    const authHeader = req.headers.get("Authorization") ?? "";
+    const bearer = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : "";
+    const expected = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+    if (!bearer || !expected || bearer !== expected) {
+      // Fallback: accept a valid service_role JWT (in case keys are rotated)
+      let ok = false;
+      try {
+        const payload = JSON.parse(atob(bearer.split(".")[1] ?? ""));
+        ok = payload?.role === "service_role";
+      } catch { /* ignore */ }
+      if (!ok) {
+        console.warn("agent-commercial-limen: unauthorized caller");
+        return new Response(JSON.stringify({ error: "Unauthorized" }), {
+          status: 401,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+    }
+
     const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY");
     if (!ANTHROPIC_API_KEY) {
       console.error("ANTHROPIC_API_KEY non configurée");

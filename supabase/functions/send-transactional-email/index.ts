@@ -37,6 +37,23 @@ Deno.serve(async (req) => {
     return new Response(null, { headers: corsHeaders })
   }
 
+  // Require service_role caller — this function must only be invoked by trusted
+  // server-side code (other edge functions, DB triggers). The public anon key
+  // is a valid JWT and would otherwise let anonymous visitors send branded emails.
+  const authHeader = req.headers.get('Authorization') ?? ''
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : ''
+  let callerRole: string | undefined
+  try {
+    callerRole = JSON.parse(atob(token.split('.')[1] ?? '')).role
+  } catch { /* invalid token */ }
+  if (callerRole !== 'service_role') {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+      status: 401,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
+  }
+
+
   const supabaseUrl = Deno.env.get('SUPABASE_URL')
   const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
 
