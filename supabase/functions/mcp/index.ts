@@ -2,7 +2,131 @@
 // To take ownership, delete this banner line; the plugin then leaves the file alone.
 // supabase function: mcp
 // Bundled from src/lib/mcp/index.ts by @lovable.dev/mcp-js.
+// src/lib/mcp/index.ts
+import { auth, defineMcp } from "npm:@lovable.dev/mcp-js@0.20.0";
+
+// src/lib/mcp/tools/list_leads.ts
+import { createClient } from "npm:@supabase/supabase-js@^2.100.0";
+import { defineTool } from "npm:@lovable.dev/mcp-js@0.20.0";
+import { z } from "npm:zod@^4.4.3";
+function supabaseForUser(ctx) {
+  return createClient(process.env.SUPABASE_URL, process.env.SUPABASE_PUBLISHABLE_KEY, {
+    global: { headers: { Authorization: `Bearer ${ctx.getToken()}` } },
+    auth: { persistSession: false, autoRefreshToken: false }
+  });
+}
+var list_leads_default = defineTool({
+  name: "list_leads",
+  title: "Lister les leads du configurateur",
+  description: "Retourne les leads r\xE9cents capt\xE9s via le configurateur Limen (Domaine de la Croix Rochefort). R\xE9serv\xE9 aux administrateurs (RLS).",
+  inputSchema: {
+    limit: z.number().int().min(1).max(100).default(20).describe("Nombre maximum de leads \xE0 retourner (d\xE9faut 20)."),
+    status: z.string().optional().describe("Filtre optionnel sur le statut du lead (ex: 'new', 'contacted').")
+  },
+  annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
+  handler: async ({ limit, status }, ctx) => {
+    if (!ctx.isAuthenticated()) {
+      return { content: [{ type: "text", text: "Non authentifi\xE9." }], isError: true };
+    }
+    let query = supabaseForUser(ctx).from("configurateur_leads").select(
+      "id, created_at, prenom, nom, email, telephone, date_mariage, serie_label, guests_estimate, total_estimate, localisation, status"
+    ).order("created_at", { ascending: false }).limit(limit);
+    if (status) query = query.eq("status", status);
+    const { data, error } = await query;
+    if (error) {
+      return { content: [{ type: "text", text: `Erreur: ${error.message}` }], isError: true };
+    }
+    return {
+      content: [{ type: "text", text: JSON.stringify(data, null, 2) }],
+      structuredContent: { leads: data ?? [], count: data?.length ?? 0 }
+    };
+  }
+});
+
+// src/lib/mcp/tools/get_lead.ts
+import { createClient as createClient2 } from "npm:@supabase/supabase-js@^2.100.0";
+import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@0.20.0";
+import { z as z2 } from "npm:zod@^4.4.3";
+function supabaseForUser2(ctx) {
+  return createClient2(process.env.SUPABASE_URL, process.env.SUPABASE_PUBLISHABLE_KEY, {
+    global: { headers: { Authorization: `Bearer ${ctx.getToken()}` } },
+    auth: { persistSession: false, autoRefreshToken: false }
+  });
+}
+var get_lead_default = defineTool2({
+  name: "get_lead",
+  title: "D\xE9tail d'un lead",
+  description: "Retourne l'ensemble des champs d'un lead du configurateur \xE0 partir de son identifiant. R\xE9serv\xE9 aux administrateurs.",
+  inputSchema: {
+    id: z2.string().uuid().describe("UUID du lead configurateur.")
+  },
+  annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
+  handler: async ({ id }, ctx) => {
+    if (!ctx.isAuthenticated()) {
+      return { content: [{ type: "text", text: "Non authentifi\xE9." }], isError: true };
+    }
+    const { data, error } = await supabaseForUser2(ctx).from("configurateur_leads").select("*").eq("id", id).maybeSingle();
+    if (error) {
+      return { content: [{ type: "text", text: `Erreur: ${error.message}` }], isError: true };
+    }
+    if (!data) {
+      return { content: [{ type: "text", text: "Lead introuvable." }], isError: true };
+    }
+    return {
+      content: [{ type: "text", text: JSON.stringify(data, null, 2) }],
+      structuredContent: { lead: data }
+    };
+  }
+});
+
+// src/lib/mcp/tools/update_lead_status.ts
+import { createClient as createClient3 } from "npm:@supabase/supabase-js@^2.100.0";
+import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.20.0";
+import { z as z3 } from "npm:zod@^4.4.3";
+function supabaseForUser3(ctx) {
+  return createClient3(process.env.SUPABASE_URL, process.env.SUPABASE_PUBLISHABLE_KEY, {
+    global: { headers: { Authorization: `Bearer ${ctx.getToken()}` } },
+    auth: { persistSession: false, autoRefreshToken: false }
+  });
+}
+var update_lead_status_default = defineTool3({
+  name: "update_lead_status",
+  title: "Mettre \xE0 jour le statut d'un lead",
+  description: "Met \xE0 jour le statut d'un lead du configurateur (ex: 'new', 'contacted', 'qualified', 'lost'). R\xE9serv\xE9 aux administrateurs.",
+  inputSchema: {
+    id: z3.string().uuid().describe("UUID du lead."),
+    status: z3.string().min(1).max(50).describe("Nouveau statut.")
+  },
+  annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: false },
+  handler: async ({ id, status }, ctx) => {
+    if (!ctx.isAuthenticated()) {
+      return { content: [{ type: "text", text: "Non authentifi\xE9." }], isError: true };
+    }
+    const { data, error } = await supabaseForUser3(ctx).from("configurateur_leads").update({ status }).eq("id", id).select("id, status").maybeSingle();
+    if (error) {
+      return { content: [{ type: "text", text: `Erreur: ${error.message}` }], isError: true };
+    }
+    return {
+      content: [{ type: "text", text: `Lead ${data?.id} mis \xE0 jour en statut '${data?.status}'.` }],
+      structuredContent: { lead: data }
+    };
+  }
+});
+
+// src/lib/mcp/index.ts
+var projectRef = "fwsqtjkydzetwcqidclw";
+var mcp_default = defineMcp({
+  name: "limen-mcp",
+  title: "Limen \u2014 Domaine de la Croix Rochefort",
+  version: "0.1.0",
+  instructions: "Outils d'administration Limen : consultation et suivi des leads du configurateur de mariage. L'acc\xE8s est prot\xE9g\xE9 par OAuth ; seuls les administrateurs peuvent lire ou modifier les donn\xE9es (RLS).",
+  auth: auth.oauth.issuer({
+    issuer: `https://${projectRef}.supabase.co/auth/v1`,
+    acceptedAudiences: "authenticated"
+  }),
+  tools: [list_leads_default, get_lead_default, update_lead_status_default]
+});
+
 // lovable-mcp-supabase-entry.ts
-import mcp from "npm:C:\\Users\\mormo\\Documents\\GitHub\\beau-mariage-hub\\src\\lib\\mcp\\index.ts";
-import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.20.1/stacks/supabase";
-Deno.serve(createSupabaseHandler(mcp, { functionName: "mcp" }));
+import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.20.0/stacks/supabase";
+Deno.serve(createSupabaseHandler(mcp_default, { functionName: "mcp" }));
