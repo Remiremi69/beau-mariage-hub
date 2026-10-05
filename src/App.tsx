@@ -39,6 +39,7 @@ import OAuthConsent from "./pages/OAuthConsent";
 import CerclePublic from "./pages/CerclePublic";
 import CercleGestion from "./pages/CercleGestion";
 import LeCercle from "./pages/LeCercle";
+import Confidentialite from "./pages/Confidentialite";
 
 const queryClient = new QueryClient();
 
