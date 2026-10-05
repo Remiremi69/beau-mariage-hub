@@ -46,6 +46,11 @@ export const Footer = () => {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link to="/confidentialite" className="hover:text-primary transition-colors">
+                  Confidentialité
+                </Link>
+              </li>
             </ul>
           </div>
 

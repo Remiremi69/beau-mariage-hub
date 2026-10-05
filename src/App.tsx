@@ -39,6 +39,7 @@ import OAuthConsent from "./pages/OAuthConsent";
 import CerclePublic from "./pages/CerclePublic";
 import CercleGestion from "./pages/CercleGestion";
 import LeCercle from "./pages/LeCercle";
+import Confidentialite from "./pages/Confidentialite";
 
 const queryClient = new QueryClient();
 
@@ -80,6 +81,7 @@ const AppLayout = () => {
         <Route path="/garantie" element={<Garantie />} />
         <Route path="/le-cercle" element={<LeCercle />} />
         <Route path="/certification" element={<Certification />} />
+        <Route path="/confidentialite" element={<Confidentialite />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/unsubscribe" element={<Unsubscribe />} />

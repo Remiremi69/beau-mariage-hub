@@ -252,3 +252,13 @@ export const schemaConfigurateur = {
     highPrice: '34000',
   },
 };
+
+export const schemaPrivacy = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Politique de confidentialité',
+  url: `${BASE_URL}/confidentialite`,
+  description: 'Politique de confidentialité du site Le Beau Mariage : données collectées, finalités, durée de conservation et droits RGPD.',
+  isPartOf: { '@id': `${BASE_URL}/#organization` },
+  inLanguage: 'fr-FR',
+};
