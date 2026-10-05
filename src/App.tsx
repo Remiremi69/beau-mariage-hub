@@ -81,6 +81,7 @@ const AppLayout = () => {
         <Route path="/garantie" element={<Garantie />} />
         <Route path="/le-cercle" element={<LeCercle />} />
         <Route path="/certification" element={<Certification />} />
+        <Route path="/confidentialite" element={<Confidentialite />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/unsubscribe" element={<Unsubscribe />} />
