@@ -62,6 +62,18 @@ const Home = () => {
         <span className="sm:hidden"> La série présentée est un exemple.</span>
       </div>
 
+      {/* Assistant IA : page statique public/acheteur.html */}
+      <div className="bg-[#1A1814] border-b border-[#C8A96E]/30 py-3 px-4 text-center">
+        <a
+          href="/acheteur.html"
+          className="inline-flex items-center gap-2 rounded-full bg-[#C8A96E] text-[#1A1814] px-5 py-2 text-sm sm:text-base font-[Jost] font-medium hover:bg-[#d6b97f] transition-colors"
+        >
+          Trouver mon lieu et mon traiteur, avec les prix
+          <ArrowRight className="w-4 h-4" />
+        </a>
+        <p className="mt-1.5 text-[11px] text-[#F5F0E8]/60 font-[Jost]">Assistant IA. Les prix sont des estimations à confirmer par les prestataires.</p>
+      </div>
+
       {/* Hero Section - Cinematic */}
       <CinematicHero />
 

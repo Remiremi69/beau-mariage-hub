@@ -58,19 +58,39 @@ const sections = [
     ),
   },
   {
-    title: "5. Durée de conservation",
+    title: "5. Assistant IA « Trouver mon lieu et mon traiteur »",
+    body: (
+      <>
+        <p>
+          Cet assistant est une intelligence artificielle, pas une personne. Il cherche des lieux de réception
+          et des traiteurs dans le réseau Limen, calcule des estimations de prix et vérifie les disponibilités
+          déclarées. Les prix sont des estimations à confirmer par les prestataires.
+        </p>
+        <ul>
+          <li><strong>Données traitées</strong> : vos messages, les informations de votre projet (date, nombre d'invités, budget, lieu) et, si vous demandez un devis, votre nom et votre contact.</li>
+          <li><strong>Transmission</strong> : vos coordonnées ne sont transmises qu'aux prestataires que vous choisissez, et seulement après votre accord explicite dans la conversation. Aucune prospection, aucune revente.</li>
+          <li><strong>Finalité et base légale</strong> : transmettre votre demande de devis au prestataire choisi, puis permettre un avis vérifié après la prestation — exécution de votre demande.</li>
+          <li><strong>Sous-traitants</strong> : Anthropic (modèle d'IA Claude, qui traite les messages de la conversation), Limen et Supabase (enregistrement et transmission des demandes, hébergement en Europe), Resend (e-mails), Telegram (notifications internes).</li>
+          <li><strong>Journal technique</strong> : les recherches de l'assistant sont enregistrées sans aucune donnée personnelle, pour mesurer et améliorer le service.</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    title: "6. Durée de conservation",
     body: (
       <>
         <ul>
           <li>Demandes de contact et esquisse : 24 mois après le dernier échange.</li>
           <li>Dossier client : durée du contrat, puis 5 ans (obligations comptables et légales).</li>
           <li>Certificats et contributions du Cercle : 12 mois après la publication de la liste, sauf demande de suppression.</li>
+          <li>Demandes de devis envoyées par l'assistant IA : 12 mois, puis anonymisation. La conversation n'est enregistrée ni par Le Beau Mariage ni par Limen : elle reste dans votre navigateur, et vous pouvez l'effacer en supprimant les données du site. Anthropic la traite pour produire les réponses, selon ses propres règles de conservation.</li>
         </ul>
       </>
     ),
   },
   {
-    title: "6. Vos droits",
+    title: "7. Vos droits",
     body: (
       <>
         <p>
@@ -87,7 +107,7 @@ const sections = [
     ),
   },
   {
-    title: "7. Cookies",
+    title: "8. Cookies",
     body: (
       <>
         <p>
@@ -99,7 +119,7 @@ const sections = [
     ),
   },
   {
-    title: "8. Sécurité",
+    title: "9. Sécurité",
     body: (
       <>
         <p>
@@ -110,7 +130,7 @@ const sections = [
     ),
   },
   {
-    title: "9. Mise à jour",
+    title: "10. Mise à jour",
     body: (
       <>
         <p>
