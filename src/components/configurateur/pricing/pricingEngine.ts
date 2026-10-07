@@ -10,6 +10,7 @@ export type PriceLine = {
   amount: number
   isIncluded: boolean
   isEstimate?: boolean
+  isOption?: boolean
 }
 
 export type PriceBreakdown = {
@@ -228,13 +229,14 @@ export function calculateBreakdown(state: ConfigurateurState): PriceBreakdown {
         label: OPTION_LABELS[optionId] ?? optionId,
         amount: prix,
         isIncluded: false,
+        isOption: true,
       })
     }
   }
 
   const repasAmount = repasPrixUnit * g
   const subtotalFixe = lines
-    .filter((l) => !l.isEstimate && !l.isIncluded)
+    .filter((l) => !l.isEstimate && !l.isIncluded && !l.isOption)
     .reduce((sum, l) => sum + l.amount, 0)
   const subtotalRepas = repasAmount
   const subtotalOptions = safeOptions.reduce(
